@@ -1,13 +1,1493 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:background="#30808080">
+
+
+    <RelativeLayout
+
+
+        android:background="#30808080"
+        android:gravity="center"
+        android:id="@+id/rl_goodsHome_discover"
+
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3" />
+        android:layout_height="55dp">
 
-</FrameLayout>
+
+        <Button
+            android:background="@drawable/goodssearch_shape"
+            android:text="搜索商品"
+            android:drawableLeft="@drawable/goods_discover2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@id/rl_goodsHome_discover"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <RelativeLayout
+
+                android:id="@+id/rl_goodsHome_load"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:visibility="visible"
+
+                >
+
+
+                <View
+                    android:id="@+id/struts_refresh"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    />
+
+
+
+                <ProgressBar
+                    android:layout_centerVertical="true"
+                    android:id="@+id/pb_goodsHome_refresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/progressBarStyleLarge"
+
+                    android:layout_toLeftOf="@id/struts_refresh"
+                    />
+
+
+                <TextView
+
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正在载入..."
+
+                    android:layout_toRightOf="@id/struts_refresh"
+                    android:layout_centerVertical="true"/>
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_below="@id/rl_goodsHome_load"
+
+                android:id="@+id/rl_goodsHome_adv"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+
+                >
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_banner_goods"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v4.view.ViewPager>
+
+                <com.shizhefei.view.indicator.FixedIndicatorView
+
+
+                    android:id="@+id/indicator_banner_goods"
+                    android:layout_margin="5dp"
+
+                    android:layout_width="60dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+
+                    >
+
+
+
+
+                </com.shizhefei.view.indicator.FixedIndicatorView>
+
+
+
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_goodsHome_content"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/rl_goodsHome_adv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <RelativeLayout
+                    android:background="#ffffff"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/rl_goodsHome_zhichao"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_goods_first"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/iv_goods_first"
+                            android:src="@drawable/zhichao"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+
+                        <TextView
+
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智巢"
+
+                            android:textSize="20sp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_alignBottom="@id/iv_goods_first"
+
+
+
+                            />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+
+
+                        android:layout_below="@id/rl_goods_first"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <View
+
+                            android:id="@+id/struts_first"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"
+
+                            />
+
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_two"
+                            android:text="开关"
+                            style="@style/btn_goodsCate"
+
+                            android:layout_toLeftOf="@id/struts_first"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+
+                        <Button
+
+                            android:id="@+id/btn_goods_one_one"
+                            android:text="控制"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toLeftOf="@id/btn_goods_one_two"
+                            android:layout_margin="5dp"
+
+
+
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_three"
+                            android:text="插座"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/struts_first"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_four"
+                            android:text="照明"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/btn_goods_one_three"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_five"
+                            android:text="门窗"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_one_one"
+
+                            android:layout_alignLeft="@id/btn_goods_one_one"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_six"
+                            android:text="安防"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_one_two"
+                            android:layout_alignLeft="@id/btn_goods_one_two"
+                            android:layout_marginTop="5dp"
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_seven"
+                            android:text="传感器"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_one_three"
+
+                            android:layout_alignLeft="@id/btn_goods_one_three"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_eight"
+                            android:text="摄像头"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_one_four"
+
+                            android:layout_alignLeft="@id/btn_goods_one_four"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_one_nine"
+                            android:text="其他"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_one_five"
+
+                            android:layout_alignLeft="@id/btn_goods_one_five"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="#ffffff"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/rl_goodsHome_jiaju"
+                    android:layout_below="@id/rl_goodsHome_zhichao"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_goods_second"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/iv_goods_second"
+                            android:src="@drawable/zhinengjiaju"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+
+                        <TextView
+
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智能家居"
+
+                            android:textSize="20sp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_alignBottom="@id/iv_goods_second"
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+
+
+                        android:layout_below="@id/rl_goods_second"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <View
+
+                            android:id="@+id/struts_second"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"
+
+                            />
+
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_two"
+                            android:text="空调"
+                            style="@style/btn_goodsCate"
+
+                            android:layout_toLeftOf="@id/struts_second"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+
+                        <Button
+
+                            android:id="@+id/btn_goods_two_one"
+                            android:text="冰箱"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toLeftOf="@id/btn_goods_two_two"
+                            android:layout_margin="5dp"
+
+
+
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_three"
+                            android:text="洗衣机"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/struts_second"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_four"
+                            android:text="热水器"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/btn_goods_two_three"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_five"
+                            android:text="电视"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_one"
+
+                            android:layout_alignLeft="@id/btn_goods_two_one"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_six"
+                            android:text="音响"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_two"
+                            android:layout_alignLeft="@id/btn_goods_two_two"
+                            android:layout_marginTop="5dp"
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_seven"
+                            android:text="净水"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_three"
+
+                            android:layout_alignLeft="@id/btn_goods_two_three"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_eight"
+                            android:text="油烟炊具"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_four"
+
+                            android:layout_alignLeft="@id/btn_goods_two_four"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_nine"
+                            android:text="饭菜锅具"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_five"
+
+                            android:layout_alignLeft="@id/btn_goods_two_five"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_ten"
+                            android:text="新风机"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_six"
+
+                            android:layout_alignLeft="@id/btn_goods_two_six"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_eleven"
+                            android:text="空气净化"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_seven"
+
+                            android:layout_alignLeft="@id/btn_goods_two_seven"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_twelve"
+                            android:text="清洁卫生"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_eight"
+
+                            android:layout_alignLeft="@id/btn_goods_two_eight"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_thirteen"
+                            android:text="小家电"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_nine"
+
+                            android:layout_alignLeft="@id/btn_goods_two_nine"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_fourteen"
+                            android:text="马桶"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_ten"
+
+                            android:layout_alignLeft="@id/btn_goods_two_ten"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_two_fifteen"
+                            android:text="其他"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_two_eleven"
+
+                            android:layout_alignLeft="@id/btn_goods_two_eleven"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+
+                    </RelativeLayout>
+
+
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:background="#ffffff"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/rl_goodsHome_zhaoguan"
+
+                    android:layout_below="@id/rl_goodsHome_jiaju"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_goods_third"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/iv_goods_third"
+                            android:src="@drawable/zhinengzhaoguan"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+
+                        <TextView
+
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智能照管"
+
+                            android:textSize="20sp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_alignBottom="@id/iv_goods_third"
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+
+
+                        android:layout_below="@id/rl_goods_third"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <View
+
+                            android:id="@+id/struts_third"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"
+
+                            />
+
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_three_two"
+                            android:text="孕妇"
+                            style="@style/btn_goodsCate"
+
+                            android:layout_toLeftOf="@id/struts_third"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+
+                        <Button
+
+                            android:id="@+id/btn_goods_three_one"
+                            android:text="老人"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toLeftOf="@id/btn_goods_three_two"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_three_three"
+                            android:text="婴儿"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/struts_third"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_three_four"
+                            android:text="儿童"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/btn_goods_three_three"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_three_five"
+                            android:text="宠物"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_three_one"
+
+                            android:layout_alignLeft="@id/btn_goods_three_one"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_three_six"
+                            android:text="其他"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_three_two"
+
+                            android:layout_alignLeft="@id/btn_goods_three_two"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                    </RelativeLayout>
+
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:background="#ffffff"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/rl_goodsHome_jiankang"
+
+                    android:layout_below="@id/rl_goodsHome_zhaoguan"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_goods_fourth"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/iv_goods_fourth"
+                            android:src="@drawable/zhinengjiankang"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+
+                        <TextView
+
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智能健康"
+
+                            android:textSize="20sp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_alignBottom="@id/iv_goods_fourth"
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+
+
+                        android:layout_below="@id/rl_goods_fourth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <View
+
+                            android:id="@+id/struts_fourth"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"
+
+                            />
+
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_two"
+                            android:text="体温"
+                            style="@style/btn_goodsCate"
+
+                            android:layout_toLeftOf="@id/struts_fourth"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+
+                        <Button
+
+                            android:id="@+id/btn_goods_four_one"
+                            android:text="体重"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toLeftOf="@id/btn_goods_four_two"
+                            android:layout_margin="5dp"
+
+
+
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_three"
+                            android:text="血压"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/struts_fourth"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_four"
+                            android:text="血糖"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/btn_goods_four_three"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_five"
+                            android:text="心电"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_four_one"
+
+                            android:layout_alignLeft="@id/btn_goods_four_one"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_six"
+                            android:text="口腔"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_four_two"
+                            android:layout_alignLeft="@id/btn_goods_four_two"
+                            android:layout_marginTop="5dp"
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_seven"
+                            android:text="睡眠"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_four_three"
+
+                            android:layout_alignLeft="@id/btn_goods_four_three"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_four_eight"
+                            android:text="其他"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_four_four"
+
+                            android:layout_alignLeft="@id/btn_goods_four_four"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                    </RelativeLayout>
+
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="#ffffff"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/rl_goodsHome_zhinengchuandai"
+
+                    android:layout_below="@id/rl_goodsHome_jiankang"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_goods_fifth"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/iv_goods_fifth"
+                            android:src="@drawable/zhinengchuandai"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+
+                        <TextView
+
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智能穿戴"
+
+                            android:textSize="20sp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_alignBottom="@id/iv_goods_fifth"
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+
+
+                        android:layout_below="@id/rl_goods_fifth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <View
+
+                            android:id="@+id/struts_fifth"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"
+
+                            />
+
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_two"
+                            android:text="手表"
+                            style="@style/btn_goodsCate"
+
+                            android:layout_toLeftOf="@id/struts_fifth"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+
+                        <Button
+
+                            android:id="@+id/btn_goods_five_one"
+                            android:text="手环"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toLeftOf="@id/btn_goods_five_two"
+                            android:layout_margin="5dp"
+
+
+
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_three"
+                            android:text="服饰"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/struts_fifth"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_four"
+                            android:text="眼镜"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/btn_goods_five_three"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_five"
+                            android:text="VR/AR"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_five_one"
+
+                            android:layout_alignLeft="@id/btn_goods_five_one"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_six"
+                            android:text="耳机"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_five_two"
+                            android:layout_alignLeft="@id/btn_goods_five_two"
+                            android:layout_marginTop="5dp"
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_seven"
+                            android:text="防丢"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_five_three"
+
+                            android:layout_alignLeft="@id/btn_goods_five_three"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_eight"
+                            android:text="其他"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_five_four"
+
+                            android:layout_alignLeft="@id/btn_goods_five_four"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                    </RelativeLayout>
+
+
+
+
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+                    android:background="#ffffff"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/rl_goodsHome_zhinengjia"
+
+                    android:layout_below="@id/rl_goodsHome_zhinengchuandai"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_goods_sixth"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/iv_goods_sixth"
+                            android:src="@drawable/zhinengjia"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+
+                        <TextView
+
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="智能+"
+
+                            android:textSize="20sp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_alignBottom="@id/iv_goods_sixth"
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+
+
+                        android:layout_below="@id/rl_goods_sixth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <View
+
+                            android:id="@+id/struts_sixth"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_centerHorizontal="true"
+
+                            />
+
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_two"
+                            android:text="汽车"
+                            style="@style/btn_goodsCate"
+
+                            android:layout_toLeftOf="@id/struts_sixth"
+                            android:layout_margin="5dp"
+
+
+                            />
+
+
+                        <Button
+
+                            android:id="@+id/btn_goods_six_one"
+                            android:text="摄像"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toLeftOf="@id/btn_goods_six_two"
+                            android:layout_margin="5dp"
+
+
+
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_three"
+                            android:text="骑行"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/struts_sixth"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_four"
+                            android:text="无人机"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_toRightOf="@id/btn_goods_six_three"
+                            android:layout_margin="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_five"
+                            android:text="机器人"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_six_one"
+
+                            android:layout_alignLeft="@id/btn_goods_six_one"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_six"
+                            android:text="运动"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_six_two"
+                            android:layout_alignLeft="@id/btn_goods_six_two"
+                            android:layout_marginTop="5dp"
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_seven"
+                            android:text="户外"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_six_three"
+
+                            android:layout_alignLeft="@id/btn_goods_six_three"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_eight"
+                            android:text="娱乐"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_six_four"
+
+                            android:layout_alignLeft="@id/btn_goods_six_four"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_nine"
+                            android:text="情趣"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_six_five"
+
+                            android:layout_alignLeft="@id/btn_goods_six_five"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+                        <Button
+
+
+                            android:id="@+id/btn_goods_six_ten"
+                            android:text="其他"
+                            style="@style/btn_goodsCate"
+
+
+                            android:layout_below="@id/btn_goods_six_six"
+
+                            android:layout_alignLeft="@id/btn_goods_six_six"
+                            android:layout_marginTop="5dp"
+
+
+
+                            />
+
+
+
+                    </RelativeLayout>
+
+
+
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+            <RelativeLayout
+                android:layout_below="@id/rl_goodsHome_content"
+                android:background="#30808080"
+
+                android:layout_width="match_parent"
+                android:layout_height="8dp">
+
+            </RelativeLayout>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+
+</RelativeLayout>
+
