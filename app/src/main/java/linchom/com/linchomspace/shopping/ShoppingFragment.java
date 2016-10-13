@@ -440,7 +440,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     public void toGoodsIntent(int cateId){
 
-        Intent intent = new Intent(getActivity(),GoodsActivity.class);
+        Intent intent = new Intent(getActivity(),GoodsListActivity.class);
 
         Bundle bundle = new Bundle();
         bundle.putInt("cateId",cateId);
