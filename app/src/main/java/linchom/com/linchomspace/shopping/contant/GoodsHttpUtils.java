@@ -4,7 +4,7 @@ package linchom.com.linchomspace.shopping.contant;
  * Created by Administrator on 2016/10/13.
  */
 
-public class HttpUtils {
+public class GoodsHttpUtils {
 
     public static  final String GOODSLISTURL="http://app.linchom.com/appProduct.php?type=goodslist&act=list";
 
