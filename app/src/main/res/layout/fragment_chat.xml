@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/chat_lt"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingRight="5dp"
+        android:paddingLeft="10dp"
+        android:layout_height="40dp">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/search"
+            android:layout_weight="1"/>
+        <EditText
+
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="请输入关键字"
+            android:textSize="15sp"
+            android:textColor="#878787"
+            android:textColorHint="#878787"
+
+
+            android:layout_weight="9"/>
+
+        <ImageView
+            android:id="@+id/chat_search"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="30dp"
+            android:src="@drawable/lightening"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+    <View
+        android:layout_above="@+id/auto_vp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cfcfcf"
+        ></View>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/auto_vp"
+        android:layout_below="@+id/chat_lt"
+        android:layout_alignBottom="@+id/struct"
+        android:layout_toRightOf="@+id/struct">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/banner_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp" />
+
+
+        <com.shizhefei.view.indicator.FixedIndicatorView
+            android:id="@+id/banner_indicator"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center|bottom" />
+    </FrameLayout>
+    <View
+        android:id="@+id/struct"
+        android:background="#f00"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        />
+    <LinearLayout
+        android:layout_below="@+id/struct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical">
+        <com.shizhefei.view.indicator.ScrollIndicatorView
+            android:id="@+id/moretab_indicator"
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_height="25dp"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/moretab_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</RelativeLayout>
