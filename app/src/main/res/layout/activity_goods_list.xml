@@ -40,7 +40,7 @@
         android:layout_below="@id/rl_goodsList_search"
         android:id="@+id/rl_goodsList_cate"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="52dp"
         android:background="#ffffff"
         >
 
@@ -63,11 +63,12 @@
             >
 
             <Button
+                android:textColor="#808080"
                 android:id="@+id/btn_goodsList_hot"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="销量"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -94,11 +95,13 @@
             >
 
             <Button
+                android:textColor="#808080"
+
                 android:id="@+id/btn_goodLists_default"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="默认"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -127,11 +130,13 @@
             >
 
             <Button
+                android:textColor="#808080"
+
                 android:id="@+id/btn_goodsList_new"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="最新"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -162,11 +167,13 @@
 
 
             <Button
+                android:textColor="#808080"
+
                 android:id="@+id/btn_goodsList_price"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="价格"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -222,6 +229,8 @@
         android:layout_below="@id/rl_goodsList_cate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
 
         >
 
@@ -243,6 +252,7 @@
             ptr:ptrHeaderSubTextColor="#00ffff"
             ptr:ptrHeaderBackground="@null"
             ptr:ptrDrawable="@mipmap/ic_launcher"
+
             >
 
 
