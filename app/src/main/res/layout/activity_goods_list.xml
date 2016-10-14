@@ -14,6 +14,7 @@
         >
 
         <ImageView
+            android:id="@+id/iv_goodsList_back"
             android:src="@drawable/back"
             android:layout_width="30dp"
             android:layout_height="40dp"
@@ -23,6 +24,7 @@
 
 
         <Button
+
             android:textColor="#808080"
             android:background="@drawable/goodssearch_shape"
             android:text="搜索商品"
@@ -45,7 +47,7 @@
 
         android:id="@+id/rl_goodsList_cate"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:background="#ffffff"
         android:layout_below="@+id/rl_goodsList_search"
         android:layout_alignParentLeft="true"
@@ -84,11 +86,11 @@
             <View
                 android:id="@+id/v_goodLists_hot_line"
                 android:layout_width="44dp"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:visibility="gone"
+                android:visibility="invisible"
 
                 />
 
@@ -117,11 +119,11 @@
             <View
                 android:id="@+id/v_goodLists_default_line"
                 android:layout_width="44dp"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:visibility="gone"
+                android:visibility="invisible"
                 />
 
 
@@ -152,11 +154,11 @@
             <View
                 android:id="@+id/v_goodLists_new_line"
                 android:layout_width="44dp"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:visibility="gone"
+                android:visibility="invisible"
 
                 />
 
@@ -191,11 +193,11 @@
             <View
                 android:id="@+id/v_goodLists_price_line"
                 android:layout_width="44dp"
-                android:layout_height="4dp"
+                android:layout_height="2dp"
                 android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:visibility="gone"
+                android:visibility="invisible"
 
                 />
 
