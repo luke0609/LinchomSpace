@@ -13,5 +13,11 @@ public class GoodsHttpUtils {
     public static  final String VERIFICATION="e0d017ef76c8510244ebe0191f5dde15";
 
 
+    public static final String IMGURL="http://linchom.com//";
+
+
+
+
+
 
 }
