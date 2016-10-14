@@ -98,7 +98,7 @@
             <Button
                 android:textColor="#808080"
 
-                android:id="@+id/btn_goodLists_default"
+                android:id="@+id/btn_goodsList_default"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="默认"
