@@ -23,6 +23,7 @@
 
 
         <Button
+            android:textColor="#808080"
             android:background="@drawable/goodssearch_shape"
             android:text="搜索商品"
             android:drawableLeft="@drawable/goods_discover2"
@@ -40,7 +41,7 @@
         android:layout_below="@id/rl_goodsList_search"
         android:id="@+id/rl_goodsList_cate"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="48dp"
         android:background="#ffffff"
         >
 
@@ -68,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="销量"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -101,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="默认"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -136,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="最新"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -173,7 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="价格"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:background="@null"
                 android:layout_centerInParent="true"
 
@@ -196,29 +197,13 @@
         </RelativeLayout>
 
 
-
-
-
-
-
-
-
-
-        
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#808080"
+                android:background="#50808080"
                 android:layout_alignParentBottom="true"
 
                 />
-
-
-
-
-
-
-
 
 
 
