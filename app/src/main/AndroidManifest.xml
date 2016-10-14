@@ -133,6 +133,13 @@
         <activity
             android:name=".chat.ChatPublishActiviy"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+
+        <activity android:name=".mine.Details_Activity" />
+        <activity android:name=".mine.Details_s_Activity">
+
+        </activity>
+
     </application>
 
 </manifest>

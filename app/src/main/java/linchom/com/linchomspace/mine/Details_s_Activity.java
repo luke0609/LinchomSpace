@@ -10,6 +10,6 @@ public class Details_s_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_s_);
+        setContentView(R.layout.activity_details_s);
     }
 }

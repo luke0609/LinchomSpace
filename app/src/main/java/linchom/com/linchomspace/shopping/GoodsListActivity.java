@@ -26,6 +26,7 @@ import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
+import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsListActivity extends AppCompatActivity {
 
@@ -152,6 +153,8 @@ public class GoodsListActivity extends AppCompatActivity {
                 tv_goodsList_item_title.setText(goods.goods_name);
                 tv_goodsList_item_price.setText(goods.shop_price);
 
+                GoodsXUtilsImage.display(iv_goodsList_item_image,goods.goods_thumb);
+
 
             }
         };
@@ -196,6 +199,9 @@ public class GoodsListActivity extends AppCompatActivity {
                  goodsList.addAll(goodsData.goods);//!!!!!!
 
                 goodsCommonAdapter.notifyDataSetChanged();
+
+                ptr_goodsList_ptr.onRefreshComplete();
+
             }
 
             @Override
