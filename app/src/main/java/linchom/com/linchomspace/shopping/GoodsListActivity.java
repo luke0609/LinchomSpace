@@ -30,6 +30,7 @@ import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsListActivity extends AppCompatActivity {
 
+
     private static final String TAG = "GoodsListActivity";
 
     private PullToRefreshListView ptr_goodsList_ptr;
@@ -43,7 +44,9 @@ public class GoodsListActivity extends AppCompatActivity {
 
     private String keyWord;
 
-    private  int page;
+    private  int page=1;
+
+    private int pageCount;
 
     private GoodsCommonAdapter<GoodsListBean.Goods> goodsCommonAdapter;
 
@@ -111,11 +114,29 @@ public class GoodsListActivity extends AppCompatActivity {
                 PullToRefreshBase.Mode mode = ptr_goodsList_ptr.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    page =1;
+                    getData();
 
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+
+
                     page++;
-                    getData();
+                    Log.i(TAG,page+"");
+
+                    if(page<=pageCount){
+
+                        getData();
+
+                    }else{
+                        Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+
+                        ptr_goodsList_ptr.onRefreshComplete();
+
+
+                    }
+
 
 
                 }
@@ -128,7 +149,7 @@ public class GoodsListActivity extends AppCompatActivity {
         ptr_goodsList_ptr.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
             @Override
             public void onLastItemVisible() {
-                Toast.makeText(getApplicationContext(), "已经到底了", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "已经到底了", Toast.LENGTH_SHORT).show();
             }
         });
         goodsListView=ptr_goodsList_ptr.getRefreshableView();
@@ -153,7 +174,7 @@ public class GoodsListActivity extends AppCompatActivity {
                 tv_goodsList_item_title.setText(goods.goods_name);
                 tv_goodsList_item_price.setText(goods.shop_price);
 
-                GoodsXUtilsImage.display(iv_goodsList_item_image,goods.goods_thumb);
+                GoodsXUtilsImage.display(iv_goodsList_item_image,GoodsHttpUtils.IMGURL+goods.goods_thumb);
 
 
             }
@@ -188,15 +209,22 @@ public class GoodsListActivity extends AppCompatActivity {
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.i(TAG,"result"+result);
+
+                if(page==1){
+                    goodsList.clear();
+
+                }
 
                Gson gson =new Gson();
 
                 GoodsListBean goodsListBean = gson.fromJson(result,GoodsListBean.class);
 
                 GoodsListBean.Data goodsData = goodsListBean.data;
-               // goodsList.clear();
-                 goodsList.addAll(goodsData.goods);//!!!!!!
+
+                pageCount = Integer.parseInt(goodsData.page_count);
+
+                Log.i(TAG,"总页数"+pageCount+"");
+                goodsList.addAll(goodsData.goods);
 
                 goodsCommonAdapter.notifyDataSetChanged();
 
