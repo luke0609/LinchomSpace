@@ -15,6 +15,8 @@ public class GoodsHttpUtils {
 
     public static final String IMGURL="http://linchom.com//";
 
+    //URl
+
 
 
 
