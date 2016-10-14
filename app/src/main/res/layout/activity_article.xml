@@ -1,12 +1,1148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="linchom.com.linchomspace.homepage.ArticleActivity">
+    android:background="#ece8e8"
+    android:padding="10dp"
+    tools:context="linchom.com.linchomspace.homepage.NavigationActivity"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/iv_navigation_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/navigation_delete"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="我的频道"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="推荐"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="行业资讯"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="产品资讯"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="视频"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="品牌资讯"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="行业标准"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="行业技术"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="物联网"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智慧城市"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智慧社区"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="无人机"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能养老"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能健康"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能医疗"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="机器人"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="VR/AR"
+                    android:textSize="12dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="展会信息"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="培训信息"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智巢方案"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智巢案例"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="15dp"
+                >
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="行业资讯"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="产品资讯"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="视频"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="我的交流"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能家居"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能居家"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能健康"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能照管"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="产品推介"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="智能社区"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="工程技术"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="硬件开发"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="机器人"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="VR/AR"
+                    android:textSize="12dp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="协议标准"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="需求对接"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="品牌交流"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="提问回答"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="需求对接"
+                    android:visibility="invisible"
+                    android:id="@+id/button2" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="智巢"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="控制"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="开关"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="插座"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="照明"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="门窗"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="安防"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="摄像头"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="传感器"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="VR/AR"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="协议标准"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="需求对接"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="智能居家"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="冰箱"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="空调"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="洗衣机"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="热水器"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="电视"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="音响"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="净水"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="油烟灶具"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="饭菜锅具"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="新风机"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="空气净化器"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="清洁卫生"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="生活小家电"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="马桶"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="清洁卫生"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="智能照管"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="老人"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="孕妇"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="婴儿"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="儿童"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="宠物"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="净水"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="油烟灶具"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="智能健康"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="体重"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="体温"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="血压"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="血糖"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="心电"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="口腔"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="睡眠"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="智能穿戴"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="手环"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="手表"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="服饰"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="眼镜"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="VR/AR"
+                    android:textColor="#000"
+                    android:textSize="12dp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="耳机"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="防丢"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="25dp"
+                    android:text="智能+"
+                    android:textColor="#000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="摄像"
+                    android:textColor="#000"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="汽车"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="骑行"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="无人机"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="机器人"
+                    android:textColor="#000"
+                    android:textSize="12dp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="运动"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="户外"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="娱乐"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="情趣"
+                    android:textColor="#000"
+                    android:textSize="12dp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="户外"
+                    android:visibility="invisible"
+                    />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="娱乐"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
