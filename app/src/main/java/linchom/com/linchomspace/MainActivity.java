@@ -17,7 +17,7 @@ import linchom.com.linchomspace.shopping.ShoppingFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    int i=5;
     private long exitTime = 0;
     Fragment[] fragments;
     HomeFragment homeFragment;//主页

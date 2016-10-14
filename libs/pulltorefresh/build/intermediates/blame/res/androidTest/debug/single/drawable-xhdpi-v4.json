@@ -4,16 +4,16 @@
         "source": "D:\\new\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     },
     {
-        "merged": "E:\\important project\\Linchom\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
-        "source": "E:\\important project\\Linchom\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
+        "merged": "D:\\newworkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
+        "source": "D:\\newworkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
     },
     {
-        "merged": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
-        "source": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+        "merged": "D:\\newworkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
+        "source": "D:\\newworkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     },
     {
-        "merged": "E:\\important project\\Linchom\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
-        "source": "E:\\important project\\Linchom\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+        "merged": "D:\\newworkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
+        "source": "D:\\newworkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
     },
     {
         "merged": "D:\\new\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
@@ -22,10 +22,6 @@
     {
         "merged": "F:\\ProjectWorkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "F:\\ProjectWorkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
-    },
-    {
-        "merged": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
-        "source": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
     },
     {
         "merged": "D:\\new\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
@@ -38,13 +34,5 @@
     {
         "merged": "F:\\ProjectWorkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
         "source": "F:\\ProjectWorkspace\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
-    },
-    {
-        "merged": "E:\\important project\\Linchom\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
-        "source": "E:\\important project\\Linchom\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
-    },
-    {
-        "merged": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
-        "source": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     }
 ]
