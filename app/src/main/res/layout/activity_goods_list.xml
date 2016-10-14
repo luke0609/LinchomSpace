@@ -36,14 +36,20 @@
 
     </RelativeLayout>
 
+
+
+
+
+
     <RelativeLayout
 
-        android:layout_below="@id/rl_goodsList_search"
         android:id="@+id/rl_goodsList_cate"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="#ffffff"
-        >
+        android:layout_below="@+id/rl_goodsList_search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <View
             android:id="@+id/struct_goodsList_cate"
@@ -79,7 +85,7 @@
                 android:id="@+id/v_goodLists_hot_line"
                 android:layout_width="44dp"
                 android:layout_height="4dp"
-                android:background="#ff0000"
+                android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:visibility="gone"
@@ -112,7 +118,7 @@
                 android:id="@+id/v_goodLists_default_line"
                 android:layout_width="44dp"
                 android:layout_height="4dp"
-                android:background="#ff0000"
+                android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:visibility="gone"
@@ -147,7 +153,7 @@
                 android:id="@+id/v_goodLists_new_line"
                 android:layout_width="44dp"
                 android:layout_height="4dp"
-                android:background="#ff0000"
+                android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:visibility="gone"
@@ -186,7 +192,7 @@
                 android:id="@+id/v_goodLists_price_line"
                 android:layout_width="44dp"
                 android:layout_height="4dp"
-                android:background="#ff0000"
+                android:background="#EE4000"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:visibility="gone"
@@ -209,7 +215,6 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/rl_goodsList_load"
         android:layout_below="@id/rl_goodsList_cate"
@@ -228,6 +233,7 @@
             />
 
     </RelativeLayout>
+
 
     <RelativeLayout
 
@@ -269,15 +275,8 @@
 
 
 
-
-
-
-
-
-
-
-
     </RelativeLayout>
+
 
 
 </RelativeLayout>
