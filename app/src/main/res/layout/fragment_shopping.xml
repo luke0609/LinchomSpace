@@ -31,11 +31,12 @@
     </RelativeLayout>
 
     <ScrollView
+
         android:layout_below="@id/rl_goodsHome_discover"
-
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -186,37 +187,19 @@
                     </RelativeLayout>
 
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
 
+                        android:id="@+id/ll_one_one"
+                        android:orientation="horizontal"
 
                         android:layout_below="@id/rl_goods_first"
+
+
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <View
-
-                            android:id="@+id/struts_first"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
-
-                            />
-
-
-
-                        <Button
-
-
-                            android:id="@+id/btn_goods_one_two"
-                            android:text="开关"
-                            style="@style/btn_goodsCate"
-
-                            android:layout_toLeftOf="@id/struts_first"
-                            android:layout_margin="5dp"
-
-
-                            />
+                        android:layout_height="40dp">
 
 
                         <Button
@@ -225,16 +208,16 @@
                             android:text="控制"
                             style="@style/btn_goodsCate"
 
+                            />
 
-                            android:layout_toLeftOf="@id/btn_goods_one_two"
-                            android:layout_margin="5dp"
+                        <Button
 
-
-
-
-
+                            android:id="@+id/btn_goods_one_two"
+                            android:text="开关"
+                            style="@style/btn_goodsCate"
 
                             />
+
 
                         <Button
 
@@ -242,11 +225,6 @@
                             android:id="@+id/btn_goods_one_three"
                             android:text="插座"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_toRightOf="@id/struts_first"
-                            android:layout_margin="5dp"
-
 
 
                             />
@@ -258,13 +236,19 @@
                             android:text="照明"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_toRightOf="@id/btn_goods_one_three"
-                            android:layout_margin="5dp"
-
-
-
                             />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@id/ll_one_one"
+                        android:id="@+id/ll_one_two"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
 
                         <Button
 
@@ -274,10 +258,7 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_one_one"
 
-                            android:layout_alignLeft="@id/btn_goods_one_one"
-                            android:layout_marginTop="5dp"
 
                             />
 
@@ -289,9 +270,7 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_one_two"
-                            android:layout_alignLeft="@id/btn_goods_one_two"
-                            android:layout_marginTop="5dp"
+
 
 
                             />
@@ -302,12 +281,6 @@
                             android:id="@+id/btn_goods_one_seven"
                             android:text="传感器"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_one_three"
-
-                            android:layout_alignLeft="@id/btn_goods_one_three"
-                            android:layout_marginTop="5dp"
 
 
 
@@ -321,32 +294,54 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_one_four"
 
-                            android:layout_alignLeft="@id/btn_goods_one_four"
-                            android:layout_marginTop="5dp"
 
 
 
                             />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@id/ll_one_two"
+                        android:id="@+id/ll_one_three"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
 
                         <Button
-
-
                             android:id="@+id/btn_goods_one_nine"
                             android:text="其他"
+
                             style="@style/btn_goodsCate"
 
+                            />
+                        <Button
+                            android:visibility="invisible"
 
-                            android:layout_below="@id/btn_goods_one_five"
+                            style="@style/btn_goodsCate"
 
-                            android:layout_alignLeft="@id/btn_goods_one_five"
-                            android:layout_marginTop="10dp"
+                            />
+                        <Button
+                            android:visibility="invisible"
+
+                            style="@style/btn_goodsCate"
+
+                            />
+                        <Button
+                            android:visibility="invisible"
+
+                            style="@style/btn_goodsCate"
 
                             />
 
 
-                    </RelativeLayout>
+                    </LinearLayout>
+
+
+
 
 
                 </RelativeLayout>
@@ -395,25 +390,25 @@
                     </RelativeLayout>
 
 
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
 
-                    <RelativeLayout
-
-
+                        android:orientation="horizontal"
                         android:layout_below="@id/rl_goods_second"
+                        android:id="@+id/ll_two_one"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="40dp"
+                        >
 
+                        <Button
 
-                        <View
-
-                            android:id="@+id/struts_second"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
+                            android:id="@+id/btn_goods_two_one"
+                            android:text="冰箱"
+                            style="@style/btn_goodsCate"
 
                             />
-
-
 
                         <Button
 
@@ -422,41 +417,13 @@
                             android:text="空调"
                             style="@style/btn_goodsCate"
 
-                            android:layout_toLeftOf="@id/struts_second"
-                            android:layout_margin="5dp"
-
-
-                            />
-
-
-                        <Button
-
-                            android:id="@+id/btn_goods_two_one"
-                            android:text="冰箱"
-                            style="@style/btn_goodsCate"
-
-
-                            android:layout_toLeftOf="@id/btn_goods_two_two"
-                            android:layout_margin="5dp"
-
-
-
-
-
-
                             />
 
                         <Button
-
 
                             android:id="@+id/btn_goods_two_three"
                             android:text="洗衣机"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_toRightOf="@id/struts_second"
-                            android:layout_margin="5dp"
-
 
 
                             />
@@ -469,12 +436,19 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_toRightOf="@id/btn_goods_two_three"
-                            android:layout_margin="5dp"
-
-
-
                             />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_two_one"
+                        android:id="@+id/ll_two_two"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
 
                         <Button
 
@@ -484,24 +458,15 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_one"
-
-                            android:layout_alignLeft="@id/btn_goods_two_one"
-                            android:layout_marginTop="5dp"
 
                             />
 
                         <Button
 
-
                             android:id="@+id/btn_goods_two_six"
                             android:text="音响"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_below="@id/btn_goods_two_two"
-                            android:layout_alignLeft="@id/btn_goods_two_two"
-                            android:layout_marginTop="5dp"
 
 
                             />
@@ -514,13 +479,6 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_three"
-
-                            android:layout_alignLeft="@id/btn_goods_two_three"
-                            android:layout_marginTop="5dp"
-
-
-
                             />
 
                         <Button
@@ -531,14 +489,21 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_four"
-
-                            android:layout_alignLeft="@id/btn_goods_two_four"
-                            android:layout_marginTop="5dp"
-
-
-
                             />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_two_two"
+
+                        android:id="@+id/ll_two_three"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
 
                         <Button
 
@@ -547,11 +512,6 @@
                             android:text="饭菜锅具"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_below="@id/btn_goods_two_five"
-
-                            android:layout_alignLeft="@id/btn_goods_two_five"
-                            android:layout_marginTop="10dp"
 
                             />
 
@@ -563,10 +523,6 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_six"
-
-                            android:layout_alignLeft="@id/btn_goods_two_six"
-                            android:layout_marginTop="10dp"
 
                             />
 
@@ -578,10 +534,6 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_seven"
-
-                            android:layout_alignLeft="@id/btn_goods_two_seven"
-                            android:layout_marginTop="10dp"
 
                             />
 
@@ -594,12 +546,22 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_eight"
-
-                            android:layout_alignLeft="@id/btn_goods_two_eight"
-                            android:layout_marginTop="10dp"
 
                             />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_two_three"
+
+                        android:id="@+id/ll_two_four"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
+
 
                         <Button
 
@@ -607,12 +569,6 @@
                             android:id="@+id/btn_goods_two_thirteen"
                             android:text="小家电"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_two_nine"
-
-                            android:layout_alignLeft="@id/btn_goods_two_nine"
-                            android:layout_marginTop="10dp"
 
                             />
 
@@ -624,10 +580,6 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_two_ten"
-
-                            android:layout_alignLeft="@id/btn_goods_two_ten"
-                            android:layout_marginTop="10dp"
 
                             />
 
@@ -638,16 +590,22 @@
                             android:text="其他"
                             style="@style/btn_goodsCate"
 
+                            />
 
-                            android:layout_below="@id/btn_goods_two_eleven"
+                        <Button
 
-                            android:layout_alignLeft="@id/btn_goods_two_eleven"
-                            android:layout_marginTop="10dp"
+
+                           android:visibility="invisible"
+                            style="@style/btn_goodsCate"
 
                             />
 
+                    </LinearLayout>
 
-                    </RelativeLayout>
+
+
+
+
 
 
 
@@ -702,25 +660,24 @@
 
                     </RelativeLayout>
 
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
 
-                    <RelativeLayout
-
-
+                        android:orientation="horizontal"
                         android:layout_below="@id/rl_goods_third"
+                        android:id="@+id/ll_three_one"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="40dp"
+                        >
+                        <Button
 
-
-                        <View
-
-                            android:id="@+id/struts_third"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
+                            android:id="@+id/btn_goods_three_one"
+                            android:text="老人"
+                            style="@style/btn_goodsCate"
 
                             />
-
-
 
                         <Button
 
@@ -729,25 +686,10 @@
                             android:text="孕妇"
                             style="@style/btn_goodsCate"
 
-                            android:layout_toLeftOf="@id/struts_third"
-                            android:layout_margin="5dp"
-
-
                             />
 
 
-                        <Button
 
-                            android:id="@+id/btn_goods_three_one"
-                            android:text="老人"
-                            style="@style/btn_goodsCate"
-
-
-                            android:layout_toLeftOf="@id/btn_goods_three_two"
-                            android:layout_margin="5dp"
-
-
-                            />
 
                         <Button
 
@@ -755,12 +697,6 @@
                             android:id="@+id/btn_goods_three_three"
                             android:text="婴儿"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_toRightOf="@id/struts_third"
-                            android:layout_margin="5dp"
-
-
 
                             />
 
@@ -772,12 +708,22 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_toRightOf="@id/btn_goods_three_three"
-                            android:layout_margin="5dp"
-
-
-
                             />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_three_one"
+                        android:id="@+id/ll_three_two"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
+
 
                         <Button
 
@@ -787,10 +733,7 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_three_one"
 
-                            android:layout_alignLeft="@id/btn_goods_three_one"
-                            android:layout_marginTop="5dp"
 
                             />
 
@@ -802,14 +745,32 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_three_two"
+                            />
 
-                            android:layout_alignLeft="@id/btn_goods_three_two"
-                            android:layout_marginTop="5dp"
+                        <Button
+
+                            android:visibility="invisible"
+
+                            style="@style/btn_goodsCate"
+
 
                             />
 
-                    </RelativeLayout>
+                        <Button
+
+                            android:visibility="invisible"
+                            style="@style/btn_goodsCate"
+
+
+                            />
+
+                    </LinearLayout>
+
+
+
+
+
+
 
 
 
@@ -864,20 +825,23 @@
 
 
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
 
-
+                        android:orientation="horizontal"
                         android:layout_below="@id/rl_goods_fourth"
+                        android:id="@+id/ll_four_one"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="40dp"
+                        >
 
+                        <Button
 
-                        <View
-
-                            android:id="@+id/struts_fourth"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
+                            android:id="@+id/btn_goods_four_one"
+                            android:text="体重"
+                            style="@style/btn_goodsCate"
 
                             />
 
@@ -890,29 +854,10 @@
                             android:text="体温"
                             style="@style/btn_goodsCate"
 
-                            android:layout_toLeftOf="@id/struts_fourth"
-                            android:layout_margin="5dp"
-
-
                             />
 
 
-                        <Button
 
-                            android:id="@+id/btn_goods_four_one"
-                            android:text="体重"
-                            style="@style/btn_goodsCate"
-
-
-                            android:layout_toLeftOf="@id/btn_goods_four_two"
-                            android:layout_margin="5dp"
-
-
-
-
-
-
-                            />
 
                         <Button
 
@@ -920,11 +865,6 @@
                             android:id="@+id/btn_goods_four_three"
                             android:text="血压"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_toRightOf="@id/struts_fourth"
-                            android:layout_margin="5dp"
-
 
 
                             />
@@ -936,13 +876,21 @@
                             android:text="血糖"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_toRightOf="@id/btn_goods_four_three"
-                            android:layout_margin="5dp"
-
-
-
                             />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_four_one"
+                        android:id="@+id/ll_four_two"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
 
                         <Button
 
@@ -950,12 +898,6 @@
                             android:id="@+id/btn_goods_four_five"
                             android:text="心电"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_four_one"
-
-                            android:layout_alignLeft="@id/btn_goods_four_one"
-                            android:layout_marginTop="5dp"
 
                             />
 
@@ -966,12 +908,6 @@
                             android:text="口腔"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_below="@id/btn_goods_four_two"
-                            android:layout_alignLeft="@id/btn_goods_four_two"
-                            android:layout_marginTop="5dp"
-
-
                             />
 
                         <Button
@@ -980,14 +916,6 @@
                             android:id="@+id/btn_goods_four_seven"
                             android:text="睡眠"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_four_three"
-
-                            android:layout_alignLeft="@id/btn_goods_four_three"
-                            android:layout_marginTop="5dp"
-
-
 
                             />
 
@@ -998,17 +926,16 @@
                             android:text="其他"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_below="@id/btn_goods_four_four"
-
-                            android:layout_alignLeft="@id/btn_goods_four_four"
-                            android:layout_marginTop="5dp"
-
-
-
                             />
 
-                    </RelativeLayout>
+                    </LinearLayout>
+
+
+
+
+
+
+
 
 
 
@@ -1063,37 +990,17 @@
 
 
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
 
-
+                        android:orientation="horizontal"
                         android:layout_below="@id/rl_goods_fifth"
+                        android:id="@+id/ll_five_one"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <View
-
-                            android:id="@+id/struts_fifth"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
-
-                            />
-
-
-
-                        <Button
-
-
-                            android:id="@+id/btn_goods_five_two"
-                            android:text="手表"
-                            style="@style/btn_goodsCate"
-
-                            android:layout_toLeftOf="@id/struts_fifth"
-                            android:layout_margin="5dp"
-
-
-                            />
+                        android:layout_height="40dp"
+                        >
 
 
                         <Button
@@ -1103,15 +1010,19 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_toLeftOf="@id/btn_goods_five_two"
-                            android:layout_margin="5dp"
-
-
-
-
-
 
                             />
+                        <Button
+
+
+                            android:id="@+id/btn_goods_five_two"
+                            android:text="手表"
+                            style="@style/btn_goodsCate"
+
+                            />
+
+
+
 
                         <Button
 
@@ -1119,11 +1030,6 @@
                             android:id="@+id/btn_goods_five_three"
                             android:text="服饰"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_toRightOf="@id/struts_fifth"
-                            android:layout_margin="5dp"
-
 
 
                             />
@@ -1136,12 +1042,19 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_toRightOf="@id/btn_goods_five_three"
-                            android:layout_margin="5dp"
-
-
-
                             />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_five_one"
+                        android:id="@+id/ll_five_two"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
 
                         <Button
 
@@ -1149,12 +1062,6 @@
                             android:id="@+id/btn_goods_five_five"
                             android:text="VR/AR"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_five_one"
-
-                            android:layout_alignLeft="@id/btn_goods_five_one"
-                            android:layout_marginTop="5dp"
 
                             />
 
@@ -1166,10 +1073,6 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_five_two"
-                            android:layout_alignLeft="@id/btn_goods_five_two"
-                            android:layout_marginTop="5dp"
-
 
                             />
 
@@ -1179,12 +1082,6 @@
                             android:id="@+id/btn_goods_five_seven"
                             android:text="防丢"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_five_three"
-
-                            android:layout_alignLeft="@id/btn_goods_five_three"
-                            android:layout_marginTop="5dp"
 
 
 
@@ -1198,16 +1095,17 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_five_four"
-
-                            android:layout_alignLeft="@id/btn_goods_five_four"
-                            android:layout_marginTop="5dp"
-
-
-
                             />
 
-                    </RelativeLayout>
+                    </LinearLayout>
+
+
+
+
+
+
+
+
 
 
 
@@ -1267,24 +1165,25 @@
 
 
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
 
-
+                        android:orientation="horizontal"
                         android:layout_below="@id/rl_goods_sixth"
+                        android:id="@+id/ll_six_one"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="40dp"
+                        >
 
+                        <Button
 
-                        <View
-
-                            android:id="@+id/struts_sixth"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_centerHorizontal="true"
+                            android:id="@+id/btn_goods_six_one"
+                            android:text="摄像"
+                            style="@style/btn_goodsCate"
 
                             />
-
-
 
                         <Button
 
@@ -1293,29 +1192,10 @@
                             android:text="汽车"
                             style="@style/btn_goodsCate"
 
-                            android:layout_toLeftOf="@id/struts_sixth"
-                            android:layout_margin="5dp"
-
-
                             />
 
 
-                        <Button
 
-                            android:id="@+id/btn_goods_six_one"
-                            android:text="摄像"
-                            style="@style/btn_goodsCate"
-
-
-                            android:layout_toLeftOf="@id/btn_goods_six_two"
-                            android:layout_margin="5dp"
-
-
-
-
-
-
-                            />
 
                         <Button
 
@@ -1323,10 +1203,6 @@
                             android:id="@+id/btn_goods_six_three"
                             android:text="骑行"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_toRightOf="@id/struts_sixth"
-                            android:layout_margin="5dp"
 
 
 
@@ -1340,12 +1216,20 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_toRightOf="@id/btn_goods_six_three"
-                            android:layout_margin="5dp"
-
-
 
                             />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_six_one"
+                        android:id="@+id/ll_six_two"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
 
                         <Button
 
@@ -1354,11 +1238,6 @@
                             android:text="机器人"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_below="@id/btn_goods_six_one"
-
-                            android:layout_alignLeft="@id/btn_goods_six_one"
-                            android:layout_marginTop="5dp"
 
                             />
 
@@ -1369,12 +1248,6 @@
                             android:text="运动"
                             style="@style/btn_goodsCate"
 
-
-                            android:layout_below="@id/btn_goods_six_two"
-                            android:layout_alignLeft="@id/btn_goods_six_two"
-                            android:layout_marginTop="5dp"
-
-
                             />
 
                         <Button
@@ -1383,13 +1256,6 @@
                             android:id="@+id/btn_goods_six_seven"
                             android:text="户外"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_six_three"
-
-                            android:layout_alignLeft="@id/btn_goods_six_three"
-                            android:layout_marginTop="5dp"
-
 
 
                             />
@@ -1403,14 +1269,20 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_six_four"
-
-                            android:layout_alignLeft="@id/btn_goods_six_four"
-                            android:layout_marginTop="5dp"
-
-
-
                             />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+
+                        android:layout_below="@id/ll_six_two"
+
+                        android:id="@+id/ll_six_three"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        >
 
                         <Button
 
@@ -1418,14 +1290,6 @@
                             android:id="@+id/btn_goods_six_nine"
                             android:text="情趣"
                             style="@style/btn_goodsCate"
-
-
-                            android:layout_below="@id/btn_goods_six_five"
-
-                            android:layout_alignLeft="@id/btn_goods_six_five"
-                            android:layout_marginTop="5dp"
-
-
 
                             />
 
@@ -1437,18 +1301,41 @@
                             style="@style/btn_goodsCate"
 
 
-                            android:layout_below="@id/btn_goods_six_six"
 
-                            android:layout_alignLeft="@id/btn_goods_six_six"
-                            android:layout_marginTop="5dp"
+                            />
+
+
+                        <Button
+
+                            android:visibility="invisible"
+
+                            style="@style/btn_goodsCate"
 
 
 
                             />
 
+                        <Button
+                            android:visibility="invisible"
 
 
-                    </RelativeLayout>
+                            style="@style/btn_goodsCate"
+
+
+
+                            />
+
+                    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1482,10 +1369,6 @@
 
 
     </ScrollView>
-
-
-
-
 
 
 </RelativeLayout>
