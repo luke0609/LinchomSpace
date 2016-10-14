@@ -1,12 +1,16 @@
 package linchom.com.linchomspace.shopping;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +32,8 @@ import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
-public class GoodsListActivity extends AppCompatActivity {
-
+public class GoodsListActivity extends AppCompatActivity implements View.OnClickListener{
+//修改时间17:02
 
     private static final String TAG = "GoodsListActivity";
 
@@ -51,9 +55,19 @@ public class GoodsListActivity extends AppCompatActivity {
     private GoodsCommonAdapter<GoodsListBean.Goods> goodsCommonAdapter;
 
     private List<GoodsListBean.Goods>  goodsList =new ArrayList<GoodsListBean.Goods>();
+    private RelativeLayout rl_goodsList_load;
+
+    private boolean pullFlag = false;
+    private Button btn_goodsList_default;
+    private Button btn_goodsList_hot;
+    private Button btn_goodsList_new;
+    private Button btn_goodsList_price;
 
 
-
+    private View v_goodLists_default_line;
+    private View v_goodLists_hot_line;
+    private View v_goodLists_new_line;
+    private View v_goodLists_price_line;
 
 
     @Override
@@ -71,9 +85,24 @@ public class GoodsListActivity extends AppCompatActivity {
 
         ptr_goodsList_ptr = ((PullToRefreshListView) findViewById(R.id.ptr_goodsList_ptr));
 
+        rl_goodsList_load = ((RelativeLayout) findViewById(R.id.rl_goodsList_load));
+
+        btn_goodsList_default = ((Button) findViewById(R.id.btn_goodsList_default));
+        btn_goodsList_hot = ((Button) findViewById(R.id.btn_goodsList_hot));
+        btn_goodsList_new = ((Button) findViewById(R.id.btn_goodsList_new));
+        btn_goodsList_price = ((Button) findViewById(R.id.btn_goodsList_price));
+
+        v_goodLists_default_line = ((View) findViewById(R.id.v_goodLists_default_line));
+        v_goodLists_hot_line = ((View) findViewById(R.id.v_goodLists_hot_line));
+        v_goodLists_new_line = ((View) findViewById(R.id.v_goodLists_new_line));
+        v_goodLists_price_line = ((View) findViewById(R.id.v_goodLists_price_line));
+
+
     }
 
     private void initData() {
+
+
         //cateId
         //bundle
 
@@ -92,10 +121,70 @@ public class GoodsListActivity extends AppCompatActivity {
 
     private void initEvent() {
         eventPullToRefresh();
+        btn_goodsList_default.setOnClickListener(this);
+        btn_goodsList_hot.setOnClickListener(this);
+        btn_goodsList_new.setOnClickListener(this);
+        btn_goodsList_price.setOnClickListener(this);
 
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_goodsList_default:
+                pressDefault();
+
+                break;
+            case R.id.btn_goodsList_hot:
+                pressHot();
+                break;
+            case R.id.btn_goodsList_new:
+                pressNew();
+                break;
+            case R.id.btn_goodsList_price:
+                pressPrice();
+                break;
+
+        }
+
+
+
+    }
+
+    private void pressDefault() {
+
+        btn_goodsList_default.setEnabled(false);
+        //btn_goodsList_default.setClickable(false);
+        //默认
+        introType=null;
+        page =1;
+        btn_goodsList_default.setTextColor(Color.rgb(255,64,00));
+        v_goodLists_default_line.setVisibility(View.VISIBLE);
+
+        getData();
+
+    }
+
+    private void pressHot() {
+        //is_hot
+        introType="is_hot";
+        page=1;
+        getData();
+
+    }
+
+    private void pressNew() {
+        //is_new  is_best
+        introType="is_best";
+        page=1;
+        getData();
+
+    }
+
+    private void pressPrice() {
+
+    }
 
 
     private void eventPullToRefresh() {
@@ -114,6 +203,8 @@ public class GoodsListActivity extends AppCompatActivity {
                 PullToRefreshBase.Mode mode = ptr_goodsList_ptr.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+
+                    pullFlag=true;
                     page =1;
                     getData();
 
@@ -124,20 +215,7 @@ public class GoodsListActivity extends AppCompatActivity {
                     page++;
                     Log.i(TAG,page+"");
 
-                    if(page<=pageCount){
-
                         getData();
-
-                    }else{
-                        Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
-
-
-                        ptr_goodsList_ptr.onRefreshComplete();
-
-
-                    }
-
-
 
                 }
 
@@ -192,6 +270,13 @@ public class GoodsListActivity extends AppCompatActivity {
 
 
     private void getData() {
+        if(page==1&&pullFlag==false){
+
+            rl_goodsList_load.setVisibility(View.VISIBLE);
+
+
+        }
+
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.GOODSLISTURL);
 
@@ -203,14 +288,18 @@ public class GoodsListActivity extends AppCompatActivity {
         requestParams.addBodyParameter("page",page+"");
 
 
-        requestParams.addBodyParameter("intro_type","");
+        requestParams.addBodyParameter("intro_type",introType+"");
 
         requestParams.addBodyParameter("keyword","");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
+                rl_goodsList_load.setVisibility(View.GONE);
+
                 if(page==1){
+
+
                     goodsList.clear();
 
                 }
@@ -224,11 +313,22 @@ public class GoodsListActivity extends AppCompatActivity {
                 pageCount = Integer.parseInt(goodsData.page_count);
 
                 Log.i(TAG,"总页数"+pageCount+"");
-                goodsList.addAll(goodsData.goods);
 
-                goodsCommonAdapter.notifyDataSetChanged();
+                if(page<=pageCount) {
+                    goodsList.addAll(goodsData.goods);
 
-                ptr_goodsList_ptr.onRefreshComplete();
+                    goodsCommonAdapter.notifyDataSetChanged();
+
+                    ptr_goodsList_ptr.onRefreshComplete();
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+
+                    ptr_goodsList_ptr.onRefreshComplete();
+
+
+                }
 
             }
 
@@ -253,7 +353,6 @@ public class GoodsListActivity extends AppCompatActivity {
 
 
     }
-
 
 
 
