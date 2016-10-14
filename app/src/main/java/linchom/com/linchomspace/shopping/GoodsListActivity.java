@@ -130,6 +130,7 @@ public class GoodsListActivity extends AppCompatActivity {
 
                     }else{
                         Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                        goodsCommonAdapter.notifyDataSetChanged();
 
 
                         ptr_goodsList_ptr.onRefreshComplete();
