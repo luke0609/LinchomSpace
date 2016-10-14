@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +38,9 @@ import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsListActivity extends AppCompatActivity implements View.OnClickListener{
-//修改时间17:02
-
+    ///!!!!!!!!!!!!!!!
+    ///商品以瀑布流显示
+    ///!!!!!!!!!!!!!!!
     private static final String TAG = "GoodsListActivity";
 
     private PullToRefreshListView ptr_goodsList_ptr;
@@ -70,6 +76,9 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     private View v_goodLists_price_line;
 
 
+    private ImageView iv_goodsList_back;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +91,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initView() {
+
 
         ptr_goodsList_ptr = ((PullToRefreshListView) findViewById(R.id.ptr_goodsList_ptr));
 
@@ -96,6 +106,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         v_goodLists_hot_line = ((View) findViewById(R.id.v_goodLists_hot_line));
         v_goodLists_new_line = ((View) findViewById(R.id.v_goodLists_new_line));
         v_goodLists_price_line = ((View) findViewById(R.id.v_goodLists_price_line));
+        iv_goodsList_back = ((ImageView) findViewById(R.id.iv_goodsList_back));
+
+        btn_goodsList_default.setTextColor(Color.rgb(255,64,00));
+        v_goodLists_default_line.setVisibility(View.VISIBLE);
+        btn_goodsList_default.setEnabled(false);
 
 
     }
@@ -125,6 +140,28 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         btn_goodsList_hot.setOnClickListener(this);
         btn_goodsList_new.setOnClickListener(this);
         btn_goodsList_price.setOnClickListener(this);
+        iv_goodsList_back.setOnClickListener(this);
+
+        goodsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //postion从1开始
+
+
+
+
+                 Intent intent =new Intent(GoodsListActivity.this,GoodsActivity.class);
+                 Bundle goodsListBundle =new Bundle();
+                 goodsListBundle.putString("goodsId", goodsList.get(position-1).goods_id);
+
+                intent.putExtra("goodsListBundle",goodsListBundle);
+
+                startActivity(intent);
+
+
+            }
+        });
 
 
     }
@@ -143,8 +180,13 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                 pressNew();
                 break;
             case R.id.btn_goodsList_price:
-                pressPrice();
+                pressPrice(v);
                 break;
+            case R.id.iv_goodsList_back:
+                this.finish();
+                break;
+
+
 
         }
 
@@ -154,19 +196,57 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     private void pressDefault() {
 
+        btn_goodsList_default.setTextColor(Color.rgb(255,64,00));
         btn_goodsList_default.setEnabled(false);
+        v_goodLists_default_line.setVisibility(View.VISIBLE);
+
+
+
+        btn_goodsList_hot.setEnabled(true);
+        btn_goodsList_hot.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_hot_line.setVisibility(View.INVISIBLE);
+
+        btn_goodsList_new.setEnabled(true);
+        btn_goodsList_new.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_new_line.setVisibility(View.INVISIBLE);
+
+        btn_goodsList_price.setEnabled(true);
+        btn_goodsList_price.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_price_line.setVisibility(View.INVISIBLE);
+
+
+
         //btn_goodsList_default.setClickable(false);
         //默认
         introType=null;
         page =1;
-        btn_goodsList_default.setTextColor(Color.rgb(255,64,00));
-        v_goodLists_default_line.setVisibility(View.VISIBLE);
 
         getData();
 
     }
 
     private void pressHot() {
+        btn_goodsList_hot.setTextColor(Color.rgb(255,64,00));
+        btn_goodsList_hot.setEnabled(false);
+        v_goodLists_hot_line.setVisibility(View.VISIBLE);
+
+
+        btn_goodsList_default.setEnabled(true);
+        btn_goodsList_default.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_default_line.setVisibility(View.INVISIBLE);
+
+
+
+        btn_goodsList_new.setEnabled(true);
+        btn_goodsList_new.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_new_line.setVisibility(View.INVISIBLE);
+
+        btn_goodsList_price.setEnabled(true);
+        btn_goodsList_price.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_price_line.setVisibility(View.INVISIBLE);
+
+
+
         //is_hot
         introType="is_hot";
         page=1;
@@ -175,6 +255,26 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void pressNew() {
+        btn_goodsList_new.setTextColor(Color.rgb(255,64,00));
+        btn_goodsList_new.setEnabled(false);
+        v_goodLists_new_line.setVisibility(View.VISIBLE);
+
+
+        btn_goodsList_default.setEnabled(true);
+        btn_goodsList_default.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_default_line.setVisibility(View.INVISIBLE);
+
+        btn_goodsList_hot.setEnabled(true);
+        btn_goodsList_hot.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_hot_line.setVisibility(View.INVISIBLE);
+
+
+
+        btn_goodsList_price.setEnabled(true);
+        btn_goodsList_price.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_price_line.setVisibility(View.INVISIBLE);
+
+
         //is_new  is_best
         introType="is_best";
         page=1;
@@ -182,7 +282,84 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void pressPrice() {
+    private void pressPrice(View v) {
+
+
+
+
+        btn_goodsList_price.setTextColor(Color.rgb(255,64,00));
+        btn_goodsList_price.setEnabled(false);
+        v_goodLists_price_line.setVisibility(View.VISIBLE);
+
+
+        btn_goodsList_default.setEnabled(true);
+        btn_goodsList_default.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_default_line.setVisibility(View.INVISIBLE);
+
+        btn_goodsList_hot.setEnabled(true);
+        btn_goodsList_hot.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_hot_line.setVisibility(View.INVISIBLE);
+
+        btn_goodsList_new.setEnabled(true);
+        btn_goodsList_new.setTextColor(Color.rgb(128,128,128));
+        v_goodLists_new_line.setVisibility(View.INVISIBLE);
+
+
+
+        showPopUpWindowPrice(v);
+
+
+
+    }
+
+    private void showPopUpWindowPrice(View v) {
+
+            View goodsListContentView = LayoutInflater.from(this).inflate(R.layout.goodslist_popupwindow,null);
+            RelativeLayout rl_goodsList_pop_top= ((RelativeLayout) goodsListContentView.findViewById(R.id.rl_goodsList_pop_top));
+            RelativeLayout rl_goodsList_pop_bottom= ((RelativeLayout) goodsListContentView.findViewById(R.id.rl_goodsList_pop_bottom));
+
+            rl_goodsList_pop_top.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(),"从低到高",Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            rl_goodsList_pop_bottom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(),"从高到低",Toast.LENGTH_SHORT).show();
+
+
+                }
+            });
+
+        PopupWindow goodsListPopupwindow = new PopupWindow(goodsListContentView, ViewGroup.LayoutParams.MATCH_PARENT,200);
+
+        goodsListPopupwindow.setTouchable(true);
+
+        goodsListPopupwindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.i("mengdd", "onTouch : ");
+
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        // 我觉得这里是API的一个bug
+        goodsListPopupwindow.setBackgroundDrawable(getResources().getDrawable(
+                R.mipmap.ic_launcher));
+
+        // 设置好参数之后再show
+        goodsListPopupwindow.showAsDropDown(v);
+
+
 
     }
 
@@ -264,6 +441,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         //getdata()更新数据
 
         getData();
+
+
 
 
     }
