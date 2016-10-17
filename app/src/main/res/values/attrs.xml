@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="titlebar">
+
+        <attr name="titleText" format="string"/>
+
+        <attr name="titleRightRes" format="reference"/>
+
+
+        <attr name="titleRightVis" format="boolean"/>
+
+
+    </declare-styleable>
+
+
+</resources>
+
+
