@@ -12,7 +12,7 @@ import linchom.com.linchomspace.R;
 public class HeadImage_activity extends AppCompatActivity {
     private TextView tv_ed;
     private ImageView iv_back;
-    private ImageView iv_head;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

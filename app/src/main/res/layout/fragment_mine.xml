@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ece9e9"
-    >
+    android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,7 +13,7 @@
                 android:id="@+id/iv_head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/live_head_passerby"
                 />
             <TextView
@@ -35,9 +33,9 @@
             android:id="@+id/v_view"
             android:layout_below="@id/rv_head0"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="3px"
             android:layout_marginTop="15dp"
-            android:background="#0e0e0e"/>
+            android:background="#C0C5C7"/>
 
         <RelativeLayout
             android:id="@+id/rv_button"
@@ -67,7 +65,7 @@
                     android:background="#fcfafa"
                     android:textColor="#291a1a"
                     android:text="收藏"
-                    android:textSize="22sp"
+                    android:textSize="25sp"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -90,7 +88,7 @@
                     android:background="#fcfbfb"
                     android:textColor="#291a1a"
                     android:text="设置"
-                    android:textSize="22sp"
+                    android:textSize="25sp"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -112,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:background="#fcfafa"
                     android:text="夜间"
-                    android:textSize="22sp"
+                    android:textSize="25sp"
                     android:textColor="#291a1a"
                     />
             </RelativeLayout>
@@ -145,9 +143,6 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>
         </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
         <RelativeLayout
             android:id="@+id/person_center_content1"
             android:layout_below="@id/person_center_content"

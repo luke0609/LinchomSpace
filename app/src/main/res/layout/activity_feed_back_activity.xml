@@ -44,6 +44,7 @@
 
         <EditText
             android:id="@+id/et_dis"
+            android:layout_below="@id/v_dis"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:hint="请写你的反馈意见"
@@ -51,30 +52,24 @@
 
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rl_submit"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_yx"
+        android:layout_below="@id/rl_yjfk"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textColor="#e4e3e3"
+        android:layout_marginTop="20dp"
+        android:hint="QQ 手机号或者邮箱等联系方式"
+        />
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_below="@id/et_yx"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rl_yjfk">
-        <EditText
-            android:id="@+id/et_yx"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:textColor="#e4e3e3"
-            android:layout_marginTop="20dp"
-            android:hint="QQ 手机号或者邮箱等联系方式"
-            />
-        <TextView
-            android:id="@+id/tv_submit"
-            android:layout_below="@id/et_yx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="您的联系方式更有利于我们的沟通，会保密的哦！"
-            />
-    </RelativeLayout>
-
+        android:text="您的联系方式更有利于我们的沟通，会保密的哦！"
+        />
     <RelativeLayout
-        android:layout_below="@+id/rl_submit"
+        android:layout_below="@+id/tv_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
