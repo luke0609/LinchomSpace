@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.shizhefei.view.indicator.BannerComponent;
 import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
@@ -33,6 +35,9 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.ListActivityBean;
 import linchom.com.linchomspace.chat.pojo.ListViewAdapter;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
+
+import static linchom.com.linchomspace.R.id.lv;
+import static linchom.com.linchomspace.R.id.ptr_goodsList_ptr;
 
 
 public class ChatFragment extends Fragment {
@@ -154,17 +159,52 @@ public class ChatFragment extends Fragment {
         }
 
         @Override
-        public View getViewForPage(int position, View convertView, ViewGroup container) {
+        public View getViewForPage(final int position, View convertView, ViewGroup container) {
             Log.i("convertView", "getView at position:" + position + " convertView:" + (convertView == null ? "null" : convertView.hashCode()));
             convertView = View.inflate(getActivity(), R.layout.viewpage_layout, null);
-            ListView listView = ((ListView) convertView.findViewById(R.id.lv));
+            final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(lv));
             // ListView listView =new ListView(container.getContext());
 
             ArrayList<ListActivityBean.Dongtai> dongtaiList = new ArrayList<ListActivityBean.Dongtai>();
-            ListViewAdapter lvadpt = new ListViewAdapter(getActivity(), dongtaiList);
-            listView.setAdapter(lvadpt);
+           final ListViewAdapter lvadpt = new ListViewAdapter(getActivity(), dongtaiList);
+
+            listView.setScrollingWhileRefreshingEnabled(true);
+            listView.setMode(PullToRefreshBase.Mode.BOTH);
+
+            listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                @Override
+                public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+
+                    PullToRefreshBase.Mode mode = listView.getCurrentMode();
+
+                    if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+
+                        getDongtaiList(urls[position],lvadpt,listView);
+
+
+
+                    }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+
+                        getDongtaiList(urls[position],lvadpt,listView);
+
+
+
+
+
+
+                    }
+
+
+                }
+            });
+
+            ListView newsList=listView.getRefreshableView();
+
+            newsList.setAdapter(lvadpt);
+
+
             Log.i("convertView", "getView at position:" + position + "==========" + urls[position]);
-            getDongtaiList(urls[position], lvadpt);
+            getDongtaiList(urls[position], lvadpt,listView);
 
 
             return convertView;
@@ -192,12 +232,13 @@ public class ChatFragment extends Fragment {
 
     }
 
-    private void getDongtaiList(String url, final ListViewAdapter adapter2) {
+    private void getDongtaiList(String url, final ListViewAdapter adapter2,PullToRefreshListView listView) {
         String url2;
         url2 = url;
         String web = "http://10.40.5.7:8080/web/getdongtaibypage";
         web += url2;
         final ArrayList<ListActivityBean.Dongtai> dongtaiList = adapter2.getDongtaiList();
+        final PullToRefreshListView listView2=listView;
         RequestParams params = new RequestParams(web);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
@@ -206,12 +247,14 @@ public class ChatFragment extends Fragment {
                 Gson gson = new Gson();
 
                 ListActivityBean bean = gson.fromJson(result, ListActivityBean.class);
-                dongtaiList.clear();
+               // dongtaiList.clear();
                 dongtaiList.addAll(bean.dongtailist);
 
                 System.out.println(dongtaiList);
 
                 adapter2.notifyDataSetChanged();
+
+                listView2.onRefreshComplete();
 
             }
 
