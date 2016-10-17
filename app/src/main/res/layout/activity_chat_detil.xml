@@ -3,10 +3,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="linchom.com.linchomspace.chat.ChatDetilActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#f0f0f0">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="交流正文"
+            android:textSize="20sp"
+            android:textColor="#808080"
+            android:layout_centerInParent="true"/>
 
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top"
+
+        android:background="@drawable/chat_item_shape"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:id="@+id/title"
+            android:text="我在北京有个别墅客户想安装智能家居，谁有好的品牌推荐？"
+            android:textColor="#808080"
+            android:textSize="20sp"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_msg"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/title">
+            <ImageView
+                android:id="@+id/user_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:src="@drawable/logo1"/>
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/user_logo"
+                android:text="用户名"
+                android:layout_centerVertical="true"
+                android:singleLine="true"/>
+            <Button
+                android:textSize="13sp"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/tv_username"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/chat_louzhu_shape"
+                android:textColor="#fff"
+                android:text="楼主"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016-10-14 16:24"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+             />
+
+
+
+        </RelativeLayout>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_chat_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_msg"
+            android:layout_marginBottom="10dp"
+            android:text="请问厨房等家具怎么摆放比较合适，家里的阳台是向阳的，那么背光的呢？？"/>
+
+
+    </RelativeLayout>
 </RelativeLayout>

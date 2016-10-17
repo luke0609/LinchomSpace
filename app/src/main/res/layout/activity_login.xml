@@ -174,5 +174,14 @@
             android:src="@drawable/weibo"
             android:layout_toRightOf="@+id/struct3"/>
     </RelativeLayout>
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:visibility="gone"
+        android:id="@+id/progressBar" />
 </RelativeLayout>
 
