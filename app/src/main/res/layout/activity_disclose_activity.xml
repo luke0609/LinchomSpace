@@ -36,15 +36,23 @@
             android:layout_height="1dp"
             android:background="#808080"
             android:layout_marginTop="5dp"/>
-        <EditText
+        <RelativeLayout
             android:id="@+id/et_dis"
             android:layout_below="@id/v_dis"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:hint="请写你要发布的文章"
-            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:hint="请写你要发布的文章"
+                android:layout_marginTop="10dp"
 
-            />
+                />
+        </RelativeLayout>
+
         <RelativeLayout
             android:layout_below="@id/et_dis"
             android:id="@+id/rl_fj"

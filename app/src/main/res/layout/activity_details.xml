@@ -97,6 +97,7 @@
                 android:layout_centerVertical="true"
                 />
             <TextView
+                android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="胡萝卜"
@@ -137,6 +138,7 @@
                 android:layout_centerVertical="true"
                 />
             <TextView
+                android:id="@+id/tv_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1996-09-08"
@@ -168,7 +170,7 @@
             android:layout_below="@+id/rl_h2"
             >
             <TextView
-                android:id="@+id/tv_h3"
+                android:id="@+id/tv_office_phone2"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="电话"
@@ -177,6 +179,7 @@
                 android:layout_centerVertical="true"
                 />
             <TextView
+                android:id="@+id/tv_office_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12345678954"
@@ -207,7 +210,6 @@
             android:layout_below="@+id/rl_h3"
             >
             <TextView
-                android:id="@+id/tv_h4"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="手机号"
@@ -215,7 +217,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
                 />
+
             <TextView
+                android:id="@+id/tv_mobile_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="14534865"
@@ -245,7 +249,6 @@
             android:layout_below="@+id/rl_h4"
             >
             <TextView
-                android:id="@+id/tv_h5"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="QQ"
@@ -254,6 +257,7 @@
                 android:layout_centerVertical="true"
                 />
             <TextView
+                android:id="@+id/tv_qq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12939"
@@ -285,7 +289,6 @@
             android:layout_below="@+id/rl_h5"
             >
             <TextView
-                android:id="@+id/tv_h6"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="邮箱"
@@ -294,6 +297,7 @@
                 android:layout_centerVertical="true"
                 />
             <TextView
+                android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12939856743@qq.com"
@@ -324,7 +328,7 @@
             android:layout_below="@+id/rl_h6"
             >
             <TextView
-                android:id="@+id/tv_h7"
+                android:id="@+id/msn"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="MSN"
@@ -395,14 +399,14 @@
                 android:id="@+id/tv_h8"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="故乡："
+                android:text="签名："
                 android:textSize="20sp"
                 android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="北京"
+                android:text="我不想生活在这里了"
                 android:textSize="20sp"
                 android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
