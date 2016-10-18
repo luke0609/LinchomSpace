@@ -14,7 +14,10 @@
 
 
 
-    <ScrollView
+    <linchom.com.linchomspace.shopping.widget.GoodsScrollView
+
+        android:id="@+id/sv_goods_scrollview"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -251,6 +254,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@null"
                                 android:text="1"
+                                android:inputType="number"
                                 />
 
                         </RelativeLayout>
@@ -583,7 +587,7 @@
 
         </RelativeLayout>
 
-    </ScrollView>
+    </linchom.com.linchomspace.shopping.widget.GoodsScrollView>
 
     <LinearLayout
 
@@ -657,23 +661,46 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_gooods_back"
-        android:src="@drawable/goods_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
+    <RelativeLayout
+        android:id="@+id/rl_goods_head"
+        android:background="@drawable/goods_title_shape"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
 
-        />
 
-    <ImageView
-        android:id="@+id/iv_gooods_cart"
-        android:src="@drawable/goods_cart"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        />
+        <ImageView
+            android:id="@+id/iv_gooods_back"
+            android:src="@drawable/goods_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+
+            />
+
+        <ImageView
+            android:id="@+id/iv_gooods_cart"
+            android:src="@drawable/goods_cart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            />
+        <TextView
+            android:id="@+id/tv_goods_title_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品"
+            android:textColor="#808080"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            />
+
+
+    </RelativeLayout>
+
+
 
 
 </RelativeLayout>
