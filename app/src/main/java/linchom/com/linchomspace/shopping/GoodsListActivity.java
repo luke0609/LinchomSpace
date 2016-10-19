@@ -405,11 +405,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     private void showPopupWindow(View view) {
         //自己写逻辑控制出现的位置
 
-        // 一个自定义的布局，作为显示的内容
         View contentView = LayoutInflater.from(this).inflate(
                 R.layout.goodslist_popupwindow, null);
-        // 设置按钮的点击事件
-        //Button button = (Button) contentView.findViewById(R.id.button1);
          RelativeLayout rl_goodsList_pop_top = ((RelativeLayout) contentView.findViewById(R.id.rl_goodsList_pop_top));
 
 
@@ -455,7 +452,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
         // 我觉得这里是API的一个bug
         popupWindow.setBackgroundDrawable(getResources().getDrawable(
-                R.drawable.goods_back));
+                R.mipmap.ic_launcher));
 
         // 设置好参数之后再show
         popupWindow.showAsDropDown(view);
