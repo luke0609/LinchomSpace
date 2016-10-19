@@ -22,7 +22,7 @@ public class GoodsHttpUtils {
     //URl
 
 
-    public static final  String GOODSDETAILURL="";
+    public static final  String GOODSDETAILURL="http://app.linchom.com/appapi.php?act=goodsinfo&goods_id=";
 
 
 

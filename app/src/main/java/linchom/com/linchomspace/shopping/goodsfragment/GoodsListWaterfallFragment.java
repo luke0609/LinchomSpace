@@ -49,9 +49,12 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
     private   int  page = 1;
 
-    private String introType;
 
     private int category_id;
+
+    private String orderSort=null;
+
+    private String sort=null;
 
 
 
@@ -114,6 +117,18 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
         Bundle bundle = getArguments();
 
         category_id = bundle.getInt("catId");
+
+        orderSort =bundle.getString("order");
+
+        sort =bundle.getString("sort");
+
+        System.out.println("orderSort"+orderSort);
+        System.out.println("sort"+sort);
+
+
+
+
+
 
         // introType = bundle.getString("introType");
 
@@ -189,7 +204,12 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
         requestParams.addBodyParameter("page", page + "");
 
         requestParams.addBodyParameter("category_id", category_id + "");
+        requestParams.addBodyParameter("order", orderSort + "");
+        requestParams.addBodyParameter("sort", sort + "");
 
+
+        System.out.println("orderSort"+orderSort);
+        System.out.println("sort"+sort);
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
