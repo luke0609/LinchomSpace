@@ -91,14 +91,14 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/huodong"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:layout_centerVertical="true"
                 />
             <TextView
                 android:layout_toRightOf="@id/huodong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="8dp"
                 android:layout_centerVertical="true"
                 android:text="活动"
                 android:textColor="#332626"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="linchom.com.linchomspace">
+    package="linchom.com.linchomspace" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -15,10 +15,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -134,8 +134,8 @@
         <activity android:name=".mine.Details_Activity" />
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
-        <activity android:name=".mine.Night_activity$Mydisclose" />
-        <activity android:name=".mine.Mydisclose"></activity>
+        <activity android:name=".mine.Mydisclose" >
+        </activity>
     </application>
 
 </manifest>
