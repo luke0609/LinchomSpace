@@ -13,7 +13,13 @@
 
 
     </declare-styleable>
-
+    <declare-styleable name="CircularProgress">
+        <attr name="borderWidth" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="SlideSelectView">
+        <attr name="circleCount" format="integer"></attr>
+        <attr name="textSize" format="integer"></attr>
+    </declare-styleable>
 
 </resources>
 

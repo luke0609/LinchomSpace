@@ -19,8 +19,8 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import linchom.com.linchomspace.R;
 
-import com.fc.homepage.R;
 
 /**
  * Created by zhaokaiqiang on 15/2/10.

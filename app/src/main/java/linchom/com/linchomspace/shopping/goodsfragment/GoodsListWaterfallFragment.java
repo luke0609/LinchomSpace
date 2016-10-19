@@ -32,13 +32,9 @@ import linchom.com.linchomspace.shopping.widget.PullToRefreshStaggeredGridView;
 @SuppressLint("NewApi")
 public class GoodsListWaterfallFragment extends Fragment implements PullToRefreshBase.OnRefreshListener<StaggeredGridView>{
     private StaggeredGridView staggeredGridView;
-
     private PullToRefreshStaggeredGridView mPullToRefreshStaggerdGridView;
-
     private boolean refreshFlag =false;
-
     private   int  page = 1;
-
     private String introType;
 
     private int catId;

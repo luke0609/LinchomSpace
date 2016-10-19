@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="185dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:id="@+id/ll_fontselector"
@@ -13,13 +14,14 @@
         android:background="#f5f3f3"
         android:orientation="horizontal"
         android:visibility="gone">
-        <com.fc.homepage.View.SlideSelectView
+        <linchom.com.linchomspace.homepage.View.SlideSelectView
+
             android:id="@+id/slideSelectView"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:background="#f5f3f3"
-            app:circleCount="3"
             android:layout_gravity="center"
+            app:circleCount="3"
             />
 
     </LinearLayout>
@@ -46,7 +48,7 @@
                 android:scaleType="centerInside"
                 android:layout_centerInParent="true"
                 android:src="@drawable/article_night"
-                android:background="@drawable/circle"
+                android:background="@drawable/article_more_circle"
               />
 
 
@@ -73,7 +75,7 @@
                 android:layout_height="60dp"
                 android:scaleType="centerInside"
                 android:layout_centerInParent="true"
-                android:background="@drawable/circle"
+                android:background="@drawable/article_more_circle"
                 android:src="@drawable/arcticle_font"
              />
 
