@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -25,12 +31,13 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
-import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsListNewBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
@@ -41,11 +48,15 @@ import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 public class GoodsListFragment extends Fragment {
 
 
+
+
+
+    private static final String TAG = "GoodsListFragment";
     private String introType;
 
-    private int catId;
+    private int category_id;
 
-    private int pageCount;
+    private int pageCount=1;
 
 
     private String keyWord;
@@ -60,9 +71,9 @@ public class GoodsListFragment extends Fragment {
 
     private ListView goodsListView;
 
-    private GoodsCommonAdapter<GoodsListBean.Goods> goodsCommonAdapter;
+    private GoodsCommonAdapter<GoodsListNewBean.GoodsMap> goodsCommonAdapter;
 
-    private List<GoodsListBean.Goods> goodsList =new ArrayList<GoodsListBean.Goods>();
+    private List<GoodsListNewBean.GoodsMap> goodsList =new ArrayList<GoodsListNewBean.GoodsMap>();
 
     private int page =1;
     private RelativeLayout rl_goodsList_load_list;
@@ -88,9 +99,8 @@ public class GoodsListFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
-        catId = bundle.getInt("catId");
+        category_id = bundle.getInt("catId");
 
-        introType = bundle.getString("introType");
 
         ptr_goodsList_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_goodsList_ptr));
         rl_goodsList_load_list = ((RelativeLayout) view.findViewById(R.id.rl_goodsList_load_list));
@@ -110,6 +120,11 @@ public class GoodsListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent =new Intent(getActivity(), GoodsActivity.class);
+                //1开始
+                Bundle bundle =new Bundle();
+                bundle.putString("goodsId",goodsList.get(position-1).goods_id);
+                intent.putExtra("bundle",bundle);
+
                 startActivity(intent);
             }
         });
@@ -127,22 +142,16 @@ public class GoodsListFragment extends Fragment {
 
 
 
-        RequestParams requestParams = new RequestParams(GoodsHttpUtils.GOODSLISTURL);
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.NEWGOODSLISTURL);
 
-        requestParams.addBodyParameter("key", GoodsHttpUtils.KEY);
         requestParams.addBodyParameter("verification", GoodsHttpUtils.VERIFICATION);
 
 
 
         requestParams.addBodyParameter("page", page + "");
 
-        requestParams.addBodyParameter("cat_id", catId+ "");
-
-        requestParams.addBodyParameter("intro_type", introType+ "");
-
-
-
-
+        requestParams.addBodyParameter("category_id", category_id+ "");
+        Log.i(TAG,category_id+"");
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
@@ -157,47 +166,87 @@ public class GoodsListFragment extends Fragment {
 
                 }
 
-
-                Gson gson = new Gson();
-
-                GoodsListBean goodsListBean = gson.fromJson(result, GoodsListBean.class);
-
-                GoodsListBean.Data goodsData = goodsListBean.data;
+                List<GoodsListNewBean.GoodsMap> newList = new ArrayList<GoodsListNewBean.GoodsMap>();
 
 
-                pageCount = Integer.parseInt(goodsData.page_count);
+                if(page<=pageCount) {
 
-                    if(page<=pageCount) {
 
-                        goodsList.addAll(goodsData.goods);
+                    Gson gson = new Gson();
 
-                        goodsCommonAdapter.notifyDataSetChanged();
+                    JsonParser parser = new JsonParser();
 
-                    }else{
+                    JsonElement element = parser.parse(result);
 
-                        Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                    JsonObject root = element.getAsJsonObject();
 
-                        goodsCommonAdapter.notifyDataSetChanged();
 
+                    JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
+
+                    String resultBean = resultjson.getAsString();
+
+                    Log.i(TAG, "resultBean" + resultBean);
+
+                    JsonObject datajson = root.getAsJsonObject("data");
+
+                    String str = datajson.toString();
+
+
+                    JsonParser parser2 = new JsonParser();
+
+                    JsonElement element2 = parser2.parse(str);
+
+                    JsonObject root2 = element2.getAsJsonObject();
+
+                    JsonPrimitive total_pages = root2.getAsJsonPrimitive("total_pages");
+
+                    pageCount = Integer.parseInt(total_pages.getAsString());
+
+
+                    JsonObject items = root2.getAsJsonObject("items");
+
+
+                    Map<String, GoodsListNewBean.GoodsMap> mapNew = gson.fromJson(items, new TypeToken<Map<String, GoodsListNewBean.GoodsMap>>() {
+                    }.getType());
+
+
+
+
+                    newList.clear();
+
+
+                    for (Map.Entry<String, GoodsListNewBean.GoodsMap> m : mapNew.entrySet()) {
+
+
+                        GoodsListNewBean.GoodsMap goodsInfo = m.getValue();
+
+                        newList.add(goodsInfo);
 
                     }
 
-                    ptr_goodsList_ptr.onRefreshComplete();
+                    goodsList.addAll(newList);
+                    goodsCommonAdapter.notifyDataSetChanged();
 
 
+                }else{
 
+                    Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                    goodsCommonAdapter.notifyDataSetChanged();
 
+                }
 
+                ptr_goodsList_ptr.onRefreshComplete();
 
                 rl_goodsList_load_list.setVisibility(View.GONE);
-
-
-
 
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                Log.i(TAG,ex+"");
+
+
 
             }
 
@@ -263,13 +312,13 @@ public class GoodsListFragment extends Fragment {
         //new adapter
 
 
-        goodsCommonAdapter =new GoodsCommonAdapter<GoodsListBean.Goods>(getActivity(),goodsList,R.layout.goodslist_item) {
+        goodsCommonAdapter =new GoodsCommonAdapter<GoodsListNewBean.GoodsMap>(getActivity(),goodsList,R.layout.goodslist_item) {
 
 
 
 
             @Override
-            public void convert(GoodsViewHolder viewHolder, GoodsListBean.Goods goods, int position) {
+            public void convert(GoodsViewHolder viewHolder, GoodsListNewBean.GoodsMap goods, int position) {
 
 
                 ImageView iv_goodsList_item_image = ((ImageView) viewHolder.getViewById(R.id.iv_goodsList_item_image));
@@ -285,6 +334,8 @@ public class GoodsListFragment extends Fragment {
 
             }
         };
+
+
 
 
         //setadapter

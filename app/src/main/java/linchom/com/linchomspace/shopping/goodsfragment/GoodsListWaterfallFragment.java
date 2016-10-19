@@ -1,6 +1,7 @@
 package linchom.com.linchomspace.shopping.goodsfragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,11 @@ import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import org.xutils.common.Callback;
@@ -21,30 +27,37 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.PuBuAdapter;
-import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsListNewBean;
 import linchom.com.linchomspace.shopping.widget.PullToRefreshStaggeredGridView;
 
 
 @SuppressLint("NewApi")
 public class GoodsListWaterfallFragment extends Fragment implements PullToRefreshBase.OnRefreshListener<StaggeredGridView>{
+
+    private static final String TAG = "GoodsListWaterfallFragment";
     private StaggeredGridView staggeredGridView;
+
     private PullToRefreshStaggeredGridView mPullToRefreshStaggerdGridView;
+
     private boolean refreshFlag =false;
+
     private   int  page = 1;
+
     private String introType;
 
-    private int catId;
+    private int category_id;
 
 
-    private String keyWord;
 
-    private int pageCount;
+    private int pageCount=1;
 
-    List<GoodsListBean.Goods> goodsList = new ArrayList<GoodsListBean.Goods>();
+    List<GoodsListNewBean.GoodsMap> goodsList = new ArrayList<GoodsListNewBean.GoodsMap>();
 
     PuBuAdapter puBuAdapter;
 
@@ -100,9 +113,9 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
         Bundle bundle = getArguments();
 
-        catId = bundle.getInt("catId");
+        category_id = bundle.getInt("catId");
 
-        introType = bundle.getString("introType");
+        // introType = bundle.getString("introType");
 
         mPullToRefreshStaggerdGridView = (PullToRefreshStaggeredGridView) view.findViewById(R.id.pull_grid_view);
         rl_goodsList_load_listpubu = ((RelativeLayout) view.findViewById(R.id.rl_goodsList_load_listpubu));
@@ -116,6 +129,7 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
     private void initEvent() {
 
         staggeredGridViewEvent();
+
 
 
     }
@@ -141,8 +155,16 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //0开始
+                Intent intent =new Intent(getActivity(), GoodsActivity.class);
 
-                Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
+                Bundle bundle =new Bundle();
+                bundle.putString("goodsId",goodsList.get(position).goods_id);
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
+
+
 
 
             }
@@ -160,22 +182,13 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
         }
 
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.NEWGOODSLISTURL);
 
-
-
-        RequestParams requestParams = new RequestParams(GoodsHttpUtils.GOODSLISTURL);
-
-        requestParams.addBodyParameter("key", GoodsHttpUtils.KEY);
         requestParams.addBodyParameter("verification", GoodsHttpUtils.VERIFICATION);
-
-
 
         requestParams.addBodyParameter("page", page + "");
 
-        requestParams.addBodyParameter("cat_id", catId + "");
-
-        requestParams.addBodyParameter("intro_type", introType+ "");
-
+        requestParams.addBodyParameter("category_id", category_id + "");
 
 
 
@@ -183,43 +196,83 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
             @Override
             public void onSuccess(String result) {
 
-
                 if (page == 1) {
-
 
                     goodsList.clear();
 
                 }
 
-                Gson gson = new Gson();
-
-                GoodsListBean goodsListBean = gson.fromJson(result, GoodsListBean.class);
-
-                GoodsListBean.Data goodsData = goodsListBean.data;
+                List<GoodsListNewBean.GoodsMap> newList = new ArrayList<GoodsListNewBean.GoodsMap>();
 
 
-                pageCount = Integer.parseInt(goodsData.page_count);
+                if(page<=pageCount) {
 
-                if(page<=pageCount){
 
-                    goodsList.addAll(goodsData.goods);
+                    Gson gson = new Gson();
 
+                    JsonParser parser = new JsonParser();
+
+                    JsonElement element = parser.parse(result);
+
+                    JsonObject root = element.getAsJsonObject();
+
+
+                    JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
+
+                    String resultBean = resultjson.getAsString();
+
+
+                    JsonObject datajson = root.getAsJsonObject("data");
+
+                    String str = datajson.toString();
+
+
+                    JsonParser parser2 = new JsonParser();
+
+                    JsonElement element2 = parser2.parse(str);
+
+                    JsonObject root2 = element2.getAsJsonObject();
+
+                    JsonPrimitive total_pages = root2.getAsJsonPrimitive("total_pages");
+
+                    pageCount = Integer.parseInt(total_pages.getAsString());
+
+
+                    JsonObject items = root2.getAsJsonObject("items");
+
+
+                    Map<String, GoodsListNewBean.GoodsMap> mapNew = gson.fromJson(items, new TypeToken<Map<String, GoodsListNewBean.GoodsMap>>() {
+                    }.getType());
+
+
+
+
+                    newList.clear();
+
+
+                    for (Map.Entry<String, GoodsListNewBean.GoodsMap> m : mapNew.entrySet()) {
+
+
+                        GoodsListNewBean.GoodsMap goodsInfo = m.getValue();
+
+                        newList.add(goodsInfo);
+
+                    }
+
+                    goodsList.addAll(newList);
                     puBuAdapter.notifyDataSetChanged();
-
 
 
                 }else{
 
                     Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
-
                     puBuAdapter.notifyDataSetChanged();
-
 
                 }
 
+
+
                 mPullToRefreshStaggerdGridView.onRefreshComplete();
-
-
 
 
                 rl_goodsList_load_listpubu.setVisibility(View.GONE);
@@ -246,6 +299,7 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
         });
 
     }
+
 
 
 
