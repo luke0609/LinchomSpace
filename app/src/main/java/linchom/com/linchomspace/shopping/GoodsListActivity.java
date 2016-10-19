@@ -111,7 +111,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         Bundle bundle = new Bundle();
 
         bundle.putInt("catId",catId);
-        bundle.putString("desc","");
+        bundle.putString("order","desc");
+        bundle.putString("sort","");
 
 
 
@@ -182,6 +183,9 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                     bundle.putInt("catId",catId);
 
 
+                    bundle.putString("order","desc");
+                    bundle.putString("sort","");
+
 
 
                     fragmentChange.setArguments(bundle);
@@ -199,6 +203,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                     Bundle bundle = new Bundle();
 
                     bundle.putInt("catId",catId);
+                    bundle.putString("order","desc");
+                    bundle.putString("sort","");
 
 
 
@@ -376,6 +382,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
             bundle.putInt("catId",catId);
 
             bundle.putString("order",order);
+
+            bundle.putString("sort",sort+"");
 
 
             fragmentChange.setArguments(bundle);
