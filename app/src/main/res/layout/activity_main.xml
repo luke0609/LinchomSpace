@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-
     <!-- 设置参照物，撑满整个页面（RelativeLayout） -->
     <View
         android:id="@+id/struct"
