@@ -134,7 +134,7 @@
         <activity android:name=".mine.Details_Activity" />
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
-        <activity android:name=".mine.Mydisclose"></activity>
+        <activity android:name=".mine.Night_activity$Mydisclose"></activity>
     </application>
 
 </manifest>

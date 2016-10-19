@@ -12,4 +12,13 @@ public class Night_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_night_activity);
     }
+
+    public static class Mydisclose extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_mydisclose);
+        }
+    }
 }
