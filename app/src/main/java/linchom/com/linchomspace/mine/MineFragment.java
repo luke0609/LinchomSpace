@@ -24,7 +24,7 @@ public class MineFragment extends Fragment {
         ((ImageView)view.findViewById(R.id.iv_head)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),HeadImage_activity.class);
+                Intent intent = new Intent(getActivity(),Details_Activity.class);
                 startActivity(intent);
             }
         });
@@ -35,24 +35,10 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_loved)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Loved_activity.class);
-                startActivity(intent);
-            }
-        });
         ((Button) view.findViewById(R.id.b_loved)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),Loved_activity.class);
-                startActivity(intent);
-            }
-        });
-        ((ImageView) view.findViewById(R.id.iv_set)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Set_activity.class);
                 startActivity(intent);
             }
         });
@@ -91,13 +77,6 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_saveMoney)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),SaveMoney_activity.class);
-                startActivity(intent);
-            }
-        });
         ((ImageView) view.findViewById(R.id.iv_disclose)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,16 +91,6 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_feedBack)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FeedBack_activity.class);
-                startActivity(intent);
-            }
-        });
-
-//        iv_head = ((ImageView) view.findViewById(R.id.iv_head));
-//        iv_head.setOnClickListener(this);
         return view;
     }
 

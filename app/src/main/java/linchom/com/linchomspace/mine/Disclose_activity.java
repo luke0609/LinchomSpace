@@ -26,6 +26,7 @@ public class Disclose_activity extends AppCompatActivity {
                 finish();
             }
         });
+
         b_submit = ((Button) findViewById(R.id.b_submit));
         b_submit.setOnClickListener(new View.OnClickListener() {
             @Override
