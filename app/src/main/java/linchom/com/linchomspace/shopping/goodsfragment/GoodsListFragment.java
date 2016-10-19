@@ -52,11 +52,14 @@ public class GoodsListFragment extends Fragment {
 
 
     private static final String TAG = "GoodsListFragment";
-    private String introType;
 
     private int category_id;
 
     private int pageCount=1;
+
+    private String orderSort;
+
+    private String sort=null;
 
 
     private String keyWord;
@@ -100,6 +103,10 @@ public class GoodsListFragment extends Fragment {
         Bundle bundle = getArguments();
 
         category_id = bundle.getInt("catId");
+
+        orderSort=bundle.getString("order");
+
+        sort=bundle.getString("sort");
 
 
         ptr_goodsList_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_goodsList_ptr));
@@ -150,7 +157,25 @@ public class GoodsListFragment extends Fragment {
 
         requestParams.addBodyParameter("page", page + "");
 
-        requestParams.addBodyParameter("category_id", category_id+ "");
+        //Keyword
+
+        //requestParams.addBodyParameter("keyword", "航拍");
+
+       requestParams.addBodyParameter("category_id",category_id+"");
+
+        //order = desc
+        //Sort_type
+
+        //sort=shop_price   click_count
+
+        //requestParams.addBodyParameter("sort", "click_count");
+
+        Log.i(TAG,"orderSort"+orderSort);
+
+        requestParams.addBodyParameter("order", orderSort);
+
+        requestParams.addBodyParameter("sort", sort+"");
+
         Log.i(TAG,category_id+"");
 
 
