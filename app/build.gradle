@@ -34,4 +34,5 @@ dependencies {
     compile project(':libs:pulltorefresh')
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.etsy.android.grid:library:1.0.5'
+    compile 'com.github.iweinzierl:jsonformat:1.0'
 }
