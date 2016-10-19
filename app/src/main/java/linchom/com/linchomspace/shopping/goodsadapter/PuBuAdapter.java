@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsListNewBean;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 
@@ -28,10 +28,10 @@ public class PuBuAdapter extends BaseAdapter {
     private static final String TAG = "PuBuAdapter";
     Context context;
 
-    List<GoodsListBean.Goods> lists;
+    List<GoodsListNewBean.GoodsMap> lists;
 
 
-    public PuBuAdapter(Context context, List<GoodsListBean.Goods> lists) {
+    public PuBuAdapter(Context context, List<GoodsListNewBean.GoodsMap> lists) {
         this.context = context;
         this.lists = lists;
     }

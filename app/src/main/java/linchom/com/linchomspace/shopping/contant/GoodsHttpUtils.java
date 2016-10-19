@@ -17,6 +17,13 @@ public class GoodsHttpUtils {
 
     //URl
 
+    public static  final String NEWGOODSLISTURL = "http://app.linchom.com/appapi.php?act=goodslist";
+
+    //URl
+
+
+    public static final  String GOODSDETAILURL="";
+
 
 
 
