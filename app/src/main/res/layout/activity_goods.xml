@@ -36,7 +36,7 @@
                 android:id="@+id/rl_goods_top"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="#0000ff"
+                android:background="#ffffff"
                 >
 
                 <android.support.v4.view.ViewPager
