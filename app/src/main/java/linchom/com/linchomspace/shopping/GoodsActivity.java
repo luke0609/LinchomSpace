@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout rl_goods_head;
     private TextView tv_goods_title_content;
 
+    private int buyNum;
+
     GoodsPagerAdapter goodsPagerAdapter;
 
     private  String goodsId;//
@@ -46,6 +49,15 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private ImageView iv_goods_turnright;
 
     private Integer imgPage=0;
+    private TextView tv_goods_proName;
+    private TextView tv_goods_shopPrice;
+    private TextView tv_goods_markerPrice;
+    private TextView tv_goods_goodsStock;
+    private TextView tv_goods_tbPrice;
+    private TextView tv_goods_jdPrice;
+    private RelativeLayout rl_goods_numsub;
+    private RelativeLayout rl_goods_numadd;
+    private EditText et_goods_buyNum;
 
 
     @Override
@@ -76,6 +88,19 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         iv_goods_turnleft = ((ImageView) findViewById(R.id.iv_goods_turnleft));
         iv_goods_turnright = ((ImageView) findViewById(R.id.iv_goods_turnright));
+        tv_goods_proName = ((TextView) findViewById(R.id.tv_goods_proName));
+        tv_goods_shopPrice = ((TextView) findViewById(R.id.tv_goods_shopPrice));
+        tv_goods_markerPrice = ((TextView) findViewById(R.id.tv_goods_markerPrice));
+        tv_goods_goodsStock = ((TextView) findViewById(R.id.tv_goods_goodsStock));
+
+        tv_goods_tbPrice = ((TextView) findViewById(R.id.tv_goods_tbPrice));
+
+        tv_goods_jdPrice = ((TextView) findViewById(R.id.tv_goods_jdPrice));
+
+        rl_goods_numsub = ((RelativeLayout) findViewById(R.id.rl_goods_numsub));
+        rl_goods_numadd = ((RelativeLayout) findViewById(R.id.rl_goods_numadd));
+
+        et_goods_buyNum = ((EditText) findViewById(R.id.et_goods_buyNum));
 
 
     }
@@ -99,7 +124,44 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void getData() {
 
+            RequestParams requestParams =new RequestParams(GoodsHttpUtils.GOODSDETAILURL+goodsId);
 
+
+            x.http().get(requestParams, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+
+                    Gson gson =new Gson();
+
+                    GoodsBean goodsBean = gson.fromJson(result, GoodsBean.class);
+
+                    tv_goods_proName.setText(goodsBean.data.goods_name);
+                    tv_goods_shopPrice.setText( goodsBean.data.shop_price);
+                    tv_goods_markerPrice.setText(goodsBean.data.market_price);
+                    tv_goods_goodsStock.setText(goodsBean.data.goods_number);
+                    tv_goods_tbPrice.setText(goodsBean.data.tb_price);
+                    tv_goods_jdPrice.setText(goodsBean.data.jd_price);
+
+
+
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
 
 
 
@@ -126,6 +188,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         iv_goods_turnleft.setOnClickListener(this);
         iv_goods_turnright.setOnClickListener(this);
+        rl_goods_numsub.setOnClickListener(this);
+        rl_goods_numadd.setOnClickListener(this);
 
     }
 
@@ -160,11 +224,57 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             case R.id.iv_goods_turnright:
                 goodsTurnRight();
                 break;
+            case R.id.rl_goods_numsub:
+                subNum();
+
+                break;
+            case R.id.rl_goods_numadd:
+                addNum();
+                break;
 
 
         }
 
     }
+
+    private void subNum() {
+
+
+        buyNum =Integer.parseInt(et_goods_buyNum.getText().toString()) ;
+
+       if(buyNum>1) {
+
+           buyNum--;
+
+           et_goods_buyNum.setText(buyNum + "");
+
+       }
+
+
+    }
+
+    private void addNum() {
+
+        buyNum =Integer.parseInt(et_goods_buyNum.getText().toString()) ;
+
+        if(buyNum<(Integer.parseInt(tv_goods_goodsStock.getText().toString()))){
+
+            buyNum++;
+
+            et_goods_buyNum.setText(buyNum+"");
+
+
+        }else{
+
+            Toast.makeText(getApplicationContext(),"库存不足",Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+    }
+
+
 
     private void goodsTurnLeft() {
         if(imgPage>0){
