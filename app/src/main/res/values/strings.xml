@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">LinchomSpace</string>
+    <string-array name="spin">
+        <item>行业资讯</item>
+        <item>产品资讯</item>
+        <item>产品测评</item>
+        <item>品牌资讯</item>
+        <item>行业标准</item>
+        <item>行业技术</item>
+        <item>智慧城市</item>
+        <item>智慧社区</item>
+        <item>智能养老</item>
+        <item>智能健康</item>
+        <item>智能医疗</item>
+        <item>展会信息</item>
+        <item>培训信息</item>
+        <item>智巢方案</item>
+        <item>智巢案例</item>
+        <item>视频</item>
+        <item>其他</item>
+
+    </string-array>
 </resources>

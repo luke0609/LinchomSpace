@@ -76,6 +76,7 @@ public class UserInfoBean {
         private String rank_name;
         private String discount;
         private String email;
+        private String user_photo;
         private String user_name;
         private String rank_points;
         private String pay_points;
@@ -92,6 +93,13 @@ public class UserInfoBean {
         private Object passwd_answer;
         private List<?> bonus;
 
+        public String getUser_photo() {
+            return user_photo;
+        }
+
+        public void setUser_photo(String user_photo) {
+            this.user_photo = user_photo;
+        }
         public String getRank_name() {
             return rank_name;
         }
@@ -242,6 +250,7 @@ public class UserInfoBean {
                     "rank_name='" + rank_name + '\'' +
                     ", discount='" + discount + '\'' +
                     ", email='" + email + '\'' +
+                    ", user_photo='" + user_photo + '\'' +
                     ", user_name='" + user_name + '\'' +
                     ", rank_points='" + rank_points + '\'' +
                     ", pay_points='" + pay_points + '\'' +

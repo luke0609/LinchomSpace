@@ -31,7 +31,7 @@ public class MineFragment extends Fragment {
         ((TextView)view.findViewById(R.id.tv_name)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),HeadImage_activity.class);
+                Intent intent = new Intent(getActivity(),Details_Activity.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +59,7 @@ public class MineFragment extends Fragment {
         ((ImageView) view.findViewById(R.id.iv_store)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Store_activity.class);
+                Intent intent = new Intent(getActivity(), log_activity.class);
                 startActivity(intent);
             }
         });
@@ -88,6 +88,20 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Alerts_activity.class);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) view.findViewById(R.id.iv_feedBack)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FeedBack_activity.class);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) view.findViewById(R.id.iv_log)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), log_activity.class);
                 startActivity(intent);
             }
         });
