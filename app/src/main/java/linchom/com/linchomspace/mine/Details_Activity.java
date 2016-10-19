@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.gson.Gson;
 import org.xutils.common.Callback;
@@ -18,26 +19,24 @@ import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 
 public class Details_Activity extends AppCompatActivity {
 
-    private TextView tv_mobile_phone;
-    private TextView tv_username;
     public static final String TAG =" Details_Activity" ;
-    private BaseAdapter adapter;
-    private TextView tv_ed;
+    private ImageView iv_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 //        System.out.println("onCreate");
 
-        RequestParams requestParams =new RequestParams("http://app.linchom.com/appuser.php?type=profile");
-
-        requestParams.addBodyParameter("key", "linchom");
-        requestParams.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
-        requestParams.addBodyParameter("user_id", "131");
+        RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php?act=userinfo&user_id=135");
+//        requestParams.addBodyParameter("key", "linchom");
+//       requestParams.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+//        requestParams.addBodyParameter("user_id", "135");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
 
-
+            private ImageView iv_photo;
+            private TextView tv_sex;
             private View tv_email;
             private TextView tv_qq;
             private TextView tv_birthday;
@@ -47,7 +46,7 @@ public class Details_Activity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
 
-//                System.out.println("onsucess"+result);
+                System.out.println("onsucess"+result);
 
                 Gson gson = new Gson();
                 UserInfoBean bean=gson.fromJson(result,UserInfoBean.class);
@@ -71,7 +70,8 @@ public class Details_Activity extends AppCompatActivity {
 
                 TextView tv_email =(TextView) findViewById(R.id.tv_email);
                 tv_email.setText(dataBean.getEmail());
-
+               TextView tv_sex = ((TextView) findViewById(R.id.tv_add));
+                tv_sex.setText(dataBean.getSex());
 //                System.out.println("++++="+dataBean);
 
 
@@ -96,17 +96,13 @@ public class Details_Activity extends AppCompatActivity {
             }
         });
 
-
-        tv_ed = ((TextView) findViewById(R.id.tv_ed));
-        tv_ed.setOnClickListener(new View.OnClickListener() {
+        iv_back = ((ImageView) findViewById(R.id.iv_back));
+        iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),Details_s_Activity.class);
-                startActivity(intent);
+                finish();
             }
         });
-
-
 
     }
 }

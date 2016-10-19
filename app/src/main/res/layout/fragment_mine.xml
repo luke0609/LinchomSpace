@@ -57,6 +57,15 @@
                 android:drawableTop="@drawable/love"
                 android:layout_height="80dp" />
             <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="夜间"
+                android:textSize="20sp"
+                android:background="#fff"
+                android:padding="4dp"
+                android:drawableTop="@drawable/night"
+                android:layout_height="80dp" />
+            <Button
                 android:id="@+id/b_set"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -66,15 +75,7 @@
                 android:padding="4dp"
                 android:drawableTop="@drawable/she"
                 android:layout_height="80dp" />
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="夜间"
-                android:textSize="20sp"
-                android:background="#fff"
-                android:padding="4dp"
-                android:drawableTop="@drawable/night"
-                android:layout_height="80dp" />
+
         </LinearLayout>
 
         <RelativeLayout
@@ -85,19 +86,28 @@
             android:background="#ffffff"
             android:layout_marginTop="10dp"
             >
+            <ImageView
+                android:id="@+id/huodong"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/huodong"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                />
             <TextView
+                android:layout_toRightOf="@id/huodong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
                 android:text="活动"
                 android:textColor="#332626"
                 android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/iv_active"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>
@@ -120,9 +130,9 @@
                 android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/iv_store"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>
@@ -146,9 +156,9 @@
                 android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/iv_indent"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>
@@ -171,9 +181,9 @@
                 android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/iv_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>
@@ -196,9 +206,9 @@
                 android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/iv_disclose"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>
@@ -216,14 +226,64 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
+                android:text="我的日志"
+                android:textColor="#332626"
+                android:textSize="20sp"/>
+            <ImageView
+                android:id="@+id/iv_log"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/iv_editinfo"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/person_center_content6"
+            android:layout_below="@id/person_center_content5"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#ffffff"
+            android:layout_marginTop="3dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
                 android:text="消息通知"
                 android:textColor="#332626"
                 android:textSize="20sp"/>
             <ImageView
                 android:id="@+id/iv_alerts"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/iv_editinfo"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/person_center_content7"
+            android:layout_below="@id/person_center_content6"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#ffffff"
+            android:layout_marginTop="3dp"
+            >
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:text="反馈"
+                android:textColor="#332626"
+                android:textSize="20sp"/>
+            <ImageView
+                android:id="@+id/iv_feedBack"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/iv_editinfo"/>

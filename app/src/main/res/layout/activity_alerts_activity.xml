@@ -11,6 +11,7 @@
         android:background="#d4d3d2"
         >
         <ImageView
+            android:id="@+id/iv_alertback"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/back"
