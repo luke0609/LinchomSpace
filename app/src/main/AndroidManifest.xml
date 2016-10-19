@@ -100,7 +100,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".homepage.ArticleActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".homepage.VideoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -134,7 +134,8 @@
         <activity android:name=".mine.Details_Activity" />
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
-        <activity android:name=".mine.Night_activity$Mydisclose"></activity>
+        <activity android:name=".mine.Night_activity$Mydisclose" />
+        <activity android:name=".mine.Mydisclose"></activity>
     </application>
 
 </manifest>
