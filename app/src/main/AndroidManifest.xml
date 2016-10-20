@@ -142,7 +142,14 @@
         <activity
             android:name=".shopping.JdlinkActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".shopping.GoodsAllOrderActivity"></activity>
+        <activity android:name=".shopping.GoodsAllOrderActivity"
+
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
+
+
+
+        </activity>
     </application>
 
 </manifest>
