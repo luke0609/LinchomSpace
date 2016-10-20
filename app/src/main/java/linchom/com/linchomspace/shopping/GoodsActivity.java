@@ -27,6 +27,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsBean;
+import linchom.com.linchomspace.shopping.utils.PictureHandle;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -44,7 +45,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private List<String> goodsPicList =new ArrayList<String>();
 
-    private List<String> goodsPicDetail =new ArrayList<String>();
+    private ArrayList<String> goodsPicDetail =new ArrayList<String>();
     private ViewPager rl_goods_goodsShow;
     private ImageView iv_goods_turnleft;
     private ImageView iv_goods_turnright;
@@ -65,6 +66,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private EditText et_goods_buyNum;
     private Button btn_goods_tbBuy;
     private Button btn_goods_jdBuy;
+    private RelativeLayout rl_goods_proDetail;
+    private ImageView iv_gooods_back;
 
 
     @Override
@@ -113,8 +116,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         btn_goods_tbBuy = ((Button) findViewById(R.id.btn_goods_tbBuy));
 
         btn_goods_jdBuy = ((Button) findViewById(R.id.btn_goods_jdBuy));
+        rl_goods_proDetail = ((RelativeLayout) findViewById(R.id.rl_goods_proDetail));
 
 
+        iv_gooods_back = ((ImageView) findViewById(R.id.iv_gooods_back));
 
 
     }
@@ -157,6 +162,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     tv_goods_goodsStock.setText(goodsBean.data.goods_number);
                     tv_goods_tbPrice.setText(goodsBean.data.tb_price);
                     tv_goods_jdPrice.setText(goodsBean.data.jd_price);
+
+
+                    goodsPicDetail.clear();
+
+                    goodsPicDetail.addAll(PictureHandle.getImageSrc(goodsBean.data.goods_desc));
+
+                    Log.i(TAG,""+PictureHandle.getImageSrc(goodsBean.data.goods_desc)+"");
 
 
 
@@ -229,6 +241,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         rl_goods_numadd.setOnClickListener(this);
         btn_goods_tbBuy.setOnClickListener(this);
         btn_goods_jdBuy.setOnClickListener(this);
+        rl_goods_proDetail.setOnClickListener(this);
+        iv_gooods_back.setOnClickListener(this);
+
 
     }
 
@@ -247,6 +262,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         int changeToColor = Color.argb((int) (255 * scrollPercent), r, g, b);
 
         tv_goods_title_content.setTextColor(changeToColor);
+
+
+
+
     }
 
 
@@ -277,18 +296,63 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 jdBuy();
                 break;
 
+            case R.id.rl_goods_proDetail:
+                toGoodsDetail();
+                break;
+
+            case R.id.iv_gooods_back:
+                finish();
+
+                break;
+
+
 
         }
 
     }
 
+    private void toGoodsDetail() {
+
+        Intent intent =new Intent(GoodsActivity.this,GoodsDetailActivity.class);
+        Bundle bundle =new Bundle();
+
+
+        bundle.putSerializable("goodsPicDetail",goodsPicDetail);
+//        bundle.putSerializable();
+
+        intent.putExtra("bundle",bundle);
+
+        startActivity(intent);
+
+
+
+    }
+
     private void tbBuy() {
+
+        Intent intent =new Intent(GoodsActivity.this,TblinkActivity.class);
+        Bundle bundle =new Bundle();
+
+        bundle.putString("tblink",tbLink);
+
+        intent.putExtra("bundle",bundle);
+
+        startActivity(intent);
 
 
 
     }
 
     private void jdBuy() {
+
+        Intent intent =new Intent(GoodsActivity.this,JdlinkActivity.class);
+        Bundle bundle =new Bundle();
+
+        bundle.putString("jdlink",jdLink);
+
+        intent.putExtra("bundle",bundle);
+
+        startActivity(intent);
 
     }
 
