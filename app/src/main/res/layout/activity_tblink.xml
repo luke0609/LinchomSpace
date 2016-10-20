@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tblink"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="linchom.com.linchomspace.shopping.TblinkActivity">
+
+
+    <linchom.com.linchomspace.common.TitleBar
+
+        android:id="@+id/bar_goods_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:titleText="淘宝购买"
+
+        app:titleRightVis="false"
+
+
+        >
+
+
+    </linchom.com.linchomspace.common.TitleBar>
+
+    <WebView
+        android:id="@+id/wv_goods_tblink"
+        android:layout_below="@id/bar_goods_tb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </WebView>
+
+</RelativeLayout>

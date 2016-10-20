@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_jdlink"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="linchom.com.linchomspace.shopping.JdlinkActivity">
+
+    <linchom.com.linchomspace.common.TitleBar
+
+        android:id="@+id/bar_goods_jd"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:titleText="京东购买"
+
+        app:titleRightVis="false"
+
+        >
+
+
+
+
+
+    </linchom.com.linchomspace.common.TitleBar>
+
+    <WebView
+        android:id="@+id/wv_goods_jdlink"
+        android:layout_below="@id/bar_goods_jd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </WebView>
+
+</RelativeLayout>

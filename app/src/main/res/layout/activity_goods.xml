@@ -36,7 +36,7 @@
                 android:id="@+id/rl_goods_top"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="#0000ff"
+                android:background="#ffffff"
                 >
 
                 <android.support.v4.view.ViewPager
@@ -88,7 +88,7 @@
                     android:textColor="#808080"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -637,7 +637,7 @@
             android:background="#ff9900"
             android:text="加入购物车"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="16sp"
 
 
             />
@@ -650,7 +650,7 @@
             android:background="#ff3300"
             android:text="立即购买"
             android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:textSize="16sp"
 
             />
 
