@@ -7,7 +7,7 @@
     >
 
     <RelativeLayout
-        android:id="@+id/rl_hide_zhinenganli"
+        android:id="@+id/rl_hide_zhichaoanli"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -30,7 +30,7 @@
 
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
 
-        android:id="@+id/ptr_arrlist_zhinenganli"
+        android:id="@+id/ptr_arrlist_zhichaoanli"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="#000000"

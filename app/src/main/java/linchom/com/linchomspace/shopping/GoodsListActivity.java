@@ -66,10 +66,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_goods_list);
 
         Intent intent  =getIntent();
-
         Bundle bundle = intent.getBundleExtra("bundle");
-
-
         catId=bundle.getInt("cateId");
 
         initView();
@@ -256,7 +253,6 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void pressDefault() {
-
         btn_goodsList_default.setTextColor(Color.rgb(255,64,00));
         btn_goodsList_default.setEnabled(false);
         v_goodLists_default_line.setVisibility(View.VISIBLE);
@@ -332,8 +328,6 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
         //sortChange("desc","");
 
-
-
     }
 
 
@@ -365,30 +359,16 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
 
             transaction.replace(R.id.fl_goodslist_listcate,fragmentChange).commit();
-
-
-
-
         }else{
-
             FragmentTransaction transaction;
 
             transaction=getSupportFragmentManager().beginTransaction();
-
             fragmentChange =new GoodsListWaterfallFragment();
-
             Bundle bundle = new Bundle();
-
             bundle.putInt("catId",catId);
-
             bundle.putString("order",order);
-
             bundle.putString("sort",sort+"");
-
-
             fragmentChange.setArguments(bundle);
-
-
             transaction.replace(R.id.fl_goodslist_listcate,fragmentChange).commit();
 
 

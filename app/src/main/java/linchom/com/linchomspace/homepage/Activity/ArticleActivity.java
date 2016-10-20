@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.homepage.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,6 +27,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -64,16 +71,13 @@ public class ArticleActivity extends AppCompatActivity {
     RelativeLayout rlBackgroundGray;
     @InjectView(R.id.article_buy)
     ImageButton articleBuy;
-
     private SlideSelectView slideSelectView;
-
     private String[] textStrings;
-
     @InjectView(R.id.more)
     ImageButton more;
     private WebView webView;
     private TextView article_title;
-
+    private String article_id;
     private ImageView iv_night;
     private Button btn_article_popup_cancel;
     private ImageView iv_font;
@@ -82,6 +86,11 @@ public class ArticleActivity extends AppCompatActivity {
     private WebSettings settings;
     boolean day = false;
     private EditText et_write_comment;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -89,8 +98,16 @@ public class ArticleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
         ButterKnife.inject(this);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+        article_id = bundle.getString("article_id");
+        Log.i("aaa", article_id);
         initView();
         initData();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void initView() {
@@ -101,14 +118,18 @@ public class ArticleActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webview);//加载WebView 
         settings = webView.getSettings();
         settings.setSupportZoom(true);
+        settings.setPluginState(WebSettings.PluginState.ON);
         //settings.setTextSize(WebSettings.TextSize.SMALLEST);
         webView.getSettings().setBuiltInZoomControls(true);//设置可缩放
         // webView.getSettings().setUseWideViewPort(true);//可以任意比例缩放
         webView.getSettings().setJavaScriptEnabled(true);//设置设否支持JavaScript
-        webView.loadUrl("http://app.linchom.com/apparticle.php?id=1245");//加载地址
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.loadUrl(Constant.ArticleWebView + article_id);//加载地址
+//        settings.setLoadWithOverviewMode(true);
+//        settings.setUseWideViewPort(true);
+//        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         //设置 缓存模式
         webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webView.setWebChromeClient(new WebChromeClient());
         // 开启 DOM storage API功能
         webView.getSettings().setDomStorageEnabled(true);
 //        webView.getSettings().setUseWideViewPort(true);//web1就是你自己定义的窗口对象。
@@ -131,7 +152,7 @@ public class ArticleActivity extends AppCompatActivity {
         RequestParams params = new RequestParams(Constant.Articleinfo);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
-        params.addBodyParameter("id", "1024");//由前一个界面带过来的
+        params.addBodyParameter("id", article_id);//由前一个界面带过来的
         // params.addBodyParameter("page","5");
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -248,7 +269,9 @@ public class ArticleActivity extends AppCompatActivity {
         btn_article_popup_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rlBackgroundGray.setVisibility(View.GONE);
                 contentView.setVisibility(View.GONE);
+
             }
         });
         final PopupWindow popupWindow = new PopupWindow(contentView,
@@ -316,11 +339,11 @@ public class ArticleActivity extends AppCompatActivity {
                 R.layout.article_comment_popupwindow, null);
         et_write_comment = ((EditText) contentView.findViewById(R.id.et_write_comment));
         et_write_comment.requestFocus();
-        InputMethodManager imm = (InputMethodManager)et_write_comment.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0,InputMethodManager.SHOW_FORCED);
+        InputMethodManager imm = (InputMethodManager) et_write_comment.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.MATCH_PARENT, 540, true);
+                ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
 
         popupWindow.setTouchable(true);
 
@@ -353,4 +376,39 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Article Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
 }

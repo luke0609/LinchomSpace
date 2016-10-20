@@ -71,7 +71,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
-
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
@@ -141,8 +140,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private void getData() {
 
             RequestParams requestParams =new RequestParams(GoodsHttpUtils.GOODSDETAILURL+goodsId);
-
-
             x.http().get(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
@@ -257,7 +254,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
 
             case R.id.iv_goods_turnleft:
-
                 goodsTurnLeft();
                 break;
             case R.id.iv_goods_turnright:
