@@ -1,4 +1,4 @@
-package linchom.com.linchomspace.homepage;
+package linchom.com.linchomspace.homepage.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

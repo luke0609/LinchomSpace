@@ -1,15 +1,15 @@
-package linchom.com.linchomspace.homepage;
+package linchom.com.linchomspace.homepage.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import linchom.com.linchomspace.R;
 
-public class CommentActivity extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.activity_video);
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:background="#f7f7f7">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:id="@+id/et_write_comment"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/home_shape"
+            android:gravity="top|left"
+            android:textSize="14dp"
+            android:textColorHint="#cac8c8"
+            android:hint="优质评论将会优先展示"
+             />
+        <Button
+            android:id="@+id/publish_comment"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:text="发  表"
+            android:textSize="12sp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/et_write_comment"
+            android:background="@drawable/home_shape"
+            />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
