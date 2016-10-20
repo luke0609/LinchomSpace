@@ -63,6 +63,8 @@ public class ArticleListBean {
         }
     }
     public class Article_list{
+        public String article_id;
+        public String cat_id;
         public String title;
         public  String article_pic;
         public String article_url;
@@ -72,7 +74,10 @@ public class ArticleListBean {
         public String cat_name;
         public String date;
 
-        public Article_list(String title, String article_pic, String article_url, String is_open, String add_time, String description, String cat_name, String date) {
+
+        public Article_list(String article_id, String cat_id, String title, String article_pic, String article_url, String is_open, String add_time, String description, String cat_name, String date) {
+            this.article_id = article_id;
+            this.cat_id = cat_id;
             this.title = title;
             this.article_pic = article_pic;
             this.article_url = article_url;
@@ -83,6 +88,7 @@ public class ArticleListBean {
             this.date = date;
         }
     }
+
     public  class MyFilter{
        public String keyword;
         public String cat_id;

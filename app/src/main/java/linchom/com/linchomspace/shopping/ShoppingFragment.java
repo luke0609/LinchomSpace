@@ -103,7 +103,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private Button btn_goods_six_nine;
     private Button btn_goods_six_ten;
 
-
     private RelativeLayout rl_goods_first;
     private RelativeLayout rl_goods_second;
     private RelativeLayout rl_goods_third;
@@ -222,8 +221,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private void initEvent() {
 
         setButtonClick();
-
-
         advLoopPlay();
 
 
