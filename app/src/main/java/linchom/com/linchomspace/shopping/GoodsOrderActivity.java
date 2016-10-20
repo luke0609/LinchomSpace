@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private GoodsNoScrollListview lv_order_products;
     private TextView tv_goods_order_totalPrice;
     private ImageView titlebar_back;
+    private Button btn_goods_order_submitorder;
 
 
     @Override
@@ -77,6 +79,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
         tv_goods_order_totalPrice = ((TextView) findViewById(R.id.tv_goods_order_totalPrice));
 
         titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
+        btn_goods_order_submitorder = ((Button) findViewById(R.id.btn_goods_order_submitorder));
 
 
     }
@@ -146,6 +150,18 @@ public class GoodsOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        btn_goods_order_submitorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(GoodsOrderActivity.this,GoodsAllOrderActivity.class);
+
+
+                startActivity(intent);
+
+
             }
         });
 
