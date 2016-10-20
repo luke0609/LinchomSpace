@@ -27,6 +27,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
 import linchom.com.linchomspace.shopping.utils.PictureHandle;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
@@ -367,12 +368,21 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         //goodsName
         //goodsPrice
 
+        ArrayList<GoodsOrderBean> orderList =new ArrayList<GoodsOrderBean>();
+
+
+
         goodsNum = et_goods_buyNum.getText().toString();
 
-        bundle.putString("goodsNum",goodsNum);
-        bundle.putString("goodsName",goodsName);
-        bundle.putString("goodsPrice",goodsPrice);
-        bundle.putString("goodsImg",goodsImg);
+        //bundle.putString("goodsNum",goodsNum);
+        //bundle.putString("goodsName",goodsName);
+        //bundle.putString("goodsPrice",goodsPrice);
+        //bundle.putString("goodsImg",goodsImg);
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+       bundle.putSerializable("orderList",orderList);
+
 
         intent.putExtra("bundle",bundle);
 
