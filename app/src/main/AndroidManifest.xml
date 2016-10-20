@@ -135,8 +135,14 @@
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
         <activity android:name=".mine.Night_activity$Mydisclose" />
-        <activity android:name=".shopping.TblinkActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".shopping.JdlinkActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".shopping.TblinkActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".shopping.JdlinkActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".search.SearchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
