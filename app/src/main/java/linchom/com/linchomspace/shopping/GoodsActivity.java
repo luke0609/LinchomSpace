@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -49,6 +50,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private ImageView iv_goods_turnright;
 
     private Integer imgPage=0;
+    private String tbLink;
+    private String jdLink;
+
+
     private TextView tv_goods_proName;
     private TextView tv_goods_shopPrice;
     private TextView tv_goods_markerPrice;
@@ -58,6 +63,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout rl_goods_numsub;
     private RelativeLayout rl_goods_numadd;
     private EditText et_goods_buyNum;
+    private Button btn_goods_tbBuy;
+    private Button btn_goods_jdBuy;
 
 
     @Override
@@ -69,7 +76,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
 
-        Toast.makeText(getApplicationContext(),goodsId,Toast.LENGTH_SHORT).show();
+
+
 
         initView();
         initData();
@@ -102,6 +110,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         et_goods_buyNum = ((EditText) findViewById(R.id.et_goods_buyNum));
 
+        btn_goods_tbBuy = ((Button) findViewById(R.id.btn_goods_tbBuy));
+
+        btn_goods_jdBuy = ((Button) findViewById(R.id.btn_goods_jdBuy));
+
+
+
 
     }
 
@@ -116,6 +130,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         tv_goods_title_content.setTextColor(newColor);
 
         getData();
+
+
 
 
 
@@ -142,6 +158,27 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     tv_goods_tbPrice.setText(goodsBean.data.tb_price);
                     tv_goods_jdPrice.setText(goodsBean.data.jd_price);
 
+
+
+
+                    tbLink= goodsBean.data.tb_link;
+
+                    jdLink =goodsBean.data.jd_link;
+
+                    Log.i(TAG,"tbLink"+tbLink);
+                    Log.i(TAG,"jdLink"+jdLink);
+
+
+                    if(tbLink==null||("0.00").equals(goodsBean.data.tb_price)){
+                        btn_goods_tbBuy.setVisibility(View.INVISIBLE);
+
+                    }
+
+                    if(jdLink==null||("0.00").equals(goodsBean.data.jd_price)){
+
+                        btn_goods_jdBuy.setVisibility(View.INVISIBLE);
+
+                    }
 
 
 
@@ -190,6 +227,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         iv_goods_turnright.setOnClickListener(this);
         rl_goods_numsub.setOnClickListener(this);
         rl_goods_numadd.setOnClickListener(this);
+        btn_goods_tbBuy.setOnClickListener(this);
+        btn_goods_jdBuy.setOnClickListener(this);
 
     }
 
@@ -231,9 +270,25 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             case R.id.rl_goods_numadd:
                 addNum();
                 break;
+            case R.id.btn_goods_tbBuy:
+                tbBuy();
+                break;
+            case R.id.btn_goods_jdBuy:
+                jdBuy();
+                break;
 
 
         }
+
+    }
+
+    private void tbBuy() {
+
+
+
+    }
+
+    private void jdBuy() {
 
     }
 
