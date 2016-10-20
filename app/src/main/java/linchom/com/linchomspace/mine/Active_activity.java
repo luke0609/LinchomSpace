@@ -16,7 +16,7 @@ public class Active_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_activity);
-        lv_image = ((ListView) findViewById(R.id.lv_image));
+
 
 
     }

@@ -32,41 +32,42 @@
     android:layout_below="@id/rl_shou"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:background="#d1b1b1"
+    android:background="#e1c7c7"
     android:layout_height="50dp"
    android:gravity="center"
     >
-    <TextView
-        android:id="@+id/tv_zixun"
+    <Button
+        android:id="@+id/bt_ziun"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="资 讯"
-        android:layout_marginLeft="30dp"
+        android:background="#0000"
         android:textSize="24dp"
 
         />
-    <TextView
-        android:id="@+id/tv_vidio"
+    <Button
+        android:id="@+id/bt_vidio"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="视频"
-       android:layout_marginLeft="30dp"
+        android:background="#0000"
         android:textSize="24dp"
         />
-    <TextView
-        android:id="@+id/tv_goods"
+    <Button
+        android:id="@+id/bt_goods"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:background="#0000"
         android:layout_height="wrap_content"
         android:text="商品"
-        android:layout_marginLeft="30dp"
         android:textSize="24dp"
         />
 </LinearLayout>
 
 <FrameLayout
+
     android:layout_below="@+id/ll_title"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
