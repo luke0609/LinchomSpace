@@ -1,16 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#20808080"
 
     tools:context="linchom.com.linchomspace.shopping.GoodsOrderActivity">
 
     <linchom.com.linchomspace.common.TitleBar
 
+        android:id="@+id/bar_order_title"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:titleText="确认订单"
+        app:titleRightVis="false"
+
+
+
+        >
 
     </linchom.com.linchomspace.common.TitleBar>
+
+
+    <LinearLayout
+        android:id="@+id/ll_order_bottom"
+
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:gravity="center"
+            android:text="合计:元"
+            android:textSize="18sp"
+            android:textColor="#ff3300"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            />
+        <Button
+            android:text="提交订单"
+            android:background="#ff3300"
+            android:textSize="16sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+
+            />
+
+
+    </LinearLayout>
+
+    <ScrollView
+
+
+        android:layout_below="@id/bar_order_title"
+        android:layout_above="@id/ll_order_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+
+            >
+
+            <RelativeLayout
+                android:id="@+id/rl_order_address"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#ffffff"
+
+
+                >
+
+                <ImageView
+                    android:id="@+id/iv_order_address"
+                    android:src="@drawable/goods_order_address"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_order_shoujianren"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/iv_order_address"
+                    android:text="收件人:"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_order_name"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/tv_order_shoujianren"
+                    android:text="测试数据"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_order_phone"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:text="18888888888"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_order_shouhuo"
+                    android:text="收货地址:"
+                    android:textSize="18sp"
+
+                    android:textColor="#808080"
+
+                    android:layout_alignTop="@id/iv_order_address"
+                    android:layout_toRightOf="@id/iv_order_address"
+                    android:layout_marginRight="10dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+
+
+                    />
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_toRightOf="@id/iv_order_address"
+                    android:layout_below="@id/tv_order_shouhuo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#808080"
+                    android:text="江苏省苏州市工业园区 江苏省苏州市工业园区仁爱路1号高博教育收"
+
+
+                    />
+
+                <ImageView
+                    android:src="@drawable/goods_order_enter"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+
+                    />
+
+
+
+
+
+            </RelativeLayout>
+
+            <linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview
+                android:layout_marginTop="10dp"
+                android:id="@+id/lv_order_products"
+                android:layout_below="@id/rl_order_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview>
+
+
+            <TextView
+                android:background="#ffffff"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_order_pay"
+                android:textSize="18sp"
+                android:text="支付方式:支付宝"
+                android:layout_below="@id/lv_order_products"
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textColor="#808080"
+                />
+
+          <EditText
+              android:layout_marginTop="5dp"
+              android:background="#ffffff"
+
+              android:paddingLeft="10dp"
+              android:hint="订单附言"
+              android:layout_below="@id/tv_order_pay"
+              android:layout_width="match_parent"
+              android:layout_height="48dp"
+              android:textColor="#808080"
+
+              />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+
 
 </RelativeLayout>
