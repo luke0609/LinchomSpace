@@ -5,12 +5,11 @@ import android.os.Bundle;
 
 import linchom.com.linchomspace.R;
 
-public class Details_s_Activity extends AppCompatActivity {
+public class Mydisclose extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_s);
-
+        setContentView(R.layout.activity_mydisclose);
     }
 }

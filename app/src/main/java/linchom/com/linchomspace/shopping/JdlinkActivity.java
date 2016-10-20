@@ -3,9 +3,11 @@ package linchom.com.linchomspace.shopping;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import linchom.com.linchomspace.R;
@@ -14,6 +16,7 @@ public class JdlinkActivity extends AppCompatActivity {
 
     private  String jdLink;
     private WebView wv_goods_jdlink;
+    private ImageView titlebar_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class JdlinkActivity extends AppCompatActivity {
     private void initView() {
 
         wv_goods_jdlink = ((WebView) findViewById(R.id.wv_goods_jdlink));
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
 
     }
@@ -71,7 +76,13 @@ public class JdlinkActivity extends AppCompatActivity {
             }
         }); //设置浏览
 
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                finish();
+            }
+        });
 
     }
 }
