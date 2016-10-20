@@ -90,7 +90,7 @@ public class goods_fragment extends Fragment {
                 JsonObject datajson = root.getAsJsonObject("data");
 
                 String str = datajson.toString();
-//                System.out.println("str"+str);
+               System.out.println("str"+str);
 
 
                 JsonParser parser2 = new JsonParser();
@@ -123,8 +123,8 @@ public class goods_fragment extends Fragment {
                 }
 
                 goodsList.addAll(newList);
-//                System.out.println("newlist"+newList);
-//                System.out.println("newlist"+goodsList);
+                System.out.println("newlist"+newList);
+                System.out.println("newlist"+goodsList);
                 goodsCommonAdapter.notifyDataSetChanged();
 
 

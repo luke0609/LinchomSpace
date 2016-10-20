@@ -8,9 +8,10 @@
         android:id="@+id/rl_shou"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#dfc8c1"
+        android:background="#51e95d5d"
         >
         <ImageView
+            android:id="@+id/iv_love_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
@@ -27,50 +28,52 @@
             android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
-<LinearLayout
-    android:id="@+id/ll_title"
-    android:layout_below="@id/rl_shou"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:background="#e1c7c7"
-    android:layout_height="50dp"
-   android:gravity="center"
-    >
-    <Button
-        android:id="@+id/bt_ziun"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <!--<View-->
+        <!--android:id="@+id/struct"-->
+        <!--android:background="#f00"-->
+        <!--android:layout_width="230dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="80dp"-->
+        <!--/>-->
+    <RelativeLayout
+        android:id="@+id/rl_rag"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="资 讯"
-        android:background="#0000"
-        android:textSize="24dp"
-
-        />
-    <Button
-        android:id="@+id/bt_vidio"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="视频"
-        android:background="#0000"
-        android:textSize="24dp"
-        />
-    <Button
-        android:id="@+id/bt_goods"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:background="#0000"
-        android:layout_height="wrap_content"
-        android:text="商品"
-        android:textSize="24dp"
-        />
-</LinearLayout>
+        android:layout_below="@id/rl_shou"
+        android:background="#b6b6da"
+        >
+        <RadioGroup
+            android:id="@+id/rag"
+            android:background="#dfc8c1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp"
+            android:gravity="center"
+            >
+            <RadioButton
+                android:id="@+id/rb_zixun"
+                android:text="资 讯"
+                style="@style/RadioTab" />
+            <RadioButton
+                android:text="视 频"
+                android:id="@+id/rb_vidio"
+                style="@style/RadioTab" />
+            <RadioButton
+                android:id="@+id/rv_goods"
+                android:text="商 品"
+                style="@style/RadioTab"
+                />
+        </RadioGroup>
+    </RelativeLayout>
 
 <FrameLayout
-
-    android:layout_below="@+id/ll_title"
+    android:id="@+id/rb_rag"
+    android:layout_below="@+id/rl_rag"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 </FrameLayout>
+
 </RelativeLayout>

@@ -1,58 +1,79 @@
 package linchom.com.linchomspace.mine;
 
-
-
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RadioGroup;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.fragment.goods_fragment;
 import linchom.com.linchomspace.mine.fragment.news_fragment;
 import linchom.com.linchomspace.mine.fragment.vidio_fragment;
 
+public class Loved_activity extends AppCompatActivity {
 
-public class Loved_activity extends AppCompatActivity implements View.OnClickListener{
-
-    public static final String TAG ="Loved_activity" ;
-
-    private Button bt_goods;
-    private Button bt_vidio;
-    private Button bt_ziun;
+    private RadioGroup rag;
+    private ImageView iv_love_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loved_activity);
 
-        bt_goods = ((Button) findViewById(R.id.bt_goods));
-        bt_vidio = ((Button) findViewById(R.id.bt_vidio));
-        bt_ziun = ((Button) findViewById(R.id.bt_ziun));
+        iv_love_back = ((ImageView) findViewById(R.id.iv_love_back));
 
+        //默认选中的页面
         switchFragment(new news_fragment());
+
+        initView();
+        initdata();
+    }
+    private void initView() {
+        rag = ((RadioGroup) findViewById(R.id.rag));
+        //   lv_drawer = ((ShouCang) findViewById(R.id.lv_drawer));
     }
 
+    private void initdata() {
+        iv_love_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-    @Override
-    public void onClick(View v) {
-        Fragment fragment=null;
-        switch (v.getId()){
-            case R.id.bt_goods:
-                fragment=new goods_fragment();
-                break;
-            case R.id.bt_ziun:
-            fragment=new news_fragment();
-            break;
-            case R.id.bt_vidio:
-                fragment=new vidio_fragment();
-                break;
-        }
-        switchFragment(fragment);
+        rag.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Fragment fragment = null;
+                switch (checkedId) {
+
+                    case R.id.rb_zixun:
+                        // Log.i(TAG, "选中首页tab");
+                        fragment = new news_fragment();
+                        break;
+                    case R.id.rb_vidio:
+                        //  Log.i(TAG, "选中首页tab2");
+                        fragment = new vidio_fragment();
+                        break;
+
+                    case  R.id.rv_goods:
+                        fragment=new goods_fragment();
+                        break;
+
+                }
+                switchFragment(fragment);
+            }
+
+        });
+
     }
-
     private void switchFragment(Fragment fragment) {
-        this.getFragmentManager().beginTransaction().replace(R.id.lv_goods,fragment).commit();
+        this.getFragmentManager().beginTransaction().replace(R.id.rb_rag, fragment).commit();
+
     }
+
+
 }
