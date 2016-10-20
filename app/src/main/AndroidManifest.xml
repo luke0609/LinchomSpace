@@ -90,7 +90,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsOrderActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+
+            />
         <activity
             android:name=".shopping.GoodsOrderCompleteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
