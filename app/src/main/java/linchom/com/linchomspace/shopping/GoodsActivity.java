@@ -68,6 +68,17 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_goods_jdBuy;
     private RelativeLayout rl_goods_proDetail;
     private ImageView iv_gooods_back;
+    private Button btn_goods_buyNow;
+    private ImageView iv_gooods_cart;
+
+
+    private  String  goodsNum;
+
+    private  String  goodsImg;
+
+    private  String  goodsName;
+
+    private  String  goodsPrice;
 
 
     @Override
@@ -121,6 +132,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         iv_gooods_back = ((ImageView) findViewById(R.id.iv_gooods_back));
 
+        btn_goods_buyNow = ((Button) findViewById(R.id.btn_goods_buyNow));
+
+        iv_gooods_cart = ((ImageView) findViewById(R.id.iv_gooods_cart));
+
 
     }
 
@@ -162,6 +177,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     tv_goods_goodsStock.setText(goodsBean.data.goods_number);
                     tv_goods_tbPrice.setText(goodsBean.data.tb_price);
                     tv_goods_jdPrice.setText(goodsBean.data.jd_price);
+
+
+                    goodsImg=goodsBean.data.goods_thumb;
+                    goodsName=goodsBean.data.goods_name;
+                    goodsPrice=goodsBean.data.shop_price;
 
 
                     goodsPicDetail.clear();
@@ -243,6 +263,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         btn_goods_jdBuy.setOnClickListener(this);
         rl_goods_proDetail.setOnClickListener(this);
         iv_gooods_back.setOnClickListener(this);
+        btn_goods_buyNow.setOnClickListener(this);
+
+
+        iv_gooods_cart.setOnClickListener(this);
 
 
     }
@@ -305,9 +329,57 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
 
+            case R.id.btn_goods_buyNow:
+
+                toBuyNow();
+                break;
+
+            case R.id.iv_gooods_cart:
+                toCart();
+
+                break;
+
 
 
         }
+
+    }
+
+    private void toCart() {
+
+        Intent intent =new Intent(GoodsActivity.this,GoodsCartActivity.class);
+
+
+        startActivity(intent);
+
+
+
+    }
+
+    private void toBuyNow() {
+
+        Intent intent =new Intent(GoodsActivity.this,GoodsOrderActivity.class);
+
+        Bundle bundle =new Bundle();
+
+        //goodsNum
+        //goodsImg
+        //goodsName
+        //goodsPrice
+
+        goodsNum = et_goods_buyNum.getText().toString();
+
+        bundle.putString("goodsNum",goodsNum);
+        bundle.putString("goodsName",goodsName);
+        bundle.putString("goodsPrice",goodsPrice);
+        bundle.putString("goodsImg",goodsImg);
+
+        intent.putExtra("bundle",bundle);
+
+
+
+        startActivity(intent);
+
 
     }
 
