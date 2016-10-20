@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/10/10.
@@ -24,6 +26,7 @@ public class PictureHandle {
         //从 a位置 开始找下一个   .jpg
 
         while (true) {
+
 
             int jpgIndex = string.indexOf(".jpg", a);
 
@@ -91,4 +94,25 @@ public class PictureHandle {
 
 
     }
+
+
+    public static List<String> getImageSrc(String htmlCode) {
+        List<String> imageSrcList = new ArrayList<String>();
+        Pattern p = Pattern.compile("<img\\b[^>]*\\bsrc\\b\\s*=\\s*('|\")?([^'\"\n\r\f>]+(\\.jpg|\\.bmp|\\.eps|\\.gif|\\.mif|\\.miff|\\.png|\\.tif|\\.tiff|\\.svg|\\.wmf|\\.jpe|\\.jpeg|\\.dib|\\.ico|\\.tga|\\.cut|\\.pic)\\b)[^>]*>", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(htmlCode);
+        String quote = null;
+        String src = null;
+        while (m.find()) {
+            quote = m.group(1);
+
+            // src=https://sms.reyo.cn:443/temp/screenshot/zY9Ur-KcyY6-2fVB1-1FSH4.png
+            src = (quote == null || quote.trim().length() == 0) ? m.group(2).split("\\s+")[0] : m.group(2);
+            imageSrcList.add(src);
+
+        }
+        return imageSrcList;
+    }
+
+
+
 }

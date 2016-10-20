@@ -1,4 +1,4 @@
-package linchom.com.linchomspace.homepage;
+package linchom.com.linchomspace.homepage.Fragment;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -45,8 +45,10 @@ import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.homepage.Activity.ArticleActivity;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleListBean;
+import linchom.com.linchomspace.homepage.Activity.NavigationActivity;
 import linchom.com.linchomspace.homepage.Utils.DateUtils;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
@@ -60,6 +62,7 @@ import static linchom.com.linchomspace.R.id.tv_title;
 
 public class HomeFragment extends Fragment {
     private static final String TAG1 = "getData1";
+    private static final String tag2 = "第一页数据";
     private BannerComponent bannerComponent;
     private CircularProgress pb_progressBar;
     private RelativeLayout rl_hide_tuijian;
@@ -295,10 +298,7 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
-
-
         listView.add(view1);
-
         View view2 = inflate(getActivity(), R.layout.fragment_home_hangyezixun, null);
         pb_progressBar= (CircularProgress) view2.findViewById(R.id.pb_progressBar);
         rl_hide_hangyezixun = (RelativeLayout) view2.findViewById(R.id.rl_hide_hangyezixun);
@@ -441,6 +441,8 @@ public class HomeFragment extends Fragment {
                 mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
                 switch (checkedId) {
                     case 1000:
+
+                        pullFlag=false;
                         ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_tuijian.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -478,9 +480,11 @@ public class HomeFragment extends Fragment {
 
 
                         lv_tuijian.setAdapter(adapter1);
+                        Log.i("aaaaa","数据拿到");
                         gettuijian();
                         break;
                     case 1001:
+                        pullFlag=false;
                         ptr_arrlist_hangyezixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyezixun.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_hangyezixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -517,9 +521,13 @@ public class HomeFragment extends Fragment {
                         });
 
                         lv_hangyezixun.setAdapter(adapter2);
+
+                        Log.i("aaaaa","数据拿到");
+
                         gethangyezixun();
                         break;
                     case 1002:
+                        pullFlag=false;
                         ptr_arrlist_canpinzixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_canpinzixun.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_canpinzixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -556,6 +564,9 @@ public class HomeFragment extends Fragment {
                         });
 
                         lv_canpinzixun.setAdapter(adapter3);
+
+                        Log.i("aaaaa","数据拿到");
+
                         getcanpinzixun();
                         break;
                     case 1003:
@@ -621,6 +632,8 @@ public class HomeFragment extends Fragment {
 
     }
     private void gettuijian() {
+        Log.i("aaaaa","数据拿到");
+
         if (page == 1 && pullFlag == false) {
             rl_hide_tuijian.setVisibility(View.VISIBLE);
         }
@@ -635,7 +648,6 @@ public class HomeFragment extends Fragment {
                 rl_hide_tuijian.setVisibility(View.GONE);
                 if (page == 1) {
                     arrList.clear();
-
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -683,6 +695,8 @@ public class HomeFragment extends Fragment {
         });
     }
     private void gethangyezixun() {
+        Log.i("aaaaa","数据拿到");
+
         if (page == 1 && pullFlag == false) {
             rl_hide_hangyezixun.setVisibility(View.VISIBLE);
         }
@@ -745,6 +759,9 @@ public class HomeFragment extends Fragment {
         });
     }
     private void getcanpinzixun() {
+
+        Log.i("aaaaa","数据拿到");
+
         if (page == 1 && pullFlag == false) {
             rl_hide_canpinzixun.setVisibility(View.VISIBLE);
         }

@@ -19,7 +19,10 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".mine.Active_activity"
@@ -87,24 +90,30 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsOrderActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+
+            />
         <activity
             android:name=".shopping.GoodsOrderCompleteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".homepage.HomeActivity"
+            android:name=".homepage.Activity.HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".homepage.ArticleActivity"
+            android:name=".homepage.Activity.ArticleActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+
+        </activity>
+        <activity
+            android:name=".homepage.Activity.VideoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".homepage.VideoActivity"
+            android:name=".homepage.Activity.NavigationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".homepage.NavigationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".homepage.CommentActivity"
+            android:name=".homepage.Activity.CommentActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".login.SplashActivity"
@@ -126,25 +135,22 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".chat.ChatPublishActiviy"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".mine.Details_Activity" />
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
-        <activity android:name=".mine.Night_activity$Mydisclose" />
-        <activity
-            android:name=".shopping.TblinkActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".shopping.JdlinkActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".search.SearchActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".mine.Night_activity$Mydisclose">
+
+
+
+        </activity>
+
+
+        <activity android:name=".shopping.TblinkActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
+        <activity android:name=".shopping.JdlinkActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
     </application>
 
 </manifest>

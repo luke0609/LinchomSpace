@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import linchom.com.linchomspace.chat.ChatFragment;
-import linchom.com.linchomspace.homepage.HomeFragment;
+import linchom.com.linchomspace.homepage.Fragment.HomeFragment;
 import linchom.com.linchomspace.mine.MineFragment;
 import linchom.com.linchomspace.service.ServiceFragment;
 import linchom.com.linchomspace.shopping.ShoppingFragment;

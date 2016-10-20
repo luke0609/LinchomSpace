@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#ece8e8"
     android:padding="10dp"
-    tools:context="linchom.com.linchomspace.homepage.NavigationActivity"
+    tools:context="linchom.com.linchomspace.homepage.Activity.NavigationActivity"
     android:orientation="vertical">
 
     <RelativeLayout

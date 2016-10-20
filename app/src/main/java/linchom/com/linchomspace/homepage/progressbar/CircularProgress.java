@@ -57,7 +57,7 @@ public class CircularProgress extends View {
 
         float density = context.getResources().getDisplayMetrics().density;
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircularProgress, defStyleAttr, 0);
-        mBorderWidth = a.getDimension(R.styleable.CircularProgress_borderWidth,
+        mBorderWidth = a.getDimension(R.styleable.CircularProgress_borderWidth1,
                 DEFAULT_BORDER_WIDTH * density);
         a.recycle();
         mColors = new int[4];
