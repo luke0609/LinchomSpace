@@ -11,17 +11,18 @@ import java.util.List;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.goodsfragment.AllOrderFragment;
-import linchom.com.linchomspace.shopping.goodsfragment.ReturnGoodsFragment;
-import linchom.com.linchomspace.shopping.goodsfragment.UnEvaluateFragment;
-import linchom.com.linchomspace.shopping.goodsfragment.UnPayFagment;
-import linchom.com.linchomspace.shopping.goodsfragment.UnReceivedFragment;
-import linchom.com.linchomspace.shopping.goodsfragment.UnSendFragment;
 
 public class GoodsAllOrderActivity extends AppCompatActivity {
 
     List<Fragment> fragmentList =new ArrayList<Fragment>();
 
     private ViewPager vp_goods_orderfrom_pager;
+
+    private String orderStatus;
+
+    private String shippingStatus;
+
+    private String payStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,98 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        fragmentList.add(new AllOrderFragment());
-        fragmentList.add(new UnPayFagment());
-        fragmentList.add(new UnSendFragment());
-        fragmentList.add(new UnReceivedFragment());
-        fragmentList.add(new UnEvaluateFragment());
-        fragmentList.add(new ReturnGoodsFragment());
+        //new AllOrderFragment()
+        //new UnPayFagment()
+        //new UnReceivedFragment()
+        //new UnEvaluateFragment()
+        //new ReturnGoodsFragment()
+        //
+        //
+
+        //orderStatusInfo ;
+        //shippingStatusInfo;
+        //payStatusInfo ;
+
+        AllOrderFragment allOrderFragment =new AllOrderFragment();
+        Bundle bundle =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        allOrderFragment.setArguments(bundle);
+
+
+        AllOrderFragment unPayFragment =new AllOrderFragment();
+        Bundle bundle1 =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        unPayFragment.setArguments(bundle1);
+
+
+        AllOrderFragment alreadyPayFragment =new AllOrderFragment();
+        Bundle bundle2 =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        alreadyPayFragment.setArguments(bundle2);
+
+        AllOrderFragment unSendFragment =new AllOrderFragment();
+        Bundle bundle3 =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        unSendFragment.setArguments(bundle3);
+
+        AllOrderFragment unReceivedFragment =new AllOrderFragment();
+        Bundle bundle4 =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        unReceivedFragment.setArguments(bundle4);
+
+        AllOrderFragment unEvaluateFragment =new AllOrderFragment();
+        Bundle bundle5 =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        unEvaluateFragment.setArguments(bundle5);
+
+        AllOrderFragment returnGoodsFragment =new AllOrderFragment();
+        Bundle bundle6 =new Bundle();
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
+        bundle.putString("orderStatus",orderStatus);
+        bundle.putString("shippingStatus",shippingStatus);
+        bundle.putString("payStatusInfo",payStatus);
+        returnGoodsFragment.setArguments(bundle6);
+
+        fragmentList.add(allOrderFragment);
+        fragmentList.add(unPayFragment);
+        fragmentList.add(alreadyPayFragment);
+        fragmentList.add(unSendFragment);
+        fragmentList.add(unReceivedFragment);
+        fragmentList.add(unEvaluateFragment);
+        fragmentList.add(returnGoodsFragment);
+
 
 
 

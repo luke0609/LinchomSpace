@@ -69,6 +69,13 @@ public class AllOrderFragment extends Fragment {
         view = inflater.inflate(R.layout.goods_orderform_layout,null);
 
 
+        Bundle bundle = getArguments();
+        orderStatusInfo= bundle.getString("orderStatus");
+        shippingStatusInfo= bundle.getString("shippingStatus");
+        payStatusInfo= bundle.getString("payStatus");
+
+
+
         initView();
 
         initData();
