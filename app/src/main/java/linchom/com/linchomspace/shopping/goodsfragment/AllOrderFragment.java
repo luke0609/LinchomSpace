@@ -121,7 +121,7 @@ public class AllOrderFragment extends Fragment {
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                //异步任务拿数据
+
 
                 PullToRefreshBase.Mode mode = ptr_goods_orderform.getCurrentMode();
 

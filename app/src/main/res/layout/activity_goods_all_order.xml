@@ -26,6 +26,7 @@
 
 
     <RadioGroup
+
         android:id="@+id/rg_goods_orderfrom"
         android:layout_below="@id/bar_orderform_title"
         android:orientation="horizontal"
@@ -35,6 +36,7 @@
         >
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_one"
             android:textColor="@drawable/order_radbtn_color_selector"
             android:gravity="center"
             android:textSize="13sp"
@@ -49,6 +51,8 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_two"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
@@ -65,6 +69,8 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_three"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
@@ -86,6 +92,8 @@
 
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_four"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
@@ -103,6 +111,8 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_five"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
             android:gravity="center"
@@ -120,6 +130,8 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_six"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
             android:gravity="center"
@@ -137,6 +149,8 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_seven"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
