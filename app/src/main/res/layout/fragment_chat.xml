@@ -5,11 +5,9 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/chat_lt"
-        android:background="#fff"
+        android:background="#262B4D"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingLeft="10dp"
         android:layout_height="40dp">
         <ImageView
             android:layout_width="0dp"
@@ -44,7 +42,7 @@
     <View
         android:layout_above="@+id/auto_vp"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:background="#cfcfcf"
         ></View>
     <FrameLayout
@@ -59,8 +57,7 @@
             android:id="@+id/banner_viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp" />
+         />
 
 
         <com.shizhefei.view.indicator.FixedIndicatorView
