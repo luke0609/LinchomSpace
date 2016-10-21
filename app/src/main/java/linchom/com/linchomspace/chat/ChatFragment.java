@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.chat;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -11,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -29,15 +32,22 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.ListActivityBean;
 import linchom.com.linchomspace.chat.pojo.ListViewAdapter;
+import linchom.com.linchomspace.chat.pojo.TopicList;
+import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
+import linchom.com.linchomspace.chat.util.ViewHolder;
 
 import static linchom.com.linchomspace.R.id.lv;
 import static linchom.com.linchomspace.R.id.ptr_goodsList_ptr;
+import static linchom.com.linchomspace.R.id.tv_title;
 
 
 public class ChatFragment extends Fragment {
@@ -45,6 +55,10 @@ public class ChatFragment extends Fragment {
     View view1;
     private BannerComponent bannerComponent;
     private IndicatorViewPager indicatorViewPager;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private ImageView to_publish;
+    private int pageCount=1;
+    private int startPage=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,8 +145,7 @@ public class ChatFragment extends Fragment {
     };
 
     private class MyAdapter extends IndicatorViewPager.IndicatorViewPagerAdapter {
-        private String[] versions = {"智能家居", "智能健康", "智能照管", "产品推介", "智能社区", "工程技术", "硬件开发", "机器人", "VR/AR", "协议标准", "需求对接", "品牌交流", "提问回答", "其他"};
-        private String[] urls = {"", "2", "3", "4", "", "2", "3", "4", "", "2", "3", "4", "", "2", "3"};
+        private String[] versions = {"智能家居", "智能健康", "智能照管", "产品推荐", "智能社区", "工程技术", "硬件", "机器人", "VR/AR", "协议标准", "需求对接", "品牌交流", "提问回答", "其他"};
 
 
         @Override
@@ -162,11 +175,27 @@ public class ChatFragment extends Fragment {
         public View getViewForPage(final int position, View convertView, ViewGroup container) {
             Log.i("convertView", "getView at position:" + position + " convertView:" + (convertView == null ? "null" : convertView.hashCode()));
             convertView = View.inflate(getActivity(), R.layout.viewpage_layout, null);
-            final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(lv));
-            // ListView listView =new ListView(container.getContext());
+            startPage=2;
+            final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(R.id.lv));
+            final List<TopicList.DataBean.ItemsBean> topicList=new ArrayList<>();
+            final CommonAdapter<TopicList.DataBean.ItemsBean> adapter=new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
+                @Override
+                public void convert(ViewHolder viewHolder, TopicList.DataBean.ItemsBean itemsBean, int position) {
+                    TextView tv_name = viewHolder.getViewById(R.id.tv_chat_username);
+                    TextView tv_chat_name = viewHolder.getViewById(R.id.tv_chat_name);
+                    TextView tv_chat_time = viewHolder.getViewById(R.id.tv_chat_time);
+                    TextView tv_chat_title=viewHolder.getViewById(tv_title);
+                    tv_name.setText(itemsBean.getUser_name());
+                    tv_chat_name.setText(itemsBean.getTopic_name().trim());
+                    tv_chat_title.setText(itemsBean.getCommunication_title());
+                    int timeB = Integer.parseInt(itemsBean.getAdd_time());
+                    String date = sdf.format(new Date(timeB * 1000L));
+                    tv_chat_time.setText(date);
 
-            ArrayList<ListActivityBean.Dongtai> dongtaiList = new ArrayList<ListActivityBean.Dongtai>();
-           final ListViewAdapter lvadpt = new ListViewAdapter(getActivity(), dongtaiList);
+
+
+                }
+            };
 
             listView.setScrollingWhileRefreshingEnabled(true);
             listView.setMode(PullToRefreshBase.Mode.BOTH);
@@ -179,18 +208,13 @@ public class ChatFragment extends Fragment {
 
                     if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
-                        getDongtaiList(urls[position],lvadpt,listView);
+                        getTopicList(position,topicList,adapter,listView,1);
 
 
 
                     }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
 
-                        getDongtaiList(urls[position],lvadpt,listView);
-
-
-
-
-
+                        getTopicList(position,topicList,adapter,listView,startPage++);
 
                     }
 
@@ -199,16 +223,22 @@ public class ChatFragment extends Fragment {
             });
 
             ListView newsList=listView.getRefreshableView();
+            newsList.setAdapter(adapter);
+            newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            newsList.setAdapter(lvadpt);
+                    TopicList.DataBean.ItemsBean topicDetial = topicList.get(position);
+                    Intent intent = new Intent(getActivity(), ChatDetilActivity.class);
+                    intent.putExtra("topicDetial",topicDetial);
+                    startActivity(intent);
 
-
-            Log.i("convertView", "getView at position:" + position + "==========" + urls[position]);
-            getDongtaiList(urls[position], lvadpt,listView);
-
+                }
+            });
+            getTopicList(position,topicList,adapter,listView,1);
+            Log.i(position+"", "getViewForPage: ");
 
             return convertView;
-
         }
 
         @Override
@@ -232,31 +262,41 @@ public class ChatFragment extends Fragment {
 
     }
 
-    private void getDongtaiList(String url, final ListViewAdapter adapter2,PullToRefreshListView listView) {
-        String url2;
-        url2 = url;
-        String web = "http://10.40.5.7:8080/web/getdongtaibypage";
-        web += url2;
-        final ArrayList<ListActivityBean.Dongtai> dongtaiList = adapter2.getDongtaiList();
-        final PullToRefreshListView listView2=listView;
-        RequestParams params = new RequestParams(web);
+    private void getTopicList(int position, final List<TopicList.DataBean.ItemsBean> topicList, final CommonAdapter<TopicList.DataBean.ItemsBean> adapter, final PullToRefreshListView listView, final int page) {
+        int type=(position+1) ;
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
+        params.addQueryStringParameter("act","topic");
+        params.addQueryStringParameter("topic_category_id",type+"");
+        params.addQueryStringParameter("verification","e0d017ef76c8510244ebe0191f5dde15");
+        params.addQueryStringParameter("page",page+"");
         x.http().get(params, new Callback.CommonCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();
+                System.out.println(result);
+                TopicList bean = gson.fromJson(result, TopicList.class);
+                pageCount=   bean.getData().getTotal_pages();
+                if (page==1){
+                topicList.clear();
+                }
 
-                ListActivityBean bean = gson.fromJson(result, ListActivityBean.class);
-               // dongtaiList.clear();
-                dongtaiList.addAll(bean.dongtailist);
+               if(page<=pageCount){
+                topicList.addAll(bean.getData().getItems());
+               }
+                else{
+                   Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
 
-                System.out.println(dongtaiList);
+               }
+                listView.onRefreshComplete();
+                System.out.println(topicList);
+                adapter.notifyDataSetChanged();
 
-                adapter2.notifyDataSetChanged();
 
-                listView2.onRefreshComplete();
 
             }
+
+
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
@@ -273,5 +313,6 @@ public class ChatFragment extends Fragment {
 
             }
         });
+
     }
 }
