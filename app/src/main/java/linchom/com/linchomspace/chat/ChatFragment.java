@@ -175,7 +175,8 @@ public class ChatFragment extends Fragment {
         public View getViewForPage(final int position, View convertView, ViewGroup container) {
             Log.i("convertView", "getView at position:" + position + " convertView:" + (convertView == null ? "null" : convertView.hashCode()));
             convertView = View.inflate(getActivity(), R.layout.viewpage_layout, null);
-            startPage=2;
+            startPage=1;
+            pageCount=1;
             final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(R.id.lv));
             final List<TopicList.DataBean.ItemsBean> topicList=new ArrayList<>();
             final CommonAdapter<TopicList.DataBean.ItemsBean> adapter=new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
@@ -214,7 +215,7 @@ public class ChatFragment extends Fragment {
 
                     }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
 
-                        getTopicList(position,topicList,adapter,listView,startPage++);
+                        getTopicList(position,topicList,adapter,listView,++startPage);
 
                     }
 
@@ -227,8 +228,9 @@ public class ChatFragment extends Fragment {
             newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                   // Toast.makeText(getActivity(), position, Toast.LENGTH_SHORT).show();
+                    TopicList.DataBean.ItemsBean topicDetial = topicList.get(position-1);
 
-                    TopicList.DataBean.ItemsBean topicDetial = topicList.get(position);
                     Intent intent = new Intent(getActivity(), ChatDetilActivity.class);
                     intent.putExtra("topicDetial",topicDetial);
                     startActivity(intent);
