@@ -52,10 +52,11 @@ import linchom.com.linchomspace.homepage.Entity.ArticleListBean;
 import linchom.com.linchomspace.homepage.Utils.DateUtils;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
+import linchom.com.linchomspace.search.SearchActivity;
 
 import static android.view.View.inflate;
 import static linchom.com.linchomspace.R.id.iv_photo;
-import static linchom.com.linchomspace.R.id.iv_zan;
+import static linchom.com.linchomspace.R.id.tv_source;
 import static linchom.com.linchomspace.R.id.tv_name;
 import static linchom.com.linchomspace.R.id.tv_title;
 
@@ -220,7 +221,7 @@ public class HomeFragment extends Fragment {
         tv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
                 startActivity(intent);
             }
         });
@@ -363,6 +364,19 @@ public class HomeFragment extends Fragment {
         lv_canpinpince= ptr_arrlist_canpinpince.getRefreshableView();
         adapter4 = new MyAdapter();
         lv_canpinpince.setAdapter(adapter4);
+        lv_canpinpince.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private TextView tv_title;
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("article_id",arrList.get(position-1).article_id);
+                Log.i("wenzhang","article_id");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
         listView.add(view4);
         View view5 = inflate(getActivity(), R.layout.fragment_home_video, null);
         pb_progressBar= (CircularProgress) view5.findViewById(R.id.pb_progressBar);
@@ -371,6 +385,19 @@ public class HomeFragment extends Fragment {
         lv_video= ptr_arrlist_video.getRefreshableView();
         adapter5 = new MyAdapter();
         lv_video.setAdapter(adapter5);
+        lv_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private TextView tv_title;
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("article_id",arrList.get(position-1).article_id);
+                Log.i("wenzhang","article_id");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
         listView.add(view5);
         View view6 = inflate(getActivity(), R.layout.fragment_home_pinpaizixun, null);
         pb_progressBar= (CircularProgress) view6.findViewById(R.id.pb_progressBar);
@@ -2573,14 +2600,9 @@ public class HomeFragment extends Fragment {
                 viewHolder.tv_title = ((TextView) convertView.findViewById(tv_title));
                 viewHolder.tv_name = ((TextView) convertView.findViewById(tv_name));
                 viewHolder.iv_photo = ((ImageView) convertView.findViewById(iv_photo));
-                viewHolder.iv_zan = ((ImageView) convertView.findViewById(iv_zan));
+                viewHolder.tv_source = ((TextView) convertView.findViewById(tv_source));
 
-//                    viewHolder.iv_zan.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            showPopupWindow(v);
-//                        }
-//                    });
+
                 convertView.setTag(viewHolder);//缓存对象的
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
@@ -2592,7 +2614,7 @@ public class HomeFragment extends Fragment {
 
             viewHolder.tv_name.setText(linchom.com.linchomspace.homepage.Utils.DateUtils.getGapTimeFromNow(DateUtils.stringToDate(arr.date)));
             if (arr.article_pic == "") {
-                viewHolder.iv_photo.setImageResource(R.drawable.article_item_tuijian);
+                viewHolder.iv_photo.setImageResource(R.drawable.aiqinhai);
             } else {
                 viewHolder.iv_photo.setVisibility(View.VISIBLE);
                 xUtilsImageUtils.display(viewHolder.iv_photo, "http://linchom.com//" + arr.article_pic);
@@ -2605,7 +2627,7 @@ public class HomeFragment extends Fragment {
     private static class ViewHolder {
         private TextView tv_title;
         private TextView tv_name;
-        private ImageView iv_zan;
+        private TextView tv_source;
         private ImageView iv_photo;
     }
     @Override
