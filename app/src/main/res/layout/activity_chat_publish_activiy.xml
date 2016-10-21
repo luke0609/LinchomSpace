@@ -3,10 +3,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="linchom.com.linchomspace.chat.ChatPublishActiviy">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="#f0f0f0">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发布话题"
+            android:textSize="20sp"
+            android:textColor="#808080"
+            android:layout_centerInParent="true"/>
 
+    </RelativeLayout>
+    <LinearLayout
+
+        android:layout_below="@+id/rl_top"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:id="@+id/sp_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="话题分类"/>
+        <Spinner
+            android:id="@+id/sp_topic"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_below="@+id/sp_bar"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标        题"
+            android:textSize="16sp"/>
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_below="@+id/ll_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginTop="5dp"
+        android:text="正        文"
+        android:textSize="16sp"/>
+    <EditText
+        android:id="@+id/add_content"
+        android:layout_below="@+id/tv_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:enabled="true"
+        android:gravity="top"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:inputType="textMultiLine"
+        android:minLines="8"
+        android:maxLines="10"
+        android:scrollbars="vertical"
+        android:background="@drawable/ll_shape"
+        />
+    <Button
+        android:id="@+id/btn_publish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="发      布"
+        android:textColor="#808080"
+        android:textSize="16sp"
+
+        android:layout_below="@+id/add_content"
+        />
 </RelativeLayout>
