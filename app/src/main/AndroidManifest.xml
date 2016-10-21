@@ -20,7 +20,8 @@
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -100,10 +101,7 @@
         <activity
             android:name=".homepage.Activity.ArticleActivity"
             android:hardwareAccelerated="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".homepage.Activity.VideoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -137,32 +135,26 @@
         <activity android:name=".mine.Details_Activity" />
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
-
-        <activity android:name=".shopping.TblinkActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-
-            />
-
-
-        <activity android:name=".shopping.JdlinkActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
-
-        <activity android:name=".shopping.GoodsAllOrderActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
-
-
-
-
-
-        <activity android:name=".mine.Mydisclose">
-
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity
+            android:name=".shopping.TblinkActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".shopping.JdlinkActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".shopping.GoodsAllOrderActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".mine.Mydisclose"></activity>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".chat.KidChatDetilActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" ></activity>
     </application>
 
 </manifest>

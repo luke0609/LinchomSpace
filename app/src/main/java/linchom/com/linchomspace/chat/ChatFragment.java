@@ -38,15 +38,11 @@ import java.util.Date;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.chat.pojo.ListActivityBean;
-import linchom.com.linchomspace.chat.pojo.ListViewAdapter;
 import linchom.com.linchomspace.chat.pojo.TopicList;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 
-import static linchom.com.linchomspace.R.id.lv;
-import static linchom.com.linchomspace.R.id.ptr_goodsList_ptr;
 import static linchom.com.linchomspace.R.id.tv_title;
 
 
@@ -82,6 +78,16 @@ public class ChatFragment extends Fragment {
     }
 
     private void initView() {
+        to_publish = ((ImageView) view1.findViewById(R.id.chat_search));
+        to_publish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), ChatPublishActiviy.class);
+                startActivity(intent);
+            }
+        });
+
+
         ViewPager viewPager = (ViewPager) view1.findViewById(R.id.banner_viewPager);
         Indicator indicator = (Indicator) view1.findViewById(R.id.banner_indicator);
         // indicator.setScrollBar(new ColorBar(getActivity(), Color.GRAY, 30, ScrollBar.Gravity.CENTENT_BACKGROUND));
@@ -286,10 +292,10 @@ public class ChatFragment extends Fragment {
                if(page<=pageCount){
                 topicList.addAll(bean.getData().getItems());
                }
-                else{
-                   Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
-
-               }
+//                else{
+//                   Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+//
+//               }
                 listView.onRefreshComplete();
                 System.out.println(topicList);
                 adapter.notifyDataSetChanged();

@@ -1,13 +1,16 @@
 package linchom.com.linchomspace.chat;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -89,8 +92,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         params.addQueryStringParameter("user_id", 129 + "");
         params.addQueryStringParameter("topic_category",cardNumber);
         params.addQueryStringParameter("topic_category_id",value);
-        params.addQueryStringParameter("topic_name",content);
-        params.addQueryStringParameter("communication_title",title);
+        params.addQueryStringParameter("topic_name",title);
+        params.addQueryStringParameter("communication_title",content);
         params.addQueryStringParameter("user_name","ljs123");
         x.http().get(params, new Callback.CommonCallback<String>() {
 
@@ -98,6 +101,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
             @Override
             public void onSuccess(String result) {
                 System.out.println(result);
+                Toast.makeText(ChatPublishActiviy.this, "发布成功", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             @Override
@@ -123,6 +128,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
             case R.id.btn_publish:
                 doPublish();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(add_content.getWindowToken(), 0) ;
                 break;
             case R.id.iv_back:
                 finish();
