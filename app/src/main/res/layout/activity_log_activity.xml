@@ -3,10 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".mine.log_activity">
+<RelativeLayout
+    android:id="@+id/rl_log"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#cec9c9"
+    >
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+       android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/back"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的日志"
+        android:layout_centerVertical="true"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>
+    <ListView
+        android:id="@+id/lv_loglist"
+        android:layout_below="@+id/rl_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </ListView>
 </RelativeLayout>

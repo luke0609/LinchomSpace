@@ -27,6 +27,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
 import linchom.com.linchomspace.shopping.utils.PictureHandle;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
@@ -85,7 +86,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
-
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
@@ -161,8 +161,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private void getData() {
 
             RequestParams requestParams =new RequestParams(GoodsHttpUtils.GOODSDETAILURL+goodsId);
-
-
             x.http().get(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
@@ -300,7 +298,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
 
             case R.id.iv_goods_turnleft:
-
                 goodsTurnLeft();
                 break;
             case R.id.iv_goods_turnright:
@@ -367,12 +364,43 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         //goodsName
         //goodsPrice
 
+        ArrayList<GoodsOrderBean> orderList =new ArrayList<GoodsOrderBean>();
+
+
+
         goodsNum = et_goods_buyNum.getText().toString();
 
-        bundle.putString("goodsNum",goodsNum);
-        bundle.putString("goodsName",goodsName);
-        bundle.putString("goodsPrice",goodsPrice);
-        bundle.putString("goodsImg",goodsImg);
+        //bundle.putString("goodsNum",goodsNum);
+        //bundle.putString("goodsName",goodsName);
+        //bundle.putString("goodsPrice",goodsPrice);
+        //bundle.putString("goodsImg",goodsImg);
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+
+
+
+
+
+
+        bundle.putSerializable("orderList",orderList);
+
 
         intent.putExtra("bundle",bundle);
 

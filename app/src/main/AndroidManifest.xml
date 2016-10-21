@@ -90,10 +90,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsOrderActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
-
-            />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsOrderCompleteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -102,6 +99,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".homepage.Activity.ArticleActivity"
+            android:hardwareAccelerated="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
 
@@ -139,18 +137,32 @@
         <activity android:name=".mine.Details_Activity" />
         <activity android:name=".mine.Details_s_Activity" />
         <activity android:name=".mine.Night_activity" />
-        <activity android:name=".mine.Night_activity$Mydisclose">
+
+        <activity android:name=".shopping.TblinkActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
+            />
+
+
+        <activity android:name=".shopping.JdlinkActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+
+        <activity android:name=".shopping.GoodsAllOrderActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
 
 
 
-        </activity>
 
 
-        <activity android:name=".shopping.TblinkActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".mine.Mydisclose">
 
-
-        <activity android:name=".shopping.JdlinkActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
+        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

@@ -27,7 +27,7 @@ public class Disclose_activity extends AppCompatActivity {
         tv_look.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),Night_activity.Mydisclose.class);
+                Intent intent=new Intent(getApplicationContext(),Mydisclose.class);
                 startActivity(intent);
             }
         });

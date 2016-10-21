@@ -46,9 +46,9 @@ import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Activity.ArticleActivity;
+import linchom.com.linchomspace.homepage.Activity.NavigationActivity;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleListBean;
-import linchom.com.linchomspace.homepage.Activity.NavigationActivity;
 import linchom.com.linchomspace.homepage.Utils.DateUtils;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
     private RelativeLayout rl_hide_tuijian;
     private RelativeLayout rl_hide_hangyezixun;
     private RelativeLayout rl_hide_canpinzixun;
+    private RelativeLayout rl_hide_canpinpince;
     private RelativeLayout rl_hide_video;
     private RelativeLayout rl_hide_pinpaizixun;
     private RelativeLayout rl_hide_hangyebiaozhun;
@@ -85,18 +86,29 @@ public class HomeFragment extends Fragment {
     private RelativeLayout rl_hide_peixunxinxi;
     private RelativeLayout rl_hide_zhichaofangan;
     private RelativeLayout rl_hide_zhichaoanli;
-
-
-
-
-
     final List<ArticleListBean.Article_list> arrList = new ArrayList<ArticleListBean.Article_list>();
     private View view;
     private View view1;
     private View view2;
     private View view3;
+    private View view4;
+    private View view5;
+    private View view6;
+    private View view7;
+    private View view8;
+    private View view9;
+    private View view10;
+    private View view11;
+    private View view12;
+    private View view13;
+    private View view14;
+    private View view15;
+    private View view16;
+    private View view17;
+    private View view18;
+    private View view19;
+    private View view20;
     private View bannnerAdv;
-
     private ViewPager vp_news;
     private RadioGroup rg_message;
     private HorizontalScrollView hs_navi;
@@ -104,6 +116,7 @@ public class HomeFragment extends Fragment {
     private PullToRefreshListView ptr_arrlist_tuijian;
     private PullToRefreshListView ptr_arrlist_hangyezixun;
     private PullToRefreshListView ptr_arrlist_canpinzixun;
+    private PullToRefreshListView ptr_arrlist_canpinpince;
     private PullToRefreshListView ptr_arrlist_video;
     private PullToRefreshListView ptr_arrlist_pinpaizixun;
     private PullToRefreshListView ptr_arrlist_hangyebiaozhun;
@@ -121,11 +134,6 @@ public class HomeFragment extends Fragment {
     private PullToRefreshListView ptr_arrlist_peixunxinxi;
     private PullToRefreshListView ptr_arrlist_zhichaofangan;
     private PullToRefreshListView ptr_arrlist_zhichaoanli;
-
-
-
-
-
     private boolean pullFlag = false;
     private int page = 1;//加载页数
     private int pageCount;
@@ -133,10 +141,50 @@ public class HomeFragment extends Fragment {
     private ListView lv_tuijian;
     private ListView lv_hangyezixun;
     private ListView lv_canpinzixun;
+    private ListView lv_canpinpince;
+    private ListView lv_video;
+    private ListView lv_pinpaizixun;
+    private ListView lv_hangyebiaozhun;
+    private ListView lv_hangyejishu;
+    private ListView lv_wulianwang;
+    private ListView lv_zhihuichengshi;
+    private ListView lv_zhihuishequ;
+    private ListView lv_wurenji;
+    private ListView lv_zhinengyanglao;
+    private ListView lv_zhinengjiankang;
+    private ListView lv_zhinengyiliao;
+    private ListView lv_jiqiren;
+    private ListView lv_vrar;
+    private ListView lv_zhanhuixinxi;
+    private ListView lv_peixunxinxi;
+    private ListView lv_zhichaofangan;
+    private ListView lv_zhichaoanli;
+
+
     private List<View> listView = new ArrayList<View>();
     private MyAdapter adapter1;
     private MyAdapter adapter2;
     private MyAdapter adapter3;
+    private MyAdapter adapter4;
+    private MyAdapter adapter5;
+    private MyAdapter adapter6;
+    private MyAdapter adapter7;
+    private MyAdapter adapter8;
+    private MyAdapter adapter9;
+    private MyAdapter adapter10;
+    private MyAdapter adapter11;
+    private MyAdapter adapter12;
+    private MyAdapter adapter13;
+    private MyAdapter adapter14;
+    private MyAdapter adapter15;
+    private MyAdapter adapter16;
+    private MyAdapter adapter17;
+    private MyAdapter adapter18;
+    private MyAdapter adapter19;
+    private MyAdapter adapter20;
+    private MyAdapter adapter21;
+
+
     private RadioGroup myRadioGroup;
     int _id = 1000;
     private LinearLayout layout, titleLayout;
@@ -167,8 +215,6 @@ public class HomeFragment extends Fragment {
         gettuijian();
     }
     private int[] images = {R.drawable.city, R.drawable.qiiqu, R.drawable.caoyuan, R.drawable.meijing};
-
-
     private void initView() {
         tv_search = ((TextView) view.findViewById(R.id.tv_search));
         tv_search.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +237,6 @@ public class HomeFragment extends Fragment {
         layout = (LinearLayout) view.findViewById(R.id.lay);
         mImageView = (ImageView) view.findViewById(R.id.img1);
         vp_news = ((ViewPager) view.findViewById(R.id.vp_news));
-
         hs_navi = (HorizontalScrollView) view.findViewById(R.id.hs_navi);
         Map<String, String> map = new HashMap<String, String>();
         map.put("title", "推荐");
@@ -286,16 +331,12 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ViewHolder viewHolder = null;
-                viewHolder = new ViewHolder();
-                viewHolder.tv_title = ((TextView) view.findViewById(R.id.tv_title));
-                viewHolder.tv_title.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ArticleActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                Intent intent=new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("article_id",arrList.get(position-2).article_id);
+                Log.i("wenzhang","article_id");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
             }
         });
         listView.add(view1);
@@ -315,32 +356,151 @@ public class HomeFragment extends Fragment {
         adapter3 = new MyAdapter();
         lv_canpinzixun.setAdapter(adapter3);
         listView.add(view3);
-//        View view4 = inflate(getActivity(), R.layout.fragment_homepage_canpinpince, null);
-//
-//        lv_canpinpince = ((ListView) view4.findViewById(R.id.lv_canpinpince));
-//        adapter4 = new MyAdapter();
-//        listView.add(view4);
-//        View view5 = inflate(getActivity(), R.layout.fragment_homepage_video, null);
-//
-//        lv_video = ((ListView) view5.findViewById(R.id.lv_video));
-//        adapter5 = new MyAdapter();
-//        listView.add(view5);
-//        View view6 = inflate(getActivity(), R.layout.fragment_homepage_pinpaizixun, null);
-//        lv_pinpaizixun = ((ListView) view6.findViewById(R.id.lv_pinpaizixun));
-//        adapter6 = new MyAdapter();
-//        listView.add(view6);
-//        View view7 = inflate(getActivity(), R.layout.fragment_homepage_hangyebiaozhun, null);
-//        lv_hangyebiaozhun = ((ListView) view7.findViewById(R.id.lv_hangyebiaozhun));
-//        adapter7 = new MyAdapter();
-//        listView.add(view7);
-//        View view8 = inflate(getActivity(), R.layout.fragment_homepage_hangyejishu, null);
-//        lv_hangyejishu = ((ListView) view8.findViewById(R.id.lv_hangyejishu));
-//        adapter8 = new MyAdapter();
-//        listView.add(view8);
-//        View view9 = inflate(getActivity(), R.layout.fragment_homepage_wulianwang, null);
-//        lv_wulianwang = ((ListView) view9.findViewById(R.id.lv_wulianwang));
-//        adapter9 = new MyAdapter();
-//        listView.add(view9);
+        View view4 = inflate(getActivity(), R.layout.fragment_home_canpinpince, null);
+        pb_progressBar= (CircularProgress) view4.findViewById(R.id.pb_progressBar);
+        rl_hide_canpinpince = (RelativeLayout) view4.findViewById(R.id.rl_hide_canpinpince);
+        ptr_arrlist_canpinpince = ((PullToRefreshListView) view4.findViewById(R.id.ptr_arrlist_canpinpince));
+        lv_canpinpince= ptr_arrlist_canpinpince.getRefreshableView();
+        adapter4 = new MyAdapter();
+        lv_canpinpince.setAdapter(adapter4);
+        listView.add(view4);
+        View view5 = inflate(getActivity(), R.layout.fragment_home_video, null);
+        pb_progressBar= (CircularProgress) view5.findViewById(R.id.pb_progressBar);
+        rl_hide_video = (RelativeLayout) view5.findViewById(R.id.rl_hide_video);
+        ptr_arrlist_video = ((PullToRefreshListView) view5.findViewById(R.id.ptr_arrlist_video));
+        lv_video= ptr_arrlist_video.getRefreshableView();
+        adapter5 = new MyAdapter();
+        lv_video.setAdapter(adapter5);
+        listView.add(view5);
+        View view6 = inflate(getActivity(), R.layout.fragment_home_pinpaizixun, null);
+        pb_progressBar= (CircularProgress) view6.findViewById(R.id.pb_progressBar);
+        rl_hide_pinpaizixun = (RelativeLayout) view6.findViewById(R.id.rl_hide_pinpaizixun);
+        ptr_arrlist_pinpaizixun = ((PullToRefreshListView) view6.findViewById(R.id.ptr_arrlist_pinpaizixun));
+        lv_pinpaizixun= ptr_arrlist_pinpaizixun.getRefreshableView();
+        adapter6 = new MyAdapter();
+        lv_pinpaizixun.setAdapter(adapter6);
+        listView.add(view6);
+        View view7 = inflate(getActivity(), R.layout.fragment_home_hangyebiaozhun, null);
+        pb_progressBar= (CircularProgress) view7.findViewById(R.id.pb_progressBar);
+        rl_hide_hangyebiaozhun = (RelativeLayout) view7.findViewById(R.id.rl_hide_hangyebiaozhun);
+        ptr_arrlist_hangyebiaozhun= ((PullToRefreshListView) view7.findViewById(R.id.ptr_arrlist_hangyebiaozhun));
+        lv_hangyebiaozhun= ptr_arrlist_hangyebiaozhun.getRefreshableView();
+        adapter7 = new MyAdapter();
+        lv_hangyebiaozhun.setAdapter(adapter7);
+        listView.add(view7);
+        View view8 = inflate(getActivity(), R.layout.fragment_home_hangyejishu, null);
+        pb_progressBar= (CircularProgress) view8.findViewById(R.id.pb_progressBar);
+        rl_hide_hangyejishu = (RelativeLayout) view8.findViewById(R.id.rl_hide_hangyejishu);
+        ptr_arrlist_hangyejishu= ((PullToRefreshListView) view8.findViewById(R.id.ptr_arrlist_hangyejishu));
+        lv_hangyejishu= ptr_arrlist_hangyejishu.getRefreshableView();
+        adapter8 = new MyAdapter();
+        lv_hangyejishu.setAdapter(adapter8);
+        listView.add(view8);
+        View view9 = inflate(getActivity(), R.layout.fragment_home_wulianwang, null);
+        pb_progressBar= (CircularProgress) view9.findViewById(R.id.pb_progressBar);
+        rl_hide_wulianwang = (RelativeLayout) view9.findViewById(R.id.rl_hide_wulianwang);
+        ptr_arrlist_wulianwang= ((PullToRefreshListView) view9.findViewById(R.id.ptr_arrlist_wulianwang));
+        lv_wulianwang= ptr_arrlist_wulianwang.getRefreshableView();
+        adapter9 = new MyAdapter();
+        lv_wulianwang.setAdapter(adapter9);
+        listView.add(view9);
+        View view10 = inflate(getActivity(), R.layout.fragment_home_zhihuichengshi, null);
+        pb_progressBar= (CircularProgress) view10.findViewById(R.id.pb_progressBar);
+        rl_hide_zhihuichengshi = (RelativeLayout) view10.findViewById(R.id.rl_hide_zhihuichengshi);
+        ptr_arrlist_zhihuichengshi= ((PullToRefreshListView) view10.findViewById(R.id.ptr_arrlist_zhihuichengshi));
+        lv_zhihuichengshi= ptr_arrlist_zhihuichengshi.getRefreshableView();
+        adapter10 = new MyAdapter();
+        lv_zhihuichengshi.setAdapter(adapter10);
+        listView.add(view10);
+        View view11 = inflate(getActivity(), R.layout.fragment_home_zhihuishequ, null);
+        pb_progressBar= (CircularProgress) view11.findViewById(R.id.pb_progressBar);
+        rl_hide_zhihuishequ = (RelativeLayout) view11.findViewById(R.id.rl_hide_zhihuishequ);
+        ptr_arrlist_zhihuishequ= ((PullToRefreshListView) view11.findViewById(R.id.ptr_arrlist_zhihuishequ));
+        lv_zhihuishequ= ptr_arrlist_zhihuishequ.getRefreshableView();
+        adapter11 = new MyAdapter();
+        lv_zhihuishequ.setAdapter(adapter11);
+        listView.add(view11);
+        View view12 = inflate(getActivity(), R.layout.fragment_home_wurenji, null);
+        pb_progressBar= (CircularProgress) view12.findViewById(R.id.pb_progressBar);
+        rl_hide_wurenji = (RelativeLayout) view12.findViewById(R.id.rl_hide_wurenji);
+        ptr_arrlist_wurenji= ((PullToRefreshListView) view12.findViewById(R.id.ptr_arrlist_wurenji));
+        lv_wurenji= ptr_arrlist_wurenji.getRefreshableView();
+        adapter12 = new MyAdapter();
+        lv_wurenji.setAdapter(adapter12);
+        listView.add(view12);
+        View view13 = inflate(getActivity(), R.layout.fragment_home_zhinengyanglao, null);
+        pb_progressBar= (CircularProgress) view13.findViewById(R.id.pb_progressBar);
+        rl_hide_zhinengyanglao = (RelativeLayout) view13.findViewById(R.id.rl_hide_zhinengyanglao);
+        ptr_arrlist_zhinengyanglao= ((PullToRefreshListView) view13.findViewById(R.id.ptr_arrlist_zhinengyanglao));
+        lv_zhinengyanglao= ptr_arrlist_zhinengyanglao.getRefreshableView();
+        adapter13 = new MyAdapter();
+        lv_zhinengyanglao.setAdapter(adapter13);
+        listView.add(view13);
+        View view14 = inflate(getActivity(), R.layout.fragment_home_zhinengjiankang, null);
+        pb_progressBar= (CircularProgress) view14.findViewById(R.id.pb_progressBar);
+        rl_hide_zhinengjiankang = (RelativeLayout) view14.findViewById(R.id.rl_hide_zhinengjiankang);
+        ptr_arrlist_zhinengjiankang= ((PullToRefreshListView) view14.findViewById(R.id.ptr_arrlist_zhinengjiankang));
+        lv_zhinengjiankang= ptr_arrlist_zhinengjiankang.getRefreshableView();
+        adapter14 = new MyAdapter();
+        lv_zhinengjiankang.setAdapter(adapter14);
+        listView.add(view14);
+        View view15 = inflate(getActivity(), R.layout.fragment_home_zhinengyiliao, null);
+        pb_progressBar= (CircularProgress) view15.findViewById(R.id.pb_progressBar);
+        rl_hide_zhinengyiliao = (RelativeLayout) view15.findViewById(R.id.rl_hide_zhinengyiliao);
+        ptr_arrlist_zhinengyiliao= ((PullToRefreshListView) view15.findViewById(R.id.ptr_arrlist_zhinengyiliao));
+        lv_zhinengyiliao= ptr_arrlist_zhinengyiliao.getRefreshableView();
+        adapter15 = new MyAdapter();
+        lv_zhinengyiliao.setAdapter(adapter15);
+        listView.add(view15);
+        View view16 = inflate(getActivity(), R.layout.fragment_home_jiqiren, null);
+        pb_progressBar= (CircularProgress) view16.findViewById(R.id.pb_progressBar);
+        rl_hide_jiqiren = (RelativeLayout) view16.findViewById(R.id.rl_hide_jiqiren);
+        ptr_arrlist_jiqiren= ((PullToRefreshListView) view16.findViewById(R.id.ptr_arrlist_jiqiren));
+        lv_jiqiren= ptr_arrlist_jiqiren.getRefreshableView();
+        adapter16 = new MyAdapter();
+        lv_jiqiren.setAdapter(adapter16);
+        listView.add(view16);
+        View view17 = inflate(getActivity(), R.layout.fragment_home_vrar, null);
+        pb_progressBar= (CircularProgress) view17.findViewById(R.id.pb_progressBar);
+        rl_hide_vrar = (RelativeLayout) view17.findViewById(R.id.rl_hide_vrar);
+        ptr_arrlist_vrar= ((PullToRefreshListView) view17.findViewById(R.id.ptr_arrlist_vrar));
+        lv_vrar= ptr_arrlist_vrar.getRefreshableView();
+        adapter17 = new MyAdapter();
+        lv_vrar.setAdapter(adapter17);
+        listView.add(view17);
+        View view18 = inflate(getActivity(), R.layout.fragment_home_zhanhuixinxi, null);
+        pb_progressBar= (CircularProgress) view18.findViewById(R.id.pb_progressBar);
+        rl_hide_zhanhuixinxi = (RelativeLayout) view18.findViewById(R.id.rl_hide_zhanhuixinxi);
+        ptr_arrlist_zhanhuixinxi= ((PullToRefreshListView) view18.findViewById(R.id.ptr_arrlist_zhanhuixinxi));
+        lv_zhanhuixinxi= ptr_arrlist_wulianwang.getRefreshableView();
+        adapter18 = new MyAdapter();
+        lv_zhanhuixinxi.setAdapter(adapter18);
+        listView.add(view18);
+        View view19 = inflate(getActivity(), R.layout.fragment_home_peixunxinxi, null);
+        pb_progressBar= (CircularProgress) view19.findViewById(R.id.pb_progressBar);
+        rl_hide_peixunxinxi = (RelativeLayout) view19.findViewById(R.id.rl_hide_peixunxinxi);
+        ptr_arrlist_peixunxinxi= ((PullToRefreshListView) view19.findViewById(R.id.ptr_arrlist_peixunxinxi));
+        lv_peixunxinxi= ptr_arrlist_peixunxinxi.getRefreshableView();
+        adapter19 = new MyAdapter();
+        lv_peixunxinxi.setAdapter(adapter19);
+        listView.add(view19);
+        View view20 = inflate(getActivity(), R.layout.fragment_home_zhichaofangan, null);
+        pb_progressBar= (CircularProgress) view20.findViewById(R.id.pb_progressBar);
+        rl_hide_zhichaofangan = (RelativeLayout) view20.findViewById(R.id.rl_hide_zhichaofangan);
+        ptr_arrlist_zhichaofangan= ((PullToRefreshListView) view20.findViewById(R.id.ptr_arrlist_zhichaofangan));
+        lv_zhichaofangan= ptr_arrlist_zhichaofangan.getRefreshableView();
+        adapter20 = new MyAdapter();
+        lv_zhichaofangan.setAdapter(adapter20);
+        listView.add(view20);
+        View view21 = inflate(getActivity(), R.layout.fragment_home_zhichaoanli, null);
+        pb_progressBar= (CircularProgress) view21.findViewById(R.id.pb_progressBar);
+        rl_hide_zhichaoanli = (RelativeLayout) view21.findViewById(R.id.rl_hide_zhichaoanli);
+        ptr_arrlist_zhichaoanli= ((PullToRefreshListView) view21.findViewById(R.id.ptr_arrlist_zhichaoanli));
+        lv_zhichaoanli= ptr_arrlist_zhichaoanli.getRefreshableView();
+        adapter21 = new MyAdapter();
+        lv_zhichaoanli.setAdapter(adapter21);
+        listView.add(view21);
+
 
 
     }
@@ -480,6 +640,7 @@ public class HomeFragment extends Fragment {
 
 
                         lv_tuijian.setAdapter(adapter1);
+
                         Log.i("aaaaa","数据拿到");
                         gettuijian();
                         break;
@@ -570,28 +731,710 @@ public class HomeFragment extends Fragment {
                         getcanpinzixun();
                         break;
                     case 1003:
-//                        lv_canpinpince.setAdapter(adapter4);
-//                        getData4();
+                        pullFlag=false;
+                        ptr_arrlist_canpinpince.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_canpinpince.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_canpinpince.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_canpinpince.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getcanpinpince();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getcanpinpince();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_canpinpince.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                        lv_canpinpince.setAdapter(adapter4);
+                        getcanpinpince();
                         break;
                     case 1004:
-//                        lv_video.setAdapter(adapter5);
-//                        getData5();
+                        pullFlag=false;
+                        ptr_arrlist_video.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_video.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_video.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_video.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getvideo();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getvideo();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_video.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        lv_video.setAdapter(adapter5);
+                        getvideo();
                         break;
                     case 1005:
-//                        lv_pinpaizixun.setAdapter(adapter6);
-//                        getData6();
+                        pullFlag=false;
+                        ptr_arrlist_pinpaizixun.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_pinpaizixun.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_pinpaizixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_pinpaizixun.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getpinpaizixun();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getpinpaizixun();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_pinpaizixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        lv_pinpaizixun.setAdapter(adapter6);
+                        getpinpaizixun();
                         break;
                     case 1006:
-//                        lv_hangyebiaozhun.setAdapter(adapter7);
-//                        getData7();
+                        pullFlag=false;
+                        ptr_arrlist_hangyebiaozhun.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_hangyebiaozhun.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_hangyebiaozhun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyebiaozhun.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    gethangyebiaozhun();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    gethangyebiaozhun();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_hangyebiaozhun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_hangyebiaozhun.setAdapter(adapter7);
+                        gethangyebiaozhun();
                         break;
                     case 1007:
-//                        lv_hangyejishu.setAdapter(adapter8);
-//                        getData8();
+                        pullFlag=false;
+                        ptr_arrlist_hangyejishu.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_hangyejishu.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_hangyejishu.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyejishu.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    gethangyejishu();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    gethangyejishu();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_hangyejishu.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_hangyejishu.setAdapter(adapter8);
+                        gethangyejishu();
                         break;
                     case 1008:
-//                        lv_wulianwang.setAdapter(adapter9);
-//                        getData9();
+                        pullFlag=false;
+                        ptr_arrlist_wulianwang.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_wulianwang.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_wulianwang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_wulianwang.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getwulianwang();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getwulianwang();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_wulianwang.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_wulianwang.setAdapter(adapter9);
+                        getwulianwang();
+                        break;
+                    case 1009:
+                        pullFlag=false;
+                        ptr_arrlist_zhihuichengshi.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhihuichengshi.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhihuichengshi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhihuichengshi.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhihuichengshi();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhihuichengshi();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhihuichengshi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhihuichengshi.setAdapter(adapter10);
+                        getzhihuichengshi();
+                        break;
+                    case 1010:
+                        pullFlag=false;
+                        ptr_arrlist_zhihuishequ.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhihuishequ.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhihuishequ.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhihuishequ.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhihuishequ();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhihuishequ();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhihuishequ.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhihuishequ.setAdapter(adapter11);
+                        getzhihuishequ();
+                        break;
+                    case 1011:
+                        pullFlag=false;
+                        ptr_arrlist_wurenji.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_wurenji.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_wurenji.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_wurenji.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getwurenji();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getwurenji();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_wurenji.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                       lv_wurenji.setAdapter(adapter12);
+                        getwurenji();
+                        break;
+                    case 1012:
+                        pullFlag=false;
+                        ptr_arrlist_zhinengyanglao.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhinengyanglao.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhinengyanglao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengyanglao.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhinengyanglao();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhinengyanglao();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhinengyanglao.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhinengyanglao.setAdapter(adapter13);
+                        getzhinengyanglao();
+                        break;
+                    case 1013:
+                        pullFlag=false;
+                        ptr_arrlist_zhinengjiankang.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhinengjiankang.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhinengjiankang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengjiankang.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhinengjiankang();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhinengjiankang();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhinengjiankang.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhinengjiankang.setAdapter(adapter14);
+                        getzhinengjiankang();
+                        break;
+                    case 1014:
+                        pullFlag=false;
+                        ptr_arrlist_zhinengyiliao.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhinengyiliao.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhinengyiliao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengyiliao.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhinengyiliao();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhinengyiliao();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhinengyiliao.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhinengyiliao.setAdapter(adapter15);
+                        getzhinengyiliao();
+                        break;
+                    case 1015:
+                        pullFlag=false;
+                        ptr_arrlist_jiqiren.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_jiqiren.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_jiqiren.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_jiqiren.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getjiqiren();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getjiqiren();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_jiqiren.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_jiqiren.setAdapter(adapter16);
+                        getjiqiren();
+                        break;
+                    case 1016:
+                        pullFlag=false;
+                        ptr_arrlist_vrar.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_vrar.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_vrar.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_vrar.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getvrar();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getvrar();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_vrar.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_vrar.setAdapter(adapter17);
+                        getvrar();
+                        break;
+                    case 1017:
+                        pullFlag=false;
+                        ptr_arrlist_zhanhuixinxi.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhanhuixinxi.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhanhuixinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhanhuixinxi.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhanhuixinxi();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhanhuixinxi();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhanhuixinxi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhanhuixinxi.setAdapter(adapter18);
+                        getzhanhuixinxi();
+                        break;
+                    case 1018:
+                        pullFlag=false;
+                        ptr_arrlist_peixunxinxi.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_peixunxinxi.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_peixunxinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_peixunxinxi.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getpeixunxinxi();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getpeixunxinxi();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_peixunxinxi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_peixunxinxi.setAdapter(adapter19);
+                        getpeixunxinxi();
+                        break;
+                    case 1019:
+                        pullFlag=false;
+                        ptr_arrlist_zhichaofangan.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhichaofangan.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhichaofangan.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhichaofangan.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhichaofangan();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhichaofangan();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhichaofangan.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhichaofangan.setAdapter(adapter20);
+                        getzhichaofangan();
+                        break;
+                    case 1020:
+                        pullFlag=false;
+                        ptr_arrlist_zhichaoanli.setScrollingWhileRefreshingEnabled(true);
+                        ptr_arrlist_zhichaoanli.setMode(PullToRefreshBase.Mode.BOTH);
+                        ptr_arrlist_zhichaoanli.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                            @Override
+                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                //异步任务拿数据
+
+                                PullToRefreshBase.Mode mode = ptr_arrlist_zhichaoanli.getCurrentMode();
+
+                                // View viewRefresh = null;
+
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                    page++;
+                                    getzhichaoanli();
+                                }
+                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                    pullFlag = true;
+                                    page = 1;
+                                    getzhichaoanli();
+
+                                }
+                            }
+                        });
+                        ptr_arrlist_zhichaoanli.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                            @Override
+                            public void onLastItemVisible() {
+                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        lv_zhichaoanli.setAdapter(adapter21);
+                        getzhichaoanli();
                         break;
                     default:
 
@@ -630,6 +1473,846 @@ public class HomeFragment extends Fragment {
         vp_news.setAdapter(adapter);
 
 
+    }
+
+    private void getjiqiren() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_jiqiren.setVisibility(View.VISIBLE);
+        }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "45");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_jiqiren.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter16.notifyDataSetChanged();
+                    ptr_arrlist_jiqiren.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_jiqiren.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhinengyiliao() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_zhinengyiliao.setVisibility(View.VISIBLE);
+        }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "44");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhinengyiliao.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter15.notifyDataSetChanged();
+                    ptr_arrlist_zhinengyiliao.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhinengyiliao.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getvrar() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_vrar.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "48");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_vrar.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter17.notifyDataSetChanged();
+                    ptr_arrlist_vrar.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_vrar.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhanhuixinxi() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_zhanhuixinxi.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "38");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhanhuixinxi.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter18.notifyDataSetChanged();
+                    ptr_arrlist_zhanhuixinxi.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhanhuixinxi.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getpeixunxinxi() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_peixunxinxi.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "39");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_peixunxinxi.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter19.notifyDataSetChanged();
+                    ptr_arrlist_peixunxinxi.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_peixunxinxi.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhichaofangan() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_zhichaofangan.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "16");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhichaofangan.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter20.notifyDataSetChanged();
+                    ptr_arrlist_zhichaofangan.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhichaofangan.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhichaoanli() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_zhichaoanli.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "45");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhichaoanli.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter17.notifyDataSetChanged();
+                    ptr_arrlist_zhichaoanli.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhichaoanli.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhinengjiankang() {if (page == 1 && pullFlag == false) {
+        rl_hide_zhinengjiankang.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "43");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhinengjiankang.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter14.notifyDataSetChanged();
+                    ptr_arrlist_zhinengjiankang.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhinengjiankang.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getwurenji() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_wurenji.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "46");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_wurenji.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter12.notifyDataSetChanged();
+                    ptr_arrlist_wurenji.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_wurenji.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhinengyanglao() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_zhinengyanglao.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "42");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhinengyanglao.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter13.notifyDataSetChanged();
+                    ptr_arrlist_zhinengyanglao.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhinengyanglao.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhihuishequ() {if (page == 1 && pullFlag == false) {
+        rl_hide_zhihuishequ.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "41");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhihuishequ.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter11.notifyDataSetChanged();
+                    ptr_arrlist_zhihuishequ.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhihuishequ.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getzhihuichengshi() {if (page == 1 && pullFlag == false) {
+        rl_hide_zhihuichengshi.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "40");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_zhihuichengshi.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter10.notifyDataSetChanged();
+                    ptr_arrlist_zhihuichengshi.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_zhihuichengshi.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getwulianwang() {if (page == 1 && pullFlag == false) {
+        rl_hide_wulianwang.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "47");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_wulianwang.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter9.notifyDataSetChanged();
+                    ptr_arrlist_wulianwang.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_wulianwang.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void gethangyejishu() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_hangyejishu.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "36");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_hangyejishu.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter8.notifyDataSetChanged();
+                    ptr_arrlist_hangyejishu.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_hangyejishu.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void gethangyebiaozhun() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_hangyebiaozhun.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "32");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_hangyebiaozhun.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter7.notifyDataSetChanged();
+                    ptr_arrlist_hangyebiaozhun.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_hangyebiaozhun.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getpinpaizixun() {if (page == 1 && pullFlag == false) {
+        rl_hide_pinpaizixun.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "19");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_pinpaizixun.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter6.notifyDataSetChanged();
+                    ptr_arrlist_pinpaizixun.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_pinpaizixun.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void getvideo() {
+        if (page == 1 && pullFlag == false) {
+        rl_hide_video.setVisibility(View.VISIBLE);
+    }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "15");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_video.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter5.notifyDataSetChanged();
+                    ptr_arrlist_video.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_video.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+    private void getcanpinpince() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_canpinpince.setVisibility(View.VISIBLE);
+        }
+        RequestParams params = new RequestParams(Constant.ArticleList);
+        params.addBodyParameter("key", "linchom");
+        params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("cat_id", "14");
+        params.addBodyParameter("page", page + "");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                rl_hide_canpinpince.setVisibility(View.GONE);
+                if (page == 1) {
+                    arrList.clear();
+                }
+                Log.i(TAG1, result + "");
+                Gson gson = new Gson();
+                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                ArticleListBean.Data articleData = bean.data;
+                pageCount = Integer.parseInt(articleData.page_count);
+                Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList);
+                if (page <= pageCount) {
+                    arrList.addAll(articleData.getArticle_list());
+                    adapter4.notifyDataSetChanged();
+                    ptr_arrlist_canpinpince.onRefreshComplete();
+                } else {
+                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                    ptr_arrlist_canpinpince.onRefreshComplete();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i(TAG1, "exexex" + ex + "");
+//                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
     }
     private void gettuijian() {
         Log.i("aaaaa","数据拿到");
@@ -768,7 +2451,7 @@ public class HomeFragment extends Fragment {
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
-        params.addBodyParameter("cat_id", "14");
+        params.addBodyParameter("cat_id", "18");
         params.addBodyParameter("page", page + "");
         org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
