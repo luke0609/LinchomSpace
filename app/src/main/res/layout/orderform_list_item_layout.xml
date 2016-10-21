@@ -116,8 +116,20 @@
             android:textSize="14sp"
             android:layout_centerVertical="true"
             android:textColor="#ff3300"
-            android:text="付款付款"
             android:background="@drawable/orderform_btn_shape"
+            android:layout_width="70dp"
+            android:layout_height="35dp" />
+
+
+
+        <Button
+            android:id="@+id/btn_orderform_left"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/btn_orderform_right"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:background="@drawable/goods_catebutton_shape"
             android:layout_width="70dp"
             android:layout_height="35dp" />
 

@@ -39,6 +39,9 @@ import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 public class AllOrderFragment extends Fragment {
 
 
+
+
+
     private static final String TAG = "AllOrderFragment";
     View view;
     private PullToRefreshListView ptr_goods_orderform;
@@ -53,6 +56,11 @@ public class AllOrderFragment extends Fragment {
     private int totalNum = 0;
 
     private Double totalPrice= 0.0;
+
+
+    private String orderStatusInfo ;
+    private String shippingStatusInfo;
+    private String payStatusInfo ;
 
     @Nullable
     @Override
@@ -148,6 +156,8 @@ public class AllOrderFragment extends Fragment {
 
                 Button btn_orderform_right = viewHolder.getViewById(R.id.btn_orderform_right);
 
+                Button btn_orderform_left = viewHolder.getViewById(R.id.btn_orderform_left);
+
                 totalNum=0;
                 totalPrice=0.0;
 
@@ -178,23 +188,50 @@ public class AllOrderFragment extends Fragment {
 
                     tv_orderform_orderstatus.setText("等待买家付款");
 
+                    //取消订单    付款
+
+                    btn_orderform_left.setText("取消订单");
+
+                    btn_orderform_right.setText("付款");
+
 
                 }else if("2".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //取消    取消订单     买家取消订单
                     tv_orderform_orderstatus.setText("买家取消订单");
 
+                    // 无   无
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
                 }else if("1".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //确认    确认订单     买家已经确认订单
                     tv_orderform_orderstatus.setText("买家已经确认订单");
+
+                    //无 无
+
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
                 }else if("1".equals(orderStatus)&&"0".equals(shippingStatus)&&"2".equals(payStatus)){
                     //已付款             买家已经付款
                     tv_orderform_orderstatus.setText("买家已经付款");
 
+                    //无  退款
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+
+                    btn_orderform_right.setText("退款");
+
+
 
                 }else if("1".equals(orderStatus)&&"3".equals(shippingStatus)&&"2".equals(payStatus)){
                     //配货中    待发货          等待卖家发货
                     tv_orderform_orderstatus.setText("等待卖家发货");
+
+                    //无  退款
+
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+
+                    btn_orderform_right.setText("退款");
 
 
                 }else if("5".equals(orderStatus)&&"1".equals(shippingStatus)&&"2".equals(payStatus)){
@@ -202,17 +239,39 @@ public class AllOrderFragment extends Fragment {
                     //已发货               等待买家收货
                     tv_orderform_orderstatus.setText("等待买家收货");
 
+                    //无    确认收货
+
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+
+                    btn_orderform_right.setText("确认收货");
+
                 }else if("5".equals(orderStatus)&&"2".equals(shippingStatus)&&"2".equals(payStatus)){
                     //已收货              等待买家评价
                     tv_orderform_orderstatus.setText("等待买家评价");
+
+                    //退货    评价
+
+                    btn_orderform_left.setText("退货");
+
+                    btn_orderform_right.setText("评价");
 
                 }else if("4".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //退货                退货处理
                     tv_orderform_orderstatus.setText("退货处理");
 
+                    //  无   无
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
+
                 }else{
                     //订单信息
                     tv_orderform_orderstatus.setText("订单信息");
+
+                    //  无    无
+
+                    btn_orderform_left.setVisibility(View.INVISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
                 }
 
                 GoodsCommonAdapter<GoodsOrderFormBean.OrderInfo> orderInfoGoodsCommonAdapter =new GoodsCommonAdapter<GoodsOrderFormBean.OrderInfo>(getActivity(),orderForm.order_goods,R.layout.goods_order_list_item) {
@@ -223,6 +282,18 @@ public class AllOrderFragment extends Fragment {
 
                         GoodsXUtilsImage.display(iv_goods_order_img,orderInfo.goods_img);
 
+                       TextView tv_goods_order_goodsName=   viewHolder.getViewById(R.id.tv_goods_order_goodsName);
+
+                       TextView tv_goods_order_price = viewHolder.getViewById(R.id.tv_goods_order_price);
+
+                       TextView tv_goods_order_goodsNum= viewHolder.getViewById(R.id.tv_goods_order_goodsNum);
+
+
+                        tv_goods_order_goodsName.setText(orderInfo.goods_name);
+
+                        tv_goods_order_price.setText(orderInfo.goods_price);
+
+                        tv_goods_order_goodsNum.setText(orderInfo.goods_number);
 
 
 
@@ -256,11 +327,26 @@ public class AllOrderFragment extends Fragment {
 
     private void getData() {
 
+        //orderStatusInfo ;
+        //shippingStatusInfo;
+       // payStatusInfo ;
+
         RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php");
 
         //?act=ordersinfo&user_id=12
         requestParams.addQueryStringParameter("act","ordersinfo");
         requestParams.addQueryStringParameter("user_id","12");
+
+        //order_status
+        //shipping_status
+        //pay_status
+
+
+        requestParams.addQueryStringParameter("order_status",orderStatusInfo+"");
+
+        requestParams.addQueryStringParameter("shipping_status",shippingStatusInfo+"");
+
+        requestParams.addQueryStringParameter("pay_status",payStatusInfo+"");
 
 
 
