@@ -180,6 +180,16 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
         vp_goods_orderfrom_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+
+
                 switch (position){
                     case 0:
                         rb_goods_orderform_one.setChecked(true);
@@ -218,10 +228,8 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
 
 
-            }
 
-            @Override
-            public void onPageSelected(int position) {
+
 
             }
 
@@ -238,30 +246,30 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
                 switch (checkedId){
                     case R.id.rb_goods_orderform_one:
-                       // vp_goods_orderfrom_pager.setCurrentItem(0);
+                        vp_goods_orderfrom_pager.setCurrentItem(0);
                         break;
                     case R.id.rb_goods_orderform_two:
-                       // vp_goods_orderfrom_pager.setCurrentItem(1);
+                        vp_goods_orderfrom_pager.setCurrentItem(1);
 
                         break;
                     case R.id.rb_goods_orderform_three:
-                      // vp_goods_orderfrom_pager.setCurrentItem(2);
+                       vp_goods_orderfrom_pager.setCurrentItem(2);
 
                         break;
                     case R.id.rb_goods_orderform_four:
-                      //  vp_goods_orderfrom_pager.setCurrentItem(3);
+                        vp_goods_orderfrom_pager.setCurrentItem(3);
 
                         break;
                     case R.id.rb_goods_orderform_five:
-                       // vp_goods_orderfrom_pager.setCurrentItem(4);
+                        vp_goods_orderfrom_pager.setCurrentItem(4);
 
                         break;
                     case R.id.rb_goods_orderform_six:
-                       // vp_goods_orderfrom_pager.setCurrentItem(5);
+                        vp_goods_orderfrom_pager.setCurrentItem(5);
 
                         break;
                     case R.id.rb_goods_orderform_seven:
-                        //vp_goods_orderfrom_pager.setCurrentItem(6);
+                        vp_goods_orderfrom_pager.setCurrentItem(6);
 
                         break;
 
