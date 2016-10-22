@@ -124,9 +124,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         // recordsAdapter.notifyDataSetChanged();
 
                         //根据关键词去搜索
-                        Intent intent=new Intent(SearchActivity.this, ChatDetilActivity.class);
-                        intent.putExtra("type",1);
-                        startActivity(intent);
+//                        Intent intent=new Intent(SearchActivity.this, ChatDetilActivity.class);
+//                        intent.putExtra("type",1);
+//                        startActivity(intent);
                     } else {
                         Toast.makeText(SearchActivity.this, "搜索内容不能为空", Toast.LENGTH_SHORT).show();
                     }

@@ -145,6 +145,8 @@
             android:name=".shopping.GoodsAllOrderActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".mine.Mydisclose"></activity>
+        <activity android:name=".search.SearchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -154,7 +156,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".chat.KidChatDetilActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" ></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
+        </activity>
     </application>
 
 </manifest>
