@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.pojo.GoodsListNewBean;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
@@ -80,7 +81,17 @@ public class PuBuAdapter extends BaseAdapter {
 
         vh.tv_goodslist_pubu_price.setText(lists.get(position).shop_price);
 
-        GoodsXUtilsImage.display(vh.iv_goodslist_pubu_img,"http://linchom.com//"+lists.get(position).goods_thumb);
+
+        String imgUrlChange = lists.get(position).goods_thumb;
+
+        if("h".equals(imgUrlChange.substring(0,1))){
+
+        }else{
+            imgUrlChange= GoodsHttpUtils.IMGURL+imgUrlChange;
+        }
+
+
+        GoodsXUtilsImage.display(vh.iv_goodslist_pubu_img,imgUrlChange);
 
 
         return convertView;
