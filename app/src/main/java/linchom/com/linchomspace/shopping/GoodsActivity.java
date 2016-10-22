@@ -447,24 +447,24 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         //bundle.putString("goodsPrice",goodsPrice);
         //bundle.putString("goodsImg",goodsImg);
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, GoodsHttpUtils.IMGURL+goodsImg,goodsName,goodsPrice));
+        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
 
 
@@ -603,11 +603,39 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 GoodsBean goodsBean = gson.fromJson(result, GoodsBean.class);
 
 
+                String imgUrlChange = goodsBean.data.goods_thumb;
+
+                if("h".equals(imgUrlChange.substring(0,1))){
+
+                }else{
+                    imgUrlChange=GoodsHttpUtils.IMGURL+imgUrlChange;
+                }
 
 
-                goodsPicList.add(GoodsHttpUtils.IMGURL+goodsBean.data.goods_thumb);
-                goodsPicList.add(GoodsHttpUtils.IMGURL+goodsBean.data.goods_img);
-                goodsPicList.add(GoodsHttpUtils.IMGURL+goodsBean.data.original_img);
+
+
+                String imgUrlChange1 = goodsBean.data.goods_img;
+                if("h".equals(imgUrlChange1.substring(0,1))){
+
+                }else{
+                    imgUrlChange1=GoodsHttpUtils.IMGURL+imgUrlChange1;
+                }
+
+
+                String imgUrlChange2 = goodsBean.data.original_img;
+                if("h".equals(imgUrlChange2.substring(0,1))){
+
+                }else{
+                    imgUrlChange2=GoodsHttpUtils.IMGURL+imgUrlChange2;
+                }
+
+
+
+
+
+                goodsPicList.add(imgUrlChange);
+                goodsPicList.add(imgUrlChange1);
+                goodsPicList.add(imgUrlChange2);
 
                 Log.i(TAG,"picture"+GoodsHttpUtils.IMGURL+goodsBean.data.goods_thumb);
 

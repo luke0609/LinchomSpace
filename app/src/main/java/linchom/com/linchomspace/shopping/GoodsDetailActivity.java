@@ -10,6 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
@@ -71,7 +72,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
 
                     //Log.i("aaaaa","改变的"+str2);
 
-                    s="http://linchom.com/"+s;
+                    s= GoodsHttpUtils.IMGURL+s;
 
                 }
 

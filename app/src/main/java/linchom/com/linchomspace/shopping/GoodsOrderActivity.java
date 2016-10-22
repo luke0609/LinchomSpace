@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
@@ -104,7 +105,19 @@ public class GoodsOrderActivity extends AppCompatActivity {
                 tv_goods_order_price.setText(goodsOrderBean.goodsPrice);
                 tv_goods_order_goodsNum.setText(goodsOrderBean.goodsNum);
 
-                GoodsXUtilsImage.display(iv_goods_order_img,goodsOrderBean.goodsImg);
+
+                String imgUrlChange = goodsOrderBean.goodsImg;
+                Log.i(TAG,"imgUrlChange.substring(0,1)"+imgUrlChange.substring(0,1));
+
+                if("h".equals(imgUrlChange.substring(0,1))){
+
+                }else{
+                    imgUrlChange= GoodsHttpUtils.IMGURL+imgUrlChange;
+                }
+
+                Log.i(TAG,"imgUrlChange"+imgUrlChange);
+
+                GoodsXUtilsImage.display(iv_goods_order_img,imgUrlChange);
 
 
 
