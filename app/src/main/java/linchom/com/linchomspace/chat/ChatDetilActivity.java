@@ -19,6 +19,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.twotoasters.jazzylistview.JazzyListView;
 import com.twotoasters.jazzylistview.effects.CardsEffect;
+import com.twotoasters.jazzylistview.effects.CurlEffect;
+import com.twotoasters.jazzylistview.effects.FadeEffect;
+import com.twotoasters.jazzylistview.effects.FlipEffect;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -67,6 +70,7 @@ public class ChatDetilActivity extends AppCompatActivity {
     String topicId;
     CommonAdapter<TopicDetialBean.DataBean.TopicCommentsBean> commentsAdapter;
     public final ArrayList<TopicDetialBean.DataBean.TopicCommentsBean> commentsList = new ArrayList<TopicDetialBean.DataBean.TopicCommentsBean>();
+    String parent_comment_username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,8 +178,11 @@ public class ChatDetilActivity extends AppCompatActivity {
                             }
                             rmk_tip.setText(position+1+"楼");
                             tv_name.setText(comments.getUser_name());
-
-                            tv_content.setText(comments.getContent());
+                            if (String.valueOf(comments.getParent_comment_username()).length()!=0){
+                                parent_comment_username=String.valueOf(comments.getParent_comment_username());
+                                tv_content.setText("回复@"+parent_comment_username+":"+comments.getContent());
+                            }
+                           else{ tv_content.setText(comments.getContent());}
                             if(commentsList.size()!=0) {
                                 remarkNum.setText(commentsList.size()+"");
                             }else{
