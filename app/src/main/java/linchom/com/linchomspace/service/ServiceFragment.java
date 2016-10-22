@@ -16,5 +16,6 @@ public class ServiceFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_service, container, false);
+
     }
 }
