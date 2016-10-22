@@ -1,5 +1,8 @@
 package linchom.com.linchomspace.homepage.Activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,8 +29,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -50,22 +51,20 @@ public class ArticleActivity extends AppCompatActivity {
     ImageButton ibCollect;
     @InjectView(R.id.ib_share)
     ImageButton ibShare;
-    @InjectView(R.id.activity_article)
-    RelativeLayout activityArticle;
+
     @InjectView(R.id.tv_comment)
     TextView tvComment;
-    @InjectView(R.id.rl_end)
-    RelativeLayout rlEnd;
-    @InjectView(R.id.rl_first)
-    RelativeLayout rlFirst;
+
     @InjectView(R.id.article_title)
     TextView articleTitle;
     @InjectView(R.id.webview)
     WebView webview;
-    @InjectView(R.id.sv_article)
-    ScrollView svArticle;
+
     @InjectView(R.id.rl_background_gray)
     RelativeLayout rlBackgroundGray;
+
+    @InjectView(R.id.article_back)
+    ImageButton articleBack;
     @InjectView(R.id.article_buy)
     ImageButton articleBuy;
     private SlideSelectView slideSelectView;
@@ -83,12 +82,13 @@ public class ArticleActivity extends AppCompatActivity {
     private WebSettings settings;
     boolean day = false;
     private EditText et_write_comment;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
+    private  RelativeLayout rl_article_titlebar;
+    private  RelativeLayout rl_article_bottombar;
+    private ScrollView sv_article;
+    private boolean isRunning = false;
+    private boolean isLoading=false;
+    private ObjectAnimator mHeaderAnimator;
+    private ObjectAnimator mBottomAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,13 +102,17 @@ public class ArticleActivity extends AppCompatActivity {
         Log.i("aaa", article_id);
         initView();
         initData();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        bindEvents();
+
+
     }
 
-    private void initView() {
 
+
+    private void initView() {
+        sv_article = ((ScrollView) findViewById(R.id.sv_article));
+        rl_article_bottombar = ((RelativeLayout) findViewById(R.id.rl_article_bottombar));
+        rl_article_titlebar = ((RelativeLayout) findViewById(R.id.rl_article_titlebar));
         article_title = ((TextView) findViewById(R.id.article_title));
         ll_more = ((LinearLayout) findViewById(R.id.ll_more));
         ll_fontselector = ((LinearLayout) findViewById(R.id.ll_fontselector));
@@ -160,6 +164,11 @@ public class ArticleActivity extends AppCompatActivity {
                 ArticleInfoBean bean = gson.fromJson(result, ArticleInfoBean.class);
                 // ArticleListBean.Article_list article=bean.data.getArticle_list().get(0).title;
                 // String info=bean.data.getArticle_list().get(0).title;
+                if(bean.getData().getGoods_id()=="0"){
+                    articleBuy.setVisibility(View.GONE);
+                }
+                Log.i("aaaaaaa",bean.getData().getGoods_id());
+
                 String info = bean.getData().getTitle();
                 System.out.println(info);
                 article_title.setText(info);
@@ -187,10 +196,12 @@ public class ArticleActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             if (webView.canGoBack())
                 webView.goBack();
-            else
+                else
                 finish();
             return true;
         }
@@ -310,7 +321,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.more, R.id.ib_commemt, R.id.ib_collect, R.id.ib_share, R.id.tv_comment, R.id.article_buy})
+    @OnClick({R.id.more, R.id.ib_commemt, R.id.ib_collect, R.id.ib_share, R.id.tv_comment, R.id.article_buy,R.id.article_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.more:
@@ -327,17 +338,36 @@ public class ArticleActivity extends AppCompatActivity {
                 break;
             case R.id.article_buy:
                 break;
+            case R.id.article_back:
+                this.finish();
+                break;
         }
     }
 
-    private void showCommentPopupWindow(View view) {
+    private void showCommentPopupWindow(final View view) {
         rlBackgroundGray.setVisibility(View.VISIBLE);
         final View contentView = LayoutInflater.from(ArticleActivity.this).inflate(
                 R.layout.article_comment_popupwindow, null);
         et_write_comment = ((EditText) contentView.findViewById(R.id.et_write_comment));
         et_write_comment.requestFocus();
+
         InputMethodManager imm = (InputMethodManager) et_write_comment.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+//        imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+ //       ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(et_write_comment,0);
+      //  InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        //这里给它设置了弹出的时间，
+        imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
+        //隐藏软键盘
+        //imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
+//       final NoTouchLinearLayout ll_comment_popup = (NoTouchLinearLayout) contentView.findViewById(R.id.ll_comment_popup);
+//        ll_comment_popup.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(!hasFocus){
+//                    ll_comment_popup.setVisibility(View.GONE);
+//                }
+//            }
+//        });
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
@@ -358,6 +388,7 @@ public class ArticleActivity extends AppCompatActivity {
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+
                 rlBackgroundGray.setVisibility(View.GONE);
             }
         });
@@ -371,5 +402,70 @@ public class ArticleActivity extends AppCompatActivity {
         // popupWindow.showAsDropDown(view);
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
+    private void bindEvents() {
+        sv_article.setOnTouchListener(new View.OnTouchListener() {
+            private float mEndY;
+            private float mStartY;
+            private int direction;//0表示向上，1表示向下
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        mStartY = event.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        mEndY = event.getY();
+                        float v1 = mEndY - mStartY;
+                        if (v1 < -3 && !isRunning&& direction == 1) {
+                            direction = 0;
+                            showBar();
+                            mStartY = mEndY;
+                            return false;
+                        } else if (v1 >3 && !isRunning && direction == 0) {
+                            direction = 1;
+                            hideBar();
+                            mStartY = mEndY;
+                            return false;
+                        }
+                        mStartY = mEndY;
+
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        break;
+                }
+                return false;
+            }
+        });
+
+
     }
+
+    private void showBar() {
+       mHeaderAnimator = ObjectAnimator.ofFloat(rl_article_titlebar, "translationY", -rl_article_titlebar.getHeight());
+       mBottomAnimator = ObjectAnimator.ofFloat(rl_article_bottombar, "translationY", rl_article_bottombar.getHeight());
+       mHeaderAnimator.setDuration(300).start();
+        mBottomAnimator.setDuration(300).start();
+        mHeaderAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                isRunning = true;
+            }
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                isRunning = false;
+            }
+        });
+
+    }
+    private void hideBar() {
+        mHeaderAnimator = ObjectAnimator.ofFloat(rl_article_titlebar, "translationY", 0);
+        mBottomAnimator = ObjectAnimator.ofFloat(rl_article_bottombar,"translationY", 0);
+
+        mHeaderAnimator.setDuration(300).start();
+       mBottomAnimator.setDuration(300).start();
+
+    }
+}
 

@@ -348,6 +348,19 @@ public class HomeFragment extends Fragment {
         lv_hangyezixun = ptr_arrlist_hangyezixun.getRefreshableView();
         adapter2 = new MyAdapter();
         lv_hangyezixun.setAdapter(adapter2);
+        lv_hangyezixun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private TextView tv_title;
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("article_id",arrList.get(position-2).article_id);
+                Log.i("wenzhang","article_id");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
         listView.add(view2);
         View view3 = inflate(getActivity(), R.layout.fragment_home_canpinzixun, null);
         pb_progressBar= (CircularProgress) view3.findViewById(R.id.pb_progressBar);
@@ -356,6 +369,19 @@ public class HomeFragment extends Fragment {
         lv_canpinzixun = ptr_arrlist_canpinzixun.getRefreshableView();
         adapter3 = new MyAdapter();
         lv_canpinzixun.setAdapter(adapter3);
+        lv_canpinzixun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private TextView tv_title;
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("article_id",arrList.get(position-2).article_id);
+                Log.i("wenzhang","article_id");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
         listView.add(view3);
         View view4 = inflate(getActivity(), R.layout.fragment_home_canpinpince, null);
         pb_progressBar= (CircularProgress) view4.findViewById(R.id.pb_progressBar);
@@ -518,6 +544,19 @@ public class HomeFragment extends Fragment {
         lv_zhichaofangan= ptr_arrlist_zhichaofangan.getRefreshableView();
         adapter20 = new MyAdapter();
         lv_zhichaofangan.setAdapter(adapter20);
+        lv_zhichaofangan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private TextView tv_title;
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("article_id",arrList.get(position-1).article_id);
+                Log.i("wenzhang","article_id");
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+            }
+        });
         listView.add(view20);
         View view21 = inflate(getActivity(), R.layout.fragment_home_zhichaoanli, null);
         pb_progressBar= (CircularProgress) view21.findViewById(R.id.pb_progressBar);

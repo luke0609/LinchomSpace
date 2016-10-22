@@ -75,6 +75,7 @@ public class ArticleInfoBean {
     }
 
     public static class Data {
+        private String goods_id;
         private String article_id;
         private String cat_id;
         private String title;
@@ -95,6 +96,14 @@ public class ArticleInfoBean {
         private String article_url;
         private String article_source;
         private String status;
+
+        public String getGoods_id() {
+            return goods_id;
+        }
+
+        public void setGoods_id(String goods_id) {
+            this.goods_id = goods_id;
+        }
 
         public String getArticle_id() {
             return article_id;

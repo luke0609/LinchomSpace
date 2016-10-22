@@ -160,6 +160,9 @@
         <activity android:name=".mine.Mydisclose">
 
         </activity>
+        <activity android:name=".search.SearchActivity">
+
+        </activity>
 
     </application>
 
