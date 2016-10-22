@@ -80,7 +80,7 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment allOrderFragment =new AllOrderFragment();
         Bundle bundle =new Bundle();
-        orderStatus="0";
+        orderStatus="2";
         shippingStatus="0";
         payStatus="0";
         bundle.putString("orderStatus",orderStatus);
@@ -91,9 +91,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment unPayFragment =new AllOrderFragment();
         Bundle bundle1 =new Bundle();
-        orderStatus="";
-        shippingStatus="";
-        payStatus="";
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
         bundle.putString("orderStatus",orderStatus);
         bundle.putString("shippingStatus",shippingStatus);
         bundle.putString("payStatusInfo",payStatus);
@@ -102,9 +102,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment alreadyPayFragment =new AllOrderFragment();
         Bundle bundle2 =new Bundle();
-        orderStatus="";
-        shippingStatus="";
-        payStatus="";
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
         bundle.putString("orderStatus",orderStatus);
         bundle.putString("shippingStatus",shippingStatus);
         bundle.putString("payStatusInfo",payStatus);
@@ -112,9 +112,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment unSendFragment =new AllOrderFragment();
         Bundle bundle3 =new Bundle();
-        orderStatus="";
-        shippingStatus="";
-        payStatus="";
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
         bundle.putString("orderStatus",orderStatus);
         bundle.putString("shippingStatus",shippingStatus);
         bundle.putString("payStatusInfo",payStatus);
@@ -122,9 +122,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment unReceivedFragment =new AllOrderFragment();
         Bundle bundle4 =new Bundle();
-        orderStatus="";
-        shippingStatus="";
-        payStatus="";
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
         bundle.putString("orderStatus",orderStatus);
         bundle.putString("shippingStatus",shippingStatus);
         bundle.putString("payStatusInfo",payStatus);
@@ -132,9 +132,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment unEvaluateFragment =new AllOrderFragment();
         Bundle bundle5 =new Bundle();
-        orderStatus="";
-        shippingStatus="";
-        payStatus="";
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
         bundle.putString("orderStatus",orderStatus);
         bundle.putString("shippingStatus",shippingStatus);
         bundle.putString("payStatusInfo",payStatus);
@@ -142,9 +142,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         AllOrderFragment returnGoodsFragment =new AllOrderFragment();
         Bundle bundle6 =new Bundle();
-        orderStatus="";
-        shippingStatus="";
-        payStatus="";
+        orderStatus="0";
+        shippingStatus="0";
+        payStatus="0";
         bundle.putString("orderStatus",orderStatus);
         bundle.putString("shippingStatus",shippingStatus);
         bundle.putString("payStatusInfo",payStatus);

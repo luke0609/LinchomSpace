@@ -28,6 +28,7 @@ import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
+import linchom.com.linchomspace.shopping.pojo.JoinCartBean;
 import linchom.com.linchomspace.shopping.utils.PictureHandle;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
@@ -352,6 +353,62 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void toJoinCart() {
 
+        getCartData();
+
+
+    }
+
+    private void getCartData() {
+
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addQueryStringParameter("act","addcart");
+
+        requestParams.addQueryStringParameter("goods_id",goodsId+"");
+
+        requestParams.addQueryStringParameter("goods_number",et_goods_buyNum.getText()+"");
+
+
+        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Gson gson =new Gson();
+
+                JoinCartBean joinCartBean =  gson.fromJson(result, JoinCartBean.class);
+
+
+                String str = joinCartBean.data.session_id;
+
+
+                Log.i(TAG,"result"+joinCartBean.result);
+
+                Log.i(TAG,"str"+str);
+
+
+                Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
+
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+                Log.i(TAG,"ex"+ex);
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
 
 
 
