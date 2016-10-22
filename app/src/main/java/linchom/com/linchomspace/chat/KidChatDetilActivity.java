@@ -9,6 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.pojo.ResultBean;
 import linchom.com.linchomspace.chat.pojo.TopicDetialBean;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 
@@ -42,7 +50,8 @@ public class KidChatDetilActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @InjectView(R.id.rmk_tip)
     Button rmkTip;
-
+    String topic_id;
+    String parent_comment_username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +65,10 @@ public class KidChatDetilActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         comments = (TopicDetialBean.DataBean.TopicCommentsBean) intent.getSerializableExtra("comments");
         floor =  intent.getIntExtra("floor", 1);
-        System.out.println(floor);
+
         tvChatUsername.setText(comments.getUser_name());
+        parent_comment_username=comments.getUser_name();
+        System.out.println(parent_comment_username);
         if (comments.getAdd_time() != null) {
             int second = Integer.parseInt(String.valueOf(comments.getAdd_time()));
             String date = sdf.format(new Date(second * 1000L));
@@ -65,16 +76,58 @@ public class KidChatDetilActivity extends AppCompatActivity {
         }
         tvChatContent.setText(comments.getContent());
         rmkTip.setText(floor+"楼");
-
+        topic_id= comments.getTopic_id();
         etRemark.setHint("回复"+comments.getUser_name());
+    }
+    private void doRemark(){
+        String content= etRemark.getText().toString();
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
+        params.addQueryStringParameter("act", "add_topic_comments");
+        params.addQueryStringParameter("topic_id", topic_id);
+        params.addQueryStringParameter("user_id", 129+"");
+        params.addQueryStringParameter("content", content);
+        params.addQueryStringParameter("parent_comment_username",parent_comment_username);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+
+
+            @Override
+            public void onSuccess(String result) {
+                Gson gson = new Gson();
+                ResultBean bean = gson.fromJson(result, ResultBean.class);
+                if(bean.isData()){
+                    Toast.makeText(KidChatDetilActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+
+            }
+
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
     }
 
     @OnClick({R.id.iv_back, R.id.bt_remark})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
+                finish();
                 break;
             case R.id.bt_remark:
+                doRemark();
                 break;
         }
     }
