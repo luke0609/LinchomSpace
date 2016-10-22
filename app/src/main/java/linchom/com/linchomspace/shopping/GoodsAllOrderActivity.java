@@ -61,12 +61,12 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
         vp_goods_orderfrom_pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return null;
+                return fragmentList.get(position);
             }
 
             @Override
             public int getCount() {
-                return 0;
+                return fragmentList.size();
             }
         });
 
