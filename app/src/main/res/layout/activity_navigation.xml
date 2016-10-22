@@ -233,48 +233,7 @@
                     android:text="智巢案例"/>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="15dp"
-                >
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="其它"
-                    android:textColor="#000" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="行业资讯"
-                    android:visibility="invisible"/>
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="产品资讯"
-                    android:visibility="invisible"/>
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="视频"
-                    android:visibility="invisible"/>
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="25dp">
@@ -429,6 +388,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
+                    android:visibility="invisible"
                     android:text="其它"/>
 
                 <Button
@@ -528,47 +488,7 @@
                     android:text="传感器"/>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="其它"
-                    android:textColor="#000" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="VR/AR"
-                    android:visibility="invisible"/>
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="协议标准"
-                    android:visibility="invisible"/>
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="需求对接"
-                    android:visibility="invisible"/>
-
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="25dp">
@@ -727,6 +647,7 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="其它"
+                    android:visibility="invisible"
                     />
 
                 <Button
@@ -808,6 +729,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
+                    android:visibility="invisible"
                     android:text="其它"/>
 
                 <Button
@@ -914,6 +836,7 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="其它"
+                    android:visibility="invisible"
                     />
 
             </LinearLayout>
@@ -1004,6 +927,7 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="其它"
+                    android:visibility="invisible"
                     />
 
             </LinearLayout>
@@ -1118,6 +1042,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
+                    android:visibility="invisible"
                     android:text="其它"/>
 
                 <Button

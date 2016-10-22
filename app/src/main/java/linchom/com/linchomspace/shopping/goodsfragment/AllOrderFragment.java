@@ -349,11 +349,11 @@ public class AllOrderFragment extends Fragment {
         //pay_status
 
 
-        requestParams.addQueryStringParameter("order_status",orderStatusInfo+"");
+        requestParams.addQueryStringParameter("order_status","2");
 
-        requestParams.addQueryStringParameter("shipping_status",shippingStatusInfo+"");
+        requestParams.addQueryStringParameter("shipping_status","0");
 
-        requestParams.addQueryStringParameter("pay_status",payStatusInfo+"");
+        requestParams.addQueryStringParameter("pay_status","0");
 
 
 

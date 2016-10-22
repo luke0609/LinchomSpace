@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true">
     <LinearLayout
-        android:background="#7577f4"
+        android:background="#262B4D"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/linear"
