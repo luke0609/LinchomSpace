@@ -80,6 +80,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private  String  goodsName;
 
     private  String  goodsPrice;
+    private Button btn_goods_joinCart;
 
 
     @Override
@@ -135,6 +136,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         btn_goods_buyNow = ((Button) findViewById(R.id.btn_goods_buyNow));
 
         iv_gooods_cart = ((ImageView) findViewById(R.id.iv_gooods_cart));
+
+        btn_goods_joinCart = ((Button) findViewById(R.id.btn_goods_joinCart));
 
 
     }
@@ -265,6 +268,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
         iv_gooods_cart.setOnClickListener(this);
+        btn_goods_joinCart.setOnClickListener(this);
 
 
     }
@@ -335,10 +339,21 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 toCart();
 
                 break;
+            case R.id.btn_goods_joinCart:
+                toJoinCart();
+
+                break;
 
 
 
         }
+
+    }
+
+    private void toJoinCart() {
+
+
+
 
     }
 

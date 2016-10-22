@@ -26,6 +26,7 @@
 
 
     <RadioGroup
+
         android:id="@+id/rg_goods_orderfrom"
         android:layout_below="@id/bar_orderform_title"
         android:orientation="horizontal"
@@ -35,9 +36,10 @@
         >
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_one"
             android:textColor="@drawable/order_radbtn_color_selector"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="13sp"
 
             android:text="全部"
             android:button="@null"
@@ -49,11 +51,13 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_two"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="13sp"
 
             android:text="待付款"
             android:button="@null"
@@ -65,11 +69,36 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_three"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="13sp"
+
+            android:text="已付款"
+            android:button="@null"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </RadioButton>
+
+
+
+
+
+
+        <RadioButton
+            android:id="@+id/rb_goods_orderform_four"
+
+            android:textColor="@drawable/order_radbtn_color_selector"
+
+
+            android:gravity="center"
+            android:textSize="13sp"
 
             android:text="待发货"
 
@@ -82,10 +111,12 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_five"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="13sp"
 
             android:text="待收货"
 
@@ -99,10 +130,12 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_six"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="13sp"
 
             android:text="待评价"
 
@@ -116,11 +149,13 @@
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/rb_goods_orderform_seven"
+
             android:textColor="@drawable/order_radbtn_color_selector"
 
 
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="13sp"
 
             android:text="退款"
 

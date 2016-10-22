@@ -20,4 +20,28 @@
         <item>其他</item>
 
     </string-array>
+    <string-array name="Topic">
+                
+        <item>智能家居</item>
+                
+        <item>智能健康</item>
+                
+        <item>智能照管</item>
+                
+        <item>产品推荐</item>
+                
+        <item>智能社区</item>
+                
+        <item>工程技术</item>
+                
+        <item>硬件开发</item>
+        <item>机器人</item>
+        <item>VR/AR</item>
+        <item>协议标准</item>
+        <item>需求对接</item>
+        <item>品牌交流</item>
+        <item>提问回答</item>
+        <item>其他</item>
+            
+    </string-array>
 </resources>
