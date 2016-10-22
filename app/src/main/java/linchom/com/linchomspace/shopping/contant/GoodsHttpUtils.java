@@ -6,6 +6,9 @@ package linchom.com.linchomspace.shopping.contant;
 
 public class GoodsHttpUtils {
 
+
+    public static  final String SHOPURL ="http://app.linchom.com/appapi.php";
+
     public static  final String GOODSLISTURL="http://app.linchom.com/appProduct.php?type=goodslist&act=list";
 
     public static  final String KEY="linchom";
