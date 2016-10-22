@@ -33,10 +33,11 @@ import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 
 /**
- * Created by Administrator on 2016/10/20.
+ * Created by Administrator on 2016/10/22.
  */
 
-public class UnPayFagment extends Fragment {
+public class AlreadyPayFragment extends Fragment {
+
 
 
 
@@ -65,8 +66,10 @@ public class UnPayFagment extends Fragment {
 
     private int totalPage=1;
 
-
     private String userId;
+
+
+
 
     @Nullable
     @Override
@@ -75,7 +78,6 @@ public class UnPayFagment extends Fragment {
         view = inflater.inflate(R.layout.goods_orderform_layout,null);
         Bundle bundle =getArguments();
         userId=bundle.getString("userId");
-
 
 
         initView();
@@ -356,11 +358,11 @@ public class UnPayFagment extends Fragment {
         requestParams.addQueryStringParameter("page",page+"");
 
 
-        requestParams.addQueryStringParameter("order_status","0");
+        requestParams.addQueryStringParameter("order_status","1");
 
         requestParams.addQueryStringParameter("shipping_status","0");
 
-        requestParams.addQueryStringParameter("pay_status","0");
+        requestParams.addQueryStringParameter("pay_status","2");
 
 
 

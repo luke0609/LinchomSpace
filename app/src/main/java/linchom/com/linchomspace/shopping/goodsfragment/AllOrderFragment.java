@@ -42,6 +42,8 @@ public class AllOrderFragment extends Fragment {
 
 
 
+
+
     private static final String TAG = "AllOrderFragment";
     View view;
     private PullToRefreshListView ptr_goods_orderform;
@@ -57,10 +59,12 @@ public class AllOrderFragment extends Fragment {
 
     private Double totalPrice= 0.0;
 
+    private int page = 1;
 
-    private String orderStatusInfo ;
-    private String shippingStatusInfo;
-    private String payStatusInfo ;
+    private int totalPage=1;
+
+    private String userId;
+
 
     @Nullable
     @Override
@@ -68,12 +72,8 @@ public class AllOrderFragment extends Fragment {
 
         view = inflater.inflate(R.layout.goods_orderform_layout,null);
 
-
-        Bundle bundle = getArguments();
-        orderStatusInfo= bundle.getString("orderStatus");
-        shippingStatusInfo= bundle.getString("shippingStatus");
-        payStatusInfo= bundle.getString("payStatus");
-
+        Bundle bundle =getArguments();
+        userId=bundle.getString("userId");
 
 
         initView();
@@ -82,7 +82,6 @@ public class AllOrderFragment extends Fragment {
 
 
         initEvent();
-
 
 
         return view;
@@ -127,9 +126,15 @@ public class AllOrderFragment extends Fragment {
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
+                    page=1;
+
+                    getData();
+
 
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+                    page++;
+                    getData();
 
 
 
@@ -342,19 +347,21 @@ public class AllOrderFragment extends Fragment {
 
         //?act=ordersinfo&user_id=12
         requestParams.addQueryStringParameter("act","ordersinfo");
-        requestParams.addQueryStringParameter("user_id","12");
+        requestParams.addQueryStringParameter("user_id",userId);
 
-        //order_status
-        //shipping_status
-        //pay_status
+        //page
 
+        requestParams.addQueryStringParameter("page",page+"");
 
-        requestParams.addQueryStringParameter("order_status","2");
+/*
 
-        requestParams.addQueryStringParameter("shipping_status","0");
+        requestParams.addQueryStringParameter("order_status","");
 
-        requestParams.addQueryStringParameter("pay_status","0");
+        requestParams.addQueryStringParameter("shipping_status","");
 
+        requestParams.addQueryStringParameter("pay_status","");
+
+*/
 
 
         x.http().get(requestParams, new Callback.CommonCallback<String>() {
@@ -363,16 +370,36 @@ public class AllOrderFragment extends Fragment {
 
                 Log.i(TAG,"result"+result);
 
-                Gson gson =new Gson();
+                if(page<=totalPage) {
 
-                GoodsOrderFormBean goodsOrderFormBean = gson.fromJson(result, GoodsOrderFormBean.class);
+                    Gson gson = new Gson();
 
-                String str = goodsOrderFormBean.data.items.get(0).order_goods.get(0).goods_name;
-                Log.i(TAG,"str"+str);
+                    GoodsOrderFormBean goodsOrderFormBean = gson.fromJson(result, GoodsOrderFormBean.class);
 
-                orderFormList.addAll(goodsOrderFormBean.data.items);
 
-                orderFormAdapter.notifyDataSetChanged();
+                    totalPage = Integer.parseInt(goodsOrderFormBean.data.total_pages);
+
+                    if (page == 1) {
+
+                        orderFormList.clear();
+                    }
+
+                    orderFormList.addAll(goodsOrderFormBean.data.items);
+
+
+                    orderFormAdapter.notifyDataSetChanged();
+
+                    ptr_goods_orderform.onRefreshComplete();
+
+                }else{
+
+                    Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                    orderFormAdapter.notifyDataSetChanged();
+
+                    ptr_goods_orderform.onRefreshComplete();
+
+                }
+
 
 
             }
