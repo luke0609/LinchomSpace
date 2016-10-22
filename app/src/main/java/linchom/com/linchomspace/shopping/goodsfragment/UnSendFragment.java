@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsOrderFormBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
@@ -296,7 +297,17 @@ public class UnSendFragment extends Fragment {
 
                         ImageView iv_goods_order_img = viewHolder.getViewById(R.id.iv_goods_order_img);
 
-                        GoodsXUtilsImage.display(iv_goods_order_img,orderInfo.goods_img);
+
+                        String imgUrlChange = orderInfo.goods_img;
+
+                        if("h".equals(imgUrlChange.substring(0,1))){
+
+                        }else{
+                            imgUrlChange= GoodsHttpUtils.IMGURL+imgUrlChange;
+                        }
+
+
+                        GoodsXUtilsImage.display(iv_goods_order_img,imgUrlChange);
 
                         TextView tv_goods_order_goodsName=   viewHolder.getViewById(R.id.tv_goods_order_goodsName);
 
