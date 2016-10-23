@@ -101,7 +101,7 @@
         <activity
             android:name=".homepage.Activity.ArticleActivity"
             android:hardwareAccelerated="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".homepage.Activity.VideoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -132,9 +132,9 @@
         <activity
             android:name=".chat.ChatPublishActiviy"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".mine.Details_Activity" />
-        <activity android:name=".mine.Details_s_Activity" />
-        <activity android:name=".mine.Night_activity" />
+        <activity android:name=".mine.Details_Activity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".mine.Details_s_Activity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".mine.Night_activity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".shopping.TblinkActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -144,9 +144,10 @@
         <activity
             android:name=".shopping.GoodsAllOrderActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".mine.Mydisclose"></activity>
-        <activity android:name=".search.SearchActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".mine.Mydisclose" />
+        <activity
+            android:name=".search.SearchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -155,10 +156,16 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".chat.KidChatDetilActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-
-        </activity>
+        <activity
+            android:name=".chat.KidChatDetilActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".shopping.GoodsAreaActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".shopping.AddaddressActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
     </application>
 
 </manifest>

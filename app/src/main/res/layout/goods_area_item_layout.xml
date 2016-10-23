@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="#ffffff"
+
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/rl_goods_area_top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_goods_area_name"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:text="测试数据"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_goods_area_tel"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:text="18888888888"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@id/rl_goods_area_top"
+        android:id="@+id/rl_goods_area_mid"
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+
+        >
+
+        <TextView
+            android:id="@+id/tv_goods_area_address"
+
+           android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:text="中国 江苏省苏州市工业园区 江苏省苏州市工业园区仁爱路1号高博教育"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@id/rl_goods_area_mid"
+
+        android:id="@+id/rl_goods_area_bottom"
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+
+        >
+        <CheckBox
+            android:id="@+id/ck_goods_area_check"
+            android:textSize="16sp"
+
+            android:layout_centerVertical="true"
+            android:textColor="#808080"
+            android:text="默认收货地址"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+
+
+            />
+
+
+
+        <TextView
+            android:id="@+id/tv_goods_area_delete"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+
+            android:textColor="#808080"
+            android:layout_centerVertical="true"
+
+            android:text="删除"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_goods_area_modify"
+            android:layout_marginRight="10dp"
+
+            android:layout_toLeftOf="@id/tv_goods_area_delete"
+            android:textSize="16sp"
+
+            android:textColor="#808080"
+
+            android:layout_centerVertical="true"
+
+            android:text="编辑"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

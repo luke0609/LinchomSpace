@@ -37,6 +37,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private TextView tv_goods_order_totalPrice;
     private ImageView titlebar_back;
     private Button btn_goods_order_submitorder;
+    private ImageView iv_goods_order_area;
 
 
     @Override
@@ -82,6 +83,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
         titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
         btn_goods_order_submitorder = ((Button) findViewById(R.id.btn_goods_order_submitorder));
+
+        iv_goods_order_area = ((ImageView) findViewById(R.id.iv_goods_order_area));
 
 
     }
@@ -175,6 +178,16 @@ public class GoodsOrderActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
+            }
+        });
+
+        iv_goods_order_area.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(GoodsOrderActivity.this,GoodsAreaActivity.class);
+
+
+                startActivity(intent);
             }
         });
 

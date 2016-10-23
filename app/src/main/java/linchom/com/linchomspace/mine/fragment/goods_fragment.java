@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -33,37 +35,47 @@ import linchom.com.linchomspace.R;
  */
 public class goods_fragment extends Fragment {
 
-      private List<LovedInfoBean.GoodsMap> goodsList =new ArrayList<LovedInfoBean.GoodsMap>();
-      private GoodsCommonAdapter<LovedInfoBean.GoodsMap> goodsCommonAdapter;
+    private List<LovedInfoBean.GoodsMap> goodsList =new ArrayList<LovedInfoBean.GoodsMap>();
+    private GoodsCommonAdapter<LovedInfoBean.GoodsMap> goodsCommonAdapter;
+    private ListView lv_goods;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mine_goodsfragment, null);
+        //拿到控件
+        lv_goods = ((ListView) view.findViewById(R.id.lv_goods));
         initData();
         initEvent();
         return  view;
 
 
     }
-        public void initEvent(){
+    public void initEvent(){
+        //数据放进去
         goodsCommonAdapter=new GoodsCommonAdapter<LovedInfoBean.GoodsMap>(getActivity(),goodsList,R.layout.my_loved_activity) {
             @Override
             public void convert(GoodsViewHolder viewHolder, LovedInfoBean.GoodsMap goodsMap, int position) {
                 //ImageView iv_goodsList_item_image = ((ImageView) viewHolder.getViewById(R.id.iv_goodsList_item_image));
                 TextView market_price = ((TextView) viewHolder.getViewById(R.id.market_price));
 
-                 TextView shop_price = ((TextView) viewHolder.getViewById(R.id.shop_price));
+                TextView shop_price = ((TextView) viewHolder.getViewById(R.id.shop_price));
 
                 TextView is_attention = ((TextView) viewHolder.getViewById(R.id.is_attention));
 
                 market_price.setText(goodsMap.market_price);
                 shop_price.setText(goodsMap.shop_price);
+//                Toast.makeText(getActivity(),"hh",Toast.LENGTH_SHORT).show();
                 is_attention.setText(goodsMap.is_attention);
                 //GoodsXUtilsImage.display(iv_goodsList_item_image, GoodsHttpUtils.IMGURL+goods.goods_thumb);
             }
         };
-    }
+        initData();
+        //放到适配器中在页面显示
+        lv_goods.setAdapter( goodsCommonAdapter);
 
+    }
+    // 从服务器拿到数据，解析
     public void initData(){
         RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php?act=collectionlist&");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
@@ -90,7 +102,7 @@ public class goods_fragment extends Fragment {
                 JsonObject datajson = root.getAsJsonObject("data");
 
                 String str = datajson.toString();
-               System.out.println("str"+str);
+                System.out.println("str"+str);
 
 
                 JsonParser parser2 = new JsonParser();
@@ -112,11 +124,11 @@ public class goods_fragment extends Fragment {
 
                 newList.clear();
 
-
+//解析过的数据放到对象里
                 for (Map.Entry<String, LovedInfoBean.GoodsMap> m : mapNew.entrySet()) {
 
                     LovedInfoBean.GoodsMap goodsInfo = m.getValue();
-
+// 将对象数据放到list
                     newList.add(goodsInfo);
 
 
@@ -125,6 +137,7 @@ public class goods_fragment extends Fragment {
                 goodsList.addAll(newList);
                 System.out.println("newlist"+newList);
                 System.out.println("newlist"+goodsList);
+//数据更新
                 goodsCommonAdapter.notifyDataSetChanged();
 
 
@@ -133,6 +146,7 @@ public class goods_fragment extends Fragment {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
+                System.out.println(ex);
             }
 
             @Override
