@@ -158,11 +158,11 @@
 
         <activity
             android:name=".chat.KidChatDetilActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".shopping.GoodsAreaActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".shopping.GoodsAreaActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+        <activity android:name=".shopping.AddaddressActivity"></activity>
     </application>
 
 </manifest>
