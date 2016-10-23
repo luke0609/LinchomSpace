@@ -7,13 +7,13 @@
     <RelativeLayout
         android:id="@+id/rl_notify"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="48dp"
         android:background="#d4d3d2"
         >
         <ImageView
             android:id="@+id/iv_alertback"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/back"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
@@ -21,9 +21,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="消息"
-            android:textSize="30sp"
-            android:textColor="#000"
+            android:text="消 息"
+            android:textSize="20sp"
+            android:textColor="#808080"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
@@ -34,7 +34,7 @@
         android:layout_below="@id/rl_notify"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#4b4949"
+        android:background="#ccc"
         android:layout_marginTop="1dp"/>
 
     <RelativeLayout
@@ -42,8 +42,8 @@
         android:layout_below="@id/v_notify"
         android:layout_width="match_parent"
         android:background="#e4e1e1"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
         >
         <ImageView
             android:id="@+id/iv_notify"
@@ -59,7 +59,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:textSize="20sp"
-            android:textColor="#403d3d"
+            android:textColor="#808080"
             android:text="消息通知"
             />
     </RelativeLayout>
@@ -68,7 +68,7 @@
         android:layout_below="@id/rl_notify1"
         android:layout_width="match_parent"
         android:background="#e4e1e1"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_marginTop="5dp"
         >
         <ImageView
@@ -84,8 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:textSize="20sp"
-            android:textColor="#403d3d"
+            android:textSize="18sp"
+            android:textColor="#808080"
             android:text="互动消息"
             />
     </RelativeLayout>

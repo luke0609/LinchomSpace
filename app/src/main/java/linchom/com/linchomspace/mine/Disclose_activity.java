@@ -22,15 +22,8 @@ public class Disclose_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disclose_activity);
 
-        tv_look = ((TextView)findViewById(R.id.tv_look));
+
         iv_disback = ((ImageView) findViewById(R.id.iv_disback));
-        tv_look.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),Mydisclose.class);
-                startActivity(intent);
-            }
-        });
         iv_disback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
