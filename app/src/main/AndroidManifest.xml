@@ -162,7 +162,9 @@
         <activity
             android:name=".shopping.GoodsAreaActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".shopping.AddaddressActivity"></activity>
+        <activity android:name=".shopping.AddaddressActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            ></activity>
     </application>
 
 </manifest>
