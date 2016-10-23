@@ -15,7 +15,7 @@ public class Disclose_activity extends AppCompatActivity {
 
     private ImageView iv_disback;
     private TextView b_submit;
-    private TextView tv_look;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,12 +37,24 @@ public class log_activity extends AppCompatActivity {
     private ListView lv_loglist;
 
     List<LogInfoBean.DataBean> beanlist=new ArrayList<LogInfoBean.DataBean>();
+    private ImageView iv_logback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_activity);
 
         lv_loglist = ((ListView) findViewById(R.id.lv_loglist));
+
+        iv_logback = ((ImageView) findViewById(R.id.iv_logback));
+        iv_logback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
 
         //initData();
         initEvent();
