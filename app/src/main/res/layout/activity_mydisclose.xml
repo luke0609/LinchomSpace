@@ -6,10 +6,5 @@
     android:layout_height="match_parent"
     tools:context="linchom.com.linchomspace.mine.Mydisclose">
 
-    <ListView
-        android:id="@+id/lv_look"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </ListView>
 </RelativeLayout>

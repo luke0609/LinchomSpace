@@ -14,7 +14,7 @@ import linchom.com.linchomspace.R;
 public class Disclose_activity extends AppCompatActivity {
 
     private ImageView iv_disback;
-    private Button b_submit;
+    private TextView b_submit;
     private TextView tv_look;
 
     @Override
@@ -31,7 +31,7 @@ public class Disclose_activity extends AppCompatActivity {
             }
         });
 
-        b_submit = ((Button) findViewById(R.id.b_submit));
+        b_submit = ((TextView) findViewById(R.id.b_submit));
         b_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
