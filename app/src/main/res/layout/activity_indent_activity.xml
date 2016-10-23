@@ -4,33 +4,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="linchom.com.linchomspace.mine.Indent_activity">
-<RelativeLayout
-    android:id="@+id/rl_dan"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="#d1b3b3"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我的订单"
-        android:textSize="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-
-        />
-</RelativeLayout>
-    <LinearLayout
-        android:id="@+id/ll_dan"
-        android:layout_below="@id/rl_dan"
-        android:orientation="horizontal"
+    <RelativeLayout
+        android:id="@+id/rl_dan"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="48dp"
+        android:background="#e7cccc"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="全部"
-            />
-    </LinearLayout>
+            android:text="我的订单"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
 
+            />
+    </RelativeLayout>
+    <View
+        android:id="@+id/v_dan"
+        android:layout_below="@id/rl_dan"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#a9a9a9"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_d_rag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/v_dan">
+        <RadioGroup
+            android:id="@+id/d_rag"
+            android:background="#dfc8c1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="50dp"
+            android:gravity="center"
+            >
+            <RadioButton
+                android:id="@+id/rb_all"
+                android:text="全 部"
+                style="@style/RadioTab" />
+            <RadioButton
+                android:text="待付款"
+                android:id="@+id/rb_topay"
+                style="@style/RadioTab" />
+            <RadioButton
+                android:id="@+id/rb_topass"
+                android:text="待发货"
+                style="@style/RadioTab"
+                />
+            <RadioButton
+                android:id="@+id/rb_toget"
+                android:text="待收货"
+                style="@style/RadioTab"
+                />
+            <RadioButton
+                android:id="@+id/rb_mark"
+                android:text="待评价"
+                style="@style/RadioTab"
+                />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_rag"
+        android:layout_below="@+id/rl_d_rag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 </RelativeLayout>
