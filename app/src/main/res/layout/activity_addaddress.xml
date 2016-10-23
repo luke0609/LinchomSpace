@@ -54,10 +54,14 @@
            <RelativeLayout
                android:id="@+id/rl_goods_area_name"
                android:layout_width="match_parent"
-               android:layout_height="48dp">
+               android:layout_height="48dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               >
 
 
                <TextView
+                   android:id="@+id/tv_goods_addaddress_name"
                    android:layout_marginLeft="10dp"
                    android:textColor="#808080"
                    android:layout_centerVertical="true"
@@ -65,6 +69,20 @@
                    android:textSize="18sp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+
+                   />
+
+               <EditText
+                   android:id="@+id/et_goods_addaddress_name"
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@id/tv_goods_addaddress_name"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@null"
+                   android:textColor="#808080"
+                   android:textSize="18sp"
+
+
 
                    />
 
@@ -82,9 +100,13 @@
                android:id="@+id/rl_goods_area_tel"
 
                android:layout_width="match_parent"
-               android:layout_height="48dp">
+               android:layout_height="48dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               >
 
                <TextView
+                   android:id="@+id/tv_goods_addaddress_tel"
                    android:layout_marginLeft="10dp"
                    android:textColor="#808080"
                    android:layout_centerVertical="true"
@@ -93,6 +115,16 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
 
+                   />
+
+               <EditText
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@id/tv_goods_addaddress_tel"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@null"
+                   android:textColor="#808080"
+                   android:textSize="18sp"
                    />
 
 
@@ -108,6 +140,7 @@
                android:layout_height="48dp">
 
                <TextView
+                   android:id="@+id/tv_goods_addaddress_sheng"
                    android:layout_marginLeft="10dp"
                    android:textColor="#808080"
                    android:layout_centerVertical="true"
@@ -115,6 +148,21 @@
                    android:textSize="18sp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+
+                   />
+
+               <TextView
+                   android:gravity="center_vertical"
+                   android:text=""
+                   android:textColor="#808080"
+                   android:textSize="18sp"
+
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@id/tv_goods_addaddress_sheng"
+                   android:id="@+id/tv_goods_addaddress_city"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+
 
                    />
 
@@ -129,10 +177,14 @@
                android:id="@+id/rl_goods_area_address"
 
                android:layout_width="match_parent"
-               android:layout_height="100dp">
+               android:layout_height="100dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               >
 
 
               <EditText
+                  android:textColor="#808080"
                   android:background="@null"
                   android:hint="请填详细地址:"
                   android:layout_marginRight="10dp"
