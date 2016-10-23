@@ -46,7 +46,7 @@ public class UnEvaluateFragment extends Fragment {
 
 
 
-    private static final String TAG = "AllOrderFragment";
+    private static final String TAG = "UnEvaluateFragment";
     View view;
     private PullToRefreshListView ptr_goods_orderform;
 
