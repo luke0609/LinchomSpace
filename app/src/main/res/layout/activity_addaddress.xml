@@ -152,14 +152,15 @@
                    />
 
                <TextView
+                   android:id="@+id/tv_goods_addaddress_city"
+
                    android:gravity="center_vertical"
-                   android:text=""
+                   android:text="选择"
                    android:textColor="#808080"
                    android:textSize="18sp"
 
                    android:layout_centerVertical="true"
                    android:layout_toRightOf="@id/tv_goods_addaddress_sheng"
-                   android:id="@+id/tv_goods_addaddress_city"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
 
