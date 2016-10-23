@@ -11,6 +11,7 @@
         android:background="#cec9c9"
         >
         <ImageView
+            android:id="@+id/iv_logback"
             android:layout_marginLeft="10dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
