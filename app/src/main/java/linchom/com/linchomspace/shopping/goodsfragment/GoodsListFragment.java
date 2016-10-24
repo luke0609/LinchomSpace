@@ -354,7 +354,19 @@ public class GoodsListFragment extends Fragment {
                 tv_goodsList_item_title.setText(goods.goods_name);
                 tv_goodsList_item_price.setText(goods.shop_price);
 
-                GoodsXUtilsImage.display(iv_goodsList_item_image,GoodsHttpUtils.IMGURL+goods.goods_thumb);
+                //GoodsHttpUtils.IMGURL+goods.goods_thumb
+
+                String imgUrlChange = goods.goods_thumb;
+
+                if("h".equals(imgUrlChange.substring(0,1))){
+
+                }else{
+                    imgUrlChange=GoodsHttpUtils.IMGURL+imgUrlChange;
+                }
+
+
+
+                GoodsXUtilsImage.display(iv_goodsList_item_image,imgUrlChange);
 
 
             }

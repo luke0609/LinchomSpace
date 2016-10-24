@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_addaddress"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="linchom.com.linchomspace.shopping.AddaddressActivity"
+    android:background="#20808080"
+
+    >
+
+
+    <Button
+        android:id="@+id/btn_goods_area_save"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:text="保存"
+        android:layout_alignParentBottom="true"
+        android:background="#ff3300"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        />
+
+
+    <linchom.com.linchomspace.common.TitleBar
+        android:id="@+id/bar_goods_area_tianjia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="添加收货地址"
+        app:titleRightVis="false"
+
+        >
+
+
+
+
+    </linchom.com.linchomspace.common.TitleBar>
+
+
+    <ScrollView
+        android:layout_above="@id/btn_goods_area_save"
+        android:layout_below="@id/bar_goods_area_tianjia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+
+        >
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <RelativeLayout
+               android:id="@+id/rl_goods_area_name"
+               android:layout_width="match_parent"
+               android:layout_height="48dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               >
+
+
+               <TextView
+                   android:id="@+id/tv_goods_addaddress_name"
+                   android:layout_marginLeft="10dp"
+                   android:textColor="#808080"
+                   android:layout_centerVertical="true"
+                   android:text="收件人:"
+                   android:textSize="18sp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   />
+
+               <EditText
+                   android:id="@+id/et_goods_addaddress_name"
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@id/tv_goods_addaddress_name"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@null"
+                   android:textColor="#808080"
+                   android:textSize="18sp"
+
+
+
+                   />
+
+
+
+
+
+
+
+           </RelativeLayout>
+
+
+           <RelativeLayout
+               android:layout_below="@id/rl_goods_area_name"
+               android:id="@+id/rl_goods_area_tel"
+
+               android:layout_width="match_parent"
+               android:layout_height="48dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               >
+
+               <TextView
+                   android:id="@+id/tv_goods_addaddress_tel"
+                   android:layout_marginLeft="10dp"
+                   android:textColor="#808080"
+                   android:layout_centerVertical="true"
+                   android:text="联系方式:"
+                   android:textSize="18sp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   />
+
+               <EditText
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@id/tv_goods_addaddress_tel"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@null"
+                   android:textColor="#808080"
+                   android:textSize="18sp"
+                   android:inputType="number"
+                   />
+
+
+
+           </RelativeLayout>
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_below="@id/rl_goods_area_tel"
+
+               android:id="@+id/rl_goods_area_city"
+
+               android:layout_width="match_parent"
+               android:layout_height="48dp">
+
+               <TextView
+                   android:gravity="center"
+                   android:textSize="18sp"
+                   android:textColor="#808080"
+                   android:text="请选择省"
+                   android:id="@+id/tv_goods_province"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+
+
+
+               </TextView>
+
+               <TextView
+                   android:gravity="center"
+
+                   android:textSize="18sp"
+
+                   android:textColor="#808080"
+
+                   android:text="请选择市"
+                   android:id="@+id/tv_goods_city"
+
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+
+
+
+               </TextView>
+
+               <TextView
+                   android:gravity="center"
+
+                   android:textSize="18sp"
+
+                   android:textColor="#808080"
+
+                   android:text="请选择区"
+                   android:id="@+id/tv_goods_area"
+
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+
+
+
+               </TextView>
+
+
+
+           </LinearLayout>
+
+           <RelativeLayout
+               android:layout_below="@id/rl_goods_area_city"
+
+               android:id="@+id/rl_goods_area_address"
+
+               android:layout_width="match_parent"
+               android:layout_height="100dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               >
+
+
+              <EditText
+                  android:textColor="#808080"
+                  android:background="@null"
+                  android:hint="请填详细地址:"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+
+                  />
+
+
+
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_below="@id/rl_goods_area_address"
+
+               android:id="@+id/rl_goods_area_default"
+
+               android:layout_width="match_parent"
+               android:layout_height="48dp">
+
+               <TextView
+                   android:layout_marginLeft="10dp"
+                   android:textColor="#808080"
+                   android:layout_centerVertical="true"
+                   android:text="设为默认收货地址"
+                   android:textSize="18sp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   />
+               
+               
+               <linchom.com.linchomspace.shopping.widget.GoodsSwitchButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="10dp"
+                   />
+
+
+
+           </RelativeLayout>
+
+
+
+       </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+
+</RelativeLayout>

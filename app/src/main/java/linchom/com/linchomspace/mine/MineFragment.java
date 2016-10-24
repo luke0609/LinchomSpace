@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import linchom.com.linchomspace.R;
@@ -15,6 +16,8 @@ import linchom.com.linchomspace.R;
 
 public class MineFragment extends Fragment {
 
+
+    private RelativeLayout iv_store;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,56 +52,57 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_active)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) view.findViewById(R.id.person_center_content)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Active_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_store)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout)view.findViewById(R.id.person_center_content1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), log_activity.class);
+                Intent intent = new Intent(getActivity(), SaveMoney_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_indent)).setOnClickListener(new View.OnClickListener() {
+
+        ((RelativeLayout) view.findViewById(R.id.person_center_content2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Indent_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_chat)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) view.findViewById(R.id.person_center_content3)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyChat_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_disclose)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) view.findViewById(R.id.person_center_content4)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Disclose_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_alerts)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) view.findViewById(R.id.person_center_content6)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Alerts_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_feedBack)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) view.findViewById(R.id.person_center_content7)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FeedBack_activity.class);
                 startActivity(intent);
             }
         });
-        ((ImageView) view.findViewById(R.id.iv_log)).setOnClickListener(new View.OnClickListener() {
+        ((RelativeLayout) view.findViewById(R.id.person_center_content5)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), log_activity.class);

@@ -1,13 +1,63 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="2" />
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#262B4D">
+        <TextView
+            android:id="@+id/address"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北京"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"/>
+        <ImageView
+            android:id="@+id/down"
+            android:layout_toRightOf="@+id/address"
+            android:layout_alignTop="@+id/address"
+            android:layout_width="14dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:layout_centerVertical="true"/>
+        <RadioGroup
+            android:layout_centerInParent="true"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ll_shape"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/request"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                style="@style/radiobtn"
+                android:layout_height="match_parent"
+                android:background="@drawable/service_change_selector"
+                android:textColor="@drawable/serviec_textcolor_selector"
+                android:text="需求"/>
+            <RadioButton
+                android:id="@+id/serviec"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                style="@style/radiobtn"
+                android:textColor="@drawable/serviec_textcolor_selector"
+                android:layout_height="match_parent"
+                android:background="@drawable/service_change_selector"
+                android:text="服务"/>
+        </RadioGroup>
 
-</FrameLayout>
+
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_service"
+        android:layout_below="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+</android.support.v4.view.ViewPager>
+</RelativeLayout>

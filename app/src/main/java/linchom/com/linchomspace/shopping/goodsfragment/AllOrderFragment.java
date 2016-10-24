@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsOrderFormBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
@@ -37,6 +38,8 @@ import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
  */
 
 public class AllOrderFragment extends Fragment {
+
+
 
 
 
@@ -57,10 +60,12 @@ public class AllOrderFragment extends Fragment {
 
     private Double totalPrice= 0.0;
 
+    private int page = 1;
 
-    private String orderStatusInfo ;
-    private String shippingStatusInfo;
-    private String payStatusInfo ;
+    private int totalPage=1;
+
+    private String userId;
+
 
     @Nullable
     @Override
@@ -68,12 +73,8 @@ public class AllOrderFragment extends Fragment {
 
         view = inflater.inflate(R.layout.goods_orderform_layout,null);
 
-
-        Bundle bundle = getArguments();
-        orderStatusInfo= bundle.getString("orderStatus");
-        shippingStatusInfo= bundle.getString("shippingStatus");
-        payStatusInfo= bundle.getString("payStatus");
-
+        Bundle bundle =getArguments();
+        userId=bundle.getString("userId");
 
 
         initView();
@@ -82,7 +83,6 @@ public class AllOrderFragment extends Fragment {
 
 
         initEvent();
-
 
 
         return view;
@@ -127,9 +127,15 @@ public class AllOrderFragment extends Fragment {
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
+                    page=1;
+
+                    getData();
+
 
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+                    page++;
+                    getData();
 
 
 
@@ -287,7 +293,17 @@ public class AllOrderFragment extends Fragment {
 
                    ImageView iv_goods_order_img = viewHolder.getViewById(R.id.iv_goods_order_img);
 
-                        GoodsXUtilsImage.display(iv_goods_order_img,orderInfo.goods_img);
+
+                        String imgUrlChange = orderInfo.goods_img;
+
+                        if("h".equals(imgUrlChange.substring(0,1))){
+
+                        }else{
+                            imgUrlChange= GoodsHttpUtils.IMGURL+imgUrlChange;
+                        }
+
+
+                        GoodsXUtilsImage.display(iv_goods_order_img,imgUrlChange);
 
                        TextView tv_goods_order_goodsName=   viewHolder.getViewById(R.id.tv_goods_order_goodsName);
 
@@ -342,19 +358,21 @@ public class AllOrderFragment extends Fragment {
 
         //?act=ordersinfo&user_id=12
         requestParams.addQueryStringParameter("act","ordersinfo");
-        requestParams.addQueryStringParameter("user_id","12");
+        requestParams.addQueryStringParameter("user_id",userId);
 
-        //order_status
-        //shipping_status
-        //pay_status
+        //page
 
+        requestParams.addQueryStringParameter("page",page+"");
 
-        requestParams.addQueryStringParameter("order_status",orderStatusInfo+"");
+/*
 
-        requestParams.addQueryStringParameter("shipping_status",shippingStatusInfo+"");
+        requestParams.addQueryStringParameter("order_status","");
 
-        requestParams.addQueryStringParameter("pay_status",payStatusInfo+"");
+        requestParams.addQueryStringParameter("shipping_status","");
 
+        requestParams.addQueryStringParameter("pay_status","");
+
+*/
 
 
         x.http().get(requestParams, new Callback.CommonCallback<String>() {
@@ -363,16 +381,36 @@ public class AllOrderFragment extends Fragment {
 
                 Log.i(TAG,"result"+result);
 
-                Gson gson =new Gson();
+                if(page<=totalPage) {
 
-                GoodsOrderFormBean goodsOrderFormBean = gson.fromJson(result, GoodsOrderFormBean.class);
+                    Gson gson = new Gson();
 
-                String str = goodsOrderFormBean.data.items.get(0).order_goods.get(0).goods_name;
-                Log.i(TAG,"str"+str);
+                    GoodsOrderFormBean goodsOrderFormBean = gson.fromJson(result, GoodsOrderFormBean.class);
 
-                orderFormList.addAll(goodsOrderFormBean.data.items);
 
-                orderFormAdapter.notifyDataSetChanged();
+                    totalPage = Integer.parseInt(goodsOrderFormBean.data.total_pages);
+
+                    if (page == 1) {
+
+                        orderFormList.clear();
+                    }
+
+                    orderFormList.addAll(goodsOrderFormBean.data.items);
+
+
+                    orderFormAdapter.notifyDataSetChanged();
+
+                    ptr_goods_orderform.onRefreshComplete();
+
+                }else{
+
+                    Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+                    orderFormAdapter.notifyDataSetChanged();
+
+                    ptr_goods_orderform.onRefreshComplete();
+
+                }
+
 
 
             }

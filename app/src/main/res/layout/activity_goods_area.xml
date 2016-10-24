@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_goods_area"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#20808080"
+
+    tools:context="linchom.com.linchomspace.shopping.GoodsAreaActivity">
+
+    <linchom.com.linchomspace.common.TitleBar
+        android:id="@+id/bar_goods_area_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="管理收货地址"
+        app:titleRightVis="false"
+
+        >
+
+
+
+    </linchom.com.linchomspace.common.TitleBar>
+
+
+
+    <Button
+        android:id="@+id/btn_goods_area_addaddress"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:text="添加新的收货地址"
+        android:background="#ff3300"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+
+        />
+
+    <ListView
+        android:layout_below="@id/bar_goods_area_bar"
+        android:id="@+id/lv_goods_area_list"
+        android:layout_above="@id/btn_goods_area_addaddress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+    </ListView>
+
+
+
+
+
+
+</RelativeLayout>
