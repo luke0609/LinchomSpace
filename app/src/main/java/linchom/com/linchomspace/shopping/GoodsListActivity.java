@@ -42,7 +42,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     private  String order =null;
 
 
-    private String keyword;
+    private String keyword="";
 
 
 
@@ -72,6 +72,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         Bundle bundle = intent.getBundleExtra("bundle");
 
         keyword = bundle.getString("keyword");
+
+        if(keyword==null){
+
+            keyword="";
+        }
 
         catId=bundle.getString("cateId");
 
@@ -218,7 +223,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                     bundle.putString("order","desc");
                     bundle.putString("sort","");
 
-                    bundle.putString("keyword",keyword);
+                    bundle.putString("keyword",keyword+"");
 
 
 
