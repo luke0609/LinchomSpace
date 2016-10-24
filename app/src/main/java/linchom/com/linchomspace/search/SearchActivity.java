@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Activity.SearchArticleActivity;
+import linchom.com.linchomspace.shopping.GoodsListActivity;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -143,6 +144,25 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                             intent.putExtra("bundle",bundle);
                             startActivity(intent);
                             finish();
+                        }
+
+
+
+                        if(search_type.equals("goods")){
+                            Intent intent =new Intent(SearchActivity.this, GoodsListActivity.class);
+
+                            Bundle bundle =new Bundle();
+                            bundle.putString("keyword",record);
+
+                            bundle.putString("cateId","");
+
+                            intent.putExtra("bundle",bundle);
+
+                            startActivity(intent);
+                            finish();
+
+
+
                         }
 
 

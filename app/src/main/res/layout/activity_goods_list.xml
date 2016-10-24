@@ -25,6 +25,8 @@
 
         <Button
 
+            android:id="@+id/btn_goods_search"
+
             android:textColor="#808080"
             android:background="@drawable/goodssearch_shape"
             android:text="搜索商品"

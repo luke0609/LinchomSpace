@@ -239,198 +239,198 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         switch (v.getId()){
             case R.id.btn_goods_one_one:
-                toGoodsIntent(54);
+                toGoodsIntent("54");
 
                 break;
             case R.id.btn_goods_one_two:
-                toGoodsIntent(56);
+                toGoodsIntent("56");
                 break;
             case R.id.btn_goods_one_three:
-                toGoodsIntent(55);
+                toGoodsIntent("55");
                 break;
             case R.id.btn_goods_one_four:
-                toGoodsIntent(57);
+                toGoodsIntent("57");
                 break;
             case R.id.btn_goods_one_five:
-                toGoodsIntent(60);
+                toGoodsIntent("60");
                 break;
             case R.id.btn_goods_one_six:
-                toGoodsIntent(61);
+                toGoodsIntent("61");
                 break;
             case R.id.btn_goods_one_seven:
-                toGoodsIntent(82);
+                toGoodsIntent("82");
                 break;
             case R.id.btn_goods_one_eight:
-                toGoodsIntent(85);
+                toGoodsIntent("85");
                 break;
             case R.id.btn_goods_one_nine:
-                toGoodsIntent(87);
+                toGoodsIntent("87");
                 break;
 
 
             case R.id.btn_goods_two_one:
-                toGoodsIntent(150);
+                toGoodsIntent("150");
                 break;
             case R.id.btn_goods_two_two:
-                toGoodsIntent(152);
+                toGoodsIntent("152");
                 break;
             case R.id.btn_goods_two_three:
-                toGoodsIntent(151);
+                toGoodsIntent("151");
                 break;
             case R.id.btn_goods_two_four:
-                toGoodsIntent(86);
+                toGoodsIntent("86");
                 break;
             case R.id.btn_goods_two_five:
-                toGoodsIntent(153);
+                toGoodsIntent("153");
                 break;
             case R.id.btn_goods_two_six:
-                toGoodsIntent(58);
+                toGoodsIntent("58");
                 break;
             case R.id.btn_goods_two_seven:
-                toGoodsIntent(170);
+                toGoodsIntent("170");
                 break;
             case R.id.btn_goods_two_eight:
-                toGoodsIntent(157);
+                toGoodsIntent("157");
                 break;
             case R.id.btn_goods_two_nine:
-                toGoodsIntent(156);
+                toGoodsIntent("156");
                 break;
             case R.id.btn_goods_two_ten:
-                toGoodsIntent(154);
+                toGoodsIntent("154");
                 break;
             case R.id.btn_goods_two_eleven:
-                toGoodsIntent(155);
+                toGoodsIntent("155");
                 break;
             case R.id.btn_goods_two_twelve:
-                toGoodsIntent(158);
+                toGoodsIntent("158");
                 break;
             case R.id.btn_goods_two_thirteen:
-                toGoodsIntent(159);
+                toGoodsIntent("159");
                 break;
             case R.id.btn_goods_two_fourteen:
-                toGoodsIntent(160);
+                toGoodsIntent("160");
                 break;
             case R.id.btn_goods_two_fifteen:
-                toGoodsIntent(161);
+                toGoodsIntent("161");
                 break;
 
             case R.id.btn_goods_three_one:
-                toGoodsIntent(76);
+                toGoodsIntent("76");
                 break;
             case R.id.btn_goods_three_two:
-                toGoodsIntent(75);
+                toGoodsIntent("75");
                 break;
             case R.id.btn_goods_three_three:
-                toGoodsIntent(71);
+                toGoodsIntent("71");
                 break;
             case R.id.btn_goods_three_four:
-                toGoodsIntent(67);
+                toGoodsIntent("67");
                 break;
             case R.id.btn_goods_three_five:
-                toGoodsIntent(93);
+                toGoodsIntent("93");
                 break;
             case R.id.btn_goods_three_six:
-                toGoodsIntent(89);
+                toGoodsIntent("89");
                 break;
 
             case R.id.btn_goods_four_one:
-                toGoodsIntent(162);
+                toGoodsIntent("162");
                 break;
             case R.id.btn_goods_four_two:
-                toGoodsIntent(77);
+                toGoodsIntent("77");
                 break;
             case R.id.btn_goods_four_three:
-                toGoodsIntent(64);
+                toGoodsIntent("64");
                 break;
             case R.id.btn_goods_four_four:
-                toGoodsIntent(163);
+                toGoodsIntent("163");
                 break;
             case R.id.btn_goods_four_five:
-                toGoodsIntent(63);
+                toGoodsIntent("63");
                 break;
             case R.id.btn_goods_four_six:
-                toGoodsIntent(68);
+                toGoodsIntent("68");
                 break;
             case R.id.btn_goods_four_seven:
-                toGoodsIntent(72);
+                toGoodsIntent("72");
                 break;
             case R.id.btn_goods_four_eight:
-                toGoodsIntent(90);
+                toGoodsIntent("90");
                 break;
 
             case R.id.btn_goods_five_one:
-                toGoodsIntent(51);
+                toGoodsIntent("51");
                 break;
             case R.id.btn_goods_five_two:
-                toGoodsIntent(52);
+                toGoodsIntent("52");
                 break;
             case R.id.btn_goods_five_three:
-                toGoodsIntent(78);
+                toGoodsIntent("78");
                 break;
             case R.id.btn_goods_five_four:
-                toGoodsIntent(92);
+                toGoodsIntent("92");
                 break;
             case R.id.btn_goods_five_five:
-                toGoodsIntent(164);
+                toGoodsIntent("164");
                 break;
             case R.id.btn_goods_five_six:
-                toGoodsIntent(79);
+                toGoodsIntent("79");
                 break;
             case R.id.btn_goods_five_seven:
-                toGoodsIntent(91);
+                toGoodsIntent("91");
                 break;
             case R.id.btn_goods_five_eight:
-                toGoodsIntent(88);
+                toGoodsIntent("88");
                 break;
 
             case R.id.btn_goods_six_one:
-                toGoodsIntent(70);
+                toGoodsIntent("70");
                 break;
             case R.id.btn_goods_six_two:
-                toGoodsIntent(69);
+                toGoodsIntent("69");
                 break;
             case R.id.btn_goods_six_three:
-                toGoodsIntent(165);
+                toGoodsIntent("165");
                 break;
             case R.id.btn_goods_six_four:
-                toGoodsIntent(166);
+                toGoodsIntent("166");
                 break;
             case R.id.btn_goods_six_five:
-                toGoodsIntent(167);
+                toGoodsIntent("167");
                 break;
             case R.id.btn_goods_six_six:
-                toGoodsIntent(73);
+                toGoodsIntent("73");
                 break;
             case R.id.btn_goods_six_seven:
-                toGoodsIntent(168);
+                toGoodsIntent("168");
                 break;
             case R.id.btn_goods_six_eight:
-                toGoodsIntent(84);
+                toGoodsIntent("84");
                 break;
             case R.id.btn_goods_six_nine:
-                toGoodsIntent(169);
+                toGoodsIntent("169");
                 break;
             case R.id.btn_goods_six_ten:
-                toGoodsIntent(44);
+                toGoodsIntent("44");
                 break;
 
             case R.id.rl_goods_first:
-                toGoodsIntent(6);
+                toGoodsIntent("6");
                 break;
             case R.id.rl_goods_second:
-                toGoodsIntent(149);
+                toGoodsIntent("149");
                 break;
             case R.id.rl_goods_third:
-                toGoodsIntent(12);
+                toGoodsIntent("12");
                 break;
             case R.id.rl_goods_fourth:
-                toGoodsIntent(17);
+                toGoodsIntent("17");
                 break;
             case R.id.rl_goods_fifth:
-                toGoodsIntent(16);
+                toGoodsIntent("16");
                 break;
             case R.id.rl_goods_sixth:
-                toGoodsIntent(20);
+                toGoodsIntent("20");
                 break;
 
             case R.id.btn_goods_cate_search:
@@ -449,18 +449,21 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private void toGoodsSearch() {
         Intent intent =new Intent(getActivity(), SearchActivity.class);
 
+        Bundle bundle =new Bundle();
+        bundle.putString("search_type","goods");
+        intent.putExtra("bundle",bundle);
 
         startActivity(intent);
 
 
     }
 
-    public void toGoodsIntent(int cateId){
+    public void toGoodsIntent(String cateId){
 
         Intent intent = new Intent(getActivity(),GoodsListActivity.class);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("cateId",cateId);
+        bundle.putString("cateId",cateId);
         intent.putExtra("bundle",bundle);
 
 

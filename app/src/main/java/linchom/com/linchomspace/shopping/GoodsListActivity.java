@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.search.SearchActivity;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListWaterfallFragment;
 
@@ -36,12 +37,12 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     Fragment fragmentChange;
 
 
-    private int catId;
+    private String  catId;
 
     private  String order =null;
 
 
-    private String keyWord;
+    private String keyword;
 
 
 
@@ -57,7 +58,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     private ImageView iv_goodsList_back;
     private CheckBox radiobtn_goodslist_listcate;
-
+    private Button btn_goods_search;
 
 
     @Override
@@ -65,9 +66,16 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
 
+
+
         Intent intent  =getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
-        catId=bundle.getInt("cateId");
+
+        keyword = bundle.getString("keyword");
+
+        catId=bundle.getString("cateId");
+
+        Log.i(TAG,"keyword"+keyword+"catId"+catId);
 
         initView();
         initData();
@@ -90,6 +98,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         v_goodLists_new_line = ((View) findViewById(R.id.v_goodLists_new_line));
         iv_goodsList_back = ((ImageView) findViewById(R.id.iv_goodsList_back));
 
+        btn_goods_search = ((Button) findViewById(R.id.btn_goods_search));
+
 
         //默认状态
 
@@ -107,11 +117,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
         Bundle bundle = new Bundle();
 
-        bundle.putInt("catId",catId);
+        bundle.putString("catId",catId);
         bundle.putString("order","desc");
         bundle.putString("sort","");
 
-
+        bundle.putString("keyword",keyword);
 
 
         fragmentChange.setArguments(bundle);
@@ -141,6 +151,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         btn_goodsList_hot.setOnClickListener(this);
         btn_goodsList_new.setOnClickListener(this);
         iv_goodsList_back.setOnClickListener(this);
+
+        btn_goods_search.setOnClickListener(this);
 
         radiobtn_goodslist_listcate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -177,11 +189,14 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                     fragmentChange =new GoodsListFragment();
                     Bundle bundle = new Bundle();
 
-                    bundle.putInt("catId",catId);
+                    bundle.putString("catId",catId);
 
 
                     bundle.putString("order","desc");
                     bundle.putString("sort","");
+
+                    bundle.putString("keyword",keyword);
+
 
 
 
@@ -199,9 +214,12 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
                     Bundle bundle = new Bundle();
 
-                    bundle.putInt("catId",catId);
+                    bundle.putString("catId",catId);
                     bundle.putString("order","desc");
                     bundle.putString("sort","");
+
+                    bundle.putString("keyword",keyword);
+
 
 
 
@@ -243,6 +261,19 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
             case R.id.iv_goodsList_back:
                 this.finish();
+                break;
+
+            case R.id.btn_goods_search:
+
+                Intent intent =new Intent(getApplicationContext(), SearchActivity.class);
+
+                Bundle bundle =new Bundle();
+                bundle.putString("search_type","goods");
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
+
+
                 break;
 
 
@@ -346,7 +377,9 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
             Bundle bundle = new Bundle();
 
-            bundle.putInt("catId",catId);
+            bundle.putString("catId",catId);
+            bundle.putString("keyword",keyword);
+
 
 
             bundle.putString("order",order);
@@ -365,9 +398,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
             transaction=getSupportFragmentManager().beginTransaction();
             fragmentChange =new GoodsListWaterfallFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("catId",catId);
+            bundle.putString("catId",catId);
             bundle.putString("order",order);
             bundle.putString("sort",sort+"");
+            bundle.putString("keyword",keyword);
+
             fragmentChange.setArguments(bundle);
             transaction.replace(R.id.fl_goodslist_listcate,fragmentChange).commit();
 
