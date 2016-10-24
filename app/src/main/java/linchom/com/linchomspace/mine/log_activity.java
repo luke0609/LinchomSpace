@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mobeta.android.dslv.DragSortListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -34,9 +35,10 @@ public class log_activity extends AppCompatActivity {
 
     private static final String TAG = "log_activity";
     private GoodsCommonAdapter<LogInfoBean.DataBean> logCommonAdapter;
-    private ListView lv_loglist;
+    private DragSortListView lv_loglist;
 
     List<LogInfoBean.DataBean> beanlist=new ArrayList<LogInfoBean.DataBean>();
+
     private ImageView iv_logback;
 
     @Override
@@ -44,20 +46,25 @@ public class log_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_activity);
 
-        lv_loglist = ((ListView) findViewById(R.id.lv_loglist));
+        lv_loglist = ((DragSortListView) findViewById(R.id.lv_loglist));
 
         iv_logback = ((ImageView) findViewById(R.id.iv_logback));
         iv_logback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
-
             }
         });
 
         //initData();
         initEvent();
+
+        lv_loglist.setRemoveListener(new DragSortListView.RemoveListener() {
+            @Override
+            public void remove(int i) {
+             //   logCommonAdapter.remove(i);
+            }
+        });
     }
     public void initData() {
         RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=message&user_id=12");
@@ -125,6 +132,7 @@ public class log_activity extends AppCompatActivity {
                 Date date=new Date(Long.parseLong(dataBean.log_time));
                 log_time.setText(sdf.format(date));
             }
+
         };
         initData();
         //放到适配器中在页面显示
