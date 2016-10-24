@@ -1,10 +1,11 @@
 package linchom.com.linchomspace.search;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.chat.ChatDetilActivity;
+import linchom.com.linchomspace.homepage.Activity.SearchArticleActivity;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,11 +39,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private SearchRecordsAdapter recordsAdapter;
     private TextView clearEditText;
     private ImageView search_back;
+    private String search_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+        search_type = bundle.getString("search_type");
+        Log.i("aaa",search_type);
 
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));
         rl_msg.setVisibility(View.VISIBLE);
@@ -121,12 +128,24 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         reversedList();
                         checkRecordsSize();
                         judgeIsEmpty();
-                        // recordsAdapter.notifyDataSetChanged();
+                         recordsAdapter.notifyDataSetChanged();
 
                         //根据关键词去搜索
 //                        Intent intent=new Intent(SearchActivity.this, ChatDetilActivity.class);
 //                        intent.putExtra("type",1);
 //                        startActivity(intent);
+
+                        if(search_type.equals("article")){
+                            Log.i("aaa",search_type);
+                            Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
+                            Bundle bundle =new Bundle();
+                            bundle.putString("keyword",record);
+                            intent.putExtra("bundle",bundle);
+                            startActivity(intent);
+                            finish();
+                        }
+
+
                     } else {
                         Toast.makeText(SearchActivity.this, "搜索内容不能为空", Toast.LENGTH_SHORT).show();
                     }
@@ -152,7 +171,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             public void afterTextChanged(Editable s) {
                 String tempName = searchContentEt.getText().toString();
                 tempList.clear();
-                tempList.addAll(recordsDao.querySimlarRecord(tempName));
+//                tempList.addAll(recordsDao.querySimlarRecord(tempName));
                 reversedList();
                 checkRecordsSize();
                 recordsAdapter.notifyDataSetChanged();

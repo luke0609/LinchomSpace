@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl_hide_searchArticle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+        <RelativeLayout
+            android:id="@+id/rl_searchWait_titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#f5f5f5"
+            >
+            <ImageButton
+                android:id="@+id/searchWait_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/article_back"
+                android:layout_centerVertical="true"
+                android:background="#f5f5f5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="123dp"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               />
+
+
+
+        </RelativeLayout>
+
+
+        <linchom.com.linchomspace.homepage.progressbar.CircularProgress
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:borderWidth="6dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/pb_progressBar"
+
+
+            />
+
+    </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_searchSuccess_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#f5f5f5"
+        >
+        <ImageButton
+            android:id="@+id/searchSuccess_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/article_back"
+            android:layout_centerVertical="true"
+            android:background="#f5f5f5"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="123dp"/>
+
+
+
+
+    </RelativeLayout>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+         android:layout_below="@id/rl_searchSuccess_titlebar"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ptr_arrlist_searchArticle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#000000"
+        android:divider="#19000000"
+        android:dividerHeight="0.2dp"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true"
+        ptr:ptrAnimationStyle="rotate"
+        ptr:ptrHeaderTextColor="#000000"
+        ptr:ptrHeaderSubTextColor="#00ffff"
+        ptr:ptrHeaderBackground="@null"
+        ptr:ptrDrawable="@drawable/home_load"
+        />
+</RelativeLayout>
+</LinearLayout>
