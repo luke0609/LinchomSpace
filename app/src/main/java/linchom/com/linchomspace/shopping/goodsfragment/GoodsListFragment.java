@@ -109,9 +109,7 @@ public class GoodsListFragment extends Fragment {
         sort=bundle.getString("sort");
 
         keyword =bundle.getString("keyword");
-
-        if(keyword==null){
-
+        if (keyword==null){
             keyword="";
 
         }

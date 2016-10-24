@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.reflect.TypeToken;
 import com.shizhefei.view.indicator.BannerComponent;
 import com.shizhefei.view.indicator.Indicator;
 
@@ -19,16 +26,24 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.search.SearchActivity;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
-import linchom.com.linchomspace.shopping.goodstest.ImagesFromNet;
+import linchom.com.linchomspace.shopping.pojo.GoodsAdvBean;
 
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
+    private Map<String ,String> advMap =new HashMap<String ,String>();
+
+    private List<String> getAdvList = new ArrayList<String>();
+
+    private static final String TAG = "ShoppingFragment";
     View view;
 
 
@@ -481,25 +496,52 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         advList.add("3");
         advList.add("4");
 
-        RequestParams requestParams =new RequestParams("http://10.40.5.29:8080/web/getimages");
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
-        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+        requestParams.addBodyParameter("act","figure");
+
+
+
+
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
-                Gson gson= new Gson();
+                Log.i(TAG,"result"+result);
 
-                ImagesFromNet imagesFromNet = gson.fromJson(result, ImagesFromNet.class);
+                Gson gson =new Gson();
 
-                advList.clear();
+                JsonParser parser = new JsonParser();
 
-                advList.add(imagesFromNet.picture1);
-                advList.add(imagesFromNet.picture2);
-                advList.add(imagesFromNet.picture3);
-                advList.add(imagesFromNet.picture4);
+                JsonElement element = parser.parse(result);
 
-                myGoodsIndicatorAdapter.notifyDataSetChanged();
-                rl_goodsHome_load.setVisibility(View.GONE);
+                JsonObject root = element.getAsJsonObject();
+
+
+                JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
+
+                String resultBean = resultjson.getAsString();
+
+                Log.i(TAG, "resultBean" + resultBean);
+
+                JsonArray datajson = root.getAsJsonArray("data");
+
+
+
+               // List<GoodsAdvBean.Data> advList=    gson.fromJson(datajson, new TypeToken<List<GoodsAdvBean.Data>>() {}.getType());
+
+                for (int i=0;i<datajson.size();i++){
+
+                    GoodsAdvBean.Data a=    gson.fromJson(datajson.get(i), new TypeToken<GoodsAdvBean.Data>() {}.getType());
+
+                        Log.i(TAG,"a.map"+a.map);
+
+                }
+
+
+
+
 
             }
 
