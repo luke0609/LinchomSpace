@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.search.SearchActivity;
 import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
 import linchom.com.linchomspace.shopping.goodstest.ImagesFromNet;
 
@@ -110,6 +111,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private RelativeLayout rl_goods_fifth;
     private RelativeLayout rl_goods_sixth;
     private RelativeLayout rl_goodsHome_load;
+    private Button btn_goods_cate_search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -209,6 +211,9 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         rl_goods_sixth = ((RelativeLayout) view.findViewById(R.id.rl_goods_sixth));
 
         rl_goodsHome_load = ((RelativeLayout) view.findViewById(R.id.rl_goodsHome_load));
+
+
+        btn_goods_cate_search = ((Button) view.findViewById(R.id.btn_goods_cate_search));
 
     }
 
@@ -428,9 +433,24 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
                 toGoodsIntent(20);
                 break;
 
+            case R.id.btn_goods_cate_search:
+
+                toGoodsSearch();
+
+                break;
+
 
         }
 
+
+
+    }
+
+    private void toGoodsSearch() {
+        Intent intent =new Intent(getActivity(), SearchActivity.class);
+
+
+        startActivity(intent);
 
 
     }
@@ -586,6 +606,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         rl_goods_fourth.setOnClickListener(this);
         rl_goods_fifth.setOnClickListener(this);
         rl_goods_sixth.setOnClickListener(this);
+
+        btn_goods_cate_search.setOnClickListener(this);
 
 
     }
