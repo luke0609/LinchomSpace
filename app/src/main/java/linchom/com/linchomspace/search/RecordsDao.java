@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Jingsheng Liang on 2016/10/18.
+ * * Created by Jingsheng Liang on 2016/10/18.
  */
 
 public class RecordsDao {
@@ -39,7 +39,7 @@ public class RecordsDao {
     public boolean isHasRecord(String record) {
         boolean isHasRecord = false;
         recordsDb = recordHelper.getReadableDatabase();
-        Cursor cursor = recordsDb.query("records", null, null, null, null, null, null);
+        Cursor cursor = recordsDb.query("records",null,null, null, null, null, null);
         while (cursor.moveToNext()) {
             if (record.equals(cursor.getString(cursor.getColumnIndexOrThrow("name")))) {
                 isHasRecord = true;
@@ -65,17 +65,17 @@ public class RecordsDao {
     }
 
     //模糊查询
-    public List<String> querySimlarRecord(String record){
-        String queryStr = "select * from records where name like '%" + record + "%' order by name ";
-        List<String> similarRecords = new ArrayList<>();
-        Cursor cursor= recordHelper.getReadableDatabase().rawQuery(queryStr,null);
-
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-            similarRecords.add(name);
-        }
-        return similarRecords;
-    }
+//    public List<String> querySimlarRecord(String record){
+//        String queryStr = "select * from records where name like '%" + record + "%' order by name";
+//        List<String> similarRecords = new ArrayList<>();
+//        Cursor cursor= recordHelper.getReadableDatabase().rawQuery(queryStr,null);
+//
+//        while (cursor.moveToNext()) {
+//            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+//            similarRecords.add(name);
+//        }
+//        return similarRecords;
+//    }
 
     //清空搜索记录
     public void deleteAllRecords() {

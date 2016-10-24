@@ -36,8 +36,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="我的频道"
                     android:textColor="#000" />
             </LinearLayout>
@@ -48,6 +48,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/pd_tuijian"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -57,6 +58,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/pd_hangyezixun"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -65,6 +67,7 @@
                     android:text="行业资讯"/>
 
                 <Button
+                    android:id="@+id/pd_canpinzixun"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -73,6 +76,7 @@
                     android:text="产品资讯"/>
 
                 <Button
+                    android:id="@+id/pd_video"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -86,6 +90,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/pd_pinpaizixun"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -95,6 +100,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/pd_hangyebiaozhun"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -103,6 +109,7 @@
                     android:text="行业标准"/>
 
                 <Button
+                    android:id="@+id/pd_hangyejishu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -111,6 +118,7 @@
                     android:text="行业技术"/>
 
                 <Button
+                    android:id="@+id/pd_wulianwang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -124,6 +132,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/pd_zhihuichengshi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -133,6 +142,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/pd_zhihuishequ"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -141,6 +151,7 @@
                     android:text="智慧社区"/>
 
                 <Button
+                    android:id="@+id/pd_wurenji"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -149,6 +160,7 @@
                     android:text="无人机"/>
 
                 <Button
+                    android:id="@+id/pd_zhinengyanglao"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -162,6 +174,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/pd_zhinengjiankang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -171,6 +184,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/pd_zhinengyiliao"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -179,6 +193,7 @@
                     android:text="智能医疗"/>
 
                 <Button
+                    android:id="@+id/pd_jiqiren"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -187,6 +202,7 @@
                     android:text="机器人"/>
 
                 <Button
+                    android:id="@+id/pd_vrar"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -201,6 +217,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/pd_zhanhuixinxi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -210,6 +227,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/pd_peixunxinxi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -218,6 +236,7 @@
                     android:text="培训信息"/>
 
                 <Button
+                    android:id="@+id/pd_zhichaofangan"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -226,6 +245,7 @@
                     android:text="智巢方案"/>
 
                 <Button
+                    android:id="@+id/pd_zhichaoanli"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -239,8 +259,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="我的交流"
                     android:textColor="#000" />
             </LinearLayout>
@@ -251,6 +271,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/chat_zhinengjiaju"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -260,6 +281,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/chat_zhinengjujia"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -268,6 +290,7 @@
                     android:text="智能居家"/>
 
                 <Button
+                    android:id="@+id/chat_zhinengjiankang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -276,6 +299,7 @@
                     android:text="智能健康"/>
 
                 <Button
+                    android:id="@+id/chat_zhinengzhaoguan"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -289,6 +313,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/chat_canpintuijie"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -298,6 +323,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/chat_zhinengshequ"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -306,6 +332,7 @@
                     android:text="智能社区"/>
 
                 <Button
+                    android:id="@+id/chat_gongchengjishu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -314,6 +341,7 @@
                     android:text="工程技术"/>
 
                 <Button
+                    android:id="@+id/chat_yingjiankaifa"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -327,6 +355,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/chat_jiqiren"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -336,6 +365,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/chat_vrar"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -345,6 +375,7 @@
                     android:textSize="12dp"/>
 
                 <Button
+                    android:id="@+id/chat_xieyibiaozhun"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -353,6 +384,7 @@
                     android:text="协议标准"/>
 
                 <Button
+                    android:id="@+id/chat_xuqiuduijie"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -366,6 +398,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/chat_pinpaijiaoliu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -375,6 +408,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/chat_tiwenhuida"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -406,8 +440,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="智巢"
                     android:textColor="#000" />
             </LinearLayout>
@@ -418,6 +452,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zc_kongzhi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -427,6 +462,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/zc_kaiguan"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -435,6 +471,7 @@
                     android:text="开关"/>
 
                 <Button
+                    android:id="@+id/zc_chazuo"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -443,6 +480,7 @@
                     android:text="插座"/>
 
                 <Button
+                    android:id="@+id/zc_zhaoming"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -450,12 +488,14 @@
                     android:text="照明"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zc_menchuang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -465,6 +505,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/zc_anfang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -473,6 +514,7 @@
                     android:text="安防"/>
 
                 <Button
+                    android:id="@+id/zc_shexiangtou"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -481,6 +523,7 @@
                     android:text="摄像头"/>
 
                 <Button
+                    android:id="@+id/zc_chuangganqi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -494,8 +537,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="智能居家"
                     android:textColor="#000" />
             </LinearLayout>
@@ -506,6 +549,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znjj_binxiang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -515,6 +559,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/znjj_kongtiao"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -523,6 +568,7 @@
                     android:text="空调"/>
 
                 <Button
+                    android:id="@+id/znjj_xiyiji"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -531,6 +577,7 @@
                     android:text="洗衣机"/>
 
                 <Button
+                    android:id="@+id/znjj_reshuiqi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -544,6 +591,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znjj_dianshi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -553,6 +601,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/znjj_yinxiang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -561,6 +610,7 @@
                     android:text="音响"/>
 
                 <Button
+                    android:id="@+id/znjj_jinshui"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -569,6 +619,7 @@
                     android:text="净水"/>
 
                 <Button
+                    android:id="@+id/znjj_youyanzhaoju"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -582,6 +633,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znjj_fancaiguoju"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -591,6 +643,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/znjj_xinfenji"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -600,6 +653,7 @@
                     />
 
                 <Button
+                    android:id="@+id/znjj_kongqijinhuaqi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -609,6 +663,7 @@
                     />
 
                 <Button
+                    android:id="@+id/znjj_qingjieweisheng"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -623,6 +678,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znjj_shenghuoxiaojiadian"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -632,6 +688,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/znjj_matong"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -665,8 +722,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="智能照管"
                     android:textColor="#000" />
             </LinearLayout>
@@ -677,6 +734,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znzg_laoren"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -686,6 +744,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/znzg_yunfu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -694,6 +753,7 @@
                     android:text="孕妇"/>
 
                 <Button
+                    android:id="@+id/znzg_yiner"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -702,6 +762,7 @@
                     android:text="婴儿"/>
 
                 <Button
+                    android:id="@+id/znzg_ertong"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -715,6 +776,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znzg_chongwu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -755,8 +817,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="智能健康"
                     android:textColor="#000" />
             </LinearLayout>
@@ -767,6 +829,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znjk_tizhong"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -776,6 +839,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/znjk_tiwen"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -784,6 +848,7 @@
                     android:text="体温"/>
 
                 <Button
+                    android:id="@+id/znjk_xueya"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -792,6 +857,7 @@
                     android:text="血压"/>
 
                 <Button
+                    android:id="@+id/znjk_xuetang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -805,6 +871,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/znjk_xindian"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -814,6 +881,7 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/znjk_kouqiang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -822,6 +890,7 @@
                     android:text="口腔"/>
 
                 <Button
+                    android:id="@+id/znjk_shuimian"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -845,8 +914,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="智能穿戴"
                     android:textColor="#000" />
             </LinearLayout>
@@ -857,6 +926,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zncd_shouhuan"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -866,6 +936,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/zncd_shoubiao"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -874,6 +945,7 @@
                     android:text="手表"/>
 
                 <Button
+                    android:id="@+id/zncd_fushi"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -882,6 +954,7 @@
                     android:text="服饰"/>
 
                 <Button
+                    android:id="@+id/zncd_yanjing"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -895,6 +968,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zncd_vrar"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -905,6 +979,7 @@
                     android:textSize="12dp"/>
 
                 <Button
+                    android:id="@+id/zncd_erji"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -913,6 +988,7 @@
                     android:text="耳机"/>
 
                 <Button
+                    android:id="@+id/zncd_fangdiu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -936,8 +1012,8 @@
                 android:layout_height="25dp">
 
                 <TextView
-                    android:layout_width="56dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="智能+"
                     android:textColor="#000" />
             </LinearLayout>
@@ -948,6 +1024,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zn_sheying"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -957,6 +1034,7 @@
                     android:textColor="#000"/>
 
                 <Button
+                    android:id="@+id/zn_qiche"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -965,6 +1043,7 @@
                     android:text="汽车"/>
 
                 <Button
+                    android:id="@+id/zn_qixing"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -973,6 +1052,7 @@
                     android:text="骑行"/>
 
                 <Button
+                    android:id="@+id/zn_wurenji"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -986,6 +1066,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zn_jiqiren"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -996,6 +1077,7 @@
                     android:textSize="12dp"/>
 
                 <Button
+                    android:id="@+id/zn_yundong"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -1004,6 +1086,7 @@
                     android:text="运动"/>
 
                 <Button
+                    android:id="@+id/zn_huwai"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -1013,6 +1096,7 @@
                     />
 
                 <Button
+                    android:id="@+id/zn_yule"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
@@ -1027,6 +1111,7 @@
                 android:layout_marginBottom="5dp">
 
                 <Button
+                    android:id="@+id/zn_qingqu"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
@@ -1043,7 +1128,7 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:visibility="invisible"
-                    android:text="其它"/>
+                    />
 
                 <Button
                     android:layout_width="0dp"
@@ -1051,7 +1136,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:text="户外"
+                    android:text=""
                     android:visibility="invisible"
                     />
 
@@ -1060,7 +1145,7 @@
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:text="娱乐"
+                    android:text=""
                     android:visibility="invisible"
                     />
 

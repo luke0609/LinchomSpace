@@ -28,18 +28,19 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Constant.Constant;
+import linchom.com.linchomspace.homepage.Entity.ArticleCollectBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleInfoBean;
 import linchom.com.linchomspace.homepage.View.SlideSelectView;
 
@@ -123,8 +124,9 @@ public class ArticleActivity extends AppCompatActivity {
         //settings.setTextSize(WebSettings.TextSize.SMALLEST);
         webView.getSettings().setBuiltInZoomControls(true);//设置可缩放
         // webView.getSettings().setUseWideViewPort(true);//可以任意比例缩放
-        webView.getSettings().setJavaScriptEnabled(true);//设置设否支持JavaScript
+        //webView.getSettings().setJavaScriptEnabled(true);//设置设否支持JavaScript
         webView.loadUrl(Constant.ArticleWebView + article_id);//加载地址
+       // webView.loadUrl("https://imgcache.qq.com/tencentvideo_v1/player/TPout.swf?max_age=86400&v=20140714");
 //        settings.setLoadWithOverviewMode(true);
 //        settings.setUseWideViewPort(true);
 //        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
@@ -149,13 +151,13 @@ public class ArticleActivity extends AppCompatActivity {
         getArticle();
     }
 
-    private void getArticle() {
-        RequestParams params = new RequestParams(Constant.Articleinfo);
+    private void getArticle(){
+        RequestParams params = new RequestParams(Constant.ArticleInfo);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
         params.addBodyParameter("id", article_id);//由前一个界面带过来的
         // params.addBodyParameter("page","5");
-        x.http().post(params, new Callback.CommonCallback<String>() {
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
@@ -172,10 +174,7 @@ public class ArticleActivity extends AppCompatActivity {
                 String info = bean.getData().getTitle();
                 System.out.println(info);
                 article_title.setText(info);
-
-
             }
-
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
@@ -330,6 +329,7 @@ public class ArticleActivity extends AppCompatActivity {
             case R.id.ib_commemt:
                 break;
             case R.id.ib_collect:
+                collect();
                 break;
             case R.id.ib_share:
                 break;
@@ -342,6 +342,67 @@ public class ArticleActivity extends AppCompatActivity {
                 this.finish();
                 break;
         }
+    }
+
+    private void collect() {
+
+        //http://app.linchom.com/appapi.php?act=add_article_comment&user_name=
+        // %E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&
+        // email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
+        RequestParams params = new RequestParams(Constant.ArticleComment);
+        //params.addBodyParameter("key", "linchom");
+        //params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("verification", "10a7997fb90c30c6c79e9f29f89535b5");
+        params.addBodyParameter("article_id", article_id);//由前一个界面带过来的
+        params.addBodyParameter("type","1");//1.收藏 2.评论
+        params.addBodyParameter("user_id", "135");
+        params.addBodyParameter("user_name","%E5%BC%A0%E6%99%93%E6%96%87");
+        params.addBodyParameter("email", "2070118814@qq.com");
+
+
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                System.out.println(result);
+                Gson gson = new Gson();
+                ArticleCollectBean bean = gson.fromJson(result, ArticleCollectBean.class);
+                if(bean.getResult().equals("0")){
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.toast_style,
+                            (ViewGroup) findViewById(R.id.ll_toast));
+                    ImageView image = (ImageView) layout
+                            .findViewById(R.id.iv_toast_collect);
+                    image.setImageResource(R.drawable.collect_success1);
+                    TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                    text.setText("收藏成功");
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
+
+                 //   Toast.makeText(ArticleActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
     }
 
     private void showCommentPopupWindow(final View view) {
@@ -465,7 +526,6 @@ public class ArticleActivity extends AppCompatActivity {
 
         mHeaderAnimator.setDuration(300).start();
        mBottomAnimator.setDuration(300).start();
-
     }
 }
 

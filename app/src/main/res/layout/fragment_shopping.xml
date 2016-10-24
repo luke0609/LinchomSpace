@@ -19,6 +19,7 @@
 
 
         <Button
+            android:id="@+id/btn_goods_cate_search"
             android:background="@drawable/goodssearch_shape"
             android:text="搜索商品"
             android:drawableLeft="@drawable/goods_discover2"
