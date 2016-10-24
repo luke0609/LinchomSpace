@@ -125,13 +125,15 @@
                    android:background="@null"
                    android:textColor="#808080"
                    android:textSize="18sp"
+                   android:inputType="number"
                    />
 
 
 
            </RelativeLayout>
 
-           <RelativeLayout
+           <LinearLayout
+               android:orientation="horizontal"
                android:layout_below="@id/rl_goods_area_tel"
 
                android:id="@+id/rl_goods_area_city"
@@ -140,37 +142,58 @@
                android:layout_height="48dp">
 
                <TextView
-                   android:id="@+id/tv_goods_addaddress_sheng"
-                   android:layout_marginLeft="10dp"
-                   android:textColor="#808080"
-                   android:layout_centerVertical="true"
-                   android:text="省市区:"
+                   android:gravity="center"
                    android:textSize="18sp"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
+                   android:textColor="#808080"
+                   android:text="请选择省"
+                   android:id="@+id/tv_goods_province"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
 
-                   />
+
+
+               </TextView>
 
                <TextView
-                   android:id="@+id/tv_goods_addaddress_city"
+                   android:gravity="center"
 
-                   android:gravity="center_vertical"
-                   android:text="选择"
-                   android:textColor="#808080"
                    android:textSize="18sp"
 
-                   android:layout_centerVertical="true"
-                   android:layout_toRightOf="@id/tv_goods_addaddress_sheng"
-                   android:layout_width="match_parent"
+                   android:textColor="#808080"
+
+                   android:text="请选择市"
+                   android:id="@+id/tv_goods_city"
+
+                   android:layout_width="0dp"
                    android:layout_height="match_parent"
-
-
-                   />
+                   android:layout_weight="1">
 
 
 
-           </RelativeLayout>
+               </TextView>
 
+               <TextView
+                   android:gravity="center"
+
+                   android:textSize="18sp"
+
+                   android:textColor="#808080"
+
+                   android:text="请选择区"
+                   android:id="@+id/tv_goods_area"
+
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1">
+
+
+
+               </TextView>
+
+
+
+           </LinearLayout>
 
            <RelativeLayout
                android:layout_below="@id/rl_goods_area_city"
