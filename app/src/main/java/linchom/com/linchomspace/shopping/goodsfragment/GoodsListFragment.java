@@ -110,6 +110,12 @@ public class GoodsListFragment extends Fragment {
 
         keyword =bundle.getString("keyword");
 
+        if(keyword==null){
+
+            keyword="";
+
+        }
+
 
         ptr_goodsList_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_goodsList_ptr));
         rl_goodsList_load_list = ((RelativeLayout) view.findViewById(R.id.rl_goodsList_load_list));
