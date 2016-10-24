@@ -222,6 +222,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("search_type","article");
+                intent.putExtra("bundle",bundle);
                 startActivity(intent);
             }
         });
@@ -328,7 +331,6 @@ public class HomeFragment extends Fragment {
         bannerComponent.setAutoPlayTime(2500);
         lv_tuijian.addHeaderView(bannnerAdv);
         lv_tuijian.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            private TextView tv_title;
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -355,7 +357,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(getActivity(), ArticleActivity.class);
                 Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-2).article_id);
+                bundle.putString("article_id",arrList.get(position-1).article_id);
                 Log.i("wenzhang","article_id");
                 intent.putExtra("bundle",bundle);
                 startActivity(intent);
