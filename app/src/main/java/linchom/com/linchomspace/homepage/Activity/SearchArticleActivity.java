@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,10 @@ public class SearchArticleActivity extends AppCompatActivity {
     ImageButton searchWaitBack;
     @InjectView(R.id.searchSuccess_back)
     ImageButton searchSuccessBack;
+    @InjectView(R.id.search_wait_keyword)
+    TextView searchWaitKeyword;
+    @InjectView(R.id.search_success_keyword)
+    TextView searchSuccessKeyword;
     private String keyword;
     private CircularProgress pb_progressBar;
     private RelativeLayout rl_hide_searchArticle;
@@ -56,6 +62,10 @@ public class SearchArticleActivity extends AppCompatActivity {
     private boolean pullFlag = false;
     private int page = 1;//加载页数
     private int pageCount;
+    private RelativeLayout rl_empty;
+    private RelativeLayout error_net;
+    private Button reload;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +82,20 @@ public class SearchArticleActivity extends AppCompatActivity {
     }
 
     private void initview() {
-        pb_progressBar = (CircularProgress) findViewById(R.id.pb_progressBar);
+        reload = ((Button) findViewById(R.id.reload));
+        searchWaitKeyword.setText(keyword);
+        searchSuccessKeyword.setText(keyword);
+        pb_progressBar = (CircularProgress)findViewById(R.id.pb_progressBar);
         rl_hide_searchArticle = (RelativeLayout) findViewById(R.id.rl_hide_searchArticle);
-        ptr_arrlist_searchArticle = ((PullToRefreshListView) findViewById(R.id.ptr_arrlist_searchArticle));
+        rl_empty = (RelativeLayout) findViewById(R.id.rl_empty);
+        error_net = (RelativeLayout) findViewById(R.id.error_net);
+        ptr_arrlist_searchArticle = ((PullToRefreshListView)findViewById(R.id.ptr_arrlist_searchArticle));
         lv_searchArticle = ptr_arrlist_searchArticle.getRefreshableView();
         adapter1 = new MyAdapter();
         lv_searchArticle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent,View view,int position, long id) {
                 Intent intent = new Intent(SearchArticleActivity.this, ArticleActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("article_id", arrList.get(position - 1).article_id);
@@ -96,12 +111,9 @@ public class SearchArticleActivity extends AppCompatActivity {
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 String label = android.text.format.DateUtils.formatDateTime(SearchArticleActivity.this, System.currentTimeMillis(),
                         android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 //异步任务拿数据
-
                 PullToRefreshBase.Mode mode = ptr_arrlist_searchArticle.getCurrentMode();
-
                 // View viewRefresh = null;
 
                 if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
@@ -139,7 +151,6 @@ public class SearchArticleActivity extends AppCompatActivity {
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 //异步任务拿数据
-
                 PullToRefreshBase.Mode mode = ptr_arrlist_searchArticle.getCurrentMode();
 
                 // View viewRefresh = null;
@@ -163,14 +174,14 @@ public class SearchArticleActivity extends AppCompatActivity {
                 Toast.makeText(SearchArticleActivity.this, "已经到底了", Toast.LENGTH_SHORT).show();
             }
         });
+
         lv_searchArticle.setAdapter(adapter1);
         getSearchArticle();
     }
 
     private void getSearchArticle() {
-
-        Log.i("aaaaa", "数据拿到");
-
+        rl_empty.setVisibility(View.GONE);
+        error_net.setVisibility(View.GONE);
         if (page == 1 && pullFlag == false) {
             rl_hide_searchArticle.setVisibility(View.VISIBLE);
         }
@@ -182,36 +193,43 @@ public class SearchArticleActivity extends AppCompatActivity {
         //搜索功能
         params.addBodyParameter("keyword", keyword);
         params.addBodyParameter("page", page + "");
-        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+        x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                rl_hide_searchArticle.setVisibility(View.GONE);
-                if (page == 1) {
-                    arrList.clear();
-                }
-                Log.i("aaaaaaa", result + "");
-                Gson gson = new Gson();
-                ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
-                ArticleListBean.Data articleData = bean.data;
-                pageCount = Integer.parseInt(articleData.page_count);
-                Log.i("aaaaaaa", articleData.getArticle_list() + "");
-
-
-                System.out.println(arrList);
-
+                ptr_arrlist_searchArticle.setVisibility(View.GONE);
+              // Log.i("bbbb",arrList.size()+"");
+                    rl_hide_searchArticle.setVisibility(View.GONE);
+                    if (page == 1) {
+                        arrList.clear();
+                    }
+                    Log.i("aaaaaaa", result + "");
+                    Gson gson = new Gson();
+                    ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
+                    ArticleListBean.Data articleData = bean.data;
+                    pageCount = Integer.parseInt(articleData.page_count);
+                    Log.i("aaaaaaa", articleData.getArticle_list().size() + "");
+                if (articleData.getArticle_list().size() != 0) {
+                    ptr_arrlist_searchArticle.setVisibility(View.VISIBLE);
 //                System.out.println(bean.status + "????");
 //                System.out.println(bean.dongtaiList.size() + "====");
 //                通知listview更新界面
 
 
-                if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
-                    adapter1.notifyDataSetChanged();
-                    ptr_arrlist_searchArticle.onRefreshComplete();
-                } else {
-                    Toast.makeText(SearchArticleActivity.this, "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_searchArticle.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList.addAll(articleData.getArticle_list());
+                        adapter1.notifyDataSetChanged();
+                        ptr_arrlist_searchArticle.onRefreshComplete();
+                    } else {
+                        Toast.makeText(SearchArticleActivity.this, "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_searchArticle.onRefreshComplete();
 
+
+                    }
+                }else{
+                    rl_hide_searchArticle.setVisibility(View.GONE);
+                    rl_empty.setVisibility(View.VISIBLE);
+                    ptr_arrlist_searchArticle.setVisibility(View.GONE);
+                    error_net.setVisibility(View.GONE);
 
                 }
             }
@@ -221,6 +239,18 @@ public class SearchArticleActivity extends AppCompatActivity {
 
                 Log.i("aaa", "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+                rl_hide_searchArticle.setVisibility(View.GONE);
+                ptr_arrlist_searchArticle.setVisibility(View.GONE);
+                rl_empty.setVisibility(View.GONE);
+                error_net.setVisibility(View.VISIBLE);
+                reload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getSearchArticle();
+                    }
+                });
+
+
             }
 
             @Override

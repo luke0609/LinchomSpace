@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true">
     <LinearLayout
-        android:background="#262B4D"
+        android:background="#212121"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/linear"
@@ -23,7 +23,8 @@
             android:paddingLeft="10dp"/>
         <TextView
             android:id="@+id/tv_search"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_toRightOf="@id/logo"
@@ -44,7 +45,7 @@
         <HorizontalScrollView
 
             android:id="@+id/hs_navi"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
             android:scrollbars="none"
@@ -85,7 +86,7 @@
             android:background="#fff"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_toLeftOf="@id/hs_navi"
+
             android:src="@drawable/navi_xiala"/>
     </RelativeLayout>
 

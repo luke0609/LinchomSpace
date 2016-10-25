@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-
     >
 
     <RelativeLayout
         android:id="@+id/rl_hide_searchArticle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="visible"
+        >
         <RelativeLayout
             android:id="@+id/rl_searchWait_titlebar"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="#f5f5f5"
+
             >
             <ImageButton
                 android:id="@+id/searchWait_back"
@@ -26,13 +26,24 @@
                 android:background="#f5f5f5"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="123dp"/>
+                android:layout_marginRight="36dp"
+                />
+      <RelativeLayout
+         android:layout_width="250dp"
+         android:layout_height="wrap_content"
+          android:layout_toRightOf="@id/searchWait_back"
+          android:layout_centerInParent="true"
+   >
            <TextView
-               android:layout_width="wrap_content"
+               android:id="@+id/search_wait_keyword"
+               android:layout_width="250dp"
                android:layout_height="wrap_content"
-               />
+               android:gravity="center"
+               android:textColor="#000"
+               android:singleLine="true"
+               android:textSize="19dp"/>
 
-
+        </RelativeLayout>
 
         </RelativeLayout>
 
@@ -44,12 +55,18 @@
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:id="@+id/pb_progressBar"
+            android:layout_marginBottom="10dp"
 
 
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pb_progressBar"
+            android:layout_centerHorizontal="true"
+            android:text="正在加载，请稍后..."/>
 
     </RelativeLayout>
-
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -68,9 +85,25 @@
             android:background="#f5f5f5"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="123dp"/>
+            android:layout_marginRight="36dp"
+           />
+        <RelativeLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/searchSuccess_back"
+            android:layout_centerInParent="true"
+            >
+        <TextView
+            android:id="@+id/search_success_keyword"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
 
+           android:gravity="center"
+            android:textColor="#000"
+            android:singleLine="true"
+            android:textSize="19dp"/>
 
+        </RelativeLayout>
 
 
     </RelativeLayout>
@@ -94,6 +127,65 @@
         ptr:ptrHeaderSubTextColor="#00ffff"
         ptr:ptrHeaderBackground="@null"
         ptr:ptrDrawable="@drawable/home_load"
+        android:visibility="visible"
         />
 </RelativeLayout>
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/nokeyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/nocategory" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nokeyword"
+            android:layout_centerHorizontal="true"
+            android:text="暂无该关键字信息" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/error_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/iv_nonet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/nocategory"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络连接超时，请重新加载"
+            android:layout_below="@id/iv_nonet"
+            android:layout_centerHorizontal="true"
+            />
+        <Button
+            android:id="@+id/reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="重新加载"/>
+
+    </RelativeLayout>
+</FrameLayout>

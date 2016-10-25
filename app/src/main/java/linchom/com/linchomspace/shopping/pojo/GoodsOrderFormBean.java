@@ -1,12 +1,13 @@
 package linchom.com.linchomspace.shopping.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/10/21.
  */
 
-public class GoodsOrderFormBean {
+public class GoodsOrderFormBean implements Serializable{
 
 
     public String result;
@@ -18,7 +19,7 @@ public class GoodsOrderFormBean {
     public String url;
 
 
-    public class  Data{
+    public class  Data implements Serializable{
 
         public String total_pages;
 
@@ -35,7 +36,7 @@ public class GoodsOrderFormBean {
 
 
 
-    public class OrderForm{
+    public class OrderForm implements Serializable{
 
 
             public String order_id;
@@ -51,7 +52,7 @@ public class GoodsOrderFormBean {
 
     }
 
-    public class OrderInfo{
+    public class OrderInfo implements Serializable{
         public String    goods_name;
         public String    order_id;
         public String    goods_id;
