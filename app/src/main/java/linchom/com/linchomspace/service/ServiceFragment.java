@@ -15,6 +15,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
@@ -23,6 +24,7 @@ import linchom.com.linchomspace.chat.util.ViewHolder;
 
 import static linchom.com.linchomspace.R.drawable.add;
 import static linchom.com.linchomspace.R.id.lv;
+import static linchom.com.linchomspace.R.layout.cell;
 
 public class ServiceFragment extends Fragment {
 
@@ -36,7 +38,7 @@ public class ServiceFragment extends Fragment {
     private PullToRefreshListView plv_1;
     private List<String> list=new ArrayList<>();
     CommonAdapter<String> adapter;
-
+    private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class ServiceFragment extends Fragment {
         View view2 = inflater.inflate(R.layout.service_service_layout, null);
         viewList.add(view1);
         viewList.add(view2);
-        plv_1 = ((PullToRefreshListView) view1.findViewById(lv));
+        plv_1 = ((PullToRefreshListView) view1.findViewById(R.id.lv));
 
         vp_service.setAdapter(new PagerAdapter() {
             @Override
@@ -110,9 +112,9 @@ public class ServiceFragment extends Fragment {
         list.add("1");
         list.add("1");
         if (adapter == null) {
-            adapter = new CommonAdapter<String>(getContext(), list, R.layout.cell) {
+            adapter = new CommonAdapter<String>(getContext(), list, cell) {
                 @Override
-                public void convert(ViewHolder viewHolder, String s, int position) {
+                public void convert(ViewHolder viewHolder, String s, final int position) {
 
 
                     final FoldingCell fc = viewHolder.getViewById(R.id.folding_cell);
@@ -122,8 +124,17 @@ public class ServiceFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             fc.toggle(false);
+                            if (unfoldedIndexes.contains(position))
+                                registerFold(position);
+                            else
+                                registerUnfold(position);
                         }
                     });
+                    if (unfoldedIndexes.contains(position)) {
+                        fc.unfold(true);
+                    } else {
+                        fc.fold(true);
+                    }
 
                 }
             };
@@ -132,5 +143,12 @@ public class ServiceFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
 
+    }
+    public void registerFold(int position) {
+        unfoldedIndexes.remove(position);
+    }
+
+    public void registerUnfold(int position) {
+        unfoldedIndexes.add(position);
     }
 }
