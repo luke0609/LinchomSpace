@@ -29,7 +29,8 @@
             android:layout_centerInParent="true"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:background="@drawable/ll_shape"
+            android:id="@+id/rg_choice"
+            android:background="@drawable/service_shape"
             android:orientation="horizontal">
             <RadioButton
                 android:id="@+id/request"
@@ -39,6 +40,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/service_change_selector"
                 android:textColor="@drawable/serviec_textcolor_selector"
+                android:checked="true"
                 android:text="需求"/>
             <RadioButton
                 android:id="@+id/serviec"
