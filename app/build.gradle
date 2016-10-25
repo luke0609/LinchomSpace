@@ -5,7 +5,7 @@ android {
     buildToolsVersion '23.0.1'
     defaultConfig {
         applicationId "linchom.com.linchomspace"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -43,5 +43,7 @@ android {
         compile 'com.github.devlight.shadowlayout:library:1.0.2'
         compile 'com.twotoasters.jazzylistview:library:1.2.1'
         compile(name: 'library-debug', ext: 'aar')
+        compile'com.ramotion.foldingcell:folding-cell:1.0.1'
+        compile'com.github.glassLake:PhotoPicker:1.0.2'
     }
 }
