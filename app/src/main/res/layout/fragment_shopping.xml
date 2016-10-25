@@ -15,18 +15,34 @@
 
 
         android:layout_width="match_parent"
-        android:layout_height="55dp">
-
+        android:layout_height="55dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
 
         <Button
-            android:id="@+id/btn_goods_cate_search"
+            android:textColor="#808080"
+            android:text="搜索"
             android:background="@drawable/goodssearch_shape"
-            android:text="搜索商品"
+            android:id="@+id/btn_goods_btnSearch"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="40dp" />
+
+
+        <EditText
+            android:layout_marginRight="5dp"
+            android:id="@+id/et_goods_cate_search"
+            android:layout_toLeftOf="@id/btn_goods_btnSearch"
+            android:background="@drawable/goodssearch_shape"
+            android:hint="搜索商品"
             android:drawableLeft="@drawable/goods_discover2"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="40dp" />
+
+
 
 
     </RelativeLayout>

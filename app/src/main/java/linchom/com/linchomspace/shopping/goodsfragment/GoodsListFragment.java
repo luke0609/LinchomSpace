@@ -109,6 +109,10 @@ public class GoodsListFragment extends Fragment {
         sort=bundle.getString("sort");
 
         keyword =bundle.getString("keyword");
+        if (keyword==null){
+            keyword="";
+
+        }
 
 
         ptr_goodsList_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_goodsList_ptr));

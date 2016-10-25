@@ -56,7 +56,7 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
     private String sort=null;
 
-    private String keyword;
+    private String keyword="";
 
     private int pageCount=1;
 
@@ -125,6 +125,8 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
        // String keyword;
 
         keyword = bundle.getString("keyword");
+
+        System.out.println("keyword"+keyword);
 
         System.out.println("orderSort"+orderSort);
         System.out.println("sort"+sort);
@@ -213,7 +215,7 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
         //keyword
 
-        requestParams.addBodyParameter("keyword", keyword + "");
+       requestParams.addBodyParameter("keyword", keyword + "");
 
 
 
@@ -313,6 +315,8 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                System.out.println("exxxxx"+ex);
 
             }
 

@@ -4,13 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.reflect.TypeToken;
 import com.shizhefei.view.indicator.BannerComponent;
 import com.shizhefei.view.indicator.Indicator;
 
@@ -19,16 +26,26 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.search.SearchActivity;
+import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
-import linchom.com.linchomspace.shopping.goodstest.ImagesFromNet;
+import linchom.com.linchomspace.shopping.pojo.GoodsAdvBean;
 
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
+    private Map<String ,String> advMap =new HashMap<String ,String>();
+
+    private List<GoodsAdvBean> getAdvList = new ArrayList<GoodsAdvBean>();
+
+    private List<String> tempList =new ArrayList<String>();
+
+
+    private static final String TAG = "ShoppingFragment";
     View view;
 
 
@@ -39,7 +56,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     private MyGoodsIndicatorAdapter myGoodsIndicatorAdapter;
 
-    private List<String> advList =new ArrayList<String>();
     private Button btn_goods_one_one;
     private Button btn_goods_one_two;
     private Button btn_goods_one_three;
@@ -111,7 +127,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private RelativeLayout rl_goods_fifth;
     private RelativeLayout rl_goods_sixth;
     private RelativeLayout rl_goodsHome_load;
-    private Button btn_goods_cate_search;
+    private Button btn_goods_btnSearch;
+    private EditText et_goods_cate_search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -212,8 +229,10 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         rl_goodsHome_load = ((RelativeLayout) view.findViewById(R.id.rl_goodsHome_load));
 
+        btn_goods_btnSearch = ((Button) view.findViewById(R.id.btn_goods_btnSearch));
 
-        btn_goods_cate_search = ((Button) view.findViewById(R.id.btn_goods_cate_search));
+        et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
+
 
     }
 
@@ -227,6 +246,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         setButtonClick();
         advLoopPlay();
+
+
 
 
     }
@@ -433,11 +454,12 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
                 toGoodsIntent("20");
                 break;
 
-            case R.id.btn_goods_cate_search:
-
+            case R.id.btn_goods_btnSearch:
                 toGoodsSearch();
 
                 break;
+
+
 
 
         }
@@ -447,6 +469,24 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     }
 
     private void toGoodsSearch() {
+
+        Intent intent =new Intent(getActivity(), GoodsListActivity.class);
+
+        Bundle bundle =new Bundle();
+        bundle.putString("keyword",et_goods_cate_search.getText().toString().trim()+"");
+
+        bundle.putString("cateId","");
+
+        intent.putExtra("bundle",bundle);
+
+        startActivity(intent);
+
+
+
+
+    }
+
+   /* private void toGoodsSearch() {
         Intent intent =new Intent(getActivity(), SearchActivity.class);
 
         Bundle bundle =new Bundle();
@@ -456,7 +496,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         startActivity(intent);
 
 
-    }
+    }*/
 
     public void toGoodsIntent(String cateId){
 
@@ -476,30 +516,79 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     private void initAdvList() {
 
-        advList.add("1");
-        advList.add("2");
-        advList.add("3");
-        advList.add("4");
+        getAdvList.add(new GoodsAdvBean("1","1"));
+        getAdvList.add(new GoodsAdvBean("1","1"));
 
-        RequestParams requestParams =new RequestParams("http://10.40.5.29:8080/web/getimages");
+        getAdvList.add(new GoodsAdvBean("1","1"));
 
-        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+
+
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","figure");
+
+
+
+
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
-                Gson gson= new Gson();
+                Log.i(TAG,"result"+result);
 
-                ImagesFromNet imagesFromNet = gson.fromJson(result, ImagesFromNet.class);
+                Gson gson =new Gson();
 
-                advList.clear();
+                JsonParser parser = new JsonParser();
 
-                advList.add(imagesFromNet.picture1);
-                advList.add(imagesFromNet.picture2);
-                advList.add(imagesFromNet.picture3);
-                advList.add(imagesFromNet.picture4);
+                JsonElement element = parser.parse(result);
 
-                myGoodsIndicatorAdapter.notifyDataSetChanged();
+                JsonObject root = element.getAsJsonObject();
+
+
+                JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
+
+
+
+               JsonObject dataJson =  root.getAsJsonObject("data");
+
+
+
+                Map<String,String> a=   gson.fromJson(dataJson, new TypeToken<Map<String,String>>() {}.getType());
+
+
+
+                tempList.clear();
+                for (Map.Entry<String,String> m : a.entrySet()) {
+
+
+
+                    tempList.add(m.getValue());
+
+                    Log.i(TAG, "a" +m.getValue());
+
+
+                }
+                getAdvList.clear();
+
+                for(int i = 0;i<tempList.size();i++){
+
+
+                    getAdvList.add(new GoodsAdvBean(tempList.get(i),tempList.get(i++)));
+
+
+
+                }
+
+
+                Log.i(TAG,"advList"+getAdvList+"");
+
+
+
                 rl_goodsHome_load.setVisibility(View.GONE);
+
+
+
 
             }
 
@@ -528,7 +617,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         bannerComponent=new BannerComponent(indicator_banner_goods,vp_banner_goods,true);
 
-        myGoodsIndicatorAdapter =new MyGoodsIndicatorAdapter(getActivity(),advList);
+        myGoodsIndicatorAdapter =new MyGoodsIndicatorAdapter(getActivity(),getAdvList);
 
 
         bannerComponent.setAdapter(myGoodsIndicatorAdapter);
@@ -610,7 +699,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         rl_goods_fifth.setOnClickListener(this);
         rl_goods_sixth.setOnClickListener(this);
 
-        btn_goods_cate_search.setOnClickListener(this);
+        btn_goods_btnSearch.setOnClickListener(this);
+
 
 
     }
