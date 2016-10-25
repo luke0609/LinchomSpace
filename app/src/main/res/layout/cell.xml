@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.ramotion.foldingcell.FoldingCell xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/folding_cell"
+    folding-cell:additionalFlipsCount="2"
+    folding-cell:animationDuration="1300"
+    folding-cell:backSideColor="@color/bgBackSideColor">
+
+    <!-- CONTENT (UNFOLDED) LAYOUT (MUST BE AT LEAST 2x times BIGGER than content layout bellow)-->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- content header line -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#262B4D"
+            android:paddingBottom="7dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="7dp">
+
+            <TextView
+                android:id="@+id/content_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="智能居家"
+
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="需求"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/menu_icon" />
+
+        </RelativeLayout>
+
+        <!-- content header image -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/head_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/head_image" />
+
+
+
+        </RelativeLayout>
+
+        <!-- content body layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bgContent"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="9dp">
+
+            <!-- avatar and name part -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/content_avatar_title"
+                    style="@style/ContentMainBadgeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="发布人" />
+
+                <ImageView
+                    android:id="@+id/content_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/content_avatar_title"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/avatar" />
+
+                <TextView
+                    android:id="@+id/content_name_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/content_avatar"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/content_avatar"
+                    android:text="梁京生"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="18sp"
+                    />
+
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/arrow" />
+
+            </RelativeLayout>
+
+            <!-- divider line -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="9dp"
+                android:src="@color/contentDividerLine" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/content"
+                    style="@style/ContentMainBadgeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="具体需求" />
+                <TextView
+                    android:layout_below="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+
+                    android:textColor="@color/mainTextColor"
+                    android:text="利用综合布线技术、网络通信技术、 安全防范技术、自动控制技术、音视频技术将家居生活有关的设施集成，构建高效的住宅设施与家庭日程事务的管理系统，提升家居安全性、便利性、舒适性、艺术性，并实现环保节能的居住环境。"/>
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="9dp"
+                android:src="@color/contentDividerLine" />
+            <!-- addresses part -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/content_from_badge"
+                        style="@style/ContentMainBadgeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="联系方式" />
+
+                    <TextView
+                        android:id="@+id/content_from_address_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/content_from_badge"
+                        android:layout_below="@id/content_from_badge"
+                        android:text="17751192553"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="14sp"
+                        />
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/content_to_badge"
+                        style="@style/ContentMainBadgeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="截至日期" />
+
+                    <TextView
+                        android:id="@+id/content_to_address_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/content_to_badge"
+                        android:layout_below="@id/content_to_badge"
+                        android:text="2016-10-30"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="14sp"
+                        />
+
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/arrow" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!-- divider line -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="7dp"
+                android:src="@color/contentDividerLine" />
+
+            <!-- dates part -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/content_delivery_date_badge"
+                        style="@style/ContentMainBadgeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="详细地址" />
+
+                    <TextView
+                        android:id="@+id/content_delivery_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/content_delivery_date_badge"
+                        android:layout_below="@id/content_delivery_date_badge"
+                        android:text="江苏省苏州市吴中区独墅湖仁爱路1号"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="14sp"
+                        />
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+            <!-- request button -->
+            <TextView
+                android:id="@+id/content_request_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/btnRequest"
+                android:padding="10dp"
+                android:text="REQUEST"
+                android:textAlignment="center"
+                android:textColor="@color/mainTextColor"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+    <!-- TITLE (FOLDED) LAYOUT (MUST BE AT LEAST 2x times SMALLER than content layout above) -->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgContent"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <!-- LEFT TITLE PART -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:layout_weight="3"
+            android:background="#262B4D"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/title_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/white"
+                android:text="北京"
+                android:singleLine="true"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/title_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/white"
+                android:text="Today"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/title_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/title_time_label"
+                android:layout_alignParentStart="true"
+                android:textColor="@android:color/white"
+                android:text="15:12"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+        <!-- RIGHT TITLE PART -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/bgTitleRight"
+            android:paddingBottom="20dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/title_from_to_dots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="10dp"
+                android:src="@mipmap/from_to_purple" />
+
+            <TextView
+                android:id="@+id/title_from_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/title_from_to_dots"
+                android:layout_marginTop="-3dp"
+                android:layout_toEndOf="@+id/title_from_to_dots"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+
+                android:gravity="center_vertical"
+
+                android:text="【智能居家】"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/title_from_to_dots_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/title_from_address"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@+id/title_from_to_dots"
+                android:src="@color/contentDividerLine" />
+
+            <TextView
+                android:id="@+id/title_to_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_from_to_dots_divider"
+                android:layout_toEndOf="@id/title_from_to_dots"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:maxLines="2"
+                android:text="我们家装修需要智能化方案设计支持"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/title_requests_count"
+                style="@style/TitleBadgeText"
+                android:text="未完成"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                style="@style/TitleBadgeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/title_requests_count"
+                android:layout_alignStart="@id/title_requests_count"
+                android:text="状态" />
+
+            <TextView
+                android:id="@+id/title_weight"
+                style="@style/TitleBadgeText"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/tv_lefttime"
+                android:text="三天" />
+
+            <TextView
+                style="@style/TitleBadgeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/title_weight"
+                android:singleLine="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/tv_lefttime"
+                android:text="剩余时间" />
+
+            <TextView
+                android:id="@+id/title_pledge"
+                style="@style/TitleBadgeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公司"
+                android:textSize="14sp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                style="@style/TitleBadgeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/title_pledge"
+                android:layout_alignStart="@id/title_pledge"
+                android:text="类型" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.ramotion.foldingcell.FoldingCell>

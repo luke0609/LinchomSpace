@@ -7,17 +7,22 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.CommonAdapter;
+import linchom.com.linchomspace.chat.util.ViewHolder;
 
 import static linchom.com.linchomspace.R.drawable.add;
+import static linchom.com.linchomspace.R.id.lv;
 
 public class ServiceFragment extends Fragment {
 
@@ -29,6 +34,8 @@ public class ServiceFragment extends Fragment {
     private RadioButton request;
     private RadioButton service;
     private PullToRefreshListView plv_1;
+    private List<String> list=new ArrayList<>();
+    CommonAdapter<String> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,11 +54,12 @@ public class ServiceFragment extends Fragment {
 
         inflater = LayoutInflater.from(getContext());
 
-               View view1 = inflater.inflate(R.layout.service_require_layout, null);
-               View view2 = inflater.inflate(R.layout.service_service_layout, null);
-            viewList.add(view1);
-            viewList.add(view2);
-        plv_1 = ((PullToRefreshListView) view1.findViewById(R.id.lv));
+        View view1 = inflater.inflate(R.layout.service_require_layout, null);
+        View view2 = inflater.inflate(R.layout.service_service_layout, null);
+        viewList.add(view1);
+        viewList.add(view2);
+        plv_1 = ((PullToRefreshListView) view1.findViewById(lv));
+
         vp_service.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -60,7 +68,7 @@ public class ServiceFragment extends Fragment {
 
             @Override
             public boolean isViewFromObject(View view, Object object) {
-                return view==object;
+                return view == object;
             }
 
             @Override
@@ -85,7 +93,7 @@ public class ServiceFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) request.setChecked(true);
-               else service.setChecked(true);
+                else service.setChecked(true);
             }
 
             @Override
@@ -94,7 +102,35 @@ public class ServiceFragment extends Fragment {
             }
         });
 
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        if (adapter == null) {
+            adapter = new CommonAdapter<String>(getContext(), list, R.layout.cell) {
+                @Override
+                public void convert(ViewHolder viewHolder, String s, int position) {
+
+
+                    final FoldingCell fc = viewHolder.getViewById(R.id.folding_cell);
+
+                    // attach click listener to folding cell
+                    fc.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            fc.toggle(false);
+                        }
+                    });
+
+                }
+            };
+            plv_1.setAdapter(adapter);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
+
     }
-
-
 }
