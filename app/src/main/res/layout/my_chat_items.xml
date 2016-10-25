@@ -15,6 +15,7 @@
                android:layout_height="wrap_content"
                android:text="交流话题"
                android:textSize="20sp"
+               android:textColor="#212121"
                android:gravity="center"
                android:padding="10dp"/>
            <TextView
@@ -24,6 +25,7 @@
                android:layout_height="wrap_content"
                android:text="交流话题"
                android:textSize="16sp"
+               android:textColor="#212121"
                android:padding="10dp"/>
        </RelativeLayout>
        <RelativeLayout
@@ -35,6 +37,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="用户名"
+               android:textColor="#212121"
                android:padding="10dp"/>
            <TextView
                android:id="@+id/add_time"
@@ -42,6 +45,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="添加时间"
+               android:textColor="#212121"
                android:padding="10dp"/>
        </RelativeLayout>
 
