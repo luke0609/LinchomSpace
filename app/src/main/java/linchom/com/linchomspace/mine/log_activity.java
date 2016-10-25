@@ -4,21 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mobeta.android.dslv.DragSortListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +21,6 @@ import java.util.Locale;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.LogInfoBean;
-import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
@@ -38,7 +31,6 @@ public class log_activity extends AppCompatActivity {
     private DragSortListView lv_loglist;
 
     List<LogInfoBean.DataBean> beanlist=new ArrayList<LogInfoBean.DataBean>();
-
     private ImageView iv_logback;
 
     @Override
@@ -62,7 +54,7 @@ public class log_activity extends AppCompatActivity {
         lv_loglist.setRemoveListener(new DragSortListView.RemoveListener() {
             @Override
             public void remove(int i) {
-             //   logCommonAdapter.remove(i);
+             logCommonAdapter.remove(i);
             }
         });
     }
