@@ -11,6 +11,8 @@
         android:background="#30808080"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         >
 
         <ImageView
@@ -22,34 +24,40 @@
             android:layout_marginLeft="10dp"
             />
 
-
         <Button
+            android:id="@+id/btn_goods_list_btnSearch"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/goodssearch_shape"
+            android:textColor="#808080"
+            android:text="搜索"
+            android:layout_width="50dp"
+            android:layout_height="40dp" />
+
+
+        <EditText
+            android:layout_centerVertical="true"
+
+            android:id="@+id/et_goods_search"
 
             android:textColor="#808080"
             android:background="@drawable/goodssearch_shape"
-            android:text="搜索商品"
+            android:hint="搜索商品"
             android:drawableLeft="@drawable/goods_discover2"
             android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_toLeftOf="@id/btn_goods_list_btnSearch"
+            android:layout_marginRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="7.5dp"/>
-
-
-        <CheckBox
-
-            android:id="@+id/radiobtn_goodslist_listcate"
-
-            android:drawableBottom="@drawable/radiobtn_goodslist_selector"
-
-            android:layout_centerVertical="true"
-            android:button="@null"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-
             />
+
+
+
+
+
+
+
 
 
     </RelativeLayout>
@@ -178,6 +186,21 @@
 
 
         </RelativeLayout>
+
+        <CheckBox
+
+            android:id="@+id/radiobtn_goodslist_listcate"
+
+            android:drawableBottom="@drawable/radiobtn_goodslist_selector"
+
+            android:layout_centerVertical="true"
+            android:button="@null"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+
+            />
 
 
 

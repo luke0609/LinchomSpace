@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -36,12 +37,12 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     Fragment fragmentChange;
 
 
-    private int catId;
+    private String  catId;
 
     private  String order =null;
 
 
-    private String keyWord;
+    private String keyword="";
 
 
 
@@ -57,7 +58,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     private ImageView iv_goodsList_back;
     private CheckBox radiobtn_goodslist_listcate;
+    private Button btn_goods_list_btnSearch;
+    private EditText et_goods_search;
 
+
+    private boolean layoutFlag =true;
 
 
     @Override
@@ -65,9 +70,21 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
 
+
+
         Intent intent  =getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
-        catId=bundle.getInt("cateId");
+
+        keyword = bundle.getString("keyword");
+
+        if(keyword==null){
+
+            keyword="";
+        }
+
+        catId=bundle.getString("cateId");
+
+        Log.i(TAG,"keyword"+keyword+"catId"+catId);
 
         initView();
         initData();
@@ -90,6 +107,10 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         v_goodLists_new_line = ((View) findViewById(R.id.v_goodLists_new_line));
         iv_goodsList_back = ((ImageView) findViewById(R.id.iv_goodsList_back));
 
+        btn_goods_list_btnSearch = ((Button) findViewById(R.id.btn_goods_list_btnSearch));
+
+        et_goods_search = ((EditText) findViewById(R.id.et_goods_search));
+
 
         //默认状态
 
@@ -107,11 +128,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
         Bundle bundle = new Bundle();
 
-        bundle.putInt("catId",catId);
+        bundle.putString("catId",catId);
         bundle.putString("order","desc");
         bundle.putString("sort","");
 
-
+        bundle.putString("keyword",keyword);
 
 
         fragmentChange.setArguments(bundle);
@@ -141,6 +162,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         btn_goodsList_hot.setOnClickListener(this);
         btn_goodsList_new.setOnClickListener(this);
         iv_goodsList_back.setOnClickListener(this);
+
+        btn_goods_list_btnSearch.setOnClickListener(this);
 
         radiobtn_goodslist_listcate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -174,14 +197,19 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
                 if(isChecked){
 
+                    layoutFlag=true;
+
                     fragmentChange =new GoodsListFragment();
                     Bundle bundle = new Bundle();
 
-                    bundle.putInt("catId",catId);
+                    bundle.putString("catId",catId);
 
 
                     bundle.putString("order","desc");
                     bundle.putString("sort","");
+
+                    bundle.putString("keyword",keyword);
+
 
 
 
@@ -194,14 +222,18 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
 
                 }else if(!isChecked){
+                    layoutFlag =false;
 
                     fragmentChange =new GoodsListWaterfallFragment();
 
                     Bundle bundle = new Bundle();
 
-                    bundle.putInt("catId",catId);
+                    bundle.putString("catId",catId);
                     bundle.putString("order","desc");
                     bundle.putString("sort","");
+
+                    bundle.putString("keyword",keyword+"");
+
 
 
 
@@ -245,10 +277,77 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                 this.finish();
                 break;
 
+            case R.id.btn_goods_list_btnSearch:
+
+               toGoodsSearch();
+
+                break;
+
 
         }
 
 
+
+    }
+
+    private void toGoodsSearch() {
+        catId="";
+
+        keyword =et_goods_search.getText().toString().trim()+"";
+
+        FragmentTransaction transaction;
+
+        transaction=getSupportFragmentManager().beginTransaction();
+
+        transaction.hide(fragmentChange);
+
+        if(layoutFlag==true){
+
+            fragmentChange =new GoodsListFragment();
+            Bundle bundle = new Bundle();
+
+            bundle.putString("catId",catId);
+
+
+            bundle.putString("order","desc");
+            bundle.putString("sort","");
+
+            bundle.putString("keyword",keyword);
+
+
+
+
+            fragmentChange.setArguments(bundle);
+
+
+            transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+
+        }else{
+
+
+            fragmentChange =new GoodsListWaterfallFragment();
+
+            Bundle bundle = new Bundle();
+
+            bundle.putString("catId",catId);
+            bundle.putString("order","desc");
+            bundle.putString("sort","");
+
+            bundle.putString("keyword",keyword+"");
+
+
+
+
+            fragmentChange.setArguments(bundle);
+
+            transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+
+
+        }
 
     }
 
@@ -346,7 +445,9 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
             Bundle bundle = new Bundle();
 
-            bundle.putInt("catId",catId);
+            bundle.putString("catId",catId);
+            bundle.putString("keyword",keyword);
+
 
 
             bundle.putString("order",order);
@@ -365,9 +466,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
             transaction=getSupportFragmentManager().beginTransaction();
             fragmentChange =new GoodsListWaterfallFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("catId",catId);
+            bundle.putString("catId",catId);
             bundle.putString("order",order);
             bundle.putString("sort",sort+"");
+            bundle.putString("keyword",keyword);
+
             fragmentChange.setArguments(bundle);
             transaction.replace(R.id.fl_goodslist_listcate,fragmentChange).commit();
 

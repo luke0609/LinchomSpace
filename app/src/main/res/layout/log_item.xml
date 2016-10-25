@@ -87,12 +87,11 @@
         <ImageView
             android:id="@+id/src"
             android:layout_toLeftOf="@+id/action_note"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/jd_logo"
             android:layout_below="@id/order_status"
-            android:layout_marginLeft="60dp"
-            android:layout_alignParentBottom="true"
+            android:layout_marginRight="40dp"
             android:textSize="18sp"
             />
     </RelativeLayout>

@@ -132,9 +132,15 @@
         <activity
             android:name=".chat.ChatPublishActiviy"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".mine.Details_Activity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".mine.Details_s_Activity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".mine.Night_activity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".mine.Details_Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".mine.Details_s_Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".mine.Night_activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.TblinkActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -161,10 +167,15 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsAreaActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".shopping.AddaddressActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".shopping.AddaddressActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".shopping.OrderDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
+
             ></activity>
 
         <activity android:name=".homepage.Activity.SearchArticleActivity"

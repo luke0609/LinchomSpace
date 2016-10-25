@@ -17,6 +17,7 @@ public  abstract class GoodsCommonAdapter<T> extends BaseAdapter{
 
     List<T> lists;
     int layoutId;
+
     public GoodsCommonAdapter(Context context, List<T> lists, int layoutId){
 
 
@@ -57,4 +58,10 @@ public  abstract class GoodsCommonAdapter<T> extends BaseAdapter{
     //取出控价 然后赋值
 
     public abstract void convert(GoodsViewHolder viewHolder,T t,int position);
+
+    //删除指定位置的元素
+    public void remove(int position){
+        lists.remove(position);//删除
+        this.notifyDataSetChanged();//刷新，更改适配器对象的数据源
+    }
 }

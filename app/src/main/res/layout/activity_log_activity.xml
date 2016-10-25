@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:dslv="http://schemas.android.com/apk/res-auto"
     tools:context=".mine.log_activity">
     <RelativeLayout
         android:id="@+id/rl_log"
@@ -13,8 +14,8 @@
         <ImageView
             android:id="@+id/iv_logback"
             android:layout_marginLeft="10dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:src="@drawable/back"
@@ -24,15 +25,34 @@
             android:layout_height="wrap_content"
             android:text="我的日志"
             android:layout_centerVertical="true"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
-    <ListView
+    <!--<ListView
         android:id="@+id/lv_loglist"
         android:layout_below="@+id/rl_log"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </ListView>-->
+    <com.mobeta.android.dslv.DragSortListView
+        android:id="@+id/lv_loglist"
+        android:layout_below="@+id/rl_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1px"
+        android:padding="3dp"
+        dslv:collapsed_height="1px"
+        dslv:drag_enabled="true"
+        dslv:drag_handle_id="@+id/drag_handle"
+        dslv:drag_scroll_start="0.9"
+        dslv:drag_start_mode="onDown"
+        dslv:float_alpha="0.6"
+        dslv:remove_enabled="true"
+        dslv:remove_mode="flingRemove"
+        dslv:slide_shuffle_speed="0.3">
+
+
+    </com.mobeta.android.dslv.DragSortListView>
 </RelativeLayout>

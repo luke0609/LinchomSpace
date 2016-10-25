@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -105,6 +106,15 @@ public class AllOrderFragment extends Fragment {
     private void initEvent() {
 
        eventPullToRefresh();
+
+        orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
     }

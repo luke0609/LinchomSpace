@@ -4,20 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.mobeta.android.dslv.DragSortListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
-
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +21,6 @@ import java.util.Locale;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.LogInfoBean;
-import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
@@ -34,7 +28,7 @@ public class log_activity extends AppCompatActivity {
 
     private static final String TAG = "log_activity";
     private GoodsCommonAdapter<LogInfoBean.DataBean> logCommonAdapter;
-    private ListView lv_loglist;
+    private DragSortListView lv_loglist;
 
     List<LogInfoBean.DataBean> beanlist=new ArrayList<LogInfoBean.DataBean>();
     private ImageView iv_logback;
@@ -44,20 +38,25 @@ public class log_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_activity);
 
-        lv_loglist = ((ListView) findViewById(R.id.lv_loglist));
+        lv_loglist = ((DragSortListView) findViewById(R.id.lv_loglist));
 
         iv_logback = ((ImageView) findViewById(R.id.iv_logback));
         iv_logback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
-
             }
         });
 
         //initData();
         initEvent();
+
+        lv_loglist.setRemoveListener(new DragSortListView.RemoveListener() {
+            @Override
+            public void remove(int i) {
+             logCommonAdapter.remove(i);
+            }
+        });
     }
     public void initData() {
         RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=message&user_id=12");
@@ -125,6 +124,7 @@ public class log_activity extends AppCompatActivity {
                 Date date=new Date(Long.parseLong(dataBean.log_time));
                 log_time.setText(sdf.format(date));
             }
+
         };
         initData();
         //放到适配器中在页面显示
