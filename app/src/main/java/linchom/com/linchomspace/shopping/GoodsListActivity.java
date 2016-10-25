@@ -14,12 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.search.SearchActivity;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListWaterfallFragment;
 
@@ -58,7 +58,11 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     private ImageView iv_goodsList_back;
     private CheckBox radiobtn_goodslist_listcate;
-    private Button btn_goods_search;
+    private Button btn_goods_list_btnSearch;
+    private EditText et_goods_search;
+
+
+    private boolean layoutFlag =true;
 
 
     @Override
@@ -103,7 +107,9 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         v_goodLists_new_line = ((View) findViewById(R.id.v_goodLists_new_line));
         iv_goodsList_back = ((ImageView) findViewById(R.id.iv_goodsList_back));
 
-        btn_goods_search = ((Button) findViewById(R.id.btn_goods_search));
+        btn_goods_list_btnSearch = ((Button) findViewById(R.id.btn_goods_list_btnSearch));
+
+        et_goods_search = ((EditText) findViewById(R.id.et_goods_search));
 
 
         //默认状态
@@ -157,7 +163,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         btn_goodsList_new.setOnClickListener(this);
         iv_goodsList_back.setOnClickListener(this);
 
-        btn_goods_search.setOnClickListener(this);
+        btn_goods_list_btnSearch.setOnClickListener(this);
 
         radiobtn_goodslist_listcate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -191,6 +197,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
                 if(isChecked){
 
+                    layoutFlag=true;
+
                     fragmentChange =new GoodsListFragment();
                     Bundle bundle = new Bundle();
 
@@ -214,6 +222,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
 
                 }else if(!isChecked){
+                    layoutFlag =false;
 
                     fragmentChange =new GoodsListWaterfallFragment();
 
@@ -268,16 +277,9 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
                 this.finish();
                 break;
 
-            case R.id.btn_goods_search:
+            case R.id.btn_goods_list_btnSearch:
 
-                Intent intent =new Intent(getApplicationContext(), SearchActivity.class);
-
-                Bundle bundle =new Bundle();
-                bundle.putString("search_type","goods");
-                intent.putExtra("bundle",bundle);
-
-                startActivity(intent);
-
+               toGoodsSearch();
 
                 break;
 
@@ -285,6 +287,67 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         }
 
 
+
+    }
+
+    private void toGoodsSearch() {
+        catId="";
+
+        keyword =et_goods_search.getText().toString().trim()+"";
+
+        FragmentTransaction transaction;
+
+        transaction=getSupportFragmentManager().beginTransaction();
+
+        transaction.hide(fragmentChange);
+
+        if(layoutFlag==true){
+
+            fragmentChange =new GoodsListFragment();
+            Bundle bundle = new Bundle();
+
+            bundle.putString("catId",catId);
+
+
+            bundle.putString("order","desc");
+            bundle.putString("sort","");
+
+            bundle.putString("keyword",keyword);
+
+
+
+
+            fragmentChange.setArguments(bundle);
+
+
+            transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+
+        }else{
+
+
+            fragmentChange =new GoodsListWaterfallFragment();
+
+            Bundle bundle = new Bundle();
+
+            bundle.putString("catId",catId);
+            bundle.putString("order","desc");
+            bundle.putString("sort","");
+
+            bundle.putString("keyword",keyword+"");
+
+
+
+
+            fragmentChange.setArguments(bundle);
+
+            transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+
+
+        }
 
     }
 
