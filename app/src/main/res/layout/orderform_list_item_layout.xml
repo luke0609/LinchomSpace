@@ -134,6 +134,8 @@
             android:layout_height="35dp" />
 
         <Button
+
+            android:id="@+id/btn_orderform_detail"
             android:textSize="14sp"
 
             android:textColor="#808080"
