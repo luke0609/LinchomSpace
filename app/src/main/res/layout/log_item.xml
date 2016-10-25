@@ -6,59 +6,68 @@
     <RelativeLayout
         android:id="@+id/rl_info"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         >
+        <ImageView
+            android:id="@+id/src"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/jd_logo"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            />
         <TextView
             android:id="@+id/order_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单号"
-            android:layout_marginLeft="15dp"
-            android:textColor="#000"
-            android:textSize="18sp"
-            />
-        <TextView
-            android:id="@+id/shipping_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="18sp"
-            android:layout_toRightOf="@id/order_id"
+            android:layout_toRightOf="@id/src"
+            android:textColor="#808080"
             android:layout_marginLeft="30dp"
-            android:text="用户类型"
-            />
-        <TextView
-            android:id="@+id/action_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
             android:textSize="18sp"
-            android:layout_toRightOf="@id/shipping_status"
-            android:layout_marginLeft="30dp"
-            android:text="商品类型"
             />
         <TextView
             android:id="@+id/order_status"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:textColor="#000"
+            android:textColor="#808080"
             android:layout_height="wrap_content"
             android:text="订单状态"
             android:layout_marginRight="10dp"
             android:textSize="18sp"
             />
+
+
         <TextView
-            android:id="@+id/pay_status"
-            android:layout_toLeftOf="@+id/log_time"
+            android:id="@+id/action_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="支付状态"
-            android:textColor="#000"
+            android:text="商品状态"
+            android:textColor="#808080"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
             android:layout_below="@id/order_status"
-            android:layout_marginTop="50dp"
+
             android:layout_marginRight="20dp"
             android:textSize="18sp"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_usr"
+        android:layout_below="@id/rl_info"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/shipping_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:textSize="18sp"
+            android:layout_marginLeft="30dp"
+            android:text="用户类型"
             />
         <TextView
             android:id="@+id/log_time"
@@ -66,37 +75,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="时间"
-            android:textColor="#000"
-            android:layout_below="@id/order_status"
-            android:layout_marginTop="50dp"
+            android:textColor="#808080"
             android:layout_marginRight="20dp"
-            android:textSize="18sp"
-            />
-        <TextView
-            android:id="@+id/action_note"
-            android:layout_toLeftOf="@+id/pay_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="商品状态"
-            android:textColor="#000"
-            android:layout_below="@id/order_status"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:textSize="18sp"
-            />
-        <ImageView
-            android:id="@+id/src"
-            android:layout_toLeftOf="@+id/action_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/jd_logo"
-            android:layout_below="@id/order_status"
-            android:layout_marginRight="40dp"
             android:textSize="18sp"
             />
     </RelativeLayout>
     <View
-        android:layout_below="@+id/rl_info"
+        android:layout_below="@+id/rl_usr"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"

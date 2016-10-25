@@ -3,32 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:dslv="http://schemas.android.com/apk/res-auto"
     tools:context="linchom.com.linchomspace.mine.MyChat_activity">
-<RelativeLayout
-    android:id="@+id/rl_ping"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="#e4d6d6">
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/back"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="我的交流"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
-    <ListView
-        android:id="@+id/lv_pinglun"
+    <RelativeLayout
+        android:id="@+id/rl_ping"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#d4cece">
+        <ImageView
+            android:id="@+id/iv_chat_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="我的交流"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <!--<ListView-->
+
+    <!--android:id="@+id/lv_myChatList"-->
+    <!--android:layout_below="@id/rl_ping"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</ListView>-->
+    <com.mobeta.android.dslv.DragSortListView
+        android:id="@+id/lv_myChatList"
         android:layout_below="@id/rl_ping"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:dividerHeight="1px"
+        android:padding="3dp"
+        dslv:collapsed_height="1px"
+        dslv:drag_enabled="true"
+        dslv:drag_handle_id="@+id/drag_handle"
+        dslv:drag_scroll_start="0.9"
+        dslv:drag_start_mode="onDown"
+        dslv:float_alpha="0.6"
+        dslv:remove_enabled="true"
+        dslv:remove_mode="flingRemove"
+        dslv:slide_shuffle_speed="0.3">
 
-    </ListView>
+    </com.mobeta.android.dslv.DragSortListView>
 </RelativeLayout>

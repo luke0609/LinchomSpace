@@ -2,47 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/iv_goods"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_price"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/live_head_passerby"
-        />
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/iv_goods"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/live_head_passerby"
+            />
 
-    <TextView
-        android:layout_toRightOf="@id/iv_goods"
-        android:id="@+id/market_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="市场价格"
-        android:textSize="18sp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center"
-        />
+        <TextView
+            android:layout_toRightOf="@id/iv_goods"
+            android:id="@+id/goods_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品名"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            />
 
-    <TextView
-        android:id="@+id/shop_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="商店价格"
-        android:textSize="18sp"
-        android:layout_toRightOf="@id/iv_goods"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center"
-        />
+        <TextView
+            android:id="@+id/market_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商店价格"
+            android:textSize="18sp"
 
-    <TextView
-        android:id="@+id/is_attention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="是否收藏"
-        android:textSize="18sp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/iv_goods"
-        android:gravity="center"
-        />
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            android:id="@+id/promote_price"
+            android:layout_below="@id/market_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="促销价格"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_below="@+id/rl_price"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#ccc"/>
 </RelativeLayout>
