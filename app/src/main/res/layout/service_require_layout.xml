@@ -3,20 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/mainListView"
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lv"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/service_background"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
         android:paddingBottom="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="16dp"
-        android:scrollbars="none">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:cacheColorHint="#000000"
+        android:background="@drawable/service_background"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:smoothScrollbar="true"
+        ptr:ptrAnimationStyle="rotate"
+        ptr:ptrHeaderTextColor="#000000"
+        ptr:ptrHeaderSubTextColor="#00ffff"
+        ptr:ptrHeaderBackground="@null"
+        ptr:ptrDrawable="@mipmap/load"
 
-    </ListView>
+       />
 </RelativeLayout>
