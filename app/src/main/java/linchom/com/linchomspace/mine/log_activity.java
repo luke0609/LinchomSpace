@@ -111,12 +111,12 @@ public class log_activity extends AppCompatActivity {
                 order_id.setText(dataBean.order_id);
                 TextView shipping_status = ((TextView) viewHolder.getViewById(R.id.shipping_status));
                 shipping_status.setText(dataBean.shipping_status);
-                TextView action_user = ((TextView) viewHolder.getViewById(R.id.action_user));
-                action_user.setText(dataBean.action_user);
+//                TextView action_user = ((TextView) viewHolder.getViewById(R.id.action_user));
+//                action_user.setText(dataBean.action_user);
                 TextView order_status = ((TextView) viewHolder.getViewById(R.id.order_status));
                 order_status.setText(dataBean.order_status);
-                TextView pay_status = ((TextView) viewHolder.getViewById(R.id.pay_status));
-                pay_status.setText(dataBean.pay_status);
+//                TextView pay_status = ((TextView) viewHolder.getViewById(R.id.pay_status));
+//                pay_status.setText(dataBean.pay_status);
                 TextView action_note = ((TextView) viewHolder.getViewById(R.id.action_note));
                 action_note.setText(dataBean.action_note);
                 TextView log_time =((TextView) viewHolder.getViewById(R.id.log_time));
