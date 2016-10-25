@@ -2339,7 +2339,7 @@ public class HomeFragment extends Fragment {
     private void getvideo() {
         rl_empty.setVisibility(View.GONE);
         error_caterogy.setVisibility(View.GONE);
-        ptr_arrlist_video.setVisibility(View.GONE);
+
         if (page == 1 && pullFlag == false) {
             rl_hide_video.setVisibility(View.VISIBLE);
         }
@@ -2351,10 +2351,10 @@ public class HomeFragment extends Fragment {
         org.xutils.x.http().post(params, new Callback.CommonCallback<String>(){
             @Override
             public void onSuccess(String result) {
+                ptr_arrlist_video.setVisibility(View.GONE);
 
-//                if(arrList!=null) {
                 rl_hide_video.setVisibility(View.GONE);
-                //      ptr_arrlist_video.setVisibility(View.VISIBLE);
+
                 if (page == 1) {
                     arrList.clear();
                 }
@@ -2728,7 +2728,7 @@ public class HomeFragment extends Fragment {
             //ListActivityBean.Dongtai dongtai = dongtaiList.get(position);
             ArticleListBean.Article_list arr = arrList.get(position);
 
-            viewHolder.tv_title.setText(arr.title);
+            viewHolder.tv_title.setText(arr.title.replace(" ",""));
 
             viewHolder.tv_name.setText(linchom.com.linchomspace.homepage.Utils.DateUtils.getGapTimeFromNow(DateUtils.stringToDate(arr.date)));
             if (arr.article_pic == "") {
