@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.shopping.goodsfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.OrderDetailActivity;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsOrderFormBean;
@@ -66,6 +68,8 @@ public class UnEvaluateFragment extends Fragment {
     private int totalPage=1;
 
     private String userId;
+
+    TextView tv_orderform_orderstatus;
 
 
     @Nullable
@@ -159,7 +163,7 @@ public class UnEvaluateFragment extends Fragment {
             @Override
             public void convert(GoodsViewHolder viewHolder, GoodsOrderFormBean.OrderForm orderForm, final int position) {
 
-                TextView tv_orderform_orderstatus = viewHolder.getViewById(R.id.tv_orderform_orderstatus);
+                tv_orderform_orderstatus = viewHolder.getViewById(R.id.tv_orderform_orderstatus);
 
                 GoodsNoScrollListview lv_orderform_list =viewHolder.getViewById(R.id.lv_orderform_list);
 
@@ -171,6 +175,10 @@ public class UnEvaluateFragment extends Fragment {
                 Button btn_orderform_right = viewHolder.getViewById(R.id.btn_orderform_right);
 
                 Button btn_orderform_left = viewHolder.getViewById(R.id.btn_orderform_left);
+
+
+                Button btn_orderform_detail = viewHolder.getViewById(R.id.btn_orderform_detail);
+
 
                 totalNum=0;
                 totalPrice=0.0;
@@ -325,6 +333,35 @@ public class UnEvaluateFragment extends Fragment {
                 };
 
                 lv_orderform_list.setAdapter(orderInfoGoodsCommonAdapter);
+
+
+
+                btn_orderform_detail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent =new Intent(getActivity(), OrderDetailActivity.class);
+
+
+                        Bundle bundle =new Bundle();
+
+                        String orderState = tv_orderform_orderstatus.getText().toString();
+
+                        bundle.putString("orderState",orderState);
+
+                        bundle.putSerializable("orderFormList",orderFormList.get(position));
+
+                        bundle.putString("userId",userId);
+
+                        intent.putExtra("bundle",bundle);
+
+
+
+                        startActivity(intent);
+
+
+                    }
+                });
 
 
 
