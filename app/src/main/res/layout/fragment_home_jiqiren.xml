@@ -21,8 +21,15 @@
             android:id="@+id/pb_progressBar"
 
 
-            />
+            android:layout_marginBottom="10dp"
 
+            />
+        <TextView
+            android:layout_below="@id/pb_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在加载，请稍后..."
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
 
