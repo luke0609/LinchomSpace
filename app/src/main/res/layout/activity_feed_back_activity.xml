@@ -29,7 +29,7 @@
             android:id="@+id/b_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#ffff"
+            android:background="#90e7e7e7"
             android:text="提 交"
             android:textSize="18sp"
             android:textColor="#878787"
@@ -47,8 +47,7 @@
         android:id="@+id/rl_yjfk"
         android:layout_below="@id/v_vfk"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f0f0f0">
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/et_dis"
