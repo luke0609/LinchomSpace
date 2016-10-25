@@ -6,10 +6,14 @@
     android:id="@+id/activity_order_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="linchom.com.linchomspace.shopping.OrderDetailActivity">
+    tools:context="linchom.com.linchomspace.shopping.OrderDetailActivity"
+    android:background="#20808080"
+
+    >
 
 
     <linchom.com.linchomspace.common.TitleBar
+        android:id="@+id/bar_goods_orderInfo_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="订单详情"
@@ -19,14 +23,178 @@
 
         >
 
-
-
-
     </linchom.com.linchomspace.common.TitleBar>
 
 
+    <ScrollView
+
+        android:layout_below="@id/bar_goods_orderInfo_bar"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_goods_orderInfo_state"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#ff6600"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_goods_orderInfo_img"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/goods_order_infonew"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    />
+
+                <TextView
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/iv_goods_orderInfo_img"
+                    android:layout_centerVertical="true"
+                    android:textSize="20sp"
+                    android:id="@+id/iv_goods_orderInfo_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="订单状态"
+
+                    />
 
 
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_below="@id/rl_goods_orderInfo_state"
+                android:id="@+id/rl_orderInfo_address"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#ffffff"
+
+
+                >
+
+                <ImageView
+                    android:id="@+id/iv_orderInfo_address"
+                    android:src="@drawable/goods_order_address"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_orderInfo_shoujianren"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/iv_orderInfo_address"
+                    android:text="收件人:"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_orderInfo_name"
+                    android:text="测试数据"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/tv_orderInfo_shoujianren"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+
+                    />
+
+                <TextView
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tv_orderInfo_phone"
+                    android:layout_marginTop="10dp"
+                    android:text="18888888888"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#808080"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_orderInfo_shouhuo"
+                    android:text="收货地址:"
+                    android:textSize="18sp"
+
+                    android:textColor="#808080"
+
+                    android:layout_alignTop="@id/iv_orderInfo_address"
+                    android:layout_toRightOf="@id/iv_orderInfo_address"
+                    android:layout_marginRight="10dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_orderInfo_address"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_toRightOf="@id/iv_orderInfo_address"
+                    android:layout_below="@id/tv_orderInfo_shouhuo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#808080"
+                    android:text="江苏省苏州市工业园区 江苏省苏州市工业园区仁爱路1号高博教育收"
+
+
+                    />
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+            <linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview
+
+               android:id="@+id/lv_orderInfo_orderList"
+
+                android:layout_below="@id/rl_orderInfo_address"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+            </linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
 
 
 </RelativeLayout>
