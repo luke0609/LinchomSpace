@@ -135,7 +135,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/article_collect"
+                    android:src="@drawable/article_collect3"
                     android:background="#f5f5f5"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/ib_commemt"

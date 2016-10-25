@@ -65,7 +65,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private Button btn_goods_one_seven;
     private Button btn_goods_one_eight;
     private Button btn_goods_one_nine;
-
     private Button btn_goods_two_one;
     private Button btn_goods_two_two;
     private Button btn_goods_two_three;
@@ -81,7 +80,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private Button btn_goods_two_thirteen;
     private Button btn_goods_two_fourteen;
     private Button btn_goods_two_fifteen;
-
 
     private Button btn_goods_three_one;
     private Button btn_goods_three_two;
@@ -107,7 +105,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private Button btn_goods_five_six;
     private Button btn_goods_five_seven;
     private Button btn_goods_five_eight;
-
 
     private Button btn_goods_six_one;
     private Button btn_goods_six_two;
@@ -506,8 +503,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         bundle.putString("cateId",cateId);
         intent.putExtra("bundle",bundle);
 
-
-
         startActivity(intent);
 
 
@@ -518,7 +513,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         getAdvList.add(new GoodsAdvBean("1","1"));
         getAdvList.add(new GoodsAdvBean("1","1"));
-
         getAdvList.add(new GoodsAdvBean("1","1"));
 
 

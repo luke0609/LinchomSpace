@@ -1,10 +1,10 @@
 [
     {
-        "merged": "G:\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
-        "source": "G:\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+        "merged": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
     },
     {
-        "merged": "G:\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
-        "source": "G:\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+        "merged": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "F:\\Project\\LinchomSpace\\libs\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     }
 ]

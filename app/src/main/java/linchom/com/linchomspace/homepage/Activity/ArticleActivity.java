@@ -42,6 +42,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleCollectBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleInfoBean;
+import linchom.com.linchomspace.homepage.Utils.ToastUtil;
 import linchom.com.linchomspace.homepage.View.SlideSelectView;
 
 public class ArticleActivity extends AppCompatActivity {
@@ -90,6 +91,8 @@ public class ArticleActivity extends AppCompatActivity {
     private boolean isLoading=false;
     private ObjectAnimator mHeaderAnimator;
     private ObjectAnimator mBottomAnimator;
+    private boolean pressCollect;
+    private boolean pressNight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,10 +150,8 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void initData() {
-
         getArticle();
     }
-
     private void getArticle(){
         RequestParams params = new RequestParams(Constant.ArticleInfo);
         params.addBodyParameter("key", "linchom");
@@ -214,6 +215,7 @@ public class ArticleActivity extends AppCompatActivity {
                 R.layout.article_more_popupwindow, null);
         ll_more = ((LinearLayout) contentView.findViewById(R.id.ll_more));
         ll_fontselector = ((LinearLayout) contentView.findViewById(R.id.ll_fontselector));
+
         slideSelectView = (SlideSelectView) contentView.findViewById(R.id.slideSelectView);
         btn_article_popup_cancel = (Button) contentView.findViewById(R.id.btn_article_popup_cancel);
         textStrings = new String[]{"小", "正常",
@@ -245,16 +247,14 @@ public class ArticleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // switchNightModel();
-                if (day) {
-                    iv_night.setBackgroundResource(R.drawable.night_circle);
+                if (!pressNight) {
+                    iv_night.setBackgroundResource(R.drawable.article_more_circle);
                     iv_night.setImageResource(R.drawable.article_day);
-                    day = true;
-
-
+                    pressNight = true;
                 } else {
                     iv_night.setBackgroundResource(R.drawable.article_more_circle);
                     iv_night.setImageResource(R.drawable.article_night);
-                    day = false;
+                    pressNight = false;
 
                 }
 
@@ -315,10 +315,6 @@ public class ArticleActivity extends AppCompatActivity {
 
     }
 
-    private void switchNightModel() {
-
-
-    }
 
     @OnClick({R.id.more, R.id.ib_commemt, R.id.ib_collect, R.id.ib_share, R.id.tv_comment, R.id.article_buy,R.id.article_back})
     public void onClick(View view) {
@@ -329,7 +325,15 @@ public class ArticleActivity extends AppCompatActivity {
             case R.id.ib_commemt:
                 break;
             case R.id.ib_collect:
-                collect();
+                if(!pressCollect){
+                    collect();
+                    ibCollect.setImageResource(R.drawable.collect_check5);
+                    pressCollect=true;
+                } else{
+                    cancelCollect();
+                    ibCollect.setImageResource(R.drawable.article_collect3);
+                    pressCollect=false;
+                }
                 break;
             case R.id.ib_share:
                 break;
@@ -344,8 +348,61 @@ public class ArticleActivity extends AppCompatActivity {
         }
     }
 
-    private void collect() {
+    private void cancelCollect() {
+        RequestParams params = new RequestParams(Constant.ArticleComment);
+        //params.addBodyParameter("key", "linchom");
+        //params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addBodyParameter("verification", "10a7997fb90c30c6c79e9f29f89535b5");
+        params.addBodyParameter("article_id", article_id);//由前一个界面带过来的
+        params.addBodyParameter("type","1");//1.收藏2.评论
+        params.addBodyParameter("user_id", "135");
+        params.addBodyParameter("user_name","%E5%BC%A0%E6%99%93%E6%96%87");
+        params.addBodyParameter("email", "2070118814@qq.com");
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
 
+                System.out.println(result);
+                Gson gson = new Gson();
+                ArticleCollectBean bean = gson.fromJson(result, ArticleCollectBean.class);
+                if(bean.getResult().equals("0")){
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.toast_style,
+                            (ViewGroup) findViewById(R.id.ll_toast));
+                    ImageView image = (ImageView) layout
+                            .findViewById(R.id.iv_toast_collect);
+                    image.setImageResource(R.drawable.collect_success1);
+                    TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                    text.setText("取消收藏");
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.setView(layout);
+                    ToastUtil.showMyToast(toast,1000);
+
+                    //   Toast.makeText(ArticleActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
+
+    private void collect() {
         //http://app.linchom.com/appapi.php?act=add_article_comment&user_name=
         // %E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&
         // email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
@@ -363,7 +420,6 @@ public class ArticleActivity extends AppCompatActivity {
         org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
                 System.out.println(result);
                 Gson gson = new Gson();
                 ArticleCollectBean bean = gson.fromJson(result, ArticleCollectBean.class);
@@ -371,16 +427,15 @@ public class ArticleActivity extends AppCompatActivity {
                     LayoutInflater inflater = getLayoutInflater();
                     View layout = inflater.inflate(R.layout.toast_style,
                             (ViewGroup) findViewById(R.id.ll_toast));
-                    ImageView image = (ImageView) layout
-                            .findViewById(R.id.iv_toast_collect);
+                    ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
                     image.setImageResource(R.drawable.collect_success1);
                     TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
                     text.setText("收藏成功");
                     Toast toast = new Toast(getApplicationContext());
                     toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setDuration(Toast.LENGTH_SHORT);
                     toast.setView(layout);
-                    toast.show();
+                    ToastUtil.showMyToast(toast,1000);
 
                  //   Toast.makeText(ArticleActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
 
