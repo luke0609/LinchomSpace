@@ -1,8 +1,5 @@
 package linchom.com.linchomspace.shopping.pojo;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by Administrator on 2016/10/24.
  */
@@ -10,26 +7,14 @@ import java.util.Map;
 public class GoodsAdvBean {
 
 
-    public String result;
-
-    public List<Data> data;
+    public String advImg;
 
 
-    public String msg;
-
-    public String url;
+    public String advUrl;
 
 
-
-    public class Data{
-
-        public Map<String,String> map;
-
-        public  String url;
-
-
+    public GoodsAdvBean(String advImg, String advUrl) {
+        this.advImg = advImg;
+        this.advUrl = advUrl;
     }
-
-
-
 }
