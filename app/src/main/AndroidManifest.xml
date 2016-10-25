@@ -166,6 +166,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"
             ></activity>
+
+        <activity android:name=".homepage.Activity.SearchArticleActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" ></activity>
     </application>
 
 </manifest>

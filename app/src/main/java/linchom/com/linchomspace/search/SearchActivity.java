@@ -115,41 +115,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (searchContentEt.getText().toString().length() > 0) {
-
-                        String record = searchContentEt.getText().toString();
-
-                        //判断数据库中是否存在该记录
-                        if (!recordsDao.isHasRecord(record)) {
-                            tempList.add(record);
-                        }
-                        //将搜索记录保存至数据库中
-                        recordsDao.addRecords(record);
-                        reversedList();
-                        checkRecordsSize();
-                        judgeIsEmpty();
-                         recordsAdapter.notifyDataSetChanged();
-
-                        //根据关键词去搜索
-//                        Intent intent=new Intent(SearchActivity.this, ChatDetilActivity.class);
-//                        intent.putExtra("type",1);
-//                        startActivity(intent);
-
-                        if(search_type.equals("article")){
-                            Log.i("aaa",search_type);
-                            Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
-                            Bundle bundle =new Bundle();
-                            bundle.putString("keyword",record);
-                            intent.putExtra("bundle",bundle);
-                            startActivity(intent);
-                            finish();
-                        }
-
-
-                    } else {
-                        Toast.makeText(SearchActivity.this, "搜索内容不能为空", Toast.LENGTH_SHORT).show();
-                    }
-
+                   pressSearch();
                 }
                 return false;
             }
@@ -209,7 +175,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 searchRecordsLl.setVisibility(View.GONE);
                 break;
             case R.id.tv_search:
-                searchContentEt.setText("");
+                pressSearch();
                 break;
             case R.id.search_back:
                 finish();
@@ -229,5 +195,39 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         if(!searchRecordsList.isEmpty()){
             rl_msg.setVisibility(View.GONE);
         }
+    }
+    private void pressSearch(){
+
+        if (searchContentEt.getText().toString().length() > 0) {
+
+            String record = searchContentEt.getText().toString();
+
+            //判断数据库中是否存在该记录
+            if (!recordsDao.isHasRecord(record)) {
+                tempList.add(record);
+            }
+            //将搜索记录保存至数据库中
+            recordsDao.addRecords(record);
+            reversedList();
+            checkRecordsSize();
+            judgeIsEmpty();
+            recordsAdapter.notifyDataSetChanged();
+
+            if(search_type.equals("article")){
+                Log.i("aaa",search_type);
+                Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("keyword",record);
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+                finish();
+            }
+
+
+        } else {
+            Toast.makeText(SearchActivity.this, "搜索内容不能为空", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }

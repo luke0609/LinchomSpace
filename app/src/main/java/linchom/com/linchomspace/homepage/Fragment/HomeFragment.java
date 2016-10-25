@@ -56,8 +56,8 @@ import linchom.com.linchomspace.search.SearchActivity;
 
 import static android.view.View.inflate;
 import static linchom.com.linchomspace.R.id.iv_photo;
-import static linchom.com.linchomspace.R.id.tv_source;
 import static linchom.com.linchomspace.R.id.tv_name;
+import static linchom.com.linchomspace.R.id.tv_source;
 import static linchom.com.linchomspace.R.id.tv_title;
 
 
@@ -194,6 +194,9 @@ public class HomeFragment extends Fragment {
     private List<Map<String, String>> titleList = new ArrayList<Map<String, String>>();
     private ImageButton ib_xiala;
     private TextView tv_search;
+    private RelativeLayout rl_empty;
+    private RelativeLayout error_caterogy;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -205,6 +208,7 @@ public class HomeFragment extends Fragment {
         return view;
 
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -215,16 +219,18 @@ public class HomeFragment extends Fragment {
         lv_tuijian.setAdapter(adapter1);
         gettuijian();
     }
+
     private int[] images = {R.drawable.city, R.drawable.qiiqu, R.drawable.caoyuan, R.drawable.meijing};
+
     private void initView() {
         tv_search = ((TextView) view.findViewById(R.id.tv_search));
         tv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("search_type","article");
-                intent.putExtra("bundle",bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString("search_type", "article");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
@@ -313,9 +319,10 @@ public class HomeFragment extends Fragment {
         map.put("title", "智巢案例");
         titleList.add(map);
     }
-    private void initlistviews(){
+
+    private void initlistviews() {
         view1 = view.inflate(getActivity(), R.layout.fragment_home_tuijian, null);
-        pb_progressBar= (CircularProgress) view1.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view1.findViewById(R.id.pb_progressBar);
         rl_hide_tuijian = (RelativeLayout) view1.findViewById(R.id.rl_hide_tuijian);
         ptr_arrlist_tuijian = ((PullToRefreshListView) view1.findViewById(R.id.ptr_arrlist_tuijian));
         lv_tuijian = ptr_arrlist_tuijian.getRefreshableView();
@@ -334,17 +341,17 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), ArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-2).article_id);
-                Log.i("wenzhang","article_id");
-                intent.putExtra("bundle",bundle);
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", arrList.get(position - 2).article_id);
+                Log.i("wenzhang", "article_id");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
         listView.add(view1);
         View view2 = inflate(getActivity(), R.layout.fragment_home_hangyezixun, null);
-        pb_progressBar= (CircularProgress) view2.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view2.findViewById(R.id.pb_progressBar);
         rl_hide_hangyezixun = (RelativeLayout) view2.findViewById(R.id.rl_hide_hangyezixun);
         ptr_arrlist_hangyezixun = ((PullToRefreshListView) view2.findViewById(R.id.ptr_arrlist_hangyezixun));
         lv_hangyezixun = ptr_arrlist_hangyezixun.getRefreshableView();
@@ -355,17 +362,17 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), ArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-1).article_id);
-                Log.i("wenzhang","article_id");
-                intent.putExtra("bundle",bundle);
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                Log.i("wenzhang", "article_id");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
         listView.add(view2);
         View view3 = inflate(getActivity(), R.layout.fragment_home_canpinzixun, null);
-        pb_progressBar= (CircularProgress) view3.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view3.findViewById(R.id.pb_progressBar);
         rl_hide_canpinzixun = (RelativeLayout) view3.findViewById(R.id.rl_hide_canpinzixun);
         ptr_arrlist_canpinzixun = ((PullToRefreshListView) view3.findViewById(R.id.ptr_arrlist_canpinzixun));
         lv_canpinzixun = ptr_arrlist_canpinzixun.getRefreshableView();
@@ -376,20 +383,20 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), ArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-2).article_id);
-                Log.i("wenzhang","article_id");
-                intent.putExtra("bundle",bundle);
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", arrList.get(position - 2).article_id);
+                Log.i("wenzhang", "article_id");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
         listView.add(view3);
         View view4 = inflate(getActivity(), R.layout.fragment_home_canpinpince, null);
-        pb_progressBar= (CircularProgress) view4.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view4.findViewById(R.id.pb_progressBar);
         rl_hide_canpinpince = (RelativeLayout) view4.findViewById(R.id.rl_hide_canpinpince);
         ptr_arrlist_canpinpince = ((PullToRefreshListView) view4.findViewById(R.id.ptr_arrlist_canpinpince));
-        lv_canpinpince= ptr_arrlist_canpinpince.getRefreshableView();
+        lv_canpinpince = ptr_arrlist_canpinpince.getRefreshableView();
         adapter4 = new MyAdapter();
         lv_canpinpince.setAdapter(adapter4);
         lv_canpinpince.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -397,20 +404,22 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), ArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-1).article_id);
-                Log.i("wenzhang","article_id");
-                intent.putExtra("bundle",bundle);
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                Log.i("wenzhang", "article_id");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
         listView.add(view4);
         View view5 = inflate(getActivity(), R.layout.fragment_home_video, null);
-        pb_progressBar= (CircularProgress) view5.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view5.findViewById(R.id.pb_progressBar);
         rl_hide_video = (RelativeLayout) view5.findViewById(R.id.rl_hide_video);
         ptr_arrlist_video = ((PullToRefreshListView) view5.findViewById(R.id.ptr_arrlist_video));
-        lv_video= ptr_arrlist_video.getRefreshableView();
+        rl_empty = ((RelativeLayout) view5.findViewById(R.id.rl_empty));
+        error_caterogy = ((RelativeLayout) view5.findViewById(R.id.error_caterogy));
+        lv_video = ptr_arrlist_video.getRefreshableView();
         adapter5 = new MyAdapter();
         lv_video.setAdapter(adapter5);
         lv_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -418,132 +427,132 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), ArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-1).article_id);
-                Log.i("wenzhang","article_id");
-                intent.putExtra("bundle",bundle);
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                Log.i("wenzhang", "article_id");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
         listView.add(view5);
         View view6 = inflate(getActivity(), R.layout.fragment_home_pinpaizixun, null);
-        pb_progressBar= (CircularProgress) view6.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view6.findViewById(R.id.pb_progressBar);
         rl_hide_pinpaizixun = (RelativeLayout) view6.findViewById(R.id.rl_hide_pinpaizixun);
         ptr_arrlist_pinpaizixun = ((PullToRefreshListView) view6.findViewById(R.id.ptr_arrlist_pinpaizixun));
-        lv_pinpaizixun= ptr_arrlist_pinpaizixun.getRefreshableView();
+        lv_pinpaizixun = ptr_arrlist_pinpaizixun.getRefreshableView();
         adapter6 = new MyAdapter();
         lv_pinpaizixun.setAdapter(adapter6);
         listView.add(view6);
         View view7 = inflate(getActivity(), R.layout.fragment_home_hangyebiaozhun, null);
-        pb_progressBar= (CircularProgress) view7.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view7.findViewById(R.id.pb_progressBar);
         rl_hide_hangyebiaozhun = (RelativeLayout) view7.findViewById(R.id.rl_hide_hangyebiaozhun);
-        ptr_arrlist_hangyebiaozhun= ((PullToRefreshListView) view7.findViewById(R.id.ptr_arrlist_hangyebiaozhun));
-        lv_hangyebiaozhun= ptr_arrlist_hangyebiaozhun.getRefreshableView();
+        ptr_arrlist_hangyebiaozhun = ((PullToRefreshListView) view7.findViewById(R.id.ptr_arrlist_hangyebiaozhun));
+        lv_hangyebiaozhun = ptr_arrlist_hangyebiaozhun.getRefreshableView();
         adapter7 = new MyAdapter();
         lv_hangyebiaozhun.setAdapter(adapter7);
         listView.add(view7);
         View view8 = inflate(getActivity(), R.layout.fragment_home_hangyejishu, null);
-        pb_progressBar= (CircularProgress) view8.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view8.findViewById(R.id.pb_progressBar);
         rl_hide_hangyejishu = (RelativeLayout) view8.findViewById(R.id.rl_hide_hangyejishu);
-        ptr_arrlist_hangyejishu= ((PullToRefreshListView) view8.findViewById(R.id.ptr_arrlist_hangyejishu));
-        lv_hangyejishu= ptr_arrlist_hangyejishu.getRefreshableView();
+        ptr_arrlist_hangyejishu = ((PullToRefreshListView) view8.findViewById(R.id.ptr_arrlist_hangyejishu));
+        lv_hangyejishu = ptr_arrlist_hangyejishu.getRefreshableView();
         adapter8 = new MyAdapter();
         lv_hangyejishu.setAdapter(adapter8);
         listView.add(view8);
         View view9 = inflate(getActivity(), R.layout.fragment_home_wulianwang, null);
-        pb_progressBar= (CircularProgress) view9.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view9.findViewById(R.id.pb_progressBar);
         rl_hide_wulianwang = (RelativeLayout) view9.findViewById(R.id.rl_hide_wulianwang);
-        ptr_arrlist_wulianwang= ((PullToRefreshListView) view9.findViewById(R.id.ptr_arrlist_wulianwang));
-        lv_wulianwang= ptr_arrlist_wulianwang.getRefreshableView();
+        ptr_arrlist_wulianwang = ((PullToRefreshListView) view9.findViewById(R.id.ptr_arrlist_wulianwang));
+        lv_wulianwang = ptr_arrlist_wulianwang.getRefreshableView();
         adapter9 = new MyAdapter();
         lv_wulianwang.setAdapter(adapter9);
         listView.add(view9);
         View view10 = inflate(getActivity(), R.layout.fragment_home_zhihuichengshi, null);
-        pb_progressBar= (CircularProgress) view10.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view10.findViewById(R.id.pb_progressBar);
         rl_hide_zhihuichengshi = (RelativeLayout) view10.findViewById(R.id.rl_hide_zhihuichengshi);
-        ptr_arrlist_zhihuichengshi= ((PullToRefreshListView) view10.findViewById(R.id.ptr_arrlist_zhihuichengshi));
-        lv_zhihuichengshi= ptr_arrlist_zhihuichengshi.getRefreshableView();
+        ptr_arrlist_zhihuichengshi = ((PullToRefreshListView) view10.findViewById(R.id.ptr_arrlist_zhihuichengshi));
+        lv_zhihuichengshi = ptr_arrlist_zhihuichengshi.getRefreshableView();
         adapter10 = new MyAdapter();
         lv_zhihuichengshi.setAdapter(adapter10);
         listView.add(view10);
         View view11 = inflate(getActivity(), R.layout.fragment_home_zhihuishequ, null);
-        pb_progressBar= (CircularProgress) view11.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view11.findViewById(R.id.pb_progressBar);
         rl_hide_zhihuishequ = (RelativeLayout) view11.findViewById(R.id.rl_hide_zhihuishequ);
-        ptr_arrlist_zhihuishequ= ((PullToRefreshListView) view11.findViewById(R.id.ptr_arrlist_zhihuishequ));
-        lv_zhihuishequ= ptr_arrlist_zhihuishequ.getRefreshableView();
+        ptr_arrlist_zhihuishequ = ((PullToRefreshListView) view11.findViewById(R.id.ptr_arrlist_zhihuishequ));
+        lv_zhihuishequ = ptr_arrlist_zhihuishequ.getRefreshableView();
         adapter11 = new MyAdapter();
         lv_zhihuishequ.setAdapter(adapter11);
         listView.add(view11);
         View view12 = inflate(getActivity(), R.layout.fragment_home_wurenji, null);
-        pb_progressBar= (CircularProgress) view12.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view12.findViewById(R.id.pb_progressBar);
         rl_hide_wurenji = (RelativeLayout) view12.findViewById(R.id.rl_hide_wurenji);
-        ptr_arrlist_wurenji= ((PullToRefreshListView) view12.findViewById(R.id.ptr_arrlist_wurenji));
-        lv_wurenji= ptr_arrlist_wurenji.getRefreshableView();
+        ptr_arrlist_wurenji = ((PullToRefreshListView) view12.findViewById(R.id.ptr_arrlist_wurenji));
+        lv_wurenji = ptr_arrlist_wurenji.getRefreshableView();
         adapter12 = new MyAdapter();
         lv_wurenji.setAdapter(adapter12);
         listView.add(view12);
         View view13 = inflate(getActivity(), R.layout.fragment_home_zhinengyanglao, null);
-        pb_progressBar= (CircularProgress) view13.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view13.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengyanglao = (RelativeLayout) view13.findViewById(R.id.rl_hide_zhinengyanglao);
-        ptr_arrlist_zhinengyanglao= ((PullToRefreshListView) view13.findViewById(R.id.ptr_arrlist_zhinengyanglao));
-        lv_zhinengyanglao= ptr_arrlist_zhinengyanglao.getRefreshableView();
+        ptr_arrlist_zhinengyanglao = ((PullToRefreshListView) view13.findViewById(R.id.ptr_arrlist_zhinengyanglao));
+        lv_zhinengyanglao = ptr_arrlist_zhinengyanglao.getRefreshableView();
         adapter13 = new MyAdapter();
         lv_zhinengyanglao.setAdapter(adapter13);
         listView.add(view13);
         View view14 = inflate(getActivity(), R.layout.fragment_home_zhinengjiankang, null);
-        pb_progressBar= (CircularProgress) view14.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view14.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengjiankang = (RelativeLayout) view14.findViewById(R.id.rl_hide_zhinengjiankang);
-        ptr_arrlist_zhinengjiankang= ((PullToRefreshListView) view14.findViewById(R.id.ptr_arrlist_zhinengjiankang));
-        lv_zhinengjiankang= ptr_arrlist_zhinengjiankang.getRefreshableView();
+        ptr_arrlist_zhinengjiankang = ((PullToRefreshListView) view14.findViewById(R.id.ptr_arrlist_zhinengjiankang));
+        lv_zhinengjiankang = ptr_arrlist_zhinengjiankang.getRefreshableView();
         adapter14 = new MyAdapter();
         lv_zhinengjiankang.setAdapter(adapter14);
         listView.add(view14);
         View view15 = inflate(getActivity(), R.layout.fragment_home_zhinengyiliao, null);
-        pb_progressBar= (CircularProgress) view15.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view15.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengyiliao = (RelativeLayout) view15.findViewById(R.id.rl_hide_zhinengyiliao);
-        ptr_arrlist_zhinengyiliao= ((PullToRefreshListView) view15.findViewById(R.id.ptr_arrlist_zhinengyiliao));
-        lv_zhinengyiliao= ptr_arrlist_zhinengyiliao.getRefreshableView();
+        ptr_arrlist_zhinengyiliao = ((PullToRefreshListView) view15.findViewById(R.id.ptr_arrlist_zhinengyiliao));
+        lv_zhinengyiliao = ptr_arrlist_zhinengyiliao.getRefreshableView();
         adapter15 = new MyAdapter();
         lv_zhinengyiliao.setAdapter(adapter15);
         listView.add(view15);
         View view16 = inflate(getActivity(), R.layout.fragment_home_jiqiren, null);
-        pb_progressBar= (CircularProgress) view16.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view16.findViewById(R.id.pb_progressBar);
         rl_hide_jiqiren = (RelativeLayout) view16.findViewById(R.id.rl_hide_jiqiren);
-        ptr_arrlist_jiqiren= ((PullToRefreshListView) view16.findViewById(R.id.ptr_arrlist_jiqiren));
-        lv_jiqiren= ptr_arrlist_jiqiren.getRefreshableView();
+        ptr_arrlist_jiqiren = ((PullToRefreshListView) view16.findViewById(R.id.ptr_arrlist_jiqiren));
+        lv_jiqiren = ptr_arrlist_jiqiren.getRefreshableView();
         adapter16 = new MyAdapter();
         lv_jiqiren.setAdapter(adapter16);
         listView.add(view16);
         View view17 = inflate(getActivity(), R.layout.fragment_home_vrar, null);
-        pb_progressBar= (CircularProgress) view17.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view17.findViewById(R.id.pb_progressBar);
         rl_hide_vrar = (RelativeLayout) view17.findViewById(R.id.rl_hide_vrar);
-        ptr_arrlist_vrar= ((PullToRefreshListView) view17.findViewById(R.id.ptr_arrlist_vrar));
-        lv_vrar= ptr_arrlist_vrar.getRefreshableView();
+        ptr_arrlist_vrar = ((PullToRefreshListView) view17.findViewById(R.id.ptr_arrlist_vrar));
+        lv_vrar = ptr_arrlist_vrar.getRefreshableView();
         adapter17 = new MyAdapter();
         lv_vrar.setAdapter(adapter17);
         listView.add(view17);
         View view18 = inflate(getActivity(), R.layout.fragment_home_zhanhuixinxi, null);
-        pb_progressBar= (CircularProgress) view18.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view18.findViewById(R.id.pb_progressBar);
         rl_hide_zhanhuixinxi = (RelativeLayout) view18.findViewById(R.id.rl_hide_zhanhuixinxi);
-        ptr_arrlist_zhanhuixinxi= ((PullToRefreshListView) view18.findViewById(R.id.ptr_arrlist_zhanhuixinxi));
-        lv_zhanhuixinxi= ptr_arrlist_wulianwang.getRefreshableView();
+        ptr_arrlist_zhanhuixinxi = ((PullToRefreshListView) view18.findViewById(R.id.ptr_arrlist_zhanhuixinxi));
+        lv_zhanhuixinxi = ptr_arrlist_wulianwang.getRefreshableView();
         adapter18 = new MyAdapter();
         lv_zhanhuixinxi.setAdapter(adapter18);
         listView.add(view18);
         View view19 = inflate(getActivity(), R.layout.fragment_home_peixunxinxi, null);
-        pb_progressBar= (CircularProgress) view19.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view19.findViewById(R.id.pb_progressBar);
         rl_hide_peixunxinxi = (RelativeLayout) view19.findViewById(R.id.rl_hide_peixunxinxi);
-        ptr_arrlist_peixunxinxi= ((PullToRefreshListView) view19.findViewById(R.id.ptr_arrlist_peixunxinxi));
-        lv_peixunxinxi= ptr_arrlist_peixunxinxi.getRefreshableView();
+        ptr_arrlist_peixunxinxi = ((PullToRefreshListView) view19.findViewById(R.id.ptr_arrlist_peixunxinxi));
+        lv_peixunxinxi = ptr_arrlist_peixunxinxi.getRefreshableView();
         adapter19 = new MyAdapter();
         lv_peixunxinxi.setAdapter(adapter19);
         listView.add(view19);
         View view20 = inflate(getActivity(), R.layout.fragment_home_zhichaofangan, null);
-        pb_progressBar= (CircularProgress) view20.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view20.findViewById(R.id.pb_progressBar);
         rl_hide_zhichaofangan = (RelativeLayout) view20.findViewById(R.id.rl_hide_zhichaofangan);
-        ptr_arrlist_zhichaofangan= ((PullToRefreshListView) view20.findViewById(R.id.ptr_arrlist_zhichaofangan));
-        lv_zhichaofangan= ptr_arrlist_zhichaofangan.getRefreshableView();
+        ptr_arrlist_zhichaofangan = ((PullToRefreshListView) view20.findViewById(R.id.ptr_arrlist_zhichaofangan));
+        lv_zhichaofangan = ptr_arrlist_zhichaofangan.getRefreshableView();
         adapter20 = new MyAdapter();
         lv_zhichaofangan.setAdapter(adapter20);
         lv_zhichaofangan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -551,27 +560,27 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), ArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("article_id",arrList.get(position-1).article_id);
-                Log.i("wenzhang","article_id");
-                intent.putExtra("bundle",bundle);
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                Log.i("wenzhang", "article_id");
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
         listView.add(view20);
         View view21 = inflate(getActivity(), R.layout.fragment_home_zhichaoanli, null);
-        pb_progressBar= (CircularProgress) view21.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view21.findViewById(R.id.pb_progressBar);
         rl_hide_zhichaoanli = (RelativeLayout) view21.findViewById(R.id.rl_hide_zhichaoanli);
-        ptr_arrlist_zhichaoanli= ((PullToRefreshListView) view21.findViewById(R.id.ptr_arrlist_zhichaoanli));
-        lv_zhichaoanli= ptr_arrlist_zhichaoanli.getRefreshableView();
+        ptr_arrlist_zhichaoanli = ((PullToRefreshListView) view21.findViewById(R.id.ptr_arrlist_zhichaoanli));
+        lv_zhichaoanli = ptr_arrlist_zhichaoanli.getRefreshableView();
         adapter21 = new MyAdapter();
         lv_zhichaoanli.setAdapter(adapter21);
         listView.add(view21);
 
 
-
     }
+
     private void initData() {
         ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
         ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
@@ -670,7 +679,7 @@ public class HomeFragment extends Fragment {
                 switch (checkedId) {
                     case 1000:
 
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_tuijian.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -709,11 +718,11 @@ public class HomeFragment extends Fragment {
 
                         lv_tuijian.setAdapter(adapter1);
 
-                        Log.i("aaaaa","数据拿到");
+                        Log.i("aaaaa", "数据拿到");
                         gettuijian();
                         break;
                     case 1001:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_hangyezixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyezixun.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_hangyezixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -751,12 +760,12 @@ public class HomeFragment extends Fragment {
 
                         lv_hangyezixun.setAdapter(adapter2);
 
-                        Log.i("aaaaa","数据拿到");
+                        Log.i("aaaaa", "数据拿到");
 
                         gethangyezixun();
                         break;
                     case 1002:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_canpinzixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_canpinzixun.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_canpinzixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -794,12 +803,12 @@ public class HomeFragment extends Fragment {
 
                         lv_canpinzixun.setAdapter(adapter3);
 
-                        Log.i("aaaaa","数据拿到");
+                        Log.i("aaaaa", "数据拿到");
 
                         getcanpinzixun();
                         break;
                     case 1003:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_canpinpince.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_canpinpince.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_canpinpince.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -840,7 +849,7 @@ public class HomeFragment extends Fragment {
                         getcanpinpince();
                         break;
                     case 1004:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_video.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_video.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_video.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -880,7 +889,7 @@ public class HomeFragment extends Fragment {
                         getvideo();
                         break;
                     case 1005:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_pinpaizixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_pinpaizixun.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_pinpaizixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -920,7 +929,7 @@ public class HomeFragment extends Fragment {
                         getpinpaizixun();
                         break;
                     case 1006:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_hangyebiaozhun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyebiaozhun.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_hangyebiaozhun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -959,7 +968,7 @@ public class HomeFragment extends Fragment {
                         gethangyebiaozhun();
                         break;
                     case 1007:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_hangyejishu.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyejishu.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_hangyejishu.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -998,7 +1007,7 @@ public class HomeFragment extends Fragment {
                         gethangyejishu();
                         break;
                     case 1008:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_wulianwang.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_wulianwang.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_wulianwang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1037,7 +1046,7 @@ public class HomeFragment extends Fragment {
                         getwulianwang();
                         break;
                     case 1009:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhihuichengshi.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhihuichengshi.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhihuichengshi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1076,7 +1085,7 @@ public class HomeFragment extends Fragment {
                         getzhihuichengshi();
                         break;
                     case 1010:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhihuishequ.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhihuishequ.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhihuishequ.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1115,7 +1124,7 @@ public class HomeFragment extends Fragment {
                         getzhihuishequ();
                         break;
                     case 1011:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_wurenji.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_wurenji.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_wurenji.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1150,11 +1159,11 @@ public class HomeFragment extends Fragment {
                                 Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
-                       lv_wurenji.setAdapter(adapter12);
+                        lv_wurenji.setAdapter(adapter12);
                         getwurenji();
                         break;
                     case 1012:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhinengyanglao.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhinengyanglao.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhinengyanglao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1193,7 +1202,7 @@ public class HomeFragment extends Fragment {
                         getzhinengyanglao();
                         break;
                     case 1013:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhinengjiankang.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhinengjiankang.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhinengjiankang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1232,7 +1241,7 @@ public class HomeFragment extends Fragment {
                         getzhinengjiankang();
                         break;
                     case 1014:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhinengyiliao.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhinengyiliao.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhinengyiliao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1271,7 +1280,7 @@ public class HomeFragment extends Fragment {
                         getzhinengyiliao();
                         break;
                     case 1015:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_jiqiren.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_jiqiren.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_jiqiren.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1310,7 +1319,7 @@ public class HomeFragment extends Fragment {
                         getjiqiren();
                         break;
                     case 1016:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_vrar.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_vrar.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_vrar.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1349,7 +1358,7 @@ public class HomeFragment extends Fragment {
                         getvrar();
                         break;
                     case 1017:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhanhuixinxi.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhanhuixinxi.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhanhuixinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1388,7 +1397,7 @@ public class HomeFragment extends Fragment {
                         getzhanhuixinxi();
                         break;
                     case 1018:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_peixunxinxi.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_peixunxinxi.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_peixunxinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1427,7 +1436,7 @@ public class HomeFragment extends Fragment {
                         getpeixunxinxi();
                         break;
                     case 1019:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhichaofangan.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhichaofangan.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhichaofangan.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1466,7 +1475,7 @@ public class HomeFragment extends Fragment {
                         getzhichaofangan();
                         break;
                     case 1020:
-                        pullFlag=false;
+                        pullFlag = false;
                         ptr_arrlist_zhichaoanli.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhichaoanli.setMode(PullToRefreshBase.Mode.BOTH);
                         ptr_arrlist_zhichaoanli.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -1581,9 +1590,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1628,9 +1639,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1639,8 +1652,8 @@ public class HomeFragment extends Fragment {
 
     private void getvrar() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_vrar.setVisibility(View.VISIBLE);
-    }
+            rl_hide_vrar.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1675,9 +1688,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1686,8 +1701,8 @@ public class HomeFragment extends Fragment {
 
     private void getzhanhuixinxi() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_zhanhuixinxi.setVisibility(View.VISIBLE);
-    }
+            rl_hide_zhanhuixinxi.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1722,9 +1737,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1733,8 +1750,8 @@ public class HomeFragment extends Fragment {
 
     private void getpeixunxinxi() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_peixunxinxi.setVisibility(View.VISIBLE);
-    }
+            rl_hide_peixunxinxi.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1769,9 +1786,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1780,8 +1799,8 @@ public class HomeFragment extends Fragment {
 
     private void getzhichaofangan() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_zhichaofangan.setVisibility(View.VISIBLE);
-    }
+            rl_hide_zhichaofangan.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1816,9 +1835,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1827,8 +1848,8 @@ public class HomeFragment extends Fragment {
 
     private void getzhichaoanli() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_zhichaoanli.setVisibility(View.VISIBLE);
-    }
+            rl_hide_zhichaoanli.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1863,18 +1884,21 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
 
-    private void getzhinengjiankang() {if (page == 1 && pullFlag == false) {
-        rl_hide_zhinengjiankang.setVisibility(View.VISIBLE);
-    }
+    private void getzhinengjiankang() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_zhinengjiankang.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1909,9 +1933,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1920,8 +1946,8 @@ public class HomeFragment extends Fragment {
 
     private void getwurenji() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_wurenji.setVisibility(View.VISIBLE);
-    }
+            rl_hide_wurenji.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -1956,9 +1982,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -1967,8 +1995,8 @@ public class HomeFragment extends Fragment {
 
     private void getzhinengyanglao() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_zhinengyanglao.setVisibility(View.VISIBLE);
-    }
+            rl_hide_zhinengyanglao.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2003,18 +2031,21 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
 
-    private void getzhihuishequ() {if (page == 1 && pullFlag == false) {
-        rl_hide_zhihuishequ.setVisibility(View.VISIBLE);
-    }
+    private void getzhihuishequ() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_zhihuishequ.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2049,18 +2080,21 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
 
-    private void getzhihuichengshi() {if (page == 1 && pullFlag == false) {
-        rl_hide_zhihuichengshi.setVisibility(View.VISIBLE);
-    }
+    private void getzhihuichengshi() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_zhihuichengshi.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2095,18 +2129,21 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
 
-    private void getwulianwang() {if (page == 1 && pullFlag == false) {
-        rl_hide_wulianwang.setVisibility(View.VISIBLE);
-    }
+    private void getwulianwang() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_wulianwang.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2141,9 +2178,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -2152,8 +2191,8 @@ public class HomeFragment extends Fragment {
 
     private void gethangyejishu() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_hangyejishu.setVisibility(View.VISIBLE);
-    }
+            rl_hide_hangyejishu.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2188,9 +2227,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -2199,8 +2240,8 @@ public class HomeFragment extends Fragment {
 
     private void gethangyebiaozhun() {
         if (page == 1 && pullFlag == false) {
-        rl_hide_hangyebiaozhun.setVisibility(View.VISIBLE);
-    }
+            rl_hide_hangyebiaozhun.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2235,18 +2276,21 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
 
-    private void getpinpaizixun() {if (page == 1 && pullFlag == false) {
-        rl_hide_pinpaizixun.setVisibility(View.VISIBLE);
-    }
+    private void getpinpaizixun() {
+        if (page == 1 && pullFlag == false) {
+            rl_hide_pinpaizixun.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -2281,9 +2325,11 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
@@ -2291,18 +2337,24 @@ public class HomeFragment extends Fragment {
     }
 
     private void getvideo() {
+        rl_empty.setVisibility(View.GONE);
+        error_caterogy.setVisibility(View.GONE);
+        ptr_arrlist_video.setVisibility(View.GONE);
         if (page == 1 && pullFlag == false) {
-        rl_hide_video.setVisibility(View.VISIBLE);
-    }
+            rl_hide_video.setVisibility(View.VISIBLE);
+        }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
         params.addBodyParameter("cat_id", "15");
         params.addBodyParameter("page", page + "");
-        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>(){
             @Override
             public void onSuccess(String result) {
+
+//                if(arrList!=null) {
                 rl_hide_video.setVisibility(View.GONE);
+                //      ptr_arrlist_video.setVisibility(View.VISIBLE);
                 if (page == 1) {
                     arrList.clear();
                 }
@@ -2312,14 +2364,25 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
-                if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
-                    adapter5.notifyDataSetChanged();
-                    ptr_arrlist_video.onRefreshComplete();
+                Log.i("数组长度",articleData.getArticle_list().size() +"");
+                if (articleData.getArticle_list().size() != 0) {
+                    ptr_arrlist_video.setVisibility(View.VISIBLE);
+                    System.out.println(arrList);
+                    if (page <= pageCount) {
+                        arrList.addAll(articleData.getArticle_list());
+                        adapter5.notifyDataSetChanged();
+                        ptr_arrlist_video.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_video.onRefreshComplete();
+                    }
+
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_video.onRefreshComplete();
+                    rl_hide_video.setVisibility(View.GONE);
+                    rl_empty.setVisibility(View.VISIBLE);
+                    ptr_arrlist_video.setVisibility(View.GONE);
+                    error_caterogy.setVisibility(View.GONE);
+
                 }
             }
 
@@ -2327,15 +2390,22 @@ public class HomeFragment extends Fragment {
             public void onError(Throwable ex, boolean isOnCallback) {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
+                rl_hide_video.setVisibility(View.GONE);
+                ptr_arrlist_video.setVisibility(View.GONE);
+                rl_empty.setVisibility(View.GONE);
+                error_caterogy.setVisibility(View.VISIBLE);
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
+
     private void getcanpinpince() {
         if (page == 1 && pullFlag == false) {
             rl_hide_canpinpince.setVisibility(View.VISIBLE);
@@ -2374,16 +2444,19 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
             }
+
             @Override
             public void onFinished() {
             }
         });
     }
+
     private void gettuijian() {
-        Log.i("aaaaa","数据拿到");
+        Log.i("aaaaa", "数据拿到");
 
         if (page == 1 && pullFlag == false) {
             rl_hide_tuijian.setVisibility(View.VISIBLE);
@@ -2445,8 +2518,9 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void gethangyezixun() {
-        Log.i("aaaaa","数据拿到");
+        Log.i("aaaaa", "数据拿到");
 
         if (page == 1 && pullFlag == false) {
             rl_hide_hangyezixun.setVisibility(View.VISIBLE);
@@ -2509,9 +2583,10 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void getcanpinzixun() {
 
-        Log.i("aaaaa","数据拿到");
+        Log.i("aaaaa", "数据拿到");
 
         if (page == 1 && pullFlag == false) {
             rl_hide_canpinzixun.setVisibility(View.VISIBLE);
@@ -2572,6 +2647,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private class MypAdapter extends PagerAdapter {
         private List<View> listView;
 
@@ -2608,6 +2684,7 @@ public class HomeFragment extends Fragment {
             return listView.get(position);
         }
     }
+
     private class MyAdapter extends BaseAdapter {
 
         @Override
@@ -2665,12 +2742,14 @@ public class HomeFragment extends Fragment {
             return convertView;
         }
     }
+
     private static class ViewHolder {
         private TextView tv_title;
         private TextView tv_name;
         private TextView tv_source;
         private ImageView iv_photo;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -2709,8 +2788,8 @@ public class HomeFragment extends Fragment {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Uri uri=Uri.parse("http://app.linchom.com");
-                    Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                    Uri uri = Uri.parse("http://app.linchom.com");
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 }
             });
             return convertView;
