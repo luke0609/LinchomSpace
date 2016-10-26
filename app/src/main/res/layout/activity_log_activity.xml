@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:dslv="http://schemas.android.com/apk/res-auto"
     tools:context=".mine.log_activity">
     <RelativeLayout
         android:id="@+id/rl_log"
@@ -36,23 +35,46 @@
         android:layout_height="match_parent">
 
     </ListView>-->
-    <com.mobeta.android.dslv.DragSortListView
-        android:id="@+id/lv_loglist"
-        android:layout_below="@+id/rl_log"
+    <RelativeLayout
+        android:id="@+id/rl_goodsList_load_list"
+        android:layout_below="@id/rl_log"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="1px"
-        android:padding="3dp"
-        dslv:collapsed_height="1px"
-        dslv:drag_enabled="true"
-        dslv:drag_handle_id="@+id/drag_handle"
-        dslv:drag_scroll_start="0.9"
-        dslv:drag_start_mode="onDown"
-        dslv:float_alpha="0.6"
-        dslv:remove_enabled="true"
-        dslv:remove_mode="flingRemove"
-        dslv:slide_shuffle_speed="0.3">
+        android:visibility="gone"
+        >
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
-    </com.mobeta.android.dslv.DragSortListView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/rl_goodsList_load_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/lv_loglist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#000000"
+            android:divider="#19000000"
+            android:dividerHeight="4dp"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:smoothScrollbar="true"
+            ptr:ptrAnimationStyle="rotate"
+            ptr:ptrHeaderTextColor="#000000"
+            ptr:ptrHeaderSubTextColor="#00ffff"
+            ptr:ptrHeaderBackground="@null"
+            ptr:ptrDrawable="@drawable/shuaxin">
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+    </RelativeLayout>
+
 </RelativeLayout>

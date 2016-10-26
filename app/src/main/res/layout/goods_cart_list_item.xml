@@ -207,11 +207,13 @@
                     >
 
                     <EditText
-                        android:layout_centerInParent="true"
-                        android:text="10"
-                        android:textSize="15sp"
+
+                        android:gravity="center"
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/et_goods_cart_buynum"
+                        android:text="1"
                         android:textColor="#808080"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
                         />
