@@ -455,23 +455,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         //bundle.putString("goodsImg",goodsImg);
 
         orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
-
-        orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
 
 
