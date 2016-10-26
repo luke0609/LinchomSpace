@@ -68,6 +68,8 @@
     <ListView
         android:layout_below="@+id/invis"
         android:id="@+id/lv"
+        android:dividerHeight="1dp"
+        android:divider="#f0f0f0"
         android:layout_above="@+id/remark_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:id="@+id/chat_lt"
         android:background="#212121"
@@ -40,6 +41,17 @@
 
 
     </LinearLayout>
+    <linchom.com.linchomspace.homepage.progressbar.CircularProgress
+        android:layout_width="60dp"
+        android:id="@+id/progressBar_chat"
+        android:layout_height="60dp"
+        app:borderWidth1="6dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        />
+
+
+
     <View
         android:layout_above="@+id/auto_vp"
         android:layout_width="match_parent"
@@ -48,7 +60,7 @@
         ></View>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="140dp"
         android:id="@+id/auto_vp"
         android:layout_below="@+id/chat_lt"
         android:layout_alignBottom="@+id/struct"
