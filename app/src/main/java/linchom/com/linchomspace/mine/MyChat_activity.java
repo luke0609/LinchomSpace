@@ -173,7 +173,6 @@ public class MyChat_activity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
 
