@@ -83,6 +83,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private  String  goodsPrice;
     private Button btn_goods_joinCart;
 
+    private String userId="12"; //要从sharepreferece拿 ？？？？？？？？？？？？？？？？
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +141,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         iv_gooods_cart = ((ImageView) findViewById(R.id.iv_gooods_cart));
 
         btn_goods_joinCart = ((Button) findViewById(R.id.btn_goods_joinCart));
+
 
 
     }
@@ -362,14 +365,16 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
-        requestParams.addQueryStringParameter("act","addcart");
+        requestParams.addBodyParameter("act","addcart");
 
-        requestParams.addQueryStringParameter("goods_id",goodsId+"");
+        requestParams.addBodyParameter("goods_id",goodsId+"");
 
-        requestParams.addQueryStringParameter("goods_number",et_goods_buyNum.getText()+"");
+        requestParams.addBodyParameter("goods_number",et_goods_buyNum.getText()+"");
+
+        requestParams.addBodyParameter("user_id",userId+"");
 
 
-        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
@@ -386,7 +391,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 Log.i(TAG,"str"+str);
 
 
-                Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
 
 
 
@@ -395,7 +400,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
+                Toast.makeText(getApplicationContext(),"加入失败",Toast.LENGTH_SHORT).show();
+
+
 
             }
 

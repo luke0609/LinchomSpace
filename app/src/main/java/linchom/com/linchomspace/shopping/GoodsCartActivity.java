@@ -6,10 +6,10 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -47,7 +47,7 @@ public class GoodsCartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_cart);
 
-        getData();
+
 
 
         initView();
@@ -85,7 +85,6 @@ public class GoodsCartActivity extends AppCompatActivity {
                         DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                //异步任务拿数据
 
                 PullToRefreshBase.Mode mode = ptr_cartList_ptr.getCurrentMode();
 
@@ -117,12 +116,23 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
         goodsCommonAdapter =new GoodsCommonAdapter<GoodsCartBean.Data>(getApplicationContext(),cartList,R.layout.goods_cart_list_item) {
+
+            int buyNum;
+
             @Override
             public void convert(GoodsViewHolder viewHolder, GoodsCartBean.Data data, int position) {
 
             TextView iv_goods_cart_name =viewHolder.getViewById(R.id.iv_goods_cart_name);
             TextView tv_goods_cart_price=  viewHolder.getViewById(R.id.tv_goods_cart_price);
-             TextView tv_goods_cart_num=   viewHolder.getViewById(R.id.tv_goods_cart_num);
+           final  TextView tv_goods_cart_num=   viewHolder.getViewById(R.id.tv_goods_cart_num);
+
+               RelativeLayout rl_goods_cart_sub= viewHolder.getViewById(R.id.rl_goods_cart_sub);
+
+               final EditText et_goods_cart_buynum=  viewHolder.getViewById(R.id.et_goods_cart_buynum);
+
+               RelativeLayout rl_goods_cart_add= viewHolder.getViewById(R.id.rl_goods_cart_add);
+
+
             final CheckBox cb_goods_cart_modify= viewHolder.getViewById(R.id.cb_goods_cart_modify);
            final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
 
@@ -131,7 +141,11 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                 tv_goods_cart_price.setText(data.goods_price);
 
-                tv_goods_cart_num.setText(data.goods_number);
+                 tv_goods_cart_num.setText(data.goods_number);
+
+                et_goods_cart_buynum.setText(data.goods_number);
+
+
 
                 cb_goods_cart_modify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -146,10 +160,52 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                             rl_goods_cart_modify.setVisibility(View.GONE);
                             cb_goods_cart_modify.setText("编辑");
+                            tv_goods_cart_num.setText(buyNum+"");
 
                         }
 
 
+
+                    }
+                });
+
+                rl_goods_cart_sub.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        buyNum =Integer.parseInt(et_goods_cart_buynum.getText().toString());
+
+                        if(buyNum>1){
+                            buyNum--;
+
+
+                        }
+
+
+
+
+
+                        et_goods_cart_buynum.setText(buyNum+"");
+
+
+                    }
+                });
+
+                rl_goods_cart_add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        buyNum =Integer.parseInt(et_goods_cart_buynum.getText().toString());
+
+                        if(buyNum<10){
+                            buyNum++;
+
+
+                        }
+
+
+                        et_goods_cart_buynum.setText(buyNum+"");
 
                     }
                 });
@@ -176,7 +232,6 @@ public class GoodsCartActivity extends AppCompatActivity {
             public void onSuccess(String result) {
                 
 
-                Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
 
                 Gson gson =new Gson();
                 GoodsCartBean goodsCartBean =  gson.fromJson(result,GoodsCartBean.class);

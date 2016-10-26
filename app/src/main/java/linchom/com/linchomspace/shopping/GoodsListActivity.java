@@ -516,7 +516,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         });
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
 
