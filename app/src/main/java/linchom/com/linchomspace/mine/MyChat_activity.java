@@ -56,7 +56,6 @@ public class MyChat_activity extends AppCompatActivity {
     }
 
     private void initEvent() {
-//        System.out.println("---------");
         chatCommonAdapter=new GoodsCommonAdapter<MychatInfoBean.Mdata.Imtems>(getApplicationContext(),chatlist,R.layout.my_chat_items) {
 
             @Override

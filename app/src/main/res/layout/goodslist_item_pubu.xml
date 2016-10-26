@@ -28,27 +28,18 @@
         android:layout_width="150dp"
         android:layout_height="50dp" />
 
-    <TextView
-        android:id="@+id/tv_goodslist_pubu_fuhao"
-        android:textColor="#ff0000"
-        android:textSize="12sp"
-        android:text="¥"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/tv_goodslist_pubu_name"
 
-         />
 
     <TextView
         android:id="@+id/tv_goodslist_pubu_price"
 
-        android:layout_toRightOf="@id/tv_goodslist_pubu_fuhao"
         android:textColor="#ff0000"
         android:textSize="12sp"
         android:text="10000000"
         android:layout_width="80dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/tv_goodslist_pubu_name"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/tv_goodslist_pubu_name"
 
         />
 

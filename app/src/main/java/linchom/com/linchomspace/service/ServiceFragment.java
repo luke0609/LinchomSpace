@@ -112,7 +112,7 @@ public class ServiceFragment extends Fragment {
         list.add("1");
         list.add("1");
         if (adapter == null) {
-            adapter = new CommonAdapter<String>(getContext(), list, cell) {
+            adapter = new CommonAdapter<String>(getContext(), list,R.layout.cell) {
                 @Override
                 public void convert(ViewHolder viewHolder, String s, final int position) {
 

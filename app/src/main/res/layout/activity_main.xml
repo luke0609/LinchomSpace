@@ -28,9 +28,9 @@
     <RadioGroup
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff"
+        android:background="#212121"
         android:orientation="horizontal">
 
         <RadioButton
@@ -40,8 +40,8 @@
             android:drawableTop="@drawable/radiotab_home_selector"
             android:text="首页"
             android:textSize="12sp"
-            android:paddingTop="7dp"
-            android:paddingBottom="4dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="10dp"
             android:textColor="@drawable/radiotab_textcolor_seletor"
 
             />
@@ -55,6 +55,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="4dp"
             android:textColor="@drawable/radiotab_textcolor_seletor" />
+
         <RadioButton
             android:id="@+id/rb_rb3"
             style="@style/radiobtn"

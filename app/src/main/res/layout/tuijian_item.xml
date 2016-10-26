@@ -38,6 +38,7 @@
             android:text="腾讯网"
             android:layout_marginRight="30dp"
             android:textColor="#7e7d7d"
+            android:textSize="13sp"
             android:layout_alignTop="@+id/tv_name" />
     <TextView
         android:id="@+id/tv_name"
@@ -46,6 +47,7 @@
         android:layout_toRightOf="@id/tv_source"
         android:layout_below="@id/iv_photo"
         android:text="3小时前"
+        android:textSize="13sp"
         android:textColor="#7e7d7d"/>
 
 
