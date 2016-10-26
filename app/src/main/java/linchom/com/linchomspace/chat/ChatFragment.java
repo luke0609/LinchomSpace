@@ -151,7 +151,7 @@ public class ChatFragment extends Fragment {
     };
 
     private class MyAdapter extends IndicatorViewPager.IndicatorViewPagerAdapter {
-        private String[] versions = {"智能家居", "智能健康", "智能照管", "产品推荐", "智能社区", "工程技术", "硬件", "机器人", "VR/AR", "协议标准", "需求对接", "品牌交流", "提问回答", "其他"};
+        private String[] versions = {"智能家居", "智能健康", "智能管照", "产品推荐", "智能社区", "工程技术", "硬件开发", "机器人", "VR/AR", "协议标准", "需求对接", "品牌交流", "提问回答", "其他"};
 
 
         @Override
@@ -231,6 +231,7 @@ public class ChatFragment extends Fragment {
 
             ListView newsList=listView.getRefreshableView();
             newsList.setAdapter(adapter);
+
             newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -238,7 +239,7 @@ public class ChatFragment extends Fragment {
                     TopicList.DataBean.ItemsBean topicDetial = topicList.get(position-1);
 
                     Intent intent = new Intent(getActivity(), ChatDetilActivity.class);
-                    intent.putExtra("topicDetial",topicDetial);
+                    intent.putExtra("topic_id",topicDetial.getTopic_id());
                     startActivity(intent);
 
                 }

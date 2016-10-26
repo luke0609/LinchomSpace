@@ -57,7 +57,7 @@ public class KidChatDetilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid_chat_detil);
         ButterKnife.inject(this);
-        StatusBarCompat.compat(this, Color.parseColor("#262B4D"));
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
         initView();
     }
 

@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ import java.util.Map;
 
 import linchom.com.linchomspace.R;
 
+import static android.R.attr.id;
+
 public class ChatPublishActiviy extends AppCompatActivity implements View.OnClickListener{
     private Spinner sp_topic;
     private String cardNumber;
@@ -30,6 +33,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
     private Button btn_publish;
     String value;
+    private ImageView iv_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
         btn_publish = ((Button) findViewById(R.id.btn_publish));
         btn_publish.setOnClickListener(this);
+        iv_back = ((ImageView) findViewById(R.id.iv_back));
+        iv_back.setOnClickListener(this);
         sp_topic = ((Spinner) findViewById(R.id.sp_topic));
         et_title = ((EditText) findViewById(R.id.et_title));
         add_content = ((EditText) findViewById(R.id.add_content));
@@ -135,6 +142,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
             case R.id.iv_back:
                 finish();
                 break;
+
         }
     }
 
