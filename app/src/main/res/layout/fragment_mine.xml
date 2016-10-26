@@ -9,9 +9,9 @@
         >
         <RelativeLayout
             android:id="@+id/rv_head0"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/beijing"
+            android:background="@drawable/bk_1"
             >
             <ImageView
                 android:id="@+id/iv_head"
