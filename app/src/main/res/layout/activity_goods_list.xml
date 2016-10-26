@@ -6,11 +6,12 @@
     android:background="#30808080"
     tools:context="linchom.com.linchomspace.shopping.GoodsListActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl_goodsList_search"
-        android:background="#30808080"
+        android:background="#212121"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
         android:focusable="true"
         android:focusableInTouchMode="true"
         >
@@ -19,38 +20,42 @@
             android:id="@+id/iv_goodsList_back"
             android:src="@drawable/back"
             android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+
             />
 
-        <Button
-            android:id="@+id/btn_goods_list_btnSearch"
-            android:layout_marginRight="5dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/goodssearch_shape"
-            android:textColor="#808080"
-            android:text="搜索"
-            android:layout_width="50dp"
-            android:layout_height="40dp" />
+
 
 
         <EditText
             android:layout_centerVertical="true"
-
             android:id="@+id/et_goods_search"
-
-            android:textColor="#808080"
-            android:background="@drawable/goodssearch_shape"
-            android:hint="搜索商品"
-            android:drawableLeft="@drawable/goods_discover2"
-            android:layout_marginLeft="60dp"
-            android:layout_toLeftOf="@id/btn_goods_list_btnSearch"
+            android:textColor="#212121"
+            android:textColorHint="#808080"
+            android:textSize="14sp"
+            android:paddingLeft="3dp"
+            android:background="@drawable/find_search_shape"
+            android:hint="请输入感兴趣的商品"
+            android:drawableLeft="@drawable/search40"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="0dp"
             android:layout_marginRight="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_height="32dp"
             />
+        <Button
+            android:id="@+id/btn_goods_list_btnSearch"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/goodssearch_shape"
+            android:textColor="#212121"
+            android:text="搜 索"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="30dp" />
 
 
 
@@ -60,7 +65,7 @@
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 
@@ -71,7 +76,7 @@
 
         android:id="@+id/rl_goodsList_cate"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="40dp"
         android:background="#ffffff"
         android:layout_below="@+id/rl_goodsList_search"
         android:layout_alignParentLeft="true"
@@ -93,7 +98,7 @@
             >
 
             <Button
-                android:textColor="#808080"
+                android:textColor="#212121"
                 android:id="@+id/btn_goodsList_hot"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -126,7 +131,7 @@
             >
 
             <Button
-                android:textColor="#808080"
+                android:textColor="#212121"
 
                 android:id="@+id/btn_goodsList_default"
                 android:layout_width="match_parent"
@@ -161,7 +166,7 @@
             >
 
             <Button
-                android:textColor="#808080"
+                android:textColor="#212121"
 
                 android:id="@+id/btn_goodsList_new"
                 android:layout_width="match_parent"
@@ -191,7 +196,7 @@
 
             android:id="@+id/radiobtn_goodslist_listcate"
 
-            android:drawableBottom="@drawable/radiobtn_goodslist_selector"
+            android:drawableLeft="@drawable/radiobtn_goodslist_selector"
 
             android:layout_centerVertical="true"
             android:button="@null"
@@ -208,7 +213,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#50808080"
+                android:background="#30808080"
                 android:layout_alignParentBottom="true"
 
                 />

@@ -20,6 +20,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListWaterfallFragment;
 
@@ -69,7 +70,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
-
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
 
 
         Intent intent  =getIntent();

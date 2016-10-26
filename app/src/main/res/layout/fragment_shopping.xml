@@ -30,20 +30,20 @@
             android:layout_width="0dp"
             android:layout_weight="9"
             android:layout_marginRight="10dp"
-            android:layout_height="30dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_toRightOf="@id/logo"
             android:background="@drawable/find_search_shape"
             android:scaleType="centerInside"
 
-            android:hint="搜你想搜的"
+            android:hint="请输入感兴趣的产品"
             android:textColor="#000"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColorHint="#797777"
             />
         <Button
             android:textColor="#808080"
-            android:text="搜索"
+            android:text="搜 索"
             android:background="@drawable/goodssearch_shape"
             android:id="@+id/btn_goods_btnSearch"
             android:layout_marginRight="7dp"
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_gravity="center_vertical"
-            android:layout_height="30dp" />
+            android:layout_height="32dp" />
     </LinearLayout>
 
     <ScrollView
