@@ -3,7 +3,11 @@ package linchom.com.linchomspace.shopping;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,8 +122,37 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             TextView iv_goods_cart_name =viewHolder.getViewById(R.id.iv_goods_cart_name);
             TextView tv_goods_cart_price=  viewHolder.getViewById(R.id.tv_goods_cart_price);
+             TextView tv_goods_cart_num=   viewHolder.getViewById(R.id.tv_goods_cart_num);
+            final CheckBox cb_goods_cart_modify= viewHolder.getViewById(R.id.cb_goods_cart_modify);
+           final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
+
 
                 iv_goods_cart_name.setText(data.goods_name);
+
+                tv_goods_cart_price.setText(data.goods_price);
+
+                tv_goods_cart_num.setText(data.goods_number);
+
+                cb_goods_cart_modify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            rl_goods_cart_modify.setVisibility(View.VISIBLE);
+
+                            cb_goods_cart_modify.setText("完成");
+
+
+                        }else{
+
+                            rl_goods_cart_modify.setVisibility(View.GONE);
+                            cb_goods_cart_modify.setText("编辑");
+
+                        }
+
+
+
+                    }
+                });
 
 
             }
