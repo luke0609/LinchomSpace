@@ -173,6 +173,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
         btn_goods_order_submitorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent =new Intent(GoodsOrderActivity.this,GoodsAllOrderActivity.class);
 
 
