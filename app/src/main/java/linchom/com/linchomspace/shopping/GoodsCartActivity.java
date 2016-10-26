@@ -58,6 +58,11 @@ public class GoodsCartActivity extends AppCompatActivity {
     private TextView tv_goods_cart_totalprice;
 
 
+    private boolean flagDelete =false;
+
+
+
+
 
 
     @Override
@@ -158,7 +163,7 @@ public class GoodsCartActivity extends AppCompatActivity {
             final CheckBox cb_goods_cart_modify= viewHolder.getViewById(R.id.cb_goods_cart_modify);
            final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
 
-            Button btn_goods_cart_delete=   viewHolder.getViewById(R.id.btn_goods_cart_delete);
+           final Button btn_goods_cart_delete=   viewHolder.getViewById(R.id.btn_goods_cart_delete);
 
                 btn_goods_cart_delete.setTag(position);
 
@@ -204,7 +209,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
 
-
+                //清  0？？？？？？？？？？
 
                 cb_goods_cart_choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -222,11 +227,13 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                             tv_goods_cart_totalprice.setText("合计:"+totalPrice+"元");
 
+                            flagDelete=false;
+
 
 
 
                         }else if(!isChecked&&position==(int)cb_goods_cart_choice.getTag()){
-
+                                //有勾的调用这个方法
 
 
                                 checkStatusMap.put((int) buttonView.getTag(), false);
@@ -236,9 +243,21 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                                 int oneNum = Integer.parseInt(buyNumMap.get((int) cb_goods_cart_choice.getTag()));
 
+
+                            if(flagDelete==false) {
+
                                 totalPrice -= (onePrice * oneNum);
 
                                 tv_goods_cart_totalprice.setText("合计:" + totalPrice + "元");
+                            }
+
+                                if(flagDelete==true){
+
+                                    totalPrice=0.0;
+                                    tv_goods_cart_totalprice.setText("合计:" + totalPrice + "元");
+
+
+                                }
 
 
 
@@ -255,6 +274,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(isChecked&&position==(int)cb_goods_cart_modify.getTag()){
+                            //flagDelete=false;
+
                             rl_goods_cart_modify.setVisibility(View.VISIBLE);
 
                             cb_goods_cart_modify.setText("完成");
@@ -265,6 +286,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                         }else if(!isChecked&&position==(int)cb_goods_cart_modify.getTag()){
+                           // flagDelete=false;
+
 
                             rl_goods_cart_modify.setVisibility(View.GONE);
                             cb_goods_cart_modify.setText("编辑");
@@ -285,6 +308,9 @@ public class GoodsCartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        flagDelete=false;
+
+
                         if(position==(int)et_goods_cart_buynum.getTag()&&position==(int)rl_goods_cart_sub.getTag()) {
 
                             buyNum = Integer.parseInt(et_goods_cart_buynum.getText().toString());
@@ -300,9 +326,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                                     tv_goods_cart_totalprice.setText("合计:" + totalPrice + "元");
 
-
                                 }
-
 
                             }
                             buyNumMap.put((int)v.getTag(),buyNum+"");
@@ -319,6 +343,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                 rl_goods_cart_add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                       flagDelete=false;
+
 
                         if(position==(int)et_goods_cart_buynum.getTag()&&position==(int)rl_goods_cart_add.getTag()) {
 
@@ -360,6 +386,14 @@ public class GoodsCartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        //总价先减去删除价格
+
+                        ///double twoPrice = Double.parseDouble(cartList.get((int)btn_goods_cart_delete.getTag()).goods_price);
+                       // int twoNum= Integer.parseInt(buyNumMap.get((int)btn_goods_cart_delete.getTag()));
+
+                       // totalPrice-=(twoPrice*twoNum);
+
+
 
                         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -380,6 +414,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                                 Toast.makeText(getApplicationContext(),"删除成功",Toast.LENGTH_SHORT).show();
+
+                                flagDelete =true;
 
 
 
@@ -470,9 +506,9 @@ public class GoodsCartActivity extends AppCompatActivity {
                     buyNumMap.put(i,cartList.get(i).goods_number);
                 }
 
-                //totalPrice=0.0;
+                totalPrice=0.0;
 
-               // tv_goods_cart_totalprice.setText("合计:0.0元");
+                tv_goods_cart_totalprice.setText("合计:0.0元");
 
                 goodsCommonAdapter.notifyDataSetChanged();
 
@@ -481,9 +517,9 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                //totalPrice=0.0;
+                totalPrice=0.0;
 
-               // tv_goods_cart_totalprice.setText("合计:0.0元");
+                tv_goods_cart_totalprice.setText("合计:0.0元");
 
 
                 cartList.clear();
