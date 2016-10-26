@@ -6,6 +6,7 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -123,6 +124,14 @@ public class GoodsCartActivity extends AppCompatActivity {
             TextView iv_goods_cart_name =viewHolder.getViewById(R.id.iv_goods_cart_name);
             TextView tv_goods_cart_price=  viewHolder.getViewById(R.id.tv_goods_cart_price);
              TextView tv_goods_cart_num=   viewHolder.getViewById(R.id.tv_goods_cart_num);
+
+               RelativeLayout rl_goods_cart_sub= viewHolder.getViewById(R.id.rl_goods_cart_sub);
+
+              EditText et_goods_cart_buynum=  viewHolder.getViewById(R.id.et_goods_cart_buynum);
+
+               RelativeLayout rl_goods_cart_add= viewHolder.getViewById(R.id.rl_goods_cart_add);
+
+
             final CheckBox cb_goods_cart_modify= viewHolder.getViewById(R.id.cb_goods_cart_modify);
            final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
 
@@ -132,6 +141,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                 tv_goods_cart_price.setText(data.goods_price);
 
                 tv_goods_cart_num.setText(data.goods_number);
+
+                et_goods_cart_buynum.setText(data.goods_number);
 
                 cb_goods_cart_modify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
