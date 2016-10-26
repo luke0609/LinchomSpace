@@ -101,7 +101,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         params.addQueryStringParameter("topic_category_id",value);
         params.addQueryStringParameter("topic_name",title);
         params.addQueryStringParameter("communication_title",content);
-        params.addQueryStringParameter("user_name","ljs123");
+        params.addQueryStringParameter("user_name","梁京生");
         System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
