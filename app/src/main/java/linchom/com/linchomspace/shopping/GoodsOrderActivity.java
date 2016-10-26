@@ -45,6 +45,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_order);
 
+
         Intent intent =getIntent();
 
         Bundle bundle =intent.getBundleExtra("bundle");

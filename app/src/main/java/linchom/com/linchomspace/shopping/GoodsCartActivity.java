@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -30,6 +31,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class GoodsCartActivity extends AppCompatActivity {
@@ -58,11 +60,14 @@ public class GoodsCartActivity extends AppCompatActivity {
     private TextView tv_goods_cart_totalprice;
 
 
+
+
+
     private boolean flagDelete =false;
+    private Button btn_goods_cart_total;
 
 
-
-
+    private ArrayList<GoodsOrderBean> orderList =new ArrayList<GoodsOrderBean>();
 
 
     @Override
@@ -86,6 +91,9 @@ public class GoodsCartActivity extends AppCompatActivity {
         tv_goods_cart_totalprice = ((TextView) findViewById(R.id.tv_goods_cart_totalprice));
 
 
+        btn_goods_cart_total = ((Button) findViewById(R.id.btn_goods_cart_total));
+
+
     }
 
     private void initData() {
@@ -96,6 +104,59 @@ public class GoodsCartActivity extends AppCompatActivity {
     private void initEvent() {
 
         eventPtr();
+
+        totalMoney();
+
+    }
+
+    private void totalMoney() {
+
+        btn_goods_cart_total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
+
+
+                for (Map.Entry<Integer,Boolean> m : checkStatusMap.entrySet()) {
+
+
+                   if(m.getValue()){
+
+                       Log.i(TAG,m.getKey()+"");
+
+                       buyNumMap.get(m.getKey());
+
+                       Log.i(TAG, buyNumMap.get(m.getKey())+"");
+
+                       orderList.add(new GoodsOrderBean( buyNumMap.get(m.getKey()),"1",cartList.get(m.getKey()).goods_name,cartList.get(m.getKey()).goods_price));
+
+
+                   }
+
+
+
+
+                }
+
+
+                Intent intent =new Intent(GoodsCartActivity.this,GoodsOrderActivity.class);
+
+
+                Bundle bundle =new Bundle();
+
+                bundle.putSerializable("orderList",orderList);
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
+
+
+
+
+
+            }
+        });
+
+
 
     }
 

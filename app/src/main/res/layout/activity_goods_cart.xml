@@ -42,6 +42,7 @@
             />
 
         <Button
+            android:id="@+id/btn_goods_cart_total"
             android:textColor="#ffffff"
             android:textSize="16sp"
             android:text="结算"
