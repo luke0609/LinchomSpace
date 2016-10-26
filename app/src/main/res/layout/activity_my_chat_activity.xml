@@ -34,21 +34,22 @@
 
     <!--</ListView>-->
     <RelativeLayout
-        android:id="@+id/rl_goodsList_load_list"
+        android:id="@+id/rl_pro"
         android:layout_below="@id/rl_ping"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
+        android:layout_height="wrap_content">
         <ProgressBar
+            android:id="@+id/firstBar"
             style="?android:attr/progressBarStyleLarge"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="0"
+            android:visibility="gone"/>
 
     </RelativeLayout>
     <RelativeLayout
-        android:layout_below="@id/rl_goodsList_load_list"
+        android:layout_below="@id/rl_pro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.handmark.pulltorefresh.library.PullToRefreshListView
