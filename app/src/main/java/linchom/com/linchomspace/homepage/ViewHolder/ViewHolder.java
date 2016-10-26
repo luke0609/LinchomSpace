@@ -1,4 +1,4 @@
-package linchom.com.linchomspace.homepage.fcViewHolder;
+package linchom.com.linchomspace.homepage.ViewHolder;
 
 /**
  * Created by Administrator on 2016/10/14.

@@ -235,7 +235,7 @@ public class HomeFragment extends Fragment {
             }
         });
         ib_xiala = ((ImageButton) view.findViewById(R.id.ib_xiala));
-        ib_xiala.setOnClickListener(new View.OnClickListener() {
+        ib_xiala.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 

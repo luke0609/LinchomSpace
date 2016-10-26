@@ -3,13 +3,11 @@ package linchom.com.linchomspace.mine;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -27,11 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.homepage.fcViewHolder.ViewHolder;
 import linchom.com.linchomspace.mine.pojo.KindsInfoBean;
-import linchom.com.linchomspace.mine.pojo.LogInfoBean;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
-import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class Disclose_activity extends AppCompatActivity {
 
