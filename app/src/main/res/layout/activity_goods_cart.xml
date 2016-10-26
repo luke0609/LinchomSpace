@@ -28,11 +28,12 @@
         android:layout_height="48dp">
 
         <TextView
+            android:id="@+id/tv_goods_cart_totalprice"
             android:textColor="#90ff0000"
             android:gravity="center"
             android:textSize="20sp"
 
-            android:text="合计:元"
+            android:text="合计:0.0元"
             android:background="#ffffff"
             android:layout_width="0dp"
             android:layout_height="match_parent"
