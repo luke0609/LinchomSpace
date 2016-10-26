@@ -207,6 +207,7 @@
                     >
 
                     <EditText
+                        android:id="@+id/et_goods_cart_buynum"
                         android:layout_centerInParent="true"
                         android:text="1"
                         android:textSize="15sp"
