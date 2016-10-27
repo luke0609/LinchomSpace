@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -392,7 +393,7 @@ public class GoodsCartActivity extends AppCompatActivity {
             TextView iv_goods_cart_name =viewHolder.getViewById(R.id.iv_goods_cart_name);
             TextView tv_goods_cart_price=  viewHolder.getViewById(R.id.tv_goods_cart_price);
 
-               ImageView iv_goods_cart_img= viewHolder.getViewById(R.id.iv_goods_cart_img);
+             final  ImageView iv_goods_cart_img= viewHolder.getViewById(R.id.iv_goods_cart_img);
 
                 GoodsXUtilsImage.display(iv_goods_cart_img,data.goods_img);
 
@@ -409,6 +410,9 @@ public class GoodsCartActivity extends AppCompatActivity {
            final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
 
            final Button btn_goods_cart_delete=   viewHolder.getViewById(R.id.btn_goods_cart_delete);
+
+
+                iv_goods_cart_img.setTag(position);
 
                 btn_goods_cart_delete.setTag(position);
 
@@ -689,6 +693,27 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
 
+
+
+                    }
+                });
+
+
+                iv_goods_cart_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent =new Intent(GoodsCartActivity.this,GoodsActivity.class);
+
+                        String goodsId = cartList.get((int)iv_goods_cart_img.getTag()).goods_id;
+
+                        Bundle bundle =new Bundle();
+
+                        bundle.putString("goodsId",goodsId);
+
+                        intent.putExtra("bundle",bundle);
+
+                        startActivity(intent);
 
 
                     }
