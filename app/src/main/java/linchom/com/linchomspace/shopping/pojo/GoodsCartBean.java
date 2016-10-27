@@ -38,6 +38,7 @@ public class GoodsCartBean {
                 public String formated_market_price;
                 public String formated_goods_price;
                 public String formated_subtotal;
+                 public String  goods_img;
 
 
 

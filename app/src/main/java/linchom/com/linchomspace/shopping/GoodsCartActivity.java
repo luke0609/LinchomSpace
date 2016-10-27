@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
 import linchom.com.linchomspace.shopping.pojo.OrderSubmitBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
+import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsCartActivity extends AppCompatActivity {
 
@@ -389,6 +391,11 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             TextView iv_goods_cart_name =viewHolder.getViewById(R.id.iv_goods_cart_name);
             TextView tv_goods_cart_price=  viewHolder.getViewById(R.id.tv_goods_cart_price);
+
+               ImageView iv_goods_cart_img= viewHolder.getViewById(R.id.iv_goods_cart_img);
+
+                GoodsXUtilsImage.display(iv_goods_cart_img,data.goods_img);
+
            final  TextView tv_goods_cart_num=   viewHolder.getViewById(R.id.tv_goods_cart_num);
 
                 final  RelativeLayout rl_goods_cart_sub= viewHolder.getViewById(R.id.rl_goods_cart_sub);
