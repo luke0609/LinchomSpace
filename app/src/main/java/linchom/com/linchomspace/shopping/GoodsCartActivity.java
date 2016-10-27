@@ -1,6 +1,5 @@
 package linchom.com.linchomspace.shopping;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -18,6 +17,9 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -31,7 +33,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
-import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
+import linchom.com.linchomspace.shopping.pojo.OrderSubmitBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class GoodsCartActivity extends AppCompatActivity {
@@ -67,7 +69,7 @@ public class GoodsCartActivity extends AppCompatActivity {
     private Button btn_goods_cart_total;
 
 
-    private ArrayList<GoodsOrderBean> orderList =new ArrayList<GoodsOrderBean>();
+    private ArrayList<OrderSubmitBean> orderList =new ArrayList<OrderSubmitBean>();
 
 
     @Override
@@ -128,26 +130,201 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                        Log.i(TAG, buyNumMap.get(m.getKey())+"");
 
-                       orderList.add(new GoodsOrderBean( buyNumMap.get(m.getKey()),"1",cartList.get(m.getKey()).goods_name,cartList.get(m.getKey()).goods_price));
+                       //orderList.add(new GoodsOrderBean( buyNumMap.get(m.getKey()),"1",cartList.get(m.getKey()).goods_name,cartList.get(m.getKey()).goods_price));
 
+                       //rec_id;
+                       //user_id;
+                       //goods_id;
+                       //goods_name;
+                       //goods_sn;
+                       //goods_number;
+                       //market_price;
+                       //goods_price;
+                       //goods_attr;
+                       //is_real;
+                       //extension_code;
+                       //parent_id;
+                       //is_gift;
+                       //is_shipping;
+                       //subtotal;
+                       //formated_market_price;
+                       //formated_goods_price;
+                       //formated_subtotal;
+
+                       int threeNum = Integer.parseInt(buyNumMap.get(m.getKey()));
+
+                       Double threePrice =Double.parseDouble(cartList.get(m.getKey()).goods_price);
+
+                       Double threeTotal =threeNum*threePrice;
+
+
+                       orderList.add(new OrderSubmitBean(cartList.get(m.getKey()).rec_id,
+                               cartList.get(m.getKey()).user_id,
+                               cartList.get(m.getKey()).goods_id,
+                               cartList.get(m.getKey()).goods_name,
+                               cartList.get(m.getKey()).goods_sn,
+                               buyNumMap.get(m.getKey()),
+                               cartList.get(m.getKey()).market_price,
+                               cartList.get(m.getKey()).goods_price,
+                               cartList.get(m.getKey()).goods_attr,
+                               cartList.get(m.getKey()).is_real,
+                               cartList.get(m.getKey()).extension_code,
+                               cartList.get(m.getKey()).parent_id,
+                               cartList.get(m.getKey()).is_gift,
+                               cartList.get(m.getKey()).is_shipping,
+                               threeTotal+"",
+                               cartList.get(m.getKey()).formated_market_price,
+                               cartList.get(m.getKey()).formated_goods_price,
+                               threeTotal+""
+                               ));
 
                    }
-
-
-
 
                 }
 
 
-                Intent intent =new Intent(GoodsCartActivity.this,GoodsOrderActivity.class);
 
 
-                Bundle bundle =new Bundle();
 
-                bundle.putSerializable("orderList",orderList);
-                intent.putExtra("bundle",bundle);
 
-                startActivity(intent);
+                JSONObject jo = new JSONObject();
+                try {
+                    //jo.put("result","0");
+                    JSONArray ja = new JSONArray();
+
+
+                    OrderSubmitBean orderSubmitBean=null;
+
+                    JSONObject jo_sub = null;
+
+                    for(int i= 0;i<orderList.size();i++){
+
+                        jo_sub=new JSONObject();
+
+                        orderSubmitBean = orderList.get(i);
+
+                        //rec_id;
+                        //user_id;
+                        //goods_id;
+                        //goods_name;
+                        //goods_sn;
+                        //goods_number;
+                        //market_price;
+                        //goods_price;
+                        //goods_attr;
+                        //is_real;
+                        //extension_code;
+                        //parent_id;
+                        //is_gift;
+                        //is_shipping;
+                        //subtotal;
+                        //formated_market_price;
+                        //formated_goods_price;
+                        //formated_subtotal;
+
+                        jo_sub.put("rec_id",orderList.get(i).rec_id);
+                        jo_sub.put("user_id",orderList.get(i).user_id);
+                        jo_sub.put("goods_id",orderList.get(i).goods_id);
+                        jo_sub.put("goods_name",orderList.get(i).goods_name);
+                        jo_sub.put("goods_sn",orderList.get(i).goods_sn);
+                        jo_sub.put("goods_number",orderList.get(i).goods_number);
+                        jo_sub.put("market_price",orderList.get(i).market_price);
+                        jo_sub.put("goods_price",orderList.get(i).goods_price);
+                        jo_sub.put("goods_attr",orderList.get(i).goods_attr);
+                        jo_sub.put("is_real",orderList.get(i).is_real);
+                        jo_sub.put("extension_code",orderList.get(i).extension_code);
+                        jo_sub.put("parent_id",orderList.get(i).parent_id);
+                        jo_sub.put("is_gift",orderList.get(i).is_gift);
+                        jo_sub.put("is_shipping",orderList.get(i).is_shipping);
+                        jo_sub.put("subtotal",orderList.get(i).subtotal);
+                        jo_sub.put("formated_market_price",orderList.get(i).formated_market_price);
+                        jo_sub.put("formated_goods_price",orderList.get(i).formated_goods_price);
+                        jo_sub.put("formated_subtotal",orderList.get(i).formated_subtotal);
+
+                        ja.put(jo_sub);
+
+
+
+                    }
+
+                    jo.put("data",ja);
+
+                   // jo.put("msg","");
+
+                   // jo.put("url","");
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+                RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+                requestParams.addBodyParameter("act","done_order");
+
+
+                requestParams.addBodyParameter("user_id",userId);
+
+                String dataJson = jo.toString();
+
+                Log.i(TAG,"dataJson"+dataJson);
+
+                requestParams.addBodyParameter("cart_goods",dataJson);
+                x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+
+                            Log.i(TAG,"result"+result);
+
+
+                            Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+
+                        Log.i(TAG,"ex"+ex);
+
+
+                        Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+
+                    }
+                });
+
+
+
+
+
+
+                //Intent intent =new Intent(GoodsCartActivity.this,GoodsOrderActivity.class);
+
+
+               // Bundle bundle =new Bundle();
+
+               // bundle.putSerializable("orderList",orderList);
+                //intent.putExtra("bundle",bundle);
+
+                //startActivity(intent);
 
 
 

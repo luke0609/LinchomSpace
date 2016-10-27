@@ -9,11 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.http.RequestParams;
-
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
@@ -183,10 +178,64 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
 
                // JsonObject
-                JSONObject jo = new JSONObject();
+              /*  JSONObject jo = new JSONObject();
                 try {
                     jo.put("result","0");
                     JSONArray ja = new JSONArray();
+
+                    GoodsOrderBean goodsOrderBean=null;
+
+                    JSONObject jo_sub = null;
+
+                    for(int i= 0;i<orderList.size();i++){
+
+                        jo_sub=new JSONObject();
+
+                        goodsOrderBean = orderList.get(i);
+
+                        //rec_id;
+                        //user_id;
+                        //goods_id;
+                        //goods_name;
+                        //goods_sn;
+                        //goods_number;
+                        //market_price;
+                        //goods_price;
+                        //goods_attr;
+                        //is_real;
+                        //extension_code;
+                        //parent_id;
+                        //is_gift;
+                        //is_shipping;
+                        //subtotal;
+                        //formated_market_price;
+                        //formated_goods_price;
+                        //formated_subtotal;
+
+                        jo_sub.put("rec_id","");
+                        jo_sub.put("user_id","");
+                        jo_sub.put("goods_id","");
+                        jo_sub.put("goods_name","");
+                        jo_sub.put("goods_sn","");
+                        jo_sub.put("goods_number","");
+                        jo_sub.put("market_price","");
+                        jo_sub.put("goods_price","");
+                        jo_sub.put("goods_attr","");
+                        jo_sub.put("is_real","");
+                        jo_sub.put("extension_code","");
+                        jo_sub.put("parent_id","");
+                        jo_sub.put("is_gift","");
+                        jo_sub.put("is_shipping","");
+                        jo_sub.put("subtotal","");
+                        jo_sub.put("formated_market_price","");
+                        jo_sub.put("formated_goods_price","");
+                        jo_sub.put("formated_subtotal","");
+
+
+
+
+                    }
+
 
 
 
@@ -204,7 +253,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
                 requestParams.addBodyParameter("user_id",userId);
 
 
-              //  requestParams.addBodyParameter("cart_goods",);
+              //  requestParams.addBodyParameter("cart_goods",);*/
+
+                Intent intent =new Intent(getApplicationContext(),GoodsAllOrderActivity.class);
+
+                startActivity(intent);
 
 
             }

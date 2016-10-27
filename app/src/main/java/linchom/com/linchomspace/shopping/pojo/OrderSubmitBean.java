@@ -1,10 +1,12 @@
 package linchom.com.linchomspace.shopping.pojo;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/10/27.
  */
 
-public class OrderSubmitBean {
+public class OrderSubmitBean implements Serializable{
 
             public String rec_id;
             public String user_id;
