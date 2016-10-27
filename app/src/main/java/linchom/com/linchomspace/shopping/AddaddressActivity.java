@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -30,6 +32,8 @@ import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class AddaddressActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private String userId="12";
+
 
     private static final String TAG = "AddaddressActivity";
 
@@ -48,11 +52,24 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
     private TextView tv_goods_area;
 
 
-    private String provinceId =null;
+    private String provinceId ="";
 
-    private String cityId =null;
+    private String cityId ="";
 
-    private String areaId=null;
+    private String areaId="";
+    private EditText et_goods_addaddress_name;
+    private EditText et_goods_addaddress_tel;
+    private EditText et_goods_cart_detailaddress;
+    private EditText et_goods_cart_youbian;
+    private Button btn_goods_area_save;
+
+
+    private String name;
+    private String tel;
+
+    private String detailAddress;
+
+    private String youbian;
 
 
     @Override
@@ -72,6 +89,16 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         tv_goods_city = ((TextView) findViewById(R.id.tv_goods_city));
         tv_goods_area = ((TextView) findViewById(R.id.tv_goods_area));
 
+        et_goods_addaddress_name = ((EditText) findViewById(R.id.et_goods_addaddress_name));
+
+        et_goods_addaddress_tel = ((EditText) findViewById(R.id.et_goods_addaddress_tel));
+
+        et_goods_cart_detailaddress = ((EditText) findViewById(R.id.et_goods_cart_detailaddress));
+
+        et_goods_cart_youbian = ((EditText) findViewById(R.id.et_goods_cart_youbian));
+
+        btn_goods_area_save = ((Button) findViewById(R.id.btn_goods_area_save));
+
     }
 
     private void initData() {
@@ -87,6 +114,8 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         tv_goods_province.setOnClickListener(this);
         tv_goods_city.setOnClickListener(this);
         tv_goods_area.setOnClickListener(this);
+
+        btn_goods_area_save.setOnClickListener(this);
 
 
 
@@ -147,8 +176,91 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
                 break;
 
+            case R.id.btn_goods_area_save:
+                saveAddress();
+
+                break;
+
 
         }
+
+    }
+
+    private void saveAddress() {
+
+        name=et_goods_addaddress_name.getText().toString();
+        tel =et_goods_addaddress_tel.getText().toString();
+        detailAddress =et_goods_cart_detailaddress.getText().toString();
+        youbian=et_goods_cart_youbian.getText().toString();
+
+        if(name==null||name==""||tel==null||tel==""||detailAddress==null||detailAddress==""||
+                youbian==null||youbian==""||provinceId==null||provinceId==""||cityId==null||cityId==""){
+
+
+            Toast.makeText(getApplicationContext(),"信息不能为空",Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            //http://app.linchom.com/appapi.php?act=add_consignee&consignee=%E5%BC%A0%E6%99%93%E6%96%87&province=2&city=52&district=503&email=2070118814@qq.com&address=%E5%8C%97%E4%BA%AC&zipcode=10000&mobile=18500551431
+
+
+            RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+
+            requestParams.addBodyParameter("act","add_consignee");
+
+            requestParams.addBodyParameter("user_id",userId);
+
+            requestParams.addBodyParameter("consignee",name);
+
+            requestParams.addBodyParameter("province",provinceId);
+
+
+            requestParams.addBodyParameter("city",cityId);
+
+
+            requestParams.addBodyParameter("district",areaId);
+
+            requestParams.addBodyParameter("email","");
+
+
+            requestParams.addBodyParameter("address",detailAddress);
+
+
+            requestParams.addBodyParameter("zipcode",youbian);
+
+            requestParams.addBodyParameter("mobile",tel);
+
+            x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+
+                    Log.i(TAG,"result"+result);
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
+
+
+
+        }
+
+
 
     }
 
