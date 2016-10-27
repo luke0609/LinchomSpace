@@ -117,7 +117,7 @@ public class ChatFragment extends Fragment {
     }
 
     private void initData() {
-        images = new int[]{R.drawable.g1, R.drawable.g2, R.drawable.g3, R.drawable.g4};
+        images = new int[]{R.drawable.gp1, R.drawable.gp2, R.drawable.gp3};
 
     }
 
