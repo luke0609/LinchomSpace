@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,6 +35,7 @@ import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
 import static linchom.com.linchomspace.R.drawable.add;
 import static linchom.com.linchomspace.R.id.lv;
+import static linchom.com.linchomspace.R.id.service_category;
 import static linchom.com.linchomspace.R.layout.cell;
 
 public class ServiceFragment extends Fragment implements View.OnClickListener {
@@ -49,6 +51,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private List<String> list = new ArrayList<>();
     CommonAdapter<String> adapter;
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
+    private TextView service_category;
+    private ImageView address_select;
     private TextView tv_address;
 
     @Override
@@ -61,11 +65,15 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView() {
-        tv_address = ((TextView) view_main.findViewById(R.id.address));
+        service_category = ((TextView) view_main.findViewById(R.id.service_category));
         request = ((RadioButton) view_main.findViewById(R.id.request));
         service = ((RadioButton) view_main.findViewById(R.id.serviec));
         rg_choice = ((RadioGroup) view_main.findViewById(R.id.rg_choice));
         vp_service = ((ViewPager) view_main.findViewById(R.id.vp_service));
+        address_select = ((ImageView) view_main.findViewById(R.id.address_select));
+        tv_address = ((TextView) view_main.findViewById(R.id.tv_address));
+        address_select.setOnClickListener(this);
+        service_category.setOnClickListener(this);
         tv_address.setOnClickListener(this);
         inflater = LayoutInflater.from(getContext());
 
@@ -169,15 +177,22 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.address:
-                up_choice();
+            case R.id.service_category:
+                up_choice_service();
+                break;
+            case R.id.address_select:
+                address_select.setVisibility(View.GONE);
+                tv_address.setVisibility(View.VISIBLE);
+                break;
+            case R.id.tv_address:
+                up_choice_address();
                 break;
         }
 
 
     }
 
-    public void up_choice() {
+    public void up_choice_service() {
         final WheelDialogFragment wheelViewDialogFragment = WheelDialogFragment
                 .newInstance(ResUtil.getStringArray(R.array.main_service_menu),
                         ResUtil.getString(R.string.app_cancel),
@@ -191,8 +206,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClickRight(String value) {
                 wheelViewDialogFragment.dismiss();
-//                tempview.setText(value);
-//                tempview.setTextColor(getResources().getColor(R.color.refreshcolor));
+                service_category.setText(value);
+
             }
 
             @Override
@@ -201,7 +216,30 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             }
         });
         wheelViewDialogFragment.show(getFragmentManager(), "");
+    }
+    public void up_choice_address() {
+        final WheelDialogFragment wheelViewDialogFragment = WheelDialogFragment
+                .newInstance(ResUtil.getStringArray(R.array.main_address_menu),
+                        ResUtil.getString(R.string.app_cancel),
+                        ResUtil.getString(R.string.app_sure), true, false, false);
+        wheelViewDialogFragment.setWheelDialogListener(new WheelDialogFragment.OnWheelDialogListener() {
+            @Override
+            public void onClickLeft(String value) {
+                wheelViewDialogFragment.dismiss();
+            }
 
+            @Override
+            public void onClickRight(String value) {
+                wheelViewDialogFragment.dismiss();
+                tv_address.setText(value);
 
+            }
+
+            @Override
+            public void onValueChanged(String value) {
+
+            }
+        });
+        wheelViewDialogFragment.show(getFragmentManager(), "");
     }
 }

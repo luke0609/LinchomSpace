@@ -45,14 +45,29 @@
             
     </string-array>
     <array name="main_service_menu">
-        <item >费用查缴</item>
-        <item >物业报修</item>
-        <item >物业投诉</item>
-        <item >物业建议</item>
-        <item >管理授权</item>
-        <item >通知公告</item>
-        <item >访客管理</item>
-        <item >开锁</item>
+        <item >智能居家</item>
+        <item >门窗安装</item>
+        <item >水暖</item>
+        <item >电工照明</item>
+        <item >空调电器</item>
+        <item >开孔</item>
+        <item >地板</item>
+        <item >墙壁</item>
+        <item >吊顶</item>
+        <item >维修</item>
+        <item >保洁</item>
+        <item >搬运</item>
+        <item >其他</item>
+    </array>
+    <array name="main_address_menu">
+        <item >北京</item>
+        <item >上海</item>
+        <item >广州</item>
+        <item >深圳</item>
+        <item >成都</item>
+        <item >重庆</item>
+        <item >杭州</item>
+        <item >天津</item>
     </array>
 
     <string name="app_cancel">取消</string>
