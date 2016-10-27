@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ramotion.foldingcell.FoldingCell;
@@ -28,6 +29,8 @@ import java.util.List;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.ViewHolder;
+import linchom.com.linchomspace.service.utils.ResUtil;
+import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
 import static linchom.com.linchomspace.R.drawable.add;
 import static linchom.com.linchomspace.R.id.lv;
@@ -167,14 +170,37 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.address:
-
+                up_choice();
                 break;
         }
 
 
     }
 
-    public void getLocalIpAddress() {
+    public void up_choice() {
+        final WheelDialogFragment wheelViewDialogFragment = WheelDialogFragment
+                .newInstance(ResUtil.getStringArray(R.array.main_service_menu),
+                        ResUtil.getString(R.string.app_cancel),
+                        ResUtil.getString(R.string.app_sure), true, false, false);
+        wheelViewDialogFragment.setWheelDialogListener(new WheelDialogFragment.OnWheelDialogListener() {
+            @Override
+            public void onClickLeft(String value) {
+                wheelViewDialogFragment.dismiss();
+            }
+
+            @Override
+            public void onClickRight(String value) {
+                wheelViewDialogFragment.dismiss();
+//                tempview.setText(value);
+//                tempview.setTextColor(getResources().getColor(R.color.refreshcolor));
+            }
+
+            @Override
+            public void onValueChanged(String value) {
+
+            }
+        });
+        wheelViewDialogFragment.show(getFragmentManager(), "");
 
 
     }

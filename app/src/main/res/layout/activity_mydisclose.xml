@@ -6,5 +6,40 @@
     android:layout_height="match_parent"
     tools:context="linchom.com.linchomspace.mine.Mydisclose">
 
+    <RelativeLayout
+        android:id="@+id/rl_bl"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#a4cccccc">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/back"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="爆料记录"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"/>
+    </RelativeLayout>
+    <View
+        android:id="@+id/v_line"
+        android:layout_below="@id/rl_bl"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ccc"
+        />
+    <ListView
+        android:id="@+id/lv_myDisclose"
+        android:layout_below="@id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </RelativeLayout>

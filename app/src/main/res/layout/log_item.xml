@@ -2,88 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <RelativeLayout
-        android:id="@+id/rl_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        >
-        <ImageView
-            android:id="@+id/src"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/jd_logo"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp"
-            />
-        <TextView
-            android:id="@+id/order_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="订单号"
-            android:layout_toRightOf="@id/src"
-            android:textColor="#808080"
-            android:layout_marginLeft="30dp"
-            android:textSize="18sp"
-            />
-        <TextView
-            android:id="@+id/order_status"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:textColor="#808080"
-            android:layout_height="wrap_content"
-            android:text="订单状态"
-            android:layout_marginRight="10dp"
-            android:textSize="18sp"
-            />
-
-
-        <TextView
-            android:id="@+id/action_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="商品状态"
-            android:textColor="#808080"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/order_status"
-
-            android:layout_marginRight="20dp"
-            android:textSize="18sp"
-            />
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rl_usr"
-        android:layout_below="@id/rl_info"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/shipping_status"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_til"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#808080"
-            android:textSize="18sp"
-            android:layout_marginLeft="30dp"
-            android:text="用户类型"
-            />
-        <TextView
-            android:id="@+id/log_time"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时间"
-            android:textColor="#808080"
-            android:layout_marginRight="20dp"
-            android:textSize="18sp"
-            />
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/tv_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题"
+                android:textSize="16sp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_info"
+            android:layout_below="@id/rl_til"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/src"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/jd_logo"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_cont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="内容"
+                android:layout_toRightOf="@id/src"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/add_time"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:textColor="#808080"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="时间"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                />
+
+        </RelativeLayout>
     </RelativeLayout>
-    <View
-        android:layout_below="@+id/rl_usr"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="#b1b0b0"/>
+
 </RelativeLayout>

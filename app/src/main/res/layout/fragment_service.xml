@@ -9,6 +9,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="#212121">
+
         <TextView
             android:id="@+id/address"
             android:layout_marginLeft="10dp"
