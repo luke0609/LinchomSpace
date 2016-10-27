@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.http.RequestParams;
+
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
@@ -26,6 +31,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private String goodsImg;
     private String goodsName;
     private String goodsPrice;
+
+    private String userId="12";
 
 
     private Double totalPrice=0.0;
@@ -175,10 +182,29 @@ public class GoodsOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent =new Intent(GoodsOrderActivity.this,GoodsAllOrderActivity.class);
+               // JsonObject
+                JSONObject jo = new JSONObject();
+                try {
+                    jo.put("result","0");
+                    JSONArray ja = new JSONArray();
 
 
-                startActivity(intent);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+                requestParams.addBodyParameter("act","done_order");
+
+
+                requestParams.addBodyParameter("user_id",userId);
+
+
+              //  requestParams.addBodyParameter("cart_goods",);
 
 
             }
