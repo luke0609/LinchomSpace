@@ -40,6 +40,7 @@ import java.util.List;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.TopicList;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
+import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
@@ -200,8 +201,7 @@ public class ChatFragment extends Fragment {
                     tv_chat_name.setText(itemsBean.getTopic_name().trim());
                     tv_chat_title.setText(itemsBean.getCommunication_title());
                     int timeB = Integer.parseInt(itemsBean.getAdd_time());
-                    String date = sdf.format(new Date(timeB * 1000L));
-                    tv_chat_time.setText(date);
+                    tv_chat_time.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
                   remark_num.setText(itemsBean.getRepliesnumber());
 
 
