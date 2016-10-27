@@ -1,45 +1,42 @@
 package linchom.com.linchomspace.mine;
 
-import android.os.Handler;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.View;
-
-import android.widget.Button;
 import android.widget.ImageView;
 
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.LogInfoBean;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
+
 public class log_activity extends AppCompatActivity {
 
     private static final String TAG = "log_activity";
-    private GoodsCommonAdapter<LogInfoBean.DataBean> logCommonAdapter;
+    private GoodsCommonAdapter<LogInfoBean.DataBean.Litems> logCommonAdapter;
     private PullToRefreshListView lv_loglist;
-    List<LogInfoBean.DataBean> beanlist=new ArrayList<LogInfoBean.DataBean>();
+    List<LogInfoBean.DataBean.Litems> logList = new ArrayList<LogInfoBean.DataBean.Litems>();
     private ImageView iv_logback;
-    private int page =1;
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,65 +54,49 @@ public class log_activity extends AppCompatActivity {
         });
 
         initData();
-        //  initEvent();
-        eventPullToRefresh();
+        //initEvent();
+//        eventPullToRefresh();
     }
-    public void initData() {
 
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=message&user_id=12");
+    private void initEvent() {
+        logCommonAdapter = new GoodsCommonAdapter<LogInfoBean.DataBean.Litems>(getApplicationContext(), logList, R.layout.log_item) {
 
-        requestParams.addBodyParameter("verification","e0d017ef76c8510244ebe0191f5dde15" );
-        requestParams.addBodyParameter("page",page+"");
 
-//        System.out.println("page==="+page);
+            @Override
+            public void convert(GoodsViewHolder viewHolder, LogInfoBean.DataBean.Litems litems, int position) {
+
+                TextView tv_tb = viewHolder.getViewById(R.id.tv_bt);
+                tv_tb.setText(litems.title);
+                TextView tv_cont = viewHolder.getViewById(R.id.tv_cont);
+                tv_cont.setText(litems.content);
+                TextView add_time = viewHolder.getViewById(R.id.add_time);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
+                Date date = new Date(Long.parseLong((litems.add_time)));
+                add_time.setText(simpleDateFormat.format(date));
+
+            }
+        };
+        lv_loglist.setAdapter(logCommonAdapter);
+    }
+
+    private void initData() {
+        RequestParams requestParams = new RequestParams("http://app.linchom.com/appapi.php?act=demand_services_log&user_id=135");
+        requestParams.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        requestParams.addBodyParameter("page", page + "");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
-
             @Override
             public void onSuccess(String result) {
-//                 初始化数据
-//                List<LogInfoBean.DataBean> beanlist = new ArrayList<LogInfoBean.DataBean>();
-//                System.out.println("onSuccess"+result);
-//                LogInfoBean bean=new LogInfoBean();
-
+//                System.out.println("6666666"+result);
                 Gson gson = new Gson();
                 LogInfoBean logInfoBean = gson.fromJson(result, LogInfoBean.class);
-//                System.out.println("123"+logInfoBean);
-//                System.out.println("sadsaa"+logInfoBean.data);
-                beanlist.addAll(logInfoBean.data);
-//                  System.out.println("if======"+beanlist);
+                LogInfoBean.DataBean mbean = logInfoBean.data;
+                logList.addAll(mbean.items);
                 initEvent();
-               /*     logCommonAdapter=new GoodsCommonAdapter<LogInfoBean.DataBean>(getApplicationContext(), beanlist, R.layout.log_item) {
-                        @Override
-                        public void convert(GoodsViewHolder viewHolder, LogInfoBean.DataBean dataBean, int position) {
-                            TextView order_id = (viewHolder.getViewById(R.id.order_id));
-
-                            System.out.println("initEvent=========="+dataBean.order_id);
-                            order_id.setText(dataBean.order_id);
-                            TextView shipping_status = (viewHolder.getViewById(R.id.shipping_status));
-                            shipping_status.setText(dataBean.shipping_status);
-//                    TextView action_user = ((TextView) viewHolder.getViewById(R.id.action_user));
-//                    action_user.setText(dataBean.action_user);
-                            TextView order_status = ( viewHolder.getViewById(R.id.order_status));
-                            order_status.setText(dataBean.order_status);
-//                    TextView pay_status = ((TextView) viewHolder.getViewById(R.id.pay_status));
-//                    pay_status.setText(dataBean.pay_status);
-                            TextView action_note = ( viewHolder.getViewById(R.id.action_note));
-                            action_note.setText(dataBean.action_note);
-                            TextView log_time =( viewHolder.getViewById(R.id.log_time));
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                            Date date=new Date(Long.parseLong(dataBean.log_time));
-                            log_time.setText(sdf.format(date));
-                        }
-                    };
-
-                    lv_loglist.setAdapter(logCommonAdapter);*/
-//                System.out.println("99999999999999");
-//                rl_goodsList_load_list.setVisibility(View.GONE);
             }
+
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
-                Log.e(TAG,ex+"");
+//                System.out.println("99999"+ex+"");
             }
 
             @Override
@@ -128,62 +109,27 @@ public class log_activity extends AppCompatActivity {
 
             }
         });
-
-
     }
+};
 
-    public void initEvent() {
-        //数据放进去
-//        System.out.println("initEvent");
-        logCommonAdapter = new GoodsCommonAdapter<LogInfoBean.DataBean>(getApplicationContext(), beanlist, R.layout.log_item) {
-
-            @Override
-            public void convert(GoodsViewHolder viewHolder, LogInfoBean.DataBean dataBean, int position) {
-                TextView order_id = (viewHolder.getViewById(R.id.order_id));
-
-//                System.out.println("initEvent=========="+dataBean.order_id);
-                order_id.setText(dataBean.order_id);
-                TextView shipping_status = (viewHolder.getViewById(R.id.shipping_status));
-                shipping_status.setText(dataBean.shipping_status);
-//                    TextView action_user = ((TextView) viewHolder.getViewById(R.id.action_user));
-//                    action_user.setText(dataBean.action_user);
-                TextView order_status = ( viewHolder.getViewById(R.id.order_status));
-                order_status.setText(dataBean.order_status);
-//                    TextView pay_status = ((TextView) viewHolder.getViewById(R.id.pay_status));
-//                    pay_status.setText(dataBean.pay_status);
-                TextView action_note = ( viewHolder.getViewById(R.id.action_note));
-                action_note.setText(dataBean.action_note);
-                TextView log_time =( viewHolder.getViewById(R.id.log_time));
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                Date date=new Date(Long.parseLong(dataBean.log_time));
-                log_time.setText(sdf.format(date));
-            }
-
-        };
-//        initData();
-        //放到适配器中在页面显示
-        lv_loglist.setAdapter(logCommonAdapter);
-
-    }
-
-    private void eventPullToRefresh() {
-
-        lv_loglist.setScrollingWhileRefreshingEnabled(true);
-        lv_loglist.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
-        lv_loglist.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-//                String label = DateUtils.formatDateTime(getApplicationContext(), System.currentTimeMillis(),
-//                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+//    private void eventPullToRefresh() {
 //
-//                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                //异步任务拿数据
-                page++;
-                initData();
-                lv_loglist.onRefreshComplete();
-            }
-        });
-
-    }
-}
-
+//        lv_loglist.setScrollingWhileRefreshingEnabled(true);
+//        lv_loglist.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+//        lv_loglist.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+//            @Override
+//            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+////                String label = DateUtils.formatDateTime(getApplicationContext(), System.currentTimeMillis(),
+////                        DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+////
+////                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+//                //异步任务拿数据
+//                page++;
+//                initData();
+//                lv_loglist.onRefreshComplete();
+//            }
+//        });
+//
+//    }
+//}
+//

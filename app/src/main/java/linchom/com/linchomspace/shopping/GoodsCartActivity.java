@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
 import linchom.com.linchomspace.shopping.pojo.OrderSubmitBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
+import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsCartActivity extends AppCompatActivity {
 
@@ -389,6 +392,11 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             TextView iv_goods_cart_name =viewHolder.getViewById(R.id.iv_goods_cart_name);
             TextView tv_goods_cart_price=  viewHolder.getViewById(R.id.tv_goods_cart_price);
+
+             final  ImageView iv_goods_cart_img= viewHolder.getViewById(R.id.iv_goods_cart_img);
+
+                GoodsXUtilsImage.display(iv_goods_cart_img,data.goods_img);
+
            final  TextView tv_goods_cart_num=   viewHolder.getViewById(R.id.tv_goods_cart_num);
 
                 final  RelativeLayout rl_goods_cart_sub= viewHolder.getViewById(R.id.rl_goods_cart_sub);
@@ -402,6 +410,9 @@ public class GoodsCartActivity extends AppCompatActivity {
            final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
 
            final Button btn_goods_cart_delete=   viewHolder.getViewById(R.id.btn_goods_cart_delete);
+
+
+                iv_goods_cart_img.setTag(position);
 
                 btn_goods_cart_delete.setTag(position);
 
@@ -682,6 +693,27 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
 
+
+
+                    }
+                });
+
+
+                iv_goods_cart_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent =new Intent(GoodsCartActivity.this,GoodsActivity.class);
+
+                        String goodsId = cartList.get((int)iv_goods_cart_img.getTag()).goods_id;
+
+                        Bundle bundle =new Bundle();
+
+                        bundle.putString("goodsId",goodsId);
+
+                        intent.putExtra("bundle",bundle);
+
+                        startActivity(intent);
 
 
                     }
