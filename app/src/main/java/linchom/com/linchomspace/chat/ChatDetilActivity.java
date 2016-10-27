@@ -34,6 +34,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.ResultBean;
 import linchom.com.linchomspace.chat.pojo.TopicDetialBean;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
+import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 
@@ -142,10 +143,10 @@ public class ChatDetilActivity extends AppCompatActivity {
 
                 title.setText(bean.getData().getTopic_name());
                 tvChatUsername.setText(bean.getData().getUser_name());
+
                 int timeB = Integer.parseInt(bean.getData().getAdd_time());
 
-                String date = sdf.format(new Date(timeB * 1000L));
-                tvChatTime.setText(date);
+                tvChatTime.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
                 tvChatContent.setText(bean.getData().getCommunication_title().trim());
 
 
@@ -175,8 +176,8 @@ public class ChatDetilActivity extends AppCompatActivity {
                             System.out.println(comments.getAdd_time());
                             if (comments.getAdd_time() != null) {
                                 int second = Integer.parseInt(String.valueOf(comments.getAdd_time()));
-                                String date = sdf.format(new Date(second * 1000L));
-                                tv_time.setText(date);
+
+                                tv_time.setText(DateUtils.getGapTimeFromNow(new Date(second * 1000L)));
                             }
                             rmk_tip.setText(position + 1 + "楼");
                             tv_name.setText(comments.getUser_name());
