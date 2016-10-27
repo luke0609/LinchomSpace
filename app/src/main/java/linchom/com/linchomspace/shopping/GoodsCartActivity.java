@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -30,6 +31,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class GoodsCartActivity extends AppCompatActivity {
@@ -60,6 +62,14 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
 
+
+    private boolean flagDelete =false;
+    private Button btn_goods_cart_total;
+
+
+    private ArrayList<GoodsOrderBean> orderList =new ArrayList<GoodsOrderBean>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +91,9 @@ public class GoodsCartActivity extends AppCompatActivity {
         tv_goods_cart_totalprice = ((TextView) findViewById(R.id.tv_goods_cart_totalprice));
 
 
+        btn_goods_cart_total = ((Button) findViewById(R.id.btn_goods_cart_total));
+
+
     }
 
     private void initData() {
@@ -91,6 +104,59 @@ public class GoodsCartActivity extends AppCompatActivity {
     private void initEvent() {
 
         eventPtr();
+
+        totalMoney();
+
+    }
+
+    private void totalMoney() {
+
+        btn_goods_cart_total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
+
+
+                for (Map.Entry<Integer,Boolean> m : checkStatusMap.entrySet()) {
+
+
+                   if(m.getValue()){
+
+                       Log.i(TAG,m.getKey()+"");
+
+                       buyNumMap.get(m.getKey());
+
+                       Log.i(TAG, buyNumMap.get(m.getKey())+"");
+
+                       orderList.add(new GoodsOrderBean( buyNumMap.get(m.getKey()),"1",cartList.get(m.getKey()).goods_name,cartList.get(m.getKey()).goods_price));
+
+
+                   }
+
+
+
+
+                }
+
+
+                Intent intent =new Intent(GoodsCartActivity.this,GoodsOrderActivity.class);
+
+
+                Bundle bundle =new Bundle();
+
+                bundle.putSerializable("orderList",orderList);
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
+
+
+
+
+
+            }
+        });
+
+
 
     }
 
@@ -158,7 +224,7 @@ public class GoodsCartActivity extends AppCompatActivity {
             final CheckBox cb_goods_cart_modify= viewHolder.getViewById(R.id.cb_goods_cart_modify);
            final  RelativeLayout rl_goods_cart_modify= viewHolder.getViewById(R.id.rl_goods_cart_modify);
 
-            Button btn_goods_cart_delete=   viewHolder.getViewById(R.id.btn_goods_cart_delete);
+           final Button btn_goods_cart_delete=   viewHolder.getViewById(R.id.btn_goods_cart_delete);
 
                 btn_goods_cart_delete.setTag(position);
 
@@ -204,7 +270,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
 
-
+                //清  0？？？？？？？？？？
 
                 cb_goods_cart_choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -222,11 +288,13 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                             tv_goods_cart_totalprice.setText("合计:"+totalPrice+"元");
 
+                            flagDelete=false;
+
 
 
 
                         }else if(!isChecked&&position==(int)cb_goods_cart_choice.getTag()){
-
+                                //有勾的调用这个方法
 
 
                                 checkStatusMap.put((int) buttonView.getTag(), false);
@@ -236,9 +304,21 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                                 int oneNum = Integer.parseInt(buyNumMap.get((int) cb_goods_cart_choice.getTag()));
 
+
+                            if(flagDelete==false) {
+
                                 totalPrice -= (onePrice * oneNum);
 
                                 tv_goods_cart_totalprice.setText("合计:" + totalPrice + "元");
+                            }
+
+                                if(flagDelete==true){
+
+                                    totalPrice=0.0;
+                                    tv_goods_cart_totalprice.setText("合计:" + totalPrice + "元");
+
+
+                                }
 
 
 
@@ -255,6 +335,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(isChecked&&position==(int)cb_goods_cart_modify.getTag()){
+                            //flagDelete=false;
+
                             rl_goods_cart_modify.setVisibility(View.VISIBLE);
 
                             cb_goods_cart_modify.setText("完成");
@@ -265,6 +347,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                         }else if(!isChecked&&position==(int)cb_goods_cart_modify.getTag()){
+                           // flagDelete=false;
+
 
                             rl_goods_cart_modify.setVisibility(View.GONE);
                             cb_goods_cart_modify.setText("编辑");
@@ -285,6 +369,9 @@ public class GoodsCartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        flagDelete=false;
+
+
                         if(position==(int)et_goods_cart_buynum.getTag()&&position==(int)rl_goods_cart_sub.getTag()) {
 
                             buyNum = Integer.parseInt(et_goods_cart_buynum.getText().toString());
@@ -300,9 +387,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                                     tv_goods_cart_totalprice.setText("合计:" + totalPrice + "元");
 
-
                                 }
-
 
                             }
                             buyNumMap.put((int)v.getTag(),buyNum+"");
@@ -319,6 +404,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                 rl_goods_cart_add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                       flagDelete=false;
+
 
                         if(position==(int)et_goods_cart_buynum.getTag()&&position==(int)rl_goods_cart_add.getTag()) {
 
@@ -360,6 +447,14 @@ public class GoodsCartActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        //总价先减去删除价格
+
+                        ///double twoPrice = Double.parseDouble(cartList.get((int)btn_goods_cart_delete.getTag()).goods_price);
+                       // int twoNum= Integer.parseInt(buyNumMap.get((int)btn_goods_cart_delete.getTag()));
+
+                       // totalPrice-=(twoPrice*twoNum);
+
+
 
                         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -380,6 +475,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                                 Toast.makeText(getApplicationContext(),"删除成功",Toast.LENGTH_SHORT).show();
+
+                                flagDelete =true;
 
 
 
@@ -470,9 +567,9 @@ public class GoodsCartActivity extends AppCompatActivity {
                     buyNumMap.put(i,cartList.get(i).goods_number);
                 }
 
-                //totalPrice=0.0;
+                totalPrice=0.0;
 
-               // tv_goods_cart_totalprice.setText("合计:0.0元");
+                tv_goods_cart_totalprice.setText("合计:0.0元");
 
                 goodsCommonAdapter.notifyDataSetChanged();
 
@@ -481,9 +578,9 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                //totalPrice=0.0;
+                totalPrice=0.0;
 
-               // tv_goods_cart_totalprice.setText("合计:0.0元");
+                tv_goods_cart_totalprice.setText("合计:0.0元");
 
 
                 cartList.clear();
