@@ -10,33 +10,6 @@ public class LogInfoBean {
     public String result;
     public String msg;
     public String url;
-    public List<DataBean> data;
-
-
-    public class DataBean{
-        public String user_id;
-        public String order_id;
-        public String action_user;
-        public String order_status;
-        public String shipping_status;
-        public String pay_status;
-        public String action_note;
-        public String log_time;
-
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "user_id='" + user_id + '\'' +
-                    ", order_id='" + order_id + '\'' +
-                    ", action_user='" + action_user + '\'' +
-                    ", order_status='" + order_status + '\'' +
-                    ", shipping_status='" + shipping_status + '\'' +
-                    ", pay_status='" + pay_status + '\'' +
-                    ", action_note='" + action_note + '\'' +
-                    ", log_time='" + log_time + '\'' +
-                    '}';
-        }
-    }
 
     @Override
     public String toString() {
@@ -47,5 +20,51 @@ public class LogInfoBean {
                 ", data=" + data +
                 '}';
     }
+
+    public DataBean data;
+
+    public class DataBean{
+
+        public  String total_pages;
+        public  String total;
+        public  List<Litems> items;
+        public  String pagesize;
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "total_pages='" + total_pages + '\'' +
+                    ", total='" + total + '\'' +
+                    ", items=" + items +
+                    ", pagesize='" + pagesize + '\'' +
+                    '}';
+        }
+
+        public class Litems{
+            public String id;
+            public String category_id;
+            public String content;
+            public String add_time;
+            public String is_show;
+            public String user_id;
+            public String title;
+            public String photo;
+
+            @Override
+            public String toString() {
+                return "Litems{" +
+                        "id='" + id + '\'' +
+                        ", category_id='" + category_id + '\'' +
+                        ", content='" + content + '\'' +
+                        ", add_time='" + add_time + '\'' +
+                        ", is_show='" + is_show + '\'' +
+                        ", user_id='" + user_id + '\'' +
+                        ", title='" + title + '\'' +
+                        ", photo='" + photo + '\'' +
+                        '}';
+            }
+        }
+    }
+
 }
 
