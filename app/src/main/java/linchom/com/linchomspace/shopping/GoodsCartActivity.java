@@ -160,7 +160,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                                threeTotal+"",
                                cartList.get(m.getKey()).formated_market_price,
                                cartList.get(m.getKey()).formated_goods_price,
-                               threeTotal+""
+                               threeTotal+"",
+                               cartList.get(m.getKey()).goods_img
                                ));
 
                    }
