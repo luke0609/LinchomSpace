@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
+import linchom.com.linchomspace.shopping.pojo.OrderSubmitBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
@@ -36,6 +38,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
     ArrayList<GoodsCartBean.Data> orderList;
 
     GoodsCommonAdapter<GoodsCartBean.Data> goodsCommonAdapter;
+
+    GoodsCommonAdapter<OrderSubmitBean> cartCommonAdapter;
+
     private GoodsNoScrollListview lv_order_products;
     private TextView tv_goods_order_totalPrice;
     private ImageView titlebar_back;
@@ -46,6 +51,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private TextView tv_order_detailAddress;
 
     private AreaListBean.Data areaList;
+
+
+    private ArrayList<OrderSubmitBean> orderCartList;
 
 
     @Override
@@ -60,7 +68,10 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         orderList= (ArrayList<GoodsCartBean.Data>) bundle.getSerializable("orderList");
 
+        orderCartList = (ArrayList<OrderSubmitBean>)bundle.getSerializable("orderCartList");
+
         areaList=  (AreaListBean.Data)bundle.getSerializable("areaList");
+        Log.i(TAG,"orderCartList"+orderCartList);
 
         if(areaList==null){
 
@@ -147,49 +158,101 @@ public class GoodsOrderActivity extends AppCompatActivity {
         tv_order_phone.setText(areaList.tel);
         tv_order_detailAddress.setText(areaList.address);
 
+        if(orderList!=null&&orderCartList==null) {
 
 
-        countAllPrice();
+            countAllPrice();
 
 
-        goodsCommonAdapter =new GoodsCommonAdapter<GoodsCartBean.Data>(getApplicationContext(),orderList,R.layout.goods_order_list_item) {
-            @Override
-            public void convert(GoodsViewHolder viewHolder, GoodsCartBean.Data data, int position) {
+            goodsCommonAdapter = new GoodsCommonAdapter<GoodsCartBean.Data>(getApplicationContext(), orderList, R.layout.goods_order_list_item) {
+                @Override
+                public void convert(GoodsViewHolder viewHolder, GoodsCartBean.Data data, int position) {
 
-                ImageView iv_goods_order_img = viewHolder.getViewById(R.id.iv_goods_order_img);
-                TextView tv_goods_order_goodsName=viewHolder.getViewById(R.id.tv_goods_order_goodsName);
-                TextView tv_goods_order_price =viewHolder.getViewById(R.id.tv_goods_order_price);
-                TextView tv_goods_order_goodsNum =viewHolder.getViewById(R.id.tv_goods_order_goodsNum);
+                    ImageView iv_goods_order_img = viewHolder.getViewById(R.id.iv_goods_order_img);
+                    TextView tv_goods_order_goodsName = viewHolder.getViewById(R.id.tv_goods_order_goodsName);
+                    TextView tv_goods_order_price = viewHolder.getViewById(R.id.tv_goods_order_price);
+                    TextView tv_goods_order_goodsNum = viewHolder.getViewById(R.id.tv_goods_order_goodsNum);
 
-                tv_goods_order_goodsName.setText(data.goods_name);
+                    tv_goods_order_goodsName.setText(data.goods_name);
 
-                tv_goods_order_price.setText(data.goods_price);
-                tv_goods_order_goodsNum.setText(data.goods_number);
+                    tv_goods_order_price.setText(data.goods_price);
+                    tv_goods_order_goodsNum.setText(data.goods_number);
 
 
-                String imgUrlChange = data.goods_img;
+                    String imgUrlChange = data.goods_img;
 
-                Log.i(TAG,"imgUrlChange.substring(0,1)"+imgUrlChange.substring(0,1));
+                    Log.i(TAG, "imgUrlChange.substring(0,1)" + imgUrlChange.substring(0, 1));
 
-                if("h".equals(imgUrlChange.substring(0,1))){
+                    if ("h".equals(imgUrlChange.substring(0, 1))) {
 
-                }else{
-                    imgUrlChange= GoodsHttpUtils.IMGURL+imgUrlChange;
+                    } else {
+                        imgUrlChange = GoodsHttpUtils.IMGURL + imgUrlChange;
+                    }
+
+                    Log.i(TAG, "imgUrlChange" + imgUrlChange);
+
+                    GoodsXUtilsImage.display(iv_goods_order_img, imgUrlChange);
+
+
                 }
+            };
 
-                Log.i(TAG,"imgUrlChange"+imgUrlChange);
-
-                GoodsXUtilsImage.display(iv_goods_order_img,imgUrlChange);
-
+            lv_order_products.setAdapter(goodsCommonAdapter);
 
 
-            }
-        };
-
-        lv_order_products.setAdapter(goodsCommonAdapter);
+            tv_goods_order_totalPrice.setText("合计:" + totalPrice + "元");
 
 
-        tv_goods_order_totalPrice.setText("合计:"+totalPrice+"元");
+        }else if(orderList==null&&orderCartList!=null){
+
+
+            Toast.makeText(getApplicationContext(),"购物车中内容",Toast.LENGTH_SHORT).show();
+
+
+
+            countCartAllPrice();
+
+
+            cartCommonAdapter = new GoodsCommonAdapter<OrderSubmitBean>(getApplicationContext(), orderCartList, R.layout.goods_order_list_item) {
+                @Override
+                public void convert(GoodsViewHolder viewHolder, OrderSubmitBean data, int position) {
+
+                    ImageView iv_goods_order_img = viewHolder.getViewById(R.id.iv_goods_order_img);
+                    TextView tv_goods_order_goodsName = viewHolder.getViewById(R.id.tv_goods_order_goodsName);
+                    TextView tv_goods_order_price = viewHolder.getViewById(R.id.tv_goods_order_price);
+                    TextView tv_goods_order_goodsNum = viewHolder.getViewById(R.id.tv_goods_order_goodsNum);
+
+                    tv_goods_order_goodsName.setText(data.goods_name);
+
+                    tv_goods_order_price.setText(data.goods_price);
+                    tv_goods_order_goodsNum.setText(data.goods_number);
+
+
+                    String imgUrlChange = data.goods_img;
+
+                    if ("h".equals(imgUrlChange.substring(0, 1))) {
+
+                    } else {
+                        imgUrlChange = GoodsHttpUtils.IMGURL + imgUrlChange;
+                    }
+
+
+                    GoodsXUtilsImage.display(iv_goods_order_img, imgUrlChange);
+
+
+                }
+            };
+
+            lv_order_products.setAdapter(cartCommonAdapter);
+
+
+            tv_goods_order_totalPrice.setText("合计:" + totalPrice + "元");
+
+
+
+
+
+        }
 
 
 
@@ -206,6 +269,30 @@ public class GoodsOrderActivity extends AppCompatActivity {
             Log.i(TAG,"goodsNumber"+goodsNumber);
 
             Double goodsMoney=Double.parseDouble(orderList.get(i).goods_price);
+            Log.i(TAG,"goodsMoney"+goodsMoney);
+
+            totalPrice +=(goodsNumber*goodsMoney);
+
+
+
+
+        }
+
+
+
+    }
+
+
+    private void countCartAllPrice(){
+
+
+        for(int i=0;i<orderCartList.size();i++){
+
+            int goodsNumber = Integer.parseInt(orderCartList.get(i).goods_number);
+
+            Log.i(TAG,"goodsNumber"+goodsNumber);
+
+            Double goodsMoney=Double.parseDouble(orderCartList.get(i).goods_price);
             Log.i(TAG,"goodsMoney"+goodsMoney);
 
             totalPrice +=(goodsNumber*goodsMoney);

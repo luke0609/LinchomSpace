@@ -31,12 +31,16 @@ import java.util.Map;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
+import linchom.com.linchomspace.shopping.pojo.AreaListBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
 import linchom.com.linchomspace.shopping.pojo.OrderSubmitBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsCartActivity extends AppCompatActivity {
+
+    private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
+
 
 
     private static final String TAG = "GoodsCartActivity";
@@ -69,7 +73,7 @@ public class GoodsCartActivity extends AppCompatActivity {
     private Button btn_goods_cart_total;
 
 
-    private ArrayList<OrderSubmitBean> orderList =new ArrayList<OrderSubmitBean>();
+    private ArrayList<OrderSubmitBean> orderCartList =new ArrayList<OrderSubmitBean>();
 
 
     @Override
@@ -139,7 +143,7 @@ public class GoodsCartActivity extends AppCompatActivity {
                        Double threeTotal =threeNum*threePrice;
 
 
-                       orderList.add(new OrderSubmitBean(cartList.get(m.getKey()).rec_id,
+                       orderCartList.add(new OrderSubmitBean(cartList.get(m.getKey()).rec_id,
                                cartList.get(m.getKey()).user_id,
                                cartList.get(m.getKey()).goods_id,
                                cartList.get(m.getKey()).goods_name,
@@ -163,22 +167,11 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                 }
 
+                //初始收货地址
 
 
 
-
-
-                //Intent intent =new Intent(GoodsCartActivity.this,GoodsOrderActivity.class);
-
-
-               // Bundle bundle =new Bundle();
-
-               // bundle.putSerializable("orderList",orderList);
-                //intent.putExtra("bundle",bundle);
-
-                //startActivity(intent);
-
-
+                initDefaultAddress();
 
 
 
@@ -188,6 +181,183 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
     }
+
+    private void initDefaultAddress(){
+
+        //地址也要传过去
+
+        Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
+
+
+        //遍历遍历地址
+
+        //http://app.linchom.com/appapi.php?act=consignee&user_id=12
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","consignee");
+
+        requestParams.addBodyParameter("user_id",userId+"");
+
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+
+                Gson gson = new Gson();
+                //areaList
+                areaList.clear();
+
+                AreaListBean areaListBean =  gson.fromJson(result,AreaListBean.class);
+
+                areaList.addAll(areaListBean.data);
+
+                //找出第一个地址Id设为默认地址
+
+                defaultArea();
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+    }
+
+
+    private void defaultArea() {
+        //http://app.linchom.com/appapi.php?act=default_consignee&user_id=135&address_id=36
+
+        //Toast.makeText(getApplicationContext(),areaList.get(0).address_id,Toast.LENGTH_SHORT).show();
+
+        if (areaList.size() != 0) {
+
+
+            RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+
+            requestParams.addBodyParameter("act", "default_consignee");
+            requestParams.addBodyParameter("user_id", userId + "");
+            requestParams.addBodyParameter("address_id", areaList.get(0).address_id + "");
+
+
+            x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
+
+                    //orderList
+                    // areaList.get(0)        传过去
+
+
+                    Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("orderList", null);
+
+                    bundle.putSerializable("orderCartList", orderCartList);
+
+                    bundle.putSerializable("areaList", areaList.get(0));
+
+                    intent.putExtra("bundle", bundle);
+
+                    startActivity(intent);
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
+        } else {
+
+
+            RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+
+            requestParams.addBodyParameter("act", "default_consignee");
+            requestParams.addBodyParameter("user_id", userId + "");
+            requestParams.addBodyParameter("address_id", areaList.get(0).address_id + "");
+
+
+            x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
+
+                    //orderList
+                    // areaList.get(0)        传过去
+
+                    Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("orderList", null);
+
+                    bundle.putSerializable("orderCartList", orderCartList);
+
+                    /// 没收货地址   再说
+
+                    bundle.putSerializable("areaList", null);
+
+                    intent.putExtra("bundle", bundle);
+
+                    startActivity(intent);
+
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
+
+        }
+
+    }
+
+
+
 
     private void eventPtr() {
 

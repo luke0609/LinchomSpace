@@ -92,6 +92,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private ArrayList<GoodsCartBean.Data> orderList = new ArrayList<GoodsCartBean.Data>();
 
+
+
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
 
 
@@ -602,10 +604,14 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     //orderList
                    // areaList.get(0)        传过去
 
+
+
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList",orderList);
+
+                    bundle.putSerializable("orderCartList",null);
 
                     bundle.putSerializable("areaList",areaList.get(0));
 
@@ -662,6 +668,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     /// 没收货地址   再说
 
                     bundle.putSerializable("areaList",null);
+
+                    bundle.putSerializable("orderCartList",null);
 
                     intent.putExtra("bundle",bundle);
 
