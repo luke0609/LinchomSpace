@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -236,6 +237,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
                 public void onSuccess(String result) {
 
                     Log.i(TAG,"result"+result);
+
+                    Intent intent =new Intent();
+
+                    setResult(1);
+
+                    finish();
 
                 }
 
