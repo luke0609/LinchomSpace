@@ -10,22 +10,23 @@
         android:orientation="horizontal"
         android:background="#212121">
 
-        <TextView
-            android:id="@+id/address"
+        <ImageView
+            android:id="@+id/address_select"
             android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="北京"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/address2"
             android:layout_centerVertical="true"
             android:textColor="#fff"/>
-        <ImageView
-            android:id="@+id/down"
-            android:layout_toRightOf="@+id/address"
-            android:layout_alignTop="@+id/address"
-            android:layout_width="14dp"
-            android:layout_height="20dp"
-            android:src="@drawable/down"
-            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:text="城市"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <RadioGroup
             android:layout_centerInParent="true"
             android:layout_width="100dp"
@@ -53,13 +54,26 @@
                 android:background="@drawable/service_change_selector"
                 android:text="服务"/>
         </RadioGroup>
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginRight="10dp"
+    <TextView
+        android:id="@+id/service_category"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全部"
+        android:layout_toLeftOf="@+id/down"
         android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/add_white"/>
+        android:textColor="#fff"
+
+        />
+        <ImageView
+            android:id="@+id/down"
+            android:layout_alignTop="@+id/service_category"
+            android:layout_width="14dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
     <android.support.v4.view.ViewPager
