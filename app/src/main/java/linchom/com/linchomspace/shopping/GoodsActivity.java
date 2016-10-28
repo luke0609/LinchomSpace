@@ -661,7 +661,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                     /// 没收货地址   再说
 
-                    bundle.putSerializable("areaList",areaList.get(0));
+                    bundle.putSerializable("areaList",null);
 
                     intent.putExtra("bundle",bundle);
 

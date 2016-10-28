@@ -1,10 +1,12 @@
 package linchom.com.linchomspace.shopping.pojo;
 
+import java.io.Serializable;
+
 /**
- * Created by Administrator on 2016/10/28.
+ * Created by xxl on 2016/10/28.
  */
 
-public class AreaBean {
+public class AreaBean implements Serializable{
 
 
 

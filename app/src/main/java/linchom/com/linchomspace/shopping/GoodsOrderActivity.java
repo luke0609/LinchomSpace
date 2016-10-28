@@ -62,6 +62,12 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         areaList=  (AreaListBean.Data)bundle.getSerializable("areaList");
 
+        if(areaList==null){
+
+
+
+        }
+
         //goodsNum
        // goodsImg
         //goodsName
