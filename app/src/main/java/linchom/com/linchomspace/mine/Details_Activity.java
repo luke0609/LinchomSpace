@@ -227,14 +227,6 @@ public class Details_Activity extends AppCompatActivity {
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
 
-            private ImageView iv_photo;
-            private TextView tv_sex;
-            private View tv_email;
-            private TextView tv_qq;
-            private TextView tv_birthday;
-            private TextView tv_user_name;
-            private TextView tv_mobile_phone;
-
             @Override
             public void onSuccess(String result) {
 
@@ -263,8 +255,8 @@ public class Details_Activity extends AppCompatActivity {
                 TextView tv_email = (TextView) findViewById(R.id.tv_email);
                 tv_email.setText(dataBean.getEmail());
                 TextView tv_sex = ((TextView) findViewById(R.id.tv_add));
-                tv_sex.setText(dataBean.getSex());
-                System.out.println("修改成功"+dataBean);
+                tv_sex.setText(dataBean.getSex().equals("1")?"男":"女");
+//                System.out.println("修改成功"+dataBean);
 
 
             }

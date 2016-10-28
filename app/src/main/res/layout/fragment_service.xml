@@ -127,7 +127,7 @@
     <View
         android:id="@+id/jiange01"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
         android:layout_above="@+id/yuan_rl"
         android:layout_alignRight="@+id/yuan_rl"
         android:layout_marginRight="15dp" />
@@ -144,16 +144,16 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
-        android:text="发布"
+        android:text="我 的"
         android:background="#212121"
         android:textColor="#fff"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:visibility="gone" />
 
     <View
         android:id="@+id/jiange02"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="15dp"
         android:layout_above="@+id/dishui_tv"
         android:layout_alignRight="@+id/dishui_tv" />
 
@@ -166,13 +166,35 @@
         android:background="#212121"
         android:clickable="true"
         android:paddingBottom="5dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:paddingTop="5dp"
-        android:text="我的"
+        android:text="写日志"
         android:textColor="#fff"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:visibility="gone" />
+        <View
+            android:id="@+id/jiange03"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_above="@+id/guoshui_tv"
+            android:layout_alignRight="@+id/guoshui_tv" />
+        <TextView
+            android:id="@+id/rizhi_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/jiange03"
+            android:layout_alignRight="@+id/jiange03"
+            android:background="#212121"
+            android:clickable="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="发 布"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
 </RelativeLayout>
 </FrameLayout>
