@@ -169,13 +169,53 @@ public class GoodsAreaActivity extends AppCompatActivity {
                             Log.i(TAG,"checkStatusMap"+checkStatusMap);
 
 
+
+                            //http://app.linchom.com/appapi.php?act=default_consignee&user_id=135&address_id=36
+                            RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+                            requestParams.addBodyParameter("act","default_consignee");
+
+                            requestParams.addBodyParameter("user_id",userId);
+
+                            requestParams.addBodyParameter("address_id",areaList.get((int)ck_goods_area_check.getTag()).address_id);
+
+                            x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                                @Override
+                                public void onSuccess(String result) {
+
+                                    Toast.makeText(getApplicationContext(),"选择成功",Toast.LENGTH_SHORT).show();
+
+
+
+
+                                }
+
+                                @Override
+                                public void onError(Throwable ex, boolean isOnCallback) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(CancelledException cex) {
+
+                                }
+
+                                @Override
+                                public void onFinished() {
+
+                                }
+                            });
+
+
+
+
                             Intent intent =new Intent();
 
                             Bundle bundle =new Bundle();
 
                             bundle.putString("name",areaList.get((int)ck_goods_area_check.getTag()).consignee);
 
-                            bundle.putString("tel",areaList.get((int)ck_goods_area_check.getTag()).mobile);
+                            bundle.putString("tel",areaList.get((int)ck_goods_area_check.getTag()).tel);
 
                             bundle.putString("address",areaList.get((int)ck_goods_area_check.getTag()).address);
                             intent.putExtra("bundle",bundle);

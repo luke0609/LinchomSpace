@@ -40,9 +40,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private ImageView titlebar_back;
     private Button btn_goods_order_submitorder;
     private ImageView iv_goods_order_area;
-    private TextView tv_goods_area_name;
-    private TextView tv_goods_area_tel;
-    private TextView tv_goods_area_address;
+    private TextView tv_order_name;
+    private TextView tv_order_phone;
+    private TextView tv_order_detailAddress;
 
 
     @Override
@@ -61,13 +61,6 @@ public class GoodsOrderActivity extends AppCompatActivity {
        // goodsImg
         //goodsName
        // goodsPrice
-
-
-
-
-
-
-
 
 
 
@@ -99,11 +92,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
            // aa.setText(name+"111");
 
-            tv_goods_area_name.setText(name+"");
+            tv_order_name.setText(name+"");
 
-            tv_goods_area_tel.setText(tel+"");
+            tv_order_phone.setText(tel+"");
 
-            tv_goods_area_address.setText(address+"");
+            tv_order_detailAddress.setText(address+"");
 
         }
 
@@ -117,11 +110,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
         //tv_goods_area_tel
         //tv_goods_area_address
 
-        tv_goods_area_name = ((TextView) findViewById(R.id.tv_goods_area_name));
+        tv_order_name = ((TextView) findViewById(R.id.tv_order_name));
 
-        tv_goods_area_tel = ((TextView) findViewById(R.id.tv_goods_area_tel));
+        tv_order_phone = ((TextView) findViewById(R.id.tv_order_phone));
 
-        tv_goods_area_address = ((TextView) findViewById(R.id.tv_goods_area_address));
+        tv_order_detailAddress = ((TextView) findViewById(R.id.tv_order_detailAddress));
 
 
         lv_order_products = ((GoodsNoScrollListview) findViewById(R.id.lv_order_products));
