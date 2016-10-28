@@ -76,6 +76,12 @@ public class GoodsAreaActivity extends AppCompatActivity {
             getData();
 
         }
+
+        if(resultCode==2){
+
+            getData();
+
+        }
     }
 
     private void initView() {
@@ -105,7 +111,7 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                 tv_goods_area_delete.setTag(position);
 
-               TextView tv_goods_area_modify =  viewHolder.getViewById(R.id.tv_goods_area_modify);
+              final TextView tv_goods_area_modify =  viewHolder.getViewById(R.id.tv_goods_area_modify);
 
                 tv_goods_area_modify.setTag(position);
 
@@ -246,6 +252,28 @@ public class GoodsAreaActivity extends AppCompatActivity {
                     }
                 });
 
+                tv_goods_area_modify.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent =new Intent(GoodsAreaActivity.this,AddaddressActivity.class);
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("type","modify");
+
+                        bundle.putString("name",areaList.get((int)tv_goods_area_modify.getTag()).consignee);
+                        bundle.putString("address",areaList.get((int)tv_goods_area_modify.getTag()).address);
+                        bundle.putString("tel",areaList.get((int)tv_goods_area_modify.getTag()).tel);
+                        bundle.putString("youbian",areaList.get((int)tv_goods_area_modify.getTag()).zipcode);
+                        bundle.putString("addressId",areaList.get((int)tv_goods_area_modify.getTag()).address_id);
+
+
+                        intent.putExtra("bundle",bundle);
+
+                        startActivityForResult(intent,2);
+
+                    }
+                });
+
 
 
 
@@ -299,12 +327,6 @@ public class GoodsAreaActivity extends AppCompatActivity {
                             }
                         });
 
-
-
-
-
-
-
                     }
                 });
 
@@ -325,6 +347,18 @@ public class GoodsAreaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent =new Intent(GoodsAreaActivity.this,AddaddressActivity.class);
 
+                Bundle bundle = new Bundle();
+
+                bundle.putString("type","add");
+                bundle.putString("name","");
+                bundle.putString("address","");
+                bundle.putString("tel","");
+                bundle.putString("youbian","");
+
+                bundle.putString("addressId","");
+
+
+                intent.putExtra("bundle",bundle);
 
 
 
