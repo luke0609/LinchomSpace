@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.mine;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +45,7 @@ public class MyChat_activity extends AppCompatActivity {
     private int page=1;
     private int pageCount=1;
     private ProgressBar firstBar;
+    private static int mDelId = 0;
 
 
 //    private ListView lv_myChatList;
@@ -68,6 +71,14 @@ public class MyChat_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        lv_myChatList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+              @Override
+              public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                  mDelId=position-1;
+                  showDialog();
+                  return true;
+              }
+          });
 
         iv_chat_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,5 +213,34 @@ public class MyChat_activity extends AppCompatActivity {
         });
     }
 
+    private void showDialog() {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("确定删除吗？");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_LONG).show();
+                deleteItem();
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void deleteItem() {
+        int size = chatlist.size();
+        if (size > 0) {
+            chatlist.remove(mDelId);
+            chatCommonAdapter.notifyDataSetChanged();
+        }
+    }
 }
