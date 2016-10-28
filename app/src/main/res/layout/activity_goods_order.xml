@@ -152,6 +152,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_order_detailAddress"
                     android:layout_marginLeft="5dp"
 
                     android:layout_marginTop="10dp"

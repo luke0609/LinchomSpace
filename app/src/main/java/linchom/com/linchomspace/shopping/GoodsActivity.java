@@ -378,6 +378,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
+
+
                 Gson gson =new Gson();
 
                 JoinCartBean joinCartBean =  gson.fromJson(result, JoinCartBean.class);
@@ -433,6 +435,42 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void toBuyNow() {
+
+
+        //先清空购物车 然后去拿购物车的第一件商品 然后再跳到订单详情页面；
+
+        //去取地址 把第一个改成默认地址  (没默认地址会提交失败)
+
+        //
+
+
+        /*
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","clear_cart");
+        requestParams.addBodyParameter("user_id",userId+"");
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });*/
 
         Intent intent =new Intent(GoodsActivity.this,GoodsOrderActivity.class);
 

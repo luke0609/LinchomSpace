@@ -40,6 +40,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private ImageView titlebar_back;
     private Button btn_goods_order_submitorder;
     private ImageView iv_goods_order_area;
+    private TextView tv_order_name;
+    private TextView tv_order_phone;
+    private TextView tv_order_detailAddress;
 
 
     @Override
@@ -61,13 +64,6 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
         initView();
 
         initData();
@@ -77,7 +73,49 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode==2){
+
+           Bundle bundle =data.getBundleExtra("bundle");
+
+            String name = bundle.getString("name");
+           String tel =  bundle.getString("tel");
+
+            String address =  bundle.getString("address");
+
+            Log.i(TAG,"name111"+name);
+
+          // TextView aa=  ((TextView) findViewById(R.id.tv_goods_area_name));
+
+           // aa.setText(name+"111");
+
+            tv_order_name.setText(name+"");
+
+            tv_order_phone.setText(tel+"");
+
+            tv_order_detailAddress.setText(address+"");
+
+        }
+
+
+    }
+
     private void initView() {
+
+
+        //tv_goods_area_name
+        //tv_goods_area_tel
+        //tv_goods_area_address
+
+        tv_order_name = ((TextView) findViewById(R.id.tv_order_name));
+
+        tv_order_phone = ((TextView) findViewById(R.id.tv_order_phone));
+
+        tv_order_detailAddress = ((TextView) findViewById(R.id.tv_order_detailAddress));
+
 
         lv_order_products = ((GoodsNoScrollListview) findViewById(R.id.lv_order_products));
 
@@ -269,9 +307,124 @@ public class GoodsOrderActivity extends AppCompatActivity {
                 Intent intent =new Intent(GoodsOrderActivity.this,GoodsAreaActivity.class);
 
 
-                startActivity(intent);
+                startActivityForResult(intent,2);
             }
         });
+
+
+    }
+
+
+    public void dd(){
+
+
+
+       /* JSONObject jo = new JSONObject();
+        try {
+            //jo.put("result","0");
+            JSONArray ja = new JSONArray();
+
+
+            OrderSubmitBean orderSubmitBean=null;
+
+            JSONObject jo_sub = null;
+
+            for(int i= 0;i<orderList.size();i++){
+
+                jo_sub=new JSONObject();
+
+                orderSubmitBean = orderList.get(i);
+
+
+
+                jo_sub.put("rec_id",orderList.get(i).rec_id);
+                jo_sub.put("user_id",orderList.get(i).user_id);
+                jo_sub.put("goods_id",orderList.get(i).goods_id);
+                jo_sub.put("goods_name",orderList.get(i).goods_name);
+                jo_sub.put("goods_sn",orderList.get(i).goods_sn);
+                jo_sub.put("goods_number",orderList.get(i).goods_number);
+                jo_sub.put("market_price",orderList.get(i).market_price);
+                jo_sub.put("goods_price",orderList.get(i).goods_price);
+                jo_sub.put("goods_attr",orderList.get(i).goods_attr);
+                jo_sub.put("is_real",orderList.get(i).is_real);
+                jo_sub.put("extension_code",orderList.get(i).extension_code);
+                jo_sub.put("parent_id",orderList.get(i).parent_id);
+                jo_sub.put("is_gift",orderList.get(i).is_gift);
+                jo_sub.put("is_shipping",orderList.get(i).is_shipping);
+                jo_sub.put("subtotal",orderList.get(i).subtotal);
+                jo_sub.put("formated_market_price",orderList.get(i).formated_market_price);
+                jo_sub.put("formated_goods_price",orderList.get(i).formated_goods_price);
+                jo_sub.put("formated_subtotal",orderList.get(i).formated_subtotal);
+
+                ja.put(jo_sub);
+
+
+
+            }
+
+            jo.put("data",ja);
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","done_order");
+
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        String dataJson = jo.toString();
+
+        Log.i(TAG,"dataJson"+dataJson);
+
+        requestParams.addBodyParameter("cart_goods",dataJson);
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Log.i(TAG,"result"+result);
+
+
+                Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+                Log.i(TAG,"ex"+ex);
+
+
+                Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+*/
+
+
+
+
 
 
     }
