@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -94,11 +95,19 @@ public class Disclose_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 View popupView = getLayoutInflater().inflate(R.layout.pop_item, null);
-                popupWindow=new PopupWindow(popupView,200,ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow=new PopupWindow(popupView,400,ViewGroup.LayoutParams.MATCH_PARENT);
                 ListView lv= (ListView) popupView.findViewById(R.id.lv_fenlei);
 //                System.out.println("content========="+content);
                 ArrayAdapter arrayAdapter=new ArrayAdapter(getApplicationContext(),R.layout.pop_items,content);
                 lv.setAdapter(arrayAdapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String name=content.get(position);
+                        tv_biaoti.setText(name);
+                        popupWindow.dismiss();
+                    }
+                });
                 popupWindow.setTouchable(true);
                 popupWindow.setOutsideTouchable(true);
                 popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
