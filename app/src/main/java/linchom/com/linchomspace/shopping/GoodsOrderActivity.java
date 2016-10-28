@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
-import linchom.com.linchomspace.shopping.pojo.GoodsOrderBean;
+import linchom.com.linchomspace.shopping.pojo.AreaListBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
@@ -32,9 +33,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
     private Double totalPrice=0.0;
 
-    ArrayList<GoodsOrderBean> orderList;
+    ArrayList<GoodsCartBean.Data> orderList;
 
-    GoodsCommonAdapter<GoodsOrderBean> goodsCommonAdapter;
+    GoodsCommonAdapter<GoodsCartBean.Data> goodsCommonAdapter;
     private GoodsNoScrollListview lv_order_products;
     private TextView tv_goods_order_totalPrice;
     private ImageView titlebar_back;
@@ -43,6 +44,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private TextView tv_order_name;
     private TextView tv_order_phone;
     private TextView tv_order_detailAddress;
+
+    private AreaListBean.Data areaList;
 
 
     @Override
@@ -55,7 +58,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         Bundle bundle =intent.getBundleExtra("bundle");
 
-        orderList= (ArrayList<GoodsOrderBean>) bundle.getSerializable("orderList");
+        orderList= (ArrayList<GoodsCartBean.Data>) bundle.getSerializable("orderList");
+
+        areaList=  (AreaListBean.Data)bundle.getSerializable("areaList");
 
         //goodsNum
        // goodsImg
@@ -132,25 +137,32 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
     private void initData() {
 
+        tv_order_name.setText(areaList.consignee);
+        tv_order_phone.setText(areaList.tel);
+        tv_order_detailAddress.setText(areaList.address);
+
+
+
         countAllPrice();
 
 
-        goodsCommonAdapter =new GoodsCommonAdapter<GoodsOrderBean>(getApplicationContext(),orderList,R.layout.goods_order_list_item) {
+        goodsCommonAdapter =new GoodsCommonAdapter<GoodsCartBean.Data>(getApplicationContext(),orderList,R.layout.goods_order_list_item) {
             @Override
-            public void convert(GoodsViewHolder viewHolder, GoodsOrderBean goodsOrderBean, int position) {
+            public void convert(GoodsViewHolder viewHolder, GoodsCartBean.Data data, int position) {
 
                 ImageView iv_goods_order_img = viewHolder.getViewById(R.id.iv_goods_order_img);
                 TextView tv_goods_order_goodsName=viewHolder.getViewById(R.id.tv_goods_order_goodsName);
                 TextView tv_goods_order_price =viewHolder.getViewById(R.id.tv_goods_order_price);
                 TextView tv_goods_order_goodsNum =viewHolder.getViewById(R.id.tv_goods_order_goodsNum);
 
-                tv_goods_order_goodsName.setText(goodsOrderBean.goodsName);
+                tv_goods_order_goodsName.setText(data.goods_name);
 
-                tv_goods_order_price.setText(goodsOrderBean.goodsPrice);
-                tv_goods_order_goodsNum.setText(goodsOrderBean.goodsNum);
+                tv_goods_order_price.setText(data.goods_price);
+                tv_goods_order_goodsNum.setText(data.goods_number);
 
 
-                String imgUrlChange = goodsOrderBean.goodsImg;
+                String imgUrlChange = data.goods_img;
+
                 Log.i(TAG,"imgUrlChange.substring(0,1)"+imgUrlChange.substring(0,1));
 
                 if("h".equals(imgUrlChange.substring(0,1))){
@@ -183,11 +195,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         for(int i=0;i<orderList.size();i++){
 
-            int goodsNumber = Integer.parseInt(orderList.get(i).goodsNum);
+            int goodsNumber = Integer.parseInt(orderList.get(i).goods_number);
 
             Log.i(TAG,"goodsNumber"+goodsNumber);
 
-            Double goodsMoney=Double.parseDouble(orderList.get(i).goodsPrice);
+            Double goodsMoney=Double.parseDouble(orderList.get(i).goods_price);
             Log.i(TAG,"goodsMoney"+goodsMoney);
 
             totalPrice +=(goodsNumber*goodsMoney);
