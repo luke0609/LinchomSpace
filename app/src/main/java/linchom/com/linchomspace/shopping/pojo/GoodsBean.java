@@ -74,6 +74,15 @@ public class GoodsBean {
         public String Android_link;
         public String tb_price;
         public String jd_price;
+
+
+           public     String apptb_link;
+           public     String appjd_link;
+           public     String appjd_price;
+           public     String apptb_price;
+
+
+
         public String measure_unit;
         public String goods_brand;
         public String bonus_money;
