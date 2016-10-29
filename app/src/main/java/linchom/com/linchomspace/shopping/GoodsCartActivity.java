@@ -771,6 +771,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                 Log.i(TAG,cartList.size()+"");
 
+                checkStatusMap.clear();
+
 
                 for(int i=0;i<cartList.size();i++){
 
@@ -779,6 +781,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                 }
+                checkModifyStatusMap.clear();
 
                 for(int i=0;i<cartList.size();i++){
 
@@ -787,6 +790,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                 }
+                buyNumMap.clear();
 
 
                 for(int i=0;i<cartList.size();i++){

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     >
     <RelativeLayout
@@ -30,7 +29,6 @@
 
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_arrlist_tuijian"
         android:layout_width="match_parent"
@@ -48,6 +46,63 @@
         ptr:ptrHeaderSubTextColor="#00ffff"
         ptr:ptrHeaderBackground="@null"
         ptr:ptrDrawable="@drawable/home_load"
+        android:visibility="visible"
         />
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_empty1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/nocategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/nocategory" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nocategory"
+            android:layout_centerHorizontal="true"
+            android:text="暂无该分类信息" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/error_caterogy1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_nonet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/nocategory"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络连接超时，请重新加载"
+            android:layout_below="@id/iv_nonet"
+            android:layout_centerHorizontal="true"/>
+        <Button
+            android:id="@+id/reload1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="重新加载"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -3,9 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp"
-
     android:background="#ffffff"
     android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/relative_position"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="70dp"
+        >
+
+    </TextView>
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -26,7 +35,8 @@
         android:src="@drawable/aiqinhai"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        />
 
 
         <TextView
@@ -39,16 +49,17 @@
             android:layout_marginRight="30dp"
             android:textColor="#7e7d7d"
             android:textSize="13sp"
-            android:layout_alignTop="@+id/tv_name" />
+            android:layout_below="@id/relative_position"
+             />
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_source"
-        android:layout_below="@id/iv_photo"
         android:text="3小时前"
         android:textSize="13sp"
-        android:textColor="#7e7d7d"/>
+        android:textColor="#7e7d7d"
+        android:layout_alignBottom="@id/tv_source"/>
 
 
 

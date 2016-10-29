@@ -27,7 +27,6 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
     public MyGoodsIndicatorAdapter(Context context, List<GoodsAdvBean> advList){
         this.context =context;
         this.advList =advList;
-
     }
 
     @Override
