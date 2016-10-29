@@ -72,11 +72,48 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
     private String youbian;
 
+     private String intentName ;
+     private String intentAddress;
+     private String intentTel ;
+     private String intentYouBian;
+     private String type;
+     private String intentaddressId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addaddress);
+
+        Intent intent =getIntent();
+
+        Bundle bundle =intent.getBundleExtra("bundle");
+
+        //"name"
+        //"address"
+        //"tel"
+        //"youbian"
+
+        //bundle.putString("type","add");
+
+
+        type=bundle.getString("type");
+
+
+        intentName = bundle.getString("name");
+
+         intentAddress = bundle.getString("address");
+
+         intentTel =  bundle.getString("tel");
+
+         intentYouBian =  bundle.getString("youbian");
+
+        //addressId=
+
+        intentaddressId = bundle.getString("addressId");
+
+        Log.i(TAG,"result"+intentName+intentAddress+intentTel+intentYouBian);
+
 
         initView();
         initData();
@@ -103,6 +140,41 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initData() {
+        //et_goods_addaddress_name
+        //et_goods_addaddress_tel
+        //et_goods_cart_detailaddress
+        //et_goods_cart_youbian
+        if("add".equals(type)){
+
+        }else{
+            et_goods_addaddress_name.setText(intentName);
+
+        }
+
+        if("add".equals(type)){
+
+        }else{
+            et_goods_cart_detailaddress.setText(intentAddress);
+
+        }
+
+        if("add".equals(type)){
+
+        }else{
+
+            et_goods_addaddress_tel.setText(intentTel);
+        }
+
+        if("add".equals(type)){
+
+
+
+        }else{
+
+            et_goods_cart_youbian.setText(intentYouBian);
+
+
+        }
 
 
 
@@ -178,12 +250,126 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.btn_goods_area_save:
-                saveAddress();
+                if("add".equals(type)){
+
+                    saveAddress();
+
+
+                }else{
+
+                    modifyAddress();
+
+                }
+
+
 
                 break;
 
 
         }
+
+    }
+
+    private void modifyAddress() {
+
+       // http://app.linchom.com/appapi.php?
+        // act=update_consignee
+        // &consignee=%E5%BC%A0%E6%99%93%E6%96%871
+        // &province=2
+        // &city=52
+        // &district=503
+        // &email=2070118814@qq.com
+        // &address=%E5%8C%97%E4%BA%AC
+        // &zipcode=10000
+        // &mobile=18500551431
+        // &address_id=27
+
+
+        name=et_goods_addaddress_name.getText().toString();
+        tel =et_goods_addaddress_tel.getText().toString();
+        detailAddress =et_goods_cart_detailaddress.getText().toString();
+        youbian=et_goods_cart_youbian.getText().toString();
+
+        if(name==null||name==""||tel==null||tel==""||detailAddress==null||detailAddress==""||
+                youbian==null||youbian==""||provinceId==null||provinceId==""||cityId==null||cityId==""){
+
+
+            Toast.makeText(getApplicationContext(),"信息不能为空",Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            //http://app.linchom.com/appapi.php?act=add_consignee&consignee=%E5%BC%A0%E6%99%93%E6%96%87&province=2&city=52&district=503&email=2070118814@qq.com&address=%E5%8C%97%E4%BA%AC&zipcode=10000&mobile=18500551431
+
+
+            RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+
+            requestParams.addBodyParameter("act","update_consignee");
+
+            requestParams.addBodyParameter("user_id",userId);
+
+            requestParams.addBodyParameter("consignee",name);
+
+            requestParams.addBodyParameter("province",provinceId);
+
+
+            requestParams.addBodyParameter("city",cityId);
+
+
+            requestParams.addBodyParameter("district",areaId);
+
+            requestParams.addBodyParameter("email","");
+
+
+            requestParams.addBodyParameter("address",detailAddress);
+
+
+            requestParams.addBodyParameter("zipcode",youbian);
+
+            requestParams.addBodyParameter("mobile",tel);
+
+            requestParams.addBodyParameter("address_id",intentaddressId);
+
+            x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+
+                    Log.i(TAG,"result"+result);
+
+                    Intent intent =new Intent();
+
+                    setResult(2);
+
+                    finish();
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
+
+
+
+        }
+
+
+
+
+
+
 
     }
 

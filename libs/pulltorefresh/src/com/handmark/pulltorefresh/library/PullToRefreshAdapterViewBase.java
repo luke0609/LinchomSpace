@@ -434,7 +434,9 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 
 		return false;
 	}
-
+	public void setOnItemLongClickListener(AdapterView.OnItemLongClickListener listener) {
+		mRefreshableView.setOnItemLongClickListener(listener);
+	}
 	private void removeIndicatorViews() {
 		if (null != mIndicatorIvTop) {
 			getRefreshableViewWrapper().removeView(mIndicatorIvTop);

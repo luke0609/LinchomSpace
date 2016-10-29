@@ -27,7 +27,7 @@
         android:id="@+id/bar_goods_area_tianjia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="添加收货地址"
+        app:titleText="添加/修改收货地址"
         app:titleRightVis="false"
 
         >
