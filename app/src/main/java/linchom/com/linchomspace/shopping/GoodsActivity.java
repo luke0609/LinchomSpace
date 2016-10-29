@@ -1,12 +1,17 @@
 package linchom.com.linchomspace.shopping;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -97,6 +102,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
     private RelativeLayout rl_goods_load_progress;
 
+    private PathMeasure mPathMeasure;
+
+    private float[] mCurrentPosition = new float[2];
+    private ImageView iv_goods_cart_rmb;
+    private RelativeLayout rl_activity_goods;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +116,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
-
-
 
 
         initView();
@@ -158,10 +167,16 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         rl_goods_load_progress = ((RelativeLayout) findViewById(R.id.rl_goods_load_progress));
 
+        iv_goods_cart_rmb = ((ImageView) findViewById(R.id.iv_goods_cart_rmb));
+
+        rl_activity_goods = ((RelativeLayout) findViewById(R.id.rl_activity_goods));
+
 
     }
 
     private void initData() {
+
+
 
         rl_goods_head.getBackground().setAlpha(0);
         int initColor = tv_goods_title_content.getTextColors().getDefaultColor();
@@ -172,9 +187,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         tv_goods_title_content.setTextColor(newColor);
 
         getData();
-
-
-
 
 
 
@@ -423,6 +435,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
                     ergodicCart();
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
+
+                    addCart(iv_goods_cart_rmb);
 
 
                 }
@@ -951,5 +969,81 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
+
+
+    private void addCart( ImageView iv) {
+        final ImageView goods = new ImageView(GoodsActivity.this);
+        goods.setImageDrawable(iv.getDrawable());
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
+        rl_activity_goods.addView(goods, params);
+
+        int[] parentLocation = new int[2];
+        rl_activity_goods.getLocationInWindow(parentLocation);
+
+        int startLoc[] = new int[2];
+        btn_goods_joinCart.getLocationInWindow(startLoc);///////////////
+
+        int endLoc[] = new int[2];
+        iv_gooods_cart.getLocationInWindow(endLoc);
+
+
+        float startX = startLoc[0] - parentLocation[0] + iv.getWidth() / 2;
+        float startY = startLoc[1] - parentLocation[1] + iv.getHeight() / 2;
+
+        float toX = endLoc[0] - parentLocation[0] + iv_gooods_cart.getWidth() / 5;
+        float toY = endLoc[1] - parentLocation[1];
+
+        Path path = new Path();
+        path.moveTo(startX, startY);
+
+        path.quadTo(startX, (startY+toY)/2, toX, toY);
+
+        mPathMeasure = new PathMeasure(path, false);
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
+        valueAnimator.setDuration(1000);
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+
+                float value = (Float) animation.getAnimatedValue();
+
+                mPathMeasure.getPosTan(value, mCurrentPosition, null);
+                goods.setTranslationX(mCurrentPosition[0]);
+                goods.setTranslationY(mCurrentPosition[1]);
+            }
+        });
+        valueAnimator.start();
+
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            //当动画结束后：
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                // 购物车的数量加1
+                //i++;
+                // count.setText(String.valueOf(i));
+                // 把移动的图片imageview从父布局里移除
+                rl_activity_goods.removeView(goods);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+    }
+
+
 
 }
