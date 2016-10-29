@@ -131,7 +131,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        view=inflater.inflate(R.layout.fragment_shopping, container, false);
+        view=inflater.inflate(R.layout.fragment_shopping,container, false);
         initView();
         initData();
         initEvent();
@@ -566,8 +566,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
                 getAdvList.clear();
 
                 for(int i = 0;i<tempList.size();i++){
-
-
                     getAdvList.add(new GoodsAdvBean(tempList.get(i),tempList.get(i++)));
 
 
@@ -580,9 +578,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
 
                 rl_goodsHome_load.setVisibility(View.GONE);
-
-
-
 
             }
 
@@ -607,7 +602,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    private void advLoopPlay() {
+    private void advLoopPlay(){
 
         bannerComponent=new BannerComponent(indicator_banner_goods,vp_banner_goods,true);
 
