@@ -33,8 +33,10 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.TopicList;
@@ -43,20 +45,13 @@ import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.service.pojo.ServiceBean;
 import linchom.com.linchomspace.service.utils.ResUtil;
 import linchom.com.linchomspace.service.utils.WheelDialogFragment;
-import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
-import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
-import linchom.com.linchomspace.shopping.pojo.GoodsListNewBean;
-import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
-import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
-import static linchom.com.linchomspace.R.id.content_add_time;
-import static linchom.com.linchomspace.R.id.content_address;
-import static linchom.com.linchomspace.R.id.content_people;
-import static linchom.com.linchomspace.R.id.content_service_type;
-import static linchom.com.linchomspace.R.id.ptr_goodsList_ptr;
+import static android.R.attr.y;
 
 
 public class ServiceFragment extends Fragment implements View.OnClickListener {
+    Map<String,String> region = new HashMap<String,String>();
+    Map<String,String> map_category = new HashMap<String,String>();
 
     View view_main;
     private ViewPager vp_service;
@@ -68,12 +63,13 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private PullToRefreshListView plv_1;
     private PullToRefreshListView plv_2;
     private List<ServiceBean.DataBean.ItemsBean> requireList = new ArrayList<>();
-
+    private List<ServiceBean.DataBean.ItemsBean> serviceList = new ArrayList<>();
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private TextView service_category;
     private ImageView address_select;
     private TextView tv_address;
-
+    private String category_id="";
+    private String region_id="";
     private boolean clicked = false;// 记录加号按钮的点击状态，默认为没有点击
 
     private RelativeLayout plus_rl;
@@ -98,6 +94,32 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         initData();
         initView();
         return view_main;
+    }
+    private  void initMap(){
+        region.put("智能居家","1");
+        region.put("门窗安装","2");
+        region.put("水暖","3");
+        region.put("电工照明","4");
+        region.put("空调电器","5");
+        region.put("开孔","6");
+        region.put("地板","7");
+        region.put("墙壁","8");
+        region.put("吊顶R","9");
+        region.put("维修","10");
+        region.put("保洁","11");
+        region.put("搬运","12");
+        region.put("其他","13");
+
+
+        map_category.put("北京","52");
+        map_category.put("上海","321");
+        map_category.put("广州","76");
+        map_category.put("深圳","77");
+        map_category.put("成都","322");
+        map_category.put("重庆","394");
+        map_category.put("杭州","383");
+        map_category.put("天津","343");
+
     }
     private void initData() {
         // TODO Auto-generated method stub
@@ -214,11 +236,13 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     }
     private void getRequireList(int type) {
         RequestParams requestParams = new RequestParams("http://app.linchom.com/appapi.php");
-        int service_type=type;
+        final int service_type=type;
+
         requestParams.addBodyParameter("act","demand_services");
         requestParams.addBodyParameter("service_type",service_type+"");
-        requestParams.addBodyParameter("category_id",1+"");
-        requestParams.addBodyParameter("region_id",52+"");
+        requestParams.addBodyParameter("category_id",category_id);
+        requestParams.addBodyParameter("region_id",region_id);
+        System.out.println(requestParams);
         x.http().post(requestParams, new Callback.CommonCallback<String>(){
 
             @Override
@@ -228,21 +252,42 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 System.out.println(result);
                 ServiceBean bean = gson.fromJson(result, ServiceBean.class);
                 pageCount=   bean.getData().getTotal_pages();
-                if (page==1){
-                    requireList.clear();
+
+                if (service_type==2){
+                    if (page==1){
+                        requireList.clear();
+                    }
+
+                    if(page<=pageCount){
+                        requireList.addAll(bean.getData().getItems());
+                    }else{
+
+                        Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    plv_1.onRefreshComplete();
+                    System.out.println(requireList);
+                    serviceCommonAdapter.notifyDataSetChanged();
+                }else {
+                    if (page==1){
+                        serviceList.clear();
+                    }
+
+                    if(page<=pageCount){
+                        serviceList.addAll(bean.getData().getItems());
+                    }else{
+
+                        Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                    }
+                    plv_2.onRefreshComplete();
+
+                    System.out.println(serviceList);
+                    serviceCommonAdapter.notifyDataSetChanged();
+
                 }
 
-                if(page<=pageCount){
-                    requireList.addAll(bean.getData().getItems());
-                }else{
-
-                    Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
-
-                }
-                plv_2.onRefreshComplete();
-                plv_1.onRefreshComplete();
-                System.out.println(requireList);
-                serviceCommonAdapter.notifyDataSetChanged();
 
 
             }
@@ -408,7 +453,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         //new adapter
 
 
-        serviceCommonAdapter =new CommonAdapter<ServiceBean.DataBean.ItemsBean>(getContext(),requireList,R.layout.cell){
+        serviceCommonAdapter =new CommonAdapter<ServiceBean.DataBean.ItemsBean>(getContext(),serviceList,R.layout.cell){
 
 
             @Override
@@ -519,6 +564,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             public void onClickRight(String value) {
                 wheelViewDialogFragment.dismiss();
                 service_category.setText(value);
+
 
             }
 
