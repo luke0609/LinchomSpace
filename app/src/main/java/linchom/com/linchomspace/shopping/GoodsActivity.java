@@ -406,7 +406,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 Log.i(TAG,"str"+str);
 
 
-                Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
 
                 //做判断是立即购买 还是加入购物车
                 if(flagAdd==true){
@@ -449,7 +449,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void ergodicCart(){
 
-        Toast.makeText(getApplicationContext(),"遍历购物车",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"遍历购物车",Toast.LENGTH_SHORT).show();
 
         //http://app.linchom.com/appapi.php?act=cartgoods
         // user_id=12
@@ -465,7 +465,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
 
                 Gson gson = new Gson();
@@ -514,7 +514,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         //地址也要传过去
 
-        Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
 
 
         //遍历遍历地址
@@ -532,7 +532,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
                 Gson gson = new Gson();
                 //areaList
@@ -599,7 +599,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             x.http().post(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
 
                     //orderList
                    // areaList.get(0)        传过去
@@ -729,7 +729,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(GoodsActivity.this,"清空购物车",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(GoodsActivity.this,"清空购物车",Toast.LENGTH_SHORT).show();
 
                 //加入购物车
 
