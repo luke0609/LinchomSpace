@@ -3,6 +3,7 @@ package linchom.com.linchomspace.shopping;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -107,6 +109,15 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private float[] mCurrentPosition = new float[2];
     private ImageView iv_goods_cart_rmb;
     private RelativeLayout rl_activity_goods;
+    private ImageView iv_goods_Collection;
+
+
+    private String[] goodsIds;
+
+    private String goodsIdString;
+
+
+    private boolean collectFlag=false;
 
 
     @Override
@@ -171,11 +182,40 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         rl_activity_goods = ((RelativeLayout) findViewById(R.id.rl_activity_goods));
 
+        iv_goods_Collection = ((ImageView) findViewById(R.id.iv_goods_Collection));
+
 
     }
 
     private void initData() {
 
+        //初始化 收藏键
+
+        SharedPreferences sharedPreferences=     getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+        goodsIdString =  sharedPreferences.getString("goodsId","");
+
+
+       if(goodsIdString!=null&goodsIdString!="") {
+
+            goodsIds = goodsIdString.split(",");
+
+
+           for (int i = 0; i < goodsIds.length; i++) {
+
+               if (goodsIds[i].equals(goodsId)){
+
+                   collectFlag=true;
+
+
+                    iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+
+               }
+
+
+           }
+
+       }
 
 
         rl_goods_head.getBackground().setAlpha(0);
@@ -306,6 +346,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         iv_gooods_cart.setOnClickListener(this);
         btn_goods_joinCart.setOnClickListener(this);
 
+        iv_goods_Collection.setOnClickListener(this);
+
+
+
+
 
     }
 
@@ -382,11 +427,64 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
 
+            case R.id.iv_goods_Collection:
+
+                toCollection();
+
+
+                break;
+
+
 
 
         }
 
     }
+
+    private void toCollection() {
+
+        SharedPreferences sharedPreferences =getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+
+        if(collectFlag==true){
+
+            //取消收藏干掉  collectFlag变为false
+
+            //存在收藏Id 什么也不做
+
+            Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
+
+            iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
+
+
+        }else{
+
+            //不存在 存入
+
+            SharedPreferences.Editor editor=  sharedPreferences.edit();
+
+
+
+            editor.putString("goodsId",goodsIdString+","+goodsId);
+
+            editor.commit();
+
+            iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+
+
+        }
+
+
+
+
+        String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
+
+        Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
+
+
+
+    }
+
 
     private void toJoinCart() {
 

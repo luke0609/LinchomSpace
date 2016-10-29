@@ -627,13 +627,16 @@
 
             <ImageView
 
+
+
+
                 android:layout_centerInParent="true"
 
 
                 android:id="@+id/iv_goods_Collection"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/goods_collection"
+                android:src="@drawable/goods_collection_white"
                 />
 
 
