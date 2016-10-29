@@ -205,7 +205,7 @@ public class GoodsCartActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
                 Gson gson = new Gson();
                 //areaList
@@ -262,7 +262,7 @@ public class GoodsCartActivity extends AppCompatActivity {
             x.http().post(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
 
                     //orderList
                     // areaList.get(0)        传过去
