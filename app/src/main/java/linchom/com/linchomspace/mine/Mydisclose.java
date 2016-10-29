@@ -1,11 +1,15 @@
 package linchom.com.linchomspace.mine;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -30,6 +34,7 @@ public class Mydisclose extends AppCompatActivity {
     List<MyDiscloseInfoBean.Databean.DItems> myDisclosList=new ArrayList<MyDiscloseInfoBean.Databean.DItems>();
     private ListView lv_myDisclose;
     private ImageView iv_back;
+    private static int mDelId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,15 @@ public class Mydisclose extends AppCompatActivity {
 
         lv_myDisclose = ((ListView) findViewById(R.id.lv_myDisclose));
         iv_back = ((ImageView) findViewById(R.id.iv_back));
+
+        lv_myDisclose.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mDelId=position;
+                showDialog();
+                return false;
+            }
+        });
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +65,7 @@ public class Mydisclose extends AppCompatActivity {
 
 
     private void initData() {
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_article&user_id=135");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_article&user_id=131");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -65,7 +79,7 @@ public class Mydisclose extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                System.out.println("00000000"+ex+"");
+//                System.out.println("00000000"+ex+"");
             }
 
             @Override
@@ -100,4 +114,33 @@ public class Mydisclose extends AppCompatActivity {
         lv_myDisclose.setAdapter(MydiscloseCommonAdapter);
     }
 
+    public void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("确定删除吗？");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_LONG).show();
+                deleteItem();
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+    public void deleteItem(){
+        int size = myDisclosList.size();
+        if (size>0) {
+            myDisclosList.remove(mDelId);
+            MydiscloseCommonAdapter.notifyDataSetChanged();
+        }
+    }
 }
