@@ -95,6 +95,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
+    private RelativeLayout rl_goods_load_progress;
 
 
     @Override
@@ -116,6 +117,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
+
+
 
         sv_goods_scrollview = ((GoodsScrollView) findViewById(R.id.sv_goods_scrollview));
         rl_goods_head = ((RelativeLayout) findViewById(R.id.rl_goods_head));
@@ -153,6 +156,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         btn_goods_joinCart = ((Button) findViewById(R.id.btn_goods_joinCart));
 
+        rl_goods_load_progress = ((RelativeLayout) findViewById(R.id.rl_goods_load_progress));
 
 
     }
@@ -177,6 +181,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getData() {
+
+        rl_goods_load_progress.setVisibility(View.VISIBLE);
 
             RequestParams requestParams =new RequestParams(GoodsHttpUtils.GOODSDETAILURL+goodsId);
             x.http().get(requestParams, new Callback.CommonCallback<String>() {
@@ -227,6 +233,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                         btn_goods_jdBuy.setVisibility(View.INVISIBLE);
 
                     }
+
+                    rl_goods_load_progress.setVisibility(View.GONE);
+
 
 
 
@@ -604,6 +613,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     //orderList
                    // areaList.get(0)        传过去
 
+                    rl_goods_load_progress.setVisibility(View.GONE);
+
+
 
 
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
@@ -711,6 +723,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void toBuyNow() {
+
+        rl_goods_load_progress.setVisibility(View.VISIBLE);
+
 
 
         //先清空购物车 然后去拿购物车的第一件商品 然后再跳到订单详情页面；

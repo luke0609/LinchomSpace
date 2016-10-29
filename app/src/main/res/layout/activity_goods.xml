@@ -721,11 +721,13 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_goods_load_progress"
 
         android:layout_centerInParent="true"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:background="#70000000"
+        android:background="@drawable/goods_progress_background_shape"
+        android:visibility="gone"
         >
 
         <ProgressBar
