@@ -10,6 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
@@ -320,87 +327,138 @@ public class GoodsOrderActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-               // JsonObject
-              /*  JSONObject jo = new JSONObject();
-                try {
-                    jo.put("result","0");
-                    JSONArray ja = new JSONArray();
-
-                    GoodsOrderBean goodsOrderBean=null;
-
-                    JSONObject jo_sub = null;
-
-                    for(int i= 0;i<orderList.size();i++){
-
-                        jo_sub=new JSONObject();
-
-                        goodsOrderBean = orderList.get(i);
-
-                        //rec_id;
-                        //user_id;
-                        //goods_id;
-                        //goods_name;
-                        //goods_sn;
-                        //goods_number;
-                        //market_price;
-                        //goods_price;
-                        //goods_attr;
-                        //is_real;
-                        //extension_code;
-                        //parent_id;
-                        //is_gift;
-                        //is_shipping;
-                        //subtotal;
-                        //formated_market_price;
-                        //formated_goods_price;
-                        //formated_subtotal;
-
-                        jo_sub.put("rec_id","");
-                        jo_sub.put("user_id","");
-                        jo_sub.put("goods_id","");
-                        jo_sub.put("goods_name","");
-                        jo_sub.put("goods_sn","");
-                        jo_sub.put("goods_number","");
-                        jo_sub.put("market_price","");
-                        jo_sub.put("goods_price","");
-                        jo_sub.put("goods_attr","");
-                        jo_sub.put("is_real","");
-                        jo_sub.put("extension_code","");
-                        jo_sub.put("parent_id","");
-                        jo_sub.put("is_gift","");
-                        jo_sub.put("is_shipping","");
-                        jo_sub.put("subtotal","");
-                        jo_sub.put("formated_market_price","");
-                        jo_sub.put("formated_goods_price","");
-                        jo_sub.put("formated_subtotal","");
+                if(orderList!=null&&orderCartList==null){
 
 
 
 
+                    JSONObject jo = new JSONObject();
+                    try {
+                        //jo.put("result","0");
+                        JSONArray ja = new JSONArray();
+
+
+                        //OrderSubmitBean orderSubmitBean=null;
+
+                        JSONObject jo_sub = null;
+
+                        for(int i= 0;i<orderList.size();i++){
+
+                            jo_sub=new JSONObject();
+
+                         //   orderSubmitBean = orderCartList.get(i);
+
+
+
+
+
+
+
+                            jo_sub.put("rec_id",orderList.get(i).rec_id);
+                            jo_sub.put("user_id",orderList.get(i).user_id);
+                            jo_sub.put("goods_id",orderList.get(i).goods_id);
+                            jo_sub.put("goods_name",orderList.get(i).goods_name);
+                            jo_sub.put("goods_sn",orderList.get(i).goods_sn);
+                            jo_sub.put("goods_number",orderList.get(i).goods_number);
+                            jo_sub.put("market_price",orderList.get(i).market_price);
+                            jo_sub.put("goods_price",orderList.get(i).goods_price);
+                            jo_sub.put("goods_attr",orderList.get(i).goods_attr);
+                            jo_sub.put("is_real",orderList.get(i).is_real);
+                            jo_sub.put("extension_code",orderList.get(i).extension_code);
+                            jo_sub.put("parent_id",orderList.get(i).parent_id);
+                            jo_sub.put("is_gift",orderList.get(i).is_gift);
+                            jo_sub.put("is_shipping",orderList.get(i).is_shipping);
+                            jo_sub.put("subtotal",orderList.get(i).subtotal);
+                            jo_sub.put("formated_market_price",orderList.get(i).formated_market_price);
+                            jo_sub.put("formated_goods_price",orderList.get(i).formated_goods_price);
+                            jo_sub.put("formated_subtotal",orderList.get(i).formated_subtotal);
+
+                            ja.put(jo_sub);
+
+
+
+                        }
+
+                        jo.put("data",ja);
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
 
+                    submitOrderForm(jo.toString());
 
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+                }else if(orderList==null&&orderCartList!=null){
+
+
+                    JSONObject jo = new JSONObject();
+                    try {
+                        //jo.put("result","0");
+                        JSONArray ja = new JSONArray();
+
+
+                        OrderSubmitBean orderSubmitBean=null;
+
+                        JSONObject jo_sub = null;
+
+                        for(int i= 0;i<orderCartList.size();i++){
+
+                            jo_sub=new JSONObject();
+
+                            orderSubmitBean = orderCartList.get(i);
+
+
+
+
+
+                            jo_sub.put("rec_id",orderSubmitBean.rec_id);
+                            jo_sub.put("user_id",orderSubmitBean.user_id);
+                            jo_sub.put("goods_id",orderSubmitBean.goods_id);
+                            jo_sub.put("goods_name",orderSubmitBean.goods_name);
+                            jo_sub.put("goods_sn",orderSubmitBean.goods_sn);
+                            jo_sub.put("goods_number",orderSubmitBean.goods_number);
+                            jo_sub.put("market_price",orderSubmitBean.market_price);
+                            jo_sub.put("goods_price",orderSubmitBean.goods_price);
+                            jo_sub.put("goods_attr",orderSubmitBean.goods_attr);
+                            jo_sub.put("is_real",orderSubmitBean.is_real);
+                            jo_sub.put("extension_code",orderSubmitBean.extension_code);
+                            jo_sub.put("parent_id",orderSubmitBean.parent_id);
+                            jo_sub.put("is_gift",orderSubmitBean.is_gift);
+                            jo_sub.put("is_shipping",orderSubmitBean.is_shipping);
+                            jo_sub.put("subtotal",orderSubmitBean.subtotal);
+                            jo_sub.put("formated_market_price",orderSubmitBean.formated_market_price);
+                            jo_sub.put("formated_goods_price",orderSubmitBean.formated_goods_price);
+                            jo_sub.put("formated_subtotal",orderSubmitBean.formated_subtotal);
+
+                            ja.put(jo_sub);
+
+
+
+                        }
+
+                        jo.put("data",ja);
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    submitOrderForm(jo.toString());
+
+
+
+
+
                 }
 
 
-                RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
-
-                requestParams.addBodyParameter("act","done_order");
-
-
-                requestParams.addBodyParameter("user_id",userId);
-
-
-              //  requestParams.addBodyParameter("cart_goods",);*/
-
-                Intent intent =new Intent(getApplicationContext(),GoodsAllOrderActivity.class);
-
-                startActivity(intent);
 
 
             }
@@ -420,60 +478,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
     }
 
 
-    public void dd(){
+    public void submitOrderForm(String jsonData){
 
 
-
-       /* JSONObject jo = new JSONObject();
-        try {
-            //jo.put("result","0");
-            JSONArray ja = new JSONArray();
-
-
-            OrderSubmitBean orderSubmitBean=null;
-
-            JSONObject jo_sub = null;
-
-            for(int i= 0;i<orderList.size();i++){
-
-                jo_sub=new JSONObject();
-
-                orderSubmitBean = orderList.get(i);
-
-
-
-                jo_sub.put("rec_id",orderList.get(i).rec_id);
-                jo_sub.put("user_id",orderList.get(i).user_id);
-                jo_sub.put("goods_id",orderList.get(i).goods_id);
-                jo_sub.put("goods_name",orderList.get(i).goods_name);
-                jo_sub.put("goods_sn",orderList.get(i).goods_sn);
-                jo_sub.put("goods_number",orderList.get(i).goods_number);
-                jo_sub.put("market_price",orderList.get(i).market_price);
-                jo_sub.put("goods_price",orderList.get(i).goods_price);
-                jo_sub.put("goods_attr",orderList.get(i).goods_attr);
-                jo_sub.put("is_real",orderList.get(i).is_real);
-                jo_sub.put("extension_code",orderList.get(i).extension_code);
-                jo_sub.put("parent_id",orderList.get(i).parent_id);
-                jo_sub.put("is_gift",orderList.get(i).is_gift);
-                jo_sub.put("is_shipping",orderList.get(i).is_shipping);
-                jo_sub.put("subtotal",orderList.get(i).subtotal);
-                jo_sub.put("formated_market_price",orderList.get(i).formated_market_price);
-                jo_sub.put("formated_goods_price",orderList.get(i).formated_goods_price);
-                jo_sub.put("formated_subtotal",orderList.get(i).formated_subtotal);
-
-                ja.put(jo_sub);
-
-
-
-            }
-
-            jo.put("data",ja);
-
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
 
 
@@ -486,16 +493,15 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("user_id",userId);
 
-        String dataJson = jo.toString();
 
-        Log.i(TAG,"dataJson"+dataJson);
 
-        requestParams.addBodyParameter("cart_goods",dataJson);
+        requestParams.addBodyParameter("cart_goods",jsonData);
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
                 Log.i(TAG,"result"+result);
+
 
 
                 Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
@@ -525,7 +531,6 @@ public class GoodsOrderActivity extends AppCompatActivity {
             }
         });
 
-*/
 
 
 

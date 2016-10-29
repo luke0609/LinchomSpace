@@ -95,6 +95,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
+    private RelativeLayout rl_goods_load_progress;
 
 
     @Override
@@ -116,6 +117,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
+
+
 
         sv_goods_scrollview = ((GoodsScrollView) findViewById(R.id.sv_goods_scrollview));
         rl_goods_head = ((RelativeLayout) findViewById(R.id.rl_goods_head));
@@ -153,6 +156,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         btn_goods_joinCart = ((Button) findViewById(R.id.btn_goods_joinCart));
 
+        rl_goods_load_progress = ((RelativeLayout) findViewById(R.id.rl_goods_load_progress));
 
 
     }
@@ -177,6 +181,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getData() {
+
+        rl_goods_load_progress.setVisibility(View.VISIBLE);
 
             RequestParams requestParams =new RequestParams(GoodsHttpUtils.GOODSDETAILURL+goodsId);
             x.http().get(requestParams, new Callback.CommonCallback<String>() {
@@ -227,6 +233,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                         btn_goods_jdBuy.setVisibility(View.INVISIBLE);
 
                     }
+
+                    rl_goods_load_progress.setVisibility(View.GONE);
+
 
 
 
@@ -406,7 +415,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 Log.i(TAG,"str"+str);
 
 
-                Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
 
                 //做判断是立即购买 还是加入购物车
                 if(flagAdd==true){
@@ -449,7 +458,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void ergodicCart(){
 
-        Toast.makeText(getApplicationContext(),"遍历购物车",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"遍历购物车",Toast.LENGTH_SHORT).show();
 
         //http://app.linchom.com/appapi.php?act=cartgoods
         // user_id=12
@@ -465,7 +474,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
 
                 Gson gson = new Gson();
@@ -514,7 +523,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         //地址也要传过去
 
-        Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
 
 
         //遍历遍历地址
@@ -532,7 +541,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
                 Gson gson = new Gson();
                 //areaList
@@ -599,10 +608,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             x.http().post(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
 
                     //orderList
                    // areaList.get(0)        传过去
+
+                    rl_goods_load_progress.setVisibility(View.GONE);
+
 
 
 
@@ -712,6 +724,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void toBuyNow() {
 
+        rl_goods_load_progress.setVisibility(View.VISIBLE);
+
+
 
         //先清空购物车 然后去拿购物车的第一件商品 然后再跳到订单详情页面；
 
@@ -729,7 +744,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(GoodsActivity.this,"清空购物车",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(GoodsActivity.this,"清空购物车",Toast.LENGTH_SHORT).show();
 
                 //加入购物车
 
