@@ -38,27 +38,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/v_shou"
-        android:background="#f4ddc8"
         >
         <RadioGroup
-            android:id="@+id/rag"
-            android:background="#f2d4c0"
+            android:id="@+id/rg_rag"
+            android:background="#f7eae2"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="50dp"
+            android:layout_height="36dp"
             android:gravity="center"
             >
             <RadioButton
                 android:id="@+id/rb_zixun"
                 android:text="资 讯"
+                android:textColor="@drawable/order_radbtn_color_selector"
                 style="@style/RadioTab" />
-            <RadioButton
-                android:text="视 频"
-                android:id="@+id/rb_vidio"
-                style="@style/RadioTab" />
+
             <RadioButton
                 android:id="@+id/rb_goods"
                 android:text="商 品"
+                android:textColor="@drawable/order_radbtn_color_selector"
                 style="@style/RadioTab"
                 />
         </RadioGroup>

@@ -96,6 +96,7 @@
         android:focusableInTouchMode="true"
         >
         <EditText
+            android:id="@+id/ed_disclose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="分享身边新鲜事......"
