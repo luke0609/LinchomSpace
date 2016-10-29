@@ -3,8 +3,8 @@ package linchom.com.linchomspace.chat;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,9 +19,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.twotoasters.jazzylistview.JazzyListView;
 import com.twotoasters.jazzylistview.effects.CardsEffect;
-import com.twotoasters.jazzylistview.effects.CurlEffect;
-import com.twotoasters.jazzylistview.effects.FadeEffect;
-import com.twotoasters.jazzylistview.effects.FlipEffect;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -224,8 +221,6 @@ public class ChatDetilActivity extends AppCompatActivity {
         params.addQueryStringParameter("content", content);
 
         x.http().get(params, new Callback.CommonCallback<String>() {
-
-
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();

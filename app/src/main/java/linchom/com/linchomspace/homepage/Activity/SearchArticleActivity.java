@@ -132,7 +132,7 @@ public class SearchArticleActivity extends AppCompatActivity {
         ptr_arrlist_searchArticle.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
             @Override
             public void onLastItemVisible() {
-                Toast.makeText(SearchArticleActivity.this, "已经到底了", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(SearchArticleActivity.this, "已经到底了", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -197,7 +197,6 @@ public class SearchArticleActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
                 ptr_arrlist_searchArticle.setVisibility(View.GONE);
-              // Log.i("bbbb",arrList.size()+"");
                     rl_hide_searchArticle.setVisibility(View.GONE);
                     if (page == 1) {
                         arrList.clear();
@@ -213,8 +212,6 @@ public class SearchArticleActivity extends AppCompatActivity {
 //                System.out.println(bean.status + "????");
 //                System.out.println(bean.dongtaiList.size() + "====");
 //                通知listview更新界面
-
-
                     if (page <= pageCount) {
                         arrList.addAll(articleData.getArticle_list());
                         adapter1.notifyDataSetChanged();
@@ -226,10 +223,10 @@ public class SearchArticleActivity extends AppCompatActivity {
 
                     }
                 }else{
-                    rl_hide_searchArticle.setVisibility(View.GONE);
+                   // rl_hide_searchArticle.setVisibility(View.GONE);
                     rl_empty.setVisibility(View.VISIBLE);
-                    ptr_arrlist_searchArticle.setVisibility(View.GONE);
-                    error_net.setVisibility(View.GONE);
+                  //  ptr_arrlist_searchArticle.setVisibility(View.GONE);
+                  //  error_net.setVisibility(View.GONE);
 
                 }
             }

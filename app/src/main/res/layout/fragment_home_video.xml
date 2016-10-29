@@ -29,8 +29,6 @@
 
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp"
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_arrlist_video"
         android:layout_width="match_parent"
@@ -51,7 +49,7 @@
         android:visibility="visible"/>
 
     <RelativeLayout
-        android:id="@+id/rl_empty"
+        android:id="@+id/rl_empty5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -75,7 +73,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/error_caterogy"
+        android:id="@+id/error_caterogy5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -98,6 +96,7 @@
             android:layout_below="@id/iv_nonet"
             android:layout_centerHorizontal="true"/>
         <Button
+            android:id="@+id/reload5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

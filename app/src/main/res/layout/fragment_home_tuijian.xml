@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     >
     <RelativeLayout
@@ -30,7 +29,6 @@
 
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_arrlist_tuijian"
         android:layout_width="match_parent"
@@ -48,10 +46,11 @@
         ptr:ptrHeaderSubTextColor="#00ffff"
         ptr:ptrHeaderBackground="@null"
         ptr:ptrDrawable="@drawable/home_load"
+        android:visibility="visible"
         />
 
     <RelativeLayout
-        android:id="@+id/rl_empty"
+        android:id="@+id/rl_empty1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -75,7 +74,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/error_caterogy"
+        android:id="@+id/error_caterogy1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
@@ -97,6 +96,7 @@
             android:layout_below="@id/iv_nonet"
             android:layout_centerHorizontal="true"/>
         <Button
+            android:id="@+id/reload1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

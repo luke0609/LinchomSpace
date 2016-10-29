@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     ChatFragment chatFragment;//交流
     MineFragment mineFragment ;//个人中心
     ServiceFragment serviceFragment;//服务
-
     //按钮的数组，一开始第一个按钮被选中
     RadioButton[] tabs;
     int oldIndex;//用户看到的item

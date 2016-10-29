@@ -107,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("userId", userId);
                     editor.putBoolean("isLogin", isLogin);
                     editor.putString("username", username);
-
                     editor.commit();
                     //提示
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();

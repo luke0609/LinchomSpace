@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -284,7 +283,7 @@ public class ChatFragment extends Fragment {
                 Gson gson = new Gson();
                 System.out.println(result);
                 TopicList bean = gson.fromJson(result, TopicList.class);
-                pageCount=   bean.getData().getTotal_pages();
+                pageCount= bean.getData().getTotal_pages();
                 if (page==1){
                 topicList.clear();
                 }
