@@ -406,7 +406,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                         JSONObject jo_sub = null;
 
-                        for(int i= 0;i<orderList.size();i++){
+                        for(int i= 0;i<orderCartList.size();i++){
 
                             jo_sub=new JSONObject();
 
