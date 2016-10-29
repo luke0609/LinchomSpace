@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/ll_shape"
+        android:background="@drawable/login_edit_shape"
         android:layout_marginTop="40dp"
         android:orientation="horizontal">
         <ImageView
@@ -50,7 +50,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/ll_shape"
+        android:background="@drawable/login_edit_shape"
         android:orientation="horizontal">
         <ImageView
             android:layout_width="30dp"
@@ -78,8 +78,9 @@
         android:layout_below="@+id/userPsd"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:textColor="#808080"
+        android:textColor="#fff"
         android:textSize="20sp"
+        android:background="#212121"
         android:layout_gravity="center_horizontal"
         android:text=" 登    录 "/>
     <RelativeLayout

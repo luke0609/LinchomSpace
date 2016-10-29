@@ -1,12 +1,13 @@
 package linchom.com.linchomspace.shopping.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/10/25.
  */
 
-public class GoodsCartBean {
+public class GoodsCartBean implements Serializable{
 
     public String result;
 
@@ -16,7 +17,7 @@ public class GoodsCartBean {
 
     public String url;
 
-    public class Data{
+    public class Data implements Serializable{
 
 
 
@@ -38,6 +39,7 @@ public class GoodsCartBean {
                 public String formated_market_price;
                 public String formated_goods_price;
                 public String formated_subtotal;
+                 public String  goods_img;
 
 
 

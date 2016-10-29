@@ -35,7 +35,7 @@
 
             <CheckBox
                 android:id="@+id/cb_goods_cart_modify"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="25dp"
                 android:layout_alignParentRight="true"
                 android:button="@null"
                 android:layout_centerVertical="true"
@@ -167,6 +167,7 @@
                 >
 
                 <Button
+                    android:id="@+id/btn_goods_cart_delete"
                     android:textSize="16sp"
                     android:textColor="#ffffff"
                     android:text="删除"
@@ -206,12 +207,13 @@
                     android:focusableInTouchMode="true"
                     >
 
-                    <EditText
-                        android:layout_centerInParent="true"
-                        android:text="10"
-                        android:textSize="15sp"
+                    <TextView
+                        android:textSize="19sp"
+                        android:gravity="center"
+                        android:id="@+id/et_goods_cart_buynum"
+                        android:text="1"
                         android:textColor="#808080"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
                         />

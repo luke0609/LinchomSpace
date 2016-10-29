@@ -60,7 +60,7 @@
             android:name=".mine.log_activity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".mine.Image_activity"
+            android:name=".mine.Information_activity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsCateActivity"
@@ -87,6 +87,8 @@
         <activity
             android:name=".shopping.GoodsCommentActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".mine.Mydisclose"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".shopping.GoodsCartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -151,7 +153,6 @@
         <activity
             android:name=".shopping.GoodsAllOrderActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".mine.Mydisclose" />
         <activity
             android:name=".search.SearchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

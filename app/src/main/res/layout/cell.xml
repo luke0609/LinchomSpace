@@ -28,7 +28,7 @@
             android:paddingTop="7dp">
 
             <TextView
-                android:id="@+id/content_top"
+                android:id="@+id/content_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -38,6 +38,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/content_service_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -65,7 +66,7 @@
                 android:id="@+id/head_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@mipmap/head_image" />
 
 
@@ -89,7 +90,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/content_avatar_title"
+                    android:id="@+id/content_people"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,21 +99,21 @@
                     android:text="发布人" />
 
                 <ImageView
-                    android:id="@+id/content_avatar"
+                    android:id="@+id/content_userhead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/content_avatar_title"
+                    android:layout_below="@id/content_people"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/avatar" />
 
                 <TextView
-                    android:id="@+id/content_name_view"
+                    android:id="@+id/content_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/content_avatar"
+                    android:layout_alignTop="@id/content_userhead"
                     android:layout_marginBottom="2dp"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@id/content_avatar"
+                    android:layout_toEndOf="@id/content_userhead"
                     android:text="梁京生"
                     android:textColor="@color/mainTextColor"
                     android:textSize="18sp"
@@ -120,12 +121,7 @@
 
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/arrow" />
+
 
             </RelativeLayout>
 
@@ -152,7 +148,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-
+                    android:id="@+id/content_content"
                     android:textColor="@color/mainTextColor"
                     android:text="利用综合布线技术、网络通信技术、 安全防范技术、自动控制技术、音视频技术将家居生活有关的设施集成，构建高效的住宅设施与家庭日程事务的管理系统，提升家居安全性、便利性、舒适性、艺术性，并实现环保节能的居住环境。"/>
             </RelativeLayout>
@@ -184,7 +180,7 @@
                         android:text="联系方式" />
 
                     <TextView
-                        android:id="@+id/content_from_address_1"
+                        android:id="@+id/content_mobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@id/content_from_badge"
@@ -209,10 +205,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:text="截至日期" />
+                        android:text="发布日期" />
 
                     <TextView
-                        android:id="@+id/content_to_address_1"
+                        android:id="@+id/content_add_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@id/content_to_badge"
@@ -264,7 +260,7 @@
                         android:text="详细地址" />
 
                     <TextView
-                        android:id="@+id/content_delivery_time"
+                        android:id="@+id/content_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@id/content_delivery_date_badge"
@@ -272,6 +268,7 @@
                         android:text="江苏省苏州市吴中区独墅湖仁爱路1号"
                         android:textColor="@color/mainTextColor"
                         android:textSize="14sp"
+                        android:layout_marginBottom="15dp"
                         />
 
                 </RelativeLayout>
@@ -280,18 +277,7 @@
 
             </LinearLayout>
 
-            <!-- request button -->
-            <TextView
-                android:id="@+id/content_request_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/btnRequest"
-                android:padding="10dp"
-                android:text="REQUEST"
-                android:textAlignment="center"
-                android:textColor="@color/mainTextColor"
-                android:textSize="20sp" />
+
 
 
         </LinearLayout>
@@ -324,7 +310,7 @@
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/title_price"
+                android:id="@+id/service_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -344,7 +330,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/title_date_label"
+                android:id="@+id/title_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/title_time_label"
@@ -375,7 +361,7 @@
                 android:src="@mipmap/from_to_purple" />
 
             <TextView
-                android:id="@+id/title_from_address"
+                android:id="@+id/title_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/title_from_to_dots"
@@ -394,14 +380,14 @@
                 android:id="@+id/title_from_to_dots_divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/title_from_address"
+                android:layout_below="@id/title_category"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_toEndOf="@+id/title_from_to_dots"
                 android:src="@color/contentDividerLine" />
 
             <TextView
-                android:id="@+id/title_to_address"
+                android:id="@+id/title_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title_from_to_dots_divider"
@@ -415,7 +401,7 @@
 
 
             <TextView
-                android:id="@+id/title_requests_count"
+                android:id="@+id/title_status"
                 style="@style/TitleBadgeText"
                 android:text="未完成"
                 android:textSize="14sp"
@@ -428,47 +414,28 @@
                 style="@style/TitleBadgeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/title_requests_count"
-                android:layout_alignStart="@id/title_requests_count"
+                android:layout_above="@id/title_status"
+                android:layout_alignStart="@id/title_status"
                 android:text="状态" />
 
-            <TextView
-                android:id="@+id/title_weight"
-                style="@style/TitleBadgeText"
-                android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/tv_lefttime"
-                android:text="三天" />
+
 
             <TextView
-                style="@style/TitleBadgeTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/title_weight"
-                android:singleLine="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/tv_lefttime"
-                android:text="剩余时间" />
-
-            <TextView
-                android:id="@+id/title_pledge"
+                android:id="@+id/title_release"
                 style="@style/TitleBadgeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="公司"
                 android:textSize="14sp"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 style="@style/TitleBadgeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/title_pledge"
-                android:layout_alignStart="@id/title_pledge"
+                android:layout_above="@id/title_release"
+                android:layout_alignStart="@id/title_release"
                 android:text="类型" />
 
         </RelativeLayout>

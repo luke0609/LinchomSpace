@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.GoodsAllOrderActivity;
 
 
 public class MineFragment extends Fragment {
@@ -70,7 +71,7 @@ public class MineFragment extends Fragment {
         ((RelativeLayout) view.findViewById(R.id.person_center_content2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Indent_activity.class);
+                Intent intent = new Intent(getActivity(), GoodsAllOrderActivity.class);
                 startActivity(intent);
             }
         });
@@ -109,6 +110,7 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
     }
 

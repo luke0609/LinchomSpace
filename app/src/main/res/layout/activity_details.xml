@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="头像"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="昵称"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="性别"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
@@ -174,7 +174,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="生日"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
@@ -217,7 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="电话"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />

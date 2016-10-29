@@ -7,9 +7,9 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="#f0f0f0">
+        android:background="#212121">
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="30dp"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="发布话题"
             android:textSize="20sp"
-            android:textColor="#808080"
+            android:textColor="#fff"
             android:layout_centerInParent="true"/>
 
     </RelativeLayout>
@@ -94,12 +94,13 @@
     <Button
         android:id="@+id/btn_publish"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:text="发      布"
-        android:textColor="#808080"
-        android:textSize="16sp"
+        android:background="#212121"
+        android:textColor="#fff"
+        android:textSize="18sp"
 
         android:layout_below="@+id/add_content"
         />

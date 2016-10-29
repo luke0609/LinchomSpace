@@ -11,8 +11,8 @@
         android:layout_height="48dp">
         <ImageView
             android:id="@+id/iv_disback"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/back"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
@@ -96,6 +96,7 @@
         android:focusableInTouchMode="true"
         >
         <EditText
+            android:id="@+id/ed_disclose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="分享身边新鲜事......"

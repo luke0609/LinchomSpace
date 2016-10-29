@@ -27,7 +27,7 @@
         android:id="@+id/bar_goods_area_tianjia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="添加收货地址"
+        app:titleText="添加/修改收货地址"
         app:titleRightVis="false"
 
         >
@@ -118,6 +118,7 @@
                    />
 
                <EditText
+                   android:id="@+id/et_goods_addaddress_tel"
                    android:layout_centerVertical="true"
                    android:layout_toRightOf="@id/tv_goods_addaddress_tel"
                    android:layout_width="match_parent"
@@ -208,9 +209,10 @@
 
 
               <EditText
+                  android:id="@+id/et_goods_cart_detailaddress"
                   android:textColor="#808080"
                   android:background="@null"
-                  android:hint="请填详细地址:"
+                  android:hint="请填详细地址:填写时请带上省市区"
                   android:layout_marginRight="10dp"
                   android:layout_marginLeft="10dp"
                   android:layout_width="match_parent"
@@ -222,33 +224,43 @@
 
            </RelativeLayout>
 
+
            <RelativeLayout
                android:layout_below="@id/rl_goods_area_address"
-
-               android:id="@+id/rl_goods_area_default"
-
                android:layout_width="match_parent"
-               android:layout_height="48dp">
+               android:layout_height="48dp"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+
+               >
 
                <TextView
+                   android:id="@+id/tv_goods_area_youbian"
                    android:layout_marginLeft="10dp"
                    android:textColor="#808080"
                    android:layout_centerVertical="true"
-                   android:text="设为默认收货地址"
+                   android:text="邮政编码:"
                    android:textSize="18sp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
 
                    />
-               
-               
-               <linchom.com.linchomspace.shopping.widget.GoodsSwitchButton
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
+
+               <EditText
+
+
+                   android:id="@+id/et_goods_cart_youbian"
                    android:layout_centerVertical="true"
-                   android:layout_alignParentRight="true"
-                   android:layout_marginRight="10dp"
+                   android:layout_toRightOf="@id/tv_goods_area_youbian"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@null"
+                   android:textColor="#808080"
+                   android:textSize="18sp"
+                   android:inputType="number"
                    />
+
+
 
 
 

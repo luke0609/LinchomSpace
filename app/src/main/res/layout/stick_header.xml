@@ -1,0 +1,83 @@
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:id="@+id/cmn_content"
+        android:background="@drawable/chat_item_shape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/title"
+            android:text="我在北京有个别墅客户想安装智能家居，谁有好的品牌推荐？"
+            android:textColor="#313233"
+            android:textSize="20sp"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_msg"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:id="@+id/user_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:src="@mipmap/avatar"/>
+            <TextView
+                android:textColor="#7a7c80"
+                android:id="@+id/tv_chat_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/user_logo"
+                android:layout_alignParentTop="true"
+                android:text="用户名"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:singleLine="true"/>
+            <Button
+                android:id="@+id/rmk_tip"
+                android:textSize="13sp"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/tv_chat_username"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:clickable="false"
+                android:layout_alignTop="@+id/tv_chat_username"
+                android:background="@drawable/chat_louzhu_shape"
+                android:textColor="#fff"
+                android:text="楼主"/>
+
+            <TextView
+                android:textColor="#ABAEB2"
+                android:id="@+id/tv_chat_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016-10-14"
+                android:textSize="13sp"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/tv_chat_username"
+                android:layout_toRightOf="@+id/user_logo"
+                android:layout_alignBottom="@+id/user_logo"
+                android:layout_marginLeft="10dp"
+
+                />
+
+
+        </RelativeLayout>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_chat_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_msg"
+            android:layout_marginBottom="10dp"
+            android:textColor="#313233"
+            android:textSize="15sp"
+            android:text="请问厨房等家具怎么摆放比较合适，家里的阳台是向阳的，那么背光的呢？？"/>
+
+    </LinearLayout>
