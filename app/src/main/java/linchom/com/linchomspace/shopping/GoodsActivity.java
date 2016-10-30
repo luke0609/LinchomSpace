@@ -119,6 +119,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean collectFlag=false;
 
+    private String newStringGoodsId="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -451,9 +453,55 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             //存在收藏Id 什么也不做
 
-            Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
+            if(goodsIdString!=null&&goodsIdString!=""){
 
+                newStringGoodsId="";
+
+
+
+                for(int i = 0;i<goodsIds.length;i++){
+
+                    if(goodsIds[i].equals(goodsId)){
+                        //什么也不做
+
+
+
+                    }else{
+
+                        //重新拼字符串
+                        newStringGoodsId=newStringGoodsId+goodsIds[i]+",";
+
+
+                        Log.i(TAG,"newStringGoodsId"+newStringGoodsId);
+
+                    }
+
+
+                }
+
+
+            }
+
+
+            SharedPreferences.Editor editor=  sharedPreferences.edit();
+
+
+
+            editor.putString("goodsId",newStringGoodsId);
+
+            editor.commit();
+
+
+
+
+
+            Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
             iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
+            collectFlag=false;
+
+
+            // toCancelCollection();
+
 
 
         }else{
@@ -468,8 +516,14 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             editor.commit();
 
+
+           // toJoinCollection();
+
+            Toast.makeText(getApplicationContext(),"添加收藏",Toast.LENGTH_SHORT).show();
+
             iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
 
+            collectFlag=true;
 
 
         }
@@ -480,6 +534,104 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
 
         Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
+
+
+
+    }
+
+    private void toCancelCollection() {
+
+
+
+
+
+        //app.linchom.com/appapi.php?act=drop_collect_article&type=2&user_id=12&id=415
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","drop_collect_article");
+
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("type","2");
+
+        requestParams.addBodyParameter("id",goodsId);
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+
+                Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
+
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+
+
+
+
+    }
+
+    private void toJoinCollection() {
+
+        //app.linchom.com/appapi.php?act=add_collect_goods&user_id=12&goods_id=20
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","add_collect_goods");
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("goods_id",goodsId);
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+
+
+                Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
 
 
 
