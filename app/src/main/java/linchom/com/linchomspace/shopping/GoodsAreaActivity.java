@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class GoodsAreaActivity extends AppCompatActivity {
    // private List<CheckBox> ckList = new ArrayList<CheckBox>();
 
     private Set<CheckBox> ckSet = new HashSet<CheckBox>();
+    private RelativeLayout rl_goods_area_pro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
     private void initView() {
         btn_goods_area_addaddress = ((Button) findViewById(R.id.btn_goods_area_addaddress));
         lv_goods_area_list = ((ListView) findViewById(R.id.lv_goods_area_list));
+
+        rl_goods_area_pro = ((RelativeLayout) findViewById(R.id.rl_goods_area_pro));
 
     }
 
@@ -133,11 +137,17 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
 
                 ck_goods_area_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
 
+
                         if(isChecked&&position==(int)ck_goods_area_check.getTag()){
+                            rl_goods_area_pro.setVisibility(View.VISIBLE);
+
 
                             //相当于修改成默认地址
 
@@ -189,15 +199,23 @@ public class GoodsAreaActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(String result) {
 
+                                    Log.i(TAG,"默认地址"+result);
+
+
+
+                                    rl_goods_area_pro.setVisibility(View.GONE);
+
+
                                     Toast.makeText(getApplicationContext(),"选择成功",Toast.LENGTH_SHORT).show();
-
-
 
 
                                 }
 
                                 @Override
                                 public void onError(Throwable ex, boolean isOnCallback) {
+
+                                    Log.i(TAG,"默认地址ex"+ex);
+
 
                                 }
 
@@ -386,9 +404,13 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                 AreaListBean areaListBean = gson.fromJson(result,AreaListBean.class);
 
+                ckSet.clear();
+
                 areaList.clear();
 
                 areaList.addAll(areaListBean.data);
+
+                checkStatusMap.clear();
 
                 for(int i= 0;i<areaList.size();i++){
 
