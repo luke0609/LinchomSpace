@@ -47,6 +47,7 @@ import linchom.com.linchomspace.service.utils.ResUtil;
 import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
 import static android.R.attr.y;
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 
 public class ServiceFragment extends Fragment implements View.OnClickListener {
@@ -85,6 +86,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private int page =1;
     private int pageCount=1;
     private boolean refreshFlag =false;
+    private boolean pageSelecter=true;
     private CommonAdapter<ServiceBean.DataBean.ItemsBean> serviceCommonAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,6 +94,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
 
         view_main = inflater.inflate(R.layout.fragment_service, container, false);
         initData();
+        initMap();
         initView();
         return view_main;
     }
@@ -199,16 +202,23 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
+                unfoldedIndexes.clear();
+                page =1;
                 if (position == 0)
                 { request.setChecked(true);
+                    pageSelecter=true;
                     requirePullToRefresh();
+
                 }
                 else {
+                    service.setChecked(true);
+                    pageSelecter=false;
                     servicePullToRefresh();
-                    service.setChecked(true);}
-                refreshFlag=true;
-                page =1;
-                unfoldedIndexes.clear();
+                   }
+
+
+
+
             }
 
             @Override
@@ -563,9 +573,18 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClickRight(String value) {
                 wheelViewDialogFragment.dismiss();
+                page=1;
                 service_category.setText(value);
-
-
+                category_id=region.get(value);
+                unfoldedIndexes.clear();
+                System.out.println("category_id="+category_id);
+                Log.i("flag",(pageSelecter?"需求":"服务"));
+                if(pageSelecter)
+                {
+                    requirePullToRefresh();
+                }else {
+                    servicePullToRefresh();
+                }
             }
 
             @Override
@@ -589,8 +608,17 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClickRight(String value) {
                 wheelViewDialogFragment.dismiss();
+                page=1;
+                unfoldedIndexes.clear();
                 tv_address.setText(value);
-
+                region_id=map_category.get(value);
+                System.out.println(region_id);
+                if(pageSelecter)
+                {
+                    requirePullToRefresh();
+                }else {
+                    servicePullToRefresh();
+                }
             }
 
             @Override
