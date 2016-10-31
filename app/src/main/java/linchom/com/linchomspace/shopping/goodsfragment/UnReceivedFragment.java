@@ -214,7 +214,11 @@ public class UnReceivedFragment  extends Fragment {
 
                     btn_orderform_left.setText("取消订单");
 
+                    btn_orderform_left.setVisibility(View.VISIBLE);
+
                     btn_orderform_right.setText("付款");
+
+                    btn_orderform_right.setVisibility(View.VISIBLE);
 
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -291,6 +295,8 @@ public class UnReceivedFragment  extends Fragment {
 
                     btn_orderform_right.setText("确认收货");
 
+                    btn_orderform_right.setVisibility(View.VISIBLE);
+
                     btn_orderform_right.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -311,7 +317,11 @@ public class UnReceivedFragment  extends Fragment {
 
                     btn_orderform_left.setText("退货");
 
+                    btn_orderform_left.setVisibility(View.VISIBLE);
+
                     btn_orderform_right.setText("评价");
+
+                    btn_orderform_right.setVisibility(View.VISIBLE);
 
 
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {

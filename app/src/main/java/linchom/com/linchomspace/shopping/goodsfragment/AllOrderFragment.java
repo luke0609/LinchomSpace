@@ -99,6 +99,8 @@ public class AllOrderFragment extends Fragment {
         ptr_goods_orderform = ((PullToRefreshListView) view.findViewById(R.id.ptr_goods_orderform));
 
 
+
+
     }
 
     private void initData() {
@@ -213,6 +215,9 @@ public class AllOrderFragment extends Fragment {
                     tv_orderform_orderstatus.setText("等待买家付款");
 
                     //取消订单    付款
+                    btn_orderform_left.setVisibility(View.VISIBLE);
+
+                    btn_orderform_right.setVisibility(View.VISIBLE);
 
                     btn_orderform_left.setText("取消订单");
 
@@ -293,6 +298,8 @@ public class AllOrderFragment extends Fragment {
 
                     btn_orderform_right.setText("确认收货");
 
+                    btn_orderform_right.setVisibility(View.VISIBLE);
+
                     btn_orderform_right.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -312,8 +319,10 @@ public class AllOrderFragment extends Fragment {
                     //退货    评价
 
                     btn_orderform_left.setText("退货");
+                    btn_orderform_left.setVisibility(View.VISIBLE);
 
                     btn_orderform_right.setText("评价");
+                    btn_orderform_right.setVisibility(View.VISIBLE);
 
 
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {
