@@ -1,85 +1,107 @@
 package linchom.com.linchomspace.mine;
-
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.shizhefei.view.indicator.BannerComponent;
-import com.shizhefei.view.indicator.Indicator;
-import com.shizhefei.view.indicator.IndicatorViewPager;
+import com.google.gson.Gson;
 
+import org.xutils.common.Callback;
+import org.xutils.common.util.DensityUtil;
+import org.xutils.http.RequestParams;
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.mine.pojo.ActivityInfoBean;
+import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
+import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class Active_activity extends AppCompatActivity {
 
-    private LayoutInflater inflate;
-
-    private BannerComponent bannerComponent;
-
-    private ViewPager banner_viewPager;
-    private Indicator banner_indicator;
+    private GoodsCommonAdapter<ActivityInfoBean.DataBean> activityCommonAdapter;
+    private ListView lv_activity;
+    List<ActivityInfoBean.DataBean> dataBeanList=new ArrayList<>();
+    List<ActivityInfoBean.DataBean> imgList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_activity);
-        banner_viewPager = ((ViewPager) findViewById(R.id.banner_viewPager));
-        banner_indicator = ((Indicator) findViewById(R.id.banner_indicator));
 
-        bannerComponent=new BannerComponent(banner_indicator,banner_viewPager,false);
-        inflate = LayoutInflater.from(getApplicationContext());
-        bannerComponent.setAdapter(adapter);
-        bannerComponent.setAutoPlayTime(2500);
-    }
+        lv_activity = ((ListView) findViewById(R.id.lv_activity));
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        bannerComponent.startAutoPlay();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        bannerComponent.stopAutoPlay();
-    }
-
-    private int[] images = {R.drawable.start_i1, R.drawable.start_i2, R.drawable.start_i3, R.drawable.start_i4};
-
-    private IndicatorViewPager.IndicatorPagerAdapter adapter=new IndicatorViewPager.IndicatorViewPagerAdapter() {
-        @Override
-        public int getCount() {
-            return images.length;
-        }
-
-        @Override
-        public View getViewForTab(int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                convertView = inflate.inflate(R.layout.tab_guide, container, false);
+        lv_activity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(imgList.get(position).ad_link));
+                startActivity(intent);
             }
-            return convertView;
-        }
+        });
 
-        @Override
-        public View getViewForPage(int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                convertView = new View(getApplicationContext());
-                convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        initData();
+        initEvent();
+
+    }
+
+    private void initEvent() {
+        activityCommonAdapter=new GoodsCommonAdapter<ActivityInfoBean.DataBean>(getApplicationContext(),imgList,R.layout.activity_items) {
+
+
+            @Override
+            public void convert(GoodsViewHolder viewHolder, ActivityInfoBean.DataBean dataBean, int position) {
+                ImageView imageView=viewHolder.getViewById(R.id.iv_activity);
+                x.image().bind(imageView,dataBean.img_url);
             }
-            convertView.setBackgroundResource(images[position]);
-            return convertView;
-        }
+        };
+        lv_activity.setAdapter(activityCommonAdapter);
 
-        @Override
-        public int getItemPosition(Object object) {
-            return PagerAdapter.POSITION_NONE;
-        }
-    };
+    }
+
+    private void initData() {
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=ads");
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+//                System.out.println("000000000000"+result);
+                Gson gson=new Gson();
+                ActivityInfoBean bean=gson.fromJson(result,ActivityInfoBean.class);
+//                System.out.println("3333333333333333333"+bean);
+                dataBeanList.addAll(bean.data);
+//                System.out.println("8888888888888888888"+dataBeanList);
+                for (int i=0;i<dataBeanList.size();i++){
+                    if (dataBeanList.get(i).position_desc.equals("我的下的活动页面")){
+                        imgList.add(dataBeanList.get(i));
+                    }
+                }
+
+                initEvent();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                System.out.println("76667676767676776677"+ex);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
 }
+

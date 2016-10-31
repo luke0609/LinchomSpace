@@ -2,6 +2,8 @@ package linchom.com.linchomspace.shopping.goodsadapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,17 +16,19 @@ import org.xutils.x;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.shopping.pojo.GoodsAdvBean;
+import linchom.com.linchomspace.shopping.GoodsActivity;
+import linchom.com.linchomspace.shopping.pojo.GoodsAdvDataBean;
 
 /**
  * Created by Administrator on 2016/10/12.
  */
 public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPagerAdapter {
 
+    private static final String TAG = "MyGoodsIndicatorAdapter";
     Context context ;
-    List<GoodsAdvBean> advList;
+    List<GoodsAdvDataBean> advList;
 
-    public MyGoodsIndicatorAdapter(Context context, List<GoodsAdvBean> advList){
+    public MyGoodsIndicatorAdapter(Context context, List<GoodsAdvDataBean> advList){
         this.context =context;
         this.advList =advList;
     }
@@ -40,7 +44,7 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
 
             if(convertView==null){
 
-                convertView= View.inflate(context, R.layout.goods_tab_guide,null);
+                convertView= View.inflate(context, R.layout.tab_guide,null);
 
             }
 
@@ -50,7 +54,7 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
     }
 
     @Override
-    public View getViewForPage(int position, View convertView, ViewGroup container) {
+    public View getViewForPage(final int position, View convertView, ViewGroup container) {
 
         if(convertView==null){
 
@@ -61,6 +65,32 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
         }
 
         ImageView imageView =(ImageView)convertView;
+
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent =new Intent(context, GoodsActivity.class);
+
+                Bundle bundle =new Bundle();
+
+                bundle.putString("goodsId",advList.get(position%advList.size()).goods_id);
+
+
+                intent.putExtra("bundle",bundle);
+
+
+                   context.startActivity(intent);
+
+
+
+
+
+
+
+            }
+        });
 
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 
@@ -73,7 +103,7 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
                 .setFailureDrawableId(R.drawable.g1)//加载失败后默认显示图片
                 .build();
 
-        x.image().bind(imageView, advList.get(position%advList.size()).advImg,imageOptions);
+        x.image().bind(imageView, advList.get(position%advList.size()).img_url,imageOptions);
 
 
 
@@ -81,4 +111,8 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
 
 
     }
+
+
+
+
 }

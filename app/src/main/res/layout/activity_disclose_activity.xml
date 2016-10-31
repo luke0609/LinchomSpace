@@ -186,37 +186,5 @@
         android:layout_height="1dp"
         android:background="#ccc"
         />
-    <RelativeLayout
-        android:layout_below="@id/v_dianhua"
-        android:id="@+id/rl_dw"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
-        <ImageView
-            android:id="@+id/iv_dw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/piont"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            />
-        <EditText
-            android:id="@+id/tv_dw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_dw"
-            android:hint="公司(单位)"
-            android:textSize="16sp"
-            android:textColor="#808080"
-            android:background="@null"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            />
-        <View
-            android:id="@+id/v_dw"
-            android:layout_below="@id/tv_dw"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#ccc"
-            android:layout_marginTop="15dp"/>
-    </RelativeLayout>
+
 </RelativeLayout>
