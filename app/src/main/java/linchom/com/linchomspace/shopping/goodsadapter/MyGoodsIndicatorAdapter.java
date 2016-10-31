@@ -14,7 +14,7 @@ import org.xutils.x;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.shopping.pojo.GoodsAdvBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsAdvDataBean;
 
 /**
  * Created by Administrator on 2016/10/12.
@@ -22,9 +22,9 @@ import linchom.com.linchomspace.shopping.pojo.GoodsAdvBean;
 public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPagerAdapter {
 
     Context context ;
-    List<GoodsAdvBean> advList;
+    List<GoodsAdvDataBean> advList;
 
-    public MyGoodsIndicatorAdapter(Context context, List<GoodsAdvBean> advList){
+    public MyGoodsIndicatorAdapter(Context context, List<GoodsAdvDataBean> advList){
         this.context =context;
         this.advList =advList;
     }
@@ -73,7 +73,7 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
                 .setFailureDrawableId(R.drawable.g1)//加载失败后默认显示图片
                 .build();
 
-        x.image().bind(imageView, advList.get(position%advList.size()).advImg,imageOptions);
+        x.image().bind(imageView, advList.get(position%advList.size()).img_url,imageOptions);
 
 
 
