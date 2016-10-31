@@ -185,10 +185,6 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
         }
 
-
-
-
-
     }
 
     private void initEvent() {
@@ -293,7 +289,6 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         // &mobile=18500551431
         // &address_id=27
 
-        rl_goods_add_address_load.setVisibility(View.VISIBLE);
 
 
 
@@ -309,6 +304,9 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(getApplicationContext(),"信息不能为空",Toast.LENGTH_SHORT).show();
 
         }else{
+
+            rl_goods_add_address_load.setVisibility(View.VISIBLE);
+
 
             //http://app.linchom.com/appapi.php?act=add_consignee&consignee=%E5%BC%A0%E6%99%93%E6%96%87&province=2&city=52&district=503&email=2070118814@qq.com&address=%E5%8C%97%E4%BA%AC&zipcode=10000&mobile=18500551431
 
@@ -389,7 +387,6 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
     private void saveAddress() {
 
-        rl_goods_add_address_load.setVisibility(View.VISIBLE);
 
         name=et_goods_addaddress_name.getText().toString();
         tel =et_goods_addaddress_tel.getText().toString();
@@ -405,6 +402,9 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(getApplicationContext(),"信息不能为空",Toast.LENGTH_SHORT).show();
 
         }else{
+
+            rl_goods_add_address_load.setVisibility(View.VISIBLE);
+
 
             //http://app.linchom.com/appapi.php?act=add_consignee&consignee=%E5%BC%A0%E6%99%93%E6%96%87&province=2&city=52&district=503&email=2070118814@qq.com&address=%E5%8C%97%E4%BA%AC&zipcode=10000&mobile=18500551431
 
@@ -502,6 +502,13 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
         getProvinceData();
 
+
+
+
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+
         goods_city_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -513,15 +520,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
                 tv_goods_province.setText(provinceList.get(position).region_name);
 
+                popupWindow.dismiss();
+
 
 
             }
         });
-
-
-
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setWidth(200);
 
@@ -535,17 +539,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
                 Log.i("mengdd", "onTouch : ");
 
                 return false;
-                // 这里如果返回true的话，touch事件将被拦截
-                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
         });
 
-        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
-        // 我觉得这里是API的一个bug
         popupWindow.setBackgroundDrawable(getResources().getDrawable(
-                R.mipmap.ic_launcher));
+                R.drawable.goods_default_city));
 
-        // 设置好参数之后再show
         popupWindow.showAsDropDown(view);
 
 
@@ -573,6 +572,11 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
         getCityData();
 
+
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+
         goods_city_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -584,13 +588,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
                 tv_goods_city.setText(cityList.get(position).region_name);
 
+                popupWindow.dismiss();
+
 
 
             }
         });
-
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setWidth(200);
 
@@ -604,17 +607,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
                 Log.i("mengdd", "onTouch : ");
 
                 return false;
-                // 这里如果返回true的话，touch事件将被拦截
-                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
         });
 
-        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
-        // 我觉得这里是API的一个bug
         popupWindow.setBackgroundDrawable(getResources().getDrawable(
-                R.mipmap.ic_launcher));
+                R.drawable.goods_default_city));
 
-        // 设置好参数之后再show
         popupWindow.showAsDropDown(view);
 
 
@@ -646,6 +644,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
         getAreaData();
 
+
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+
+
         goods_city_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -657,13 +661,12 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
                 tv_goods_area.setText(areaList.get(position).region_name);
 
+                popupWindow.dismiss();
+
 
 
             }
         });
-
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setWidth(200);
 
@@ -685,7 +688,7 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
         // 我觉得这里是API的一个bug
         popupWindow.setBackgroundDrawable(getResources().getDrawable(
-                R.mipmap.ic_launcher));
+                R.drawable.goods_default_city));
 
         // 设置好参数之后再show
         popupWindow.showAsDropDown(view);
