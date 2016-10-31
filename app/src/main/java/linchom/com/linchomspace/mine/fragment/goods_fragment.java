@@ -98,7 +98,7 @@ public class goods_fragment extends Fragment {
     }
 
     public void initEvent() {
-        System.out.println("999999999999999999");
+//        System.out.println("999999999999999999");
         loveCommonAdapter=new GoodsCommonAdapter<LovedInfoBean.DataBean.Items>(getActivity(),loveList,R.layout.my_loved_activity) {
             @Override
             public void convert(GoodsViewHolder viewHolder, LovedInfoBean.DataBean.Items items, int position) {
@@ -173,7 +173,31 @@ public class goods_fragment extends Fragment {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+                RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=drop_collect_article");
+                requestParams.addBodyParameter("user_id","12");
+                requestParams.addBodyParameter("type","2");
+                requestParams.addBodyParameter("id",loveList.get(mDelId).goods_id);
+                x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+
+                    }
+                });
                 deleteItem();
             }
         });
