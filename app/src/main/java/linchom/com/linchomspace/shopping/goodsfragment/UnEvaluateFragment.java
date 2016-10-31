@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +71,9 @@ public class UnEvaluateFragment extends Fragment {
     private String userId;
 
     TextView tv_orderform_orderstatus;
+    private RelativeLayout rl_goods_orderform_load_pro;
+
+    private boolean pullFlag =false;
 
 
     @Nullable
@@ -98,6 +102,8 @@ public class UnEvaluateFragment extends Fragment {
     private void initView() {
 
         ptr_goods_orderform = ((PullToRefreshListView) view.findViewById(R.id.ptr_goods_orderform));
+
+        rl_goods_orderform_load_pro = ((RelativeLayout) view.findViewById(R.id.rl_goods_orderform_load_pro));
 
 
     }
@@ -131,6 +137,7 @@ public class UnEvaluateFragment extends Fragment {
                 PullToRefreshBase.Mode mode = ptr_goods_orderform.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    pullFlag=true;
 
                     page=1;
 
@@ -331,6 +338,10 @@ public class UnEvaluateFragment extends Fragment {
                         public void onClick(View v) {
                             toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"3");
 
+                            page=1;
+                            pullFlag=false;
+                            getData();
+
 
 
                         }
@@ -456,6 +467,12 @@ public class UnEvaluateFragment extends Fragment {
         //orderStatusInfo ;
         //shippingStatusInfo;
         // payStatusInfo ;
+        if(page==1&&pullFlag==false){
+
+            rl_goods_orderform_load_pro.setVisibility(View.VISIBLE);
+
+        }
+
 
         RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php");
 
@@ -511,6 +528,9 @@ public class UnEvaluateFragment extends Fragment {
                     ptr_goods_orderform.onRefreshComplete();
 
                 }
+
+                rl_goods_orderform_load_pro.setVisibility(View.GONE);
+
 
 
 

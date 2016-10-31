@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +73,10 @@ public class UnPayFagment extends Fragment {
     private String userId;
 
     TextView tv_orderform_orderstatus;
+    private RelativeLayout rl_goods_orderform_load_pro;
+
+
+    private boolean pullFlag=false;
 
     @Nullable
     @Override
@@ -101,6 +106,8 @@ public class UnPayFagment extends Fragment {
     private void initView() {
 
         ptr_goods_orderform = ((PullToRefreshListView) view.findViewById(R.id.ptr_goods_orderform));
+
+        rl_goods_orderform_load_pro = ((RelativeLayout) view.findViewById(R.id.rl_goods_orderform_load_pro));
 
 
     }
@@ -134,6 +141,8 @@ public class UnPayFagment extends Fragment {
                 PullToRefreshBase.Mode mode = ptr_goods_orderform.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+
+                    pullFlag=true;
 
                     page=1;
 
@@ -232,9 +241,20 @@ public class UnPayFagment extends Fragment {
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(getActivity(),"测试",Toast.LENGTH_SHORT).show();
+
+
+
+
 
                             toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
+
+                            page=1;
+
+                            pullFlag=false;
+
+                            getData();
+
+
 
                         }
                     });
@@ -295,6 +315,8 @@ public class UnPayFagment extends Fragment {
 
 
                 }else if("5".equals(orderStatus)&&"1".equals(shippingStatus)&&"2".equals(payStatus)){
+
+
 
                     //已发货               等待买家收货
                     tv_orderform_orderstatus.setText("等待买家收货");
@@ -459,6 +481,14 @@ public class UnPayFagment extends Fragment {
 
     private void getData() {
 
+        if(page==1&&pullFlag==false){
+
+            rl_goods_orderform_load_pro.setVisibility(View.VISIBLE);
+
+
+        }
+
+
         //orderStatusInfo ;
         //shippingStatusInfo;
         // payStatusInfo ;
@@ -517,6 +547,9 @@ public class UnPayFagment extends Fragment {
                     ptr_goods_orderform.onRefreshComplete();
 
                 }
+                rl_goods_orderform_load_pro.setVisibility(View.GONE);
+
+
 
 
 

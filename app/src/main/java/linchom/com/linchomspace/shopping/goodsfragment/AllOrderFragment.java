@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +69,9 @@ public class AllOrderFragment extends Fragment {
     private String userId;
 
     TextView tv_orderform_orderstatus;
+    private RelativeLayout rl_goods_orderform_load_pro;
 
+    private boolean pullFlag=false;
 
 
     @Nullable
@@ -98,7 +101,7 @@ public class AllOrderFragment extends Fragment {
 
         ptr_goods_orderform = ((PullToRefreshListView) view.findViewById(R.id.ptr_goods_orderform));
 
-
+        rl_goods_orderform_load_pro = ((RelativeLayout) view.findViewById(R.id.rl_goods_orderform_load_pro));
 
 
     }
@@ -134,6 +137,8 @@ public class AllOrderFragment extends Fragment {
                 PullToRefreshBase.Mode mode = ptr_goods_orderform.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+
+                    pullFlag=true;
 
                     page=1;
 
@@ -229,6 +234,10 @@ public class AllOrderFragment extends Fragment {
 
                             toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
 
+                            page=1;
+                            pullFlag=false;
+                            getData();
+
                         }
                     });
 
@@ -248,6 +257,7 @@ public class AllOrderFragment extends Fragment {
 
                 }else if("2".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //取消    取消订单     买家取消订单
+
                     tv_orderform_orderstatus.setText("买家取消订单");
 
                     // 无   无
@@ -305,7 +315,11 @@ public class AllOrderFragment extends Fragment {
                         public void onClick(View v) {
 
 
+
                             toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"2");
+                            page=1;
+                            pullFlag=false;
+                            getData();
 
 
 
@@ -328,8 +342,12 @@ public class AllOrderFragment extends Fragment {
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"3");
 
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"3");
+                            page=1;
+                            pullFlag=false;
+                            getData();
 
 
                         }
@@ -476,7 +494,6 @@ public class AllOrderFragment extends Fragment {
                 Log.i(TAG,"result"+result);
 
 
-
             }
 
             @Override
@@ -503,9 +520,20 @@ public class AllOrderFragment extends Fragment {
 
     private void getData() {
 
+        if(page==1&&pullFlag==false){
+
+
+            rl_goods_orderform_load_pro.setVisibility(View.VISIBLE);
+
+
+        }
+
+
         //orderStatusInfo ;
         //shippingStatusInfo;
        // payStatusInfo ;
+
+
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -565,6 +593,8 @@ public class AllOrderFragment extends Fragment {
                     ptr_goods_orderform.onRefreshComplete();
 
                 }
+                rl_goods_orderform_load_pro.setVisibility(View.GONE);
+
 
 
 
