@@ -363,7 +363,7 @@ public class GoodsCartActivity extends AppCompatActivity {
     private void eventPtr() {
 
         ptr_cartList_ptr.setScrollingWhileRefreshingEnabled(true);
-        ptr_cartList_ptr.setMode(PullToRefreshBase.Mode.BOTH);
+        ptr_cartList_ptr.setMode(PullToRefreshBase.Mode.DISABLED);
         ptr_cartList_ptr.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -771,6 +771,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                 Log.i(TAG,cartList.size()+"");
 
+                checkStatusMap.clear();
+
 
                 for(int i=0;i<cartList.size();i++){
 
@@ -779,6 +781,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                 }
+                checkModifyStatusMap.clear();
 
                 for(int i=0;i<cartList.size();i++){
 
@@ -787,6 +790,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
                 }
+                buyNumMap.clear();
 
 
                 for(int i=0;i<cartList.size();i++){

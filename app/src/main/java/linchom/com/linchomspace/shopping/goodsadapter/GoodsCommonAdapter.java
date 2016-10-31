@@ -12,7 +12,7 @@ import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 /**
  * Created by Administrator on 2016/10/9.
  */
-public  abstract class GoodsCommonAdapter<T> extends BaseAdapter{
+public abstract class GoodsCommonAdapter<T> extends BaseAdapter{
     Context context;
 
     List<T> lists;
@@ -22,10 +22,8 @@ public  abstract class GoodsCommonAdapter<T> extends BaseAdapter{
 
 
             this.context =context ;
-
-
             this.lists  =lists;
-        this.layoutId=layoutId;
+            this.layoutId=layoutId;
     }
 
 

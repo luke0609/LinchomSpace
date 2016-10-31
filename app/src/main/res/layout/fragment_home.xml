@@ -47,7 +47,7 @@
             android:id="@+id/hs_navi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="#f5f4f3"
             android:scrollbars="none"
             >
 
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center_vertical"
-                android:background="#fff"
+                android:background="#f5f4f3"
                 >
 
                 <LinearLayout
@@ -73,7 +73,7 @@
                 <ImageView
                     android:id="@+id/img1"
                     android:layout_width="0dp"
-                    android:layout_height="4dp"
+                    android:layout_height="0dp"
                     android:background="#2022a1"
                     android:layout_gravity="bottom"
                     />
@@ -83,7 +83,7 @@
         <ImageButton
             android:id="@+id/ib_xiala"
             android:layout_alignParentRight="true"
-            android:background="#fff"
+            android:background="#f5f4f3"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
 

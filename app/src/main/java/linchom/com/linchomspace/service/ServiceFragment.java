@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.telecom.TelecomManager;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,23 +22,37 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ramotion.foldingcell.FoldingCell;
 
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.pojo.TopicList;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.ViewHolder;
+import linchom.com.linchomspace.service.pojo.ServiceBean;
 import linchom.com.linchomspace.service.utils.ResUtil;
 import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
+import static android.R.attr.y;
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 
 public class ServiceFragment extends Fragment implements View.OnClickListener {
+    Map<String,String> region = new HashMap<String,String>();
+    Map<String,String> map_category = new HashMap<String,String>();
 
     View view_main;
     private ViewPager vp_service;
@@ -47,13 +62,15 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private RadioButton request;
     private RadioButton service;
     private PullToRefreshListView plv_1;
-    private List<String> list = new ArrayList<>();
-    CommonAdapter<String> adapter;
+    private PullToRefreshListView plv_2;
+    private List<ServiceBean.DataBean.ItemsBean> requireList = new ArrayList<>();
+    private List<ServiceBean.DataBean.ItemsBean> serviceList = new ArrayList<>();
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private TextView service_category;
     private ImageView address_select;
     private TextView tv_address;
-
+    private String category_id="";
+    private String region_id="";
     private boolean clicked = false;// 记录加号按钮的点击状态，默认为没有点击
 
     private RelativeLayout plus_rl;
@@ -63,16 +80,49 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private Animation rotate_anticlockwise, rotate_clockwise, scale_max,
             scale_min, alpha_button;
     private RelativeLayout rl_plus;
-    private PullToRefreshListView plv_2;
 
+    private ListView requireListView;
+    private ListView serviceListView;
+    private int page =1;
+    private int pageCount=1;
+    private boolean refreshFlag =false;
+    private boolean pageSelecter=true;
+    private CommonAdapter<ServiceBean.DataBean.ItemsBean> serviceCommonAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view_main = inflater.inflate(R.layout.fragment_service, container, false);
         initData();
+        initMap();
         initView();
         return view_main;
+    }
+    private  void initMap(){
+        region.put("智能居家","1");
+        region.put("门窗安装","2");
+        region.put("水暖","3");
+        region.put("电工照明","4");
+        region.put("空调电器","5");
+        region.put("开孔","6");
+        region.put("地板","7");
+        region.put("墙壁","8");
+        region.put("吊顶R","9");
+        region.put("维修","10");
+        region.put("保洁","11");
+        region.put("搬运","12");
+        region.put("其他","13");
+
+
+        map_category.put("北京","52");
+        map_category.put("上海","321");
+        map_category.put("广州","76");
+        map_category.put("深圳","77");
+        map_category.put("成都","322");
+        map_category.put("重庆","394");
+        map_category.put("杭州","383");
+        map_category.put("天津","343");
+
     }
     private void initData() {
         // TODO Auto-generated method stub
@@ -83,16 +133,13 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         scale_max = AnimationUtils.loadAnimation(getContext(), R.anim.scale_max);
         scale_min = AnimationUtils.loadAnimation(getContext(), R.anim.scale_min);
         alpha_button = AnimationUtils.loadAnimation(getContext(), R.anim.alpha_button);
-    }
 
-    private void initView() {
         plus_rl = (RelativeLayout) view_main.findViewById(R.id.plus_rl);
         rl_plus = ((RelativeLayout) view_main.findViewById(R.id.rl_plus));
         plus_im = (ImageView) view_main.findViewById(R.id.plus_im);
         dishui_tv = (TextView) view_main.findViewById(R.id.dishui_tv);
-        guoshui_tv = (TextView)view_main.findViewById(R.id.guoshui_tv);
-        rizhi_tv=(TextView)view_main.findViewById(R.id.rizhi_tv);
-
+        guoshui_tv = (TextView) view_main.findViewById(R.id.guoshui_tv);
+        rizhi_tv = (TextView) view_main.findViewById(R.id.rizhi_tv);
         service_category = ((TextView) view_main.findViewById(R.id.service_category));
         request = ((RadioButton) view_main.findViewById(R.id.request));
         service = ((RadioButton) view_main.findViewById(R.id.serviec));
@@ -108,6 +155,12 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         dishui_tv.setOnClickListener(this);
         guoshui_tv.setOnClickListener(this);
         rizhi_tv.setOnClickListener(this);
+    }
+
+    private void initView() {
+
+
+
         inflater = LayoutInflater.from(getContext());
 
         View view1 = inflater.inflate(R.layout.service_require_layout, null);
@@ -149,8 +202,23 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 0) request.setChecked(true);
-                else service.setChecked(true);
+                unfoldedIndexes.clear();
+                page =1;
+                if (position == 0)
+                { request.setChecked(true);
+                    pageSelecter=true;
+                    requirePullToRefresh();
+
+                }
+                else {
+                    service.setChecked(true);
+                    pageSelecter=false;
+                    servicePullToRefresh();
+                   }
+
+
+
+
             }
 
             @Override
@@ -161,54 +229,98 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         rg_choice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.request){
+                if (checkedId == R.id.request) {
                     vp_service.setCurrentItem(0);
-                }else {
+                } else {
                     vp_service.setCurrentItem(1);
                 }
             }
         });
 
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        if (adapter == null) {
-            adapter = new CommonAdapter<String>(getContext(), list, R.layout.cell) {
-                @Override
-                public void convert(ViewHolder viewHolder, String s, final int position) {
+        requirePullToRefresh();
 
 
-                    final FoldingCell fc = viewHolder.getViewById(R.id.folding_cell);
 
-                    // attach click listener to folding cell
-                    fc.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            fc.toggle(false);
-                            if (unfoldedIndexes.contains(position))
-                                registerFold(position);
-                            else
-                                registerUnfold(position);
-                        }
-                    });
-                    if (unfoldedIndexes.contains(position)) {
-                        fc.unfold(true);
-                    } else {
-                        fc.fold(true);
-                    }
 
-                }
-            };
-            plv_1.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
-        }
 
     }
+    private void getRequireList(int type) {
+        RequestParams requestParams = new RequestParams("http://app.linchom.com/appapi.php");
+        final int service_type=type;
+
+        requestParams.addBodyParameter("act","demand_services");
+        requestParams.addBodyParameter("service_type",service_type+"");
+        requestParams.addBodyParameter("category_id",category_id);
+        requestParams.addBodyParameter("region_id",region_id);
+        System.out.println(requestParams);
+        x.http().post(requestParams, new Callback.CommonCallback<String>(){
+
+            @Override
+            public void onSuccess(String result) {
+
+                Gson gson = new Gson();
+                System.out.println(result);
+                ServiceBean bean = gson.fromJson(result, ServiceBean.class);
+                pageCount=   bean.getData().getTotal_pages();
+
+                if (service_type==2){
+                    if (page==1){
+                        requireList.clear();
+                    }
+
+                    if(page<=pageCount){
+                        requireList.addAll(bean.getData().getItems());
+                    }else{
+
+                        Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    plv_1.onRefreshComplete();
+                    System.out.println(requireList);
+                    serviceCommonAdapter.notifyDataSetChanged();
+                }else {
+                    if (page==1){
+                        serviceList.clear();
+                    }
+
+                    if(page<=pageCount){
+                        serviceList.addAll(bean.getData().getItems());
+                    }else{
+
+                        Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                    }
+                    plv_2.onRefreshComplete();
+
+                    System.out.println(serviceList);
+                    serviceCommonAdapter.notifyDataSetChanged();
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
+
+
 
     public void registerFold(int position) {
         unfoldedIndexes.remove(position);
@@ -218,6 +330,202 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         unfoldedIndexes.add(position);
     }
 
+    private void requirePullToRefresh() {
+
+        plv_1.setScrollingWhileRefreshingEnabled(true);
+        plv_1.setMode(PullToRefreshBase.Mode.BOTH);
+        plv_1.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                PullToRefreshBase.Mode mode = plv_1.getCurrentMode();
+                if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    refreshFlag=true;
+                    page =1;
+                    getRequireList(2);
+
+                }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+                    page++;
+                    getRequireList(2);
+
+                }
+
+
+
+            }
+        });
+
+        plv_1.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+            @Override
+            public void onLastItemVisible() {
+                //Toast.makeText(getApplicationContext(), "已经到底了", Toast.LENGTH_SHORT).show();
+            }
+        });
+        requireListView=plv_1.getRefreshableView();
+
+        //new adapter
+
+
+        serviceCommonAdapter =new CommonAdapter<ServiceBean.DataBean.ItemsBean>(getContext(),requireList,R.layout.cell){
+
+
+            @Override
+            public void convert(ViewHolder viewHolder, ServiceBean.DataBean.ItemsBean itemsBean, final int position) {
+
+                final FoldingCell fc = viewHolder.getViewById(R.id.folding_cell);
+
+                // attach click listener to folding cell
+                fc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fc.toggle(false);
+                        if (unfoldedIndexes.contains(position))
+                            registerFold(position);
+                        else
+                            registerUnfold(position);
+                    }
+                });
+
+                if (unfoldedIndexes.contains(position)) {
+                    fc.unfold(true);
+                } else {
+                    fc.fold(true);
+                }
+
+
+                TextView service_city= viewHolder.getViewById(R.id.service_city);
+                TextView title_title=  viewHolder.getViewById(R.id.title_title);
+                TextView title_status=  viewHolder.getViewById(R.id.title_status);
+                TextView  title_release=viewHolder.getViewById(R.id.title_release);
+                TextView  title_date=viewHolder.getViewById(R.id.title_date);
+
+                TextView content_content=viewHolder.getViewById(R.id.content_content);
+                TextView content_mobile=viewHolder.getViewById(R.id.content_mobile);
+                TextView content_name= viewHolder.getViewById(R.id.content_name);
+                TextView content_add_time= viewHolder.getViewById(R.id.content_add_time);
+                TextView content_address= viewHolder.getViewById(R.id.content_address);
+
+                TextView content_service_type=viewHolder.getViewById(R.id.content_service_type);
+                service_city.setText(itemsBean.getCity_name());
+                title_title.setText(itemsBean.getTitle());
+                title_status.setText(("0".equals(itemsBean.getStatus()))? "进行中" :"已完成");
+                title_release.setText(("0".equals(itemsBean.getRelease()))? "公司" :"个人");
+                title_date.setText(itemsBean.getAdd_time());
+
+                content_name.setText(itemsBean.getUser_id());
+                content_content.setText(itemsBean.getContent());
+                content_mobile.setText(itemsBean.getMobile());
+                content_add_time.setText(itemsBean.getAdd_time());
+                content_address.setText(itemsBean.getAddress());
+                content_service_type.setText(itemsBean.getTopic_category_name());
+
+            }
+
+        };
+
+        //setadapter
+        requireListView.setAdapter(serviceCommonAdapter);
+        //getdata()更新数据
+        getRequireList(2);
+
+    }
+    private void servicePullToRefresh() {
+
+        plv_2.setScrollingWhileRefreshingEnabled(true);
+        plv_2.setMode(PullToRefreshBase.Mode.BOTH);
+        plv_2.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                PullToRefreshBase.Mode mode = plv_2.getCurrentMode();
+                if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    refreshFlag=true;
+                    page =1;
+                    getRequireList(1);
+
+                }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+                    page++;
+                    getRequireList(1);
+
+                }
+
+
+
+            }
+        });
+
+        plv_2.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+            @Override
+            public void onLastItemVisible() {
+                //Toast.makeText(getApplicationContext(), "已经到底了", Toast.LENGTH_SHORT).show();
+            }
+        });
+        serviceListView=plv_2.getRefreshableView();
+
+        //new adapter
+
+
+        serviceCommonAdapter =new CommonAdapter<ServiceBean.DataBean.ItemsBean>(getContext(),serviceList,R.layout.cell){
+
+
+            @Override
+            public void convert(ViewHolder viewHolder, ServiceBean.DataBean.ItemsBean itemsBean, final int position) {
+
+                final FoldingCell fc = viewHolder.getViewById(R.id.folding_cell);
+
+                // attach click listener to folding cell
+                fc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fc.toggle(false);
+                        if (unfoldedIndexes.contains(position))
+                            registerFold(position);
+                        else
+                            registerUnfold(position);
+                    }
+                });
+
+                if (unfoldedIndexes.contains(position)) {
+                    fc.unfold(true);
+                } else {
+                    fc.fold(true);
+                }
+
+
+                TextView service_city= viewHolder.getViewById(R.id.service_city);
+                TextView title_title=  viewHolder.getViewById(R.id.title_title);
+                TextView title_status=  viewHolder.getViewById(R.id.title_status);
+                TextView  title_release=viewHolder.getViewById(R.id.title_release);
+                TextView  title_date=viewHolder.getViewById(R.id.title_date);
+
+                TextView content_content=viewHolder.getViewById(R.id.content_content);
+                TextView content_mobile=viewHolder.getViewById(R.id.content_mobile);
+                TextView content_name= viewHolder.getViewById(R.id.content_name);
+                TextView content_add_time= viewHolder.getViewById(R.id.content_add_time);
+                TextView content_address= viewHolder.getViewById(R.id.content_address);
+
+                TextView content_service_type=viewHolder.getViewById(R.id.content_service_type);
+                service_city.setText(itemsBean.getCity_name());
+                title_title.setText(itemsBean.getTitle());
+                title_status.setText(("0".equals(itemsBean.getStatus()))? "进行中" :"已完成");
+                title_release.setText(("0".equals(itemsBean.getRelease()))? "公司" :"个人");
+                title_date.setText(itemsBean.getAdd_time());
+
+                content_name.setText(itemsBean.getUser_id());
+                content_content.setText(itemsBean.getContent());
+                content_mobile.setText(itemsBean.getMobile());
+                content_add_time.setText(itemsBean.getAdd_time());
+                content_address.setText(itemsBean.getAddress());
+                content_service_type.setText(itemsBean.getTopic_category_name());
+
+            }
+
+        };
+
+        //setadapter
+        serviceListView.setAdapter(serviceCommonAdapter);
+        //getdata()更新数据
+        getRequireList(1);
+
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -242,6 +550,10 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 v.startAnimation(alpha_button);
                 rl_plus.performClick();
                 break;
+            case R.id.rizhi_tv:
+                v.startAnimation(alpha_button);
+                rl_plus.performClick();
+                break;
             }
 
 
@@ -261,8 +573,18 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClickRight(String value) {
                 wheelViewDialogFragment.dismiss();
+                page=1;
                 service_category.setText(value);
-
+                category_id=region.get(value);
+                unfoldedIndexes.clear();
+                System.out.println("category_id="+category_id);
+                Log.i("flag",(pageSelecter?"需求":"服务"));
+                if(pageSelecter)
+                {
+                    requirePullToRefresh();
+                }else {
+                    servicePullToRefresh();
+                }
             }
 
             @Override
@@ -286,8 +608,17 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClickRight(String value) {
                 wheelViewDialogFragment.dismiss();
+                page=1;
+                unfoldedIndexes.clear();
                 tv_address.setText(value);
-
+                region_id=map_category.get(value);
+                System.out.println(region_id);
+                if(pageSelecter)
+                {
+                    requirePullToRefresh();
+                }else {
+                    servicePullToRefresh();
+                }
             }
 
             @Override

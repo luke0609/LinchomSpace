@@ -45,4 +45,54 @@
 
 
 
+    <RelativeLayout
+
+        android:visibility="gone"
+
+        android:id="@+id/rl_goods_list_water_load_fail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+
+            android:id="@+id/tv_goods_list_water_load_fail"
+
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:text="网络不给力哦"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/tv_goods_list_water_load_fail"
+            android:src="@drawable/goods_list_load_fail"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            />
+
+        <Button
+            android:id="@+id/btn_goods_list_water_load_fail"
+
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_goods_list_water_load_fail"
+            android:background="@drawable/goods_catebutton_shape"
+            android:text="重新加载"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
 </RelativeLayout>

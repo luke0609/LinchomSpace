@@ -1,12 +1,18 @@
 package linchom.com.linchomspace.shopping;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -97,6 +104,23 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
     private RelativeLayout rl_goods_load_progress;
 
+    private PathMeasure mPathMeasure;
+
+    private float[] mCurrentPosition = new float[2];
+    private ImageView iv_goods_cart_rmb;
+    private RelativeLayout rl_activity_goods;
+    private ImageView iv_goods_Collection;
+
+
+    private String[] goodsIds;
+
+    private String goodsIdString;
+
+
+    private boolean collectFlag=false;
+
+    private String newStringGoodsId="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +129,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
-
-
 
 
         initView();
@@ -158,10 +180,45 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         rl_goods_load_progress = ((RelativeLayout) findViewById(R.id.rl_goods_load_progress));
 
+        iv_goods_cart_rmb = ((ImageView) findViewById(R.id.iv_goods_cart_rmb));
+
+        rl_activity_goods = ((RelativeLayout) findViewById(R.id.rl_activity_goods));
+
+        iv_goods_Collection = ((ImageView) findViewById(R.id.iv_goods_Collection));
+
 
     }
 
     private void initData() {
+
+        //初始化 收藏键
+
+        SharedPreferences sharedPreferences=     getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+        goodsIdString =  sharedPreferences.getString("goodsId","");
+
+
+       if(goodsIdString!=null&goodsIdString!="") {
+
+            goodsIds = goodsIdString.split(",");
+
+
+           for (int i = 0; i < goodsIds.length; i++) {
+
+               if (goodsIds[i].equals(goodsId)){
+
+                   collectFlag=true;
+
+
+                    iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+
+               }
+
+
+           }
+
+       }
+
 
         rl_goods_head.getBackground().setAlpha(0);
         int initColor = tv_goods_title_content.getTextColors().getDefaultColor();
@@ -172,9 +229,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         tv_goods_title_content.setTextColor(newColor);
 
         getData();
-
-
-
 
 
 
@@ -294,6 +348,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         iv_gooods_cart.setOnClickListener(this);
         btn_goods_joinCart.setOnClickListener(this);
 
+        iv_goods_Collection.setOnClickListener(this);
+
+
+
+
 
     }
 
@@ -370,11 +429,217 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
 
+            case R.id.iv_goods_Collection:
+
+                toCollection();
+
+
+                break;
+
+
 
 
         }
 
     }
+
+    private void toCollection() {
+
+        SharedPreferences sharedPreferences =getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+
+        if(collectFlag==true){
+
+            //取消收藏干掉  collectFlag变为false
+
+            //存在收藏Id 什么也不做
+
+            if(goodsIdString!=null&&goodsIdString!=""){
+
+                newStringGoodsId="";
+
+
+
+                for(int i = 0;i<goodsIds.length;i++){
+
+                    if(goodsIds[i].equals(goodsId)){
+                        //什么也不做
+
+                    }else{
+
+                        //重新拼字符串
+                        newStringGoodsId=newStringGoodsId+goodsIds[i]+",";
+
+
+                        Log.i(TAG,"newStringGoodsId"+newStringGoodsId);
+
+                    }
+
+
+                }
+
+
+            }
+
+
+            SharedPreferences.Editor editor=  sharedPreferences.edit();
+
+
+
+            editor.putString("goodsId",newStringGoodsId);
+
+            editor.commit();
+
+
+
+
+
+
+
+
+             toCancelCollection();
+
+
+
+        }else{
+
+            //不存在 存入
+
+            SharedPreferences.Editor editor=  sharedPreferences.edit();
+
+
+
+            editor.putString("goodsId",goodsIdString+","+goodsId);
+
+            editor.commit();
+
+
+            toJoinCollection();
+
+
+
+
+        }
+
+
+
+
+        String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
+
+        Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
+
+
+
+    }
+
+    private void toCancelCollection() {
+
+
+
+
+
+        //app.linchom.com/appapi.php?act=drop_collect_article&type=2&user_id=12&id=415
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","drop_collect_article");
+
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("type","2");
+
+        requestParams.addBodyParameter("id",goodsId);
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
+                collectFlag=false;
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+                Toast.makeText(getApplicationContext(),"取消失败",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+
+
+
+
+    }
+
+    private void toJoinCollection() {
+
+        //app.linchom.com/appapi.php?act=add_collect_goods&user_id=12&goods_id=20
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","add_collect_goods");
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("goods_id",goodsId);
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+                collectFlag=true;
+
+
+
+                Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+                Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+    }
+
 
     private void toJoinCart() {
 
@@ -423,6 +688,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
                     ergodicCart();
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
+
+                    addCart(iv_goods_cart_rmb);
 
 
                 }
@@ -951,5 +1222,78 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
+
+
+    private void addCart( ImageView iv) {
+        final ImageView goods = new ImageView(GoodsActivity.this);
+        goods.setImageDrawable(iv.getDrawable());
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
+        rl_activity_goods.addView(goods, params);
+
+        int[] parentLocation = new int[2];
+        rl_activity_goods.getLocationInWindow(parentLocation);
+
+        int startLoc[] = new int[2];
+        btn_goods_joinCart.getLocationInWindow(startLoc);///////////////
+
+        int endLoc[] = new int[2];
+        iv_gooods_cart.getLocationInWindow(endLoc);
+
+
+        float startX = startLoc[0] - parentLocation[0] + iv.getWidth() / 2;
+        float startY = startLoc[1] - parentLocation[1] + iv.getHeight() / 2;
+
+        float toX = endLoc[0] - parentLocation[0] + iv_gooods_cart.getWidth() / 5;
+        float toY = endLoc[1] - parentLocation[1];
+
+        Path path = new Path();
+        path.moveTo(startX, startY);
+
+        path.quadTo(startX, (startY+toY)/2, toX, toY);
+
+        mPathMeasure = new PathMeasure(path, false);
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, mPathMeasure.getLength());
+        valueAnimator.setDuration(1000);
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+
+                float value = (Float) animation.getAnimatedValue();
+
+                mPathMeasure.getPosTan(value, mCurrentPosition, null);
+                goods.setTranslationX(mCurrentPosition[0]);
+                goods.setTranslationY(mCurrentPosition[1]);
+            }
+        });
+        valueAnimator.start();
+
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            //当动画结束后：
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+                rl_activity_goods.removeView(goods);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+    }
+
+
 
 }
