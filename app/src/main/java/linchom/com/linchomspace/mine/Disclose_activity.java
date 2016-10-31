@@ -1,9 +1,11 @@
 package linchom.com.linchomspace.mine;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,9 +49,9 @@ public class Disclose_activity extends AppCompatActivity {
     private ListView lv_fenlei;
 
     PopupWindow popupWindow;
-    private RelativeLayout rl_fj;
     private EditText ed_disclose;
     private TextView tv_user;
+    private RelativeLayout rl_fj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,7 @@ public class Disclose_activity extends AppCompatActivity {
         rl_fj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showDialog();
             }
         });
 
@@ -200,5 +202,29 @@ public class Disclose_activity extends AppCompatActivity {
             }
         });
     }
+
+    public void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("");
+        builder.setTitle("提示");
+        builder.setPositiveButton("拍照", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        builder.setNegativeButton("从相册选择照片", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
 }
+
+
 

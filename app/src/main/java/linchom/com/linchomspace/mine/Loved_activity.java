@@ -29,10 +29,13 @@ public class Loved_activity extends AppCompatActivity {
     private RadioButton rb_goods;
     private RadioButton rb_zixun;
     private String userId = "12";
+    private ImageView iv_love_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loved_activity);
+
 
         initView();
         initData();
@@ -40,6 +43,9 @@ public class Loved_activity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        iv_love_back = ((ImageView) findViewById(R.id.iv_love_back));
+
         vp_viewPager = ((ViewPager) findViewById(R.id.vp_viewPager));
         rg_rag = ((RadioGroup) findViewById(R.id.rg_rag));
         rb_goods = ((RadioButton) findViewById(R.id.rb_goods));
@@ -61,6 +67,13 @@ public class Loved_activity extends AppCompatActivity {
 
         fragments.add(newsfragment);
         fragments.add(goodsfragment);
+
+        iv_love_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initEvent() {

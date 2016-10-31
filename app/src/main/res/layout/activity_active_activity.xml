@@ -4,21 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="linchom.com.linchomspace.mine.Active_activity">
-    <FrameLayout
+    <TextView
+        android:id="@+id/tv_active"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="商品活动区"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="10dp"/>
+    <ListView
+        android:layout_below="@id/tv_active"
+        android:id="@+id/lv_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/banner_viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    </ListView>
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<android.support.v4.view.ViewPager-->
+    <!--android:id="@+id/banner_viewPager"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
 
 
-        <com.shizhefei.view.indicator.FixedIndicatorView
-            android:id="@+id/banner_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="20dp"/>
-    </FrameLayout>
+    <!--<com.shizhefei.view.indicator.FixedIndicatorView-->
+    <!--android:id="@+id/banner_indicator"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal|bottom"-->
+    <!--android:layout_marginBottom="20dp"/>-->
+    <!--</FrameLayout>-->
 </RelativeLayout>
