@@ -3,6 +3,7 @@ package linchom.com.linchomspace.shopping;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -107,6 +109,17 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private float[] mCurrentPosition = new float[2];
     private ImageView iv_goods_cart_rmb;
     private RelativeLayout rl_activity_goods;
+    private ImageView iv_goods_Collection;
+
+
+    private String[] goodsIds;
+
+    private String goodsIdString;
+
+
+    private boolean collectFlag=false;
+
+    private String newStringGoodsId="";
 
 
     @Override
@@ -171,11 +184,40 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         rl_activity_goods = ((RelativeLayout) findViewById(R.id.rl_activity_goods));
 
+        iv_goods_Collection = ((ImageView) findViewById(R.id.iv_goods_Collection));
+
 
     }
 
     private void initData() {
 
+        //初始化 收藏键
+
+        SharedPreferences sharedPreferences=     getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+        goodsIdString =  sharedPreferences.getString("goodsId","");
+
+
+       if(goodsIdString!=null&goodsIdString!="") {
+
+            goodsIds = goodsIdString.split(",");
+
+
+           for (int i = 0; i < goodsIds.length; i++) {
+
+               if (goodsIds[i].equals(goodsId)){
+
+                   collectFlag=true;
+
+
+                    iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+
+               }
+
+
+           }
+
+       }
 
 
         rl_goods_head.getBackground().setAlpha(0);
@@ -306,6 +348,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         iv_gooods_cart.setOnClickListener(this);
         btn_goods_joinCart.setOnClickListener(this);
 
+        iv_goods_Collection.setOnClickListener(this);
+
+
+
+
 
     }
 
@@ -382,11 +429,217 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
 
+            case R.id.iv_goods_Collection:
+
+                toCollection();
+
+
+                break;
+
+
 
 
         }
 
     }
+
+    private void toCollection() {
+
+        SharedPreferences sharedPreferences =getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+
+        if(collectFlag==true){
+
+            //取消收藏干掉  collectFlag变为false
+
+            //存在收藏Id 什么也不做
+
+            if(goodsIdString!=null&&goodsIdString!=""){
+
+                newStringGoodsId="";
+
+
+
+                for(int i = 0;i<goodsIds.length;i++){
+
+                    if(goodsIds[i].equals(goodsId)){
+                        //什么也不做
+
+                    }else{
+
+                        //重新拼字符串
+                        newStringGoodsId=newStringGoodsId+goodsIds[i]+",";
+
+
+                        Log.i(TAG,"newStringGoodsId"+newStringGoodsId);
+
+                    }
+
+
+                }
+
+
+            }
+
+
+            SharedPreferences.Editor editor=  sharedPreferences.edit();
+
+
+
+            editor.putString("goodsId",newStringGoodsId);
+
+            editor.commit();
+
+
+
+
+
+
+
+
+             toCancelCollection();
+
+
+
+        }else{
+
+            //不存在 存入
+
+            SharedPreferences.Editor editor=  sharedPreferences.edit();
+
+
+
+            editor.putString("goodsId",goodsIdString+","+goodsId);
+
+            editor.commit();
+
+
+            toJoinCollection();
+
+
+
+
+        }
+
+
+
+
+        String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
+
+        Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
+
+
+
+    }
+
+    private void toCancelCollection() {
+
+
+
+
+
+        //app.linchom.com/appapi.php?act=drop_collect_article&type=2&user_id=12&id=415
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","drop_collect_article");
+
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("type","2");
+
+        requestParams.addBodyParameter("id",goodsId);
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
+                collectFlag=false;
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+                Toast.makeText(getApplicationContext(),"取消失败",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+
+
+
+
+    }
+
+    private void toJoinCollection() {
+
+        //app.linchom.com/appapi.php?act=add_collect_goods&user_id=12&goods_id=20
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","add_collect_goods");
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("goods_id",goodsId);
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+                collectFlag=true;
+
+
+
+                Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+                Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+    }
+
 
     private void toJoinCart() {
 
@@ -1025,10 +1278,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             //当动画结束后：
             @Override
             public void onAnimationEnd(Animator animation) {
-                // 购物车的数量加1
-                //i++;
-                // count.setText(String.valueOf(i));
-                // 把移动的图片imageview从父布局里移除
+
                 rl_activity_goods.removeView(goods);
             }
 

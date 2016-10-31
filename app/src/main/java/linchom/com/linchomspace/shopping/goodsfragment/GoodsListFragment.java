@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -80,6 +81,8 @@ public class GoodsListFragment extends Fragment {
 
     private int page =1;
     private RelativeLayout rl_goodsList_load_list;
+    private RelativeLayout rl_goods_list_load_fail;
+    private Button btn_goods_list_load_fail;
 
 
     @Nullable
@@ -118,6 +121,10 @@ public class GoodsListFragment extends Fragment {
         ptr_goodsList_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_goodsList_ptr));
         rl_goodsList_load_list = ((RelativeLayout) view.findViewById(R.id.rl_goodsList_load_list));
 
+        rl_goods_list_load_fail = ((RelativeLayout) view.findViewById(R.id.rl_goods_list_load_fail));
+
+        btn_goods_list_load_fail = ((Button) view.findViewById(R.id.btn_goods_list_load_fail));
+
 
     }
 
@@ -139,6 +146,21 @@ public class GoodsListFragment extends Fragment {
                 intent.putExtra("bundle",bundle);
 
                 startActivity(intent);
+            }
+        });
+
+        btn_goods_list_load_fail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                rl_goods_list_load_fail.setVisibility(View.GONE);
+
+                getData();
+
+
+
             }
         });
 
@@ -275,7 +297,30 @@ public class GoodsListFragment extends Fragment {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
+
+
                 Log.i(TAG,ex+"");
+                if(page==1){
+
+                    rl_goodsList_load_list.setVisibility(View.GONE);
+
+                    rl_goods_list_load_fail.setVisibility(View.VISIBLE);
+
+
+                }else{
+
+                    Toast.makeText(getActivity(),"加载失败",Toast.LENGTH_SHORT).show();
+                    goodsCommonAdapter.notifyDataSetChanged();
+                    ptr_goodsList_ptr.onRefreshComplete();
+
+                    page--;
+
+
+
+
+                }
+
+
 
 
 

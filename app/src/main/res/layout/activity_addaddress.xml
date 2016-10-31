@@ -226,6 +226,7 @@
 
 
            <RelativeLayout
+               android:id="@+id/rl_goods_area_youbian"
                android:layout_below="@id/rl_goods_area_address"
                android:layout_width="match_parent"
                android:layout_height="48dp"
@@ -266,6 +267,50 @@
 
            </RelativeLayout>
 
+           <RelativeLayout
+               android:layout_below="@id/rl_goods_area_youbian"
+               android:layout_width="match_parent"
+               android:layout_height="48dp"
+
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+
+               >
+
+
+               <TextView
+                   android:id="@+id/tv_goods_area_email"
+                   android:layout_marginLeft="10dp"
+                   android:textColor="#808080"
+                   android:layout_centerVertical="true"
+                   android:text="邮箱:"
+                   android:textSize="18sp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+
+                   />
+
+               <EditText
+
+
+                   android:id="@+id/et_goods_cart_email"
+                   android:layout_centerVertical="true"
+                   android:layout_toRightOf="@id/tv_goods_area_email"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@null"
+                   android:textColor="#808080"
+                   android:textSize="18sp"
+                   />
+
+
+
+
+
+
+
+           </RelativeLayout>
+
 
 
        </RelativeLayout>
@@ -273,6 +318,30 @@
 
 
     </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_goods_add_address_load"
+
+        android:layout_centerInParent="true"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/goods_progress_background_shape"
+        android:visibility="gone"
+        >
+
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:indeterminateDrawable="@anim/progressbar_goods_anim"
+
+            />
+
+
+
+    </RelativeLayout>
 
 
 

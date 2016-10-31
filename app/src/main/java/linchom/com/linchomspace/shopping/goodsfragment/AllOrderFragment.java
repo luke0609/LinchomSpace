@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +69,9 @@ public class AllOrderFragment extends Fragment {
     private String userId;
 
     TextView tv_orderform_orderstatus;
+    private RelativeLayout rl_goods_orderform_load_pro;
 
+    private boolean pullFlag=false;
 
 
     @Nullable
@@ -97,6 +100,8 @@ public class AllOrderFragment extends Fragment {
     private void initView() {
 
         ptr_goods_orderform = ((PullToRefreshListView) view.findViewById(R.id.ptr_goods_orderform));
+
+        rl_goods_orderform_load_pro = ((RelativeLayout) view.findViewById(R.id.rl_goods_orderform_load_pro));
 
 
     }
@@ -132,6 +137,8 @@ public class AllOrderFragment extends Fragment {
                 PullToRefreshBase.Mode mode = ptr_goods_orderform.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+
+                    pullFlag=true;
 
                     page=1;
 
@@ -173,10 +180,14 @@ public class AllOrderFragment extends Fragment {
 
                 TextView tv_orderform_totalPrice= viewHolder.getViewById(R.id.tv_orderform_totalPrice);
 
-                Button btn_orderform_right = viewHolder.getViewById(R.id.btn_orderform_right);
+                final  Button btn_orderform_right = viewHolder.getViewById(R.id.btn_orderform_right);
 
-                Button btn_orderform_left = viewHolder.getViewById(R.id.btn_orderform_left);
+               final Button btn_orderform_left = viewHolder.getViewById(R.id.btn_orderform_left);
                 Button btn_orderform_detail = viewHolder.getViewById(R.id.btn_orderform_detail);
+
+                btn_orderform_right.setTag(position);
+
+                btn_orderform_left.setTag(position);
 
                 totalNum=0;
                 totalPrice=0.0;
@@ -209,14 +220,44 @@ public class AllOrderFragment extends Fragment {
                     tv_orderform_orderstatus.setText("等待买家付款");
 
                     //取消订单    付款
+                    btn_orderform_left.setVisibility(View.VISIBLE);
+
+                    btn_orderform_right.setVisibility(View.VISIBLE);
 
                     btn_orderform_left.setText("取消订单");
 
                     btn_orderform_right.setText("付款");
 
+                    btn_orderform_left.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
+
+                            page=1;
+                            pullFlag=false;
+                            getData();
+
+                        }
+                    });
+
+                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            Toast.makeText(getActivity(),"调用支付宝"+"订单号"+orderFormList.get((int)btn_orderform_left.getTag()).order_id,Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
+
+
+
 
                 }else if("2".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //取消    取消订单     买家取消订单
+
                     tv_orderform_orderstatus.setText("买家取消订单");
 
                     // 无   无
@@ -233,25 +274,27 @@ public class AllOrderFragment extends Fragment {
                     btn_orderform_right.setVisibility(View.INVISIBLE);
 
                 }else if("1".equals(orderStatus)&&"0".equals(shippingStatus)&&"2".equals(payStatus)){
-                    //已付款             买家已经付款
+                    //已付款             买家已经付款  无退款
                     tv_orderform_orderstatus.setText("买家已经付款");
 
-                    //无  退款
+                    //无  无
                     btn_orderform_left.setVisibility(View.INVISIBLE);
 
-                    btn_orderform_right.setText("退款");
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
+
 
 
 
                 }else if("1".equals(orderStatus)&&"3".equals(shippingStatus)&&"2".equals(payStatus)){
-                    //配货中    待发货          等待卖家发货
+                    //配货中    待发货          等待卖家发货  无退款
                     tv_orderform_orderstatus.setText("等待卖家发货");
 
-                    //无  退款
+                    //无  无
 
                     btn_orderform_left.setVisibility(View.INVISIBLE);
 
-                    btn_orderform_right.setText("退款");
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
 
                 }else if("5".equals(orderStatus)&&"1".equals(shippingStatus)&&"2".equals(payStatus)){
@@ -265,6 +308,24 @@ public class AllOrderFragment extends Fragment {
 
                     btn_orderform_right.setText("确认收货");
 
+                    btn_orderform_right.setVisibility(View.VISIBLE);
+
+                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"2");
+                            page=1;
+                            pullFlag=false;
+                            getData();
+
+
+
+                        }
+                    });
+
                 }else if("5".equals(orderStatus)&&"2".equals(shippingStatus)&&"2".equals(payStatus)){
                     //已收货              等待买家评价
                     tv_orderform_orderstatus.setText("等待买家评价");
@@ -272,8 +333,38 @@ public class AllOrderFragment extends Fragment {
                     //退货    评价
 
                     btn_orderform_left.setText("退货");
+                    btn_orderform_left.setVisibility(View.VISIBLE);
 
                     btn_orderform_right.setText("评价");
+                    btn_orderform_right.setVisibility(View.VISIBLE);
+
+
+                    btn_orderform_left.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"3");
+                            page=1;
+                            pullFlag=false;
+                            getData();
+
+
+                        }
+                    });
+
+                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Toast.makeText(getActivity(),"评价",Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
+
+
+
 
                 }else if("4".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //退货                退货处理
@@ -361,14 +452,7 @@ public class AllOrderFragment extends Fragment {
 
 
 
-                btn_orderform_right.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
-
-                    }
-                });
 
             }
         };
@@ -382,21 +466,84 @@ public class AllOrderFragment extends Fragment {
     }
 
 
+    private void toModifyOrder(String orderId,String type){
+
+       // app.linchom.com/appapi.php?act=editorderinfo&type=1&order_id=52&user_id=12
+
+        //type 1 为取消 2为确认收货 3 退货
+        //确认收货的前提 订单必须 是发货状态
+        //退货  订单必须是已经支付
+
+        //取消 重新拿数据 page=1；
+
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","editorderinfo");
+
+        requestParams.addBodyParameter("order_id",orderId+"");
+
+        requestParams.addBodyParameter("user_id",userId+"");
+
+        requestParams.addBodyParameter("type",type+"");
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Log.i(TAG,"result"+result);
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+    }
+
+
     private void getData() {
+
+        if(page==1&&pullFlag==false){
+
+
+            rl_goods_orderform_load_pro.setVisibility(View.VISIBLE);
+
+
+        }
+
 
         //orderStatusInfo ;
         //shippingStatusInfo;
        // payStatusInfo ;
 
-        RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php");
+
+
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
         //?act=ordersinfo&user_id=12
-        requestParams.addQueryStringParameter("act","ordersinfo");
-        requestParams.addQueryStringParameter("user_id",userId);
+        requestParams.addBodyParameter("act","ordersinfo");
+        requestParams.addBodyParameter("user_id",userId);
 
         //page
 
-        requestParams.addQueryStringParameter("page",page+"");
+        requestParams.addBodyParameter("page",page+"");
 
 /*
 
@@ -408,8 +555,10 @@ public class AllOrderFragment extends Fragment {
 
 */
 
+        Log.i(TAG,"requestParams"+requestParams);
 
-        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
@@ -444,6 +593,8 @@ public class AllOrderFragment extends Fragment {
                     ptr_goods_orderform.onRefreshComplete();
 
                 }
+                rl_goods_orderform_load_pro.setVisibility(View.GONE);
+
 
 
 

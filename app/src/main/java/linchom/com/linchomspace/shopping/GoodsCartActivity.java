@@ -74,6 +74,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
     private ArrayList<OrderSubmitBean> orderCartList =new ArrayList<OrderSubmitBean>();
+    private RelativeLayout rl_goods_cart_load_pro;
 
 
     @Override
@@ -99,6 +100,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         btn_goods_cart_total = ((Button) findViewById(R.id.btn_goods_cart_total));
 
+        rl_goods_cart_load_pro = ((RelativeLayout) findViewById(R.id.rl_goods_cart_load_pro));
+
 
     }
 
@@ -120,7 +123,11 @@ public class GoodsCartActivity extends AppCompatActivity {
         btn_goods_cart_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 //orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
+
+                orderCartList.clear();
 
 
                 for (Map.Entry<Integer,Boolean> m : checkStatusMap.entrySet()) {
@@ -141,6 +148,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                        Double threePrice =Double.parseDouble(cartList.get(m.getKey()).goods_price);
 
                        Double threeTotal =threeNum*threePrice;
+
+
 
 
                        orderCartList.add(new OrderSubmitBean(cartList.get(m.getKey()).rec_id,
@@ -170,9 +179,21 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                 //初始收货地址
 
+                if(orderCartList.size()!=0){
+                    initDefaultAddress();
 
 
-                initDefaultAddress();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先选择商品",Toast.LENGTH_SHORT).show();
+
+
+                }
+
+
+
 
 
 
@@ -185,9 +206,11 @@ public class GoodsCartActivity extends AppCompatActivity {
 
     private void initDefaultAddress(){
 
+        rl_goods_cart_load_pro.setVisibility(View.VISIBLE);
+
         //地址也要传过去
 
-        Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),"初始化默认地址",Toast.LENGTH_SHORT).show();
 
 
         //遍历遍历地址
@@ -267,6 +290,7 @@ public class GoodsCartActivity extends AppCompatActivity {
                     //orderList
                     // areaList.get(0)        传过去
 
+                    rl_goods_cart_load_pro.setVisibility(View.GONE);
 
                     Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
@@ -363,7 +387,7 @@ public class GoodsCartActivity extends AppCompatActivity {
     private void eventPtr() {
 
         ptr_cartList_ptr.setScrollingWhileRefreshingEnabled(true);
-        ptr_cartList_ptr.setMode(PullToRefreshBase.Mode.BOTH);
+        ptr_cartList_ptr.setMode(PullToRefreshBase.Mode.DISABLED);
         ptr_cartList_ptr.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
