@@ -72,15 +72,10 @@ public class GoodsAreaActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode==1){
-
             getData();
-
         }
-
         if(resultCode==2){
-
             getData();
-
         }
     }
 

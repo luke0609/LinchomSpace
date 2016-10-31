@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
 
 
@@ -62,8 +64,30 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.f1_content, fragments[0]).commit();
         //初始时，按钮1选中
         tabs[0].setSelected(true);
+        int id=getIntent().getIntExtra("id",0);
+        if(id==1){
+            Bundle bundle=new Bundle();
+            String currentItem="3";
+            bundle.putString("CurrentItem",currentItem);
+            fragments[0].setArguments(bundle);
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
+            tabs[0].setSelected(true);
+
+        }
+
+
 
     }
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//      if(resultCode==103){
+//          this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
+//          tabs[0].setSelected(true);
+//      }
+//    }
 
     //按钮的点击事件:选中不同的按钮，不同的fragment显示
     public void onTabClicked(View view) {
@@ -88,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         FragmentTransaction transaction;
+
         //如果选择的项不是当前选中项，则替换；否则，不做操作
         if(newIndex!=oldIndex){
 
@@ -104,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
             //显示当前选择项
             transaction.show(fragments[newIndex]).commit();
         }
+
+
         //之前选中的项，取消选中
         tabs[oldIndex].setSelected(false);
         //当前选择项，按钮被选中

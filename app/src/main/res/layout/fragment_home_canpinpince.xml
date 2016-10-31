@@ -52,6 +52,7 @@
         ptr:ptrHeaderSubTextColor="#00ffff"
         ptr:ptrHeaderBackground="@null"
         ptr:ptrDrawable="@drawable/home_load"
+
         />
 
     <RelativeLayout

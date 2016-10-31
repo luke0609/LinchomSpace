@@ -132,7 +132,6 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         bundle.putString("catId",catId);
         bundle.putString("order","desc");
         bundle.putString("sort","");
-
         bundle.putString("keyword",keyword);
 
 
