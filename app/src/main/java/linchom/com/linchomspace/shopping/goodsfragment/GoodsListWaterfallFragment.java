@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -67,6 +68,8 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
     View view;
     private RelativeLayout rl_goodsList_load_listpubu;
+    private RelativeLayout rl_goods_list_water_load_fail;
+    private Button btn_goods_list_water_load_fail;
 
     @Nullable
     @Override
@@ -141,6 +144,11 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
         mPullToRefreshStaggerdGridView = (PullToRefreshStaggeredGridView) view.findViewById(R.id.pull_grid_view);
         rl_goodsList_load_listpubu = ((RelativeLayout) view.findViewById(R.id.rl_goodsList_load_listpubu));
 
+        rl_goods_list_water_load_fail = ((RelativeLayout) view.findViewById(R.id.rl_goods_list_water_load_fail));
+
+        btn_goods_list_water_load_fail = ((Button) view.findViewById(R.id.btn_goods_list_water_load_fail));
+
+
     }
 
     private void initData() {
@@ -150,6 +158,18 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
     private void initEvent() {
 
         staggeredGridViewEvent();
+
+
+        btn_goods_list_water_load_fail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                rl_goods_list_water_load_fail.setVisibility(View.GONE);
+                getData();
+
+
+            }
+        });
 
 
 
@@ -317,6 +337,29 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
             public void onError(Throwable ex, boolean isOnCallback) {
 
                 System.out.println("exxxxx"+ex);
+
+                if(page==1){
+
+                    rl_goodsList_load_listpubu.setVisibility(View.GONE);
+
+                    rl_goods_list_water_load_fail.setVisibility(View.VISIBLE);
+
+
+
+                }else{
+                    Toast.makeText(getActivity(),"加载失败",Toast.LENGTH_SHORT).show();
+
+                    puBuAdapter.notifyDataSetChanged();
+                    mPullToRefreshStaggerdGridView.onRefreshComplete();
+                    page--;
+
+
+
+
+                }
+
+
+
 
             }
 
