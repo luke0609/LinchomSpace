@@ -231,7 +231,8 @@ public class AllOrderFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
+
+                            Toast.makeText(getActivity(),"调用支付宝"+"订单号"+orderFormList.get((int)btn_orderform_left.getTag()).order_id,Toast.LENGTH_SHORT).show();
 
 
                         }
@@ -258,25 +259,27 @@ public class AllOrderFragment extends Fragment {
                     btn_orderform_right.setVisibility(View.INVISIBLE);
 
                 }else if("1".equals(orderStatus)&&"0".equals(shippingStatus)&&"2".equals(payStatus)){
-                    //已付款             买家已经付款
+                    //已付款             买家已经付款  无退款
                     tv_orderform_orderstatus.setText("买家已经付款");
 
-                    //无  退款
+                    //无  无
                     btn_orderform_left.setVisibility(View.INVISIBLE);
 
-                    btn_orderform_right.setText("退款");
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
+
 
 
 
                 }else if("1".equals(orderStatus)&&"3".equals(shippingStatus)&&"2".equals(payStatus)){
-                    //配货中    待发货          等待卖家发货
+                    //配货中    待发货          等待卖家发货  无退款
                     tv_orderform_orderstatus.setText("等待卖家发货");
 
-                    //无  退款
+                    //无  无
 
                     btn_orderform_left.setVisibility(View.INVISIBLE);
 
-                    btn_orderform_right.setText("退款");
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
 
                 }else if("5".equals(orderStatus)&&"1".equals(shippingStatus)&&"2".equals(payStatus)){
@@ -290,6 +293,18 @@ public class AllOrderFragment extends Fragment {
 
                     btn_orderform_right.setText("确认收货");
 
+                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"2");
+
+
+
+                        }
+                    });
+
                 }else if("5".equals(orderStatus)&&"2".equals(shippingStatus)&&"2".equals(payStatus)){
                     //已收货              等待买家评价
                     tv_orderform_orderstatus.setText("等待买家评价");
@@ -299,6 +314,30 @@ public class AllOrderFragment extends Fragment {
                     btn_orderform_left.setText("退货");
 
                     btn_orderform_right.setText("评价");
+
+
+                    btn_orderform_left.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"3");
+
+
+
+                        }
+                    });
+
+                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Toast.makeText(getActivity(),"评价",Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
+
+
+
 
                 }else if("4".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
                     //退货                退货处理
@@ -386,14 +425,7 @@ public class AllOrderFragment extends Fragment {
 
 
 
-                btn_orderform_right.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
-
-                    }
-                });
 
             }
         };
@@ -485,6 +517,8 @@ public class AllOrderFragment extends Fragment {
         requestParams.addQueryStringParameter("pay_status","");
 
 */
+
+        Log.i(TAG,"requestParams"+requestParams);
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {

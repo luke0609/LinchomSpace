@@ -95,32 +95,32 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         UnPayFagment unPayFagment = new UnPayFagment();
         Bundle bundle1 =new Bundle();
-        bundle.putString("userId",userId);
+        bundle1.putString("userId",userId);
         unPayFagment.setArguments(bundle1);
 
         AlreadyPayFragment alreadyPayFragment = new AlreadyPayFragment();
         Bundle bundle2 =new Bundle();
-        bundle.putString("userId",userId);
+        bundle2.putString("userId",userId);
         alreadyPayFragment.setArguments(bundle2);
 
         UnSendFragment unSendFragment = new UnSendFragment();
         Bundle bundle3 =new Bundle();
-        bundle.putString("userId",userId);
+        bundle3.putString("userId",userId);
         unSendFragment.setArguments(bundle3);
 
         UnReceivedFragment unReceivedFragment =new UnReceivedFragment();
         Bundle bundle4 =new Bundle();
-        bundle.putString("userId",userId);
+        bundle4.putString("userId",userId);
         unReceivedFragment.setArguments(bundle4);
 
         UnEvaluateFragment unEvaluateFragment = new UnEvaluateFragment();
         Bundle bundle5 =new Bundle();
-        bundle.putString("userId",userId);
+        bundle5.putString("userId",userId);
         unEvaluateFragment.setArguments(bundle5);
 
         ReturnGoodsFragment returnGoodsFragment =new ReturnGoodsFragment();
         Bundle bundle6 =new Bundle();
-        bundle.putString("userId",userId);
+        bundle6.putString("userId",userId);
         returnGoodsFragment.setArguments(bundle6);
 
 
