@@ -10,6 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -503,8 +508,38 @@ public class GoodsOrderActivity extends AppCompatActivity {
                 Log.i(TAG,"result"+result);
 
 
+                JsonParser parser = new JsonParser();
 
-                Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
+                JsonElement element = parser.parse(result);
+
+                JsonObject root = element.getAsJsonObject();
+
+
+                JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
+
+                String resultFlag = resultjson.toString();
+
+
+                Log.i(TAG,"resultFlag"+resultFlag);
+
+                if("0".equals(resultFlag)){
+
+                    Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
+
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+
+
+
+
             }
 
             @Override
