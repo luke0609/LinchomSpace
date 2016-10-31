@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,12 +73,16 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
     private String youbian;
 
+    private String email;
+
      private String intentName ;
      private String intentAddress;
      private String intentTel ;
      private String intentYouBian;
      private String type;
      private String intentaddressId;
+    private EditText et_goods_cart_email;
+    private RelativeLayout rl_goods_add_address_load;
 
 
     @Override
@@ -136,6 +141,10 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         et_goods_cart_youbian = ((EditText) findViewById(R.id.et_goods_cart_youbian));
 
         btn_goods_area_save = ((Button) findViewById(R.id.btn_goods_area_save));
+
+        et_goods_cart_email = ((EditText) findViewById(R.id.et_goods_cart_email));
+
+        rl_goods_add_address_load = ((RelativeLayout) findViewById(R.id.rl_goods_add_address_load));
 
     }
 
@@ -284,6 +293,9 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         // &mobile=18500551431
         // &address_id=27
 
+        rl_goods_add_address_load.setVisibility(View.VISIBLE);
+
+
 
         name=et_goods_addaddress_name.getText().toString();
         tel =et_goods_addaddress_tel.getText().toString();
@@ -339,6 +351,8 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
                     Intent intent =new Intent();
 
                     setResult(2);
+                    rl_goods_add_address_load.setVisibility(View.GONE);
+
 
                     finish();
 
@@ -375,13 +389,17 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
     private void saveAddress() {
 
+        rl_goods_add_address_load.setVisibility(View.VISIBLE);
+
         name=et_goods_addaddress_name.getText().toString();
         tel =et_goods_addaddress_tel.getText().toString();
         detailAddress =et_goods_cart_detailaddress.getText().toString();
         youbian=et_goods_cart_youbian.getText().toString();
 
+        email =et_goods_cart_email.getText().toString();
+
         if(name==null||name==""||tel==null||tel==""||detailAddress==null||detailAddress==""||
-                youbian==null||youbian==""||provinceId==null||provinceId==""||cityId==null||cityId==""){
+                youbian==null||youbian==""||provinceId==null||provinceId==""||cityId==null||cityId==""||email==""||email==null){
 
 
             Toast.makeText(getApplicationContext(),"信息不能为空",Toast.LENGTH_SHORT).show();
@@ -408,7 +426,7 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
             requestParams.addBodyParameter("district",areaId);
 
-            requestParams.addBodyParameter("email","");
+            requestParams.addBodyParameter("email",email);
 
 
             requestParams.addBodyParameter("address",detailAddress);
@@ -427,6 +445,9 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
                     Intent intent =new Intent();
 
                     setResult(1);
+
+                    rl_goods_add_address_load.setVisibility(View.GONE);
+
 
                     finish();
 

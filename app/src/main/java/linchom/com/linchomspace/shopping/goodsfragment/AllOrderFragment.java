@@ -227,6 +227,16 @@ public class AllOrderFragment extends Fragment {
                         }
                     });
 
+                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
+
+
+                        }
+                    });
+
 
 
 

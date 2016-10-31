@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -30,6 +31,7 @@ import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
 import linchom.com.linchomspace.shopping.pojo.OrderSubmitBean;
+import linchom.com.linchomspace.shopping.pojo.OrderSuccessBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
@@ -458,9 +460,6 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     submitOrderForm(jo.toString());
 
 
-
-
-
                 }
 
 
@@ -517,21 +516,29 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                 JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
 
-                String resultFlag = resultjson.toString();
+
+
+                String resultFlag = resultjson.getAsString();
 
 
                 Log.i(TAG,"resultFlag"+resultFlag);
 
                 if("0".equals(resultFlag)){
 
-                    Toast.makeText(getApplicationContext(),"添加成功",Toast.LENGTH_SHORT).show();
 
 
+
+                    Gson gson = new Gson();
+
+                    OrderSuccessBean orderSuccessBean =  gson.fromJson(result, OrderSuccessBean.class);
+
+                    Toast.makeText(getApplicationContext(),"提交成功,订单号:"+orderSuccessBean.data.order_id,Toast.LENGTH_SHORT).show();
+
+                    //调用支付宝？
 
                 }else{
 
-                    Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getApplicationContext(),"提交失败,地址信息不完整",Toast.LENGTH_SHORT).show();
 
 
                 }
