@@ -69,7 +69,7 @@ public class goods_fragment extends Fragment {
                 return true;
             }
         });
-        initData();
+        //initData();
         return  view;
 
 
@@ -94,7 +94,7 @@ public class goods_fragment extends Fragment {
             }
         });
         initEvent();
-        initData();
+        //initData();
     }
 
     public void initEvent() {
