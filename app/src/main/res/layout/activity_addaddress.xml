@@ -320,6 +320,30 @@
     </ScrollView>
 
 
+    <RelativeLayout
+        android:id="@+id/rl_goods_add_address_load"
+
+        android:layout_centerInParent="true"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/goods_progress_background_shape"
+        android:visibility="gone"
+        >
+
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:indeterminateDrawable="@anim/progressbar_goods_anim"
+
+            />
+
+
+
+    </RelativeLayout>
+
+
 
 
 

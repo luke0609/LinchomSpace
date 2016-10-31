@@ -460,9 +460,6 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     submitOrderForm(jo.toString());
 
 
-
-
-
                 }
 
 
