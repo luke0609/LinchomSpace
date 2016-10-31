@@ -89,14 +89,14 @@ public class news_fragment extends Fragment {
             }
         });
         initEvent();
-        initData();
+
     }
 
     private void initData() {
         if (page==1) {
             firstBar.setVisibility(View.VISIBLE);
         }
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=collect_article");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=collect_article&user_id=135");
         requestParams.addBodyParameter("verification","e0d017ef76c8510244ebe0191f5dde15" );
         requestParams.addBodyParameter("page",page+"");
 
@@ -158,7 +158,7 @@ public class news_fragment extends Fragment {
             }
         };
         lv_news.setAdapter(aItemsGoodsCommonAdapter);
-        initData();
+
     }
 
     private void showDialog() {
@@ -169,7 +169,32 @@ public class news_fragment extends Fragment {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_LONG).show();
+                RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=drop_collect_article");
+                requestParams.addBodyParameter("user_id","135");
+                requestParams.addBodyParameter("type","1");
+                requestParams.addBodyParameter("id",aItemsList.get(mDelId).article_id);
+                x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+//                        System.out.println("666666666666"+result);
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+
+                    }
+                });
+
                 deleteItem();
             }
         });
