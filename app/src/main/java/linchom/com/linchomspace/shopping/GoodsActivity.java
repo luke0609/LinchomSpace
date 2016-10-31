@@ -464,8 +464,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     if(goodsIds[i].equals(goodsId)){
                         //什么也不做
 
-
-
                     }else{
 
                         //重新拼字符串
@@ -495,12 +493,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-            Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-            iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
-            collectFlag=false;
 
 
-            // toCancelCollection();
+
+             toCancelCollection();
 
 
 
@@ -517,13 +513,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             editor.commit();
 
 
-           // toJoinCollection();
+            toJoinCollection();
 
-            Toast.makeText(getApplicationContext(),"添加收藏",Toast.LENGTH_SHORT).show();
 
-            iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
-
-            collectFlag=true;
 
 
         }
@@ -562,15 +554,18 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-
                 Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
+                collectFlag=false;
 
 
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                Toast.makeText(getApplicationContext(),"取消失败",Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -611,6 +606,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
 
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+
+                collectFlag=true;
+
+
 
                 Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
 
@@ -619,6 +619,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -1275,10 +1278,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             //当动画结束后：
             @Override
             public void onAnimationEnd(Animator animation) {
-                // 购物车的数量加1
-                //i++;
-                // count.setText(String.valueOf(i));
-                // 把移动的图片imageview从父布局里移除
+
                 rl_activity_goods.removeView(goods);
             }
 
