@@ -173,10 +173,14 @@ public class AllOrderFragment extends Fragment {
 
                 TextView tv_orderform_totalPrice= viewHolder.getViewById(R.id.tv_orderform_totalPrice);
 
-                Button btn_orderform_right = viewHolder.getViewById(R.id.btn_orderform_right);
+                final  Button btn_orderform_right = viewHolder.getViewById(R.id.btn_orderform_right);
 
-                Button btn_orderform_left = viewHolder.getViewById(R.id.btn_orderform_left);
+               final Button btn_orderform_left = viewHolder.getViewById(R.id.btn_orderform_left);
                 Button btn_orderform_detail = viewHolder.getViewById(R.id.btn_orderform_detail);
+
+                btn_orderform_right.setTag(position);
+
+                btn_orderform_left.setTag(position);
 
                 totalNum=0;
                 totalPrice=0.0;
@@ -213,6 +217,17 @@ public class AllOrderFragment extends Fragment {
                     btn_orderform_left.setText("取消订单");
 
                     btn_orderform_right.setText("付款");
+
+                    btn_orderform_left.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
+
+                        }
+                    });
+
+
 
 
                 }else if("2".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
@@ -382,21 +397,74 @@ public class AllOrderFragment extends Fragment {
     }
 
 
+    private void toModifyOrder(String orderId,String type){
+
+       // app.linchom.com/appapi.php?act=editorderinfo&type=1&order_id=52&user_id=12
+
+        //type 1 为取消 2为确认收货 3 退货
+        //确认收货的前提 订单必须 是发货状态
+        //退货  订单必须是已经支付
+
+        //取消 重新拿数据 page=1；
+
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","editorderinfo");
+
+        requestParams.addBodyParameter("order_id",orderId+"");
+
+        requestParams.addBodyParameter("user_id",userId+"");
+
+        requestParams.addBodyParameter("type",type+"");
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Log.i(TAG,"result"+result);
+
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+    }
+
+
     private void getData() {
 
         //orderStatusInfo ;
         //shippingStatusInfo;
        // payStatusInfo ;
 
-        RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php");
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
         //?act=ordersinfo&user_id=12
-        requestParams.addQueryStringParameter("act","ordersinfo");
-        requestParams.addQueryStringParameter("user_id",userId);
+        requestParams.addBodyParameter("act","ordersinfo");
+        requestParams.addBodyParameter("user_id",userId);
 
         //page
 
-        requestParams.addQueryStringParameter("page",page+"");
+        requestParams.addBodyParameter("page",page+"");
 
 /*
 
@@ -409,7 +477,7 @@ public class AllOrderFragment extends Fragment {
 */
 
 
-        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
