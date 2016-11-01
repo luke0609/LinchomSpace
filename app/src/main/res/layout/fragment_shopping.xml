@@ -125,13 +125,26 @@
                 >
 
 
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_banner_goods"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    >
+
+                </android.support.v4.view.ViewPager>
+
+
                 <com.shizhefei.view.indicator.FixedIndicatorView
 
 
                     android:id="@+id/indicator_banner_goods"
                     android:layout_margin="5dp"
 
-                    android:layout_width="60dp"
+                    android:layout_width="30dp"
                     android:layout_height="15dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
@@ -143,15 +156,6 @@
 
 
                 </com.shizhefei.view.indicator.FixedIndicatorView>
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_banner_goods"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true">
-
-                </android.support.v4.view.ViewPager>
 
 
             </RelativeLayout>

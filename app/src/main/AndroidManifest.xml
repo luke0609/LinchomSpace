@@ -87,8 +87,9 @@
         <activity
             android:name=".shopping.GoodsCommentActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".mine.Mydisclose"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".mine.Mydisclose"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".shopping.GoodsCartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -174,14 +175,17 @@
             android:name=".shopping.AddaddressActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".shopping.OrderDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        <activity
+            android:name=".shopping.OrderDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".homepage.Activity.SearchArticleActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+                android:name=".service.ServicePublishActivity"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-
-            ></activity>
-
-        <activity android:name=".homepage.Activity.SearchArticleActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" ></activity>
+        </activity>
     </application>
 
 </manifest>

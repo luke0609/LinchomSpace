@@ -146,6 +146,9 @@ public class GoodsListFragment extends Fragment {
                 intent.putExtra("bundle",bundle);
 
                 startActivity(intent);
+
+
+
             }
         });
 

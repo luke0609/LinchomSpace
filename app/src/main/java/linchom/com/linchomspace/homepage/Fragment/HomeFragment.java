@@ -30,11 +30,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.shizhefei.view.indicator.BannerComponent;
@@ -55,7 +50,7 @@ import linchom.com.linchomspace.homepage.Activity.NavigationActivity;
 import linchom.com.linchomspace.homepage.Adapter.HomeAdvIndicatorAdapter;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleListBean;
-import linchom.com.linchomspace.homepage.Entity.HomeAdvBean;
+import linchom.com.linchomspace.homepage.Entity.HomePageAdvBean;
 import linchom.com.linchomspace.homepage.Utils.DateUtils;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
@@ -95,7 +90,27 @@ public class HomeFragment extends Fragment {
     private RelativeLayout rl_hide_peixunxinxi;
     private RelativeLayout rl_hide_zhichaofangan;
     private RelativeLayout rl_hide_zhichaoanli;
-    final List<ArticleListBean.Article_list> arrList = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList1 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList2 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList3 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList4 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList5 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList6 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList7 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList8 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList9 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList10 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList11 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList12 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList13 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList14 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList15 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList16 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList17 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList18 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList19 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList20 = new ArrayList<ArticleListBean.Article_list>();
+    final List<ArticleListBean.Article_list> arrList21 = new ArrayList<ArticleListBean.Article_list>();
     private View view;
     private View view1;
     private View view2;
@@ -271,11 +286,11 @@ public class HomeFragment extends Fragment {
 
     private Map<String ,String> advMap =new HashMap<String ,String>();
 
-    private List<HomeAdvBean> getAdvList = new ArrayList<HomeAdvBean>();
+    private List<HomePageAdvBean> getAdvList = new ArrayList<HomePageAdvBean>();
 
     private List<String> tempList =new ArrayList<String>();
     private HomeAdvIndicatorAdapter homeadvindicatorAdapter;
-
+     private String CurrentItem;
 
 
 
@@ -299,6 +314,21 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         initData();
+        Bundle bundle =getArguments();
+        if(bundle!=null){
+
+            String currentItem=bundle.getString("CurrentItem");
+            Log.i("currentItem","currentItem");
+            switch (currentItem){
+                case "3" :
+                    vp_news.setCurrentItem(3);
+
+
+
+            }
+
+
+        }
         vp_news.setCurrentItem(0);
         lv_tuijian = ptr_arrlist_tuijian.getRefreshableView();
         lv_tuijian.setAdapter(adapter1);
@@ -317,46 +347,47 @@ public class HomeFragment extends Fragment {
     }
 
     private void initAdvList() {
-        getAdvList.add(new HomeAdvBean("1","1"));
-        getAdvList.add(new HomeAdvBean("1","1"));
-        getAdvList.add(new HomeAdvBean("1","1"));
+//        getAdvList.add(new HomeAdvBean("1","1"));
+//        getAdvList.add(new HomeAdvBean("1","1"));
+//        getAdvList.add(new HomeAdvBean("1","1"));
         RequestParams requestParams =new RequestParams(Constant.HomeAdv);
-        requestParams.addBodyParameter("act","figure");
-        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+        requestParams.addBodyParameter("position_id","3");
+        x.http().post(requestParams, new Callback.CommonCallback<String>(){
             @Override
             public void onSuccess(String result) {
-
                 Log.i(TAG,"result"+result);
-
                 Gson gson =new Gson();
 
-                JsonParser parser = new JsonParser();
-
-                JsonElement element = parser.parse(result);
-
-                JsonObject root = element.getAsJsonObject();
-
-                JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
-
-                JsonObject dataJson =  root.getAsJsonObject("data");
-
-                Map<String,String> a=   gson.fromJson(dataJson, new TypeToken<Map<String,String>>() {}.getType());
-
-                tempList.clear();
-                for (Map.Entry<String,String> m : a.entrySet()) {
-
-                    tempList.add(m.getValue());
-
-                    Log.i(TAG, "a" +m.getValue());
 
 
-                }
-                getAdvList.clear();
 
-                for(int i = 0;i<tempList.size();i++){
-                    getAdvList.add(new HomeAdvBean(tempList.get(i),tempList.get(i++)));
+//                JsonParser parser = new JsonParser();
+//
+//                JsonElement element = parser.parse(result);
+//
+//                JsonObject root = element.getAsJsonObject();
+//
+//                JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
+//
+//                JsonObject dataJson =  root.getAsJsonObject("data");
+//
+//                Map<String,String> a=   gson.fromJson(dataJson, new TypeToken<Map<String,String>>() {}.getType());
+//
+//                tempList.clear();
+//                for (Map.Entry<String,String> m : a.entrySet()) {
+//
+//                    tempList.add(m.getValue());
+//
+//                    Log.i(TAG, "a" +m.getValue());
+//
+//
+//                }
+//                getAdvList.clear();
 
-                }
+//                for(int i = 0;i<tempList.size();i++){
+//                    getAdvList.add(new HomeAdvBean(tempList.get(i),tempList.get(i++)));
+//
+//                }
 
 
                 Log.i(TAG,"advList"+getAdvList+"");
@@ -386,6 +417,7 @@ public class HomeFragment extends Fragment {
 
 
     private void initView() {
+
         tv_search = ((TextView) view.findViewById(R.id.tv_search));
         tv_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -492,7 +524,7 @@ public class HomeFragment extends Fragment {
         error_caterogy1 = ((RelativeLayout) view1.findViewById(R.id.error_caterogy1));
         ptr_arrlist_tuijian = ((PullToRefreshListView) view1.findViewById(R.id.ptr_arrlist_tuijian));
         lv_tuijian = ptr_arrlist_tuijian.getRefreshableView();
-        adapter1 = new MyAdapter();
+        adapter1 = new MyAdapter(arrList1);
         bannnerAdv = view1.inflate(getActivity(), R.layout.fragment_homepage_adv, null);
         //viewpage与indicator
         ViewPager viewPager = (ViewPager) bannnerAdv.findViewById(R.id.banner_viewPager);
@@ -512,7 +544,7 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ArticleActivity.class);
 
                 Bundle bundle = new Bundle();
-                bundle.putString("article_id", arrList.get(position - 2).article_id);
+                bundle.putString("article_id", arrList1.get(position - 2).article_id);
                 Log.i("wenzhang", "article_id");
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
@@ -528,7 +560,7 @@ public class HomeFragment extends Fragment {
         error_caterogy2 = ((RelativeLayout) view2.findViewById(R.id.error_caterogy2));
         ptr_arrlist_hangyezixun = ((PullToRefreshListView) view2.findViewById(R.id.ptr_arrlist_hangyezixun));
         lv_hangyezixun = ptr_arrlist_hangyezixun.getRefreshableView();
-        adapter2 = new MyAdapter();
+        adapter2 = new MyAdapter(arrList2);
         lv_hangyezixun.setAdapter(adapter2);
         lv_hangyezixun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private TextView tv_title;
@@ -537,7 +569,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ArticleActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                bundle.putString("article_id", arrList2.get(position - 1).article_id);
                 Log.i("wenzhang", "article_id");
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
@@ -553,7 +585,7 @@ public class HomeFragment extends Fragment {
         ptr_arrlist_canpinzixun = ((PullToRefreshListView) view3.findViewById(R.id.ptr_arrlist_canpinzixun));
 
         lv_canpinzixun = ptr_arrlist_canpinzixun.getRefreshableView();
-        adapter3 = new MyAdapter();
+        adapter3 = new MyAdapter(arrList3);
         lv_canpinzixun.setAdapter(adapter3);
         lv_canpinzixun.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private TextView tv_title;
@@ -562,7 +594,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ArticleActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("article_id", arrList.get(position - 2).article_id);
+                bundle.putString("article_id", arrList3.get(position - 2).article_id);
                 Log.i("wenzhang", "article_id");
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
@@ -577,7 +609,7 @@ public class HomeFragment extends Fragment {
         error_caterogy4 = ((RelativeLayout) view4.findViewById(R.id.error_caterogy4));
         ptr_arrlist_canpinpince = ((PullToRefreshListView) view4.findViewById(R.id.ptr_arrlist_canpinpince));
         lv_canpinpince = ptr_arrlist_canpinpince.getRefreshableView();
-        adapter4 = new MyAdapter();
+        adapter4 = new MyAdapter(arrList4);
         lv_canpinpince.setAdapter(adapter4);
         lv_canpinpince.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private TextView tv_title;
@@ -586,7 +618,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ArticleActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                bundle.putString("article_id", arrList4.get(position - 1).article_id);
                 Log.i("wenzhang", "article_id");
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
@@ -602,7 +634,7 @@ public class HomeFragment extends Fragment {
         ptr_arrlist_video = ((PullToRefreshListView) view5.findViewById(R.id.ptr_arrlist_video));
 
         lv_video = ptr_arrlist_video.getRefreshableView();
-        adapter5 = new MyAdapter();
+        adapter5 = new MyAdapter(arrList5);
         lv_video.setAdapter(adapter5);
         lv_video.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private TextView tv_title;
@@ -611,7 +643,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ArticleActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                bundle.putString("article_id", arrList5.get(position - 1).article_id);
                 Log.i("wenzhang", "article_id");
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
@@ -626,7 +658,7 @@ public class HomeFragment extends Fragment {
         error_caterogy6 = ((RelativeLayout) view6.findViewById(R.id.error_caterogy6));
         ptr_arrlist_pinpaizixun = ((PullToRefreshListView) view6.findViewById(R.id.ptr_arrlist_pinpaizixun));
         lv_pinpaizixun = ptr_arrlist_pinpaizixun.getRefreshableView();
-        adapter6 = new MyAdapter();
+        adapter6 = new MyAdapter(arrList6);
         lv_pinpaizixun.setAdapter(adapter6);
         listView.add(view6);
         View view7 = inflate(getActivity(), R.layout.fragment_home_hangyebiaozhun, null);
@@ -637,7 +669,7 @@ public class HomeFragment extends Fragment {
         error_caterogy7 = ((RelativeLayout) view7.findViewById(R.id.error_caterogy7));
         ptr_arrlist_hangyebiaozhun = ((PullToRefreshListView) view7.findViewById(R.id.ptr_arrlist_hangyebiaozhun));
         lv_hangyebiaozhun = ptr_arrlist_hangyebiaozhun.getRefreshableView();
-        adapter7 = new MyAdapter();
+        adapter7 = new MyAdapter(arrList7);
         lv_hangyebiaozhun.setAdapter(adapter7);
         listView.add(view7);
         View view8 = inflate(getActivity(), R.layout.fragment_home_hangyejishu, null);
@@ -648,7 +680,7 @@ public class HomeFragment extends Fragment {
         error_caterogy8 = ((RelativeLayout) view8.findViewById(R.id.error_caterogy8));
         ptr_arrlist_hangyejishu = ((PullToRefreshListView) view8.findViewById(R.id.ptr_arrlist_hangyejishu));
         lv_hangyejishu = ptr_arrlist_hangyejishu.getRefreshableView();
-        adapter8 = new MyAdapter();
+        adapter8 = new MyAdapter(arrList8);
         lv_hangyejishu.setAdapter(adapter8);
         listView.add(view8);
         View view9 = inflate(getActivity(), R.layout.fragment_home_wulianwang, null);
@@ -659,7 +691,7 @@ public class HomeFragment extends Fragment {
         error_caterogy9 = ((RelativeLayout) view9.findViewById(R.id.error_caterogy9));
         ptr_arrlist_wulianwang = ((PullToRefreshListView) view9.findViewById(R.id.ptr_arrlist_wulianwang));
         lv_wulianwang = ptr_arrlist_wulianwang.getRefreshableView();
-        adapter9 = new MyAdapter();
+        adapter9 = new MyAdapter(arrList9);
         lv_wulianwang.setAdapter(adapter9);
         listView.add(view9);
         View view10 = inflate(getActivity(), R.layout.fragment_home_zhihuichengshi, null);
@@ -670,7 +702,7 @@ public class HomeFragment extends Fragment {
         error_caterogy10 = ((RelativeLayout) view10.findViewById(R.id.error_caterogy10));
         ptr_arrlist_zhihuichengshi = ((PullToRefreshListView) view10.findViewById(R.id.ptr_arrlist_zhihuichengshi));
         lv_zhihuichengshi = ptr_arrlist_zhihuichengshi.getRefreshableView();
-        adapter10 = new MyAdapter();
+        adapter10 = new MyAdapter(arrList10);
         lv_zhihuichengshi.setAdapter(adapter10);
         listView.add(view10);
         View view11 = inflate(getActivity(), R.layout.fragment_home_zhihuishequ, null);
@@ -681,7 +713,7 @@ public class HomeFragment extends Fragment {
         error_caterogy11 = ((RelativeLayout) view11.findViewById(R.id.error_caterogy11));
         ptr_arrlist_zhihuishequ = ((PullToRefreshListView) view11.findViewById(R.id.ptr_arrlist_zhihuishequ));
         lv_zhihuishequ = ptr_arrlist_zhihuishequ.getRefreshableView();
-        adapter11 = new MyAdapter();
+        adapter11 = new MyAdapter(arrList11);
         lv_zhihuishequ.setAdapter(adapter11);
         listView.add(view11);
         View view12 = inflate(getActivity(), R.layout.fragment_home_wurenji, null);
@@ -692,7 +724,7 @@ public class HomeFragment extends Fragment {
         error_caterogy12 = ((RelativeLayout) view12.findViewById(R.id.error_caterogy12));
         ptr_arrlist_wurenji = ((PullToRefreshListView) view12.findViewById(R.id.ptr_arrlist_wurenji));
         lv_wurenji = ptr_arrlist_wurenji.getRefreshableView();
-        adapter12 = new MyAdapter();
+        adapter12 = new MyAdapter(arrList12);
         lv_wurenji.setAdapter(adapter12);
         listView.add(view12);
         View view13 = inflate(getActivity(), R.layout.fragment_home_zhinengyanglao, null);
@@ -703,7 +735,7 @@ public class HomeFragment extends Fragment {
         error_caterogy13 = ((RelativeLayout) view13.findViewById(R.id.error_caterogy13));
         ptr_arrlist_zhinengyanglao = ((PullToRefreshListView) view13.findViewById(R.id.ptr_arrlist_zhinengyanglao));
         lv_zhinengyanglao = ptr_arrlist_zhinengyanglao.getRefreshableView();
-        adapter13 = new MyAdapter();
+        adapter13 = new MyAdapter(arrList13);
         lv_zhinengyanglao.setAdapter(adapter13);
         listView.add(view13);
         View view14 = inflate(getActivity(),R.layout.fragment_home_zhinengjiankang, null);
@@ -714,7 +746,7 @@ public class HomeFragment extends Fragment {
         error_caterogy14 = ((RelativeLayout) view14.findViewById(R.id.error_caterogy14));
         ptr_arrlist_zhinengjiankang = ((PullToRefreshListView) view14.findViewById(R.id.ptr_arrlist_zhinengjiankang));
         lv_zhinengjiankang = ptr_arrlist_zhinengjiankang.getRefreshableView();
-        adapter14 = new MyAdapter();
+        adapter14 = new MyAdapter(arrList14);
         lv_zhinengjiankang.setAdapter(adapter14);
         listView.add(view14);
         View view15 = inflate(getActivity(), R.layout.fragment_home_zhinengyiliao, null);
@@ -725,7 +757,7 @@ public class HomeFragment extends Fragment {
         error_caterogy15 = ((RelativeLayout) view15.findViewById(R.id.error_caterogy15));
         ptr_arrlist_zhinengyiliao = ((PullToRefreshListView) view15.findViewById(R.id.ptr_arrlist_zhinengyiliao));
         lv_zhinengyiliao = ptr_arrlist_zhinengyiliao.getRefreshableView();
-        adapter15 = new MyAdapter();
+        adapter15 = new MyAdapter(arrList15);
         lv_zhinengyiliao.setAdapter(adapter15);
         listView.add(view15);
         View view16 = inflate(getActivity(), R.layout.fragment_home_jiqiren, null);
@@ -736,7 +768,7 @@ public class HomeFragment extends Fragment {
         error_caterogy16 = ((RelativeLayout) view16.findViewById(R.id.error_caterogy16));
         ptr_arrlist_jiqiren = ((PullToRefreshListView) view16.findViewById(R.id.ptr_arrlist_jiqiren));
         lv_jiqiren = ptr_arrlist_jiqiren.getRefreshableView();
-        adapter16 = new MyAdapter();
+        adapter16 = new MyAdapter(arrList16);
         lv_jiqiren.setAdapter(adapter16);
         listView.add(view16);
         View view17 = inflate(getActivity(), R.layout.fragment_home_vrar, null);
@@ -747,7 +779,7 @@ public class HomeFragment extends Fragment {
         error_caterogy17 = ((RelativeLayout) view17.findViewById(R.id.error_caterogy17));
         ptr_arrlist_vrar = ((PullToRefreshListView) view17.findViewById(R.id.ptr_arrlist_vrar));
         lv_vrar = ptr_arrlist_vrar.getRefreshableView();
-        adapter17 = new MyAdapter();
+        adapter17 = new MyAdapter(arrList17);
         lv_vrar.setAdapter(adapter17);
         listView.add(view17);
         View view18 = inflate(getActivity(), R.layout.fragment_home_zhanhuixinxi, null);
@@ -758,7 +790,7 @@ public class HomeFragment extends Fragment {
         error_caterogy18 = ((RelativeLayout) view18.findViewById(R.id.error_caterogy18));
         ptr_arrlist_zhanhuixinxi = ((PullToRefreshListView) view18.findViewById(R.id.ptr_arrlist_zhanhuixinxi));
         lv_zhanhuixinxi = ptr_arrlist_wulianwang.getRefreshableView();
-        adapter18 = new MyAdapter();
+        adapter18 = new MyAdapter(arrList18);
         lv_zhanhuixinxi.setAdapter(adapter18);
         listView.add(view18);
         View view19 = inflate(getActivity(), R.layout.fragment_home_peixunxinxi, null);
@@ -769,7 +801,7 @@ public class HomeFragment extends Fragment {
         error_caterogy19 = ((RelativeLayout) view19.findViewById(R.id.error_caterogy19));
         ptr_arrlist_peixunxinxi = ((PullToRefreshListView) view19.findViewById(R.id.ptr_arrlist_peixunxinxi));
         lv_peixunxinxi = ptr_arrlist_peixunxinxi.getRefreshableView();
-        adapter19 = new MyAdapter();
+        adapter19 = new MyAdapter(arrList19);
         lv_peixunxinxi.setAdapter(adapter19);
         listView.add(view19);
         View view20 = inflate(getActivity(), R.layout.fragment_home_zhichaofangan, null);
@@ -780,7 +812,7 @@ public class HomeFragment extends Fragment {
         error_caterogy20 = ((RelativeLayout) view20.findViewById(R.id.error_caterogy20));
         ptr_arrlist_zhichaofangan = ((PullToRefreshListView) view20.findViewById(R.id.ptr_arrlist_zhichaofangan));
         lv_zhichaofangan = ptr_arrlist_zhichaofangan.getRefreshableView();
-        adapter20 = new MyAdapter();
+        adapter20 = new MyAdapter(arrList20);
         lv_zhichaofangan.setAdapter(adapter20);
         lv_zhichaofangan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private TextView tv_title;
@@ -789,7 +821,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ArticleActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("article_id", arrList.get(position - 1).article_id);
+                bundle.putString("article_id", arrList20.get(position - 1).article_id);
                 Log.i("wenzhang", "article_id");
                 intent.putExtra("bundle", bundle);
                 startActivity(intent);
@@ -804,7 +836,7 @@ public class HomeFragment extends Fragment {
         error_caterogy21 = ((RelativeLayout) view21.findViewById(R.id.error_caterogy21));
         ptr_arrlist_zhichaoanli = ((PullToRefreshListView) view21.findViewById(R.id.ptr_arrlist_zhichaoanli));
         lv_zhichaoanli = ptr_arrlist_zhichaoanli.getRefreshableView();
-        adapter21 = new MyAdapter();
+        adapter21 = new MyAdapter(arrList21);
         lv_zhichaoanli.setAdapter(adapter21);
         listView.add(view21);
 
@@ -1803,7 +1835,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_jiqiren.setVisibility(View.GONE);
                 rl_hide_jiqiren.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList16.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -1811,12 +1843,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList16);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_jiqiren.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList16.addAll(articleData.getArticle_list());
                     adapter16.notifyDataSetChanged();
                     ptr_arrlist_jiqiren.onRefreshComplete();
                 } else {
@@ -1875,7 +1907,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhinengyiliao.setVisibility(View.GONE);
                 rl_hide_zhinengyiliao.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList15.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -1883,12 +1915,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList15);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhinengyiliao.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList15.addAll(articleData.getArticle_list());
                     adapter15.notifyDataSetChanged();
                     ptr_arrlist_zhinengyiliao.onRefreshComplete();
                 } else {
@@ -1947,7 +1979,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_vrar.setVisibility(View.GONE);
                 rl_hide_vrar.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList17.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -1955,11 +1987,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList17);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_vrar.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList17.addAll(articleData.getArticle_list());
                     adapter17.notifyDataSetChanged();
                     ptr_arrlist_vrar.onRefreshComplete();
                 } else {
@@ -2018,7 +2050,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhanhuixinxi.setVisibility(View.GONE);
                 rl_hide_zhanhuixinxi.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList18.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2026,11 +2058,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList18);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhanhuixinxi.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList18.addAll(articleData.getArticle_list());
                     adapter18.notifyDataSetChanged();
                     ptr_arrlist_zhanhuixinxi.onRefreshComplete();
                 } else {
@@ -2089,7 +2121,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_peixunxinxi.setVisibility(View.GONE);
                 rl_hide_peixunxinxi.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList19.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2097,11 +2129,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList19);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_peixunxinxi.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList19.addAll(articleData.getArticle_list());
                     adapter19.notifyDataSetChanged();
                     ptr_arrlist_peixunxinxi.onRefreshComplete();
                 } else {
@@ -2160,7 +2192,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhichaofangan.setVisibility(View.GONE);
                 rl_hide_zhichaofangan.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList20.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2168,11 +2200,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList20);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhichaofangan.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList20.addAll(articleData.getArticle_list());
                     adapter20.notifyDataSetChanged();
                     ptr_arrlist_zhichaofangan.onRefreshComplete();
                 } else {
@@ -2232,7 +2264,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhichaoanli.setVisibility(View.GONE);
                 rl_hide_zhichaoanli.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList21.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2240,13 +2272,13 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList21);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhichaoanli.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
-                    adapter17.notifyDataSetChanged();
+                    arrList21.addAll(articleData.getArticle_list());
+                    adapter21.notifyDataSetChanged();
                     ptr_arrlist_zhichaoanli.onRefreshComplete();
                 } else {
                     Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
@@ -2302,7 +2334,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhinengjiankang.setVisibility(View.GONE);
                 rl_hide_zhinengjiankang.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList14.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2310,11 +2342,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList14);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhinengjiankang.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList14.addAll(articleData.getArticle_list());
                     adapter14.notifyDataSetChanged();
                     ptr_arrlist_zhinengjiankang.onRefreshComplete();
                 } else {
@@ -2371,7 +2403,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_wurenji.setVisibility(View.GONE);
                 rl_hide_wurenji.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList12.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2379,11 +2411,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList12);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_wurenji.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList12.addAll(articleData.getArticle_list());
                     adapter12.notifyDataSetChanged();
                     ptr_arrlist_wurenji.onRefreshComplete();
                 } else {
@@ -2441,7 +2473,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhinengyanglao.setVisibility(View.GONE);
                 rl_hide_zhinengyanglao.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList13.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2449,11 +2481,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList13);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhinengyanglao.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList13.addAll(articleData.getArticle_list());
                     adapter13.notifyDataSetChanged();
                     ptr_arrlist_zhinengyanglao.onRefreshComplete();
                 } else {
@@ -2509,7 +2541,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhihuishequ.setVisibility(View.GONE);
                 rl_hide_zhihuishequ.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList11.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2517,11 +2549,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList11);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhihuishequ.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList11.addAll(articleData.getArticle_list());
                     adapter11.notifyDataSetChanged();
                     ptr_arrlist_zhihuishequ.onRefreshComplete();
                 } else {
@@ -2579,7 +2611,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_zhihuichengshi.setVisibility(View.GONE);
                 rl_hide_zhihuichengshi.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList10.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2587,12 +2619,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList10);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_zhihuichengshi.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList10.addAll(articleData.getArticle_list());
                     adapter10.notifyDataSetChanged();
                     ptr_arrlist_zhihuichengshi.onRefreshComplete();
                 } else {
@@ -2649,7 +2681,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_wulianwang.setVisibility(View.GONE);
                 rl_hide_wulianwang.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList9.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2657,12 +2689,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList9);
 
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_wulianwang.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList9.addAll(articleData.getArticle_list());
                     adapter9.notifyDataSetChanged();
                     ptr_arrlist_wulianwang.onRefreshComplete();
                 } else {
@@ -2720,7 +2752,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_hangyejishu.setVisibility(View.GONE);
                 rl_hide_hangyejishu.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList8.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2728,12 +2760,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList8);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_hangyejishu.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList8.addAll(articleData.getArticle_list());
                     adapter8.notifyDataSetChanged();
                     ptr_arrlist_hangyejishu.onRefreshComplete();
                 } else {
@@ -2790,7 +2822,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_hangyebiaozhun.setVisibility(View.GONE);
                 rl_hide_hangyebiaozhun.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList7.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2798,11 +2830,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList7);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_hangyebiaozhun.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList7.addAll(articleData.getArticle_list());
                     adapter7.notifyDataSetChanged();
                     ptr_arrlist_hangyebiaozhun.onRefreshComplete();
                 } else {
@@ -2860,7 +2892,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_pinpaizixun.setVisibility(View.GONE);
                 rl_hide_pinpaizixun.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList6.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2868,12 +2900,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList6);
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_pinpaizixun.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList6.addAll(articleData.getArticle_list());
                     adapter6.notifyDataSetChanged();
                     ptr_arrlist_pinpaizixun.onRefreshComplete();
                 } else {
@@ -2912,7 +2944,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void getvideo() {
+    private void getvideo(){
         rl_empty5.setVisibility(View.GONE);
         error_caterogy5.setVisibility(View.GONE);
 
@@ -2928,11 +2960,11 @@ public class HomeFragment extends Fragment {
         org.xutils.x.http().post(params, new Callback.CommonCallback<String>(){
             @Override
             public void onSuccess(String result) {
-                ptr_arrlist_video.setVisibility(View.GONE);
+//                ptr_arrlist_video.setVisibility(View.GONE);
                 rl_hide_video.setVisibility(View.GONE);
 
                 if (page == 1) {
-                    arrList.clear();
+                    arrList5.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -2943,14 +2975,17 @@ public class HomeFragment extends Fragment {
                 Log.i("数组长度",articleData.getArticle_list().size() +"");
                 if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_video.setVisibility(View.VISIBLE);
-                    System.out.println(arrList);
-                    if (page <= pageCount) {
-                        arrList.addAll(articleData.getArticle_list());
+                    System.out.println(arrList5);
+                    if (page <= pageCount){
+                        arrList5.addAll(articleData.getArticle_list());
                         adapter5.notifyDataSetChanged();
                         ptr_arrlist_video.onRefreshComplete();
+
                     } else {
                         Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        adapter5.notifyDataSetChanged();
                         ptr_arrlist_video.onRefreshComplete();
+
                     }
 
                 } else {
@@ -2970,7 +3005,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_video.setVisibility(View.GONE);
                 rl_empty5.setVisibility(View.GONE);
                 error_caterogy5.setVisibility(View.VISIBLE);
-                reload5.setOnClickListener(new View.OnClickListener() {
+                reload5.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                         getvideo();
@@ -3007,7 +3042,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_canpinpince.setVisibility(View.GONE);
                 rl_hide_canpinpince.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList4.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -3015,14 +3050,15 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList4);
                 if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_canpinpince.setVisibility(View.VISIBLE);
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList4.addAll(articleData.getArticle_list());
                     adapter4.notifyDataSetChanged();
                     ptr_arrlist_canpinpince.onRefreshComplete();
+
                 } else {
                     Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
                     ptr_arrlist_canpinpince.onRefreshComplete();
@@ -3082,7 +3118,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_tuijian.setVisibility(View.GONE);
                 rl_hide_tuijian.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList1.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -3090,16 +3126,17 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                System.out.println(arrList);
+                System.out.println(arrList1);
                 if (articleData.getArticle_list().size() != 0){
                     ptr_arrlist_tuijian.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList1.addAll(articleData.getArticle_list());
                     adapter1.notifyDataSetChanged();
                     ptr_arrlist_tuijian.onRefreshComplete();
                 } else {
                     Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
                     ptr_arrlist_tuijian.onRefreshComplete();
+                    adapter1.notifyDataSetChanged();
                 }
                   } else {
                     rl_hide_tuijian.setVisibility(View.GONE);
@@ -3116,7 +3153,7 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, "exexex" + ex + "");
 //                Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_LONG).show();
                 rl_hide_tuijian.setVisibility(View.GONE);
-                ptr_arrlist_tuijian.setVisibility(View.GONE);
+                //ptr_arrlist_tuijian.setVisibility(View.GONE);
                 rl_empty1.setVisibility(View.GONE);
                 error_caterogy1.setVisibility(View.VISIBLE);
                 reload1.setOnClickListener(new View.OnClickListener() {
@@ -3143,12 +3180,10 @@ public class HomeFragment extends Fragment {
         Log.i("aaaaa", "数据拿到");
         rl_empty2.setVisibility(View.GONE);
         error_caterogy2.setVisibility(View.GONE);
-
-        if (page == 1 && pullFlag == false) {
+        if (page == 1 && pullFlag == false){
             ptr_arrlist_hangyezixun.setVisibility(View.GONE);
             rl_hide_hangyezixun.setVisibility(View.VISIBLE);
         }
-
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -3157,10 +3192,10 @@ public class HomeFragment extends Fragment {
         org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                ptr_arrlist_hangyezixun.setVisibility(View.GONE);
+             ptr_arrlist_hangyezixun.setVisibility(View.GONE);
                 rl_hide_hangyezixun.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList2.clear();
 
                 }
                 Log.i(TAG1, result + "");
@@ -3169,17 +3204,12 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
+                System.out.println(arrList2);
 
-
-                System.out.println(arrList);
-
-//                System.out.println(bean.status + "????");
-//                System.out.println(bean.dongtaiList.size() + "====");
-//                通知listview更新界面
                 if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_hangyezixun.setVisibility(View.VISIBLE);
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList2.addAll(articleData.getArticle_list());
                     adapter2.notifyDataSetChanged();
                     ptr_arrlist_hangyezixun.onRefreshComplete();
                 } else {
@@ -3243,7 +3273,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_canpinzixun.setVisibility(View.GONE);
                 rl_hide_canpinzixun.setVisibility(View.GONE);
                 if (page == 1) {
-                    arrList.clear();
+                    arrList3.clear();
                 }
                 Log.i(TAG1, result + "");
                 Gson gson = new Gson();
@@ -3254,7 +3284,7 @@ public class HomeFragment extends Fragment {
 
                 if (articleData.getArticle_list().size()!=0) {
                     ptr_arrlist_canpinzixun.setVisibility(View.VISIBLE);
-                System.out.println(arrList);
+                System.out.println(arrList3);
 
 //                System.out.println(bean.status + "????");
 //                System.out.println(bean.dongtaiList.size() + "====");
@@ -3262,7 +3292,7 @@ public class HomeFragment extends Fragment {
 
 
                 if (page <= pageCount) {
-                    arrList.addAll(articleData.getArticle_list());
+                    arrList3.addAll(articleData.getArticle_list());
                     adapter3.notifyDataSetChanged();
                     ptr_arrlist_canpinzixun.onRefreshComplete();
                 } else {
@@ -3345,10 +3375,15 @@ public class HomeFragment extends Fragment {
     }
 
     private class MyAdapter extends BaseAdapter {
+      private List<ArticleListBean.Article_list> list;
+
+        public MyAdapter(List<ArticleListBean.Article_list> list) {
+            this.list = list;
+        }
 
         @Override
         public int getCount() {
-            return arrList.size();
+            return list.size();
         }
 
         @Override
@@ -3385,7 +3420,7 @@ public class HomeFragment extends Fragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             //ListActivityBean.Dongtai dongtai = dongtaiList.get(position);
-            ArticleListBean.Article_list arr = arrList.get(position);
+            ArticleListBean.Article_list arr = list.get(position);
 
             viewHolder.tv_title.setText(arr.title.replace(" ",""));
 

@@ -13,11 +13,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.reflect.TypeToken;
 import com.shizhefei.view.indicator.BannerComponent;
 import com.shizhefei.view.indicator.Indicator;
 
@@ -33,16 +28,17 @@ import java.util.Map;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
-import linchom.com.linchomspace.shopping.pojo.GoodsAdvBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsAdvDataBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsAdvNewBean;
 
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     private Map<String ,String> advMap =new HashMap<String ,String>();
 
-    private List<GoodsAdvBean> getAdvList = new ArrayList<GoodsAdvBean>();
+    private List<GoodsAdvDataBean> getAdvList = new ArrayList<GoodsAdvDataBean>();
 
-    private List<String> tempList =new ArrayList<String>();
+    //private List<String> tempList =new ArrayList<String>();
 
 
     private static final String TAG = "ShoppingFragment";
@@ -243,6 +239,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         setButtonClick();
         advLoopPlay();
+
+
 
 
 
@@ -511,18 +509,19 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     private void initAdvList() {
 
-        getAdvList.add(new GoodsAdvBean("1","1"));
-        getAdvList.add(new GoodsAdvBean("1","1"));
-        getAdvList.add(new GoodsAdvBean("1","1"));
+
+        getAdvList.add(new GoodsAdvDataBean("1","1","1","1","1","1","1","1","1"));
+        getAdvList.add(new GoodsAdvDataBean("1","1","1","1","1","1","1","1","1"));
+
+        //http://app.linchom.com/appapi.php?act=ads&position_id=3
 
 
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
-        requestParams.addBodyParameter("act","figure");
+        requestParams.addBodyParameter("act","ads");
 
-
-
+        requestParams.addBodyParameter("position_id","3");
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
@@ -531,51 +530,13 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
                 Log.i(TAG,"result"+result);
 
-                Gson gson =new Gson();
-
-                JsonParser parser = new JsonParser();
-
-                JsonElement element = parser.parse(result);
-
-                JsonObject root = element.getAsJsonObject();
-
-
-                JsonPrimitive resultjson = root.getAsJsonPrimitive("result");
-
-
-
-               JsonObject dataJson =  root.getAsJsonObject("data");
-
-
-
-                Map<String,String> a=   gson.fromJson(dataJson, new TypeToken<Map<String,String>>() {}.getType());
-
-
-
-                tempList.clear();
-                for (Map.Entry<String,String> m : a.entrySet()) {
-
-
-
-                    tempList.add(m.getValue());
-
-                    Log.i(TAG, "a" +m.getValue());
-
-
-                }
                 getAdvList.clear();
 
-                for(int i = 0;i<tempList.size();i++){
-                    getAdvList.add(new GoodsAdvBean(tempList.get(i),tempList.get(i++)));
+                Gson gson =new Gson();
 
+                GoodsAdvNewBean goodsAdvNewBean = gson.fromJson(result,GoodsAdvNewBean.class);
 
-
-                }
-
-
-                Log.i(TAG,"advList"+getAdvList+"");
-
-
+                getAdvList.addAll(goodsAdvNewBean.data);
 
                 rl_goodsHome_load.setVisibility(View.GONE);
 

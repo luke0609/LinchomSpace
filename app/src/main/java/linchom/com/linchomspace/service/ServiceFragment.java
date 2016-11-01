@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.service;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,8 +47,7 @@ import linchom.com.linchomspace.service.pojo.ServiceBean;
 import linchom.com.linchomspace.service.utils.ResUtil;
 import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
-import static android.R.attr.y;
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+
 
 
 public class ServiceFragment extends Fragment implements View.OnClickListener {
@@ -75,7 +75,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
 
     private RelativeLayout plus_rl;
     private ImageView plus_im;
-    private TextView dishui_tv, guoshui_tv,rizhi_tv;
+    private TextView dishui_tv, guoshui_tv,publish_tv;
 
     private Animation rotate_anticlockwise, rotate_clockwise, scale_max,
             scale_min, alpha_button;
@@ -139,7 +139,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         plus_im = (ImageView) view_main.findViewById(R.id.plus_im);
         dishui_tv = (TextView) view_main.findViewById(R.id.dishui_tv);
         guoshui_tv = (TextView) view_main.findViewById(R.id.guoshui_tv);
-        rizhi_tv = (TextView) view_main.findViewById(R.id.rizhi_tv);
+        publish_tv = (TextView) view_main.findViewById(R.id.publish_tv);
         service_category = ((TextView) view_main.findViewById(R.id.service_category));
         request = ((RadioButton) view_main.findViewById(R.id.request));
         service = ((RadioButton) view_main.findViewById(R.id.serviec));
@@ -154,7 +154,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         rl_plus.setOnClickListener(this);
         dishui_tv.setOnClickListener(this);
         guoshui_tv.setOnClickListener(this);
-        rizhi_tv.setOnClickListener(this);
+        publish_tv.setOnClickListener(this);
     }
 
     private void initView() {
@@ -416,7 +416,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 content_mobile.setText(itemsBean.getMobile());
                 content_add_time.setText(itemsBean.getAdd_time());
                 content_address.setText(itemsBean.getAddress());
-                content_service_type.setText(itemsBean.getTopic_category_name());
+                content_service_type.setText(("0".equals(itemsBean.getService_type())?"需求":"服务"));
 
             }
 
@@ -514,7 +514,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 content_mobile.setText(itemsBean.getMobile());
                 content_add_time.setText(itemsBean.getAdd_time());
                 content_address.setText(itemsBean.getAddress());
-                content_service_type.setText(itemsBean.getTopic_category_name());
+                content_service_type.setText(("0".equals(itemsBean.getService_type())?"需求":"服务"));
 
             }
 
@@ -550,9 +550,11 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 v.startAnimation(alpha_button);
                 rl_plus.performClick();
                 break;
-            case R.id.rizhi_tv:
+            case R.id.publish_tv:
                 v.startAnimation(alpha_button);
                 rl_plus.performClick();
+                Intent intent=new Intent(getActivity(),ServicePublishActivity.class);
+                startActivity(intent);
                 break;
             }
 
@@ -634,14 +636,14 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         // 两个按钮的显示隐藏
         dishui_tv.setVisibility(clicked ? View.VISIBLE : View.GONE);
         guoshui_tv.setVisibility(clicked ? View.VISIBLE : View.GONE);
-        rizhi_tv.setVisibility(clicked ? View.VISIBLE : View.GONE);
+        publish_tv.setVisibility(clicked ? View.VISIBLE : View.GONE);
         // 加号旋转
         plus_im.startAnimation(clicked ? rotate_anticlockwise
                 : rotate_clockwise);
         // 按钮显示隐藏效果
         dishui_tv.startAnimation(clicked ? scale_max : scale_min);
         guoshui_tv.startAnimation(clicked ? scale_max : scale_min);
-        rizhi_tv.startAnimation(clicked ? scale_max : scale_min);
+        publish_tv.startAnimation(clicked ? scale_max : scale_min);
         // 背景色的改变
         plus_rl.setBackgroundColor(clicked ? Color
                 .parseColor("#99ffffff") : Color.TRANSPARENT);
@@ -649,7 +651,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         plus_rl.setClickable(clicked);
         dishui_tv.setClickable(clicked ?true :false);
         guoshui_tv.setClickable(clicked ?true :false);
-        rizhi_tv.setClickable(clicked ?true :false);
+        publish_tv.setClickable(clicked ?true :false);
     }
 
 

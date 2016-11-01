@@ -94,9 +94,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
         }
 
         //goodsNum
-       // goodsImg
+        //goodsImg
         //goodsName
-       // goodsPrice
+        //goodsPrice
 
 
 

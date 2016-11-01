@@ -180,7 +180,7 @@
             android:layout_above="@+id/guoshui_tv"
             android:layout_alignRight="@+id/guoshui_tv" />
         <TextView
-            android:id="@+id/rizhi_tv"
+            android:id="@+id/publish_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/jiange03"

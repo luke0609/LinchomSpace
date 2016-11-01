@@ -132,7 +132,6 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         bundle.putString("catId",catId);
         bundle.putString("order","desc");
         bundle.putString("sort","");
-
         bundle.putString("keyword",keyword);
 
 
@@ -497,10 +496,18 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         RelativeLayout rl_goodsList_pop_bottom=  ((RelativeLayout) contentView.findViewById(R.id.rl_goodsList_pop_bottom));
 
 
+
+
+       final   PopupWindow popupWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+
+
+
         rl_goodsList_pop_top.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
                 sortChange("asc","shop_price");
             }
         });
@@ -509,14 +516,13 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         rl_goodsList_pop_bottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
+
 
                 sortChange("desc","shop_price");
 
             }
         });
-
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
 
