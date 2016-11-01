@@ -2,6 +2,7 @@ package linchom.com.linchomspace.mine.fragment;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,8 +33,10 @@ import java.util.List;
 import java.util.Locale;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.homepage.Activity.ArticleActivity;
 import linchom.com.linchomspace.mine.pojo.AlertsInfoBean;
 import linchom.com.linchomspace.mine.pojo.ArticleInFoBean;
+import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
@@ -59,6 +62,17 @@ public class news_fragment extends Fragment {
         firstBar = ((ProgressBar) view.findViewById(R.id.firstBar));
         initData();
         eventPullToRefresh();
+        lv_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ArticleActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id",aItemsList.get(position-1).article_id);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        });
+
         lv_news.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

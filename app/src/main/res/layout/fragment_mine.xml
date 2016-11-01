@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:text="商 城"
+                android:text="商场购物"
                 android:layout_toRightOf="@id/iv_shopping"
                 android:textColor="#808080"
                 android:textSize="18sp"/>
