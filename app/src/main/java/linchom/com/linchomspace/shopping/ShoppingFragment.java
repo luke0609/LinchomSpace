@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
@@ -128,6 +131,9 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
 
         view=inflater.inflate(R.layout.fragment_shopping,container, false);
+
+
+
         initView();
         initData();
         initEvent();
@@ -240,7 +246,57 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         setButtonClick();
         advLoopPlay();
 
+       et_goods_cate_search.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
 
+               //popupWindow
+
+                //toPopUpWindow(v);
+
+
+                return false;
+            }
+        });
+
+
+
+
+
+    }
+
+    private void toPopUpWindow(View view){
+        View contentView = LayoutInflater.from(getActivity()).inflate(
+                R.layout.goods_search_history_pop, null);
+
+
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+
+
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setFocusable(true);
+
+        popupWindow.setOutsideTouchable(true);
+
+       /* popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.i("mengdd", "onTouch : ");
+
+                return false;
+            }
+        });*/
+
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(
+                R.drawable.goods_default_city));
+
+        popupWindow.showAsDropDown(view);
 
 
 
