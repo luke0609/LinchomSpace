@@ -65,8 +65,7 @@ public class ServicePublishActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 RregionBean.DataBean selectItem =(RregionBean.DataBean)parent.getItemAtPosition(position);
                 System.out.println(selectItem.getRegion_id());
-                String city_id=null;
-                String  district_id=null;
+
                 clearDistrict();
 
                 clearCity();
