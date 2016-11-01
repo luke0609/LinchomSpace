@@ -31,6 +31,8 @@
 
     <com.shizhefei.view.indicator.FixedIndicatorView
 
+        android:gravity="center"
+
         android:layout_below="@id/bar_service_head"
 
         android:id="@+id/indicator_service_head"
