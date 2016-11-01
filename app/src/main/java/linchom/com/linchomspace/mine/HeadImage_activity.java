@@ -27,10 +27,9 @@ public class HeadImage_activity extends AppCompatActivity {
     private EditText tv_home_office;
     private ImageView iv_photo;
     private EditText tv_mobile_phone;
-
-    UserInfoBean.DataBean dataBean;
     private TextView tv_ok;
     private RelativeLayout tv_add;
+    UserInfoBean.DataBean dataBean;
 
 
     @Override
