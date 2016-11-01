@@ -10,9 +10,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -45,7 +48,6 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
     public List<RregionBean.DataBean> districtlist;
     private Spinner sp_region;
     private Spinner sp_city;
-
     private Spinner sp_district;
 
     private String ipaddress=null;
@@ -68,6 +70,12 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
     private EditText et_phonenum;
     private EditText et_address_ex;
 
+    private TextView tv_post;
+    private ImageView iv_back;
+    private ImageView iv_goback;
+    private TextView tv_next;
+    private RelativeLayout rl_2_1;
+    private RelativeLayout rl_2_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +96,7 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
         region.put("开孔","6");
         region.put("地板","7");
         region.put("墙壁","8");
-        region.put("吊顶R","9");
+        region.put("吊顶","9");
         region.put("维修","10");
         region.put("保洁","11");
         region.put("搬运","12");
@@ -97,7 +105,7 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
 
         final ArrayAdapter<CharSequence> adapterspinner1 = ArrayAdapter
                 .createFromResource(this, R.array.main_service_menu,
-                        android.R.layout.simple_list_item_1);
+                      R.layout.spinner_item);
         sp_topic.setAdapter(adapterspinner1);
         sp_topic.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -159,6 +167,17 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
         add_content = ((EditText) findViewById(R.id.add_content));
         et_phonenum = ((EditText) findViewById(R.id.et_phonenum));
         et_address_ex = ((EditText) findViewById(R.id.et_address_ex));
+
+        tv_post = ((TextView) findViewById(R.id.tv_post));
+        tv_post.setOnClickListener(this);
+        iv_back = ((ImageView) findViewById(R.id.iv_back));
+        iv_back.setOnClickListener(this);
+        iv_goback = ((ImageView) findViewById(R.id.iv_goback));
+        iv_goback.setOnClickListener(this);
+        tv_next = ((TextView) findViewById(R.id.tv_next));
+        tv_next.setOnClickListener(this);
+        rl_2_1 = ((RelativeLayout) findViewById(R.id.rl_2_1));
+        rl_2_2 = ((RelativeLayout) findViewById(R.id.rl_2_2));
 
         sp_region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -362,6 +381,7 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
         RegionAdapter regionAdapter3=new RegionAdapter(getApplicationContext(),districtlist);
         sp_district.setAdapter(regionAdapter3);
     }
+
     private void getIp() {
         // http://ip.taobao.com/service/getIpInfo2.php?ip=myip
 
@@ -455,6 +475,24 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.tv_post:
                 doPublish();
+                break;
+            case R.id.iv_goback:
+                rl_2_2.setVisibility(View.GONE);
+                rl_2_1.setVisibility(View.VISIBLE);
+                iv_goback.setVisibility(View.GONE);
+                iv_back.setVisibility(View.VISIBLE);
+                tv_next.setVisibility(View.VISIBLE);
+                tv_post.setVisibility(View.GONE);
+                break;
+            case R.id.tv_next:
+                rl_2_1.setVisibility(View.GONE);
+                rl_2_2.setVisibility(View.VISIBLE);
+                iv_back.setVisibility(View.GONE);
+                iv_goback.setVisibility(View.VISIBLE);
+                tv_post.setVisibility(View.VISIBLE);
+                tv_next.setVisibility(View.GONE);
+
+
                 break;
         }
     }
