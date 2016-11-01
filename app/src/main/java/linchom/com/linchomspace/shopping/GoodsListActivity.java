@@ -78,6 +78,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
         keyword = bundle.getString("keyword");
 
+
         if(keyword==null){
 
             keyword="";
@@ -147,8 +148,13 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     private void initData() {
 
-        //cateId
-        //bundle
+
+        if(keyword!=null&&keyword!=""){
+
+            et_goods_search.setText(keyword);
+
+        }
+
 
     }
 
