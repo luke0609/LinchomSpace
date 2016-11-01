@@ -48,7 +48,7 @@
                 android:layout_alignParentBottom="true"
                 android:text="时间"
                 android:layout_marginRight="10dp"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 />
 
         </RelativeLayout>

@@ -2,6 +2,7 @@ package linchom.com.linchomspace.mine.fragment;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,8 +37,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import linchom.com.linchomspace.homepage.Activity.CommentActivity;
+import linchom.com.linchomspace.mine.HeadImage_activity;
 import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
+import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
+import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.R;
 
@@ -61,6 +67,18 @@ public class goods_fragment extends Fragment {
         lv_goods = ((PullToRefreshListView) view.findViewById(R.id.lv_goods));
         firstBar = ((ProgressBar) view.findViewById(R.id.firstBar));
         eventPullToRefresh();
+
+        lv_goods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(),GoodsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("goodsId",loveList.get(position-1).goods_id);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        });
+
         lv_goods.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,6 +87,7 @@ public class goods_fragment extends Fragment {
                 return true;
             }
         });
+
         //initData();
         return  view;
 

@@ -17,6 +17,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 
+import linchom.com.linchomspace.MainActivity;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 
@@ -31,7 +32,7 @@ public class Details_Activity extends AppCompatActivity {
 //    public static final int TAKE_PHOTO=12;
 //    public static final int CROP=13;
 
-
+    UserInfoBean.DataBean userInfoBean;
     public static final String TAG = " Details_Activity";
 
     private ImageView iv_back;
@@ -39,9 +40,11 @@ public class Details_Activity extends AppCompatActivity {
     private TextView tv_ed;
     private EditText tv_user_name;
     private EditText tv_sex;
-    private EditText tv_qq;
     private EditText tv_birthday;
     private EditText tv_email;
+    private EditText tv_office_phone;
+    private EditText tv_home_phone;
+    private EditText tv_mobile_phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,19 +63,34 @@ public class Details_Activity extends AppCompatActivity {
         tv_user_name = ((EditText)findViewById(R.id.tv_user_name));
         tv_sex = ((EditText) findViewById(R.id.tv_add));
         tv_birthday = ((EditText) findViewById(R.id.tv_birthday));
-        tv_qq = ((EditText) findViewById(R.id.tv_qq));
         tv_email = ((EditText) findViewById(R.id.tv_email));
-
-
-        iv_back = ((ImageView) findViewById(R.id.iv_back));
         iv_user_photo = ((ImageView) findViewById(R.id.iv_user_photo));
+        tv_office_phone = ((EditText) findViewById(R.id.tv_office_phone));
+        tv_mobile_phone = ((EditText) findViewById(R.id.tv_mobile_phone));
+        tv_home_phone = ((EditText) findViewById(R.id.tv_home_phone));
+
+
+//        iv_back = ((ImageView) findViewById(R.id.iv_back));
+//        iv_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+//                intent.putExtra("mine",5);
+//                startActivity(intent);
+//
+//            }
+//        });
+
         tv_ed = ((TextView) findViewById(R.id.tv_ed));
 
         tv_ed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                upData();
+                Intent intent=new Intent(getApplicationContext(),HeadImage_activity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("user",userInfoBean);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -114,8 +132,24 @@ public class Details_Activity extends AppCompatActivity {
 //        });
 
         initData();
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void getData(){
+        String name=tv_user_name.getText().toString();
+        String sex=tv_sex.getText().toString();
+        String birthday=tv_birthday.getText().toString();
+        String email=tv_email.getText().toString();
+        String office_phone=tv_office_phone.getText().toString();
+        String home_office=tv_home_phone.getText().toString();
+        String mobile_phone=tv_mobile_phone.getText().toString();
+        userInfoBean=new UserInfoBean.DataBean(name,email,sex,birthday,office_phone,home_office,mobile_phone);
+    }
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        switch (requestCode) {
@@ -226,39 +260,33 @@ public class Details_Activity extends AppCompatActivity {
 //        requestParams.addBodyParameter("user_id", "135");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            private TextView tv_home_phone;
 
             @Override
             public void onSuccess(String result) {
-
 //                System.out.println("onsucess" + result);
-
                 Gson gson = new Gson();
                 UserInfoBean bean = gson.fromJson(result, UserInfoBean.class);
-
 //                System.out.println("======"+bean);
 //                System.out.println(bean.getResult());
-
                 UserInfoBean.DataBean dataBean = bean.getData();
-
                 TextView tv_mobile_phone = ((TextView) findViewById(R.id.tv_mobile_phone));
                 tv_mobile_phone.setText(dataBean.getMobile_phone());
-
                 TextView tv_user_name = ((TextView) findViewById(R.id.tv_user_name));
                 tv_user_name.setText(dataBean.getUser_name());
-
                 TextView tv_birthday = ((TextView) findViewById(R.id.tv_birthday));
                 tv_birthday.setText(dataBean.getBirthday());
-
-                TextView tv_qq = ((TextView) findViewById(R.id.tv_qq));
-                tv_qq.setText(dataBean.getQq());
-
                 TextView tv_email = (TextView) findViewById(R.id.tv_email);
                 tv_email.setText(dataBean.getEmail());
+                TextView tv_office_phone=(TextView) findViewById(R.id.tv_office_phone);
+                tv_office_phone.setText(dataBean.getOffice_phone());
+                TextView tv_home_phone = ((TextView) findViewById(R.id.tv_home_phone));
+                tv_home_phone.setText(dataBean.getHome_phone());
                 TextView tv_sex = ((TextView) findViewById(R.id.tv_add));
-                tv_sex.setText(dataBean.getSex().equals("1")?"男":"女");
-//                System.out.println("修改成功"+dataBean);
+                tv_sex.setText((dataBean.getSex().equals("0"))?"男":"女");
 
 
+                getData();
             }
 
             @Override
@@ -279,82 +307,7 @@ public class Details_Activity extends AppCompatActivity {
             }
         });
 
-        iv_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
     }
 
-    public void upData(){
 
-        String username= tv_user_name.getText().toString();
-        String sex=tv_sex.getText().toString();
-        String birthday=tv_birthday.getText().toString();
-        String[] birthdaies = birthday.split("-");
-//         String qq=tv_qq.getText().toString();
-        String email=tv_email.getText().toString();
-
-//         UserInfoBean.DataBean mUser=new UserInfoBean.DataBean(username,sex,birthday,email);
-
-        Gson gson=new Gson();
-//         String userJson=gson.toJson(mUser);
-
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=edituserinfo&user_id=135");
-
-        //requestParams.addBodyParameter("user_name","张晓文");
-
-        //requestParams.addQueryStringParameter("mUser",userJson);
-
-        requestParams.addQueryStringParameter("email",email);
-        requestParams.addQueryStringParameter("user_name",username);
-        requestParams.addQueryStringParameter("sex",sex);
-        requestParams.addQueryStringParameter("birthdayYear",birthdaies[0]);
-        requestParams.addQueryStringParameter("birthdayMonth",birthdaies[1]);
-        requestParams.addQueryStringParameter("birthdayDay",birthdaies[2]);
-
-        x.http().post(requestParams, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-
-//                System.out.println("onsucess" + result);
-                Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
-//                Log.i(TAG,result);
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-                Log.e("error",ex.getMessage().toString());
-                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
-                if (ex instanceof HttpException) { // 网络错误
-                    HttpException httpEx = (HttpException) ex;
-                    int responseCode = httpEx.getCode();
-                    String responseMsg = httpEx.getMessage();
-                    String errorResult = httpEx.getResult();
-                    Log.e("网络错误",ex.getMessage().toString());
-                    // ...
-                } else { // 其他错误
-
-                    Log.e("其他错误",ex.getMessage().toString());
-                    // ...
-                }
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-                initData();
-
-                finish();
-            }
-        });
-    }
 }
