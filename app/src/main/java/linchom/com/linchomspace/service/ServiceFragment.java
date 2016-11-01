@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.telecom.TelecomManager;
-import android.text.format.DateUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +24,6 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.ramotion.foldingcell.FoldingCell;
-
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -546,6 +542,11 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             case R.id.dishui_tv:
                 v.startAnimation(alpha_button);
                 rl_plus.performClick();
+                Intent intent1 =new Intent(getActivity(),ServiceContentActivity.class);
+
+                startActivity(intent1);
+
+
                 break;
             case R.id.guoshui_tv:
                 v.startAnimation(alpha_button);

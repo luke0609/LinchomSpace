@@ -182,10 +182,10 @@
             android:name=".homepage.Activity.SearchArticleActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-                android:name=".service.ServicePublishActivity"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+            android:name=".service.ServicePublishActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".service.ServiceContentActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
