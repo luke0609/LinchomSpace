@@ -114,6 +114,8 @@ public class ChatFragment extends Fragment {
 
         indicatorViewPager.setAdapter(new MyAdapter());
         indicatorViewPager.setPageOffscreenLimit(0);
+
+      //  indicatorViewPager.setCurrentItem(5,true);
     }
 
     private void initData() {
@@ -195,13 +197,13 @@ public class ChatFragment extends Fragment {
                     TextView tv_chat_name = viewHolder.getViewById(R.id.tv_chat_name);
                     TextView tv_chat_time = viewHolder.getViewById(R.id.tv_chat_time);
                     TextView tv_chat_title=viewHolder.getViewById(R.id.tv_title);
-                   TextView remark_num=viewHolder.getViewById(R.id.remark_num);
+                    TextView remark_num=viewHolder.getViewById(R.id.remark_num);
                     tv_name.setText(itemsBean.getUser_name());
                     tv_chat_name.setText(itemsBean.getTopic_name().trim());
                     tv_chat_title.setText(itemsBean.getCommunication_title());
                     int timeB = Integer.parseInt(itemsBean.getAdd_time());
                     tv_chat_time.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
-                  remark_num.setText(itemsBean.getRepliesnumber());
+                    remark_num.setText(itemsBean.getRepliesnumber());
 
 
 

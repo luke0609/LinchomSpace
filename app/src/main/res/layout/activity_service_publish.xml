@@ -36,7 +36,8 @@
             android:textColor="#fff"
             android:layout_marginRight="5dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:id="@+id/tv_post" />
     </RelativeLayout>
     <LinearLayout
 
@@ -73,20 +74,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
         android:layout_weight="2">
         <RadioGroup
+            android:id="@+id/rg_category"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
+                android:id="@+id/rbn_require"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="需求"
                 android:textColor="#808080"
                 />
             <RadioButton
+                android:id="@+id/rbn_service"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -177,23 +183,27 @@
             android:layout_gravity="center_vertical"
             android:textSize="16sp"/>
         <RadioGroup
+            android:id="@+id/rg_release"
             android:layout_weight="5"
             android:layout_gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="公司"
-                android:textColor="#808080"
-                />
-            <RadioButton
+                android:id="@+id/rbn_person"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="个人"
+                android:checked="true"
+                android:textColor="#808080"
+                />
+            <RadioButton
+                android:id="@+id/rbn_company"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="公司"
                android:gravity="center"
                 android:textColor="#808080"
                 />
