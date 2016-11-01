@@ -40,10 +40,10 @@ import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.chat.pojo.TopicList;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.service.pojo.ServiceBean;
+import linchom.com.linchomspace.service.utils.IpUtil;
 import linchom.com.linchomspace.service.utils.ResUtil;
 import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
@@ -88,6 +88,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private boolean refreshFlag =false;
     private boolean pageSelecter=true;
     private CommonAdapter<ServiceBean.DataBean.ItemsBean> serviceCommonAdapter;
+
+    String ipAddress=null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -238,10 +240,6 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         });
 
         requirePullToRefresh();
-
-
-
-
 
     }
     private void getRequireList(int type) {
@@ -533,8 +531,11 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 up_choice_service();
                 break;
             case R.id.address_select:
+
                 address_select.setVisibility(View.GONE);
                 tv_address.setVisibility(View.VISIBLE);
+                IpUtil getip=new IpUtil();
+
                 break;
             case R.id.tv_address:
                 up_choice_address();

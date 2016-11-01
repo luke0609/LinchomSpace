@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,16 +22,24 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.service.adapter.RegionAdapter;
+import linchom.com.linchomspace.service.pojo.IpBean;
 import linchom.com.linchomspace.service.pojo.RregionBean;
 
+import static android.R.attr.value;
+import static linchom.com.linchomspace.R.id.add_content;
 import static linchom.com.linchomspace.R.id.sp_city;
+import static linchom.com.linchomspace.R.id.sp_topic;
+import static linchom.com.linchomspace.R.id.vp_service;
 
-public class ServicePublishActivity extends AppCompatActivity {
+public class ServicePublishActivity extends AppCompatActivity implements View.OnClickListener{
+    Map<String,String> region = new HashMap<String,String>();
     public List<RregionBean.DataBean> provincelist;
     public List<RregionBean.DataBean> citylist;
     public List<RregionBean.DataBean> districtlist;
@@ -36,15 +48,71 @@ public class ServicePublishActivity extends AppCompatActivity {
 
     private Spinner sp_district;
 
+    private String ipaddress=null;
+
     private String province_id=null;
     private String city_id=null;
     private String  district_id=null;
+    private String cardNumber;
+    private  Spinner sp_topic;
+
+
+    private RadioGroup rg_category;
+    private RadioGroup rg_release;
+
+    private String service_type="0";
+    private String category_id;
+    private String release="1";
+    private EditText et_title;
+    private EditText add_content;
+    private EditText et_phonenum;
+    private EditText et_address_ex;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_publish);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        initMap();
         initView();
+        getIp();
+    }
+
+    private  void initMap(){
+        region.put("智能居家","1");
+        region.put("门窗安装","2");
+        region.put("水暖","3");
+        region.put("电工照明","4");
+        region.put("空调电器","5");
+        region.put("开孔","6");
+        region.put("地板","7");
+        region.put("墙壁","8");
+        region.put("吊顶R","9");
+        region.put("维修","10");
+        region.put("保洁","11");
+        region.put("搬运","12");
+        region.put("其他","13");
+        sp_topic = ((Spinner) findViewById(R.id.sp_topic));
+
+        final ArrayAdapter<CharSequence> adapterspinner1 = ArrayAdapter
+                .createFromResource(this, R.array.main_service_menu,
+                        android.R.layout.simple_list_item_1);
+        sp_topic.setAdapter(adapterspinner1);
+        sp_topic.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cardNumber = sp_topic.getSelectedItem().toString();
+                System.out.println(cardNumber+"2");
+                category_id = (String)region.get(cardNumber);
+                System.out.println(cardNumber+"===="+category_id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -58,8 +126,40 @@ public class ServicePublishActivity extends AppCompatActivity {
         clearProvince();
         clearCity();
         clearDistrict();
-
         getProvince();
+
+
+
+        rg_category = ((RadioGroup) findViewById(R.id.rg_category));
+        rg_release = ((RadioGroup) findViewById(R.id.rg_release));
+        rg_category.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rbn_require) {
+                    service_type="0";
+                } else {
+                    service_type="1";
+                }
+                System.out.println("service_type"+service_type);
+            }
+        });
+        rg_release.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rbn_person) {
+                    release="1";
+                } else {
+                    release="0";
+                }
+                System.out.println("release"+release);
+            }
+        });
+
+        et_title = ((EditText) findViewById(R.id.et_title));
+        add_content = ((EditText) findViewById(R.id.add_content));
+        et_phonenum = ((EditText) findViewById(R.id.et_phonenum));
+        et_address_ex = ((EditText) findViewById(R.id.et_address_ex));
+
         sp_region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -248,7 +348,7 @@ public class ServicePublishActivity extends AppCompatActivity {
         RegionAdapter regionAdapter = new RegionAdapter(getApplicationContext(), provincelist);
         sp_region.setAdapter(regionAdapter);
     }
-   private void clearCity(){
+    private void clearCity(){
        RregionBean.DataBean tip2= new RregionBean.DataBean("市","1");
        citylist.clear();
        citylist.add(tip2);
@@ -261,6 +361,102 @@ public class ServicePublishActivity extends AppCompatActivity {
         districtlist.add(tip3);
         RegionAdapter regionAdapter3=new RegionAdapter(getApplicationContext(),districtlist);
         sp_district.setAdapter(regionAdapter3);
+    }
+    private void getIp() {
+        // http://ip.taobao.com/service/getIpInfo2.php?ip=myip
+
+        RequestParams params = new RequestParams("http://ip.taobao.com/service/getIpInfo2.php");
+        params.addQueryStringParameter("ip", "myip");
+        System.out.println(params);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson = new Gson();
+                IpBean bean = gson.fromJson(result, IpBean.class);
+                String  ipAddress = bean.getData().getIp();
+                ipaddress=ipAddress;
+                System.out.println(ipAddress);
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+    }
+
+    private void doPublish() {
+        //et_title
+//        add_content
+//                et_phonenum
+//                        et_address_ex
+
+        String title= et_title.getText().toString();
+        String content=add_content.getText().toString();
+        String phonenum=et_phonenum.getText().toString();
+        String address_ex=et_address_ex.getText().toString();
+
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
+        params.addQueryStringParameter("act", "add_demand_services");
+        params.addQueryStringParameter("category_id",category_id);
+        params.addQueryStringParameter("user_id", 135 + "");
+        params.addQueryStringParameter("service_type",service_type);
+        params.addQueryStringParameter("content",content);
+        params.addQueryStringParameter("release",release);
+        params.addQueryStringParameter("title",title);
+        params.addQueryStringParameter("mobile",phonenum);
+        params.addQueryStringParameter("province",province_id);
+        params.addQueryStringParameter("city",city_id);
+        params.addQueryStringParameter("district",district_id);
+        params.addQueryStringParameter("address",address_ex);
+       // params.addQueryStringParameter("photo", 135 + "");
+        params.addQueryStringParameter("ip",ipaddress);
+        System.out.println(params);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+    @Override
+    public void onClick(View v) {
+        //点击按钮时，表示选中不同的项
+        switch (v.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.tv_post:
+                doPublish();
+                break;
+        }
     }
 
 }
