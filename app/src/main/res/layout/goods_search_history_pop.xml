@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/ll_goods_search_history"
+        android:background="#212121"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:id="@+id/iv_search_history"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/search"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="5dp"/>
+        <EditText
+
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_marginRight="10dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:background="@drawable/find_search_shape"
+            android:scaleType="centerInside"
+
+            android:hint="请输入感兴趣的产品"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textColorHint="#797777"
+            />
+        <Button
+            android:textColor="#808080"
+            android:text="搜 索"
+            android:background="@drawable/goodssearch_shape"
+            android:layout_marginRight="7dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            android:layout_height="32dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/ll_goods_search_history"
+        android:id="@+id/rl_goods_search_history"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+
+
+        >
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+
+            android:textColor="#808080"
+            android:layout_centerVertical="true"
+
+            android:text="搜索历史"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <ImageView
+            android:id="@+id/goods_search_history_delete"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+
+            android:src="@drawable/goods_search_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            />
+
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_below="@id/rl_goods_search_history"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+
+
+    </ListView>
+
+
+
+
+
+</RelativeLayout>

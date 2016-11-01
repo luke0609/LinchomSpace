@@ -91,7 +91,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:textSize="16sp"
-                    android:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     />

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.GoodsAllOrderActivity;
+import linchom.com.linchomspace.shopping.GoodsCartActivity;
 
 
 public class MineFragment extends Fragment {
@@ -63,7 +64,7 @@ public class MineFragment extends Fragment {
         ((RelativeLayout)view.findViewById(R.id.person_center_content1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SaveMoney_activity.class);
+                Intent intent = new Intent(getActivity(), GoodsCartActivity.class);
                 startActivity(intent);
             }
         });
