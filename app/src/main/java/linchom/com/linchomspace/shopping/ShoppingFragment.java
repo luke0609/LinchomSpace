@@ -1,19 +1,24 @@
 package linchom.com.linchomspace.shopping;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.shizhefei.view.indicator.BannerComponent;
@@ -29,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.GoodsSqlite.GoodsHistorySqLiteOpenHelper;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsAdvDataBean;
@@ -124,7 +130,12 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private RelativeLayout rl_goods_sixth;
     private RelativeLayout rl_goodsHome_load;
     private Button btn_goods_btnSearch;
-    private EditText et_goods_cate_search;
+   // private EditText et_goods_cate_search;
+    private TextView et_goods_cate_search;
+    private LinearLayout linear;
+    private ListView lv_goods_search_history;
+    private EditText et_goods_search_history;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -230,7 +241,11 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         btn_goods_btnSearch = ((Button) view.findViewById(R.id.btn_goods_btnSearch));
 
-        et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
+       // et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
+
+        et_goods_cate_search = ((TextView) view.findViewById(R.id.et_goods_cate_search));
+
+        linear = ((LinearLayout) view.findViewById(R.id.linear));
 
 
     }
@@ -246,19 +261,17 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         setButtonClick();
         advLoopPlay();
 
-       et_goods_cate_search.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-               //popupWindow
-
-                //toPopUpWindow(v);
+       et_goods_cate_search.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
 
 
-                return false;
-            }
-        });
+               toPopUpWindow(v);
 
+
+
+           }
+       });
 
 
 
@@ -269,6 +282,11 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         View contentView = LayoutInflater.from(getActivity()).inflate(
                 R.layout.goods_search_history_pop, null);
 
+        lv_goods_search_history = ((ListView) contentView.findViewById(R.id.lv_goods_search_history));
+
+        et_goods_search_history = ((EditText) contentView.findViewById(R.id.et_goods_search_history));
+
+        toSqlite();
 
 
         final PopupWindow popupWindow = new PopupWindow(contentView,
@@ -296,14 +314,47 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         popupWindow.setBackgroundDrawable(getResources().getDrawable(
                 R.drawable.goods_default_city));
 
-        popupWindow.showAsDropDown(view);
+        Log.i(TAG,"linear.getWidth()"+linear.getWidth());
+
+
+
+        popupWindow.showAtLocation(view,0,0,0);
 
 
 
 
     }
 
+    private void toSqlite() {
 
+        GoodsHistorySqLiteOpenHelper goodsHistorySqLiteOpenHelper =  new GoodsHistorySqLiteOpenHelper(getActivity());
+
+
+       SQLiteDatabase db =  goodsHistorySqLiteOpenHelper.getWritableDatabase();
+
+        db.execSQL("insert into goodshistory(goodsname) value('飞机')");
+
+        db.execSQL("insert into goodshistory(goodsname) value('冰箱')");
+
+
+        //db.execSQL("select goodsname from goodshistory");
+
+        Cursor cursor =db.query("goodshistory",null,null,null,null,null,null);
+
+        while(cursor.moveToNext()){
+
+            Toast.makeText(getActivity(),cursor.getString(cursor.getColumnIndex("goodsname")),Toast.LENGTH_SHORT).show();
+
+
+        }
+
+        db.close();
+
+
+
+
+
+    }
 
 
     @Override
