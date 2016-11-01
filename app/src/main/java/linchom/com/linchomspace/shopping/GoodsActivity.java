@@ -120,6 +120,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private boolean collectFlag=false;
 
     private String newStringGoodsId="";
+    private RelativeLayout rl_goods_proComment;
 
 
     @Override
@@ -185,6 +186,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         rl_activity_goods = ((RelativeLayout) findViewById(R.id.rl_activity_goods));
 
         iv_goods_Collection = ((ImageView) findViewById(R.id.iv_goods_Collection));
+
+        rl_goods_proComment = ((RelativeLayout) findViewById(R.id.rl_goods_proComment));
 
 
     }
@@ -350,6 +353,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         iv_goods_Collection.setOnClickListener(this);
 
+        rl_goods_proComment.setOnClickListener(this);
+
 
 
 
@@ -432,6 +437,20 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             case R.id.iv_goods_Collection:
 
                 toCollection();
+
+
+                break;
+
+            case R.id.rl_goods_proComment:
+
+                Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
+                Bundle bundle= new Bundle();
+
+                bundle.putString("goodsId",goodsId);
+
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
 
 
                 break;
