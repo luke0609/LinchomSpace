@@ -14,8 +14,7 @@
         android:layout_height="50dp"
         android:id="@+id/linear"
         android:focusable="true"
-        android:orientation="horizontal"
-        android:focusableInTouchMode="true"
+
         >
         <ImageView
             android:id="@+id/logo"
@@ -25,7 +24,8 @@
             android:src="@drawable/search"
             android:layout_marginRight="5dp"
             android:paddingLeft="5dp"/>
-        <EditText
+        <TextView
+            android:gravity="center_vertical"
             android:id="@+id/et_goods_cate_search"
             android:layout_width="0dp"
             android:layout_weight="9"
@@ -36,10 +36,10 @@
             android:background="@drawable/find_search_shape"
             android:scaleType="centerInside"
 
-            android:hint="请输入感兴趣的产品"
-            android:textColor="#000"
+            android:text="请输入感兴趣的产品"
+            android:textColor="#797777"
             android:textSize="14sp"
-            android:textColorHint="#797777"
+
             />
         <Button
             android:textColor="#808080"
