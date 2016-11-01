@@ -23,7 +23,7 @@ public class xUtilsImageUtils {
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setFailureDrawableId(R.mipmap.loadfailure)
-                .setLoadingDrawableId(R.mipmap.load)
+                .setLoadingDrawableId(R.mipmap.home_load)
                 .build();
         org.xutils.x.image().bind(imageView, iconUrl,imageOptions);
     }

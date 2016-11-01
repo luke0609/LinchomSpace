@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
-        search_type = bundle.getString("search_type");
+         search_type = bundle.getString("search_type");
         Log.i("aaa",search_type);
 
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));

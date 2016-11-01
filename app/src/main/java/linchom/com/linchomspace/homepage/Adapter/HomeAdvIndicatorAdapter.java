@@ -1,6 +1,7 @@
 package linchom.com.linchomspace.homepage.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -8,12 +9,11 @@ import android.widget.ImageView;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 
 import org.xutils.image.ImageOptions;
-import org.xutils.x;
 
 import java.util.List;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.homepage.Entity.HomeAdvBean;
+import linchom.com.linchomspace.homepage.Entity.HomePageAdvBean;
 
 /**
  * Created by Administrator on 2016/10/26.
@@ -21,9 +21,9 @@ import linchom.com.linchomspace.homepage.Entity.HomeAdvBean;
 
 public class HomeAdvIndicatorAdapter extends IndicatorViewPager.IndicatorViewPagerAdapter{
     Context context ;
-    List<HomeAdvBean> advList;
+    List<HomePageAdvBean> advList;
 
-    public HomeAdvIndicatorAdapter(Context context, List<HomeAdvBean> advList) {
+    public HomeAdvIndicatorAdapter(Context context, List<HomePageAdvBean> advList) {
         this.context = context;
         this.advList = advList;
     }
@@ -61,7 +61,8 @@ public class HomeAdvIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
                 .setFailureDrawableId(R.drawable.goods_background)//加载失败后默认显示图片
                 .build();
 
-        x.image().bind(imageView, advList.get(position%advList.size()).advImg,imageOptions);
+        //x.image().bind(imageView, advList.get(position%advList.size()).,imageOptions);
+        Log.i("advlist",advList+"");
         return convertView;
     }
 }

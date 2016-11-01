@@ -38,17 +38,23 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleAddCommentBean;
+import linchom.com.linchomspace.homepage.Entity.ArticleAdvBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleCollectBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleCommentBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleInfoBean;
 import linchom.com.linchomspace.homepage.Utils.ToastUtil;
+import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.View.SlideSelectView;
+import linchom.com.linchomspace.shopping.GoodsActivity;
 
 public class ArticleActivity extends AppCompatActivity {
 
@@ -73,6 +79,13 @@ public class ArticleActivity extends AppCompatActivity {
     ImageButton articleBuy;
     @InjectView(R.id.tv_commentnumber)
     TextView tvCommentnumber;
+    @InjectView(R.id.art_tv_source)
+    TextView artTvSource;
+    @InjectView(R.id.art_tv_time)
+    TextView artTvTime;
+    @InjectView(R.id.iv_bottomadv)
+    ImageView ivBottomadv;
+
     private SlideSelectView slideSelectView;
     private String[] textStrings;
     @InjectView(R.id.more)
@@ -95,12 +108,24 @@ public class ArticleActivity extends AppCompatActivity {
     private boolean isLoading = false;
     private ObjectAnimator mHeaderAnimator;
     private ObjectAnimator mBottomAnimator;
-    private boolean pressCollect=false;
+    private boolean pressCollect = false;
     private boolean pressNight;
     private String comment;
     private String total;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
+    //requestCode 请求码，即调用startActivityForResult()传递过去的值
+    // resultCode 结果码，结果码用于标识返回数据来自哪个新Activity
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode== 101) {
+            getCommentNumber();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +136,7 @@ public class ArticleActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("bundle");
         article_id = bundle.getString("article_id");
 
+
         initView();
         initData();
         bindEvents();
@@ -118,12 +144,16 @@ public class ArticleActivity extends AppCompatActivity {
 
     }
 
+
+
+
     private void sendArticleId() {
         Intent intent1 = new Intent(ArticleActivity.this, CommentActivity.class);
         Bundle bundle1 = new Bundle();
         bundle1.putString("article_id", article_id);
         intent1.putExtra("bundle1", bundle1);
         startActivity(intent1);
+
 
     }
 
@@ -164,28 +194,74 @@ public class ArticleActivity extends AppCompatActivity {
         }); //设置浏览
 
 
-
-
     }
 
     private void initData() {
         getArticle();
         getCommentNumber();
+        getBottomAdv();
+
         //SharedPreferences sharedPreferences = getSharedPreferences("collectId", Context.MODE_PRIVATE);
         SharedPreferences sharedPreferences = getSharedPreferences("collectId", Context.MODE_PRIVATE);
         String collectId = sharedPreferences.getString("collectId", "");
-         Log.i("collectId",collectId);
-            String[] collect = collectId.split(",");
-            for (String string : collect) {
-                if (!string.equals(article_id)) {
-                    ibCollect.setImageResource(R.drawable.article_collect3);
-                    pressCollect = false;
-                }else{
-                    ibCollect.setImageResource(R.drawable.collect_check5);
-                    pressCollect = true;
-                }
+        Log.i("collectId", collectId);
+        String[] collect = collectId.split(",");
+        for (String string : collect) {
+            if (!string.equals(article_id)) {
+                ibCollect.setImageResource(R.drawable.article_collect3);
+                pressCollect = false;
+            } else {
+                ibCollect.setImageResource(R.drawable.collect_check5);
+                pressCollect = true;
             }
+        }
     }
+
+    private void getBottomAdv() {
+        Log.i("fangfa","1");
+        RequestParams params = new RequestParams(Constant.ArticleAdv);
+        params.addBodyParameter("position_id", "4");
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.i("success",result);
+                Gson gson = new Gson();
+               final ArticleAdvBean bean = gson.fromJson(result, ArticleAdvBean.class);
+                final String imgurl=bean.getData().get(0).getImg_url();
+                Log.i("imgurl",imgurl);
+                xUtilsImageUtils.display(ivBottomadv,imgurl);
+                ivBottomadv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(ArticleActivity.this, GoodsActivity.class);
+                        Bundle bundle=new Bundle();
+                        intent.putExtra("bundle",bundle);
+                        bundle.putString("goodsId",bean.getData().get(0).getGoods_id());
+                        Log.i("goodsId",bean.getData().get(0).getGoods_id());
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+
+
+        });
+    }
+
     private void getCommentNumber() {
         RequestParams params = new RequestParams(Constant.ArticleSeeComment);
         params.addBodyParameter("article_id", article_id);
@@ -199,12 +275,12 @@ public class ArticleActivity extends AppCompatActivity {
                 Log.i("bean", bean.getData().getTotal());
                 ArticleCommentBean.DataBean commentData = bean.getData();
                 total = commentData.getTotal();
-               if(total.equals("0")){
-                   tvCommentnumber.setVisibility(View.GONE);
-               }else{
-                   tvCommentnumber.setVisibility(View.VISIBLE);
-                   tvCommentnumber.setText(total);
-               }
+                if (total.equals("0")) {
+                    tvCommentnumber.setVisibility(View.GONE);
+                } else {
+                    tvCommentnumber.setVisibility(View.VISIBLE);
+                    tvCommentnumber.setText(total);
+                }
             }
 
 
@@ -239,17 +315,30 @@ public class ArticleActivity extends AppCompatActivity {
 
                 System.out.println(result);
                 Gson gson = new Gson();
-                ArticleInfoBean bean = gson.fromJson(result, ArticleInfoBean.class);
+               final  ArticleInfoBean bean = gson.fromJson(result, ArticleInfoBean.class);
                 // ArticleListBean.Article_list article=bean.data.getArticle_list().get(0).title;
                 // String info=bean.data.getArticle_list().get(0).title;
                 if (bean.getData().getGoods_id() != "0") {
                     articleBuy.setVisibility(View.VISIBLE);
+                    articleBuy.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(ArticleActivity.this, GoodsActivity.class);
+                            Bundle bundle=new Bundle();
+                            intent.putExtra("bundle",bundle);
+                            bundle.putString("goodsId",bean.getData().getGoods_id());
+                            startActivity(intent);
+                        }
+                    });
                 }
                 Log.i("aaaaaaa", bean.getData().getGoods_id());
-
                 String info = bean.getData().getTitle();
+                int add_time = Integer.parseInt(bean.getData().getAdd_time());
+                String date = sdf.format(new Date(add_time * 1000L));
                 System.out.println(info);
                 article_title.setText(info);
+                artTvTime.setText(date);
+
             }
 
             @Override
@@ -275,6 +364,10 @@ public class ArticleActivity extends AppCompatActivity {
 
 
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+//            final View contentView = LayoutInflater.from(ArticleActivity.this).inflate(
+//                    R.layout.article_comment_popupwindow, null);
+//            final LinearLayout ll_comment_popup = ((LinearLayout) contentView.findViewById(R.id.ll_comment_popup));
+//            ll_comment_popup.setVisibility(View.GONE);
             if (webView.canGoBack())
                 webView.goBack();
             else
@@ -395,26 +488,26 @@ public class ArticleActivity extends AppCompatActivity {
                 break;
             case R.id.ib_collect:
                 SharedPreferences sharedPreferences = getSharedPreferences("collectId", Context.MODE_PRIVATE);
-                String collectId= sharedPreferences.getString("collectId","");
+                String collectId = sharedPreferences.getString("collectId", "");
                 if (!pressCollect) {
-                    collectId+=article_id+",";
+                    collectId += article_id + ",";
                     SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                    editor.putString("collectId",collectId);
+                    editor.putString("collectId", collectId);
                     editor.commit();//提交修改
 
                     collect();
                     ibCollect.setImageResource(R.drawable.collect_check5);
                     pressCollect = true;
                 } else {
-                    String[] collect=collectId.split(",");
-                    String collectId_new ="";
-                    for (String string :collect){
-                        if(!string.equals(article_id)){
-                            collectId_new+=string+",";
+                    String[] collect = collectId.split(",");
+                    String collectId_new = "";
+                    for (String string : collect) {
+                        if (!string.equals(article_id)) {
+                            collectId_new += string + ",";
                         }
                     }
                     SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                    editor.putString("collectId",collectId_new);
+                    editor.putString("collectId", collectId_new);
                     editor.commit();//提交修改
                     cancelCollect();
                     ibCollect.setImageResource(R.drawable.article_collect3);
@@ -525,7 +618,6 @@ public class ArticleActivity extends AppCompatActivity {
                     ToastUtil.showMyToast(toast, 1000);
 
 
-
                 }
             }
 
@@ -548,7 +640,7 @@ public class ArticleActivity extends AppCompatActivity {
 
     }
 
-    private void showCommentPopupWindow(final View view) {
+    private void showCommentPopupWindow( View view) {
         rlBackgroundGray.setVisibility(View.VISIBLE);
         final View contentView = LayoutInflater.from(ArticleActivity.this).inflate(
                 R.layout.article_comment_popupwindow, null);
@@ -559,7 +651,7 @@ public class ArticleActivity extends AppCompatActivity {
 //        imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
         //       ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(et_write_comment,0);
         //  InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        //这里给它设置了弹出的时间,
+        //这里给它设置了弹出的时间，
         imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
         //隐藏软键盘
         //imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
@@ -573,18 +665,24 @@ public class ArticleActivity extends AppCompatActivity {
 //            }
 //        });
 
+
         final PopupWindow popupWindow = new PopupWindow(contentView,
                 ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
-
-
+        final LinearLayout ll_comment_popup = ((LinearLayout) contentView.findViewById(R.id.ll_comment_popup));
+//        ll_comment_popup.setOnKeyListener(new View.OnKeyListener() {
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    ll_comment_popup.setVisibility(View.GONE);
+//                }
+//                return false;
+//            }
+//        });
         popupWindow.setTouchable(true);
 
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-
                 return false;
 
             }
