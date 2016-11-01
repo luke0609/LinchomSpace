@@ -352,8 +352,9 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
 
                 if(et_goods_search_history.getText().toString()!=""
-                        ||et_goods_search_history.getText().toString()!=null
-                        ||et_goods_search_history.getText().toString().length()==0){
+                        &&et_goods_search_history.getText().toString()!=null
+                        &&et_goods_search_history.getText().toString().length()!=0
+                        ){
 
                     toInsertSqlite(et_goods_search_history.getText().toString().trim());
 
@@ -690,6 +691,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
             case R.id.btn_goods_btnSearch:
                 //toGoodsSearch();
+                Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
 
                 break;
 
