@@ -1,6 +1,7 @@
 package linchom.com.linchomspace.chat;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 
 import static android.R.attr.id;
 
@@ -40,7 +42,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_publish_activiy);
         initView();
-
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
     }
     private void initView() {
 

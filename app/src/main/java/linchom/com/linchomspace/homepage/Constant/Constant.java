@@ -15,4 +15,6 @@ public class Constant {
      public static  final String HomeAdv ="http://app.linchom.com/appapi.php";
      public static final String ArticleAddComment="http://app.linchom.com/appapi.php?act=add_article_comment";
      public static  final String ArticleSeeComment="http://app.linchom.com/appapi.php?act=article_comment";
+     public static final String ArticleAdv="http://app.linchom.com/appapi.php?act=ads";
+     public static final String CommentPosition="http://ip.taobao.com/service/getIpInfo2.php?ip=myip&qq-pf-to=pcqq.c2c";
 }

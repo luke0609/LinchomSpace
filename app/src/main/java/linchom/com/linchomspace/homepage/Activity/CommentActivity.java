@@ -45,6 +45,7 @@ import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleAddCommentBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleCommentBean;
+import linchom.com.linchomspace.homepage.Entity.CommentPositionBean;
 import linchom.com.linchomspace.homepage.Utils.ToastUtil;
 
 import static linchom.com.linchomspace.R.id.tv_comment2;
@@ -86,7 +87,7 @@ public class CommentActivity extends AppCompatActivity {
     public ListView lv_comment;
     private boolean pullFlag = false;
     private  String comment;
-
+    private  String comment1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,10 +143,10 @@ public class CommentActivity extends AppCompatActivity {
                 TextView tv_article_comment_username = viewHolder.getViewById(R.id.tv_article_comment_username);
                 TextView tv_article_comment_time = viewHolder.getViewById(R.id.tv_article_comment_time);
                 TextView tv_article_content = viewHolder.getViewById(R.id.tv_article_content);
-                TextView tv_position = viewHolder.getViewById(R.id.tv_position);
+               // TextView tv_position = viewHolder.getViewById(R.id.tv_position);
                 // tv_article_comment_username.setText(itemsBean.getUser_name());
                 tv_article_comment_username.setText("Monologue丶");
-                tv_position.setText("江苏苏州");
+                //tv_position.setText("江苏苏州");
                 int commentTime = Integer.parseInt(itemsBean.getAdd_time());
                 String date = sdf.format(new Date(commentTime * 1000L));
                 tv_article_comment_time.setText(date);
@@ -172,6 +173,8 @@ public class CommentActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.article_comment_back:
+                Intent intent = new Intent();
+                setResult(101);
                 finish();
                 break;
             case tv_comment2:
@@ -180,6 +183,7 @@ public class CommentActivity extends AppCompatActivity {
             case R.id.reload:
                 getComment();
                 break;
+
         }
     }
 
@@ -250,7 +254,7 @@ public class CommentActivity extends AppCompatActivity {
                 Log.i("comment1",comment);
                 contentView.setVisibility(View.GONE);
                 //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
+                //imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
                 rlBackgroundGray.setVisibility(View.GONE);
                 getComment();
             }
@@ -265,17 +269,14 @@ public class CommentActivity extends AppCompatActivity {
     private void publishComment(String comment) {
         // http://app.linchom.com/appapi.php?act=add_article_comment&user_name=%E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
         RequestParams params = new RequestParams(Constant.ArticleAddComment);
-        params.addQueryStringParameter("user_name","Monologue、");
-        params.addQueryStringParameter("article_id", article_id);
-        params.addQueryStringParameter("user_id", "135");
-        params.addQueryStringParameter("email","2070118814@qq.com");
-        params.addQueryStringParameter("content",comment);
-        params.addQueryStringParameter("type","2");
-
+        params.addBodyParameter("user_name","Monologue、");
+        params.addBodyParameter("article_id", article_id);
+        params.addBodyParameter("user_id", "135");
+        params.addBodyParameter("email","2070118814@qq.com");
+        params.addBodyParameter("content",comment);
+        params.addBodyParameter("type","2");
         System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
-
-
             @Override
             public void onSuccess(String result) {
                 System.out.println(result);
@@ -327,7 +328,7 @@ public class CommentActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         }
 
-    private void getComment() {
+    private void getComment(){
         rlNocomment.setVisibility(View.GONE);
         errorNet.setVisibility(View.GONE);
         if (page == 1 && pullFlag == false) {
@@ -338,6 +339,8 @@ public class CommentActivity extends AppCompatActivity {
         RequestParams params = new RequestParams(Constant.ArticleSeeComment);
         params.addBodyParameter("article_id", article_id);
         params.addBodyParameter("page", page + "");
+
+
 
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -355,7 +358,7 @@ public class CommentActivity extends AppCompatActivity {
                 total_pages = commentData.getTotal_pages();
                 Log.i("total_pages", total_pages + "");
                 Log.i("数组长度", commentData.getItems().size() + "");
-                if (commentData.getItems().size() != 0) {
+                if (!commentData.getTotal().equals("0")) {
                     ptrArrlistComment.setVisibility(View.VISIBLE);
 //                System.out.println(bean.status + "????");
 //                System.out.println(bean.dongtaiList.size() + "====");
@@ -389,6 +392,41 @@ public class CommentActivity extends AppCompatActivity {
                         getComment();
                     }
                 });
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+    }
+    private void getCommentPosition(){
+
+        RequestParams params = new RequestParams(Constant.CommentPosition);
+
+
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Gson gson = new Gson();
+                CommentPositionBean bean = gson.fromJson(result, CommentPositionBean.class);
+
+                CommentPositionBean.DataBean commentData = bean.getData();
+                TextView tv_position = (TextView)findViewById(R.id.tv_position);
+                String position=commentData.getCity();
+                tv_position.setText(position);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
             }
 
             @Override
