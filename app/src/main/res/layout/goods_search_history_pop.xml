@@ -20,6 +20,7 @@
             android:layout_marginRight="5dp"
             android:paddingLeft="5dp"/>
         <EditText
+            android:id="@+id/et_goods_search_history"
 
             android:layout_width="0dp"
             android:layout_weight="9"
@@ -35,6 +36,7 @@
             android:textColorHint="#797777"
             />
         <Button
+            android:id="@+id/btn_goods_search_history"
             android:textColor="#808080"
             android:text="搜 索"
             android:background="@drawable/goodssearch_shape"
@@ -70,7 +72,7 @@
             />
 
         <ImageView
-            android:id="@+id/goods_search_history_delete"
+            android:id="@+id/iv_search_history_delete"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -86,6 +88,8 @@
 
     <ListView
         android:layout_below="@id/rl_goods_search_history"
+
+        android:id="@+id/lv_goods_search_history"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 
