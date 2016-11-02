@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
@@ -26,18 +27,23 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
+import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsCommonBean;
 import linchom.com.linchomspace.shopping.pojo.JoinCartBean;
+import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.PictureHandle;
+import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -129,6 +135,26 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private TextView tv_goods_jd;
     private TextView tv_goods_tbfunhao;
     private TextView tv_goods_jdfunhao;
+    private GoodsNoScrollListview lv_goods_common_list;
+
+    private GoodsCommonAdapter<GoodsCommonBean.Items> goodsCommonAdapter;
+
+    private List<GoodsCommonBean.Items> commonList= new ArrayList<GoodsCommonBean.Items>();
+
+    private boolean commFlag = false;
+    private ImageView iv_goods_common;
+
+    LayoutInflater inflater;
+
+    LayoutInflater inflaterOne;
+
+    View viewFoot;
+
+    View viewFootOne;
+
+
+
+    private int commPage =1;
 
 
     @Override
@@ -216,6 +242,19 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         btn_goods_jdBuy = ((Button) findViewById(R.id.btn_goods_jdBuy));
 
+        lv_goods_common_list = ((GoodsNoScrollListview) findViewById(R.id.lv_goods_common_list));
+
+        iv_goods_common = ((ImageView) findViewById(R.id.iv_goods_common));
+
+         inflater =LayoutInflater.from(getApplicationContext());
+
+         viewFoot =inflater.inflate(R.layout.goods_comm_list_foot,null);
+
+        inflaterOne = LayoutInflater.from(getApplicationContext());
+
+        viewFootOne =inflaterOne.inflate(R.layout.goods_comm_list_foot_one,null);
+
+
 
     }
 
@@ -262,12 +301,119 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.goods_common_list_item) {
+            @Override
+            public void convert(GoodsViewHolder viewHolder, GoodsCommonBean.Items items, int position) {
+                TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
+                TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
 
+                TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
+
+                tv_goods_common_name.setText(items.user_name);
+
+                Long time = Long.parseLong(items.add_time);
+
+                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+
+
+                String str = sdf.format(time);
+
+
+                tv_goods_common_time.setText(str);
+
+                tv_goods_common_content.setText(items.content);
+
+
+
+            }
+        };
+
+
+
+        lv_goods_common_list.setAdapter(goodsCommonAdapter);
+
+
+
+        getCommonData();
 
 
 
 
     }
+
+
+    private void getCommonData(){
+
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","goods_comment");
+
+        requestParams.addBodyParameter("goods_id",120+"");
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson = new Gson();
+                GoodsCommonBean goodsCommonBean = gson.fromJson(result,GoodsCommonBean.class);
+
+                commonList.clear();
+
+                commonList.addAll(goodsCommonBean.data.items);
+
+                commPage=Integer.parseInt(goodsCommonBean.data.total_pages);
+
+                Log.i(TAG,"commPage"+Integer.parseInt(goodsCommonBean.data.total_pages));
+
+                Log.i(TAG,"total"+Integer.parseInt(goodsCommonBean.data.total));
+
+                if(Integer.parseInt(goodsCommonBean.data.total)>0){
+
+                    if(commPage>1){
+                        lv_goods_common_list.addFooterView(viewFoot);
+
+                    }
+
+
+                }else{
+
+                    lv_goods_common_list.addFooterView(viewFootOne);
+
+                }
+
+
+
+
+
+
+
+
+                goodsCommonAdapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+    }
+
 
     private void getData() {
 
@@ -523,14 +669,39 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.rl_goods_proComment:
 
-                Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
+                /*Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
                 Bundle bundle= new Bundle();
 
                 bundle.putString("goodsId",goodsId);
 
                 intent.putExtra("bundle",bundle);
 
-                startActivity(intent);
+                startActivity(intent);*/
+
+                if(commFlag==false){
+
+
+
+                    lv_goods_common_list.setVisibility(View.VISIBLE);
+
+                    iv_goods_common.setImageResource(R.drawable.goods_comm_zhankai);
+
+                    commFlag=true;
+
+
+                }else{
+
+                    lv_goods_common_list.setVisibility(View.GONE);
+
+                    iv_goods_common.setImageResource(R.drawable.goods_comm_shouqi);
+
+
+                    commFlag=false;
+
+                }
+
+
+
 
 
                 break;

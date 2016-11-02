@@ -13,10 +13,107 @@
     >
 
 
+    <LinearLayout
+        android:id="@+id/ll_goods_detail_bottom"
+
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        android:background="#ccc"
+        android:orientation="horizontal"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_centerInParent="true"
+
+                android:id="@+id/iv_goods_service"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/goods_service"
+                />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+
+
+
+
+                android:layout_centerInParent="true"
+
+
+                android:id="@+id/iv_goods_Collection"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/goods_collection_white"
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+        <Button
+
+            android:id="@+id/btn_goods_joinCart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#ff9900"
+            android:text="加入购物车"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+
+
+            />
+
+        <Button
+            android:id="@+id/btn_goods_buyNow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#ff3300"
+            android:text="立即购买"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+
+            />
+
+
+
+
+
+
+    </LinearLayout>
+
+
 
 
 
     <linchom.com.linchomspace.shopping.widget.GoodsScrollView
+
+        android:layout_above="@+id/ll_goods_detail_bottom"
 
         android:id="@+id/sv_goods_scrollview"
 
@@ -556,15 +653,50 @@
                     />
 
 
+                <ImageView
+                    android:id="@+id/iv_goods_common"
+                    android:src="@drawable/goods_comm_shouqi"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    />
+
+
             </RelativeLayout>
+
+            <linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview
+                android:layout_marginTop="5dp"
+
+                android:id="@+id/lv_goods_common_list"
+
+                android:layout_below="@id/rl_goods_proComment"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+
+
+
+                >
+
+
+
+
+
+            </linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview>
+
+
 
 
 
             <RelativeLayout
+                android:layout_below="@id/lv_goods_common_list"
 
-                android:layout_below="@id/rl_goods_proComment"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:background="#20808080">
 
 
@@ -574,108 +706,11 @@
 
 
 
-
-
-
-
-
         </RelativeLayout>
 
     </linchom.com.linchomspace.shopping.widget.GoodsScrollView>
 
-    <LinearLayout
 
-
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-
-        android:background="#ccc"
-        android:orientation="horizontal"
-
-        >
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_centerInParent="true"
-
-                android:id="@+id/iv_goods_service"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/goods_service"
-                />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-
-
-
-
-                android:layout_centerInParent="true"
-
-
-                android:id="@+id/iv_goods_Collection"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/goods_collection_white"
-                />
-
-
-        </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-        <Button
-
-            android:id="@+id/btn_goods_joinCart"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="#ff9900"
-            android:text="加入购物车"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-
-
-            />
-
-        <Button
-            android:id="@+id/btn_goods_buyNow"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="#ff3300"
-            android:text="立即购买"
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-
-            />
-
-
-
-
-
-
-    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rl_goods_head"
