@@ -654,7 +654,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
                 Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_gray);
+                iv_goods_Collection.setImageResource(R.drawable.goods_collection_white);
                 collectFlag=false;
 
 
