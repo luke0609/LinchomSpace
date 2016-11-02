@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -39,6 +40,10 @@ public class GoodsCommentActivity extends AppCompatActivity {
     private GoodsCommonAdapter<GoodsCommonBean.Items> goodsCommonAdapter;
 
     private String goodsId;
+
+    private int page = 1;
+
+    private int totalPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,9 +106,17 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
+                    page =1;
+
+                    getData();
+
 
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+
+                    page++;
+
+                    getData();
 
 
 
@@ -132,15 +145,20 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
                 tv_goods_common_name.setText(items.user_name);
 
-                Long time = Long.parseLong(items.add_time);
+                Long time = Long.parseLong(items.add_time)*1000;
 
                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+
+
                 String str = sdf.format(time);
+
+
 
 
                 tv_goods_common_time.setText(str);
 
                 tv_goods_common_content.setText(items.content);
+
 
 
 
@@ -164,7 +182,9 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("act","goods_comment");
 
-        requestParams.addBodyParameter("goods_id","120");
+        requestParams.addBodyParameter("goods_id",goodsId+"");
+
+        requestParams.addBodyParameter("page",page+"");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
@@ -172,12 +192,32 @@ public class GoodsCommentActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 GoodsCommonBean goodsCommonBean = gson.fromJson(result,GoodsCommonBean.class);
 
-                commonList.clear();
+                if(page==1){
+                    commonList.clear();
 
-                commonList.addAll(goodsCommonBean.data.items);
+
+                }
+
+                totalPage = Integer.parseInt(goodsCommonBean.data.total_pages);
+
+                if(page<=totalPage){
+
+                    commonList.addAll(goodsCommonBean.data.items);
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                }
+
+
 
 
                 goodsCommonAdapter.notifyDataSetChanged();
+
+                ptr_goods_common_ptr.onRefreshComplete();
+
 
 
             }

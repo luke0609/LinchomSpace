@@ -155,6 +155,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     private int commPage =1;
+    private Button btn_goods_comm_more;
 
 
     @Override
@@ -164,6 +165,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
+
+        Log.i(TAG,"goodsId"+goodsId);
 
 
         initView();
@@ -254,6 +257,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         viewFootOne =inflaterOne.inflate(R.layout.goods_comm_list_foot_one,null);
 
+        btn_goods_comm_more = ((Button) viewFoot.findViewById(R.id.btn_goods_comm_more));
 
 
     }
@@ -311,7 +315,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 tv_goods_common_name.setText(items.user_name);
 
-                Long time = Long.parseLong(items.add_time);
+                Long time = Long.parseLong(items.add_time)*1000;
 
                 SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
 
@@ -349,7 +353,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         requestParams.addBodyParameter("act","goods_comment");
 
-        requestParams.addBodyParameter("goods_id",120+"");
+        requestParams.addBodyParameter("goods_id",goodsId+"");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
@@ -581,6 +585,23 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         rl_goods_proComment.setOnClickListener(this);
 
+        btn_goods_comm_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
+                Bundle bundle= new Bundle();
+
+                bundle.putString("goodsId",goodsId);
+
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
+
+
+            }
+        });
 
 
 
@@ -669,14 +690,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.rl_goods_proComment:
 
-                /*Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
-                Bundle bundle= new Bundle();
 
-                bundle.putString("goodsId",goodsId);
-
-                intent.putExtra("bundle",bundle);
-
-                startActivity(intent);*/
 
                 if(commFlag==false){
 

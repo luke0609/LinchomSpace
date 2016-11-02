@@ -11,6 +11,7 @@
         android:layout_height="60dp">
 
         <Button
+            android:id="@+id/btn_goods_comm_more"
             android:textColor="#ff3300"
             android:textSize="16sp"
             android:background="@drawable/goods_comm_shape"
