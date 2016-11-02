@@ -567,7 +567,7 @@
 
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:text="产品详情"
                     android:gravity="center_vertical"
                     />
@@ -597,7 +597,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:text="产品测评"
                     android:gravity="center_vertical"
                     />
@@ -627,7 +627,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:text="产品视频"
                     android:gravity="center_vertical"
                     />
@@ -657,7 +657,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:text="产品资讯"
                     android:gravity="center_vertical"
                     />
@@ -687,7 +687,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:text="产品评价"
                     android:gravity="center_vertical"
                     />
