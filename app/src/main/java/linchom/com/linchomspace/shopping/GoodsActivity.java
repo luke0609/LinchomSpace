@@ -122,6 +122,14 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private String newStringGoodsId="";
     private RelativeLayout rl_goods_proComment;
 
+    private int stockNum=0;
+    private ImageView iv_goods_tblogo;
+    private ImageView iv_goods_jdlogo;
+    private TextView tv_goods_tb;
+    private TextView tv_goods_jd;
+    private TextView tv_goods_tbfunhao;
+    private TextView tv_goods_jdfunhao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,18 +164,16 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         tv_goods_markerPrice = ((TextView) findViewById(R.id.tv_goods_markerPrice));
         tv_goods_goodsStock = ((TextView) findViewById(R.id.tv_goods_goodsStock));
 
-        tv_goods_tbPrice = ((TextView) findViewById(R.id.tv_goods_tbPrice));
 
-        tv_goods_jdPrice = ((TextView) findViewById(R.id.tv_goods_jdPrice));
 
         rl_goods_numsub = ((RelativeLayout) findViewById(R.id.rl_goods_numsub));
         rl_goods_numadd = ((RelativeLayout) findViewById(R.id.rl_goods_numadd));
 
         et_goods_buyNum = ((EditText) findViewById(R.id.et_goods_buyNum));
 
-        btn_goods_tbBuy = ((Button) findViewById(R.id.btn_goods_tbBuy));
 
-        btn_goods_jdBuy = ((Button) findViewById(R.id.btn_goods_jdBuy));
+
+
         rl_goods_proDetail = ((RelativeLayout) findViewById(R.id.rl_goods_proDetail));
 
 
@@ -188,6 +194,27 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         iv_goods_Collection = ((ImageView) findViewById(R.id.iv_goods_Collection));
 
         rl_goods_proComment = ((RelativeLayout) findViewById(R.id.rl_goods_proComment));
+
+        iv_goods_tblogo = ((ImageView) findViewById(R.id.iv_goods_tblogo));
+
+        iv_goods_jdlogo = ((ImageView) findViewById(R.id.iv_goods_jdlogo));
+
+        tv_goods_tb = ((TextView) findViewById(R.id.tv_goods_tb));
+
+        tv_goods_jd = ((TextView) findViewById(R.id.tv_goods_jd));
+
+        tv_goods_tbfunhao = ((TextView) findViewById(R.id.tv_goods_tbfunhao));
+
+        tv_goods_jdfunhao = ((TextView) findViewById(R.id.tv_goods_jdfunhao));
+
+        tv_goods_tbPrice = ((TextView) findViewById(R.id.tv_goods_tbPrice));
+
+        tv_goods_jdPrice = ((TextView) findViewById(R.id.tv_goods_jdPrice));
+
+
+        btn_goods_tbBuy = ((Button) findViewById(R.id.btn_goods_tbBuy));
+
+        btn_goods_jdBuy = ((Button) findViewById(R.id.btn_goods_jdBuy));
 
 
     }
@@ -235,6 +262,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+
+
+
+
+
     }
 
     private void getData() {
@@ -263,6 +295,31 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     goodsPrice=goodsBean.data.shop_price;
 
 
+                    stockNum = Integer.parseInt(goodsBean.data.goods_number);
+
+
+                    if(stockNum<2){
+                        btn_goods_buyNow.setEnabled(false);
+
+                        btn_goods_buyNow.setBackgroundColor(Color.LTGRAY);
+
+
+                        btn_goods_joinCart.setEnabled(false);
+
+                        btn_goods_joinCart.setBackgroundColor(Color.LTGRAY);
+
+
+                    }else{
+
+
+                        btn_goods_buyNow.setEnabled(true);
+
+
+                        btn_goods_joinCart.setEnabled(true);
+
+                    }
+
+
                     goodsPicDetail.clear();
 
                     goodsPicDetail.addAll(PictureHandle.getImageSrc(goodsBean.data.goods_desc));
@@ -280,14 +337,37 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     Log.i(TAG,"jdLink"+jdLink);
 
 
+                    //iv_goods_tblogo
+                    //iv_goods_jdlogo
+                    //tv_goods_tb
+                    //tv_goods_jd
+                    //tv_goods_tbfunhao
+                    //tv_goods_jdfunhao
+                    //tv_goods_tbPrice
+                    //tv_goods_jdPrice
+                    //btn_goods_tbBuy
+                    //btn_goods_jdBuy
+
+
                     if(tbLink==null||("0.00").equals(goodsBean.data.tb_price)){
                         btn_goods_tbBuy.setVisibility(View.INVISIBLE);
+
+                        iv_goods_tblogo.setVisibility(View.INVISIBLE);
+                        tv_goods_tb.setVisibility(View.INVISIBLE);
+                        tv_goods_tbfunhao.setVisibility(View.INVISIBLE);
+                        tv_goods_tbPrice.setVisibility(View.INVISIBLE);
+
 
                     }
 
                     if(jdLink==null||("0.00").equals(goodsBean.data.jd_price)){
 
                         btn_goods_jdBuy.setVisibility(View.INVISIBLE);
+
+                        iv_goods_jdlogo .setVisibility(View.INVISIBLE);
+                        tv_goods_jd.setVisibility(View.INVISIBLE);
+                        tv_goods_jdfunhao.setVisibility(View.INVISIBLE);
+                        tv_goods_jdPrice.setVisibility(View.INVISIBLE);
 
                     }
 
@@ -542,9 +622,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
+       // String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
 
-        Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
 
 
 
@@ -662,7 +742,17 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void toJoinCart() {
 
-        getCartData();
+        if(stockNum<1){
+
+            Toast.makeText(getApplicationContext(),"库存不足,不能加入",Toast.LENGTH_SHORT).show();
+        }else {
+
+            getCartData();
+
+        }
+
+
+
 
 
     }
@@ -1014,49 +1104,61 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void toBuyNow() {
 
-        rl_goods_load_progress.setVisibility(View.VISIBLE);
+        if(stockNum<1){
+
+            Toast.makeText(getApplicationContext(),"库存不足",Toast.LENGTH_SHORT).show();
+        }else{
 
 
 
-        //先清空购物车 然后去拿购物车的第一件商品 然后再跳到订单详情页面；
-
-        //去取地址 把第一个改成默认地址  (没默认地址会提交失败)
-
-        //
+            rl_goods_load_progress.setVisibility(View.VISIBLE);
 
 
-        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
-        requestParams.addBodyParameter("act","clear_cart");
-        requestParams.addBodyParameter("user_id",userId+"");
+            //先清空购物车 然后去拿购物车的第一件商品 然后再跳到订单详情页面；
 
-        x.http().post(requestParams, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
+            //去取地址 把第一个改成默认地址  (没默认地址会提交失败)
 
-               // Toast.makeText(GoodsActivity.this,"清空购物车",Toast.LENGTH_SHORT).show();
+            //
 
-                //加入购物车
 
-                getCartData();
+            RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
-            }
+            requestParams.addBodyParameter("act","clear_cart");
+            requestParams.addBodyParameter("user_id",userId+"");
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+            x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
 
-            }
+                    // Toast.makeText(GoodsActivity.this,"清空购物车",Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                    //加入购物车
 
-            }
+                    getCartData();
 
-            @Override
-            public void onFinished() {
+                }
 
-            }
-        });
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
+
+        }
+
+
 
 
 
