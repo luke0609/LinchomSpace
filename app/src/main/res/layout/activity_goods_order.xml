@@ -79,7 +79,7 @@
             <RelativeLayout
                 android:id="@+id/rl_order_address"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="150dp"
                 android:background="#ffffff"
 
 
@@ -112,7 +112,7 @@
 
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/tv_order_shoujianren"
-                    android:text="测试数据"
+                    android:text=""
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"
-                    android:text="18888888888"
+                    android:text=""
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,9 +160,9 @@
                     android:layout_toRightOf="@id/iv_order_address"
                     android:layout_below="@id/tv_order_shouhuo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:textColor="#808080"
-                    android:text="江苏省苏州市工业园区 江苏省苏州市工业园区仁爱路1号高博教育收"
+                    android:text=""
 
 
                     />

@@ -187,7 +187,7 @@ public class goods_fragment extends Fragment {
     private void showDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("确定删除吗？");
+        builder.setMessage("确定取消收藏吗？");
         builder.setTitle("提示");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
