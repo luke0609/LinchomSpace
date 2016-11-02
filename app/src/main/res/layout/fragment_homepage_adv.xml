@@ -14,7 +14,7 @@
 
         <com.shizhefei.view.indicator.FixedIndicatorView
             android:id="@+id/guide_indicator"
-            android:layout_width="60dp"
+            android:layout_width="40dp"
             android:layout_height="20dp"
             android:layout_gravity="center_horizontal|bottom"
             android:layout_marginBottom="10dp" />

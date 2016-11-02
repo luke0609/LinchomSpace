@@ -50,7 +50,8 @@ import linchom.com.linchomspace.homepage.Activity.NavigationActivity;
 import linchom.com.linchomspace.homepage.Adapter.HomeAdvIndicatorAdapter;
 import linchom.com.linchomspace.homepage.Constant.Constant;
 import linchom.com.linchomspace.homepage.Entity.ArticleListBean;
-import linchom.com.linchomspace.homepage.Entity.HomePageAdvBean;
+import linchom.com.linchomspace.homepage.Entity.HomePageAdvBigBean;
+import linchom.com.linchomspace.homepage.Entity.HomePageAdvDataBean;
 import linchom.com.linchomspace.homepage.Utils.DateUtils;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
@@ -284,16 +285,15 @@ public class HomeFragment extends Fragment {
     private Button reload20;
     private Button reload21;
 
-    private Map<String ,String> advMap =new HashMap<String ,String>();
+    //private Map<String ,String> advMap =new HashMap<String ,String>();
 
-    private List<HomePageAdvBean> getAdvList = new ArrayList<HomePageAdvBean>();
+    private List<HomePageAdvDataBean> getAdvList = new ArrayList<HomePageAdvDataBean>();
 
-    private List<String> tempList =new ArrayList<String>();
+    //private List<String> tempList =new ArrayList<String>();
     private HomeAdvIndicatorAdapter homeadvindicatorAdapter;
-     private String CurrentItem;
-
-
-
+    private String CurrentItem;
+    private String PdId;
+    private RadioButton rb;
 
 
     @Override
@@ -314,26 +314,96 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         initData();
-        Bundle bundle =getArguments();
-        if(bundle!=null){
 
-            String currentItem=bundle.getString("CurrentItem");
-            Log.i("currentItem","currentItem");
-            switch (currentItem){
-                case "3" :
-                    vp_news.setCurrentItem(3);
-
-
-
-            }
-
-
-        }
         vp_news.setCurrentItem(0);
         lv_tuijian = ptr_arrlist_tuijian.getRefreshableView();
         lv_tuijian.setAdapter(adapter1);
         gettuijian();
+        Bundle bundle = getArguments();
+        if(bundle!=null){
+        PdId = bundle.getString("PdId");
+       // Toast.makeText(getActivity(), PdId, Toast.LENGTH_SHORT).show();
+//        for (int i = 0; i <= 20; i++) {
+//            if (PdId.equals("i")) {
+//                vp_news.setCurrentItem(i);
+//            }
+//        }
+//            if(PdId.equals("4")){
+//                vp_news.setCurrentItem(4);
+//            }
+            switch (PdId){
+                case "0":
+                    vp_news.setCurrentItem(0);
+                    break;
+                case "1":
+                    vp_news.setCurrentItem(1);
+                    break;
+                case "2":
+                    vp_news.setCurrentItem(2);
+                    break;
+                case "3":
+                    vp_news.setCurrentItem(3);
+                    break;
+                case "4":
+                    vp_news.setCurrentItem(4);
+                    break;
+                case "5":
+                    vp_news.setCurrentItem(5);
+                    break;
+                case "6":
+                    vp_news.setCurrentItem(6);
+                    break;
+                case "7":
+                    vp_news.setCurrentItem(7);
+                    break;
+                case "8":
+                    vp_news.setCurrentItem(8);
+                    break;
+                case "9":
+                    vp_news.setCurrentItem(9);
+                    break;
+                case "10":
+                    vp_news.setCurrentItem(10);
+                    break;
+                case "11":
+                    vp_news.setCurrentItem(11);
+                    break;
+                case "12":
+                    vp_news.setCurrentItem(12);
+                    break;
+                case "13":
+                    vp_news.setCurrentItem(13);
+                    break;
+                case "14":
+                    vp_news.setCurrentItem(14);
+                    break;
+                case "15":
+                    vp_news.setCurrentItem(15);
+                    break;
+                case "16":
+                    vp_news.setCurrentItem(16);
+                    break;
+                case "17":
+                    vp_news.setCurrentItem(17);
+                    break;
+                case "18":
+                    vp_news.setCurrentItem(18);
+                    break;
+                case "19":
+                    vp_news.setCurrentItem(19);
+                    break;
+                case "20":
+                    vp_news.setCurrentItem(20);
+                  //  mCurrentCheckedRadioLeft = rb.getLeft();
+                  //  hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                    break;
+
+            }
+        }
     }
+
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -347,18 +417,55 @@ public class HomeFragment extends Fragment {
     }
 
     private void initAdvList() {
-//        getAdvList.add(new HomeAdvBean("1","1"));
-//        getAdvList.add(new HomeAdvBean("1","1"));
-//        getAdvList.add(new HomeAdvBean("1","1"));
-        RequestParams requestParams =new RequestParams(Constant.HomeAdv);
-        requestParams.addBodyParameter("position_id","3");
-        x.http().post(requestParams, new Callback.CommonCallback<String>(){
+        getAdvList.add(new HomePageAdvDataBean("1", "1", "1", "1", "1", "1", "1", "1", "1"));
+        getAdvList.add(new HomePageAdvDataBean("1", "1", "1", "1", "1", "1", "1", "1", "1"));
+
+        RequestParams requestParams = new RequestParams(Constant.HomeAdv);
+        requestParams.addBodyParameter("position_id", "3");
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.i(TAG,"result"+result);
-                Gson gson =new Gson();
+                Log.i(TAG, "result" + result);
+                RequestParams requestParams = new RequestParams(Constant.HomeAdv);
+
+                requestParams.addBodyParameter("act", "ads");
+
+                requestParams.addBodyParameter("position_id", "3");
 
 
+                x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+
+                        Log.i(TAG, "result" + result);
+
+                        getAdvList.clear();
+
+                        Gson gson = new Gson();
+
+                        HomePageAdvBigBean bean = gson.fromJson(result, HomePageAdvBigBean.class);
+
+                        getAdvList.addAll(bean.data);
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+
+                    }
+                });
 
 
 //                JsonParser parser = new JsonParser();
@@ -390,13 +497,12 @@ public class HomeFragment extends Fragment {
 //                }
 
 
-                Log.i(TAG,"advList"+getAdvList+"");
+                Log.i(TAG, "advList" + getAdvList + "");
 
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
 
 
             }
@@ -430,11 +536,11 @@ public class HomeFragment extends Fragment {
             }
         });
         ib_xiala = ((ImageButton) view.findViewById(R.id.ib_xiala));
-        ib_xiala.setOnClickListener(new View.OnClickListener(){
+        ib_xiala.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(),NavigationActivity.class);
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 startActivity(intent);
             }
         });
@@ -519,8 +625,8 @@ public class HomeFragment extends Fragment {
         view1 = view.inflate(getActivity(), R.layout.fragment_home_tuijian, null);
         pb_progressBar = (CircularProgress) view1.findViewById(R.id.pb_progressBar);
         rl_hide_tuijian = (RelativeLayout) view1.findViewById(R.id.rl_hide_tuijian);
-        rl_empty1= ((RelativeLayout) view1.findViewById(R.id.rl_empty1));
-        reload1= ((Button) view1.findViewById(R.id.reload1));
+        rl_empty1 = ((RelativeLayout) view1.findViewById(R.id.rl_empty1));
+        reload1 = ((Button) view1.findViewById(R.id.reload1));
         error_caterogy1 = ((RelativeLayout) view1.findViewById(R.id.error_caterogy1));
         ptr_arrlist_tuijian = ((PullToRefreshListView) view1.findViewById(R.id.ptr_arrlist_tuijian));
         lv_tuijian = ptr_arrlist_tuijian.getRefreshableView();
@@ -533,11 +639,11 @@ public class HomeFragment extends Fragment {
         viewPager.setOffscreenPageLimit(2);
         initAdvList();
         bannerComponent = new BannerComponent(indicator, viewPager, true);
-        homeadvindicatorAdapter =new HomeAdvIndicatorAdapter(getActivity(),getAdvList);
+        homeadvindicatorAdapter = new HomeAdvIndicatorAdapter(getActivity(), getAdvList);
         bannerComponent.setAdapter(homeadvindicatorAdapter);
         bannerComponent.setAutoPlayTime(2500);
         lv_tuijian.addHeaderView(bannnerAdv);
-        lv_tuijian.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        lv_tuijian.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -556,7 +662,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view2.findViewById(R.id.pb_progressBar);
         rl_hide_hangyezixun = (RelativeLayout) view2.findViewById(R.id.rl_hide_hangyezixun);
         rl_empty2 = ((RelativeLayout) view2.findViewById(R.id.rl_empty2));
-        reload2= ((Button) view2.findViewById(R.id.reload2));
+        reload2 = ((Button) view2.findViewById(R.id.reload2));
         error_caterogy2 = ((RelativeLayout) view2.findViewById(R.id.error_caterogy2));
         ptr_arrlist_hangyezixun = ((PullToRefreshListView) view2.findViewById(R.id.ptr_arrlist_hangyezixun));
         lv_hangyezixun = ptr_arrlist_hangyezixun.getRefreshableView();
@@ -577,10 +683,10 @@ public class HomeFragment extends Fragment {
         });
         listView.add(view2);
         View view3 = inflate(getActivity(), R.layout.fragment_home_canpinzixun, null);
-        pb_progressBar=(CircularProgress) view3.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view3.findViewById(R.id.pb_progressBar);
         rl_hide_canpinzixun = (RelativeLayout) view3.findViewById(R.id.rl_hide_canpinzixun);
         rl_empty3 = ((RelativeLayout) view3.findViewById(R.id.rl_empty3));
-        reload3= ((Button) view3.findViewById(R.id.reload3));
+        reload3 = ((Button) view3.findViewById(R.id.reload3));
         error_caterogy3 = ((RelativeLayout) view3.findViewById(R.id.error_caterogy3));
         ptr_arrlist_canpinzixun = ((PullToRefreshListView) view3.findViewById(R.id.ptr_arrlist_canpinzixun));
 
@@ -602,10 +708,10 @@ public class HomeFragment extends Fragment {
         });
         listView.add(view3);
         View view4 = inflate(getActivity(), R.layout.fragment_home_canpinpince, null);
-        pb_progressBar=(CircularProgress) view4.findViewById(R.id.pb_progressBar);
+        pb_progressBar = (CircularProgress) view4.findViewById(R.id.pb_progressBar);
         rl_hide_canpinpince = (RelativeLayout) view4.findViewById(R.id.rl_hide_canpinpince);
         rl_empty4 = ((RelativeLayout) view4.findViewById(R.id.rl_empty4));
-        reload4= ((Button) view4.findViewById(R.id.reload4));
+        reload4 = ((Button) view4.findViewById(R.id.reload4));
         error_caterogy4 = ((RelativeLayout) view4.findViewById(R.id.error_caterogy4));
         ptr_arrlist_canpinpince = ((PullToRefreshListView) view4.findViewById(R.id.ptr_arrlist_canpinpince));
         lv_canpinpince = ptr_arrlist_canpinpince.getRefreshableView();
@@ -629,7 +735,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view5.findViewById(R.id.pb_progressBar);
         rl_hide_video = (RelativeLayout) view5.findViewById(R.id.rl_hide_video);
         rl_empty5 = ((RelativeLayout) view5.findViewById(R.id.rl_empty5));
-        reload5= ((Button) view5.findViewById(R.id.reload5));
+        reload5 = ((Button) view5.findViewById(R.id.reload5));
         error_caterogy5 = ((RelativeLayout) view5.findViewById(R.id.error_caterogy5));
         ptr_arrlist_video = ((PullToRefreshListView) view5.findViewById(R.id.ptr_arrlist_video));
 
@@ -654,7 +760,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view6.findViewById(R.id.pb_progressBar);
         rl_hide_pinpaizixun = (RelativeLayout) view6.findViewById(R.id.rl_hide_pinpaizixun);
         rl_empty6 = ((RelativeLayout) view6.findViewById(R.id.rl_empty6));
-        reload6= ((Button) view6.findViewById(R.id.reload6));
+        reload6 = ((Button) view6.findViewById(R.id.reload6));
         error_caterogy6 = ((RelativeLayout) view6.findViewById(R.id.error_caterogy6));
         ptr_arrlist_pinpaizixun = ((PullToRefreshListView) view6.findViewById(R.id.ptr_arrlist_pinpaizixun));
         lv_pinpaizixun = ptr_arrlist_pinpaizixun.getRefreshableView();
@@ -665,7 +771,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view7.findViewById(R.id.pb_progressBar);
         rl_hide_hangyebiaozhun = (RelativeLayout) view7.findViewById(R.id.rl_hide_hangyebiaozhun);
         rl_empty7 = ((RelativeLayout) view7.findViewById(R.id.rl_empty7));
-        reload7= ((Button) view7.findViewById(R.id.reload7));
+        reload7 = ((Button) view7.findViewById(R.id.reload7));
         error_caterogy7 = ((RelativeLayout) view7.findViewById(R.id.error_caterogy7));
         ptr_arrlist_hangyebiaozhun = ((PullToRefreshListView) view7.findViewById(R.id.ptr_arrlist_hangyebiaozhun));
         lv_hangyebiaozhun = ptr_arrlist_hangyebiaozhun.getRefreshableView();
@@ -676,7 +782,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view8.findViewById(R.id.pb_progressBar);
         rl_hide_hangyejishu = (RelativeLayout) view8.findViewById(R.id.rl_hide_hangyejishu);
         rl_empty8 = ((RelativeLayout) view8.findViewById(R.id.rl_empty8));
-        reload8= ((Button) view8.findViewById(R.id.reload8));
+        reload8 = ((Button) view8.findViewById(R.id.reload8));
         error_caterogy8 = ((RelativeLayout) view8.findViewById(R.id.error_caterogy8));
         ptr_arrlist_hangyejishu = ((PullToRefreshListView) view8.findViewById(R.id.ptr_arrlist_hangyejishu));
         lv_hangyejishu = ptr_arrlist_hangyejishu.getRefreshableView();
@@ -687,7 +793,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view9.findViewById(R.id.pb_progressBar);
         rl_hide_wulianwang = (RelativeLayout) view9.findViewById(R.id.rl_hide_wulianwang);
         rl_empty9 = ((RelativeLayout) view9.findViewById(R.id.rl_empty9));
-        reload9= ((Button) view9.findViewById(R.id.reload9));
+        reload9 = ((Button) view9.findViewById(R.id.reload9));
         error_caterogy9 = ((RelativeLayout) view9.findViewById(R.id.error_caterogy9));
         ptr_arrlist_wulianwang = ((PullToRefreshListView) view9.findViewById(R.id.ptr_arrlist_wulianwang));
         lv_wulianwang = ptr_arrlist_wulianwang.getRefreshableView();
@@ -698,7 +804,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view10.findViewById(R.id.pb_progressBar);
         rl_hide_zhihuichengshi = (RelativeLayout) view10.findViewById(R.id.rl_hide_zhihuichengshi);
         rl_empty10 = ((RelativeLayout) view10.findViewById(R.id.rl_empty10));
-        reload10= ((Button) view10.findViewById(R.id.reload10));
+        reload10 = ((Button) view10.findViewById(R.id.reload10));
         error_caterogy10 = ((RelativeLayout) view10.findViewById(R.id.error_caterogy10));
         ptr_arrlist_zhihuichengshi = ((PullToRefreshListView) view10.findViewById(R.id.ptr_arrlist_zhihuichengshi));
         lv_zhihuichengshi = ptr_arrlist_zhihuichengshi.getRefreshableView();
@@ -709,7 +815,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view11.findViewById(R.id.pb_progressBar);
         rl_hide_zhihuishequ = (RelativeLayout) view11.findViewById(R.id.rl_hide_zhihuishequ);
         rl_empty11 = ((RelativeLayout) view11.findViewById(R.id.rl_empty11));
-        reload11= ((Button) view11.findViewById(R.id.reload11));
+        reload11 = ((Button) view11.findViewById(R.id.reload11));
         error_caterogy11 = ((RelativeLayout) view11.findViewById(R.id.error_caterogy11));
         ptr_arrlist_zhihuishequ = ((PullToRefreshListView) view11.findViewById(R.id.ptr_arrlist_zhihuishequ));
         lv_zhihuishequ = ptr_arrlist_zhihuishequ.getRefreshableView();
@@ -720,7 +826,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view12.findViewById(R.id.pb_progressBar);
         rl_hide_wurenji = (RelativeLayout) view12.findViewById(R.id.rl_hide_wurenji);
         rl_empty12 = ((RelativeLayout) view12.findViewById(R.id.rl_empty12));
-        reload12= ((Button) view12.findViewById(R.id.reload12));
+        reload12 = ((Button) view12.findViewById(R.id.reload12));
         error_caterogy12 = ((RelativeLayout) view12.findViewById(R.id.error_caterogy12));
         ptr_arrlist_wurenji = ((PullToRefreshListView) view12.findViewById(R.id.ptr_arrlist_wurenji));
         lv_wurenji = ptr_arrlist_wurenji.getRefreshableView();
@@ -731,18 +837,18 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view13.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengyanglao = (RelativeLayout) view13.findViewById(R.id.rl_hide_zhinengyanglao);
         rl_empty13 = ((RelativeLayout) view13.findViewById(R.id.rl_empty13));
-        reload13= ((Button) view13.findViewById(R.id.reload13));
+        reload13 = ((Button) view13.findViewById(R.id.reload13));
         error_caterogy13 = ((RelativeLayout) view13.findViewById(R.id.error_caterogy13));
         ptr_arrlist_zhinengyanglao = ((PullToRefreshListView) view13.findViewById(R.id.ptr_arrlist_zhinengyanglao));
         lv_zhinengyanglao = ptr_arrlist_zhinengyanglao.getRefreshableView();
         adapter13 = new MyAdapter(arrList13);
         lv_zhinengyanglao.setAdapter(adapter13);
         listView.add(view13);
-        View view14 = inflate(getActivity(),R.layout.fragment_home_zhinengjiankang, null);
+        View view14 = inflate(getActivity(), R.layout.fragment_home_zhinengjiankang, null);
         pb_progressBar = (CircularProgress) view14.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengjiankang = (RelativeLayout) view14.findViewById(R.id.rl_hide_zhinengjiankang);
         rl_empty14 = ((RelativeLayout) view14.findViewById(R.id.rl_empty14));
-        reload14= ((Button) view14.findViewById(R.id.reload14));
+        reload14 = ((Button) view14.findViewById(R.id.reload14));
         error_caterogy14 = ((RelativeLayout) view14.findViewById(R.id.error_caterogy14));
         ptr_arrlist_zhinengjiankang = ((PullToRefreshListView) view14.findViewById(R.id.ptr_arrlist_zhinengjiankang));
         lv_zhinengjiankang = ptr_arrlist_zhinengjiankang.getRefreshableView();
@@ -753,7 +859,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view15.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengyiliao = (RelativeLayout) view15.findViewById(R.id.rl_hide_zhinengyiliao);
         rl_empty15 = ((RelativeLayout) view15.findViewById(R.id.rl_empty15));
-        reload15= ((Button) view15.findViewById(R.id.reload15));
+        reload15 = ((Button) view15.findViewById(R.id.reload15));
         error_caterogy15 = ((RelativeLayout) view15.findViewById(R.id.error_caterogy15));
         ptr_arrlist_zhinengyiliao = ((PullToRefreshListView) view15.findViewById(R.id.ptr_arrlist_zhinengyiliao));
         lv_zhinengyiliao = ptr_arrlist_zhinengyiliao.getRefreshableView();
@@ -764,7 +870,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view16.findViewById(R.id.pb_progressBar);
         rl_hide_jiqiren = (RelativeLayout) view16.findViewById(R.id.rl_hide_jiqiren);
         rl_empty16 = ((RelativeLayout) view16.findViewById(R.id.rl_empty16));
-        reload16= ((Button) view16.findViewById(R.id.reload16));
+        reload16 = ((Button) view16.findViewById(R.id.reload16));
         error_caterogy16 = ((RelativeLayout) view16.findViewById(R.id.error_caterogy16));
         ptr_arrlist_jiqiren = ((PullToRefreshListView) view16.findViewById(R.id.ptr_arrlist_jiqiren));
         lv_jiqiren = ptr_arrlist_jiqiren.getRefreshableView();
@@ -775,7 +881,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view17.findViewById(R.id.pb_progressBar);
         rl_hide_vrar = (RelativeLayout) view17.findViewById(R.id.rl_hide_vrar);
         rl_empty17 = ((RelativeLayout) view17.findViewById(R.id.rl_empty17));
-        reload17= ((Button) view17.findViewById(R.id.reload17));
+        reload17 = ((Button) view17.findViewById(R.id.reload17));
         error_caterogy17 = ((RelativeLayout) view17.findViewById(R.id.error_caterogy17));
         ptr_arrlist_vrar = ((PullToRefreshListView) view17.findViewById(R.id.ptr_arrlist_vrar));
         lv_vrar = ptr_arrlist_vrar.getRefreshableView();
@@ -786,7 +892,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view18.findViewById(R.id.pb_progressBar);
         rl_hide_zhanhuixinxi = (RelativeLayout) view18.findViewById(R.id.rl_hide_zhanhuixinxi);
         rl_empty18 = ((RelativeLayout) view18.findViewById(R.id.rl_empty18));
-        reload18= ((Button) view18.findViewById(R.id.reload18));
+        reload18 = ((Button) view18.findViewById(R.id.reload18));
         error_caterogy18 = ((RelativeLayout) view18.findViewById(R.id.error_caterogy18));
         ptr_arrlist_zhanhuixinxi = ((PullToRefreshListView) view18.findViewById(R.id.ptr_arrlist_zhanhuixinxi));
         lv_zhanhuixinxi = ptr_arrlist_wulianwang.getRefreshableView();
@@ -797,7 +903,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view19.findViewById(R.id.pb_progressBar);
         rl_hide_peixunxinxi = (RelativeLayout) view19.findViewById(R.id.rl_hide_peixunxinxi);
         rl_empty19 = ((RelativeLayout) view19.findViewById(R.id.rl_empty19));
-        reload19= ((Button) view19.findViewById(R.id.reload19));
+        reload19 = ((Button) view19.findViewById(R.id.reload19));
         error_caterogy19 = ((RelativeLayout) view19.findViewById(R.id.error_caterogy19));
         ptr_arrlist_peixunxinxi = ((PullToRefreshListView) view19.findViewById(R.id.ptr_arrlist_peixunxinxi));
         lv_peixunxinxi = ptr_arrlist_peixunxinxi.getRefreshableView();
@@ -808,7 +914,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view20.findViewById(R.id.pb_progressBar);
         rl_hide_zhichaofangan = (RelativeLayout) view20.findViewById(R.id.rl_hide_zhichaofangan);
         rl_empty20 = ((RelativeLayout) view20.findViewById(R.id.rl_empty20));
-        reload20= ((Button) view20.findViewById(R.id.reload20));
+        reload20 = ((Button) view20.findViewById(R.id.reload20));
         error_caterogy20 = ((RelativeLayout) view20.findViewById(R.id.error_caterogy20));
         ptr_arrlist_zhichaofangan = ((PullToRefreshListView) view20.findViewById(R.id.ptr_arrlist_zhichaofangan));
         lv_zhichaofangan = ptr_arrlist_zhichaofangan.getRefreshableView();
@@ -832,7 +938,7 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view21.findViewById(R.id.pb_progressBar);
         rl_hide_zhichaoanli = (RelativeLayout) view21.findViewById(R.id.rl_hide_zhichaoanli);
         rl_empty21 = ((RelativeLayout) view21.findViewById(R.id.rl_empty21));
-        reload21= ((Button) view21.findViewById(R.id.reload21));
+        reload21 = ((Button) view21.findViewById(R.id.reload21));
         error_caterogy21 = ((RelativeLayout) view21.findViewById(R.id.error_caterogy21));
         ptr_arrlist_zhichaoanli = ((PullToRefreshListView) view21.findViewById(R.id.ptr_arrlist_zhichaoanli));
         lv_zhichaoanli = ptr_arrlist_zhichaoanli.getRefreshableView();
@@ -875,7 +981,7 @@ public class HomeFragment extends Fragment {
         ptr_arrlist_tuijian.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
             @Override
             public void onLastItemVisible() {
-               // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
             }
         });
         myRadioGroup = new RadioGroup(getActivity());
@@ -919,7 +1025,7 @@ public class HomeFragment extends Fragment {
                 //Map<String, Object> map = (Map<String, Object>) group.getChildAt(checkedId).getTag();
                 int radioButtonId = group.getCheckedRadioButtonId();
                 //根据ID获取RadioButton的实例
-                RadioButton rb = (RadioButton) view.findViewById(radioButtonId);
+                 rb = (RadioButton) view.findViewById(radioButtonId);
                 Map<String, Object> selectMap = (Map<String, Object>) rb.getTag();
 
                 AnimationSet animationSet = new AnimationSet(true);
@@ -974,7 +1080,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_tuijian.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                               // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -1017,7 +1123,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_hangyezixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                               // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -1060,7 +1166,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_canpinzixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                             //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -1103,7 +1209,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_canpinpince.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                               // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -1144,7 +1250,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_video.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                              //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -1184,7 +1290,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_pinpaizixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                            //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -1224,7 +1330,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_hangyebiaozhun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                             //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
                         lv_hangyebiaozhun.setAdapter(adapter7);
@@ -1263,7 +1369,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_hangyejishu.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                              //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
                         lv_hangyejishu.setAdapter(adapter8);
@@ -1731,7 +1837,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_zhichaofangan.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                            //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
                         lv_zhichaofangan.setAdapter(adapter20);
@@ -1770,7 +1876,7 @@ public class HomeFragment extends Fragment {
                         ptr_arrlist_zhichaoanli.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
                             @Override
                             public void onLastItemVisible() {
-                              //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
                             }
                         });
                         lv_zhichaoanli.setAdapter(adapter21);
@@ -1844,18 +1950,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList16);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_jiqiren.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList16.addAll(articleData.getArticle_list());
-                    adapter16.notifyDataSetChanged();
-                    ptr_arrlist_jiqiren.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList16.addAll(articleData.getArticle_list());
+                        adapter16.notifyDataSetChanged();
+                        ptr_arrlist_jiqiren.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_jiqiren.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_jiqiren.onRefreshComplete();
-                }
-            }else {
                     rl_hide_jiqiren.setVisibility(View.GONE);
                     rl_empty16.setVisibility(View.VISIBLE);
                     ptr_arrlist_jiqiren.setVisibility(View.GONE);
@@ -1916,18 +2022,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList15);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhinengyiliao.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList15.addAll(articleData.getArticle_list());
-                    adapter15.notifyDataSetChanged();
-                    ptr_arrlist_zhinengyiliao.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList15.addAll(articleData.getArticle_list());
+                        adapter15.notifyDataSetChanged();
+                        ptr_arrlist_zhinengyiliao.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhinengyiliao.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhinengyiliao.onRefreshComplete();
-                }
-            }else {
                     rl_hide_zhinengyiliao.setVisibility(View.GONE);
                     rl_empty15.setVisibility(View.VISIBLE);
                     ptr_arrlist_zhinengyiliao.setVisibility(View.GONE);
@@ -1988,17 +2094,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList17);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_vrar.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList17.addAll(articleData.getArticle_list());
-                    adapter17.notifyDataSetChanged();
-                    ptr_arrlist_vrar.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList17.addAll(articleData.getArticle_list());
+                        adapter17.notifyDataSetChanged();
+                        ptr_arrlist_vrar.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_vrar.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_vrar.onRefreshComplete();
-                }
-            }else {
                     rl_hide_vrar.setVisibility(View.GONE);
                     rl_empty17.setVisibility(View.VISIBLE);
                     ptr_arrlist_vrar.setVisibility(View.GONE);
@@ -2059,17 +2165,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList18);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhanhuixinxi.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList18.addAll(articleData.getArticle_list());
-                    adapter18.notifyDataSetChanged();
-                    ptr_arrlist_zhanhuixinxi.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList18.addAll(articleData.getArticle_list());
+                        adapter18.notifyDataSetChanged();
+                        ptr_arrlist_zhanhuixinxi.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhanhuixinxi.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhanhuixinxi.onRefreshComplete();
-                }
-            }else {
                     rl_hide_zhanhuixinxi.setVisibility(View.GONE);
                     rl_empty18.setVisibility(View.VISIBLE);
                     ptr_arrlist_zhanhuixinxi.setVisibility(View.GONE);
@@ -2130,17 +2236,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList19);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_peixunxinxi.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList19.addAll(articleData.getArticle_list());
-                    adapter19.notifyDataSetChanged();
-                    ptr_arrlist_peixunxinxi.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList19.addAll(articleData.getArticle_list());
+                        adapter19.notifyDataSetChanged();
+                        ptr_arrlist_peixunxinxi.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_peixunxinxi.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_peixunxinxi.onRefreshComplete();
-                }
-            }else {
                     rl_hide_peixunxinxi.setVisibility(View.GONE);
                     rl_empty19.setVisibility(View.VISIBLE);
                     ptr_arrlist_peixunxinxi.setVisibility(View.GONE);
@@ -2201,17 +2307,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList20);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhichaofangan.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList20.addAll(articleData.getArticle_list());
-                    adapter20.notifyDataSetChanged();
-                    ptr_arrlist_zhichaofangan.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList20.addAll(articleData.getArticle_list());
+                        adapter20.notifyDataSetChanged();
+                        ptr_arrlist_zhichaofangan.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhichaofangan.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhichaofangan.onRefreshComplete();
-                }
-            }else {
                     rl_hide_zhichaofangan.setVisibility(View.GONE);
                     rl_empty20.setVisibility(View.VISIBLE);
                     ptr_arrlist_zhichaofangan.setVisibility(View.GONE);
@@ -2273,18 +2379,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList21);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhichaoanli.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList21.addAll(articleData.getArticle_list());
-                    adapter21.notifyDataSetChanged();
-                    ptr_arrlist_zhichaoanli.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList21.addAll(articleData.getArticle_list());
+                        adapter21.notifyDataSetChanged();
+                        ptr_arrlist_zhichaoanli.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhichaoanli.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhichaoanli.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty21.setVisibility(View.VISIBLE);
 
@@ -2343,17 +2449,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList14);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhinengjiankang.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList14.addAll(articleData.getArticle_list());
-                    adapter14.notifyDataSetChanged();
-                    ptr_arrlist_zhinengjiankang.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList14.addAll(articleData.getArticle_list());
+                        adapter14.notifyDataSetChanged();
+                        ptr_arrlist_zhinengjiankang.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhinengjiankang.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhinengjiankang.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty14.setVisibility(View.VISIBLE);
 
@@ -2412,17 +2518,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList12);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_wurenji.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList12.addAll(articleData.getArticle_list());
-                    adapter12.notifyDataSetChanged();
-                    ptr_arrlist_wurenji.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList12.addAll(articleData.getArticle_list());
+                        adapter12.notifyDataSetChanged();
+                        ptr_arrlist_wurenji.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_wurenji.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_wurenji.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty12.setVisibility(View.VISIBLE);
 
@@ -2482,17 +2588,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList13);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhinengyanglao.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList13.addAll(articleData.getArticle_list());
-                    adapter13.notifyDataSetChanged();
-                    ptr_arrlist_zhinengyanglao.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList13.addAll(articleData.getArticle_list());
+                        adapter13.notifyDataSetChanged();
+                        ptr_arrlist_zhinengyanglao.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhinengyanglao.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhinengyanglao.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty13.setVisibility(View.VISIBLE);
 
@@ -2550,17 +2656,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList11);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhihuishequ.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList11.addAll(articleData.getArticle_list());
-                    adapter11.notifyDataSetChanged();
-                    ptr_arrlist_zhihuishequ.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList11.addAll(articleData.getArticle_list());
+                        adapter11.notifyDataSetChanged();
+                        ptr_arrlist_zhihuishequ.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhihuishequ.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhihuishequ.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty11.setVisibility(View.VISIBLE);
 
@@ -2620,18 +2726,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList10);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_zhihuichengshi.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList10.addAll(articleData.getArticle_list());
-                    adapter10.notifyDataSetChanged();
-                    ptr_arrlist_zhihuichengshi.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList10.addAll(articleData.getArticle_list());
+                        adapter10.notifyDataSetChanged();
+                        ptr_arrlist_zhihuichengshi.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_zhihuichengshi.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_zhihuichengshi.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty10.setVisibility(View.VISIBLE);
 
@@ -2691,17 +2797,17 @@ public class HomeFragment extends Fragment {
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList9);
 
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_wulianwang.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList9.addAll(articleData.getArticle_list());
-                    adapter9.notifyDataSetChanged();
-                    ptr_arrlist_wulianwang.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList9.addAll(articleData.getArticle_list());
+                        adapter9.notifyDataSetChanged();
+                        ptr_arrlist_wulianwang.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_wulianwang.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_wulianwang.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty9.setVisibility(View.VISIBLE);
 
@@ -2761,18 +2867,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList8);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_hangyejishu.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList8.addAll(articleData.getArticle_list());
-                    adapter8.notifyDataSetChanged();
-                    ptr_arrlist_hangyejishu.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList8.addAll(articleData.getArticle_list());
+                        adapter8.notifyDataSetChanged();
+                        ptr_arrlist_hangyejishu.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_hangyejishu.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_hangyejishu.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty8.setVisibility(View.VISIBLE);
 
@@ -2831,17 +2937,17 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList7);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_hangyebiaozhun.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList7.addAll(articleData.getArticle_list());
-                    adapter7.notifyDataSetChanged();
-                    ptr_arrlist_hangyebiaozhun.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList7.addAll(articleData.getArticle_list());
+                        adapter7.notifyDataSetChanged();
+                        ptr_arrlist_hangyebiaozhun.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_hangyebiaozhun.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_hangyebiaozhun.onRefreshComplete();
-                }
-            }else {
 
                     rl_empty7.setVisibility(View.VISIBLE);
 
@@ -2901,18 +3007,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList6);
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_pinpaizixun.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList6.addAll(articleData.getArticle_list());
-                    adapter6.notifyDataSetChanged();
-                    ptr_arrlist_pinpaizixun.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList6.addAll(articleData.getArticle_list());
+                        adapter6.notifyDataSetChanged();
+                        ptr_arrlist_pinpaizixun.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_pinpaizixun.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_pinpaizixun.onRefreshComplete();
-                }
-            } else {
 
                     rl_empty6.setVisibility(View.VISIBLE);
 
@@ -2944,7 +3050,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void getvideo(){
+    private void getvideo() {
         rl_empty5.setVisibility(View.GONE);
         error_caterogy5.setVisibility(View.GONE);
 
@@ -2957,7 +3063,7 @@ public class HomeFragment extends Fragment {
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
         params.addBodyParameter("cat_id", "15");
         params.addBodyParameter("page", page + "");
-        org.xutils.x.http().post(params, new Callback.CommonCallback<String>(){
+        org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 //                ptr_arrlist_video.setVisibility(View.GONE);
@@ -2972,11 +3078,11 @@ public class HomeFragment extends Fragment {
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
-                Log.i("数组长度",articleData.getArticle_list().size() +"");
+                Log.i("数组长度", articleData.getArticle_list().size() + "");
                 if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_video.setVisibility(View.VISIBLE);
                     System.out.println(arrList5);
-                    if (page <= pageCount){
+                    if (page <= pageCount) {
                         arrList5.addAll(articleData.getArticle_list());
                         adapter5.notifyDataSetChanged();
                         ptr_arrlist_video.onRefreshComplete();
@@ -3005,7 +3111,7 @@ public class HomeFragment extends Fragment {
                 ptr_arrlist_video.setVisibility(View.GONE);
                 rl_empty5.setVisibility(View.GONE);
                 error_caterogy5.setVisibility(View.VISIBLE);
-                reload5.setOnClickListener(new View.OnClickListener(){
+                reload5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         getvideo();
@@ -3054,16 +3160,16 @@ public class HomeFragment extends Fragment {
                 if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_canpinpince.setVisibility(View.VISIBLE);
 
-                if (page <= pageCount) {
-                    arrList4.addAll(articleData.getArticle_list());
-                    adapter4.notifyDataSetChanged();
-                    ptr_arrlist_canpinpince.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList4.addAll(articleData.getArticle_list());
+                        adapter4.notifyDataSetChanged();
+                        ptr_arrlist_canpinpince.onRefreshComplete();
 
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_canpinpince.onRefreshComplete();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_canpinpince.onRefreshComplete();
-                }
-            } else {
                     rl_hide_canpinpince.setVisibility(View.GONE);
                     rl_empty4.setVisibility(View.VISIBLE);
                     ptr_arrlist_canpinpince.setVisibility(View.GONE);
@@ -3127,18 +3233,18 @@ public class HomeFragment extends Fragment {
                 pageCount = Integer.parseInt(articleData.page_count);
                 Log.i(TAG1, articleData.getArticle_list() + "");
                 System.out.println(arrList1);
-                if (articleData.getArticle_list().size() != 0){
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_tuijian.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList1.addAll(articleData.getArticle_list());
-                    adapter1.notifyDataSetChanged();
-                    ptr_arrlist_tuijian.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList1.addAll(articleData.getArticle_list());
+                        adapter1.notifyDataSetChanged();
+                        ptr_arrlist_tuijian.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_tuijian.onRefreshComplete();
+                        adapter1.notifyDataSetChanged();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_tuijian.onRefreshComplete();
-                    adapter1.notifyDataSetChanged();
-                }
-                  } else {
                     rl_hide_tuijian.setVisibility(View.GONE);
                     rl_empty1.setVisibility(View.VISIBLE);
                     ptr_arrlist_tuijian.setVisibility(View.GONE);
@@ -3180,7 +3286,7 @@ public class HomeFragment extends Fragment {
         Log.i("aaaaa", "数据拿到");
         rl_empty2.setVisibility(View.GONE);
         error_caterogy2.setVisibility(View.GONE);
-        if (page == 1 && pullFlag == false){
+        if (page == 1 && pullFlag == false) {
             ptr_arrlist_hangyezixun.setVisibility(View.GONE);
             rl_hide_hangyezixun.setVisibility(View.VISIBLE);
         }
@@ -3192,7 +3298,7 @@ public class HomeFragment extends Fragment {
         org.xutils.x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-             ptr_arrlist_hangyezixun.setVisibility(View.GONE);
+                ptr_arrlist_hangyezixun.setVisibility(View.GONE);
                 rl_hide_hangyezixun.setVisibility(View.GONE);
                 if (page == 1) {
                     arrList2.clear();
@@ -3208,17 +3314,17 @@ public class HomeFragment extends Fragment {
 
                 if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_hangyezixun.setVisibility(View.VISIBLE);
-                if (page <= pageCount) {
-                    arrList2.addAll(articleData.getArticle_list());
-                    adapter2.notifyDataSetChanged();
-                    ptr_arrlist_hangyezixun.onRefreshComplete();
+                    if (page <= pageCount) {
+                        arrList2.addAll(articleData.getArticle_list());
+                        adapter2.notifyDataSetChanged();
+                        ptr_arrlist_hangyezixun.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_hangyezixun.onRefreshComplete();
+
+
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_hangyezixun.onRefreshComplete();
-
-
-                }
-            }else {
                     rl_hide_hangyezixun.setVisibility(View.GONE);
                     rl_empty2.setVisibility(View.VISIBLE);
                     ptr_arrlist_hangyezixun.setVisibility(View.GONE);
@@ -3258,7 +3364,7 @@ public class HomeFragment extends Fragment {
         rl_empty3.setVisibility(View.GONE);
         error_caterogy3.setVisibility(View.GONE);
 
-        if (page == 1 && pullFlag == false){
+        if (page == 1 && pullFlag == false) {
             rl_hide_canpinzixun.setVisibility(View.VISIBLE);
             ptr_arrlist_canpinzixun.setVisibility(View.GONE);
         }
@@ -3280,25 +3386,25 @@ public class HomeFragment extends Fragment {
                 ArticleListBean bean = gson.fromJson(result, ArticleListBean.class);
                 ArticleListBean.Data articleData = bean.data;
                 pageCount = Integer.parseInt(articleData.page_count);
-                Log.i("数组长度",articleData.getArticle_list().size()+"");
+                Log.i("数组长度", articleData.getArticle_list().size() + "");
 
-                if (articleData.getArticle_list().size()!=0) {
+                if (articleData.getArticle_list().size() != 0) {
                     ptr_arrlist_canpinzixun.setVisibility(View.VISIBLE);
-                System.out.println(arrList3);
+                    System.out.println(arrList3);
 
 //                System.out.println(bean.status + "????");
 //                System.out.println(bean.dongtaiList.size() + "====");
 //                通知listview更新界面
 
 
-                if (page <= pageCount) {
-                    arrList3.addAll(articleData.getArticle_list());
-                    adapter3.notifyDataSetChanged();
-                    ptr_arrlist_canpinzixun.onRefreshComplete();
-                } else {
-                    Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
-                    ptr_arrlist_canpinzixun.onRefreshComplete();
-                }
+                    if (page <= pageCount) {
+                        arrList3.addAll(articleData.getArticle_list());
+                        adapter3.notifyDataSetChanged();
+                        ptr_arrlist_canpinzixun.onRefreshComplete();
+                    } else {
+                        Toast.makeText(getActivity(), "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                        ptr_arrlist_canpinzixun.onRefreshComplete();
+                    }
                 } else {
 
                     rl_empty3.setVisibility(View.VISIBLE);
@@ -3375,7 +3481,7 @@ public class HomeFragment extends Fragment {
     }
 
     private class MyAdapter extends BaseAdapter {
-      private List<ArticleListBean.Article_list> list;
+        private List<ArticleListBean.Article_list> list;
 
         public MyAdapter(List<ArticleListBean.Article_list> list) {
             this.list = list;
@@ -3422,7 +3528,7 @@ public class HomeFragment extends Fragment {
             //ListActivityBean.Dongtai dongtai = dongtaiList.get(position);
             ArticleListBean.Article_list arr = list.get(position);
 
-            viewHolder.tv_title.setText(arr.title.replace(" ",""));
+            viewHolder.tv_title.setText(arr.title.replace(" ", ""));
 
             viewHolder.tv_name.setText(linchom.com.linchomspace.homepage.Utils.DateUtils.getGapTimeFromNow(DateUtils.stringToDate(arr.date)));
             if (arr.article_pic == "") {
@@ -3443,8 +3549,6 @@ public class HomeFragment extends Fragment {
         private TextView tv_source;
         private ImageView iv_photo;
     }
-
-
 
 
 }

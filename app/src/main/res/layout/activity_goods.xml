@@ -91,7 +91,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:textSize="16sp"
-                    android:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     />
@@ -132,20 +132,9 @@
 
 
 
-                    <TextView
-                        android:id="@+id/tv_goods_RMB"
-                        android:textColor="#808080"
-                        android:textSize="16sp"
-                        android:text="¥"
-                        android:layout_width="20dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-
-                        />
 
                     <TextView
                         android:id="@+id/tv_goods_markerPrice"
-                        android:layout_toRightOf="@id/tv_goods_RMB"
                         android:textColor="#808080"
                         android:textSize="16sp"
                         android:text=""
@@ -381,6 +370,9 @@
                         />
 
                     <TextView
+
+                        android:id="@+id/tv_goods_jdfunhao"
+
                         android:layout_below="@id/tv_goods_tbfunhao"
                         android:textColor="#80ff0000"
                         android:textSize="20sp"
@@ -397,7 +389,7 @@
                         android:textColor="#80ff0000"
                         android:textSize="20sp"
 
-                        android:text="99999"
+                        android:text=""
                         android:layout_margin="5dp"
                         android:layout_toRightOf="@id/tv_goods_tbfunhao"
                         android:layout_width="100dp"
@@ -411,7 +403,7 @@
                         android:textColor="#80ff0000"
                         android:textSize="20sp"
 
-                        android:text="99999"
+                        android:text=""
                         android:layout_margin="5dp"
                         android:layout_toRightOf="@id/tv_goods_tbfunhao"
                         android:layout_width="100dp"
