@@ -56,7 +56,7 @@ import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.View.SlideSelectView;
 import linchom.com.linchomspace.shopping.GoodsActivity;
 
-public class ArticleActivity extends AppCompatActivity {
+public class ArticleActivity extends AppCompatActivity implements View.OnLayoutChangeListener {
 
     @InjectView(R.id.ib_commemt)
     ImageButton ibCommemt;
@@ -114,6 +114,12 @@ public class ArticleActivity extends AppCompatActivity {
     private String total;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    PopupWindow popupWindow;
+    private View activityRootView;
+    //屏幕高度
+    private int screenHeight = 0;
+    //软件盘弹起后所占高度阀值
+    private int keyHeight = 0;
 
     //requestCode 请求码，即调用startActivityForResult()传递过去的值
     // resultCode 结果码，结果码用于标识返回数据来自哪个新Activity
@@ -122,7 +128,10 @@ public class ArticleActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode== 101) {
+       // Toast.makeText(ArticleActivity.this,"requestCode:"+requestCode+" resultCode:"+resultCode,Toast.LENGTH_SHORT).show();
+
+
+        if (requestCode==100){
             getCommentNumber();
         }
     }
@@ -152,13 +161,20 @@ public class ArticleActivity extends AppCompatActivity {
         Bundle bundle1 = new Bundle();
         bundle1.putString("article_id", article_id);
         intent1.putExtra("bundle1", bundle1);
-        startActivity(intent1);
+        startActivityForResult(intent1,100);
 
 
     }
 
 
-    private void initView() {
+    private void initView(){
+        activityRootView = findViewById(R.id.fl_main);
+
+        //获取屏幕高度
+        screenHeight = this.getWindowManager().getDefaultDisplay().getHeight();
+        //阀值设置为屏幕高度的1/3
+        keyHeight = screenHeight/3;
+
         sv_article = ((ScrollView) findViewById(R.id.sv_article));
         rl_article_bottombar = ((RelativeLayout) findViewById(R.id.rl_article_bottombar));
         rl_article_titlebar = ((RelativeLayout) findViewById(R.id.rl_article_titlebar));
@@ -273,6 +289,7 @@ public class ArticleActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 ArticleCommentBean bean = gson.fromJson(result, ArticleCommentBean.class);
                 Log.i("bean", bean.getData().getTotal());
+
                 ArticleCommentBean.DataBean commentData = bean.getData();
                 total = commentData.getTotal();
                 if (total.equals("0")) {
@@ -281,11 +298,14 @@ public class ArticleActivity extends AppCompatActivity {
                     tvCommentnumber.setVisibility(View.VISIBLE);
                     tvCommentnumber.setText(total);
                 }
+
+
             }
 
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+             //   Toast.makeText(ArticleActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
 
             }
 
@@ -368,6 +388,10 @@ public class ArticleActivity extends AppCompatActivity {
 //                    R.layout.article_comment_popupwindow, null);
 //            final LinearLayout ll_comment_popup = ((LinearLayout) contentView.findViewById(R.id.ll_comment_popup));
 //            ll_comment_popup.setVisibility(View.GONE);
+//            if(popupWindow!=null && popupWindow.isShowing() ){
+//                popupWindow.dismiss();
+//                return true;
+//            }
             if (webView.canGoBack())
                 webView.goBack();
             else
@@ -411,12 +435,12 @@ public class ArticleActivity extends AppCompatActivity {
 
 
         });
-        iv_night = ((ImageView) contentView.findViewById(R.id.iv_night));
+        iv_night = ((ImageView)contentView.findViewById(R.id.iv_night));
         iv_night.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // switchNightModel();
-                if (!pressNight) {
+                if (!pressNight){
                     iv_night.setBackgroundResource(R.drawable.article_more_circle);
                     iv_night.setImageResource(R.drawable.article_day);
                     pressNight = true;
@@ -446,11 +470,11 @@ public class ArticleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rlBackgroundGray.setVisibility(View.GONE);
-                contentView.setVisibility(View.GONE);
+               popupWindow.dismiss();
 
             }
         });
-        final PopupWindow popupWindow = new PopupWindow(contentView,
+        popupWindow = new PopupWindow(contentView,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
 
         popupWindow.setTouchable(true);
@@ -494,7 +518,6 @@ public class ArticleActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                     editor.putString("collectId", collectId);
                     editor.commit();//提交修改
-
                     collect();
                     ibCollect.setImageResource(R.drawable.collect_check5);
                     pressCollect = true;
@@ -582,9 +605,6 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     private void collect() {
-        //http://app.linchom.com/appapi.php?act=add_article_comment&user_name=
-        // %E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&
-        // email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
         RequestParams params = new RequestParams(Constant.ArticleCollect);
         //params.addBodyParameter("key", "linchom");
         //params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -653,30 +673,10 @@ public class ArticleActivity extends AppCompatActivity {
         //  InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         //这里给它设置了弹出的时间，
         imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
-        //隐藏软键盘
-        //imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
-//       final NoTouchLinearLayout ll_comment_popup = (NoTouchLinearLayout) contentView.findViewById(R.id.ll_comment_popup);
-//        ll_comment_popup.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(!hasFocus){
-//                    ll_comment_popup.setVisibility(View.GONE);
-//                }
-//            }
-//        });
 
 
-        final PopupWindow popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
-        final LinearLayout ll_comment_popup = ((LinearLayout) contentView.findViewById(R.id.ll_comment_popup));
-//        ll_comment_popup.setOnKeyListener(new View.OnKeyListener() {
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
-//                    ll_comment_popup.setVisibility(View.GONE);
-//                }
-//                return false;
-//            }
-//        });
+        popupWindow = new PopupWindow(contentView,ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
+
         popupWindow.setTouchable(true);
 
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
@@ -695,29 +695,19 @@ public class ArticleActivity extends AppCompatActivity {
             }
         });
 
-        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
-        // 我觉得这里是API的一个bug
-        // popupWindow.setBackgroundDrawable(getResources().getDrawable(
-        //  R.drawable.meijing));
-
-        // 设置好参数之后再show
-        // popupWindow.showAsDropDown(view);
-
-
         Button publish_comment = ((Button) contentView.findViewById(R.id.publish_comment));
 
-        publish_comment.setOnClickListener(new View.OnClickListener() {
+        publish_comment.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 comment = et_write_comment.getText().toString();
-                //Toast.makeText(getApplicationContext(),comment,Toast.LENGTH_SHORT).show();
                 publishComment(comment);
                 Log.i("comment1", comment);
-                contentView.setVisibility(View.GONE);
                 //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
                 rlBackgroundGray.setVisibility(View.GONE);
+                popupWindow.dismiss();
                 sendArticleId();
             }
         });
@@ -733,10 +723,7 @@ public class ArticleActivity extends AppCompatActivity {
         params.addQueryStringParameter("email", "2070118814@qq.com");
         params.addQueryStringParameter("content", comment);
         params.addQueryStringParameter("type", "2");
-
-        System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
-
 
             @Override
             public void onSuccess(String result) {
@@ -850,5 +837,44 @@ public class ArticleActivity extends AppCompatActivity {
         mHeaderAnimator.setDuration(300).start();
         mBottomAnimator.setDuration(300).start();
     }
+
+//    @Override
+//    public boolean dispatchKeyEvent(KeyEvent event) {
+//        return false;
+//    }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        return false;
+//    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        activityRootView.addOnLayoutChangeListener(this);
+    }
+
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        //现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起
+        if(oldBottom != 0 && bottom != 0 &&(oldBottom - bottom > keyHeight)){
+
+           // Toast.makeText(ArticleActivity.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
+
+        }else if(oldBottom != 0 && bottom != 0 &&(bottom - oldBottom > keyHeight)){
+
+           // Toast.makeText(ArticleActivity.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
+
+            if(popupWindow!=null && popupWindow.isShowing()) {
+
+                popupWindow.dismiss();
+            }
+
+        }
+
+    }
+
 }
 
