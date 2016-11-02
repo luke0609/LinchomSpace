@@ -221,7 +221,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("act","consignee");
 
-        requestParams.addBodyParameter("user_id",16+"");
+        requestParams.addBodyParameter("user_id",userId+"");
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
