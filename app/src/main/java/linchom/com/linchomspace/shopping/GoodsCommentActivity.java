@@ -164,7 +164,7 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("act","goods_comment");
 
-        requestParams.addBodyParameter("goods_id","120");
+        requestParams.addBodyParameter("goods_id",goodsId+"");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
