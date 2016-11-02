@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rb_rb1:
                 newIndex=0;//选中第一项
                 break;
-
             case R.id.rb_rb2:
                 newIndex=1;//选中第二项
                 break;
