@@ -52,44 +52,44 @@
 
 
 
-    <View
-        android:layout_above="@+id/auto_vp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#cfcfcf"
-        ></View>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:id="@+id/auto_vp"
-        android:layout_below="@+id/chat_lt"
-        android:layout_alignBottom="@+id/struct"
-        android:layout_toRightOf="@+id/struct">
+    <!--<View-->
+        <!--android:layout_above="@+id/auto_vp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="#cfcfcf"-->
+        <!--&gt;</View>-->
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="140dp"-->
+        <!--android:id="@+id/auto_vp"-->
+        <!--android:layout_below="@+id/chat_lt"-->
+        <!--android:layout_alignBottom="@+id/struct"-->
+        <!--android:layout_toRightOf="@+id/struct">-->
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/banner_viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-         />
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/banner_viewPager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+         <!--/>-->
 
 
-        <com.shizhefei.view.indicator.FixedIndicatorView
-            android:id="@+id/banner_indicator"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center|bottom" />
-    </FrameLayout>
-    <View
-        android:id="@+id/struct"
-        android:background="#f00"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="200dp"
-        />
+        <!--<com.shizhefei.view.indicator.FixedIndicatorView-->
+            <!--android:id="@+id/banner_indicator"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center|bottom" />-->
+    <!--</FrameLayout>-->
+    <!--<View-->
+        <!--android:id="@+id/struct"-->
+        <!--android:background="#f00"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="200dp"-->
+        <!--/>-->
     <LinearLayout
-        android:layout_below="@+id/struct"
+        android:layout_below="@+id/chat_lt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
@@ -97,8 +97,8 @@
         <com.shizhefei.view.indicator.ScrollIndicatorView
             android:id="@+id/moretab_indicator"
             android:layout_width="match_parent"
-            android:background="#fff"
-            android:layout_height="25dp"
+            android:background="#212121"
+            android:layout_height="27dp"
             />
 
         <android.support.v4.view.ViewPager

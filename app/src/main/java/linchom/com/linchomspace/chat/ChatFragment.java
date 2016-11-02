@@ -52,7 +52,7 @@ public class ChatFragment extends Fragment {
     View view1;
     private BannerComponent bannerComponent;
     private IndicatorViewPager indicatorViewPager;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private String chatId;
     private ImageView to_publish;
     private int pageCount=1;
     private int startPage=1;
@@ -62,7 +62,7 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view1 = inflater.inflate(R.layout.fragment_chat, container, false);
-        initData();
+//        initData();
         initView();
         return view1;
     }
@@ -70,13 +70,13 @@ public class ChatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        bannerComponent.startAutoPlay();
+      //  bannerComponent.startAutoPlay();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        bannerComponent.stopAutoPlay();
+       // bannerComponent.stopAutoPlay();
     }
 
     private void initView() {
@@ -91,23 +91,23 @@ public class ChatFragment extends Fragment {
 
         CircularProgress = ((CircularProgress) view1.findViewById(R.id.progressBar_chat));
         CircularProgress.setVisibility(View.VISIBLE);
-        ViewPager viewPager = (ViewPager) view1.findViewById(R.id.banner_viewPager);
-        Indicator indicator = (Indicator) view1.findViewById(R.id.banner_indicator);
-        // indicator.setScrollBar(new ColorBar(getActivity(), Color.GRAY, 30, ScrollBar.Gravity.CENTENT_BACKGROUND));
-        viewPager.setOffscreenPageLimit(2);
-        bannerComponent = new BannerComponent(indicator, viewPager, false);
-        bannerComponent.setAdapter(adapter);
-        bannerComponent.setAutoPlayTime(2500);
+//        ViewPager viewPager = (ViewPager) view1.findViewById(R.id.banner_viewPager);
+//        Indicator indicator = (Indicator) view1.findViewById(R.id.banner_indicator);
+//        // indicator.setScrollBar(new ColorBar(getActivity(), Color.GRAY, 30, ScrollBar.Gravity.CENTENT_BACKGROUND));
+//        viewPager.setOffscreenPageLimit(2);
+//        bannerComponent = new BannerComponent(indicator, viewPager, false);
+//        bannerComponent.setAdapter(adapter);
+//        bannerComponent.setAutoPlayTime(2500);
 
         //viewpager
         ViewPager viewPager2 = (ViewPager) view1.findViewById(R.id.moretab_viewPager);
         ScrollIndicatorView scrollIndicatorView = (ScrollIndicatorView) view1.findViewById(R.id.moretab_indicator);
 
-        float unSelectSize = 13;
-        float selectSize = unSelectSize * 1.2f;
-        scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.GRAY, Color.argb(100, 87, 87, 87)).setSize(selectSize, unSelectSize));
+        float unSelectSize = 14;
+        float selectSize = unSelectSize * 1.1f;
+        scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.WHITE,Color.GRAY).setSize(selectSize, unSelectSize));
 
-        scrollIndicatorView.setScrollBar(new ColorBar(getActivity(), Color.GRAY, 4));
+        scrollIndicatorView.setScrollBar(new ColorBar(getActivity(),Color.parseColor("#EEC900") , 4));
 
 
         indicatorViewPager = new IndicatorViewPager(scrollIndicatorView, viewPager2);
@@ -116,44 +116,100 @@ public class ChatFragment extends Fragment {
         indicatorViewPager.setPageOffscreenLimit(0);
 
       //  indicatorViewPager.setCurrentItem(5,true);
-    }
-
-    private void initData() {
-        images = new int[]{R.drawable.gp1, R.drawable.gp2, R.drawable.gp3};
-
-    }
 
 
-    private IndicatorViewPager.IndicatorViewPagerAdapter adapter = new IndicatorViewPager.IndicatorViewPagerAdapter() {
+        Bundle bundle = getArguments();
+        if(bundle!=null){
+            chatId = bundle.getString("chatId");
+            switch (chatId){
+                case "0":
+                    indicatorViewPager.setCurrentItem(0,true);
+                    break;
+                case "1":
+                    indicatorViewPager.setCurrentItem(1,true);
+                    break;
+                case "2":
+                    indicatorViewPager.setCurrentItem(2,true);
+                    break;
+                case "3":
+                    indicatorViewPager.setCurrentItem(3,true);
+                    break;
+                case "4":
+                    indicatorViewPager.setCurrentItem(4,true);
+                    break;
+                case "5":
+                    indicatorViewPager.setCurrentItem(5,true);
+                    break;
+                case "6":
+                    indicatorViewPager.setCurrentItem(6,true);
+                    break;
+                case "7":
+                    indicatorViewPager.setCurrentItem(7,true);
+                    break;
+                case "8":
+                    indicatorViewPager.setCurrentItem(8,true);
+                    break;
+                case "9":
+                    indicatorViewPager.setCurrentItem(9,true);
+                    break;
+                case "10":
+                    indicatorViewPager.setCurrentItem(10,true);
+                    break;
+                case "11":
+                    indicatorViewPager.setCurrentItem(11,true);
+                    break;
+                case "12":
+                    indicatorViewPager.setCurrentItem(12,true);
+                    break;
+                case "13":
+                    indicatorViewPager.setCurrentItem(13,true);
+                    break;
+                case "14":
+                    indicatorViewPager.setCurrentItem(14,true);
+                    break;
 
-
-        @Override
-        public View getViewForTab(int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                // convertView = new View(container.getContext());
-                convertView = View.inflate(getActivity(), R.layout.tab_guide, null);
             }
-            return convertView;
         }
 
-        @Override
-        public View getViewForPage(int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                convertView = new ImageView(getActivity());
-                convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            }
-            ImageView imageView = (ImageView) convertView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setImageResource(images[position]);
-            return convertView;
-        }
 
-        @Override
-        public int getCount() {
-            return images.length;
-        }
+    }
+//
+//    private void initData() {
+//        images = new int[]{R.drawable.gp1, R.drawable.gp2, R.drawable.gp3};
+//
+//    }
 
-    };
+
+//    private IndicatorViewPager.IndicatorViewPagerAdapter adapter = new IndicatorViewPager.IndicatorViewPagerAdapter() {
+//
+//
+//        @Override
+//        public View getViewForTab(int position, View convertView, ViewGroup container) {
+//            if (convertView == null) {
+//                // convertView = new View(container.getContext());
+//                convertView = View.inflate(getActivity(), R.layout.tab_guide, null);
+//            }
+//            return convertView;
+//        }
+//
+//        @Override
+//        public View getViewForPage(int position, View convertView, ViewGroup container) {
+//            if (convertView == null) {
+//                convertView = new ImageView(getActivity());
+//                convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//            }
+//            ImageView imageView = (ImageView) convertView;
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            imageView.setImageResource(images[position]);
+//            return convertView;
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return images.length;
+//        }
+//
+//    };
 
     private class MyAdapter extends IndicatorViewPager.IndicatorViewPagerAdapter {
         private String[] versions = {"智能家居", "智能健康", "智能管照", "产品推荐", "智能社区", "工程技术", "硬件开发", "机器人", "VR/AR", "协议标准", "需求对接", "品牌交流", "提问回答", "其他"};

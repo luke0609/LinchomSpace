@@ -19,7 +19,7 @@
     <color name="mainTextColor">#343d43</color>
     <color name="btnRequest">#ffbf12</color>
     <color name="default_text_color_normal">#383838</color>
-
+    <color name="underbar">#EEC900</color>
     <color name="tab_top_text_1">#aaa</color>
     <color name="tab_top_text_2">#000</color>
 </resources>
