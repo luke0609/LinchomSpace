@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.shizhefei.view.indicator.BannerComponent;
+import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.ColorBar;
@@ -30,6 +31,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +43,7 @@ import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
+
 
 
 public class ChatFragment extends Fragment {

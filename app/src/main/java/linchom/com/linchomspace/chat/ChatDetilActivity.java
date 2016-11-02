@@ -39,6 +39,7 @@ import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 
 import static linchom.com.linchomspace.R.id.tv_chat_time;
+import static linchom.com.linchomspace.R.id.tv_more;
 
 public class ChatDetilActivity extends AppCompatActivity {
     @InjectView(R.id.iv_back)
@@ -54,8 +55,6 @@ public class ChatDetilActivity extends AppCompatActivity {
     @InjectView(R.id.lv)
     ListView lv;
 
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String topicId;
     CommonAdapter<TopicDetialBean.DataBean.TopicCommentsBean> commentsAdapter;
     public final ArrayList<TopicDetialBean.DataBean.TopicCommentsBean> commentsList = new ArrayList<TopicDetialBean.DataBean.TopicCommentsBean>();
@@ -63,11 +62,11 @@ public class ChatDetilActivity extends AppCompatActivity {
 
 
 
-
+    private TextView title;
      private  TextView tvChatUsername;
      private TextView tvChatTime;
      private TextView tvChatContent;
-     private TextView title;
+
      private  ImageView userLogo;
     private TextView action_num;
 
@@ -160,9 +159,9 @@ public class ChatDetilActivity extends AppCompatActivity {
 
 
                 //设置listview的apter
-                if (commentsAdapter == null) {
-                    Log.i("MainpageFragment", "onSuccess: ");
-                    commentsAdapter = new CommonAdapter<TopicDetialBean.DataBean.TopicCommentsBean>(getApplicationContext(), commentsList, R.layout.chat_remark_item) {
+                                       if (commentsAdapter == null) {
+                            Log.i("MainpageFragment", "onSuccess: ");
+                            commentsAdapter = new CommonAdapter<TopicDetialBean.DataBean.TopicCommentsBean>(getApplicationContext(), commentsList, R.layout.chat_remark_item) {
 
                         @Override
                         public void convert(ViewHolder viewHolder, final TopicDetialBean.DataBean.TopicCommentsBean comments, final int position) {
@@ -171,6 +170,58 @@ public class ChatDetilActivity extends AppCompatActivity {
                             TextView tv_time = viewHolder.getViewById(tv_chat_time);
                             Button rmk_tip = viewHolder.getViewById(R.id.rmk_tip);
                             ImageView kid_remark = viewHolder.getViewById(R.id.kid_remark);
+
+                            RelativeLayout kid_content_item1=viewHolder.getViewById(R.id.kid_content_item1);
+                            RelativeLayout kid_content_item2=viewHolder.getViewById(R.id.kid_content_item2);
+                            TextView kid_username1=viewHolder.getViewById(R.id.kid_username1);
+                            TextView kid_username2=viewHolder.getViewById(R.id.kid_username2);
+                            TextView kid_content1=viewHolder.getViewById(R.id.kid_content1);
+                            TextView kid_content2=viewHolder.getViewById(R.id.kid_content2);
+                            TextView tv_more=viewHolder.getViewById(R.id.tv_more);
+                            View struct_line2=viewHolder.getViewById(R.id.struct_line2);
+
+                            int kid_comment_listsize=comments.getCommentsss().size();
+                            System.out.println(kid_comment_listsize);
+                            if(kid_comment_listsize==1){
+                                System.out.println("jinru1");
+                                kid_content_item1.setVisibility(View.VISIBLE);
+                                struct_line2.setVisibility(View.VISIBLE);
+                                kid_username1.setText(comments.getCommentsss().get(0).getId()+":");
+                                kid_content1.setText(comments.getCommentsss().get(0).getContent());
+                            }else if(kid_comment_listsize==2){
+                                System.out.println("jinru2");
+                                kid_content_item1.setVisibility(View.VISIBLE);
+
+                                struct_line2.setVisibility(View.VISIBLE);
+                                kid_username1.setText(comments.getCommentsss().get(0).getId()+":");
+                                kid_content1.setText(comments.getCommentsss().get(0).getContent());
+                                kid_content_item2.setVisibility(View.VISIBLE);
+
+                                kid_username2.setText(comments.getCommentsss().get(1).getId()+":");
+                                kid_content2.setText(comments.getCommentsss().get(1).getContent());
+                            }else if (kid_comment_listsize>2){
+                                System.out.println("jinru3");
+                                kid_content_item1.setVisibility(View.VISIBLE);
+                                kid_content_item2.setVisibility(View.VISIBLE);
+                                struct_line2.setVisibility(View.VISIBLE);
+                                kid_username1.setText(comments.getCommentsss().get(0).getId()+":");
+                                kid_content1.setText(comments.getCommentsss().get(0).getContent());
+
+                                kid_username2.setText(comments.getCommentsss().get(1).getId()+":");
+                                kid_content2.setText(comments.getCommentsss().get(1).getContent());
+                                tv_more.setVisibility(View.VISIBLE);
+                                tv_more.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(ChatDetilActivity.this, KidChatDetilActivity.class);
+
+                                        intent.putExtra("comments", comments);
+                                        intent.putExtra("floor", (position + 1));
+                                        System.out.println(position + 1);
+                                        startActivityForResult(intent,1001);
+                                    }
+                                });
+                            }
                             kid_remark.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -183,20 +234,18 @@ public class ChatDetilActivity extends AppCompatActivity {
 
                                 }
                             });
-                            System.out.println(comments.getAdd_time());
+
                             if (comments.getAdd_time() != null) {
                                 int second = Integer.parseInt(String.valueOf(comments.getAdd_time()));
 
                                 tv_time.setText(DateUtils.getGapTimeFromNow(new Date(second * 1000L)));
                             }
+
                             rmk_tip.setText(position + 1 + "楼");
                             tv_name.setText(comments.getUser_name());
-                            if (String.valueOf(comments.getParent_comment_username()).length() != 0) {
-                                parent_comment_username = String.valueOf(comments.getParent_comment_username());
-                                tv_content.setText("回复@" + parent_comment_username + ":" + comments.getContent());
-                            } else {
-                                tv_content.setText(comments.getContent());
-                            }
+
+                            tv_content.setText(comments.getContent());
+
                             if (commentsList.size() != 0) {
                                 remarkNum.setText(commentsList.size() + "");
                                 action_num.setText(commentsList.size() + "");

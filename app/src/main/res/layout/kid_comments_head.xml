@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_below="@+id/rl_top"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/rl_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:id="@+id/user_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:src="@mipmap/avatar"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/user_logo"
+            android:layout_alignTop="@+id/user_logo"
+            android:layout_marginLeft="10dp"
+            >
+            <TextView
+                android:textColor="#7a7c80"
+                android:id="@+id/tv_chat_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="用户名"
+                android:textSize="15sp"
+                android:layout_centerVertical="true"
+                android:singleLine="true"/>
+            <Button
+                android:id="@+id/rmk_tip"
+                android:textSize="13sp"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/tv_chat_username"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:layout_marginLeft="5dp"
+                android:layout_alignTop="@+id/tv_chat_username"
+                android:background="@drawable/chat_louzhu_shape"
+                android:textColor="#fff"
+                android:text="楼主"/>
+            <TextView
+                android:textColor="#ABAEB2"
+                android:id="@+id/tv_chat_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016-10-14"
+                android:textSize="13sp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/tv_chat_username"
+
+
+                />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_chat_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="回复内容"
+        android:layout_marginLeft="10dp"
+        android:textColor="#313233"
+        android:layout_below="@+id/rl_msg"
+        android:textSize="15sp"
+        />
+    <View
+
+        android:id="@+id/struct_line1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/tv_chat_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="0.5dp"
+        android:background="#DCDCDC"
+        />
+</RelativeLayout>
