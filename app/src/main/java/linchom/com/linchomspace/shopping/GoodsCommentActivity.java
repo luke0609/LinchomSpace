@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -135,30 +136,41 @@ public class GoodsCommentActivity extends AppCompatActivity {
         });
         commonListView=ptr_goods_common_ptr.getRefreshableView();
 
-        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.goods_common_list_item) {
+        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.article_comment_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, GoodsCommonBean.Items items, int position) {
-                TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
-               TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
+                //TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
+                //TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
 
-               TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
+                // TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
 
-                tv_goods_common_name.setText(items.user_name);
+
+
+                TextView tv_article_comment_username=viewHolder.getViewById(R.id.tv_article_comment_username);
+
+                TextView tv_article_comment_time= viewHolder.getViewById(R.id.tv_article_comment_time);
+
+                TextView tv_position = viewHolder.getViewById(R.id.tv_position);
+
+                TextView tv_article_content= viewHolder.getViewById(R.id.tv_article_content);
+
+                tv_position.setVisibility(View.INVISIBLE);
+
+
+
+                tv_article_comment_username.setText(items.user_name);
 
                 Long time = Long.parseLong(items.add_time)*1000;
 
-               SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 
                 String str = sdf.format(time);
 
 
+                tv_article_comment_time.setText(str);
 
-
-                tv_goods_common_time.setText(str);
-
-                tv_goods_common_content.setText(items.content);
-
+                tv_article_content.setText(items.content);
 
 
 

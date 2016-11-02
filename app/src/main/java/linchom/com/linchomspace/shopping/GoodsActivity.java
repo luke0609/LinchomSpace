@@ -155,7 +155,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     private int commPage =1;
+
+    private int totalNum = 0;
     private Button btn_goods_comm_more;
+    private RelativeLayout rl_goods_comm_foot;
+    private RelativeLayout rl_goods_comm_footone;
 
 
     @Override
@@ -253,9 +257,15 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
          viewFoot =inflater.inflate(R.layout.goods_comm_list_foot,null);
 
+
+        rl_goods_comm_foot = ((RelativeLayout) viewFoot.findViewById(R.id.rl_goods_comm_foot));
+
         inflaterOne = LayoutInflater.from(getApplicationContext());
 
+
         viewFootOne =inflaterOne.inflate(R.layout.goods_comm_list_foot_one,null);
+
+        rl_goods_comm_footone = ((RelativeLayout) viewFootOne.findViewById(R.id.rl_goods_comm_footone));
 
         btn_goods_comm_more = ((Button) viewFoot.findViewById(R.id.btn_goods_comm_more));
 
@@ -266,7 +276,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         //初始化 收藏键
 
-        SharedPreferences sharedPreferences=     getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+        SharedPreferences sharedPreferences= getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
         goodsIdString =  sharedPreferences.getString("goodsId","");
 
 
@@ -305,33 +315,56 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.goods_common_list_item) {
+        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.article_comment_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, GoodsCommonBean.Items items, int position) {
-                TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
-                TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
+                //TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
+                //TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
 
-                TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
+               // TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
 
-                tv_goods_common_name.setText(items.user_name);
+
+
+                TextView tv_article_comment_username=viewHolder.getViewById(R.id.tv_article_comment_username);
+
+                TextView tv_article_comment_time= viewHolder.getViewById(R.id.tv_article_comment_time);
+
+                TextView tv_position = viewHolder.getViewById(R.id.tv_position);
+
+                TextView tv_article_content= viewHolder.getViewById(R.id.tv_article_content);
+
+                tv_position.setVisibility(View.INVISIBLE);
+
+
+
+                tv_article_comment_username.setText(items.user_name);
 
                 Long time = Long.parseLong(items.add_time)*1000;
 
-                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 
                 String str = sdf.format(time);
 
 
-                tv_goods_common_time.setText(str);
+                tv_article_comment_time.setText(str);
 
-                tv_goods_common_content.setText(items.content);
+                tv_article_content.setText(items.content);
 
 
 
             }
         };
 
+
+
+
+        lv_goods_common_list.addFooterView(viewFoot);
+        lv_goods_common_list.addFooterView(viewFootOne);
+
+
+        rl_goods_comm_foot.setVisibility(View.GONE);
+        rl_goods_comm_footone.setVisibility(View.GONE);
 
 
         lv_goods_common_list.setAdapter(goodsCommonAdapter);
@@ -367,27 +400,26 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 commPage=Integer.parseInt(goodsCommonBean.data.total_pages);
 
-                Log.i(TAG,"commPage"+Integer.parseInt(goodsCommonBean.data.total_pages));
+                totalNum = Integer.parseInt(goodsCommonBean.data.total);
 
-                Log.i(TAG,"total"+Integer.parseInt(goodsCommonBean.data.total));
+                   if(totalNum>0){
 
-                if(Integer.parseInt(goodsCommonBean.data.total)>0){
-
-                    if(commPage>1){
-                        lv_goods_common_list.addFooterView(viewFoot);
-
-                    }
+                       if(commPage>1){
 
 
-                }else{
+                           rl_goods_comm_foot.setVisibility(View.VISIBLE);
+                                 //lv_goods_common_list.addFooterView(viewFoot);
 
-                    lv_goods_common_list.addFooterView(viewFootOne);
+                             }
 
-                }
+                    }else{
+
+                       rl_goods_comm_footone.setVisibility(View.VISIBLE);
 
 
+                       // lv_goods_common_list.addFooterView(viewFootOne);
 
-
+                  }
 
 
 
