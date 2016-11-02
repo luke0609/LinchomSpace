@@ -564,7 +564,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
         oks.setTitle("联巢空间");
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-        oks.setTitleUrl("http://app.linchom.com/apparticle.php?id=1255");
+        oks.setTitleUrl("http://app.linchom.com/apparticle.php?id="+article_id);
         // text是分享文本，所有平台都需要这个字段
         oks.setText("联巢空间分享");
         //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
