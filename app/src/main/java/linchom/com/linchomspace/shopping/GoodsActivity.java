@@ -914,7 +914,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         requestParams.addBodyParameter("act","consignee");
 
-        requestParams.addBodyParameter("user_id",16+"");
+        requestParams.addBodyParameter("user_id",userId+"");
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
@@ -1044,9 +1044,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         }else{
 
             //无地址不用修改 直接传null
-
-
-
 
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
