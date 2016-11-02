@@ -155,7 +155,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
     private int commPage =1;
+
+    private int totalNum = 0;
     private Button btn_goods_comm_more;
+    private RelativeLayout rl_goods_comm_foot;
+    private RelativeLayout rl_goods_comm_footone;
 
 
     @Override
@@ -253,9 +257,15 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
          viewFoot =inflater.inflate(R.layout.goods_comm_list_foot,null);
 
+
+        rl_goods_comm_foot = ((RelativeLayout) viewFoot.findViewById(R.id.rl_goods_comm_foot));
+
         inflaterOne = LayoutInflater.from(getApplicationContext());
 
+
         viewFootOne =inflaterOne.inflate(R.layout.goods_comm_list_foot_one,null);
+
+        rl_goods_comm_footone = ((RelativeLayout) viewFootOne.findViewById(R.id.rl_goods_comm_footone));
 
         btn_goods_comm_more = ((Button) viewFoot.findViewById(R.id.btn_goods_comm_more));
 
@@ -334,6 +344,15 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+
+        lv_goods_common_list.addFooterView(viewFoot);
+        lv_goods_common_list.addFooterView(viewFootOne);
+
+
+        rl_goods_comm_foot.setVisibility(View.GONE);
+        rl_goods_comm_footone.setVisibility(View.GONE);
+
+
         lv_goods_common_list.setAdapter(goodsCommonAdapter);
 
 
@@ -367,27 +386,26 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 commPage=Integer.parseInt(goodsCommonBean.data.total_pages);
 
-                Log.i(TAG,"commPage"+Integer.parseInt(goodsCommonBean.data.total_pages));
+                totalNum = Integer.parseInt(goodsCommonBean.data.total);
 
-                Log.i(TAG,"total"+Integer.parseInt(goodsCommonBean.data.total));
+                   if(totalNum>0){
 
-                if(Integer.parseInt(goodsCommonBean.data.total)>0){
-
-                    if(commPage>1){
-                        lv_goods_common_list.addFooterView(viewFoot);
-
-                    }
+                       if(commPage>1){
 
 
-                }else{
+                           rl_goods_comm_foot.setVisibility(View.VISIBLE);
+                                 //lv_goods_common_list.addFooterView(viewFoot);
 
-                    lv_goods_common_list.addFooterView(viewFootOne);
+                             }
 
-                }
+                    }else{
+
+                       rl_goods_comm_footone.setVisibility(View.VISIBLE);
 
 
+                       // lv_goods_common_list.addFooterView(viewFootOne);
 
-
+                  }
 
 
 

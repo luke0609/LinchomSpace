@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:background="#ffffff"
 
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
 
@@ -21,7 +21,7 @@
                 android:id="@+id/tv_goods_common_name"
                 android:layout_centerVertical="true"
 
-                android:textColor="#000000"
+                android:textColor="#808080"
                 android:layout_marginLeft="10dp"
                 android:text="北京智巢科技"
                 android:textSize="18sp"
