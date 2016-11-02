@@ -52,6 +52,7 @@ public class KidChatDetilActivity extends AppCompatActivity {
     Button rmkTip;
     String topic_id;
     String parent_comment_username;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,8 @@ public class KidChatDetilActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         comments = (TopicDetialBean.DataBean.TopicCommentsBean) intent.getSerializableExtra("comments");
         floor =  intent.getIntExtra("floor", 1);
-
+        Toast.makeText(this,comments.getId(), Toast.LENGTH_SHORT).show();
+        id=comments.getId();
         tvChatUsername.setText(comments.getUser_name());
         parent_comment_username=comments.getUser_name();
         System.out.println(parent_comment_username);
@@ -82,11 +84,12 @@ public class KidChatDetilActivity extends AppCompatActivity {
     private void doRemark(){
         String content= etRemark.getText().toString();
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
-        params.addQueryStringParameter("act", "add_topic_comments");
-        params.addQueryStringParameter("topic_id", topic_id);
-        params.addQueryStringParameter("user_id", 129+"");
+        params.addQueryStringParameter("act", "add_topic_comments_username");
+        params.addQueryStringParameter("user_id", 135+"");
         params.addQueryStringParameter("content", content);
         params.addQueryStringParameter("parent_comment_username",parent_comment_username);
+        params.addQueryStringParameter("id",id);
+        System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
 

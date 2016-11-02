@@ -65,10 +65,12 @@ public class MainActivity extends AppCompatActivity {
         //初始时，按钮1选中
         tabs[0].setSelected(true);
         int id=getIntent().getIntExtra("id",0);
+
+        String pdId=getIntent().getStringExtra("pdId");
+        //Toast.makeText(MainActivity.this,pdId+id,Toast.LENGTH_SHORT).show();
         if(id==1){
             Bundle bundle=new Bundle();
-            String currentItem="3";
-            bundle.putString("CurrentItem",currentItem);
+            bundle.putString("PdId",pdId);
             fragments[0].setArguments(bundle);
             this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
             tabs[0].setSelected(true);

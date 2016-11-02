@@ -67,13 +67,13 @@
                     android:text="行业资讯"/>
 
                 <Button
-                    android:id="@+id/pd_canpinzixun"
+                    android:id="@+id/pd_canpinpince"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:text="产品资讯"/>
+                    android:text="产品评测"/>
 
                 <Button
                     android:id="@+id/pd_video"
@@ -253,6 +253,49 @@
                     android:text="智巢案例"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:id="@+id/pd_canpinzixun"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="产品资讯"
+                    android:textColor="#000" />
+
+                <Button
+
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="行业资讯"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="产品评测"/>
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="视频"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -417,12 +460,13 @@
                     android:text="提问回答"/>
 
                 <Button
+                    android:id="@+id/chat_qita"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     android:text="其它"/>
 
                 <Button
@@ -532,6 +576,50 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+                <Button
+                    android:id="@+id/zc_qita"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="其它"
+                   android:visibility="visible"
+                    android:textColor="#000" />
+
+                <Button
+
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:visibility="invisible"
+                    android:text="安防"/>
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="摄像头"/>
+
+                <Button
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="传感器"/>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="25dp">
@@ -698,13 +786,14 @@
                     />
 
                 <Button
+                    android:id="@+id/znjj_qita"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="其它"
-                    android:visibility="invisible"
+
                     />
 
                 <Button
@@ -786,12 +875,13 @@
                     android:textColor="#000" />
 
                 <Button
+                    android:id="@+id/znzg_qita"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     android:text="其它"/>
 
                 <Button
@@ -900,12 +990,13 @@
                     />
 
                 <Button
+                    android:id="@+id/znjk_qita"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="其它"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     />
 
             </LinearLayout>
@@ -998,12 +1089,13 @@
                     />
 
                 <Button
+                    android:id="@+id/zncd_qita"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="其它"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     />
 
             </LinearLayout>
@@ -1122,12 +1214,14 @@
                     android:textSize="12dp"/>
 
                 <Button
+                    android:id="@+id/zn_qita"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:visibility="invisible"
+                    android:visibility="visible"
+                    android:text="其它"
                     />
 
                 <Button
