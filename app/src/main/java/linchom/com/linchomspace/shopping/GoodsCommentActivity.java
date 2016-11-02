@@ -145,7 +145,7 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
                 tv_goods_common_name.setText(items.user_name);
 
-                Long time = Long.parseLong(items.add_time);
+                Long time = Long.parseLong(items.add_time)*1000;
 
                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
 
