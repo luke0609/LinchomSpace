@@ -61,23 +61,29 @@ public class MainActivity extends AppCompatActivity {
         tabs[3]=(RadioButton) findViewById(R.id.rb_rb4);//交流的button
         tabs[4]=(RadioButton) findViewById(R.id.rb_rb5);//我的的button
         //界面初始显示第一个fragment;添加第一个fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.f1_content, fragments[0]).commit();
-        //初始时，按钮1选中
-        tabs[0].setSelected(true);
-        int id=getIntent().getIntExtra("id",0);
 
+        //初始时，按钮1选中
+        tabs[0].setChecked(true);
+        getSupportFragmentManager().beginTransaction().add(R.id.f1_content, fragments[0]).commit();
+        int id=getIntent().getIntExtra("id",0);
+        int idchat=getIntent().getIntExtra("idchat",0);
         String pdId=getIntent().getStringExtra("pdId");
+        String chatId=getIntent().getStringExtra("chatId");
         //Toast.makeText(MainActivity.this,pdId+id,Toast.LENGTH_SHORT).show();
         if(id==1){
             Bundle bundle=new Bundle();
             bundle.putString("PdId",pdId);
             fragments[0].setArguments(bundle);
             this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
-            tabs[0].setSelected(true);
-
+            tabs[0].setChecked(true);
         }
-
-
+        if(idchat==1){
+            Bundle bundle=new Bundle();
+            bundle.putString("chatId",chatId);
+            fragments[3].setArguments(bundle);
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
+            tabs[3].setChecked(true);
+        }
 
     }
 
@@ -117,9 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         //如果选择的项不是当前选中项，则替换；否则，不做操作
         if(newIndex!=oldIndex){
-
             transaction=getSupportFragmentManager().beginTransaction();
-
             transaction.hide(fragments[oldIndex]);//隐藏当前显示项
 
 

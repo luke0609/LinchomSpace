@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="pressNavigation">#84b7d2</color>
+    <color name="pressNavigation">#088acf</color>
     <color name="unpressNavigation">#000</color>
     <color name="pressSearch">#dad8d8</color>
     <color name="unpressSearch">#fff</color>
@@ -19,7 +19,6 @@
     <color name="mainTextColor">#343d43</color>
     <color name="btnRequest">#ffbf12</color>
     <color name="default_text_color_normal">#383838</color>
-
     <color name="tab_top_text_1">#aaa</color>
     <color name="tab_top_text_2">#000</color>
 </resources>

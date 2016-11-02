@@ -394,8 +394,10 @@ public class HomeFragment extends Fragment {
                     break;
                 case "20":
                     vp_news.setCurrentItem(20);
-                  //  mCurrentCheckedRadioLeft = rb.getLeft();
-                  //  hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+//                    RadioGroup.OnCheckedChangeListener
+//                    mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
+//                    mCurrentCheckedRadioLeft = rb.getLeft();
+//                    hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
                     break;
 
             }
@@ -542,6 +544,7 @@ public class HomeFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
         titleLayout = (LinearLayout) view.findViewById(R.id.title_lay);
@@ -1018,7 +1021,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        myRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        myRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -1045,9 +1048,8 @@ public class HomeFragment extends Fragment {
                 //System.out.println("dis2:"+( (int)mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.rdo2)));
                 hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
                 mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
-                switch (checkedId) {
+                switch (checkedId){
                     case 1000:
-
                         pullFlag = false;
                         ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
