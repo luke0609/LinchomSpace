@@ -200,8 +200,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
     private void showCommentPopupwindow(View view) {
 
         rlBackgroundGray.setVisibility(View.VISIBLE);
-        final View contentView = LayoutInflater.from(CommentActivity.this).inflate(
-                R.layout.article_comment_popupwindow, null);
+        final View contentView = LayoutInflater.from(CommentActivity.this).inflate(R.layout.article_comment_popupwindow, null);
         TextView tv_comment2 = ((TextView)findViewById(R.id.tv_comment2));
         final LinearLayout ll_comment_popup = ((LinearLayout)contentView.findViewById(R.id.ll_comment_popup));
         tv_comment2.requestFocus();
@@ -220,11 +219,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-
-
                 return false;
-
             }
         });
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {

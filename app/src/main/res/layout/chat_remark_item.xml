@@ -60,11 +60,11 @@
         <ImageView
             android:layout_alignTop="@+id/user_logo"
             android:id="@+id/kid_remark"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/dc"
+            android:src="@drawable/kid_remk"
             android:layout_marginTop="4dp"
             />
 

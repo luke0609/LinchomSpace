@@ -27,6 +27,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.ResultBean;
 import linchom.com.linchomspace.chat.pojo.TopicDetialBean;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.homepage.Activity.CommentActivity;
 
 public class KidChatDetilActivity extends AppCompatActivity {
     TopicDetialBean.DataBean.TopicCommentsBean comments;
@@ -50,6 +51,7 @@ public class KidChatDetilActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @InjectView(R.id.rmk_tip)
     Button rmkTip;
+
     String topic_id;
     String parent_comment_username;
     String id;
@@ -97,6 +99,8 @@ public class KidChatDetilActivity extends AppCompatActivity {
             public void onSuccess(String result) {
                 Gson gson = new Gson();
                 ResultBean bean = gson.fromJson(result, ResultBean.class);
+                Intent intent = new Intent();
+                KidChatDetilActivity.this.setResult(RESULT_OK,intent);
                 if(bean.isData()){
                     Toast.makeText(KidChatDetilActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
                     finish();

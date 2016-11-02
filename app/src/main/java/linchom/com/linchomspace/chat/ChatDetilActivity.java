@@ -81,6 +81,15 @@ public class ChatDetilActivity extends AppCompatActivity {
         getData();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1001){
+            getData();
+            System.out.println(" getData();");
+        }
+    }
+
     private void getView() {
         Intent intent = this.getIntent();
         topicId = intent.getStringExtra("topic_id");
@@ -166,10 +175,11 @@ public class ChatDetilActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(ChatDetilActivity.this, KidChatDetilActivity.class);
+
                                     intent.putExtra("comments", comments);
                                     intent.putExtra("floor", (position + 1));
                                     System.out.println(position + 1);
-                                    startActivity(intent);
+                                    startActivityForResult(intent,1001);
 
                                 }
                             });
