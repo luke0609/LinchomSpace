@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -57,6 +58,10 @@ public class UnEvaluateFragment extends Fragment {
 
     private List<GoodsOrderFormBean.OrderForm> orderFormList =new ArrayList<GoodsOrderFormBean.OrderForm>();
 
+
+    private List<GoodsOrderFormBean.OrderInfo> orderFormDetailList =new ArrayList<GoodsOrderFormBean.OrderInfo>();
+
+
     private GoodsCommonAdapter<GoodsOrderFormBean.OrderForm> orderFormAdapter;
 
 
@@ -68,12 +73,21 @@ public class UnEvaluateFragment extends Fragment {
 
     private int totalPage=1;
 
-    private String userId;
 
     TextView tv_orderform_orderstatus;
     private RelativeLayout rl_goods_orderform_load_pro;
 
     private boolean pullFlag =false;
+    private RelativeLayout rl_goods_comm_sendmsg;
+    private Button btn_goods_comm_close;
+    private Button btn_goods_comm_send;
+    private EditText et_goods_comm_content;
+
+    private int chooseOrder =0;
+
+    private String userId;
+
+    private String userName="徐小龙";
 
 
     @Nullable
@@ -105,6 +119,14 @@ public class UnEvaluateFragment extends Fragment {
 
         rl_goods_orderform_load_pro = ((RelativeLayout) view.findViewById(R.id.rl_goods_orderform_load_pro));
 
+        rl_goods_comm_sendmsg = ((RelativeLayout) view.findViewById(R.id.rl_goods_comm_sendmsg));
+
+        btn_goods_comm_close = ((Button) view.findViewById(R.id.btn_goods_comm_close));
+
+        btn_goods_comm_send = ((Button) view.findViewById(R.id.btn_goods_comm_send));
+
+        et_goods_comm_content = ((EditText) view.findViewById(R.id.et_goods_comm_content));
+
 
     }
 
@@ -116,6 +138,107 @@ public class UnEvaluateFragment extends Fragment {
     private void initEvent() {
 
         eventPullToRefresh();
+
+        btn_goods_comm_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                rl_goods_comm_sendmsg.setVisibility(View.GONE);
+
+            }
+        });
+
+
+        btn_goods_comm_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(et_goods_comm_content.getText().toString()!=null&&et_goods_comm_content.getText().toString()!=""){
+
+
+
+
+
+
+                    orderFormDetailList.clear();
+
+                    orderFormDetailList.addAll(orderFormList.get(chooseOrder).order_goods) ;
+
+
+                    for(int i =0;i<orderFormDetailList.size();i++){
+
+                        Toast.makeText(getActivity(),"goodsId"+orderFormDetailList.get(i).goods_id,Toast.LENGTH_SHORT).show();
+
+                        toSend(orderFormDetailList.get(i).goods_id,et_goods_comm_content.getText().toString());
+
+
+                    }
+
+
+
+
+
+
+                }else{
+
+
+                    Toast.makeText(getActivity(),"请输入评价内容",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
+    }
+
+    private void toSend(String goodsId,String content){
+
+
+        //  act=add_goods_comment
+        //  user_name goods_id user_id content ip_address
+
+        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","add_goods_comment");
+
+        requestParams.addBodyParameter("user_name",userName);
+        requestParams.addBodyParameter("goods_id",goodsId);
+
+        requestParams.addBodyParameter("user_id",userId);
+
+        requestParams.addBodyParameter("content",content);
+
+        requestParams.addBodyParameter("ip_address","112.2.23.146");
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+
+
+
 
 
     }
@@ -352,6 +475,17 @@ public class UnEvaluateFragment extends Fragment {
                         public void onClick(View v) {
 
                             Toast.makeText(getActivity(),"评价",Toast.LENGTH_SHORT).show();
+
+                            rl_goods_comm_sendmsg.setVisibility(View.VISIBLE);
+
+                            //先选择订单
+
+                            chooseOrder =  (int)btn_orderform_right.getTag();
+
+
+
+
+                            //找到订单中所有goodsId
 
 
                         }
