@@ -34,18 +34,18 @@
         android:id="@+id/invis"
         android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="25dp"
         android:background="#f0f0f0"
         >
 
         <ImageView
             android:id="@+id/remark"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:src="@drawable/dc"/>
+            android:src="@drawable/chat_rmknum"/>
         <TextView
             android:id="@+id/tv"
             android:layout_toRightOf="@id/remark"
@@ -54,14 +54,19 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="回复数:" />
+            android:textColor="#ABAEB2"
+            android:textSize="12sp"
+            android:text="回复:" />
         <TextView
             android:id="@+id/remark_num"
             android:layout_toRightOf="@+id/tv"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:gravity="left|center_vertical"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#ABAEB2"
+            android:layout_marginLeft="3dp"
             android:text="0" />
 
     </RelativeLayout>

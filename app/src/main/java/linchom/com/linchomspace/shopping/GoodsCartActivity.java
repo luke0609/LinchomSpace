@@ -248,6 +248,8 @@ public class GoodsCartActivity extends AppCompatActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
+                defaultArea();
+
             }
 
             @Override
@@ -326,21 +328,6 @@ public class GoodsCartActivity extends AppCompatActivity {
         } else {
 
 
-            RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
-
-
-            requestParams.addBodyParameter("act", "default_consignee");
-            requestParams.addBodyParameter("user_id", userId + "");
-            requestParams.addBodyParameter("address_id", areaList.get(0).address_id + "");
-
-
-            x.http().post(requestParams, new Callback.CommonCallback<String>() {
-                @Override
-                public void onSuccess(String result) {
-                    Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
-
-                    //orderList
-                    // areaList.get(0)        传过去
 
                     Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
@@ -358,23 +345,7 @@ public class GoodsCartActivity extends AppCompatActivity {
                     startActivity(intent);
 
 
-                }
 
-                @Override
-                public void onError(Throwable ex, boolean isOnCallback) {
-
-                }
-
-                @Override
-                public void onCancelled(CancelledException cex) {
-
-                }
-
-                @Override
-                public void onFinished() {
-
-                }
-            });
 
 
         }

@@ -27,6 +27,7 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.ResultBean;
 import linchom.com.linchomspace.chat.pojo.TopicDetialBean;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.homepage.Activity.CommentActivity;
 
 public class KidChatDetilActivity extends AppCompatActivity {
     TopicDetialBean.DataBean.TopicCommentsBean comments;
@@ -50,8 +51,10 @@ public class KidChatDetilActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @InjectView(R.id.rmk_tip)
     Button rmkTip;
+
     String topic_id;
     String parent_comment_username;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +68,8 @@ public class KidChatDetilActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
         comments = (TopicDetialBean.DataBean.TopicCommentsBean) intent.getSerializableExtra("comments");
         floor =  intent.getIntExtra("floor", 1);
-
+        Toast.makeText(this,comments.getId(), Toast.LENGTH_SHORT).show();
+        id=comments.getId();
         tvChatUsername.setText(comments.getUser_name());
         parent_comment_username=comments.getUser_name();
         System.out.println(parent_comment_username);
@@ -82,11 +86,12 @@ public class KidChatDetilActivity extends AppCompatActivity {
     private void doRemark(){
         String content= etRemark.getText().toString();
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
-        params.addQueryStringParameter("act", "add_topic_comments");
-        params.addQueryStringParameter("topic_id", topic_id);
-        params.addQueryStringParameter("user_id", 129+"");
+        params.addQueryStringParameter("act", "add_topic_comments_username");
+        params.addQueryStringParameter("user_id", 135+"");
         params.addQueryStringParameter("content", content);
         params.addQueryStringParameter("parent_comment_username",parent_comment_username);
+        params.addQueryStringParameter("id",id);
+        System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
 
@@ -94,6 +99,8 @@ public class KidChatDetilActivity extends AppCompatActivity {
             public void onSuccess(String result) {
                 Gson gson = new Gson();
                 ResultBean bean = gson.fromJson(result, ResultBean.class);
+                Intent intent = new Intent();
+                KidChatDetilActivity.this.setResult(RESULT_OK,intent);
                 if(bean.isData()){
                     Toast.makeText(KidChatDetilActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
                     finish();

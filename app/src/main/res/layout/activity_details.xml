@@ -94,7 +94,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:id="@+id/tv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:id="@+id/tv_birthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,7 +221,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:id="@+id/tv_office_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -263,7 +263,7 @@
                     android:layout_centerVertical="true"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/tv_mobile_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -303,7 +303,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:id="@+id/tv_home_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -345,7 +345,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -387,7 +387,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
                     />
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12939856743@qq.com"
@@ -427,7 +427,7 @@
                     android:layout_centerVertical="true"
                     android:text="签名："
                     />
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我不想生活在这里了"
@@ -458,7 +458,7 @@
                     android:textSize="18sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true" />
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我不想生活在这里了"

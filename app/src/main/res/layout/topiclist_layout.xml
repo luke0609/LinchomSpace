@@ -44,27 +44,33 @@
                 android:layout_alignBottom="@+id/user_logo"
 
                 />
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
                 <ImageView
                 android:layout_alignTop="@+id/user_logo"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_toLeftOf="@+id/remark_num"
+                android:gravity="center"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/dc"
-                 android:layout_marginTop="4dp"
+                android:src="@drawable/kid_remk"
+
                 />
             <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="-1dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/remark_num"
-                android:textColor="#808080"
-                android:layout_alignTop="@+id/user_logo"
+                android:textColor="#ABAEB2"
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:textSize="14sp"
                 android:text="0"/>
-
+        </LinearLayout>
         </RelativeLayout>
 
     <TextView
