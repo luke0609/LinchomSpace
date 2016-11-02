@@ -48,8 +48,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="true">
+                android:focusable="false">
 
 
                 <RelativeLayout
@@ -174,7 +173,7 @@
                     android:background="#808080"
                     android:layout_below="@id/rl_add"/>
                 <RelativeLayout
-                    android:id="@+id/rl_h2"
+                    android:id="@+id/rl_birthday"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_below="@+id/rl_add"
@@ -193,7 +192,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1996-09-08"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textColor="#808080"
                         android:layout_marginRight="10dp"
                         android:layout_centerVertical="true"
@@ -213,13 +212,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#808080"
-                    android:layout_below="@id/rl_h2"/>
+                    android:layout_below="@id/rl_birthday"/>
 
                 <RelativeLayout
                     android:id="@+id/rl_h3"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_below="@+id/rl_h2"
+                    android:layout_below="@+id/rl_birthday"
                     >
                     <TextView
                         android:id="@+id/tv_h3"
