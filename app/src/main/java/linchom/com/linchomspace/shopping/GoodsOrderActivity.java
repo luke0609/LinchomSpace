@@ -523,7 +523,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                 Log.i(TAG,"resultFlag"+resultFlag);
 
-                if("0".equals(resultFlag)){
+                if("0".equals(resultFlag)&&areaList!=null){
 
 
 
