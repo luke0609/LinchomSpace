@@ -137,7 +137,7 @@
                         android:id="@+id/tv_goods_markerPrice"
                         android:textColor="#808080"
                         android:textSize="16sp"
-                        android:text="5555"
+                        android:text=""
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
