@@ -177,7 +177,7 @@ public class MyChat_activity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
 
-                System.out.println("========="+page+"0000000000"+pageCount);
+//                System.out.println("========="+page+"0000000000"+pageCount);
                 if (page <= pageCount) {
                     Gson gson = new Gson();
                     MychatInfoBean mychatInfoBean = gson.fromJson(result, MychatInfoBean.class);
@@ -187,7 +187,7 @@ public class MyChat_activity extends AppCompatActivity {
 
                     chatCommonAdapter.notifyDataSetChanged();
 
-                    System.out.println("=====" + chatlist);
+//                    System.out.println("=====" + chatlist);
                 }else {
                     Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
                     chatCommonAdapter.notifyDataSetChanged();

@@ -1,11 +1,12 @@
 package linchom.com.linchomspace.mine.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2016/10/17.
  */
-public class UserInfoBean {
+public class UserInfoBean implements Serializable{
 
     /**
      * result : ok
@@ -72,7 +73,7 @@ public class UserInfoBean {
         this.url = url;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         private String rank_name;
         private String discount;
         private String email;
@@ -92,6 +93,25 @@ public class UserInfoBean {
         private Object passwd_question;
         private Object passwd_answer;
         private List<?> bonus;
+
+        public DataBean(String user_name, String email, String sex, String birthday, String office_phone, String home_phone, String mobile_phone) {
+            this.user_name = user_name;
+            this.email = email;
+            this.sex = sex;
+            this.birthday = birthday;
+            this.office_phone = office_phone;
+            this.home_phone = home_phone;
+            this.mobile_phone = mobile_phone;
+        }
+
+        public DataBean(String user_name, String email, String sex, String birthday, String office_phone, String home_phone) {
+            this.user_name = user_name;
+            this.email = email;
+            this.sex = sex;
+            this.birthday = birthday;
+            this.office_phone = office_phone;
+            this.home_phone = home_phone;
+        }
 
         public String getUser_photo() {
             return user_photo;

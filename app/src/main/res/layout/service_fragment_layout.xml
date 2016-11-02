@@ -1,42 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    tools:context="linchom.com.linchomspace.shopping.GoodsCommentActivity"
-    android:background="#20808080"
-
-    >
-
-
-   <linchom.com.linchomspace.common.TitleBar
-
-       android:id="@+id/bar_goods_common_head"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-
-       app:titleText="商品评价"
-
-       app:titleRightVis="false"
-
-
-       >
-
-
-
-
-   </linchom.com.linchomspace.common.TitleBar>
-
-
+    android:layout_height="match_parent">
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-
-        android:layout_below="@id/bar_goods_common_head"
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ptr_goods_common_ptr"
+        android:id="@+id/ptr_service_content_ptr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="#000000"
@@ -57,9 +26,9 @@
 
 
 
+
+
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
-
-
 
 
 

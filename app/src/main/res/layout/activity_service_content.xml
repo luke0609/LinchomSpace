@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_service_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="linchom.com.linchomspace.service.ServiceContentActivity">
+
+
+    <linchom.com.linchomspace.common.TitleBar
+        android:id="@+id/bar_service_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:titleText="我的"
+        app:titleRightVis ="false"
+
+        >
+
+
+
+
+
+
+
+    </linchom.com.linchomspace.common.TitleBar>
+
+
+    <com.shizhefei.view.indicator.FixedIndicatorView
+
+        android:gravity="center"
+
+        android:layout_below="@id/bar_service_head"
+
+        android:id="@+id/indicator_service_head"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+
+
+    </com.shizhefei.view.indicator.FixedIndicatorView>
+
+
+    <android.support.v4.view.ViewPager
+
+        android:id="@+id/vp_service_content"
+
+        android:layout_below="@id/indicator_service_head"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

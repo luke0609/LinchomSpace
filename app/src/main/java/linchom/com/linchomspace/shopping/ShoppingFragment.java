@@ -1,16 +1,26 @@
 package linchom.com.linchomspace.shopping;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.shizhefei.view.indicator.BannerComponent;
@@ -26,13 +36,19 @@ import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.GoodsSqlite.GoodsHistorySqLiteOpenHelper;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
+import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsAdvDataBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsAdvNewBean;
+import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener{
+
+
+
 
     private Map<String ,String> advMap =new HashMap<String ,String>();
 
@@ -121,13 +137,27 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     private RelativeLayout rl_goods_sixth;
     private RelativeLayout rl_goodsHome_load;
     private Button btn_goods_btnSearch;
-    private EditText et_goods_cate_search;
+   // private EditText et_goods_cate_search;
+    private TextView et_goods_cate_search;
+    private LinearLayout linear;
+    private ListView lv_goods_search_history;
+    private EditText et_goods_search_history;
+
+    private List<String> historyList = new ArrayList<String>();
+
+    private GoodsCommonAdapter<String> goodsCommonAdapter;
+    private Button btn_goods_search_history;
+    private ImageView iv_search_history_delete;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         view=inflater.inflate(R.layout.fragment_shopping,container, false);
+
+
+
         initView();
         initData();
         initEvent();
@@ -224,7 +254,11 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         btn_goods_btnSearch = ((Button) view.findViewById(R.id.btn_goods_btnSearch));
 
-        et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
+       // et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
+
+        et_goods_cate_search = ((TextView) view.findViewById(R.id.et_goods_cate_search));
+
+        linear = ((LinearLayout) view.findViewById(R.id.linear));
 
 
     }
@@ -240,14 +274,220 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         setButtonClick();
         advLoopPlay();
 
+       et_goods_cate_search.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
 
+
+               toPopUpWindow(v);
+
+
+
+           }
+       });
 
 
 
 
     }
 
+    private void toPopUpWindow(View view){
+        View contentView = LayoutInflater.from(getActivity()).inflate(
+                R.layout.goods_search_history_pop, null);
 
+        toSqlite();
+
+        goodsCommonAdapter= new GoodsCommonAdapter<String>(getActivity(),historyList,R.layout.goods_history_list_item) {
+            @Override
+            public void convert(GoodsViewHolder viewHolder, String s, int position) {
+
+               TextView tv_goods_history_item= viewHolder.getViewById(R.id.tv_goods_history_item);
+
+                tv_goods_history_item.setText(s);
+
+            }
+        };
+
+        lv_goods_search_history = ((ListView) contentView.findViewById(R.id.lv_goods_search_history));
+
+        et_goods_search_history = ((EditText) contentView.findViewById(R.id.et_goods_search_history));
+
+        btn_goods_search_history = ((Button) contentView.findViewById(R.id.btn_goods_search_history));
+
+        iv_search_history_delete = ((ImageView) contentView.findViewById(R.id.iv_search_history_delete));
+
+
+        lv_goods_search_history.setAdapter(goodsCommonAdapter);
+
+
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+
+
+        iv_search_history_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                toDeleteSqlite();
+
+                historyList.clear();
+
+                goodsCommonAdapter.notifyDataSetChanged();
+
+
+
+
+            }
+        });
+
+        btn_goods_search_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //写入数据库
+                //页面跳转
+                //获取edittext数据
+
+               // Log.i(TAG,"et_goods_search_history"+et_goods_search_history.getText().toString());
+
+
+                if(et_goods_search_history.getText().toString()!=""
+                        &&et_goods_search_history.getText().toString()!=null
+                        &&et_goods_search_history.getText().toString().length()!=0
+                        ){
+
+                    toInsertSqlite(et_goods_search_history.getText().toString().trim());
+
+
+                    Intent intent =new Intent(getActivity(), GoodsListActivity.class);
+
+                    Bundle bundle =new Bundle();
+                    bundle.putString("keyword",et_goods_search_history.getText().toString().trim()+"");
+
+                    bundle.putString("cateId","");
+
+                    intent.putExtra("bundle",bundle);
+
+                    popupWindow.dismiss();
+
+                    toSqlite();
+
+                    goodsCommonAdapter.notifyDataSetChanged();
+
+                    startActivity(intent);
+
+                }else{
+
+                    Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+        lv_goods_search_history.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+               // Toast.makeText(getActivity(),historyList.get(position)+"",Toast.LENGTH_SHORT).show();
+
+                et_goods_search_history.setText(historyList.get(position));
+
+
+            }
+        });
+
+
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setFocusable(true);
+
+        popupWindow.setOutsideTouchable(true);
+
+
+
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(
+                R.drawable.goods_default_city));
+
+
+        popupWindow.showAtLocation(view,0,0,0);
+
+
+    }
+
+    private void toInsertSqlite(String content){
+
+        boolean insertFlag =false;
+
+        GoodsHistorySqLiteOpenHelper goodsHistorySqLiteOpenHelper =  new GoodsHistorySqLiteOpenHelper(getActivity());
+
+
+        SQLiteDatabase db =  goodsHistorySqLiteOpenHelper.getWritableDatabase();
+
+        for (int i=0 ;i<historyList.size();i++){
+
+            if(historyList.get(i).equals(content)){
+
+                insertFlag = true;
+            }
+
+        }
+
+        if(insertFlag == false){
+            db.execSQL("insert into goodshistory(goodsname) values('"+content+"')");
+
+
+
+        }
+
+        db.close();
+
+
+    }
+
+
+    private void toDeleteSqlite(){
+
+
+        GoodsHistorySqLiteOpenHelper goodsHistorySqLiteOpenHelper =  new GoodsHistorySqLiteOpenHelper(getActivity());
+
+
+        SQLiteDatabase db =  goodsHistorySqLiteOpenHelper.getWritableDatabase();
+
+        db.execSQL("delete from goodshistory");
+
+        db.close();
+
+
+    }
+
+    private void toSqlite() {
+
+        GoodsHistorySqLiteOpenHelper goodsHistorySqLiteOpenHelper =  new GoodsHistorySqLiteOpenHelper(getActivity());
+
+
+       SQLiteDatabase db =  goodsHistorySqLiteOpenHelper.getWritableDatabase();
+
+
+        historyList.clear();
+
+        Cursor cursor =db.query("goodshistory",null,null,null,null,null,"_id desc");
+
+        while(cursor.moveToNext()){
+
+
+            historyList.add(cursor.getString(cursor.getColumnIndex("goodsname")));
+
+        }
+
+        db.close();
+
+
+
+
+
+    }
 
 
     @Override
@@ -450,7 +690,8 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.btn_goods_btnSearch:
-                toGoodsSearch();
+                //toGoodsSearch();
+                Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
 
                 break;
 
@@ -468,7 +709,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         Intent intent =new Intent(getActivity(), GoodsListActivity.class);
 
         Bundle bundle =new Bundle();
-        bundle.putString("keyword",et_goods_cate_search.getText().toString().trim()+"");
+        bundle.putString("keyword",et_goods_search_history.getText().toString().trim()+"");
 
         bundle.putString("cateId","");
 
