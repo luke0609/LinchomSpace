@@ -572,6 +572,16 @@
                     android:gravity="center_vertical"
                     />
 
+                <ImageView
+                    android:src="@drawable/goods_comm_shouqi"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    />
+
 
             </RelativeLayout>
 
@@ -590,6 +600,16 @@
                     android:textSize="20sp"
                     android:text="产品测评"
                     android:gravity="center_vertical"
+                    />
+
+                <ImageView
+                    android:src="@drawable/goods_comm_shouqi"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
                     />
 
 
@@ -612,6 +632,16 @@
                     android:gravity="center_vertical"
                     />
 
+                <ImageView
+                    android:src="@drawable/goods_comm_shouqi"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    />
+
 
             </RelativeLayout>
 
@@ -630,6 +660,16 @@
                     android:textSize="20sp"
                     android:text="产品资讯"
                     android:gravity="center_vertical"
+                    />
+
+                <ImageView
+                    android:src="@drawable/goods_comm_shouqi"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
                     />
 
 
