@@ -9,24 +9,29 @@
         android:paddingRight="10dp"
         android:id="@+id/rl_msg"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
         <ImageView
             android:id="@+id/user_logo"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:src="@mipmap/avatar"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/user_logo"
+            android:layout_alignTop="@+id/user_logo"
+            android:layout_marginLeft="10dp"
+            >
         <TextView
             android:textColor="#7a7c80"
             android:id="@+id/tv_chat_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/user_logo"
             android:layout_alignParentTop="true"
             android:text="用户名"
             android:textSize="15sp"
-            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:singleLine="true"/>
         <Button
@@ -36,8 +41,8 @@
             android:layout_height="20dp"
             android:layout_toRightOf="@+id/tv_chat_username"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:clickable="false"
+            android:layout_marginLeft="5dp"
             android:layout_alignTop="@+id/tv_chat_username"
             android:background="@drawable/chat_louzhu_shape"
             android:textColor="#fff"
@@ -49,19 +54,18 @@
             android:layout_height="wrap_content"
             android:text="2016-10-14"
             android:textSize="13sp"
-            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/tv_chat_username"
-            android:layout_toRightOf="@+id/user_logo"
-            android:layout_alignBottom="@+id/user_logo"
+
 
             />
 
         <ImageView
-            android:layout_alignTop="@+id/user_logo"
+
             android:id="@+id/kid_remark"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical"
             android:src="@drawable/kid_remk"
@@ -69,23 +73,101 @@
             />
 
 
+        <TextView
+            android:id="@+id/tv_chat_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="回复内容"
+            android:textColor="#313233"
+            android:layout_below="@+id/tv_chat_time"
+            android:textSize="15sp"
+            />
+        <View
+
+            android:id="@+id/struct_line1"
+            android:layout_below="@+id/tv_chat_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="0.5dp"
+            android:background="#DCDCDC"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/kid_content_item1"
+            android:visibility="gone"
+            android:layout_alignLeft="@+id/struct_line1"
+            android:layout_below="@+id/struct_line1">
+            <TextView
+                android:id="@+id/kid_username1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名:"
+                android:textSize="13sp"
+                android:textColor="#4171B6"/>
+            <TextView
+                android:layout_toRightOf="@+id/kid_username1"
+                android:id="@+id/kid_content1"
+                android:textSize="13sp"
+                android:textColor="#666666"
+                android:layout_marginLeft="4dp"
+                android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/kid_content_item2"
+            android:visibility="gone"
+            android:layout_alignLeft="@+id/struct_line1"
+            android:layout_below="@+id/kid_content_item1">
+            <TextView
+                android:id="@+id/kid_username2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名:"
+                android:textSize="13sp"
+                android:textColor="#4171B6"/>
+            <TextView
+                android:layout_toRightOf="@+id/kid_username2"
+                android:id="@+id/kid_content2"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:layout_marginLeft="4dp"
+                android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_below="@+id/kid_content_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4171B6"
+            android:textSize="15sp"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="更多回复"
+            />
+        <View
+            android:layout_below="@+id/tv_more"
+            android:id="@+id/struct_line2"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="0.5dp"
+            android:background="#DCDCDC"
+            />
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_chat_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="回复内容"
-        android:textColor="#313233"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@+id/rl_msg"
-        android:textSize="15sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"/>
-
+        </RelativeLayout>
 
 </RelativeLayout>
