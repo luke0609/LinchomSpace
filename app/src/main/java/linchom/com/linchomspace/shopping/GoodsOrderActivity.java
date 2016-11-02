@@ -69,6 +69,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
     private ArrayList<OrderSubmitBean> orderCartList;
 
+    private boolean areaFlag=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +89,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
         areaList=  (AreaListBean.Data)bundle.getSerializable("areaList");
         Log.i(TAG,"orderCartList"+orderCartList);
 
+        Log.i(TAG,"areaLsit"+areaList);
+
         if(areaList==null){
 
-
+            areaFlag=true;
 
         }
 
@@ -134,6 +138,9 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
             tv_order_detailAddress.setText(address+"");
 
+            areaFlag=false;
+
+
         }
 
 
@@ -168,9 +175,16 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
     private void initData() {
 
-        tv_order_name.setText(areaList.consignee);
-        tv_order_phone.setText(areaList.tel);
-        tv_order_detailAddress.setText(areaList.address);
+        if(areaFlag==false){
+
+            tv_order_name.setText(areaList.consignee);
+            tv_order_phone.setText(areaList.tel);
+            tv_order_detailAddress.setText(areaList.address);
+
+
+        }
+
+
 
         if(orderList!=null&&orderCartList==null) {
 
@@ -523,7 +537,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                 Log.i(TAG,"resultFlag"+resultFlag);
 
-                if("0".equals(resultFlag)&&areaList!=null){
+                if("0".equals(resultFlag)&&areaFlag==false){
 
 
 
