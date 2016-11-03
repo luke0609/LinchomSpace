@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -39,12 +42,14 @@ import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsCartActivity extends AppCompatActivity {
 
+
+
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
 
 
 
     private static final String TAG = "GoodsCartActivity";
-    private String userId="12";
+    private String userId;
 
     private ListView cartListView;
     private PullToRefreshListView ptr_cartList_ptr;
@@ -75,6 +80,9 @@ public class GoodsCartActivity extends AppCompatActivity {
 
     private ArrayList<OrderSubmitBean> orderCartList =new ArrayList<OrderSubmitBean>();
     private RelativeLayout rl_goods_cart_load_pro;
+    private ImageView titlebar_back;
+
+    private String userName;
 
 
     @Override
@@ -83,6 +91,10 @@ public class GoodsCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goods_cart);
 
 
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
 
         initView();
@@ -102,6 +114,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         rl_goods_cart_load_pro = ((RelativeLayout) findViewById(R.id.rl_goods_cart_load_pro));
 
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
 
     }
 
@@ -116,6 +130,14 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         totalMoney();
 
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
     }
 
     private void totalMoney() {
@@ -123,6 +145,9 @@ public class GoodsCartActivity extends AppCompatActivity {
         btn_goods_cart_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                btn_goods_cart_total.setEnabled(false);
+                btn_goods_cart_total.setText("结算中");
 
 
                 //orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
@@ -228,7 +253,6 @@ public class GoodsCartActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
 
-                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
                 Gson gson = new Gson();
                 //areaList
@@ -239,6 +263,10 @@ public class GoodsCartActivity extends AppCompatActivity {
                 areaList.addAll(areaListBean.data);
 
                 //找出第一个地址Id设为默认地址
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
+
+                Log.i(TAG,"收货地址列表"+result);
 
                 defaultArea();
 
@@ -247,6 +275,12 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
+                Log.i(TAG,"收货地址列表ex"+ex);
+
+
 
                 defaultArea();
 
@@ -287,12 +321,13 @@ public class GoodsCartActivity extends AppCompatActivity {
             x.http().post(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                   // Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
 
                     //orderList
                     // areaList.get(0)        传过去
 
                     rl_goods_cart_load_pro.setVisibility(View.GONE);
+                    btn_goods_cart_total.setEnabled(true);
+                    btn_goods_cart_total.setText("结算");
 
                     Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
@@ -300,6 +335,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                     bundle.putSerializable("orderList", null);
 
                     bundle.putSerializable("orderCartList", orderCartList);
+
+                    Log.i(TAG,"传过去的地址"+areaList.get(0));
 
                     bundle.putSerializable("areaList", areaList.get(0));
 
@@ -327,9 +364,15 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         } else {
 
+                    Log.i(TAG,"传过去的地址无"+null);
+
+            rl_goods_cart_load_pro.setVisibility(View.GONE);
+            btn_goods_cart_total.setEnabled(true);
+            btn_goods_cart_total.setText("结算");
 
 
-                    Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
+
+            Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList", null);
@@ -746,6 +789,8 @@ public class GoodsCartActivity extends AppCompatActivity {
     }
 
     private void getData() {
+        rl_goods_cart_load_pro.setVisibility(View.VISIBLE);
+
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -755,7 +800,10 @@ public class GoodsCartActivity extends AppCompatActivity {
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                
+
+                rl_goods_cart_load_pro.setVisibility(View.GONE);
+
+
 
 
                 Gson gson =new Gson();

@@ -7,26 +7,32 @@ import java.util.List;
  * Created by Jingsheng Liang on 2016/10/20.
  */
 
-public class TopicDetialBean {
+public class TopicDetialBean implements Serializable {
+
 
     /**
      * result : 0
-     * data : {"topic_id":"1","topic_category":"智能家居","topic_category_id":"1","topic_name":"我在北京有个别墅客户想安装智能家居，谁有好的品牌推荐？","communication_title":"我在北京有个别墅客户想安装智能家居，谁有好的品牌推荐？","add_time":"1476756498","user_name":"张晓文","user_id":"135","topic_comments":[{"id":"1","topic_id":"1","user_id":"135","content":"评论11111","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"2","topic_id":"1","user_id":"135","content":"评论222222","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"3","topic_id":"1","user_id":"135","content":"评论333333","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"4","topic_id":"1","user_id":"135","content":"12312","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"5","topic_id":"1","user_id":"135","content":"12312","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"6","topic_id":"1","user_id":"135","content":"12312","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"47","topic_id":"1","user_id":"135","content":"12312","add_time":"1476945070","parent_comment_username":"","user_name":"张晓文111","user_photo":""},{"id":"48","topic_id":"1","user_id":"135","content":"12312","add_time":"1476945170","parent_comment_username":"张三","user_name":"张晓文111","user_photo":""}]}
+     * data : {"topic_id":"72","topic_category":"智能健康","topic_category_id":"2","topic_name":"123","communication_title":"123","add_time":"1477464214","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"topic_comments":[{"id":"176","topic_id":"72","user_id":"135","content":"你们好","add_time":"1477998416","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":1,"commentsss":[{"id":"136","comments_id":"176","user_id":"135","content":"回复@:好好好好好","add_time":"1477998433","parent_comment_username":""},{"id":"137","comments_id":"176","user_id":"135","content":"我们都会有的","add_time":"1477998822","parent_comment_username":""},{"id":"138","comments_id":"176","user_id":"135","content":"今天晚上去happy","add_time":"1477998963","parent_comment_username":""},{"id":"139","comments_id":"176","user_id":"135","content":"你们好","add_time":"1477999092","parent_comment_username":"张希"},{"id":"142","comments_id":"176","user_id":"135","content":"你也好","add_time":"1478005192","parent_comment_username":"张希"},{"id":"143","comments_id":"176","user_id":"135","content":"大家好","add_time":"1478005395","parent_comment_username":"张希"},{"id":"144","comments_id":"176","user_id":"135","content":"我们都会好","add_time":"1478005714","parent_comment_username":"张希"},{"id":"145","comments_id":"176","user_id":"135","content":"我们都会好想吃饭","add_time":"1478006393","parent_comment_username":"张希"},{"id":"146","comments_id":"176","user_id":"135","content":"你们好幸福","add_time":"1478009290","parent_comment_username":"张希"},{"id":"151","comments_id":"176","user_id":"135","content":"111111111111111","add_time":"1478061568","parent_comment_username":""}]},{"id":"178","topic_id":"72","user_id":"135","content":"这是在哪","add_time":"1478000277","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":2,"commentsss":[{"id":"140","comments_id":"178","user_id":"135","content":"不知道","add_time":"1478000315","parent_comment_username":"张希"},{"id":"152","comments_id":"178","user_id":"135","content":"22222222222","add_time":"1478061603","parent_comment_username":""}]},{"id":"179","topic_id":"72","user_id":"135","content":"jì那天晚上满天星星","add_time":"1478000568","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":3,"commentsss":[{"id":"141","comments_id":"179","user_id":"135","content":"天气好","add_time":"1478001483","parent_comment_username":"张希"}]},{"id":"180","topic_id":"72","user_id":"135","content":"111","add_time":"1478001798","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":4,"commentsss":[]},{"id":"181","topic_id":"72","user_id":"135","content":"222","add_time":"1478001803","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":5,"commentsss":[]},{"id":"182","topic_id":"72","user_id":"135","content":"333","add_time":"1478001807","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":6,"commentsss":[]},{"id":"183","topic_id":"72","user_id":"135","content":"你们好","add_time":"1478004874","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":7,"commentsss":[]},{"id":"185","topic_id":"72","user_id":"135","content":"123456789","add_time":"1478008047","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":8,"commentsss":[{"id":"150","comments_id":"185","user_id":"135","content":"we was","add_time":"1478054759","parent_comment_username":""}]}]}
      * msg :
      * url :
      */
 
     private String result;
     /**
-     * topic_id : 1
-     * topic_category : 智能家居
-     * topic_category_id : 1
-     * topic_name : 我在北京有个别墅客户想安装智能家居，谁有好的品牌推荐？
-     * communication_title : 我在北京有个别墅客户想安装智能家居，谁有好的品牌推荐？
-     * add_time : 1476756498
-     * user_name : 张晓文
-     * user_id : 135
-     * topic_comments : [{"id":"1","topic_id":"1","user_id":"135","content":"评论11111","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"2","topic_id":"1","user_id":"135","content":"评论222222","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"3","topic_id":"1","user_id":"135","content":"评论333333","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"4","topic_id":"1","user_id":"135","content":"12312","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"5","topic_id":"1","user_id":"135","content":"12312","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"6","topic_id":"1","user_id":"135","content":"12312","add_time":null,"parent_comment_username":null,"user_name":"张晓文111","user_photo":""},{"id":"47","topic_id":"1","user_id":"135","content":"12312","add_time":"1476945070","parent_comment_username":"","user_name":"张晓文111","user_photo":""},{"id":"48","topic_id":"1","user_id":"135","content":"12312","add_time":"1476945170","parent_comment_username":"张三","user_name":"张晓文111","user_photo":""}]
+     * topic_id : 72
+     * topic_category : 智能健康
+     * topic_category_id : 2
+     * topic_name : 123
+     * communication_title : 123
+     * add_time : 1477464214
+     * user_name : ljs123
+     * user_id : 129
+     * photo : null
+     * mobile : null
+     * email : null
+     * company : null
+     * family_address : null
+     * topic_comments : [{"id":"176","topic_id":"72","user_id":"135","content":"你们好","add_time":"1477998416","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":1,"commentsss":[{"id":"136","comments_id":"176","user_id":"135","content":"回复@:好好好好好","add_time":"1477998433","parent_comment_username":""},{"id":"137","comments_id":"176","user_id":"135","content":"我们都会有的","add_time":"1477998822","parent_comment_username":""},{"id":"138","comments_id":"176","user_id":"135","content":"今天晚上去happy","add_time":"1477998963","parent_comment_username":""},{"id":"139","comments_id":"176","user_id":"135","content":"你们好","add_time":"1477999092","parent_comment_username":"张希"},{"id":"142","comments_id":"176","user_id":"135","content":"你也好","add_time":"1478005192","parent_comment_username":"张希"},{"id":"143","comments_id":"176","user_id":"135","content":"大家好","add_time":"1478005395","parent_comment_username":"张希"},{"id":"144","comments_id":"176","user_id":"135","content":"我们都会好","add_time":"1478005714","parent_comment_username":"张希"},{"id":"145","comments_id":"176","user_id":"135","content":"我们都会好想吃饭","add_time":"1478006393","parent_comment_username":"张希"},{"id":"146","comments_id":"176","user_id":"135","content":"你们好幸福","add_time":"1478009290","parent_comment_username":"张希"},{"id":"151","comments_id":"176","user_id":"135","content":"111111111111111","add_time":"1478061568","parent_comment_username":""}]},{"id":"178","topic_id":"72","user_id":"135","content":"这是在哪","add_time":"1478000277","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":2,"commentsss":[{"id":"140","comments_id":"178","user_id":"135","content":"不知道","add_time":"1478000315","parent_comment_username":"张希"},{"id":"152","comments_id":"178","user_id":"135","content":"22222222222","add_time":"1478061603","parent_comment_username":""}]},{"id":"179","topic_id":"72","user_id":"135","content":"jì那天晚上满天星星","add_time":"1478000568","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":3,"commentsss":[{"id":"141","comments_id":"179","user_id":"135","content":"天气好","add_time":"1478001483","parent_comment_username":"张希"}]},{"id":"180","topic_id":"72","user_id":"135","content":"111","add_time":"1478001798","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":4,"commentsss":[]},{"id":"181","topic_id":"72","user_id":"135","content":"222","add_time":"1478001803","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":5,"commentsss":[]},{"id":"182","topic_id":"72","user_id":"135","content":"333","add_time":"1478001807","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":6,"commentsss":[]},{"id":"183","topic_id":"72","user_id":"135","content":"你们好","add_time":"1478004874","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":7,"commentsss":[]},{"id":"185","topic_id":"72","user_id":"135","content":"123456789","add_time":"1478008047","parent_comment_username":"","user_name":"胡巴","user_photo":"","key":8,"commentsss":[{"id":"150","comments_id":"185","user_id":"135","content":"we was","add_time":"1478054759","parent_comment_username":""}]}]
      */
 
     private DataBean data;
@@ -65,7 +71,7 @@ public class TopicDetialBean {
         this.url = url;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable  {
         private String topic_id;
         private String topic_category;
         private String topic_category_id;
@@ -74,15 +80,22 @@ public class TopicDetialBean {
         private String add_time;
         private String user_name;
         private String user_id;
+        private Object photo;
+        private Object mobile;
+        private Object email;
+        private Object company;
+        private Object family_address;
         /**
-         * id : 1
-         * topic_id : 1
+         * id : 176
+         * topic_id : 72
          * user_id : 135
-         * content : 评论11111
-         * add_time : null
-         * parent_comment_username : null
-         * user_name : 张晓文111
+         * content : 你们好
+         * add_time : 1477998416
+         * parent_comment_username :
+         * user_name : 胡巴
          * user_photo :
+         * key : 1
+         * commentsss : [{"id":"136","comments_id":"176","user_id":"135","content":"回复@:好好好好好","add_time":"1477998433","parent_comment_username":""},{"id":"137","comments_id":"176","user_id":"135","content":"我们都会有的","add_time":"1477998822","parent_comment_username":""},{"id":"138","comments_id":"176","user_id":"135","content":"今天晚上去happy","add_time":"1477998963","parent_comment_username":""},{"id":"139","comments_id":"176","user_id":"135","content":"你们好","add_time":"1477999092","parent_comment_username":"张希"},{"id":"142","comments_id":"176","user_id":"135","content":"你也好","add_time":"1478005192","parent_comment_username":"张希"},{"id":"143","comments_id":"176","user_id":"135","content":"大家好","add_time":"1478005395","parent_comment_username":"张希"},{"id":"144","comments_id":"176","user_id":"135","content":"我们都会好","add_time":"1478005714","parent_comment_username":"张希"},{"id":"145","comments_id":"176","user_id":"135","content":"我们都会好想吃饭","add_time":"1478006393","parent_comment_username":"张希"},{"id":"146","comments_id":"176","user_id":"135","content":"你们好幸福","add_time":"1478009290","parent_comment_username":"张希"},{"id":"151","comments_id":"176","user_id":"135","content":"111111111111111","add_time":"1478061568","parent_comment_username":""}]
          */
 
         private List<TopicCommentsBean> topic_comments;
@@ -151,6 +164,46 @@ public class TopicDetialBean {
             this.user_id = user_id;
         }
 
+        public Object getPhoto() {
+            return photo;
+        }
+
+        public void setPhoto(Object photo) {
+            this.photo = photo;
+        }
+
+        public Object getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(Object mobile) {
+            this.mobile = mobile;
+        }
+
+        public Object getEmail() {
+            return email;
+        }
+
+        public void setEmail(Object email) {
+            this.email = email;
+        }
+
+        public Object getCompany() {
+            return company;
+        }
+
+        public void setCompany(Object company) {
+            this.company = company;
+        }
+
+        public Object getFamily_address() {
+            return family_address;
+        }
+
+        public void setFamily_address(Object family_address) {
+            this.family_address = family_address;
+        }
+
         public List<TopicCommentsBean> getTopic_comments() {
             return topic_comments;
         }
@@ -159,15 +212,26 @@ public class TopicDetialBean {
             this.topic_comments = topic_comments;
         }
 
-        public static class TopicCommentsBean implements Serializable{
+        public static class TopicCommentsBean implements Serializable  {
             private String id;
             private String topic_id;
             private String user_id;
             private String content;
-            private Object add_time;
-            private Object parent_comment_username;
+            private String add_time;
+            private String parent_comment_username;
             private String user_name;
             private String user_photo;
+            private int key;
+            /**
+             * id : 136
+             * comments_id : 176
+             * user_id : 135
+             * content : 回复@:好好好好好
+             * add_time : 1477998433
+             * parent_comment_username :
+             */
+
+            private List<CommentsssBean> commentsss;
 
             public String getId() {
                 return id;
@@ -201,19 +265,19 @@ public class TopicDetialBean {
                 this.content = content;
             }
 
-            public Object getAdd_time() {
+            public String getAdd_time() {
                 return add_time;
             }
 
-            public void setAdd_time(Object add_time) {
+            public void setAdd_time(String add_time) {
                 this.add_time = add_time;
             }
 
-            public Object getParent_comment_username() {
+            public String getParent_comment_username() {
                 return parent_comment_username;
             }
 
-            public void setParent_comment_username(Object parent_comment_username) {
+            public void setParent_comment_username(String parent_comment_username) {
                 this.parent_comment_username = parent_comment_username;
             }
 
@@ -231,6 +295,79 @@ public class TopicDetialBean {
 
             public void setUser_photo(String user_photo) {
                 this.user_photo = user_photo;
+            }
+
+            public int getKey() {
+                return key;
+            }
+
+            public void setKey(int key) {
+                this.key = key;
+            }
+
+            public List<CommentsssBean> getCommentsss() {
+                return commentsss;
+            }
+
+            public void setCommentsss(List<CommentsssBean> commentsss) {
+                this.commentsss = commentsss;
+            }
+
+            public static class CommentsssBean  implements Serializable {
+                private String id;
+                private String comments_id;
+                private String user_id;
+                private String content;
+                private String add_time;
+                private String parent_comment_username;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getComments_id() {
+                    return comments_id;
+                }
+
+                public void setComments_id(String comments_id) {
+                    this.comments_id = comments_id;
+                }
+
+                public String getUser_id() {
+                    return user_id;
+                }
+
+                public void setUser_id(String user_id) {
+                    this.user_id = user_id;
+                }
+
+                public String getContent() {
+                    return content;
+                }
+
+                public void setContent(String content) {
+                    this.content = content;
+                }
+
+                public String getAdd_time() {
+                    return add_time;
+                }
+
+                public void setAdd_time(String add_time) {
+                    this.add_time = add_time;
+                }
+
+                public String getParent_comment_username() {
+                    return parent_comment_username;
+                }
+
+                public void setParent_comment_username(String parent_comment_username) {
+                    this.parent_comment_username = parent_comment_username;
+                }
             }
         }
     }

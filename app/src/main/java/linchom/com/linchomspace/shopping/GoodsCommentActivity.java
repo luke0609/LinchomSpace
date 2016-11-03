@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -40,6 +43,11 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
     private String goodsId;
 
+    private int page = 1;
+
+    private int totalPage = 1;
+    private ImageView titlebar_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +73,15 @@ public class GoodsCommentActivity extends AppCompatActivity {
         ptr_goods_common_ptr = ((PullToRefreshListView) findViewById(R.id.ptr_goods_common_ptr));
 
 
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
+
         eventPullToRefresh();
 
 
 
     }
+
 
 
 
@@ -79,6 +91,16 @@ public class GoodsCommentActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                finish();
+
+            }
+        });
+
 
 
     }
@@ -101,9 +123,17 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
+                    page =1;
+
+                    getData();
+
 
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+
+                    page++;
+
+                    getData();
 
 
 
@@ -122,25 +152,41 @@ public class GoodsCommentActivity extends AppCompatActivity {
         });
         commonListView=ptr_goods_common_ptr.getRefreshableView();
 
-        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.goods_common_list_item) {
+        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.article_comment_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, GoodsCommonBean.Items items, int position) {
-                TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
-               TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
+                //TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
+                //TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
 
-               TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
+                // TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
 
-                tv_goods_common_name.setText(items.user_name);
 
-                Long time = Long.parseLong(items.add_time);
 
-               SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+                TextView tv_article_comment_username=viewHolder.getViewById(R.id.tv_article_comment_username);
+
+                TextView tv_article_comment_time= viewHolder.getViewById(R.id.tv_article_comment_time);
+
+                TextView tv_position = viewHolder.getViewById(R.id.tv_position);
+
+                TextView tv_article_content= viewHolder.getViewById(R.id.tv_article_content);
+
+                tv_position.setVisibility(View.INVISIBLE);
+
+
+
+                tv_article_comment_username.setText(items.user_name);
+
+                Long time = Long.parseLong(items.add_time)*1000;
+
+                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+
                 String str = sdf.format(time);
 
 
-                tv_goods_common_time.setText(str);
+                tv_article_comment_time.setText(str);
 
-                tv_goods_common_content.setText(items.content);
+                tv_article_content.setText(items.content);
 
 
 
@@ -164,7 +210,9 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("act","goods_comment");
 
-        requestParams.addBodyParameter("goods_id","120");
+        requestParams.addBodyParameter("goods_id",goodsId+"");
+
+        requestParams.addBodyParameter("page",page+"");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
@@ -172,12 +220,32 @@ public class GoodsCommentActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 GoodsCommonBean goodsCommonBean = gson.fromJson(result,GoodsCommonBean.class);
 
-                commonList.clear();
+                if(page==1){
+                    commonList.clear();
 
-                commonList.addAll(goodsCommonBean.data.items);
+
+                }
+
+                totalPage = Integer.parseInt(goodsCommonBean.data.total_pages);
+
+                if(page<=totalPage){
+
+                    commonList.addAll(goodsCommonBean.data.items);
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                }
+
+
 
 
                 goodsCommonAdapter.notifyDataSetChanged();
+
+                ptr_goods_common_ptr.onRefreshComplete();
+
 
 
             }

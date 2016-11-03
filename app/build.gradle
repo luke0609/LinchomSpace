@@ -21,6 +21,10 @@ android {
                 dirs 'libs'
             }
         }
+        lintOptions{
+            checkReleaseBuilds false
+            abortOnError false
+        }
     }
 
     dependencies {
@@ -45,5 +49,6 @@ android {
         compile(name: 'library-debug', ext: 'aar')
         compile'com.ramotion.foldingcell:folding-cell:1.0.1'
         compile'com.github.glassLake:PhotoPicker:1.0.2'
+        compile 'com.romainpiel.shimmer:library:1.4.0@aar'
     }
 }

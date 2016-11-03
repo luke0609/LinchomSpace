@@ -324,15 +324,6 @@
                     android:textColor="#000" />
 
                 <Button
-                    android:id="@+id/chat_zhinengjujia"
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="智能居家"/>
-
-                <Button
                     android:id="@+id/chat_zhinengjiankang"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
@@ -345,16 +336,10 @@
                     android:id="@+id/chat_zhinengzhaoguan"
                     android:layout_width="0dp"
                     android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="智能照管"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
                 <Button
                     android:id="@+id/chat_canpintuijie"
                     android:layout_width="0dp"
@@ -362,8 +347,16 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:text="产品推介"
+                    android:text="产品推荐"
                     android:textColor="#000" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+
 
                 <Button
                     android:id="@+id/chat_zhinengshequ"
@@ -389,14 +382,8 @@
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="#fff"
+                    android:layout_marginRight="5dp"
                     android:text="硬件开发"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
                 <Button
                     android:id="@+id/chat_jiqiren"
                     android:layout_width="0dp"
@@ -406,6 +393,14 @@
                     android:background="#fff"
                     android:text="机器人"
                     android:textColor="#000" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+
 
                 <Button
                     android:id="@+id/chat_vrar"
@@ -432,14 +427,8 @@
                     android:layout_height="34dp"
                     android:layout_weight="1"
                     android:background="#fff"
+                    android:layout_marginRight="5dp"
                     android:text="需求对接"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
                 <Button
                     android:id="@+id/chat_pinpaijiaoliu"
                     android:layout_width="0dp"
@@ -449,6 +438,14 @@
                     android:background="#fff"
                     android:text="品牌交流"
                     android:textColor="#000" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
+
+
 
                 <Button
                     android:id="@+id/chat_tiwenhuida"
@@ -470,13 +467,26 @@
                     android:text="其它"/>
 
                 <Button
+
                     android:layout_width="0dp"
                     android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:text="需求对接"
                     android:visibility="invisible"
-                    android:id="@+id/button2" />
+                    android:text="其它"/>
+
+                <Button
+
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:visibility="invisible"
+                    android:text="其它"/>
+
+
 
             </LinearLayout>
             <LinearLayout

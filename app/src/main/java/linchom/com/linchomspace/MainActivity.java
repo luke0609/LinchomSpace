@@ -63,21 +63,29 @@ public class MainActivity extends AppCompatActivity {
         //界面初始显示第一个fragment;添加第一个fragment
         getSupportFragmentManager().beginTransaction().add(R.id.f1_content, fragments[0]).commit();
         //初始时，按钮1选中
-        tabs[0].setSelected(true);
+        tabs[0].setChecked(true);
         int id=getIntent().getIntExtra("id",0);
-
+        int idchat=getIntent().getIntExtra("idchat",0);
         String pdId=getIntent().getStringExtra("pdId");
+        String chatId=getIntent().getStringExtra("chatId");
         //Toast.makeText(MainActivity.this,pdId+id,Toast.LENGTH_SHORT).show();
         if(id==1){
             Bundle bundle=new Bundle();
             bundle.putString("PdId",pdId);
             fragments[0].setArguments(bundle);
-            this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
-            tabs[0].setSelected(true);
+            //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
+           addshow(0);
+            tabs[0].setChecked(true);
+        }
+        if(idchat==1){
+            Bundle bundle=new Bundle();
+            bundle.putString("chatId",chatId);
+            fragments[3].setArguments(bundle);
+            addshow(3);
+            tabs[3].setChecked(true);
+            //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
 
         }
-
-
 
     }
 
@@ -99,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rb_rb1:
                 newIndex=0;//选中第一项
                 break;
-
             case R.id.rb_rb2:
                 newIndex=1;//选中第二项
                 break;
@@ -113,38 +120,38 @@ public class MainActivity extends AppCompatActivity {
                 newIndex=4;//选中第五项
                 break;
         }
-        FragmentTransaction transaction;
-
-        //如果选择的项不是当前选中项，则替换；否则，不做操作
-        if(newIndex!=oldIndex){
-
-            transaction=getSupportFragmentManager().beginTransaction();
-
-            transaction.hide(fragments[oldIndex]);//隐藏当前显示项
-
-
-            //如果选中项没有加过，则添加
-            if(!fragments[newIndex].isAdded()){
-                //添加fragment
-                transaction.add(R.id.f1_content,fragments[newIndex]);
-            }
-            //显示当前选择项
-            transaction.show(fragments[newIndex]).commit();
-        }
-
-
-        //之前选中的项，取消选中
-        tabs[oldIndex].setSelected(false);
-        //当前选择项，按钮被选中
-        tabs[newIndex].setSelected(true);
-
-
-        //当前选择项变为选中项
-        oldIndex=newIndex;
-
+        addshow(newIndex);
     }
 
+   public void addshow(int newIndex){
+       FragmentTransaction transaction;
 
+       //如果选择的项不是当前选中项，则替换；否则，不做操作
+       if(newIndex!=oldIndex){
+           transaction=getSupportFragmentManager().beginTransaction();
+           transaction.hide(fragments[oldIndex]);//隐藏当前显示项
+
+
+           //如果选中项没有加过，则添加
+           if(!fragments[newIndex].isAdded()){
+               //添加fragment
+               transaction.add(R.id.f1_content,fragments[newIndex]);
+           }
+           //显示当前选择项
+           transaction.show(fragments[newIndex]).commit();
+       }
+
+
+       //之前选中的项，取消选中
+       tabs[oldIndex].setSelected(false);
+       //当前选择项，按钮被选中
+       tabs[newIndex].setSelected(true);
+
+
+       //当前选择项变为选中项
+       oldIndex=newIndex;
+
+   }
 
 
 

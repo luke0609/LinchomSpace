@@ -2,6 +2,7 @@ package linchom.com.linchomspace.shopping;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
@@ -26,18 +28,24 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
+import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsPagerAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsCartBean;
+import linchom.com.linchomspace.shopping.pojo.GoodsCommonBean;
 import linchom.com.linchomspace.shopping.pojo.JoinCartBean;
+import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.PictureHandle;
+import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -91,7 +99,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private  String  goodsPrice;
     private Button btn_goods_joinCart;
 
-    private String userId="12"; //要从sharepreferece拿 ？？？？？？？？？？？？？？？？
+    private String userId; //要从sharepreferece拿 ？？？？？？？？？？？？？？？？
 
 
     private boolean flagAdd=false;
@@ -129,15 +137,56 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private TextView tv_goods_jd;
     private TextView tv_goods_tbfunhao;
     private TextView tv_goods_jdfunhao;
+    private GoodsNoScrollListview lv_goods_common_list;
+
+    private GoodsCommonAdapter<GoodsCommonBean.Items> goodsCommonAdapter;
+
+    private List<GoodsCommonBean.Items> commonList= new ArrayList<GoodsCommonBean.Items>();
+
+    private boolean commFlag = false;
+    private ImageView iv_goods_common;
+
+    LayoutInflater inflater;
+
+    LayoutInflater inflaterOne;
+
+    View viewFoot;
+
+    View viewFootOne;
+
+
+
+    private int commPage =1;
+
+    private int totalNum = 0;
+    private Button btn_goods_comm_more;
+    private RelativeLayout rl_goods_comm_foot;
+    private RelativeLayout rl_goods_comm_footone;
+    private View view_goods_detai;
+    private RelativeLayout rl_goods_link;
+
+    private String userName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
+
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+         userName = shared_prefs.getString("username","");
+
+         userId = shared_prefs.getString("userId","");
+
+
+
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
+
+        Log.i(TAG,"goodsId"+goodsId);
 
 
         initView();
@@ -149,6 +198,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void initView() {
 
+        view_goods_detai = ((View) findViewById(R.id.view_goods_detai));
 
 
         sv_goods_scrollview = ((GoodsScrollView) findViewById(R.id.sv_goods_scrollview));
@@ -216,6 +266,29 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         btn_goods_jdBuy = ((Button) findViewById(R.id.btn_goods_jdBuy));
 
+        lv_goods_common_list = ((GoodsNoScrollListview) findViewById(R.id.lv_goods_common_list));
+
+        iv_goods_common = ((ImageView) findViewById(R.id.iv_goods_common));
+
+         inflater =LayoutInflater.from(getApplicationContext());
+
+         viewFoot =inflater.inflate(R.layout.goods_comm_list_foot,null);
+
+
+        rl_goods_comm_foot = ((RelativeLayout) viewFoot.findViewById(R.id.rl_goods_comm_foot));
+
+        inflaterOne = LayoutInflater.from(getApplicationContext());
+
+
+        viewFootOne =inflaterOne.inflate(R.layout.goods_comm_list_foot_one,null);
+
+        rl_goods_comm_footone = ((RelativeLayout) viewFootOne.findViewById(R.id.rl_goods_comm_footone));
+
+        btn_goods_comm_more = ((Button) viewFoot.findViewById(R.id.btn_goods_comm_more));
+
+
+        rl_goods_link = ((RelativeLayout) findViewById(R.id.rl_goods_link));
+
 
     }
 
@@ -223,7 +296,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         //初始化 收藏键
 
-        SharedPreferences sharedPreferences=     getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
+        SharedPreferences sharedPreferences= getSharedPreferences(GoodsContant.GOODSCOLLECTIONPREFS,this.MODE_PRIVATE);
         goodsIdString =  sharedPreferences.getString("goodsId","");
 
 
@@ -239,7 +312,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                    collectFlag=true;
 
 
-                    iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+                    iv_goods_Collection.setImageResource(R.drawable.collect_check5);
 
 
                }
@@ -262,12 +335,141 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+        goodsCommonAdapter = new GoodsCommonAdapter<GoodsCommonBean.Items>(getApplicationContext(),commonList,R.layout.article_comment_item) {
+            @Override
+            public void convert(GoodsViewHolder viewHolder, GoodsCommonBean.Items items, int position) {
+                //TextView tv_goods_common_name = viewHolder.getViewById(R.id.tv_goods_common_name);
+                //TextView tv_goods_common_time= viewHolder.getViewById(R.id.tv_goods_common_time);
 
+               // TextView tv_goods_common_content = viewHolder.getViewById(R.id.tv_goods_common_content);
+
+
+
+                TextView tv_article_comment_username=viewHolder.getViewById(R.id.tv_article_comment_username);
+
+                TextView tv_article_comment_time= viewHolder.getViewById(R.id.tv_article_comment_time);
+
+                TextView tv_position = viewHolder.getViewById(R.id.tv_position);
+
+                TextView tv_article_content= viewHolder.getViewById(R.id.tv_article_content);
+
+                tv_position.setVisibility(View.INVISIBLE);
+
+
+
+                tv_article_comment_username.setText(items.user_name);
+
+                Long time = Long.parseLong(items.add_time)*1000;
+
+                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+
+                String str = sdf.format(time);
+
+
+                tv_article_comment_time.setText(str);
+
+                tv_article_content.setText(items.content);
+
+
+
+            }
+        };
+
+
+
+
+        lv_goods_common_list.addFooterView(viewFoot);
+        lv_goods_common_list.addFooterView(viewFootOne);
+
+
+        rl_goods_comm_foot.setVisibility(View.GONE);
+        rl_goods_comm_footone.setVisibility(View.GONE);
+
+
+        lv_goods_common_list.setAdapter(goodsCommonAdapter);
+
+
+
+        getCommonData();
 
 
 
 
     }
+
+
+    private void getCommonData(){
+
+
+        RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
+
+        requestParams.addBodyParameter("act","goods_comment");
+
+        requestParams.addBodyParameter("goods_id",goodsId+"");
+
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson = new Gson();
+                GoodsCommonBean goodsCommonBean = gson.fromJson(result,GoodsCommonBean.class);
+
+                commonList.clear();
+
+                commonList.addAll(goodsCommonBean.data.items);
+
+                commPage=Integer.parseInt(goodsCommonBean.data.total_pages);
+
+                totalNum = Integer.parseInt(goodsCommonBean.data.total);
+
+                   if(totalNum>0){
+
+                       if(commPage>1){
+
+
+                           rl_goods_comm_foot.setVisibility(View.VISIBLE);
+                                 //lv_goods_common_list.addFooterView(viewFoot);
+
+                             }
+
+                    }else{
+
+                       rl_goods_comm_footone.setVisibility(View.VISIBLE);
+
+
+                       // lv_goods_common_list.addFooterView(viewFootOne);
+
+                  }
+
+
+
+
+                goodsCommonAdapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+    }
+
 
     private void getData() {
 
@@ -294,11 +496,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     goodsName=goodsBean.data.goods_name;
                     goodsPrice=goodsBean.data.shop_price;
 
+                    view_goods_detai.setVisibility(View.VISIBLE);
+
 
                     stockNum = Integer.parseInt(goodsBean.data.goods_number);
 
 
-                    if(stockNum<2){
+                    if(stockNum<1){
                         btn_goods_buyNow.setEnabled(false);
 
                         btn_goods_buyNow.setBackgroundColor(Color.LTGRAY);
@@ -371,6 +575,20 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                     }
 
+                    if(("0.00").equals(goodsBean.data.jd_price)&&("0.00").equals(goodsBean.data.tb_price)){
+
+                        rl_goods_link.setVisibility(View.GONE);
+
+
+                    }
+
+
+
+
+
+
+
+
                     rl_goods_load_progress.setVisibility(View.GONE);
 
 
@@ -435,6 +653,23 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         rl_goods_proComment.setOnClickListener(this);
 
+        btn_goods_comm_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
+                Bundle bundle= new Bundle();
+
+                bundle.putString("goodsId",goodsId);
+
+                intent.putExtra("bundle",bundle);
+
+                startActivity(intent);
+
+
+            }
+        });
 
 
 
@@ -502,35 +737,91 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 flagAdd=true;
 
-                toBuyNow();
+                if(userId!=""){
+
+                    toBuyNow();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
             case R.id.iv_gooods_cart:
-                toCart();
+
+                if(userId!=""){
+
+                    toCart();
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+
 
                 break;
             case R.id.btn_goods_joinCart:
-                toJoinCart();
+
+
+                if(userId!=""){
+
+                    toJoinCart();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
 
                 break;
 
             case R.id.iv_goods_Collection:
 
-                toCollection();
+                if(userId!=""){
+
+                    toCollection();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
                 break;
 
             case R.id.rl_goods_proComment:
 
-                Intent intent =new Intent(GoodsActivity.this,GoodsCommentActivity.class);
-                Bundle bundle= new Bundle();
 
-                bundle.putString("goodsId",goodsId);
 
-                intent.putExtra("bundle",bundle);
+                if(commFlag==false){
 
-                startActivity(intent);
+
+
+                    lv_goods_common_list.setVisibility(View.VISIBLE);
+
+                    iv_goods_common.setImageResource(R.drawable.goods_comm_zhankai);
+
+                    commFlag=true;
+
+
+                }else{
+
+                    lv_goods_common_list.setVisibility(View.GONE);
+
+                    iv_goods_common.setImageResource(R.drawable.goods_comm_shouqi);
+
+
+                    commFlag=false;
+
+                }
+
+
+
 
 
                 break;
@@ -654,7 +945,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
                 Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_white);
+                iv_goods_Collection.setImageResource(R.drawable.article_collect3);
                 collectFlag=false;
 
 
@@ -705,7 +996,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
 
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+                iv_goods_Collection.setImageResource(R.drawable.collect_check5);
 
                 collectFlag=true;
 
@@ -921,7 +1212,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+
+                Log.i(TAG,"收货地址列表result"+result);
+
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
 
                 Gson gson = new Gson();
                 //areaList
@@ -935,7 +1230,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 defaultArea();
 
-                Log.i(TAG,"result"+result);
 
 
             }
@@ -943,12 +1237,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
-
+                Log.i(TAG,"收货地址列表ex"+ex);
+                Log.i(TAG,"收货地址列表exareaList"+areaList);
 
                 defaultArea();
-
-
             }
 
             @Override
@@ -1004,6 +1296,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     rl_goods_load_progress.setVisibility(View.GONE);
 
 
+                    btn_goods_buyNow.setEnabled(true);
+
+                    btn_goods_buyNow.setText("立即购买");
+
+
+
 
 
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
@@ -1014,6 +1312,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     bundle.putSerializable("orderCartList",null);
 
                     bundle.putSerializable("areaList",areaList.get(0));
+
+                    Log.i(TAG,"有地址传的地址"+areaList.get(0));
 
                     intent.putExtra("bundle",bundle);
 
@@ -1045,7 +1345,18 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             //无地址不用修改 直接传null
 
-                    Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
+            Log.i(TAG,"没地址传的地址"+null);
+
+            rl_goods_load_progress.setVisibility(View.GONE);
+
+
+
+            btn_goods_buyNow.setEnabled(true);
+
+            btn_goods_buyNow.setText("立即购买");
+
+
+            Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList",orderList);
@@ -1078,6 +1389,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void toBuyNow() {
+
+        btn_goods_buyNow.setEnabled(false);
+
+        btn_goods_buyNow.setText("提交中");
 
         if(stockNum<1){
 

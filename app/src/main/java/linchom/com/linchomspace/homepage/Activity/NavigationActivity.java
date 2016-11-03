@@ -62,8 +62,7 @@ public class NavigationActivity extends AppCompatActivity {
     @InjectView(R.id.pd_canpinzixun)
     Button pdCanpinzixun;
     @InjectView(R.id.chat_zhinengjiaju)
-    Button chatZhinengjiaju;
-    @InjectView(R.id.chat_zhinengjujia)
+
     Button chatZhinengjujia;
     @InjectView(R.id.chat_zhinengjiankang)
     Button chatZhinengjiankang;
@@ -89,8 +88,7 @@ public class NavigationActivity extends AppCompatActivity {
     Button chatPinpaijiaoliu;
     @InjectView(R.id.chat_tiwenhuida)
     Button chatTiwenhuida;
-    @InjectView(R.id.button2)
-    Button button2;
+
     @InjectView(R.id.zc_kongzhi)
     Button zcKongzhi;
     @InjectView(R.id.zc_kaiguan)
@@ -221,6 +219,13 @@ public class NavigationActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void toChat(String chatId) {
+        Intent intent = new Intent(NavigationActivity.this, MainActivity.class);
+        intent.putExtra("idchat", 1);
+        intent.putExtra("chatId",chatId);
+        startActivity(intent);
+    }
+
 
     private void sendShop(String cateId) {
         Intent intent = new Intent(NavigationActivity.this, GoodsListActivity.class);
@@ -232,12 +237,10 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.chat_qita,R.id.zc_qita,R.id.znjj_qita,R.id.znzg_qita,R.id.znjk_qita,R.id.zncd_qita,R.id.zn_qita,R.id.iv_navigation_delete, R.id.pd_tuijian, R.id.pd_hangyezixun, R.id.pd_canpinpince, R.id.pd_video, R.id.pd_pinpaizixun, R.id.pd_hangyebiaozhun, R.id.pd_hangyejishu, R.id.pd_wulianwang, R.id.pd_zhihuichengshi, R.id.pd_zhihuishequ, R.id.pd_wurenji, R.id.pd_zhinengyanglao, R.id.pd_zhinengjiankang, R.id.pd_zhinengyiliao, R.id.pd_jiqiren, R.id.pd_vrar, R.id.pd_zhanhuixinxi, R.id.pd_peixunxinxi, R.id.pd_zhichaofangan, R.id.pd_zhichaoanli, R.id.pd_canpinzixun, R.id.chat_zhinengjiaju, R.id.chat_zhinengjujia, R.id.chat_zhinengjiankang, R.id.chat_zhinengzhaoguan, R.id.chat_canpintuijie, R.id.chat_zhinengshequ, R.id.chat_gongchengjishu, R.id.chat_yingjiankaifa, R.id.chat_jiqiren, R.id.chat_vrar, R.id.chat_xieyibiaozhun, R.id.chat_xuqiuduijie, R.id.chat_pinpaijiaoliu, R.id.chat_tiwenhuida, R.id.button2, R.id.zc_kongzhi, R.id.zc_kaiguan, R.id.zc_chazuo, R.id.zc_zhaoming, R.id.zc_menchuang, R.id.zc_anfang, R.id.zc_shexiangtou, R.id.zc_chuangganqi, R.id.znjj_binxiang, R.id.znjj_kongtiao, R.id.znjj_xiyiji, R.id.znjj_reshuiqi, R.id.znjj_dianshi, R.id.znjj_yinxiang, R.id.znjj_jinshui, R.id.znjj_youyanzhaoju, R.id.znjj_fancaiguoju, R.id.znjj_xinfenji, R.id.znjj_kongqijinhuaqi, R.id.znjj_qingjieweisheng, R.id.znjj_shenghuoxiaojiadian, R.id.znjj_matong, R.id.znzg_laoren, R.id.znzg_yunfu, R.id.znzg_yiner, R.id.znzg_ertong, R.id.znzg_chongwu, R.id.znjk_tizhong, R.id.znjk_tiwen, R.id.znjk_xueya, R.id.znjk_xuetang, R.id.znjk_xindian, R.id.znjk_kouqiang, R.id.znjk_shuimian, R.id.zncd_shouhuan, R.id.zncd_shoubiao, R.id.zncd_fushi, R.id.zncd_yanjing, R.id.zncd_vrar, R.id.zncd_erji, R.id.zncd_fangdiu, R.id.zn_sheying, R.id.zn_qiche, R.id.zn_qixing, R.id.zn_wurenji, R.id.zn_jiqiren, R.id.zn_yundong, R.id.zn_huwai, R.id.zn_yule, R.id.zn_qingqu})
+    @OnClick({R.id.chat_qita,R.id.zc_qita,R.id.znjj_qita,R.id.znzg_qita,R.id.znjk_qita,R.id.zncd_qita,R.id.zn_qita,R.id.iv_navigation_delete, R.id.pd_tuijian, R.id.pd_hangyezixun, R.id.pd_canpinpince, R.id.pd_video, R.id.pd_pinpaizixun, R.id.pd_hangyebiaozhun, R.id.pd_hangyejishu, R.id.pd_wulianwang, R.id.pd_zhihuichengshi, R.id.pd_zhihuishequ, R.id.pd_wurenji, R.id.pd_zhinengyanglao, R.id.pd_zhinengjiankang, R.id.pd_zhinengyiliao, R.id.pd_jiqiren, R.id.pd_vrar, R.id.pd_zhanhuixinxi, R.id.pd_peixunxinxi, R.id.pd_zhichaofangan, R.id.pd_zhichaoanli, R.id.pd_canpinzixun, R.id.chat_zhinengjiaju, R.id.chat_zhinengjiankang, R.id.chat_zhinengzhaoguan, R.id.chat_canpintuijie, R.id.chat_zhinengshequ, R.id.chat_gongchengjishu, R.id.chat_yingjiankaifa, R.id.chat_jiqiren, R.id.chat_vrar, R.id.chat_xieyibiaozhun, R.id.chat_xuqiuduijie, R.id.chat_pinpaijiaoliu, R.id.chat_tiwenhuida,  R.id.zc_kongzhi, R.id.zc_kaiguan, R.id.zc_chazuo, R.id.zc_zhaoming, R.id.zc_menchuang, R.id.zc_anfang, R.id.zc_shexiangtou, R.id.zc_chuangganqi, R.id.znjj_binxiang, R.id.znjj_kongtiao, R.id.znjj_xiyiji, R.id.znjj_reshuiqi, R.id.znjj_dianshi, R.id.znjj_yinxiang, R.id.znjj_jinshui, R.id.znjj_youyanzhaoju, R.id.znjj_fancaiguoju, R.id.znjj_xinfenji, R.id.znjj_kongqijinhuaqi, R.id.znjj_qingjieweisheng, R.id.znjj_shenghuoxiaojiadian, R.id.znjj_matong, R.id.znzg_laoren, R.id.znzg_yunfu, R.id.znzg_yiner, R.id.znzg_ertong, R.id.znzg_chongwu, R.id.znjk_tizhong, R.id.znjk_tiwen, R.id.znjk_xueya, R.id.znjk_xuetang, R.id.znjk_xindian, R.id.znjk_kouqiang, R.id.znjk_shuimian, R.id.zncd_shouhuan, R.id.zncd_shoubiao, R.id.zncd_fushi, R.id.zncd_yanjing, R.id.zncd_vrar, R.id.zncd_erji, R.id.zncd_fangdiu, R.id.zn_sheying, R.id.zn_qiche, R.id.zn_qixing, R.id.zn_wurenji, R.id.zn_jiqiren, R.id.zn_yundong, R.id.zn_huwai, R.id.zn_yule, R.id.zn_qingqu})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.chat_qita:
 
-            break;
             case R.id.zc_qita:
                 sendShop("87");
                 finish();
@@ -353,35 +356,63 @@ public class NavigationActivity extends AppCompatActivity {
                 NavigationActivity.this.finish();
                 break;
             case R.id.chat_zhinengjiaju:
+                toChat("0");
+                finish();
                 break;
-            case R.id.chat_zhinengjujia:
-                break;
+
             case R.id.chat_zhinengjiankang:
+                toChat("1");
+                finish();
                 break;
             case R.id.chat_zhinengzhaoguan:
+                toChat("2");
+                finish();
                 break;
             case R.id.chat_canpintuijie:
+                toChat("3");
+                finish();
                 break;
             case R.id.chat_zhinengshequ:
+                toChat("4");
+                finish();
                 break;
             case R.id.chat_gongchengjishu:
+                toChat("5");
+                finish();
                 break;
             case R.id.chat_yingjiankaifa:
+                toChat("6");
+                finish();
                 break;
             case R.id.chat_jiqiren:
+                toChat("7");
+                finish();
                 break;
             case R.id.chat_vrar:
+                toChat("8");
+                finish();
                 break;
             case R.id.chat_xieyibiaozhun:
+                toChat("9");
+                finish();
                 break;
             case R.id.chat_xuqiuduijie:
+                toChat("10");
+                finish();
                 break;
             case R.id.chat_pinpaijiaoliu:
+                toChat("11");
+                finish();
                 break;
             case R.id.chat_tiwenhuida:
+                toChat("12");
+                finish();
                 break;
-            case R.id.button2:
+            case R.id.chat_qita:
+                toChat("13");
+                finish();
                 break;
+
             case R.id.zc_kongzhi:
                 sendShop("54");
                 break;

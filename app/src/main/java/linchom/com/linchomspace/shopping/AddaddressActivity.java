@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -27,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsCityBean;
@@ -34,7 +38,8 @@ import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class AddaddressActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private String userId="12";
+    private String userId;
+
 
 
     private static final String TAG = "AddaddressActivity";
@@ -83,12 +88,20 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
      private String intentaddressId;
     private EditText et_goods_cart_email;
     private RelativeLayout rl_goods_add_address_load;
+    private ImageView titlebar_back;
+
+    private String userName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addaddress);
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
         Intent intent =getIntent();
 
@@ -146,6 +159,8 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
 
         rl_goods_add_address_load = ((RelativeLayout) findViewById(R.id.rl_goods_add_address_load));
 
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
     }
 
     private void initData() {
@@ -194,6 +209,14 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
         tv_goods_area.setOnClickListener(this);
 
         btn_goods_area_save.setOnClickListener(this);
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
 
 
 
