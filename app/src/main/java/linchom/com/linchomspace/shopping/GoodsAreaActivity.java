@@ -226,6 +226,9 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                                     Log.i(TAG,"默认地址ex"+ex);
 
+                                    rl_goods_area_pro.setVisibility(View.GONE);
+
+
 
                                 }
 
@@ -448,6 +451,9 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                rl_goods_area_pro.setVisibility(View.GONE);
+
 
             }
 
