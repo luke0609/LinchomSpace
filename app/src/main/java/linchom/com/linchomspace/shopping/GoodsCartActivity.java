@@ -122,6 +122,9 @@ public class GoodsCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                btn_goods_cart_total.setEnabled(false);
+                btn_goods_cart_total.setText("结算中");
+
 
                 //orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
 
@@ -299,6 +302,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                     // areaList.get(0)        传过去
 
                     rl_goods_cart_load_pro.setVisibility(View.GONE);
+                    btn_goods_cart_total.setEnabled(true);
+                    btn_goods_cart_total.setText("结算");
 
                     Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
@@ -337,8 +342,13 @@ public class GoodsCartActivity extends AppCompatActivity {
 
                     Log.i(TAG,"传过去的地址无"+null);
 
+            rl_goods_cart_load_pro.setVisibility(View.GONE);
+            btn_goods_cart_total.setEnabled(true);
+            btn_goods_cart_total.setText("结算");
 
-                    Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
+
+
+            Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList", null);
