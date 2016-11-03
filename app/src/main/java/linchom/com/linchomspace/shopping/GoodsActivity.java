@@ -1138,7 +1138,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+
+                Log.i(TAG,"收货地址列表result"+result);
+
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
 
                 Gson gson = new Gson();
                 //areaList
@@ -1152,7 +1156,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 defaultArea();
 
-                Log.i(TAG,"result"+result);
 
 
             }
@@ -1160,12 +1163,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
-
+                Log.i(TAG,"收货地址列表ex"+ex);
+                Log.i(TAG,"收货地址列表exareaList"+areaList);
 
                 defaultArea();
-
-
             }
 
             @Override
@@ -1232,6 +1233,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                     bundle.putSerializable("areaList",areaList.get(0));
 
+                    Log.i(TAG,"有地址传的地址"+areaList.get(0));
+
                     intent.putExtra("bundle",bundle);
 
                     startActivity(intent);
@@ -1262,7 +1265,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             //无地址不用修改 直接传null
 
-                    Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
+            Log.i(TAG,"没地址传的地址"+null);
+
+
+            Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList",orderList);
