@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +71,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private ArrayList<OrderSubmitBean> orderCartList;
 
     private boolean areaFlag=false;
+    private RelativeLayout rl_goods_order_pro;
 
 
     @Override
@@ -169,6 +171,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
         btn_goods_order_submitorder = ((Button) findViewById(R.id.btn_goods_order_submitorder));
 
         iv_goods_order_area = ((ImageView) findViewById(R.id.iv_goods_order_area));
+
+        rl_goods_order_pro = ((RelativeLayout) findViewById(R.id.rl_goods_order_pro));
 
 
     }
@@ -346,6 +350,12 @@ public class GoodsOrderActivity extends AppCompatActivity {
         btn_goods_order_submitorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                rl_goods_order_pro.setVisibility(View.VISIBLE);
+
+                btn_goods_order_submitorder.setEnabled(false);
+
+                btn_goods_order_submitorder.setText("提交中");
 
 
                 if(orderList!=null&&orderCartList==null){
@@ -539,6 +549,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                 if("0".equals(resultFlag)&&areaFlag==false){
 
+                    rl_goods_order_pro.setVisibility(View.GONE);
+
+                    btn_goods_order_submitorder.setEnabled(true);
+
+                    btn_goods_order_submitorder.setText("提交成功");
 
 
 
@@ -551,6 +566,13 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     //调用支付宝？
 
                 }else{
+
+                    rl_goods_order_pro.setVisibility(View.GONE);
+
+                    btn_goods_order_submitorder.setEnabled(true);
+
+                    btn_goods_order_submitorder.setText("提交失败");
+
 
                     Toast.makeText(getApplicationContext(),"提交失败,地址信息不完整",Toast.LENGTH_SHORT).show();
 
