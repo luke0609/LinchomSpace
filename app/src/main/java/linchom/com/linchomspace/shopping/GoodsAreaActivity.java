@@ -312,7 +312,11 @@ public class GoodsAreaActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        tv_goods_area_delete.setEnabled(false);
+
                         //http://app.linchom.com/appapi.php?act=drop_consignee&address_id=28&user_id=12
+
+                        rl_goods_area_pro.setVisibility(View.VISIBLE);
 
 
 
@@ -329,6 +333,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
                         x.http().post(requestParams, new Callback.CommonCallback<String>() {
                             @Override
                             public void onSuccess(String result) {
+                                rl_goods_area_pro.setVisibility(View.GONE);
+
 
 
                                 Toast.makeText(getApplicationContext(),"删除成功",Toast.LENGTH_SHORT).show();
@@ -340,6 +346,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(Throwable ex, boolean isOnCallback) {
+                                rl_goods_area_pro.setVisibility(View.GONE);
+
 
                                 Toast.makeText(getApplicationContext(),"删除失败",Toast.LENGTH_SHORT).show();
 
