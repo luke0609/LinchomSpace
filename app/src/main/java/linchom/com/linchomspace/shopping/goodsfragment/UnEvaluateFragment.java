@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.shopping.GoodsAllOrderActivity;
 import linchom.com.linchomspace.shopping.OrderDetailActivity;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
@@ -51,6 +52,7 @@ public class UnEvaluateFragment extends Fragment {
 
 
 
+    GoodsAllOrderActivity.MyOnTouchListener myOnTouchListener;
 
 
 
@@ -94,6 +96,7 @@ public class UnEvaluateFragment extends Fragment {
     private NoTouchLinearLayout edit_vg_lyt;
     private EditText mCommentEdittext;
     private Button but_comment_send;
+    private TextView tv_goods_comm_closecomm;
 
 
     @Nullable
@@ -132,6 +135,8 @@ public class UnEvaluateFragment extends Fragment {
 
         but_comment_send = ((Button) view.findViewById(R.id.but_comment_send));
 
+        tv_goods_comm_closecomm = ((TextView) view.findViewById(R.id.tv_goods_comm_closecomm));
+
 
     }
 
@@ -159,17 +164,16 @@ public class UnEvaluateFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String editContent =mCommentEdittext.getText().toString();
-                Toast.makeText(getActivity(),"editContent"+editContent.length(),Toast.LENGTH_SHORT).show();
+                String editContent = mCommentEdittext.getText().toString();
 
-                if(editContent.length()!=0){
+                if (editContent.length() != 0) {
 
-                    for(int i= 0; i<orderFormList.get(chooseOrder).order_goods.size();i++){
+                    for (int i = 0; i < orderFormList.get(chooseOrder).order_goods.size(); i++) {
 
-                        Toast.makeText(getActivity(),"发表成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "发表成功", Toast.LENGTH_SHORT).show();
 
 
-                        toSend(orderFormList.get(chooseOrder).order_goods.get(i).goods_id,editContent);
+                        toSend(orderFormList.get(chooseOrder).order_goods.get(i).goods_id, editContent);
 
                         edit_vg_lyt.setVisibility(View.GONE);
 
@@ -179,20 +183,70 @@ public class UnEvaluateFragment extends Fragment {
                     }
 
 
+                } else {
 
-                }else{
-
-                    Toast.makeText(getActivity(),"请输入内容",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请输入内容", Toast.LENGTH_SHORT).show();
                 }
 
+
+            }
+        });
+
+
+        tv_goods_comm_closecomm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                edit_vg_lyt.setVisibility(View.GONE);
+                onFocusChange(false);
 
 
 
 
             }
         });
-
     }
+        /*myOnTouchListener = new GoodsAllOrderActivity.MyOnTouchListener(){
+
+
+            @Override
+            public void onTouch(MotionEvent ev) {
+
+               // if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                   // View v = getCurrentFocus();
+                  //  if (isShouldHideInput(v, ev)) {
+                      //  onFocusChange(false);
+
+                  //  }
+                   // return super.dispatchTouchEvent(ev);
+            //    }
+                // 必不可少，否则所有的组件都不会有TouchEvent了
+               // if (getWindow().superDispatchTouchEvent(ev)) {
+                  //  return true;
+               // }
+              //  return onTouchEvent(ev);
+
+
+            }
+        };
+
+        ((GoodsAllOrderActivity) getActivity()).registerMyOnTouchListener(myOnTouchListener);
+
+    }*/
+
+
+    /*@Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if(myOnTouchListener!=null){
+            if(getActivity()!=null){
+                ((GoodsAllOrderActivity) getActivity()).registerMyOnTouchListener(myOnTouchListener);
+            }
+        }
+    }*/
+
+
 
 
 
