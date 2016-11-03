@@ -179,7 +179,10 @@ public class ChatDetilActivity extends AppCompatActivity {
                             TextView kid_content2=viewHolder.getViewById(R.id.kid_content2);
                             TextView tv_more=viewHolder.getViewById(R.id.tv_more);
                             View struct_line2=viewHolder.getViewById(R.id.struct_line2);
-
+                            kid_content_item1.setVisibility(View.GONE);
+                            kid_content_item2.setVisibility(View.GONE);
+                            struct_line2.setVisibility(View.GONE);
+                            tv_more.setVisibility(View.GONE);
                             int kid_comment_listsize=comments.getCommentsss().size();
                             System.out.println(kid_comment_listsize);
                             if(kid_comment_listsize==1){

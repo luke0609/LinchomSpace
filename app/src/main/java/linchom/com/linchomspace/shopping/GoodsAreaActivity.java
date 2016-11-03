@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -35,7 +39,7 @@ import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 public class GoodsAreaActivity extends AppCompatActivity {
 
     private static final String TAG = "GoodsAreaActivity";
-    private String userId="12";
+    private String userId;
 
     private Button btn_goods_area_addaddress;
     private ListView lv_goods_area_list;
@@ -55,11 +59,20 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
     private Set<CheckBox> ckSet = new HashSet<CheckBox>();
     private RelativeLayout rl_goods_area_pro;
+    private ImageView titlebar_back;
+
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_area);
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
         initView();
 
@@ -86,6 +99,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
         lv_goods_area_list = ((ListView) findViewById(R.id.lv_goods_area_list));
 
         rl_goods_area_pro = ((RelativeLayout) findViewById(R.id.rl_goods_area_pro));
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
     }
 
@@ -211,6 +226,9 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                                     Log.i(TAG,"默认地址ex"+ex);
 
+                                    rl_goods_area_pro.setVisibility(View.GONE);
+
+
 
                                 }
 
@@ -294,7 +312,12 @@ public class GoodsAreaActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        tv_goods_area_delete.setEnabled(false);
+
                         //http://app.linchom.com/appapi.php?act=drop_consignee&address_id=28&user_id=12
+
+                        rl_goods_area_pro.setVisibility(View.VISIBLE);
+
 
 
                         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
@@ -310,6 +333,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
                         x.http().post(requestParams, new Callback.CommonCallback<String>() {
                             @Override
                             public void onSuccess(String result) {
+                                rl_goods_area_pro.setVisibility(View.GONE);
+
 
 
                                 Toast.makeText(getApplicationContext(),"删除成功",Toast.LENGTH_SHORT).show();
@@ -321,6 +346,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(Throwable ex, boolean isOnCallback) {
+                                rl_goods_area_pro.setVisibility(View.GONE);
+
 
                                 Toast.makeText(getApplicationContext(),"删除失败",Toast.LENGTH_SHORT).show();
 
@@ -380,10 +407,20 @@ public class GoodsAreaActivity extends AppCompatActivity {
             }
         });
 
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+
 
     }
 
     private void getData() {
+
+        rl_goods_area_pro.setVisibility(View.VISIBLE);
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
         //?act=consignee&user_id=12
 
@@ -413,12 +450,18 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                 }
 
+                rl_goods_area_pro.setVisibility(View.GONE);
+
+
                 goodsCommonAdapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                rl_goods_area_pro.setVisibility(View.GONE);
+
 
             }
 

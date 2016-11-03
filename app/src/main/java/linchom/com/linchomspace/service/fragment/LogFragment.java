@@ -46,6 +46,8 @@ public class LogFragment extends Fragment {
     private GoodsCommonAdapter<ServiceListBean.Items> goodsCommonAdapter;
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
 
+    private int page = 1;
+
 
     @Nullable
     @Override
@@ -103,8 +105,15 @@ public class LogFragment extends Fragment {
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
+                    page = 1;
+                    getData();
+
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+
+                    page++;
+
+                    getData();
 
 
                 }
@@ -205,12 +214,20 @@ public class LogFragment extends Fragment {
 
         requestParams.addBodyParameter("usr_id","12");
 
+        requestParams.addBodyParameter("page",page+"");
+
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
-                serviceLsit.clear();
+                if(page==1){
+
+                    serviceLsit.clear();
+
+
+                }
+
 
                 Gson gson = new Gson();
 
@@ -219,6 +236,9 @@ public class LogFragment extends Fragment {
                 serviceLsit.addAll(serviceListBean.data.items);
 
                 goodsCommonAdapter.notifyDataSetChanged();
+
+                ptr_service_content_ptr.onRefreshComplete();
+
 
 
 

@@ -2,6 +2,7 @@ package linchom.com.linchomspace.shopping;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
@@ -97,7 +99,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private  String  goodsPrice;
     private Button btn_goods_joinCart;
 
-    private String userId="12"; //要从sharepreferece拿 ？？？？？？？？？？？？？？？？
+    private String userId; //要从sharepreferece拿 ？？？？？？？？？？？？？？？？
 
 
     private boolean flagAdd=false;
@@ -160,12 +162,26 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_goods_comm_more;
     private RelativeLayout rl_goods_comm_foot;
     private RelativeLayout rl_goods_comm_footone;
+    private View view_goods_detai;
+    private RelativeLayout rl_goods_link;
+
+    private String userName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
+
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+         userName = shared_prefs.getString("username","");
+
+         userId = shared_prefs.getString("userId","");
+
+
+
         Intent intent =getIntent();
         Bundle bundle =  intent.getBundleExtra("bundle");
         goodsId = bundle.getString("goodsId");
@@ -182,6 +198,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void initView() {
 
+        view_goods_detai = ((View) findViewById(R.id.view_goods_detai));
 
 
         sv_goods_scrollview = ((GoodsScrollView) findViewById(R.id.sv_goods_scrollview));
@@ -270,6 +287,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         btn_goods_comm_more = ((Button) viewFoot.findViewById(R.id.btn_goods_comm_more));
 
 
+        rl_goods_link = ((RelativeLayout) findViewById(R.id.rl_goods_link));
+
+
     }
 
     private void initData() {
@@ -292,7 +312,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                    collectFlag=true;
 
 
-                    iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+                    iv_goods_Collection.setImageResource(R.drawable.collect_check5);
 
 
                }
@@ -476,11 +496,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     goodsName=goodsBean.data.goods_name;
                     goodsPrice=goodsBean.data.shop_price;
 
+                    view_goods_detai.setVisibility(View.VISIBLE);
+
 
                     stockNum = Integer.parseInt(goodsBean.data.goods_number);
 
 
-                    if(stockNum<2){
+                    if(stockNum<1){
                         btn_goods_buyNow.setEnabled(false);
 
                         btn_goods_buyNow.setBackgroundColor(Color.LTGRAY);
@@ -552,6 +574,20 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                         tv_goods_jdPrice.setVisibility(View.INVISIBLE);
 
                     }
+
+                    if(("0.00").equals(goodsBean.data.jd_price)&&("0.00").equals(goodsBean.data.tb_price)){
+
+                        rl_goods_link.setVisibility(View.GONE);
+
+
+                    }
+
+
+
+
+
+
+
 
                     rl_goods_load_progress.setVisibility(View.GONE);
 
@@ -701,21 +737,59 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 flagAdd=true;
 
-                toBuyNow();
+                if(userId!=""){
+
+                    toBuyNow();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
             case R.id.iv_gooods_cart:
-                toCart();
+
+                if(userId!=""){
+
+                    toCart();
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+
 
                 break;
             case R.id.btn_goods_joinCart:
-                toJoinCart();
+
+
+                if(userId!=""){
+
+                    toJoinCart();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
 
                 break;
 
             case R.id.iv_goods_Collection:
 
-                toCollection();
+                if(userId!=""){
+
+                    toCollection();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
                 break;
@@ -871,7 +945,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
                 Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_white);
+                iv_goods_Collection.setImageResource(R.drawable.article_collect3);
                 collectFlag=false;
 
 
@@ -922,7 +996,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
 
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+                iv_goods_Collection.setImageResource(R.drawable.collect_check5);
 
                 collectFlag=true;
 

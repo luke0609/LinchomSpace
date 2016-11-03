@@ -1,12 +1,15 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -44,7 +48,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private String goodsName;
     private String goodsPrice;
 
-    private String userId="12";
+    private String userId;
 
 
     private Double totalPrice=0.0;
@@ -70,12 +74,21 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private ArrayList<OrderSubmitBean> orderCartList;
 
     private boolean areaFlag=false;
+    private RelativeLayout rl_goods_order_pro;
+
+    private String userName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_order);
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
 
         Intent intent =getIntent();
@@ -169,6 +182,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
         btn_goods_order_submitorder = ((Button) findViewById(R.id.btn_goods_order_submitorder));
 
         iv_goods_order_area = ((ImageView) findViewById(R.id.iv_goods_order_area));
+
+        rl_goods_order_pro = ((RelativeLayout) findViewById(R.id.rl_goods_order_pro));
 
 
     }
@@ -346,6 +361,12 @@ public class GoodsOrderActivity extends AppCompatActivity {
         btn_goods_order_submitorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                rl_goods_order_pro.setVisibility(View.VISIBLE);
+
+                btn_goods_order_submitorder.setEnabled(false);
+
+                btn_goods_order_submitorder.setText("提交中");
 
 
                 if(orderList!=null&&orderCartList==null){
@@ -539,6 +560,11 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                 if("0".equals(resultFlag)&&areaFlag==false){
 
+                    rl_goods_order_pro.setVisibility(View.GONE);
+
+                    btn_goods_order_submitorder.setEnabled(true);
+
+                    btn_goods_order_submitorder.setText("提交成功");
 
 
 
@@ -551,6 +577,13 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     //调用支付宝？
 
                 }else{
+
+                    rl_goods_order_pro.setVisibility(View.GONE);
+
+                    btn_goods_order_submitorder.setEnabled(true);
+
+                    btn_goods_order_submitorder.setText("提交失败");
+
 
                     Toast.makeText(getApplicationContext(),"提交失败,地址信息不完整",Toast.LENGTH_SHORT).show();
 
