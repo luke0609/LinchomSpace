@@ -1222,6 +1222,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     rl_goods_load_progress.setVisibility(View.GONE);
 
 
+                    btn_goods_buyNow.setEnabled(true);
+
+                    btn_goods_buyNow.setText("立即购买");
+
+
+
 
 
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
@@ -1267,6 +1273,14 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             Log.i(TAG,"没地址传的地址"+null);
 
+            rl_goods_load_progress.setVisibility(View.GONE);
+
+
+
+            btn_goods_buyNow.setEnabled(true);
+
+            btn_goods_buyNow.setText("立即购买");
+
 
             Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
@@ -1301,6 +1315,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void toBuyNow() {
+
+        btn_goods_buyNow.setEnabled(false);
+
+        btn_goods_buyNow.setText("提交中");
 
         if(stockNum<1){
 
