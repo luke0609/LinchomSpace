@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class GoodsCommentActivity extends AppCompatActivity {
     private int page = 1;
 
     private int totalPage = 1;
+    private ImageView titlebar_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,9 @@ public class GoodsCommentActivity extends AppCompatActivity {
         ptr_goods_common_ptr = ((PullToRefreshListView) findViewById(R.id.ptr_goods_common_ptr));
 
 
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
+
         eventPullToRefresh();
 
 
@@ -85,6 +90,16 @@ public class GoodsCommentActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                finish();
+
+            }
+        });
+
 
 
     }

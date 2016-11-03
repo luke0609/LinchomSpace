@@ -75,6 +75,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
     private ArrayList<OrderSubmitBean> orderCartList =new ArrayList<OrderSubmitBean>();
     private RelativeLayout rl_goods_cart_load_pro;
+    private ImageView titlebar_back;
 
 
     @Override
@@ -100,6 +101,8 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         rl_goods_cart_load_pro = ((RelativeLayout) findViewById(R.id.rl_goods_cart_load_pro));
 
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
 
     }
 
@@ -113,6 +116,14 @@ public class GoodsCartActivity extends AppCompatActivity {
         eventPtr();
 
         totalMoney();
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
 
     }
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
     private Set<CheckBox> ckSet = new HashSet<CheckBox>();
     private RelativeLayout rl_goods_area_pro;
+    private ImageView titlebar_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
         lv_goods_area_list = ((ListView) findViewById(R.id.lv_goods_area_list));
 
         rl_goods_area_pro = ((RelativeLayout) findViewById(R.id.rl_goods_area_pro));
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
     }
 
@@ -377,6 +381,14 @@ public class GoodsAreaActivity extends AppCompatActivity {
 
                 startActivityForResult(intent,1);
 
+            }
+        });
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
             }
         });
 

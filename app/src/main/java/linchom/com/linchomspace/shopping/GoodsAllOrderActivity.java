@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -42,6 +44,7 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
     private String userId = "12";
 
     private ArrayList<MyOnTouchListener> onTouchListeners = new ArrayList<MyOnTouchListener>(10);
+    private ImageView titlebar_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,8 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
         rb_goods_orderform_five = ((RadioButton) findViewById(R.id.rb_goods_orderform_five));
         rb_goods_orderform_six = ((RadioButton) findViewById(R.id.rb_goods_orderform_six));
         rb_goods_orderform_seven = ((RadioButton) findViewById(R.id.rb_goods_orderform_seven));
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
 
     }
@@ -273,6 +278,16 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
 
                 }
+
+            }
+        });
+
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
 
             }
         });
