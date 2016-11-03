@@ -39,6 +39,8 @@ import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 
 public class GoodsCartActivity extends AppCompatActivity {
 
+
+
     private List<AreaListBean.Data> areaList = new ArrayList<AreaListBean.Data>();
 
 

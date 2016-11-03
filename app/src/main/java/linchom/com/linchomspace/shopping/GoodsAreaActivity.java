@@ -301,6 +301,7 @@ public class GoodsAreaActivity extends AppCompatActivity {
                         //http://app.linchom.com/appapi.php?act=drop_consignee&address_id=28&user_id=12
 
 
+
                         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
                         requestParams.addBodyParameter("act","drop_consignee");

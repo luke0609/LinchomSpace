@@ -84,6 +84,7 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
 
 
+
     private void initData() {
 
 

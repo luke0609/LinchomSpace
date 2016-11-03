@@ -38,6 +38,7 @@ public class AddaddressActivity extends AppCompatActivity implements View.OnClic
     private String userId="12";
 
 
+
     private static final String TAG = "AddaddressActivity";
 
     private List<GoodsCityBean.Data> provinceList =new ArrayList<GoodsCityBean.Data>();
