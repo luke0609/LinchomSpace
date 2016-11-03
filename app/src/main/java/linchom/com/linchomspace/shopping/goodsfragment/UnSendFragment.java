@@ -246,6 +246,8 @@ public class UnSendFragment extends Fragment {
 
                     btn_orderform_right.setText("退款");
 
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
 
 
                 }else if("1".equals(orderStatus)&&"3".equals(shippingStatus)&&"2".equals(payStatus)){
@@ -257,6 +259,9 @@ public class UnSendFragment extends Fragment {
                     btn_orderform_left.setVisibility(View.INVISIBLE);
 
                     btn_orderform_right.setText("退款");
+
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
 
 
                 }else if("5".equals(orderStatus)&&"1".equals(shippingStatus)&&"2".equals(payStatus)){

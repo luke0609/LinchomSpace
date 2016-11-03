@@ -1138,7 +1138,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+
+                Log.i(TAG,"收货地址列表result"+result);
+
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
 
                 Gson gson = new Gson();
                 //areaList
@@ -1152,7 +1156,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 defaultArea();
 
-                Log.i(TAG,"result"+result);
 
 
             }
@@ -1160,12 +1163,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
-
+                Log.i(TAG,"收货地址列表ex"+ex);
+                Log.i(TAG,"收货地址列表exareaList"+areaList);
 
                 defaultArea();
-
-
             }
 
             @Override
@@ -1221,6 +1222,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     rl_goods_load_progress.setVisibility(View.GONE);
 
 
+                    btn_goods_buyNow.setEnabled(true);
+
+                    btn_goods_buyNow.setText("立即购买");
+
+
+
 
 
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
@@ -1231,6 +1238,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     bundle.putSerializable("orderCartList",null);
 
                     bundle.putSerializable("areaList",areaList.get(0));
+
+                    Log.i(TAG,"有地址传的地址"+areaList.get(0));
 
                     intent.putExtra("bundle",bundle);
 
@@ -1262,7 +1271,18 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             //无地址不用修改 直接传null
 
-                    Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
+            Log.i(TAG,"没地址传的地址"+null);
+
+            rl_goods_load_progress.setVisibility(View.GONE);
+
+
+
+            btn_goods_buyNow.setEnabled(true);
+
+            btn_goods_buyNow.setText("立即购买");
+
+
+            Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList",orderList);
@@ -1295,6 +1315,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void toBuyNow() {
+
+        btn_goods_buyNow.setEnabled(false);
+
+        btn_goods_buyNow.setText("提交中");
 
         if(stockNum<1){
 
