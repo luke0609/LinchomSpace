@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -36,7 +39,7 @@ import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 public class GoodsAreaActivity extends AppCompatActivity {
 
     private static final String TAG = "GoodsAreaActivity";
-    private String userId="12";
+    private String userId;
 
     private Button btn_goods_area_addaddress;
     private ListView lv_goods_area_list;
@@ -58,10 +61,18 @@ public class GoodsAreaActivity extends AppCompatActivity {
     private RelativeLayout rl_goods_area_pro;
     private ImageView titlebar_back;
 
+    private String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_area);
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
         initView();
 

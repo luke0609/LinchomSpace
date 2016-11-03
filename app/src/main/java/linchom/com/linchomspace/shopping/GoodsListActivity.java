@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,7 @@ import android.widget.RelativeLayout;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.GoodsListWaterfallFragment;
 
@@ -70,6 +73,13 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        String userName = shared_prefs.getString("username","");
+
+        String userId = shared_prefs.getString("userId","");
+
+
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
 
 

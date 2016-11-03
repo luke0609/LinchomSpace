@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,6 +29,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -45,7 +48,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private String goodsName;
     private String goodsPrice;
 
-    private String userId="12";
+    private String userId;
 
 
     private Double totalPrice=0.0;
@@ -73,11 +76,19 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private boolean areaFlag=false;
     private RelativeLayout rl_goods_order_pro;
 
+    private String userName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_order);
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
 
         Intent intent =getIntent();
