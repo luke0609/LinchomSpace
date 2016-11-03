@@ -83,8 +83,6 @@ public class GoodsCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goods_cart);
 
 
-
-
         initView();
 
         initData();
@@ -228,7 +226,6 @@ public class GoodsCartActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
 
-                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
 
                 Gson gson = new Gson();
                 //areaList
@@ -239,6 +236,10 @@ public class GoodsCartActivity extends AppCompatActivity {
                 areaList.addAll(areaListBean.data);
 
                 //找出第一个地址Id设为默认地址
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
+
+                Log.i(TAG,"收货地址列表"+result);
 
                 defaultArea();
 
@@ -247,6 +248,12 @@ public class GoodsCartActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
+                Log.i(TAG,"收货地址列表ex"+ex);
+
+
 
                 defaultArea();
 
@@ -287,7 +294,6 @@ public class GoodsCartActivity extends AppCompatActivity {
             x.http().post(requestParams, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                   // Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
 
                     //orderList
                     // areaList.get(0)        传过去
@@ -300,6 +306,8 @@ public class GoodsCartActivity extends AppCompatActivity {
                     bundle.putSerializable("orderList", null);
 
                     bundle.putSerializable("orderCartList", orderCartList);
+
+                    Log.i(TAG,"传过去的地址"+areaList.get(0));
 
                     bundle.putSerializable("areaList", areaList.get(0));
 
@@ -327,6 +335,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
         } else {
 
+                    Log.i(TAG,"传过去的地址无"+null);
 
 
                     Intent intent = new Intent(GoodsCartActivity.this, GoodsOrderActivity.class);
