@@ -160,6 +160,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private Button btn_goods_comm_more;
     private RelativeLayout rl_goods_comm_foot;
     private RelativeLayout rl_goods_comm_footone;
+    private View view_goods_detai;
+    private RelativeLayout rl_goods_link;
 
 
     @Override
@@ -182,6 +184,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void initView() {
 
+        view_goods_detai = ((View) findViewById(R.id.view_goods_detai));
 
 
         sv_goods_scrollview = ((GoodsScrollView) findViewById(R.id.sv_goods_scrollview));
@@ -270,6 +273,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         btn_goods_comm_more = ((Button) viewFoot.findViewById(R.id.btn_goods_comm_more));
 
 
+        rl_goods_link = ((RelativeLayout) findViewById(R.id.rl_goods_link));
+
+
     }
 
     private void initData() {
@@ -292,7 +298,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                    collectFlag=true;
 
 
-                    iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+                    iv_goods_Collection.setImageResource(R.drawable.collect_check5);
 
 
                }
@@ -476,11 +482,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     goodsName=goodsBean.data.goods_name;
                     goodsPrice=goodsBean.data.shop_price;
 
+                    view_goods_detai.setVisibility(View.VISIBLE);
+
 
                     stockNum = Integer.parseInt(goodsBean.data.goods_number);
 
 
-                    if(stockNum<2){
+                    if(stockNum<1){
                         btn_goods_buyNow.setEnabled(false);
 
                         btn_goods_buyNow.setBackgroundColor(Color.LTGRAY);
@@ -552,6 +560,20 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                         tv_goods_jdPrice.setVisibility(View.INVISIBLE);
 
                     }
+
+                    if(("0.00").equals(goodsBean.data.jd_price)&&("0.00").equals(goodsBean.data.tb_price)){
+
+                        rl_goods_link.setVisibility(View.GONE);
+
+
+                    }
+
+
+
+
+
+
+
 
                     rl_goods_load_progress.setVisibility(View.GONE);
 
@@ -871,7 +893,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
                 Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_white);
+                iv_goods_Collection.setImageResource(R.drawable.article_collect3);
                 collectFlag=false;
 
 
@@ -922,7 +944,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(String result) {
 
 
-                iv_goods_Collection.setImageResource(R.drawable.goods_collection_yel);
+                iv_goods_Collection.setImageResource(R.drawable.collect_check5);
 
                 collectFlag=true;
 
@@ -1138,7 +1160,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                //Toast.makeText(getApplicationContext(),"result"+result,Toast.LENGTH_SHORT).show();
+
+                Log.i(TAG,"收货地址列表result"+result);
+
+                Log.i(TAG,"收货地址列表areaList"+areaList);
+
 
                 Gson gson = new Gson();
                 //areaList
@@ -1152,7 +1178,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
                 defaultArea();
 
-                Log.i(TAG,"result"+result);
 
 
             }
@@ -1160,12 +1185,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
-
+                Log.i(TAG,"收货地址列表ex"+ex);
+                Log.i(TAG,"收货地址列表exareaList"+areaList);
 
                 defaultArea();
-
-
             }
 
             @Override
@@ -1221,6 +1244,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     rl_goods_load_progress.setVisibility(View.GONE);
 
 
+                    btn_goods_buyNow.setEnabled(true);
+
+                    btn_goods_buyNow.setText("立即购买");
+
+
+
 
 
                     Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
@@ -1231,6 +1260,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     bundle.putSerializable("orderCartList",null);
 
                     bundle.putSerializable("areaList",areaList.get(0));
+
+                    Log.i(TAG,"有地址传的地址"+areaList.get(0));
 
                     intent.putExtra("bundle",bundle);
 
@@ -1262,7 +1293,18 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
             //无地址不用修改 直接传null
 
-                    Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
+            Log.i(TAG,"没地址传的地址"+null);
+
+            rl_goods_load_progress.setVisibility(View.GONE);
+
+
+
+            btn_goods_buyNow.setEnabled(true);
+
+            btn_goods_buyNow.setText("立即购买");
+
+
+            Intent intent = new Intent(GoodsActivity.this,GoodsOrderActivity.class);
                     Bundle bundle = new Bundle();
 
                     bundle.putSerializable("orderList",orderList);
@@ -1295,6 +1337,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void toBuyNow() {
+
+        btn_goods_buyNow.setEnabled(false);
+
+        btn_goods_buyNow.setText("提交中");
 
         if(stockNum<1){
 

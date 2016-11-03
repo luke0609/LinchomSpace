@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -40,6 +41,8 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
     private String userId = "12";
 
+    private ArrayList<MyOnTouchListener> onTouchListeners = new ArrayList<MyOnTouchListener>(10);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,27 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
         initEvent();
 
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        for (MyOnTouchListener listener : onTouchListeners) {
+            listener.onTouch(ev);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public void registerMyOnTouchListener(MyOnTouchListener myOnTouchListener) {
+        onTouchListeners.add(myOnTouchListener);
+    }
+
+    public void unregisterMyOnTouchListener(MyOnTouchListener myOnTouchListener) {
+        onTouchListeners.remove(myOnTouchListener);
+    }
+
+    public interface MyOnTouchListener {
+        public void onTouch(MotionEvent ev);
     }
 
     private void initView() {
@@ -161,7 +185,6 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
 
 
                 switch (position){

@@ -384,6 +384,8 @@ public class GoodsAreaActivity extends AppCompatActivity {
     }
 
     private void getData() {
+
+        rl_goods_area_pro.setVisibility(View.VISIBLE);
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
         //?act=consignee&user_id=12
 
@@ -412,6 +414,9 @@ public class GoodsAreaActivity extends AppCompatActivity {
                     checkStatusMap.put(i,false);
 
                 }
+
+                rl_goods_area_pro.setVisibility(View.GONE);
+
 
                 goodsCommonAdapter.notifyDataSetChanged();
 

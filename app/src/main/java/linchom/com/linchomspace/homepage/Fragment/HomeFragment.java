@@ -391,6 +391,7 @@ public class HomeFragment extends Fragment {
                     break;
                 case "19":
                     vp_news.setCurrentItem(19);
+
                     break;
                 case "20":
                     vp_news.setCurrentItem(20);
@@ -1050,6 +1051,7 @@ public class HomeFragment extends Fragment {
                 mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
                 switch (checkedId){
                     case 1000:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1093,6 +1095,7 @@ public class HomeFragment extends Fragment {
                         gettuijian();
                         break;
                     case 1001:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_hangyezixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyezixun.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1136,6 +1139,7 @@ public class HomeFragment extends Fragment {
                         gethangyezixun();
                         break;
                     case 1002:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_canpinzixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_canpinzixun.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1179,6 +1183,7 @@ public class HomeFragment extends Fragment {
                         getcanpinzixun();
                         break;
                     case 1003:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_canpinpince.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_canpinpince.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1220,6 +1225,7 @@ public class HomeFragment extends Fragment {
                         getcanpinpince();
                         break;
                     case 1004:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_video.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_video.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1260,6 +1266,7 @@ public class HomeFragment extends Fragment {
                         getvideo();
                         break;
                     case 1005:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_pinpaizixun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_pinpaizixun.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1300,6 +1307,7 @@ public class HomeFragment extends Fragment {
                         getpinpaizixun();
                         break;
                     case 1006:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_hangyebiaozhun.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyebiaozhun.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1339,6 +1347,7 @@ public class HomeFragment extends Fragment {
                         gethangyebiaozhun();
                         break;
                     case 1007:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_hangyejishu.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_hangyejishu.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1378,6 +1387,7 @@ public class HomeFragment extends Fragment {
                         gethangyejishu();
                         break;
                     case 1008:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_wulianwang.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_wulianwang.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1417,6 +1427,7 @@ public class HomeFragment extends Fragment {
                         getwulianwang();
                         break;
                     case 1009:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhihuichengshi.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhihuichengshi.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1456,6 +1467,7 @@ public class HomeFragment extends Fragment {
                         getzhihuichengshi();
                         break;
                     case 1010:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhihuishequ.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhihuishequ.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1495,6 +1507,7 @@ public class HomeFragment extends Fragment {
                         getzhihuishequ();
                         break;
                     case 1011:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_wurenji.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_wurenji.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1534,6 +1547,7 @@ public class HomeFragment extends Fragment {
                         getwurenji();
                         break;
                     case 1012:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhinengyanglao.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhinengyanglao.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1573,6 +1587,7 @@ public class HomeFragment extends Fragment {
                         getzhinengyanglao();
                         break;
                     case 1013:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhinengjiankang.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhinengjiankang.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1612,6 +1627,7 @@ public class HomeFragment extends Fragment {
                         getzhinengjiankang();
                         break;
                     case 1014:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhinengyiliao.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhinengyiliao.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1651,6 +1667,7 @@ public class HomeFragment extends Fragment {
                         getzhinengyiliao();
                         break;
                     case 1015:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_jiqiren.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_jiqiren.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1690,6 +1707,7 @@ public class HomeFragment extends Fragment {
                         getjiqiren();
                         break;
                     case 1016:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_vrar.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_vrar.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1729,6 +1747,7 @@ public class HomeFragment extends Fragment {
                         getvrar();
                         break;
                     case 1017:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhanhuixinxi.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhanhuixinxi.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1768,6 +1787,7 @@ public class HomeFragment extends Fragment {
                         getzhanhuixinxi();
                         break;
                     case 1018:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_peixunxinxi.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_peixunxinxi.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1807,6 +1827,7 @@ public class HomeFragment extends Fragment {
                         getpeixunxinxi();
                         break;
                     case 1019:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhichaofangan.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhichaofangan.setMode(PullToRefreshBase.Mode.BOTH);
@@ -1846,6 +1867,7 @@ public class HomeFragment extends Fragment {
                         getzhichaofangan();
                         break;
                     case 1020:
+                        page=1;
                         pullFlag = false;
                         ptr_arrlist_zhichaoanli.setScrollingWhileRefreshingEnabled(true);
                         ptr_arrlist_zhichaoanli.setMode(PullToRefreshBase.Mode.BOTH);
@@ -3214,6 +3236,7 @@ public class HomeFragment extends Fragment {
             rl_hide_tuijian.setVisibility(View.VISIBLE);
             ptr_arrlist_tuijian.setVisibility(View.GONE);
         }
+
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
         params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -3251,10 +3274,8 @@ public class HomeFragment extends Fragment {
                     rl_empty1.setVisibility(View.VISIBLE);
                     ptr_arrlist_tuijian.setVisibility(View.GONE);
                     error_caterogy1.setVisibility(View.GONE);
-
                 }
             }
-
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 

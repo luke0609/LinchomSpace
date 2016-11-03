@@ -70,6 +70,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:background="#ffffff"
         android:id="@+id/rl_goods_list_load_fail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

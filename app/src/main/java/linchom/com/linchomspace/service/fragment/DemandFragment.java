@@ -45,6 +45,8 @@ public class DemandFragment extends Fragment{
     private GoodsCommonAdapter<ServiceListBean.Items> goodsCommonAdapter;
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
 
+    int page = 1;
+
 
 
 
@@ -101,9 +103,18 @@ public class DemandFragment extends Fragment{
                 PullToRefreshBase.Mode mode = ptr_service_content_ptr.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    page = 1;
+
+                    getData();
+
+
 
 
                 }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
+
+                    page++;
+
+                    getData();
 
 
                 }
@@ -204,12 +215,21 @@ public class DemandFragment extends Fragment{
 
         requestParams.addBodyParameter("usr_id","12");
 
+        requestParams.addBodyParameter("page",page+"");
+
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
-                serviceLsit.clear();
+                if(page ==1){
+
+                    serviceLsit.clear();
+
+
+
+                }
+
 
                 Gson gson = new Gson();
 
@@ -218,6 +238,8 @@ public class DemandFragment extends Fragment{
                 serviceLsit.addAll(serviceListBean.data.items);
 
                 goodsCommonAdapter.notifyDataSetChanged();
+
+                ptr_service_content_ptr.onRefreshComplete();
 
 
 

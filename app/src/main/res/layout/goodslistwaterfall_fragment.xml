@@ -46,6 +46,7 @@
 
 
     <RelativeLayout
+        android:background="#ffffff"
 
         android:visibility="gone"
 
