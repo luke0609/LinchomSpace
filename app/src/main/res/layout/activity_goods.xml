@@ -18,7 +18,7 @@
 
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
 
         android:background="#ccc"
         android:orientation="horizontal"
@@ -36,7 +36,7 @@
                 android:id="@+id/iv_goods_service"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/goods_service"
+                android:src="@drawable/article_comment"
                 />
 
 
@@ -50,15 +50,13 @@
             <ImageView
 
 
-
-
                 android:layout_centerInParent="true"
 
 
                 android:id="@+id/iv_goods_Collection"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/goods_collection_white"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/article_collect3"
                 />
 
 
@@ -184,7 +182,7 @@
 
                 <TextView
                     android:id="@+id/tv_goods_proName"
-                    android:textColor="#808080"
+                    android:textColor="#000000"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:textSize="16sp"
@@ -242,10 +240,12 @@
                         />
 
                     <View
+                        android:id="@+id/view_goods_detai"
                         android:background="#808080"
                         android:layout_centerInParent="true"
                         android:layout_width="100dp"
                         android:layout_height="1dp"
+                        android:visibility="invisible"
                         />
 
 
@@ -261,7 +261,7 @@
 
                     <TextView
                         android:id="@+id/tv_goods_kuncun"
-                        android:textColor="#808080"
+                        android:textColor="#000000"
                         android:textSize="16sp"
                         android:text="库存:"
                         android:layout_width="wrap_content"
@@ -271,7 +271,7 @@
                     <TextView
                         android:id="@+id/tv_goods_goodsStock"
                         android:layout_toRightOf="@id/tv_goods_kuncun"
-                        android:textColor="#808080"
+                        android:textColor="#000000"
                         android:textSize="16sp"
                         android:text=""
                         android:layout_width="wrap_content"
@@ -291,6 +291,7 @@
                     android:layout_height="80dp">
 
                     <TextView
+                        android:textColor="#000000"
                         android:layout_centerVertical="true"
                         android:textSize="18sp"
                         android:text="购买数量"
@@ -316,7 +317,7 @@
 
                             <ImageView
 
-                                android:src="@drawable/goods_sub"
+                                android:src="@drawable/goods_detail_sub_one"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_centerInParent="true"
@@ -343,6 +344,7 @@
                                 android:background="@null"
                                 android:text="1"
                                 android:inputType="number"
+                                android:textColor="#000000"
                                 />
 
                         </RelativeLayout>
@@ -358,7 +360,7 @@
                             >
 
                             <ImageView
-                                android:src="@drawable/goods_add"
+                                android:src="@drawable/goods_detail_add_one"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:layout_centerInParent="true"
@@ -405,7 +407,7 @@
                             android:layout_margin="5dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/tb_logo"
+                            android:src="@drawable/goods_detail_tianmao"
                             />
 
                         <ImageView
@@ -423,10 +425,10 @@
 
                         <TextView
                             android:id="@+id/tv_goods_tb"
-                            android:textColor="#808080"
+                            android:textColor="#000000"
                             android:gravity="center"
-                            android:textSize="20sp"
-                            android:text="淘宝"
+                            android:textSize="16sp"
+                            android:text="天猫"
                             android:layout_margin="5dp"
                             android:layout_toRightOf="@id/iv_goods_tblogo"
                             android:layout_width="80dp"
@@ -436,9 +438,9 @@
                             android:id="@+id/tv_goods_jd"
 
                             android:layout_below="@id/tv_goods_tb"
-                            android:textColor="#808080"
+                            android:textColor="#000000"
                             android:gravity="center"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             android:text="京东"
                             android:layout_margin="5dp"
                             android:layout_toRightOf="@id/iv_goods_tblogo"
@@ -484,7 +486,7 @@
                         android:id="@+id/tv_goods_tbPrice"
                         android:gravity="center_vertical"
                         android:textColor="#80ff0000"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
 
                         android:text=""
                         android:layout_margin="5dp"
@@ -498,7 +500,7 @@
                         android:layout_below="@id/tv_goods_tbPrice"
                         android:gravity="center_vertical"
                         android:textColor="#80ff0000"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
 
                         android:text=""
                         android:layout_margin="5dp"
@@ -526,8 +528,8 @@
                         android:layout_width="70dp"
                         android:layout_height="40dp"
                         android:text="购买"
-                        android:textSize="18sp"
-                        android:textColor="#808080"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
                         android:background="@drawable/goods_catebutton_shape"
                         />
 
@@ -539,8 +541,8 @@
                         android:layout_width="70dp"
                         android:layout_height="40dp"
                         android:text="购买"
-                        android:textSize="18sp"
-                        android:textColor="#808080"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
                         android:background="@drawable/goods_catebutton_shape"
 
 
@@ -570,6 +572,7 @@
                     android:textSize="18sp"
                     android:text="产品详情"
                     android:gravity="center_vertical"
+                    android:textColor="#000000"
                     />
 
                 <ImageView
@@ -585,8 +588,10 @@
 
             </RelativeLayout>
 
+
+
             <RelativeLayout
-                android:id="@+id/rl_goods_proEvaluation"
+                android:id="@+id/rl_goods_proComment"
 
                 android:layout_below="@id/rl_goods_proDetail"
                 android:layout_marginTop="2dp"
@@ -598,98 +603,10 @@
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:textSize="18sp"
-                    android:text="产品测评"
-                    android:gravity="center_vertical"
-                    />
-
-                <ImageView
-                    android:src="@drawable/goods_comm_shouqi"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-
-                    />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_goods_proVideo"
-
-                android:layout_below="@id/rl_goods_proEvaluation"
-                android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#ffffff">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="产品视频"
-                    android:gravity="center_vertical"
-                    />
-
-                <ImageView
-                    android:src="@drawable/goods_comm_shouqi"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-
-                    />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_goods_proNews"
-
-                android:layout_below="@id/rl_goods_proVideo"
-                android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#ffffff">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="产品资讯"
-                    android:gravity="center_vertical"
-                    />
-
-                <ImageView
-                    android:src="@drawable/goods_comm_shouqi"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-
-                    />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_goods_proComment"
-
-                android:layout_below="@id/rl_goods_proNews"
-                android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="#ffffff">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
                     android:text="产品评价"
                     android:gravity="center_vertical"
+                    android:textColor="#000000"
+
                     />
 
 
@@ -783,7 +700,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="商品"
-            android:textColor="#808080"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:layout_centerInParent="true"
             />
