@@ -19,7 +19,7 @@
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:id="@+id/pb_progressBar"
-
+android:visibility="gone"
             android:layout_marginBottom="10dp"
 
             />
@@ -28,7 +28,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="正在加载，请稍后..."
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/shimmer_tv"
+            android:text="联巢空间 "
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#f0f0f0"
+            android:textSize="35sp"
+            android:layout_centerInParent="true"
+            />
+
 
     </RelativeLayout>
 

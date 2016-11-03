@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,6 +34,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 import com.shizhefei.view.indicator.BannerComponent;
 import com.shizhefei.view.indicator.Indicator;
 
@@ -294,6 +298,49 @@ public class HomeFragment extends Fragment {
     private String CurrentItem;
     private String PdId;
     private RadioButton rb;
+    Shimmer shimmer;
+    ShimmerTextView tv1;
+    String source1;
+    ShimmerTextView tv2;
+    String source2;
+    ShimmerTextView tv3;
+    String source3;
+    ShimmerTextView tv4;
+    String source4;
+    ShimmerTextView tv5;
+    String source5;
+    ShimmerTextView tv6;
+    String source6;
+    ShimmerTextView tv7;
+    String source7;
+    ShimmerTextView tv8;
+    String source8;
+    ShimmerTextView tv9;
+    String source9;
+    ShimmerTextView tv10;
+    String source10;
+    ShimmerTextView tv11;
+    String source11;
+    ShimmerTextView tv12;
+    String source12;
+    ShimmerTextView tv13;
+    String source13;
+    ShimmerTextView tv14;
+    String source14;
+    ShimmerTextView tv15;
+    String source15;
+    ShimmerTextView tv16;
+    String source16;
+    ShimmerTextView tv17;
+    String source17;
+    ShimmerTextView tv18;
+    String source18;
+    ShimmerTextView tv19;
+    String source19;
+    ShimmerTextView tv20;
+    String source20;
+    ShimmerTextView tv21;
+    String source21;
 
 
     @Override
@@ -394,13 +441,14 @@ public class HomeFragment extends Fragment {
 
                     break;
                 case "20":
-                    vp_news.setCurrentItem(20);
-//                    RadioGroup.OnCheckedChangeListener
-//                    mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
-//                    mCurrentCheckedRadioLeft = rb.getLeft();
-//                    hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
-                    break;
-
+                    //vp_news.setCurrentItem(20);
+                vp_news.setCurrentItem(20,false);//让下方ViewPager跟随上面的HorizontalScrollView切换
+                mCurrentCheckedRadioLeft = rb.getLeft();//更新当前白色横条距离左边的距离
+                //System.out.println("dis1:"+mCurrentCheckedRadioLeft);
+                //System.out.println("dis2:"+( (int)mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.rdo2)));
+                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
+                break;
             }
         }
     }
@@ -629,7 +677,10 @@ public class HomeFragment extends Fragment {
         view1 = view.inflate(getActivity(), R.layout.fragment_home_tuijian, null);
         pb_progressBar = (CircularProgress) view1.findViewById(R.id.pb_progressBar);
         rl_hide_tuijian = (RelativeLayout) view1.findViewById(R.id.rl_hide_tuijian);
-        rl_empty1 = ((RelativeLayout) view1.findViewById(R.id.rl_empty1));
+        rl_empty1 = ((RelativeLayout)view1.findViewById(R.id.rl_empty1));
+        tv1 = ((ShimmerTextView)view1.findViewById(R.id.shimmer_tv));
+        source1 = "<i>联巢空间 </i>";
+        tv1.setText(Html.fromHtml(source1));
         reload1 = ((Button) view1.findViewById(R.id.reload1));
         error_caterogy1 = ((RelativeLayout) view1.findViewById(R.id.error_caterogy1));
         ptr_arrlist_tuijian = ((PullToRefreshListView) view1.findViewById(R.id.ptr_arrlist_tuijian));
@@ -666,6 +717,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view2.findViewById(R.id.pb_progressBar);
         rl_hide_hangyezixun = (RelativeLayout) view2.findViewById(R.id.rl_hide_hangyezixun);
         rl_empty2 = ((RelativeLayout) view2.findViewById(R.id.rl_empty2));
+        tv2 = ((ShimmerTextView)view2.findViewById(R.id.shimmer_tv));
+        source2 = "<i>联巢空间 </i>";
+        tv2.setText(Html.fromHtml(source2));
         reload2 = ((Button) view2.findViewById(R.id.reload2));
         error_caterogy2 = ((RelativeLayout) view2.findViewById(R.id.error_caterogy2));
         ptr_arrlist_hangyezixun = ((PullToRefreshListView) view2.findViewById(R.id.ptr_arrlist_hangyezixun));
@@ -690,6 +744,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view3.findViewById(R.id.pb_progressBar);
         rl_hide_canpinzixun = (RelativeLayout) view3.findViewById(R.id.rl_hide_canpinzixun);
         rl_empty3 = ((RelativeLayout) view3.findViewById(R.id.rl_empty3));
+        tv3 = ((ShimmerTextView)view3.findViewById(R.id.shimmer_tv));
+        source3 = "<i>联巢空间 </i>";
+        tv3.setText(Html.fromHtml(source3));
         reload3 = ((Button) view3.findViewById(R.id.reload3));
         error_caterogy3 = ((RelativeLayout) view3.findViewById(R.id.error_caterogy3));
         ptr_arrlist_canpinzixun = ((PullToRefreshListView) view3.findViewById(R.id.ptr_arrlist_canpinzixun));
@@ -715,6 +772,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view4.findViewById(R.id.pb_progressBar);
         rl_hide_canpinpince = (RelativeLayout) view4.findViewById(R.id.rl_hide_canpinpince);
         rl_empty4 = ((RelativeLayout) view4.findViewById(R.id.rl_empty4));
+        tv4 = ((ShimmerTextView)view4.findViewById(R.id.shimmer_tv));
+        source4 = "<i>联巢空间 </i>";
+        tv4.setText(Html.fromHtml(source4));
         reload4 = ((Button) view4.findViewById(R.id.reload4));
         error_caterogy4 = ((RelativeLayout) view4.findViewById(R.id.error_caterogy4));
         ptr_arrlist_canpinpince = ((PullToRefreshListView) view4.findViewById(R.id.ptr_arrlist_canpinpince));
@@ -739,6 +799,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view5.findViewById(R.id.pb_progressBar);
         rl_hide_video = (RelativeLayout) view5.findViewById(R.id.rl_hide_video);
         rl_empty5 = ((RelativeLayout) view5.findViewById(R.id.rl_empty5));
+        tv5 = ((ShimmerTextView)view5.findViewById(R.id.shimmer_tv));
+        source5 = "<i>联巢空间 </i>";
+        tv5.setText(Html.fromHtml(source5));
         reload5 = ((Button) view5.findViewById(R.id.reload5));
         error_caterogy5 = ((RelativeLayout) view5.findViewById(R.id.error_caterogy5));
         ptr_arrlist_video = ((PullToRefreshListView) view5.findViewById(R.id.ptr_arrlist_video));
@@ -764,6 +827,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view6.findViewById(R.id.pb_progressBar);
         rl_hide_pinpaizixun = (RelativeLayout) view6.findViewById(R.id.rl_hide_pinpaizixun);
         rl_empty6 = ((RelativeLayout) view6.findViewById(R.id.rl_empty6));
+        tv6 = ((ShimmerTextView)view6.findViewById(R.id.shimmer_tv));
+        source6 = "<i>联巢空间 </i>";
+        tv6.setText(Html.fromHtml(source6));
         reload6 = ((Button) view6.findViewById(R.id.reload6));
         error_caterogy6 = ((RelativeLayout) view6.findViewById(R.id.error_caterogy6));
         ptr_arrlist_pinpaizixun = ((PullToRefreshListView) view6.findViewById(R.id.ptr_arrlist_pinpaizixun));
@@ -775,6 +841,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view7.findViewById(R.id.pb_progressBar);
         rl_hide_hangyebiaozhun = (RelativeLayout) view7.findViewById(R.id.rl_hide_hangyebiaozhun);
         rl_empty7 = ((RelativeLayout) view7.findViewById(R.id.rl_empty7));
+        tv7 = ((ShimmerTextView)view7.findViewById(R.id.shimmer_tv));
+        source7 = "<i>联巢空间 </i>";
+        tv7.setText(Html.fromHtml(source7));
         reload7 = ((Button) view7.findViewById(R.id.reload7));
         error_caterogy7 = ((RelativeLayout) view7.findViewById(R.id.error_caterogy7));
         ptr_arrlist_hangyebiaozhun = ((PullToRefreshListView) view7.findViewById(R.id.ptr_arrlist_hangyebiaozhun));
@@ -786,6 +855,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view8.findViewById(R.id.pb_progressBar);
         rl_hide_hangyejishu = (RelativeLayout) view8.findViewById(R.id.rl_hide_hangyejishu);
         rl_empty8 = ((RelativeLayout) view8.findViewById(R.id.rl_empty8));
+        tv8 = ((ShimmerTextView)view8.findViewById(R.id.shimmer_tv));
+        source8 = "<i>联巢空间 </i>";
+        tv8.setText(Html.fromHtml(source8));
         reload8 = ((Button) view8.findViewById(R.id.reload8));
         error_caterogy8 = ((RelativeLayout) view8.findViewById(R.id.error_caterogy8));
         ptr_arrlist_hangyejishu = ((PullToRefreshListView) view8.findViewById(R.id.ptr_arrlist_hangyejishu));
@@ -797,6 +869,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view9.findViewById(R.id.pb_progressBar);
         rl_hide_wulianwang = (RelativeLayout) view9.findViewById(R.id.rl_hide_wulianwang);
         rl_empty9 = ((RelativeLayout) view9.findViewById(R.id.rl_empty9));
+        tv9 = ((ShimmerTextView)view9.findViewById(R.id.shimmer_tv));
+        source9 = "<i>联巢空间 </i>";
+        tv9.setText(Html.fromHtml(source9));
         reload9 = ((Button) view9.findViewById(R.id.reload9));
         error_caterogy9 = ((RelativeLayout) view9.findViewById(R.id.error_caterogy9));
         ptr_arrlist_wulianwang = ((PullToRefreshListView) view9.findViewById(R.id.ptr_arrlist_wulianwang));
@@ -808,6 +883,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view10.findViewById(R.id.pb_progressBar);
         rl_hide_zhihuichengshi = (RelativeLayout) view10.findViewById(R.id.rl_hide_zhihuichengshi);
         rl_empty10 = ((RelativeLayout) view10.findViewById(R.id.rl_empty10));
+        tv10 = ((ShimmerTextView)view10.findViewById(R.id.shimmer_tv));
+        source10 = "<i>联巢空间 </i>";
+        tv10.setText(Html.fromHtml(source10));
         reload10 = ((Button) view10.findViewById(R.id.reload10));
         error_caterogy10 = ((RelativeLayout) view10.findViewById(R.id.error_caterogy10));
         ptr_arrlist_zhihuichengshi = ((PullToRefreshListView) view10.findViewById(R.id.ptr_arrlist_zhihuichengshi));
@@ -819,6 +897,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view11.findViewById(R.id.pb_progressBar);
         rl_hide_zhihuishequ = (RelativeLayout) view11.findViewById(R.id.rl_hide_zhihuishequ);
         rl_empty11 = ((RelativeLayout) view11.findViewById(R.id.rl_empty11));
+        tv11 = ((ShimmerTextView)view11.findViewById(R.id.shimmer_tv));
+        source11 = "<i>联巢空间 </i>";
+        tv11.setText(Html.fromHtml(source11));
         reload11 = ((Button) view11.findViewById(R.id.reload11));
         error_caterogy11 = ((RelativeLayout) view11.findViewById(R.id.error_caterogy11));
         ptr_arrlist_zhihuishequ = ((PullToRefreshListView) view11.findViewById(R.id.ptr_arrlist_zhihuishequ));
@@ -830,6 +911,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view12.findViewById(R.id.pb_progressBar);
         rl_hide_wurenji = (RelativeLayout) view12.findViewById(R.id.rl_hide_wurenji);
         rl_empty12 = ((RelativeLayout) view12.findViewById(R.id.rl_empty12));
+        tv12 = ((ShimmerTextView)view12.findViewById(R.id.shimmer_tv));
+        source12 = "<i>联巢空间 </i>";
+        tv12.setText(Html.fromHtml(source12));
         reload12 = ((Button) view12.findViewById(R.id.reload12));
         error_caterogy12 = ((RelativeLayout) view12.findViewById(R.id.error_caterogy12));
         ptr_arrlist_wurenji = ((PullToRefreshListView) view12.findViewById(R.id.ptr_arrlist_wurenji));
@@ -841,6 +925,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view13.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengyanglao = (RelativeLayout) view13.findViewById(R.id.rl_hide_zhinengyanglao);
         rl_empty13 = ((RelativeLayout) view13.findViewById(R.id.rl_empty13));
+        tv13 = ((ShimmerTextView)view13.findViewById(R.id.shimmer_tv));
+        source13 = "<i>联巢空间 </i>";
+        tv13.setText(Html.fromHtml(source13));
         reload13 = ((Button) view13.findViewById(R.id.reload13));
         error_caterogy13 = ((RelativeLayout) view13.findViewById(R.id.error_caterogy13));
         ptr_arrlist_zhinengyanglao = ((PullToRefreshListView) view13.findViewById(R.id.ptr_arrlist_zhinengyanglao));
@@ -852,6 +939,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view14.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengjiankang = (RelativeLayout) view14.findViewById(R.id.rl_hide_zhinengjiankang);
         rl_empty14 = ((RelativeLayout) view14.findViewById(R.id.rl_empty14));
+        tv14 = ((ShimmerTextView)view14.findViewById(R.id.shimmer_tv));
+        source14 = "<i>联巢空间 </i>";
+        tv14.setText(Html.fromHtml(source14));
         reload14 = ((Button) view14.findViewById(R.id.reload14));
         error_caterogy14 = ((RelativeLayout) view14.findViewById(R.id.error_caterogy14));
         ptr_arrlist_zhinengjiankang = ((PullToRefreshListView) view14.findViewById(R.id.ptr_arrlist_zhinengjiankang));
@@ -863,6 +953,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view15.findViewById(R.id.pb_progressBar);
         rl_hide_zhinengyiliao = (RelativeLayout) view15.findViewById(R.id.rl_hide_zhinengyiliao);
         rl_empty15 = ((RelativeLayout) view15.findViewById(R.id.rl_empty15));
+        tv15 = ((ShimmerTextView)view15.findViewById(R.id.shimmer_tv));
+        source15 = "<i>联巢空间 </i>";
+        tv15.setText(Html.fromHtml(source15));
         reload15 = ((Button) view15.findViewById(R.id.reload15));
         error_caterogy15 = ((RelativeLayout) view15.findViewById(R.id.error_caterogy15));
         ptr_arrlist_zhinengyiliao = ((PullToRefreshListView) view15.findViewById(R.id.ptr_arrlist_zhinengyiliao));
@@ -874,6 +967,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view16.findViewById(R.id.pb_progressBar);
         rl_hide_jiqiren = (RelativeLayout) view16.findViewById(R.id.rl_hide_jiqiren);
         rl_empty16 = ((RelativeLayout) view16.findViewById(R.id.rl_empty16));
+        tv16 = ((ShimmerTextView)view16.findViewById(R.id.shimmer_tv));
+        source16 = "<i>联巢空间 </i>";
+        tv16.setText(Html.fromHtml(source16));
         reload16 = ((Button) view16.findViewById(R.id.reload16));
         error_caterogy16 = ((RelativeLayout) view16.findViewById(R.id.error_caterogy16));
         ptr_arrlist_jiqiren = ((PullToRefreshListView) view16.findViewById(R.id.ptr_arrlist_jiqiren));
@@ -885,6 +981,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view17.findViewById(R.id.pb_progressBar);
         rl_hide_vrar = (RelativeLayout) view17.findViewById(R.id.rl_hide_vrar);
         rl_empty17 = ((RelativeLayout) view17.findViewById(R.id.rl_empty17));
+        tv17 = ((ShimmerTextView)view17.findViewById(R.id.shimmer_tv));
+        source17 = "<i>联巢空间 </i>";
+        tv17.setText(Html.fromHtml(source17));
         reload17 = ((Button) view17.findViewById(R.id.reload17));
         error_caterogy17 = ((RelativeLayout) view17.findViewById(R.id.error_caterogy17));
         ptr_arrlist_vrar = ((PullToRefreshListView) view17.findViewById(R.id.ptr_arrlist_vrar));
@@ -896,6 +995,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view18.findViewById(R.id.pb_progressBar);
         rl_hide_zhanhuixinxi = (RelativeLayout) view18.findViewById(R.id.rl_hide_zhanhuixinxi);
         rl_empty18 = ((RelativeLayout) view18.findViewById(R.id.rl_empty18));
+        tv18 = ((ShimmerTextView)view18.findViewById(R.id.shimmer_tv));
+        source18 = "<i>联巢空间 </i>";
+        tv18.setText(Html.fromHtml(source18));
         reload18 = ((Button) view18.findViewById(R.id.reload18));
         error_caterogy18 = ((RelativeLayout) view18.findViewById(R.id.error_caterogy18));
         ptr_arrlist_zhanhuixinxi = ((PullToRefreshListView) view18.findViewById(R.id.ptr_arrlist_zhanhuixinxi));
@@ -907,6 +1009,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view19.findViewById(R.id.pb_progressBar);
         rl_hide_peixunxinxi = (RelativeLayout) view19.findViewById(R.id.rl_hide_peixunxinxi);
         rl_empty19 = ((RelativeLayout) view19.findViewById(R.id.rl_empty19));
+        tv19 = ((ShimmerTextView)view19.findViewById(R.id.shimmer_tv));
+        source19 = "<i>联巢空间 </i>";
+        tv19.setText(Html.fromHtml(source19));
         reload19 = ((Button) view19.findViewById(R.id.reload19));
         error_caterogy19 = ((RelativeLayout) view19.findViewById(R.id.error_caterogy19));
         ptr_arrlist_peixunxinxi = ((PullToRefreshListView) view19.findViewById(R.id.ptr_arrlist_peixunxinxi));
@@ -918,10 +1023,14 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view20.findViewById(R.id.pb_progressBar);
         rl_hide_zhichaofangan = (RelativeLayout) view20.findViewById(R.id.rl_hide_zhichaofangan);
         rl_empty20 = ((RelativeLayout) view20.findViewById(R.id.rl_empty20));
+        tv20 = ((ShimmerTextView)view20.findViewById(R.id.shimmer_tv));
+        source20 = "<i>联巢空间 </i>";
+        tv20.setText(Html.fromHtml(source20));
         reload20 = ((Button) view20.findViewById(R.id.reload20));
         error_caterogy20 = ((RelativeLayout) view20.findViewById(R.id.error_caterogy20));
         ptr_arrlist_zhichaofangan = ((PullToRefreshListView) view20.findViewById(R.id.ptr_arrlist_zhichaofangan));
         lv_zhichaofangan = ptr_arrlist_zhichaofangan.getRefreshableView();
+
         adapter20 = new MyAdapter(arrList20);
         lv_zhichaofangan.setAdapter(adapter20);
         lv_zhichaofangan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -942,6 +1051,9 @@ public class HomeFragment extends Fragment {
         pb_progressBar = (CircularProgress) view21.findViewById(R.id.pb_progressBar);
         rl_hide_zhichaoanli = (RelativeLayout) view21.findViewById(R.id.rl_hide_zhichaoanli);
         rl_empty21 = ((RelativeLayout) view21.findViewById(R.id.rl_empty21));
+        tv21 = ((ShimmerTextView)view21.findViewById(R.id.shimmer_tv));
+        source21 = "<i>联巢空间 </i>";
+        tv21.setText(Html.fromHtml(source21));
         reload21 = ((Button) view21.findViewById(R.id.reload21));
         error_caterogy21 = ((RelativeLayout) view21.findViewById(R.id.error_caterogy21));
         ptr_arrlist_zhichaoanli = ((PullToRefreshListView) view21.findViewById(R.id.ptr_arrlist_zhichaoanli));
@@ -1021,16 +1133,19 @@ public class HomeFragment extends Fragment {
             myRadioGroup.addView(radio);
         }
 
-
         myRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
                 //Map<String, Object> map = (Map<String, Object>) group.getChildAt(checkedId).getTag();
                 int radioButtonId = group.getCheckedRadioButtonId();
                 //根据ID获取RadioButton的实例
                  rb = (RadioButton) view.findViewById(radioButtonId);
                 Map<String, Object> selectMap = (Map<String, Object>) rb.getTag();
+                rb.measure(0,0);
+                mCurrentCheckedRadioLeft = rb.getLeft();
+               // Toast.makeText(getActivity(), checkedId+"=="+group.getCheckedRadioButtonId()+"==="+((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin)), Toast.LENGTH_SHORT).show();
 
                 AnimationSet animationSet = new AnimationSet(true);
                 TranslateAnimation translateAnimation;
@@ -1039,7 +1154,6 @@ public class HomeFragment extends Fragment {
                 animationSet.setFillBefore(true);
                 animationSet.setFillAfter(true);
                 animationSet.setDuration(300);
-
                 mImageView.startAnimation(animationSet);//开始上面白色横条图片的动画切换
                 vp_news.setCurrentItem(radioButtonId - _id, false);//让下方ViewPager跟随上面的HorizontalScrollView切换
                 mCurrentCheckedRadioLeft = rb.getLeft();//更新当前白色横条距离左边的距离
@@ -1047,7 +1161,21 @@ public class HomeFragment extends Fragment {
 
                 //System.out.println("dis1:"+mCurrentCheckedRadioLeft);
                 //System.out.println("dis2:"+( (int)mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.rdo2)));
-                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+//                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+
+                            }
+                        });
+                    }
+                },300);
+
                 mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
                 switch (checkedId){
                     case 1000:
@@ -1928,6 +2056,7 @@ public class HomeFragment extends Fragment {
 //                setCurrentTab(position);
                 RadioButton radioButton = (RadioButton) view.findViewById(_id + position);
                 radioButton.performClick();
+              //  radioButton.setChecked(true);
 
             }
 
@@ -1953,6 +2082,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_jiqiren.setVisibility(View.GONE);
             rl_hide_jiqiren.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv16);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2025,6 +2156,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_zhinengyiliao.setVisibility(View.GONE);
             rl_hide_zhinengyiliao.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv15);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2097,6 +2230,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_vrar.setVisibility(View.GONE);
             rl_hide_vrar.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv17);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2168,6 +2303,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_zhanhuixinxi.setVisibility(View.GONE);
             rl_hide_zhanhuixinxi.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv18);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2239,6 +2376,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_peixunxinxi.setVisibility(View.GONE);
             rl_hide_peixunxinxi.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv19);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2310,6 +2449,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_zhichaofangan.setVisibility(View.GONE);
             rl_hide_zhichaofangan.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv20);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2382,6 +2523,8 @@ public class HomeFragment extends Fragment {
 
             ptr_arrlist_zhichaoanli.setVisibility(View.GONE);
             rl_hide_zhichaoanli.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv21);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2452,6 +2595,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_zhinengjiankang.setVisibility(View.GONE);
             rl_hide_zhinengjiankang.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv14);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2521,6 +2666,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_wurenji.setVisibility(View.GONE);
             rl_hide_wurenji.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv12);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2591,6 +2738,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_zhinengyanglao.setVisibility(View.GONE);
             rl_hide_zhinengyanglao.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv13);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2659,6 +2808,9 @@ public class HomeFragment extends Fragment {
 
         if (page == 1 && pullFlag == false) {
             rl_hide_zhihuishequ.setVisibility(View.VISIBLE);
+            ptr_arrlist_zhihuishequ.setVisibility(View.GONE);
+            shimmer = new Shimmer();
+            shimmer.start(tv11);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2729,6 +2881,9 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_zhihuichengshi.setVisibility(View.GONE);
             rl_hide_zhihuichengshi.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv10);
+
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2799,6 +2954,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_wulianwang.setVisibility(View.GONE);
             rl_hide_wulianwang.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv9);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2870,6 +3027,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_hangyejishu.setVisibility(View.GONE);
             rl_hide_hangyejishu.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv8);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -2940,6 +3099,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_hangyebiaozhun.setVisibility(View.GONE);
             rl_hide_hangyebiaozhun.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv7);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -3010,6 +3171,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_pinpaizixun.setVisibility(View.GONE);
             rl_hide_pinpaizixun.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv6);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -3081,6 +3244,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_video.setVisibility(View.GONE);
             rl_hide_video.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv5);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -3160,6 +3325,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_canpinpince.setVisibility(View.GONE);
             rl_hide_canpinpince.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv4);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -3235,6 +3402,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             rl_hide_tuijian.setVisibility(View.VISIBLE);
             ptr_arrlist_tuijian.setVisibility(View.GONE);
+            shimmer = new Shimmer();
+            shimmer.start(tv1);
         }
 
         RequestParams params = new RequestParams(Constant.ArticleList);
@@ -3312,6 +3481,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             ptr_arrlist_hangyezixun.setVisibility(View.GONE);
             rl_hide_hangyezixun.setVisibility(View.VISIBLE);
+            shimmer = new Shimmer();
+            shimmer.start(tv2);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
@@ -3390,6 +3561,8 @@ public class HomeFragment extends Fragment {
         if (page == 1 && pullFlag == false) {
             rl_hide_canpinzixun.setVisibility(View.VISIBLE);
             ptr_arrlist_canpinzixun.setVisibility(View.GONE);
+            shimmer = new Shimmer();
+            shimmer.start(tv3);
         }
         RequestParams params = new RequestParams(Constant.ArticleList);
         params.addBodyParameter("key", "linchom");
