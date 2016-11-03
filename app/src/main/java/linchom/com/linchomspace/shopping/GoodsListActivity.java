@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
@@ -307,63 +308,78 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void toGoodsSearch() {
-        catId="";
 
-        keyword =et_goods_search.getText().toString().trim()+"";
+        String str = et_goods_search.getText().toString().trim();
 
-        FragmentTransaction transaction;
+        if(str!=""&&str!=null&&str.length()!=0){
 
-        transaction=getSupportFragmentManager().beginTransaction();
+            catId="";
 
-        transaction.hide(fragmentChange);
+            keyword =et_goods_search.getText().toString().trim()+"";
 
-        if(layoutFlag==true){
+            FragmentTransaction transaction;
 
-            fragmentChange =new GoodsListFragment();
-            Bundle bundle = new Bundle();
+            transaction=getSupportFragmentManager().beginTransaction();
 
-            bundle.putString("catId",catId);
+            transaction.hide(fragmentChange);
 
+            if(layoutFlag==true){
 
-            bundle.putString("order","desc");
-            bundle.putString("sort","");
+                fragmentChange =new GoodsListFragment();
+                Bundle bundle = new Bundle();
 
-            bundle.putString("keyword",keyword);
-
+                bundle.putString("catId",catId);
 
 
+                bundle.putString("order","desc");
+                bundle.putString("sort","");
 
-            fragmentChange.setArguments(bundle);
+                bundle.putString("keyword",keyword);
 
 
-            transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+                fragmentChange.setArguments(bundle);
+
+
+                transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+
+            }else{
+
+
+                fragmentChange =new GoodsListWaterfallFragment();
+
+                Bundle bundle = new Bundle();
+
+                bundle.putString("catId",catId);
+                bundle.putString("order","desc");
+                bundle.putString("sort","");
+
+                bundle.putString("keyword",keyword+"");
+
+
+
+
+                fragmentChange.setArguments(bundle);
+
+                transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
+
+
+
+
+            }
 
 
 
         }else{
 
 
-            fragmentChange =new GoodsListWaterfallFragment();
-
-            Bundle bundle = new Bundle();
-
-            bundle.putString("catId",catId);
-            bundle.putString("order","desc");
-            bundle.putString("sort","");
-
-            bundle.putString("keyword",keyword+"");
-
-
-
-
-            fragmentChange.setArguments(bundle);
-
-            transaction.add(R.id.fl_goodslist_listcate,fragmentChange).show(fragmentChange).commit();
-
-
-
-
+            Toast.makeText(getApplicationContext(),"请输入",Toast.LENGTH_SHORT).show();
         }
+
+
 
     }
 

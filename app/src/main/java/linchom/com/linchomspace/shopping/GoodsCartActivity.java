@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -46,7 +49,7 @@ public class GoodsCartActivity extends AppCompatActivity {
 
 
     private static final String TAG = "GoodsCartActivity";
-    private String userId="12";
+    private String userId;
 
     private ListView cartListView;
     private PullToRefreshListView ptr_cartList_ptr;
@@ -79,11 +82,19 @@ public class GoodsCartActivity extends AppCompatActivity {
     private RelativeLayout rl_goods_cart_load_pro;
     private ImageView titlebar_back;
 
+    private String userName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_cart);
+
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
 
         initView();
@@ -778,6 +789,8 @@ public class GoodsCartActivity extends AppCompatActivity {
     }
 
     private void getData() {
+        rl_goods_cart_load_pro.setVisibility(View.VISIBLE);
+
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -787,7 +800,10 @@ public class GoodsCartActivity extends AppCompatActivity {
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                
+
+                rl_goods_cart_load_pro.setVisibility(View.GONE);
+
+
 
 
                 Gson gson =new Gson();
