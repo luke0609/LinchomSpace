@@ -2,13 +2,16 @@ package linchom.com.linchomspace.shopping.goodsfragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +39,9 @@ import linchom.com.linchomspace.shopping.pojo.GoodsOrderFormBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
+import linchom.com.linchomspace.shopping.widget.NoTouchLinearLayout;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -78,16 +84,16 @@ public class UnEvaluateFragment extends Fragment {
     private RelativeLayout rl_goods_orderform_load_pro;
 
     private boolean pullFlag =false;
-    private RelativeLayout rl_goods_comm_sendmsg;
-    private Button btn_goods_comm_close;
-    private Button btn_goods_comm_send;
-    private EditText et_goods_comm_content;
+
 
     private int chooseOrder =0;
 
     private String userId;
 
     private String userName="徐小龙";
+    private NoTouchLinearLayout edit_vg_lyt;
+    private EditText mCommentEdittext;
+    private Button but_comment_send;
 
 
     @Nullable
@@ -119,13 +125,12 @@ public class UnEvaluateFragment extends Fragment {
 
         rl_goods_orderform_load_pro = ((RelativeLayout) view.findViewById(R.id.rl_goods_orderform_load_pro));
 
-        rl_goods_comm_sendmsg = ((RelativeLayout) view.findViewById(R.id.rl_goods_comm_sendmsg));
+        edit_vg_lyt = ((NoTouchLinearLayout) view.findViewById(R.id.edit_vg_lyt));
 
-        btn_goods_comm_close = ((Button) view.findViewById(R.id.btn_goods_comm_close));
+        mCommentEdittext = ((EditText) view.findViewById(R.id.edit_comment));
 
-        btn_goods_comm_send = ((Button) view.findViewById(R.id.btn_goods_comm_send));
 
-        et_goods_comm_content = ((EditText) view.findViewById(R.id.et_goods_comm_content));
+        but_comment_send = ((Button) view.findViewById(R.id.but_comment_send));
 
 
     }
@@ -139,58 +144,135 @@ public class UnEvaluateFragment extends Fragment {
 
         eventPullToRefresh();
 
-        btn_goods_comm_close.setOnClickListener(new View.OnClickListener() {
+
+        //处理返回键
+        edit_vg_lyt.setOnResizeListener(new NoTouchLinearLayout.OnResizeListener() {
             @Override
-            public void onClick(View v) {
-
-
-                rl_goods_comm_sendmsg.setVisibility(View.GONE);
-
+            public void OnResize() {
+                edit_vg_lyt.setVisibility(View.GONE);//输入框消息
+                onFocusChange(false);//软键盘消息
             }
         });
 
 
-        btn_goods_comm_send.setOnClickListener(new View.OnClickListener() {
+        but_comment_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(et_goods_comm_content.getText().toString()!=null&&et_goods_comm_content.getText().toString()!=""){
+                String editContent =mCommentEdittext.getText().toString();
+                Toast.makeText(getActivity(),"editContent"+editContent.length(),Toast.LENGTH_SHORT).show();
+
+                if(editContent.length()!=0){
+
+                    for(int i= 0; i<orderFormList.get(chooseOrder).order_goods.size();i++){
+
+                        Toast.makeText(getActivity(),"发表成功",Toast.LENGTH_SHORT).show();
 
 
+                        toSend(orderFormList.get(chooseOrder).order_goods.get(i).goods_id,editContent);
 
+                        edit_vg_lyt.setVisibility(View.GONE);
 
-
-
-                    orderFormDetailList.clear();
-
-                    orderFormDetailList.addAll(orderFormList.get(chooseOrder).order_goods) ;
-
-
-                    for(int i =0;i<orderFormDetailList.size();i++){
-
-                        Toast.makeText(getActivity(),"goodsId"+orderFormDetailList.get(i).goods_id,Toast.LENGTH_SHORT).show();
-
-                        toSend(orderFormDetailList.get(i).goods_id,et_goods_comm_content.getText().toString());
+                        onFocusChange(false);
 
 
                     }
 
 
 
-
-
-
                 }else{
 
-
-                    Toast.makeText(getActivity(),"请输入评价内容",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"请输入内容",Toast.LENGTH_SHORT).show();
                 }
+
+
+
+
 
             }
         });
 
-
     }
+
+
+
+    /**
+     * 显示或隐藏输入法
+     */
+    private void onFocusChange(boolean hasFocus) {
+        final boolean isFocus = hasFocus;
+        (new Handler()).postDelayed(new Runnable() {
+            public void run() {
+                InputMethodManager imm = (InputMethodManager)
+                        mCommentEdittext.getContext().getSystemService(INPUT_METHOD_SERVICE);
+                if (isFocus) {
+                    //显示输入法
+                    mCommentEdittext.requestFocus();//获取焦点
+                    imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                } else {
+                    //隐藏输入法
+                    imm.hideSoftInputFromWindow(mCommentEdittext.getWindowToken(), 0);
+                    edit_vg_lyt.setVisibility(View.GONE);
+                }
+            }
+        }, 100);
+    }
+
+    /**
+     * 点击屏幕其他地方收起输入法
+     */
+
+
+
+   /* @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (isShouldHideInput(v, ev)) {
+                onFocusChange(false);
+
+            }
+            return super.dispatchTouchEvent(ev);
+        }
+        // 必不可少，否则所有的组件都不会有TouchEvent了
+        if (getWindow().superDispatchTouchEvent(ev)) {
+            return true;
+        }
+        return onTouchEvent(ev);
+    }*/
+
+    /**
+     * 隐藏或者显示输入框
+     */
+    public boolean isShouldHideInput(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] leftTop = {0, 0};
+            //获取输入框当前的location位置
+            /**
+             *这堆数值是算我的下边输入区域的布局的，
+             * 规避点击输入区域也会隐藏输入区域
+             */
+
+            v.getLocationInWindow(leftTop);
+            int left = leftTop[0] - 50;
+            int top = leftTop[1] - 50;
+            int bottom = top + v.getHeight() + 300;
+            int right = left + v.getWidth() + 120;
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom) {
+                // 点击的是输入框区域，保留点击EditText的事件
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
 
     private void toSend(String goodsId,String content){
 
@@ -337,111 +419,7 @@ public class UnEvaluateFragment extends Fragment {
                 String orderStatus =orderForm.order_status;
                 String shippingStatus =orderForm.shipping_status;
                 String payStatus =orderForm.pay_status;
-                if("0".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
-                    //未确认  待付款  等待买家付款
 
-                    tv_orderform_orderstatus.setText("等待买家付款");
-
-                    //取消订单    付款
-
-                    btn_orderform_left.setText("取消订单");
-
-                    btn_orderform_left.setVisibility(View.VISIBLE);
-
-                    btn_orderform_right.setText("付款");
-
-                    btn_orderform_right.setVisibility(View.VISIBLE);
-
-                    btn_orderform_left.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"1");
-
-                        }
-                    });
-
-                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-
-                            Toast.makeText(getActivity(),"调用支付宝"+"订单号"+orderFormList.get((int)btn_orderform_left.getTag()).order_id,Toast.LENGTH_SHORT).show();
-
-
-                        }
-                    });
-
-
-
-
-                }else if("2".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
-                    //取消    取消订单     买家取消订单
-                    tv_orderform_orderstatus.setText("买家取消订单");
-
-                    // 无   无
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
-
-                }else if("1".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
-                    //确认    确认订单     买家已经确认订单
-                    tv_orderform_orderstatus.setText("买家已经确认订单");
-
-                    //无 无
-
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
-
-                }else if("1".equals(orderStatus)&&"0".equals(shippingStatus)&&"2".equals(payStatus)){
-                    //已付款             买家已经付款  无退款
-                    tv_orderform_orderstatus.setText("买家已经付款");
-
-                    //无  无
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
-
-
-
-
-
-                }else if("1".equals(orderStatus)&&"3".equals(shippingStatus)&&"2".equals(payStatus)){
-                    //配货中    待发货          等待卖家发货  无退款
-                    tv_orderform_orderstatus.setText("等待卖家发货");
-
-                    //无  无
-
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
-
-
-                }else if("5".equals(orderStatus)&&"1".equals(shippingStatus)&&"2".equals(payStatus)){
-
-                    //已发货               等待买家收货
-                    tv_orderform_orderstatus.setText("等待买家收货");
-
-                    //无    确认收货
-
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-
-                    btn_orderform_right.setText("确认收货");
-                    btn_orderform_right.setVisibility(View.VISIBLE);
-
-
-                    btn_orderform_right.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-
-                            toModifyOrder(orderFormList.get((int)btn_orderform_left.getTag()).order_id,"2");
-
-
-
-                        }
-                    });
-
-                }else if("5".equals(orderStatus)&&"2".equals(shippingStatus)&&"2".equals(payStatus)){
                     //已收货              等待买家评价
                     tv_orderform_orderstatus.setText("等待买家评价");
 
@@ -474,13 +452,15 @@ public class UnEvaluateFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            Toast.makeText(getActivity(),"评价",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),"评价",Toast.LENGTH_SHORT).show();
 
-                            rl_goods_comm_sendmsg.setVisibility(View.VISIBLE);
+                            edit_vg_lyt.setVisibility(View.VISIBLE);
 
                             //先选择订单
 
                             chooseOrder =  (int)btn_orderform_right.getTag();
+
+                            onFocusChange(true);
 
 
 
@@ -494,24 +474,7 @@ public class UnEvaluateFragment extends Fragment {
 
 
 
-                }else if("4".equals(orderStatus)&&"0".equals(shippingStatus)&&"0".equals(payStatus)){
-                    //退货                退货处理
-                    tv_orderform_orderstatus.setText("退货处理");
 
-                    //  无   无
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
-
-
-                }else{
-                    //订单信息
-                    tv_orderform_orderstatus.setText("订单信息");
-
-                    //  无    无
-
-                    btn_orderform_left.setVisibility(View.INVISIBLE);
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
-                }
 
                 GoodsCommonAdapter<GoodsOrderFormBean.OrderInfo> orderInfoGoodsCommonAdapter =new GoodsCommonAdapter<GoodsOrderFormBean.OrderInfo>(getActivity(),orderForm.order_goods,R.layout.goods_order_list_item) {
                     @Override
