@@ -1,188 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fff"
-    tools:context="linchom.com.linchomspace.login.LoginActivity">
+    android:layout_height="match_parent">
 
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/logo1"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"/>
-    <LinearLayout
-        android:id="@+id/userName"
-        android:layout_below="@+id/logo"
+    <FrameLayout
+        android:id="@+id/de_frm_backgroud"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/login_edit_shape"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
+
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/user"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"/>
-
-        <EditText
-            android:id="@+id/et_userName"
+            android:id="@+id/de_img_backgroud"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#30797979"
-            android:layout_weight="9"
-            android:hint="请输入用户名"/>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-50dp"
+            android:layout_marginRight="-300dp"
+            android:scaleType="center"
+            android:src="@drawable/bk_login_b" />
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/userPsd"
-        android:layout_below="@+id/userName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/login_edit_shape"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/lock"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"/>
-        <EditText
-            android:id="@+id/et_userPsd"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#30797979"
+    </FrameLayout>
 
-            android:layout_weight="9"
-            android:hint="请输入密码"/>
-    </LinearLayout>
-
-
-    <Button
-        android:layout_marginTop="50dp"
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/userPsd"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        android:background="#212121"
-        android:layout_gravity="center_horizontal"
-        android:text=" 登    录 "/>
-    <RelativeLayout
-        android:id="@+id/fuwu"
-        android:layout_below="@id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        >
-        <View
-            android:id="@+id/struct"
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:background="#808080"
-            android:layout_centerInParent="true"/>
-        <TextView
-            android:id="@+id/fastregister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/struct"
-            android:layout_marginRight="30dp"
-            android:textColor="#808080"
-            android:layout_centerVertical="true"
-            android:text="快速注册"/>
-
-        <TextView
-            android:id="@+id/findpsd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/struct"
-            android:layout_marginLeft="30dp"
-            android:textColor="#808080"
-            android:layout_centerVertical="true"
-            android:text="找回密码"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/sanfang"
-        android:layout_above="@+id/image_sanfang"
-        android:layout_marginBottom="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#808080"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/tv_sanfang"
-            />
-        <TextView
-            android:id="@+id/tv_sanfang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="使用合作账号登陆"
-            android:layout_centerHorizontal="true"
-            android:textSize="15sp"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#808080"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/tv_sanfang"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/image_sanfang"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        >
-        <View
-            android:id="@+id/struct3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true"
-            />
-        <ImageView
-            android:id="@+id/iv_qq"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/qq"
-            android:layout_toLeftOf="@+id/struct3"/>
-        <ImageView
-            android:id="@+id/iv_weibo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/weibo"
-            android:layout_toRightOf="@+id/struct3"/>
-    </RelativeLayout>
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
+    <TextView
+        android:id="@+id/de_login_register"
+        android:textSize="14sp"
+        android:textColor="#999999"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_login"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:visibility="gone"
-        android:id="@+id/progressBar" />
-</RelativeLayout>
+        android:layout_marginBottom="21dp"
+        android:text="注册" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/de_login_logo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="91dip"
+            android:src="@drawable/loginlogo" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="62dip"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/liner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:orientation="horizontal">
+
+
+                <linchom.com.linchomspace.login.widget.ClearWriteEditText
+                    android:id="@+id/app_username_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rc_ed_public_service_search_selector"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="用户名"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF" />
+
+                <FrameLayout
+                    android:id="@+id/fr_username_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/app_username_et"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone">
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/liner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:layout_marginTop="37dip"
+                android:orientation="horizontal">
+
+
+                <linchom.com.linchomspace.login.widget.ClearWriteEditText
+                    android:id="@+id/app_password_et"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rc_ed_public_service_search_selector"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:hint="密码"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF" />
+
+                <FrameLayout
+                    android:id="@+id/fr_pass_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/app_password_et"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone">
+
+                </FrameLayout>
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/app_sign_in_bt"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:layout_marginTop="34dip"
+                android:background="@drawable/rp_login_selector"
+                android:text="登录"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/de_login_forgot"
+                android:textSize="14sp"
+                android:textColor="#999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="11dp"
+                android:text="忘记密码?" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
