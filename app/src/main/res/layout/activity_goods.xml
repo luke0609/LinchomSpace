@@ -818,16 +818,16 @@
 
     <RelativeLayout
         android:layout_alignParentBottom="true"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         >
 
         <ImageView
             android:id="@+id/iv_goods_cart_rmb"
-            android:src="@drawable/goods_cart_rmb"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:src="@drawable/goods_join_cart_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
             />
 
