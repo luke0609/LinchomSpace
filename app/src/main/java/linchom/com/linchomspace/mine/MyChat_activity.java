@@ -119,8 +119,8 @@ public class MyChat_activity extends AppCompatActivity {
                 TextView user_name = viewHolder.getViewById(R.id.user_name);
                 user_name.setText(imtems.user_name);
                 TextView add_time = viewHolder.getViewById(R.id.add_time);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                Date date = new Date(Long.parseLong(imtems.add_time));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date = new Date(Long.parseLong((imtems.add_time))*1000);
                 add_time.setText(sdf.format(date));
             }
         };

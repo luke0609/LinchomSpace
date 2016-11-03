@@ -162,11 +162,11 @@ public class news_fragment extends Fragment {
                 TextView title = viewHolder.getViewById(R.id.tv_title1);
 //                    System.out.println("77777777" + aItems.title);
                 title.setText(aItems.title);
-                TextView tv_come = viewHolder.getViewById(R.id.tv_come);
-                tv_come.setText(aItems.article_source);
+//                TextView tv_come = viewHolder.getViewById(R.id.tv_come);
+//                tv_come.setText(aItems.article_source);
                 TextView tv_title = viewHolder.getViewById(R.id.tv_time);
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                Date date=new Date(Long.parseLong(aItems.add_time));
+                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date=new Date(Long.parseLong((aItems.add_time))*1000);
                 tv_title.setText(simpleDateFormat.format(date));
 
             }
@@ -178,7 +178,7 @@ public class news_fragment extends Fragment {
     private void showDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("确定删除吗？");
+        builder.setMessage("确定取消收藏吗？");
         builder.setTitle("提示");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override

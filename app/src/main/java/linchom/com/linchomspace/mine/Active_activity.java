@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -31,12 +32,14 @@ public class Active_activity extends AppCompatActivity {
     private ListView lv_activity;
     List<ActivityInfoBean.DataBean> dataBeanList=new ArrayList<>();
     List<ActivityInfoBean.DataBean> imgList=new ArrayList<>();
+    private ProgressBar firstBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_activity);
 
+        firstBar = ((ProgressBar)findViewById(R.id.firstBar));
         lv_activity = ((ListView) findViewById(R.id.lv_activity));
 
         lv_activity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,6 +70,7 @@ public class Active_activity extends AppCompatActivity {
     }
 
     private void initData() {
+        firstBar.setVisibility(View.VISIBLE);
         RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=ads");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
@@ -82,13 +86,13 @@ public class Active_activity extends AppCompatActivity {
                         imgList.add(dataBeanList.get(i));
                     }
                 }
-
+                firstBar.setVisibility(View.GONE);
                 initEvent();
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                System.out.println("76667676767676776677"+ex);
+//                System.out.println("76667676767676776677"+ex);
             }
 
             @Override
