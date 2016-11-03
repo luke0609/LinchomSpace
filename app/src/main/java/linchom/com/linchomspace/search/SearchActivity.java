@@ -1,6 +1,7 @@
 package linchom.com.linchomspace.search;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.homepage.Activity.SearchArticleActivity;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,12 +47,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
          search_type = bundle.getString("search_type");
         Log.i("aaa",search_type);
-
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));
         rl_msg.setVisibility(View.VISIBLE);
 

@@ -584,7 +584,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
 
-    private void cancelCollect() {
+    private void cancelCollect(){
         RequestParams params = new RequestParams(Constant.ArticleCancelCollect);
         //params.addBodyParameter("key", "linchom");
         //params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -694,7 +694,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 
     }
 
-    private void showCommentPopupWindow( View view) {
+    private void showCommentPopupWindow(View view) {
         rlBackgroundGray.setVisibility(View.VISIBLE);
         final View contentView = LayoutInflater.from(ArticleActivity.this).inflate(
                 R.layout.article_comment_popupwindow, null);
