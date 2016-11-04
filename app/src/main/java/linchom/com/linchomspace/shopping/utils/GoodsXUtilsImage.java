@@ -14,6 +14,17 @@ import linchom.com.linchomspace.R;
 public class GoodsXUtilsImage {
 
 
+    public static void displayone(ImageView imageView, String iconUrl) {
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
+                .setImageScaleType(ImageView.ScaleType.FIT_CENTER)
+                .setFailureDrawableId(R.drawable.defult_pic)
+                .setLoadingDrawableId(R.drawable.defult_pic)
+                .build();
+        x.image().bind(imageView, iconUrl,imageOptions);
+    }
+
+
 
 
     public static void display(ImageView imageView, String iconUrl) {
