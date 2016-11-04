@@ -769,6 +769,37 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
 
 
+
+                    if(et_goods_cate_search.getText().toString()!=""
+                            &&et_goods_cate_search.getText().toString()!=null
+                            &&et_goods_cate_search.getText().toString().length()!=0
+                            ) {
+
+                        toInsertSqlite(et_goods_cate_search.getText().toString().trim());
+
+
+                        Intent intent = new Intent(getActivity(), GoodsListActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("keyword", et_goods_cate_search.getText().toString().trim() + "");
+
+                        bundle.putString("cateId", "");
+
+                        intent.putExtra("bundle", bundle);
+
+                        // popupWindow.dismiss();
+
+                        toSqlite();
+
+                        goodsCommonAdapter.notifyDataSetChanged();
+
+                        startActivity(intent);
+
+                    }
+
+
+
+
                 }
 
 
