@@ -1358,14 +1358,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     startActivity(intent);
 
 
-
-
-
-
-
-
-
-
         }
 
 
