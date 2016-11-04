@@ -369,15 +369,7 @@ public class HomeFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle!=null){
         PdId = bundle.getString("PdId");
-       // Toast.makeText(getActivity(), PdId, Toast.LENGTH_SHORT).show();
-//        for (int i = 0; i <= 20; i++) {
-//            if (PdId.equals("i")) {
-//                vp_news.setCurrentItem(i);
-//            }
-//        }
-//            if(PdId.equals("4")){
-//                vp_news.setCurrentItem(4);
-//            }
+
             switch (PdId){
                 case "0":
                     vp_news.setCurrentItem(0);
@@ -587,13 +579,13 @@ public class HomeFragment extends Fragment {
             }
         });
         ib_xiala = ((ImageButton) view.findViewById(R.id.ib_xiala));
-        ib_xiala.setOnClickListener(new View.OnClickListener() {
+        ib_xiala.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+
             }
         });
         titleLayout = (LinearLayout) view.findViewById(R.id.title_lay);
@@ -1071,10 +1063,10 @@ public class HomeFragment extends Fragment {
         ptr_arrlist_tuijian.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+//                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 //异步任务拿数据
 
                 PullToRefreshBase.Mode mode = ptr_arrlist_tuijian.getCurrentMode();
@@ -1136,32 +1128,7 @@ public class HomeFragment extends Fragment {
         myRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                //Map<String, Object> map = (Map<String, Object>) group.getChildAt(checkedId).getTag();
-                int radioButtonId = group.getCheckedRadioButtonId();
-                //根据ID获取RadioButton的实例
-                 rb = (RadioButton) view.findViewById(radioButtonId);
-                Map<String, Object> selectMap = (Map<String, Object>) rb.getTag();
-                rb.measure(0,0);
-                mCurrentCheckedRadioLeft = rb.getLeft();
-               // Toast.makeText(getActivity(), checkedId+"=="+group.getCheckedRadioButtonId()+"==="+((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin)), Toast.LENGTH_SHORT).show();
-
-                AnimationSet animationSet = new AnimationSet(true);
-                TranslateAnimation translateAnimation;
-                translateAnimation = new TranslateAnimation(mCurrentCheckedRadioLeft, rb.getLeft(), 0f, 0f);
-                animationSet.addAnimation(translateAnimation);
-                animationSet.setFillBefore(true);
-                animationSet.setFillAfter(true);
-                animationSet.setDuration(300);
-                mImageView.startAnimation(animationSet);//开始上面白色横条图片的动画切换
-                vp_news.setCurrentItem(radioButtonId - _id, false);//让下方ViewPager跟随上面的HorizontalScrollView切换
-                mCurrentCheckedRadioLeft = rb.getLeft();//更新当前白色横条距离左边的距离
-
-
-                //System.out.println("dis1:"+mCurrentCheckedRadioLeft);
-                //System.out.println("dis2:"+( (int)mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.rdo2)));
-//                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+            public void onCheckedChanged(final RadioGroup group,final int checkedId) {
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1169,877 +1136,912 @@ public class HomeFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+                                //Map<String, Object> map = (Map<String, Object>) group.getChildAt(checkedId).getTag();
+                                int radioButtonId = group.getCheckedRadioButtonId();
+                                //根据ID获取RadioButton的实例
+                                rb = (RadioButton) view.findViewById(radioButtonId);
+                                Map<String, Object> selectMap = (Map<String, Object>) rb.getTag();
+                                rb.measure(0,0);
+                                mCurrentCheckedRadioLeft = rb.getLeft();
+                                //Toast.makeText(getActivity(), checkedId+"=="+group.getCheckedRadioButtonId()+"==="+((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin)), Toast.LENGTH_SHORT).show();
 
+                                AnimationSet animationSet = new AnimationSet(true);
+                                TranslateAnimation translateAnimation;
+                                translateAnimation = new TranslateAnimation(mCurrentCheckedRadioLeft, rb.getLeft(), 0f, 0f);
+                                animationSet.addAnimation(translateAnimation);
+                                animationSet.setFillBefore(true);
+                                animationSet.setFillAfter(true);
+                                animationSet.setDuration(300);
+                                mImageView.startAnimation(animationSet);//开始上面白色横条图片的动画切换
+                                vp_news.setCurrentItem(radioButtonId - _id, false);//让下方ViewPager跟随上面的HorizontalScrollView切换
+                                mCurrentCheckedRadioLeft = rb.getLeft();//更新当前白色横条距离左边的距离
+
+
+                                //System.out.println("dis1:"+mCurrentCheckedRadioLeft);
+                                //System.out.println("dis2:"+( (int)mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.rdo2)));
+                                //hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
+
+                                            }
+                                        });
+                                    }
+                                },10);
+
+                                mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
+                                switch (checkedId){
+                                    case 1000:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_tuijian.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                                               // String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+                                                    //    android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+
+                                               // refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_tuijian.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    gettuijian();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    gettuijian();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_tuijian.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                                        lv_tuijian.setAdapter(adapter1);
+
+                                        Log.i("aaaaa", "数据拿到");
+                                        gettuijian();
+                                        break;
+                                    case 1001:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_hangyezixun.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_hangyezixun.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_hangyezixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyezixun.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    gethangyezixun();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    gethangyezixun();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_hangyezixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                        lv_hangyezixun.setAdapter(adapter2);
+
+                                        Log.i("aaaaa", "数据拿到");
+
+                                        gethangyezixun();
+                                        break;
+                                    case 1002:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_canpinzixun.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_canpinzixun.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_canpinzixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_canpinzixun.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getcanpinzixun();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getcanpinzixun();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_canpinzixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                        lv_canpinzixun.setAdapter(adapter3);
+
+                                        Log.i("aaaaa", "数据拿到");
+
+                                        getcanpinzixun();
+                                        break;
+                                    case 1003:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_canpinpince.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_canpinpince.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_canpinpince.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_canpinpince.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getcanpinpince();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getcanpinpince();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_canpinpince.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                                        lv_canpinpince.setAdapter(adapter4);
+                                        getcanpinpince();
+                                        break;
+                                    case 1004:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_video.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_video.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_video.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_video.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getvideo();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getvideo();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_video.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                        lv_video.setAdapter(adapter5);
+                                        getvideo();
+                                        break;
+                                    case 1005:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_pinpaizixun.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_pinpaizixun.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_pinpaizixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_pinpaizixun.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getpinpaizixun();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getpinpaizixun();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_pinpaizixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                        lv_pinpaizixun.setAdapter(adapter6);
+                                        getpinpaizixun();
+                                        break;
+                                    case 1006:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_hangyebiaozhun.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_hangyebiaozhun.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_hangyebiaozhun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyebiaozhun.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    gethangyebiaozhun();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    gethangyebiaozhun();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_hangyebiaozhun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_hangyebiaozhun.setAdapter(adapter7);
+                                        gethangyebiaozhun();
+                                        break;
+                                    case 1007:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_hangyejishu.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_hangyejishu.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_hangyejishu.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyejishu.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    gethangyejishu();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    gethangyejishu();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_hangyejishu.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_hangyejishu.setAdapter(adapter8);
+                                        gethangyejishu();
+                                        break;
+                                    case 1008:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_wulianwang.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_wulianwang.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_wulianwang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_wulianwang.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getwulianwang();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getwulianwang();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_wulianwang.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_wulianwang.setAdapter(adapter9);
+                                        getwulianwang();
+                                        break;
+                                    case 1009:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhihuichengshi.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhihuichengshi.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhihuichengshi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhihuichengshi.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhihuichengshi();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhihuichengshi();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhihuichengshi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhihuichengshi.setAdapter(adapter10);
+                                        getzhihuichengshi();
+                                        break;
+                                    case 1010:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhihuishequ.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhihuishequ.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhihuishequ.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhihuishequ.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhihuishequ();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhihuishequ();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhihuishequ.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhihuishequ.setAdapter(adapter11);
+                                        getzhihuishequ();
+                                        break;
+                                    case 1011:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_wurenji.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_wurenji.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_wurenji.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_wurenji.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getwurenji();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getwurenji();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_wurenji.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_wurenji.setAdapter(adapter12);
+                                        getwurenji();
+                                        break;
+                                    case 1012:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhinengyanglao.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhinengyanglao.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhinengyanglao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengyanglao.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhinengyanglao();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhinengyanglao();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhinengyanglao.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhinengyanglao.setAdapter(adapter13);
+                                        getzhinengyanglao();
+                                        break;
+                                    case 1013:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhinengjiankang.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhinengjiankang.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhinengjiankang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengjiankang.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhinengjiankang();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhinengjiankang();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhinengjiankang.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhinengjiankang.setAdapter(adapter14);
+                                        getzhinengjiankang();
+                                        break;
+                                    case 1014:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhinengyiliao.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhinengyiliao.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhinengyiliao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengyiliao.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhinengyiliao();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhinengyiliao();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhinengyiliao.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhinengyiliao.setAdapter(adapter15);
+                                        getzhinengyiliao();
+                                        break;
+                                    case 1015:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_jiqiren.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_jiqiren.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_jiqiren.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_jiqiren.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getjiqiren();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getjiqiren();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_jiqiren.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_jiqiren.setAdapter(adapter16);
+                                        getjiqiren();
+                                        break;
+                                    case 1016:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_vrar.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_vrar.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_vrar.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_vrar.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getvrar();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getvrar();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_vrar.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_vrar.setAdapter(adapter17);
+                                        getvrar();
+                                        break;
+                                    case 1017:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhanhuixinxi.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhanhuixinxi.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhanhuixinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhanhuixinxi.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhanhuixinxi();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhanhuixinxi();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhanhuixinxi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhanhuixinxi.setAdapter(adapter18);
+                                        getzhanhuixinxi();
+                                        break;
+                                    case 1018:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_peixunxinxi.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_peixunxinxi.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_peixunxinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_peixunxinxi.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getpeixunxinxi();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getpeixunxinxi();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_peixunxinxi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_peixunxinxi.setAdapter(adapter19);
+                                        getpeixunxinxi();
+                                        break;
+                                    case 1019:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhichaofangan.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhichaofangan.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhichaofangan.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhichaofangan.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhichaofangan();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhichaofangan();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhichaofangan.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhichaofangan.setAdapter(adapter20);
+                                        getzhichaofangan();
+                                        break;
+                                    case 1020:
+                                        page=1;
+                                        pullFlag = false;
+                                        ptr_arrlist_zhichaoanli.setScrollingWhileRefreshingEnabled(true);
+                                        ptr_arrlist_zhichaoanli.setMode(PullToRefreshBase.Mode.BOTH);
+                                        ptr_arrlist_zhichaoanli.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+                                            @Override
+                                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+//                                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
+//                                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+                                                //异步任务拿数据
+
+                                                PullToRefreshBase.Mode mode = ptr_arrlist_zhichaoanli.getCurrentMode();
+
+                                                // View viewRefresh = null;
+
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
+
+                                                    page++;
+                                                    getzhichaoanli();
+                                                }
+                                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
+                                                    pullFlag = true;
+                                                    page = 1;
+                                                    getzhichaoanli();
+
+                                                }
+                                            }
+                                        });
+                                        ptr_arrlist_zhichaoanli.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+                                            @Override
+                                            public void onLastItemVisible() {
+                                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        lv_zhichaoanli.setAdapter(adapter21);
+                                        getzhichaoanli();
+                                        break;
+                                    default:
+
+                                        break;
+
+
+                                }
                             }
                         });
                     }
-                },300);
-
-                mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
-                switch (checkedId){
-                    case 1000:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_tuijian.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_tuijian.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_tuijian.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_tuijian.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    gettuijian();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    gettuijian();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_tuijian.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-
-                        lv_tuijian.setAdapter(adapter1);
-
-                        Log.i("aaaaa", "数据拿到");
-                        gettuijian();
-                        break;
-                    case 1001:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_hangyezixun.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_hangyezixun.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_hangyezixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyezixun.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    gethangyezixun();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    gethangyezixun();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_hangyezixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        lv_hangyezixun.setAdapter(adapter2);
-
-                        Log.i("aaaaa", "数据拿到");
-
-                        gethangyezixun();
-                        break;
-                    case 1002:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_canpinzixun.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_canpinzixun.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_canpinzixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_canpinzixun.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getcanpinzixun();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getcanpinzixun();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_canpinzixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        lv_canpinzixun.setAdapter(adapter3);
-
-                        Log.i("aaaaa", "数据拿到");
-
-                        getcanpinzixun();
-                        break;
-                    case 1003:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_canpinpince.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_canpinpince.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_canpinpince.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_canpinpince.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getcanpinpince();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getcanpinpince();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_canpinpince.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                // Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-
-                        lv_canpinpince.setAdapter(adapter4);
-                        getcanpinpince();
-                        break;
-                    case 1004:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_video.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_video.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_video.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_video.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getvideo();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getvideo();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_video.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        lv_video.setAdapter(adapter5);
-                        getvideo();
-                        break;
-                    case 1005:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_pinpaizixun.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_pinpaizixun.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_pinpaizixun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_pinpaizixun.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getpinpaizixun();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getpinpaizixun();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_pinpaizixun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        lv_pinpaizixun.setAdapter(adapter6);
-                        getpinpaizixun();
-                        break;
-                    case 1006:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_hangyebiaozhun.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_hangyebiaozhun.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_hangyebiaozhun.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyebiaozhun.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    gethangyebiaozhun();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    gethangyebiaozhun();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_hangyebiaozhun.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //   Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_hangyebiaozhun.setAdapter(adapter7);
-                        gethangyebiaozhun();
-                        break;
-                    case 1007:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_hangyejishu.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_hangyejishu.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_hangyejishu.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_hangyejishu.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    gethangyejishu();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    gethangyejishu();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_hangyejishu.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_hangyejishu.setAdapter(adapter8);
-                        gethangyejishu();
-                        break;
-                    case 1008:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_wulianwang.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_wulianwang.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_wulianwang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_wulianwang.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getwulianwang();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getwulianwang();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_wulianwang.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_wulianwang.setAdapter(adapter9);
-                        getwulianwang();
-                        break;
-                    case 1009:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhihuichengshi.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhihuichengshi.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhihuichengshi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhihuichengshi.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhihuichengshi();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhihuichengshi();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhihuichengshi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhihuichengshi.setAdapter(adapter10);
-                        getzhihuichengshi();
-                        break;
-                    case 1010:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhihuishequ.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhihuishequ.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhihuishequ.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhihuishequ.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhihuishequ();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhihuishequ();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhihuishequ.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhihuishequ.setAdapter(adapter11);
-                        getzhihuishequ();
-                        break;
-                    case 1011:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_wurenji.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_wurenji.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_wurenji.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_wurenji.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getwurenji();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getwurenji();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_wurenji.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_wurenji.setAdapter(adapter12);
-                        getwurenji();
-                        break;
-                    case 1012:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhinengyanglao.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhinengyanglao.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhinengyanglao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengyanglao.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhinengyanglao();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhinengyanglao();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhinengyanglao.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhinengyanglao.setAdapter(adapter13);
-                        getzhinengyanglao();
-                        break;
-                    case 1013:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhinengjiankang.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhinengjiankang.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhinengjiankang.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengjiankang.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhinengjiankang();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhinengjiankang();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhinengjiankang.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhinengjiankang.setAdapter(adapter14);
-                        getzhinengjiankang();
-                        break;
-                    case 1014:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhinengyiliao.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhinengyiliao.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhinengyiliao.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhinengyiliao.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhinengyiliao();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhinengyiliao();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhinengyiliao.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhinengyiliao.setAdapter(adapter15);
-                        getzhinengyiliao();
-                        break;
-                    case 1015:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_jiqiren.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_jiqiren.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_jiqiren.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_jiqiren.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getjiqiren();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getjiqiren();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_jiqiren.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_jiqiren.setAdapter(adapter16);
-                        getjiqiren();
-                        break;
-                    case 1016:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_vrar.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_vrar.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_vrar.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_vrar.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getvrar();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getvrar();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_vrar.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_vrar.setAdapter(adapter17);
-                        getvrar();
-                        break;
-                    case 1017:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhanhuixinxi.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhanhuixinxi.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhanhuixinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhanhuixinxi.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhanhuixinxi();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhanhuixinxi();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhanhuixinxi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhanhuixinxi.setAdapter(adapter18);
-                        getzhanhuixinxi();
-                        break;
-                    case 1018:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_peixunxinxi.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_peixunxinxi.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_peixunxinxi.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_peixunxinxi.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getpeixunxinxi();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getpeixunxinxi();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_peixunxinxi.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_peixunxinxi.setAdapter(adapter19);
-                        getpeixunxinxi();
-                        break;
-                    case 1019:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhichaofangan.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhichaofangan.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhichaofangan.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhichaofangan.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhichaofangan();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhichaofangan();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhichaofangan.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //    Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhichaofangan.setAdapter(adapter20);
-                        getzhichaofangan();
-                        break;
-                    case 1020:
-                        page=1;
-                        pullFlag = false;
-                        ptr_arrlist_zhichaoanli.setScrollingWhileRefreshingEnabled(true);
-                        ptr_arrlist_zhichaoanli.setMode(PullToRefreshBase.Mode.BOTH);
-                        ptr_arrlist_zhichaoanli.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-                            @Override
-                            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                                String label = android.text.format.DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
-                                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-                                //异步任务拿数据
-
-                                PullToRefreshBase.Mode mode = ptr_arrlist_zhichaoanli.getCurrentMode();
-
-                                // View viewRefresh = null;
-
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
-                                    page++;
-                                    getzhichaoanli();
-                                }
-                                if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
-                                    pullFlag = true;
-                                    page = 1;
-                                    getzhichaoanli();
-
-                                }
-                            }
-                        });
-                        ptr_arrlist_zhichaoanli.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
-                            @Override
-                            public void onLastItemVisible() {
-                                //  Toast.makeText(getActivity(), "已经到底了", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        lv_zhichaoanli.setAdapter(adapter21);
-                        getzhichaoanli();
-                        break;
-                    default:
-
-                        break;
-
-
-                }
+                },40);
             }
         });
 
