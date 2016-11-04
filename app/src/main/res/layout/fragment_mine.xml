@@ -58,20 +58,20 @@
                 android:layout_width="0.1dp"
                 android:layout_height="60dp"
                 android:background="#ccc" />
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="夜 间"
-                android:textColor="#808080"
-                android:textSize="15sp"
-                android:background="#fff"
-                android:padding="3dp"
-                android:drawableTop="@drawable/moon"
-                android:layout_height="60dp" />
-            <TextView
-                android:layout_width="0.1dp"
-                android:layout_height="60dp"
-                android:background="#808080" />
+            <!--<Button-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="夜 间"-->
+                <!--android:textColor="#808080"-->
+                <!--android:textSize="15sp"-->
+                <!--android:background="#fff"-->
+                <!--android:padding="3dp"-->
+                <!--android:drawableTop="@drawable/moon"-->
+                <!--android:layout_height="60dp" />-->
+            <!--<TextView-->
+                <!--android:layout_width="0.1dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:background="#808080" />-->
             <Button
                 android:id="@+id/b_set"
                 android:layout_width="0dp"

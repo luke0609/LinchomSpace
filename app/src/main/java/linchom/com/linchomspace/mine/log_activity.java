@@ -70,8 +70,8 @@ public class log_activity extends AppCompatActivity {
                 TextView tv_cont = viewHolder.getViewById(R.id.tv_cont);
                 tv_cont.setText(litems.content);
                 TextView add_time = viewHolder.getViewById(R.id.add_time);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                Date date = new Date(Long.parseLong((litems.add_time)));
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date = new Date(Long.parseLong((litems.add_time))*1000);
                 add_time.setText(simpleDateFormat.format(date));
 
             }

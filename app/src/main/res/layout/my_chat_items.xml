@@ -44,15 +44,6 @@
 
             />
 
-        <ImageView
-            android:layout_alignTop="@+id/user_logo"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_toLeftOf="@+id/remark_num"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/dc"
-            android:layout_marginTop="4dp"
-            />
     </RelativeLayout>
 
     <TextView

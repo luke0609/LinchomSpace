@@ -1,17 +1,13 @@
 package linchom.com.linchomspace.service;
 
-import android.content.ContentResolver;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -34,12 +30,6 @@ import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.service.adapter.RegionAdapter;
 import linchom.com.linchomspace.service.pojo.IpBean;
 import linchom.com.linchomspace.service.pojo.RregionBean;
-
-import static android.R.attr.value;
-import static linchom.com.linchomspace.R.id.add_content;
-import static linchom.com.linchomspace.R.id.sp_city;
-import static linchom.com.linchomspace.R.id.sp_topic;
-import static linchom.com.linchomspace.R.id.vp_service;
 
 public class ServicePublishActivity extends AppCompatActivity implements View.OnClickListener{
     Map<String,String> region = new HashMap<String,String>();
@@ -474,7 +464,42 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.tv_post:
-                doPublish();
+
+                if(et_phonenum.getText().toString().length()==0
+                        ||et_address_ex.getText().toString().length()==0
+                        ||province_id.equals("1")
+                        ||city_id.equals("1")
+                        ){
+
+                    Toast.makeText(getApplicationContext(),"请完善信息",Toast.LENGTH_SHORT).show();
+
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(),category_id
+                            +service_type
+                            +add_content.getText().toString()
+                            +et_title.getText().toString()
+                            +et_phonenum.getText().toString()
+                    +et_address_ex.getText().toString()
+                    +release
+                    +province_id
+                    +city_id
+                    +"区"+district_id,Toast.LENGTH_SHORT).show();
+
+                    if(district_id.equals("1")){
+
+                        district_id="";
+
+                    }
+
+                    doPublish();
+
+
+
+                }
+
+
                 break;
             case R.id.iv_goback:
                 rl_2_2.setVisibility(View.GONE);
@@ -485,12 +510,27 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
                 tv_post.setVisibility(View.GONE);
                 break;
             case R.id.tv_next:
-                rl_2_1.setVisibility(View.GONE);
-                rl_2_2.setVisibility(View.VISIBLE);
-                iv_back.setVisibility(View.GONE);
-                iv_goback.setVisibility(View.VISIBLE);
-                tv_post.setVisibility(View.VISIBLE);
-                tv_next.setVisibility(View.GONE);
+
+
+                if(category_id==""||
+                        category_id==null||
+                        et_title.getText().toString().length()==0||
+                        add_content.getText().toString().length()==0){
+
+                    Toast.makeText(getApplicationContext(),"请完善信息",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    rl_2_1.setVisibility(View.GONE);
+                    rl_2_2.setVisibility(View.VISIBLE);
+                    iv_back.setVisibility(View.GONE);
+                    iv_goback.setVisibility(View.VISIBLE);
+                    tv_post.setVisibility(View.VISIBLE);
+                    tv_next.setVisibility(View.GONE);
+
+
+                }
+
+
 
 
                 break;

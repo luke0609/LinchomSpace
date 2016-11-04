@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="150dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/rl_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/goods_img"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/live_head_passerby"
-                />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/goods_img">
-                <TextView
-                    android:id="@+id/goods_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="商品名"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    />
-            </RelativeLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_below="@id/rl_price"
+        android:layout_height="130dp">
+
+        <ImageView
+            android:id="@+id/goods_img"
+            android:src="@drawable/live_head_passerby"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_width="120dp"
+            android:layout_height="120dp" />
+        <TextView
+            android:id="@+id/goods_name"
+            android:textColor="#808080"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/goods_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp">
-            <TextView
-                android:id="@+id/shop_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商店价格"
-                android:textSize="18sp" />
-            <TextView
-                android:id="@+id/add_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="添加时间"
-                android:textSize="12sp"
-                android:layout_alignParentRight="true" />
-        </RelativeLayout>
+            />
+        <TextView
+            android:id="@+id/tv_goods_order_fuhao"
+            android:textColor="#90FF3030"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_alignLeft="@id/goods_name"
+            android:layout_below="@id/goods_name"
+            android:text="¥"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:id="@+id/shop_price"
+            android:gravity="center_vertical"
+            android:textColor="#90FF3030"
+            android:textSize="18sp"
+            android:layout_toRightOf="@id/tv_goods_order_fuhao"
+            android:layout_below="@id/goods_name"
+            android:text="1000000"
+            android:layout_width="85dp"
+            android:layout_height="50dp" />
+
     </RelativeLayout>
+
 </RelativeLayout>

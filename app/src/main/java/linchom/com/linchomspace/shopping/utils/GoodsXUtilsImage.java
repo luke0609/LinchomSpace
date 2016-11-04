@@ -20,8 +20,8 @@ public class GoodsXUtilsImage {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                .setFailureDrawableId(R.mipmap.ic_launcher)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
+                .setFailureDrawableId(R.drawable.defult_pic)
+                .setLoadingDrawableId(R.drawable.defult_pic)
                 .build();
         x.image().bind(imageView, iconUrl,imageOptions);
     }
@@ -34,8 +34,8 @@ public class GoodsXUtilsImage {
                 .setRadius(DensityUtil.dip2px(radius))
                 .setIgnoreGif(false)
                 .setCrop(false)//是否对图片进行裁剪
-                .setFailureDrawableId(R.mipmap.ic_launcher)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
+                .setFailureDrawableId(R.drawable.defult_pic)
+                .setLoadingDrawableId(R.drawable.defult_pic)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
     }
@@ -52,8 +52,8 @@ public class GoodsXUtilsImage {
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setCircular(isCircluar)
                 .setCrop(true)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
-                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .setLoadingDrawableId(R.drawable.defult_pic)
+                .setFailureDrawableId(R.drawable.defult_pic)
                 .build();
         x.image().bind(imageView, iconUrl, imageOptions);
     }

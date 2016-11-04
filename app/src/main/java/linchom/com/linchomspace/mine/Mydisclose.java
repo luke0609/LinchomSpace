@@ -65,7 +65,7 @@ public class Mydisclose extends AppCompatActivity {
 
 
     private void initData() {
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_article&user_id=131");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_article&user_id=135");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -106,8 +106,8 @@ public class Mydisclose extends AppCompatActivity {
                 TextView tv_user=viewHolder.getViewById(R.id.tv_user);
                 tv_user.setText(dItems.author);
                 TextView tv_add_time=viewHolder.getViewById(R.id.tv_add_time);
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                Date date=new Date(Long.parseLong((dItems.add_time)));
+                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date=new Date(Long.parseLong((dItems.add_time))*1000);
                 tv_add_time.setText(simpleDateFormat.format(date));
             }
         };

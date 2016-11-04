@@ -28,7 +28,7 @@ import java.util.Calendar;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 
-public class HeadImage_activity extends AppCompatActivity implements View.OnClickListener {
+public class HeadImage_activity extends AppCompatActivity {
 
     public static final String TAG =" Details_Activity" ;
     private ImageView iv_back1;
@@ -52,6 +52,7 @@ public class HeadImage_activity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_head_image_activity);
+
         iv_photo = ((ImageView) findViewById(R.id.iv_photo));
         tv_user_name = ((EditText)findViewById(R.id.tv_user_name));
         tv_sex = ((TextView) findViewById(R.id.tv_add));
@@ -60,7 +61,7 @@ public class HeadImage_activity extends AppCompatActivity implements View.OnClic
         tv_office_phone = ((EditText) findViewById(R.id.tv_office_phone));
         tv_home_phone = ((EditText) findViewById(R.id.tv_home_phone));
         tv_mobile_phone = ((EditText) findViewById(R.id.tv_mobile_phone));
-             showDialog();
+        showDialog();
         rl_birthday = ((RelativeLayout) findViewById(R.id.rl_birthday));
         rl_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +100,7 @@ public class HeadImage_activity extends AppCompatActivity implements View.OnClic
                 System.out.println("dataBean"+dataBean);
                 bundle.putSerializable("user",dataBean);
                 intent.putExtras(bundle);
-               startActivityForResult(intent,2);     //标识
+                startActivityForResult(intent,2);     //标识
             }
         });
 
@@ -185,7 +186,7 @@ public class HeadImage_activity extends AppCompatActivity implements View.OnClic
             @Override
             public void onSuccess(String result) {
 
-             System.out.println("6666666666666666"+result);
+                System.out.println("6666666666666666"+result);
 
             }
 
@@ -250,41 +251,4 @@ public class HeadImage_activity extends AppCompatActivity implements View.OnClic
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_user_name:
-                //昵称设置可编辑
-                setEditTextEditable(tv_user_name, true);
-                break;
-
-        }
-    }
-//        tv_user_name.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                //如果编辑框获得焦点
-//                if (tv_user_name.isFocused()) {
-//                    //设置编辑框不可见
-//                    setEditTextEditable(tv_user_name, true);
-//                    InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    imm.hideSoftInputFromWindow(tv_user_name.getWindowToken(), 0);
-//                }
-//                return false;
-//            }
-//        });
-//    }
-
-    //设置昵称是否可编辑
-    private void setEditTextEditable(EditText editText, boolean value){
-        if (value) {
-            editText.setFocusableInTouchMode(false);
-            editText.requestFocus();
-            editText.setGravity(Gravity.LEFT);
-        }else {
-            editText.setFocusableInTouchMode(true);
-            editText.clearFocus();
-            editText.setGravity(Gravity.CENTER);
-        }
-    }
 }

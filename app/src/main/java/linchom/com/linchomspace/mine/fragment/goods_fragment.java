@@ -127,10 +127,10 @@ public class goods_fragment extends Fragment {
                 goods_name.setText(items.goods_name);
                 TextView shop_price=viewHolder.getViewById(R.id.shop_price);
                 shop_price.setText(items.shop_price);
-                TextView add_time=viewHolder.getViewById(R.id.add_time);
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                Date date=new Date((Long.parseLong(items.add_time)));
-                add_time.setText(simpleDateFormat.format(date));
+//                TextView add_time=viewHolder.getViewById(R.id.add_time);
+//                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
+//                Date date=new Date((Long.parseLong(items.add_time)));
+//                add_time.setText(simpleDateFormat.format(date));
             }
         };
 
