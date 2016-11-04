@@ -33,7 +33,7 @@ import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.login.contantData.LoginResultBean;
 import linchom.com.linchomspace.login.widget.ClearWriteEditText;
 
-import static android.R.id.edit;
+
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView mImgBackgroud;
 
     private String sUserName, sPassword, oldUserName, oldPassWord;
+    private TextView mForgot;
 
 
     @Override
@@ -62,7 +63,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mButtonLogin = (Button) findViewById(R.id.app_sign_in_bt);
         mRegister = (TextView) findViewById(R.id.de_login_register);
         mImgBackgroud = (ImageView) findViewById(R.id.de_img_backgroud);
+        mForgot = ((TextView) findViewById(R.id.de_login_forgot));
 
+        mForgot.setOnClickListener(this);
         mButtonLogin.setOnClickListener(this);
         mRegister.setOnClickListener(this);
         mUserName.setOnClickListener(this);
@@ -82,9 +85,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.app_sign_in_bt:
-
                 checkLogin();
-
+                break;
+            case R.id.de_login_forgot:
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.de_login_register:
+                Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent2);
                 break;
         }
     }
