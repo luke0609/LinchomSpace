@@ -1,11 +1,15 @@
 package linchom.com.linchomspace.shopping;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -13,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.goodsfragment.AllOrderFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.AlreadyPayFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.ReturnGoodsFragment;
@@ -39,14 +44,22 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
     private RadioButton rb_goods_orderform_seven;
 
 
-    private String userId = "12";
+    private String userId ;
 
     private ArrayList<MyOnTouchListener> onTouchListeners = new ArrayList<MyOnTouchListener>(10);
+    private ImageView titlebar_back;
+
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_all_order);
+
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
 
         //从sharepreference 取出用户Id 现在写死
@@ -96,6 +109,8 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
         rb_goods_orderform_five = ((RadioButton) findViewById(R.id.rb_goods_orderform_five));
         rb_goods_orderform_six = ((RadioButton) findViewById(R.id.rb_goods_orderform_six));
         rb_goods_orderform_seven = ((RadioButton) findViewById(R.id.rb_goods_orderform_seven));
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
 
     }
@@ -273,6 +288,16 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
 
 
                 }
+
+            }
+        });
+
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
 
             }
         });

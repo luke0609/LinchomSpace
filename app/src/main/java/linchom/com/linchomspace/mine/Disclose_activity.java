@@ -85,7 +85,7 @@ public class Disclose_activity extends AppCompatActivity {
                 String biaoti=tv_biaoti.getText().toString();
                 String content=ed_disclose.getText().toString();
 //                String author=tv_user.getText().toString();
-                RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_add_article&user_id=131&cat_id=16&title=%E5%BC%A0%E6%99%93%E6%96%87%E7%9A%84%E6%96%87%E7%AB%A0&content=111");
+                RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_add_article&user_id=135&cat_id=16&title=%E5%BC%A0%E6%99%93%E6%96%87%E7%9A%84%E6%96%87%E7%AB%A0&content=111");
                 requestParams.addBodyParameter("user_id","131");
                 requestParams.addBodyParameter("title",biaoti);
                 requestParams.addBodyParameter("content",content);

@@ -83,6 +83,7 @@ public class GoodsListFragment extends Fragment {
     private RelativeLayout rl_goodsList_load_list;
     private RelativeLayout rl_goods_list_load_fail;
     private Button btn_goods_list_load_fail;
+    private RelativeLayout rl_goods_list_no;
 
 
     @Nullable
@@ -124,6 +125,8 @@ public class GoodsListFragment extends Fragment {
         rl_goods_list_load_fail = ((RelativeLayout) view.findViewById(R.id.rl_goods_list_load_fail));
 
         btn_goods_list_load_fail = ((Button) view.findViewById(R.id.btn_goods_list_load_fail));
+
+        rl_goods_list_no = ((RelativeLayout) view.findViewById(R.id.rl_goods_list_no));
 
 
     }
@@ -214,6 +217,8 @@ public class GoodsListFragment extends Fragment {
             @Override
             public void onSuccess(String result) {
 
+                Log.i(TAG,"GoodsListFragmentresult"+result);
+
 
                 if (page == 1) {
 
@@ -258,30 +263,48 @@ public class GoodsListFragment extends Fragment {
 
                     pageCount = Integer.parseInt(total_pages.getAsString());
 
+                    if(pageCount==0){
 
-                    JsonObject items = root2.getAsJsonObject("items");
+                        Toast.makeText(getActivity(),"商品暂无分类",Toast.LENGTH_SHORT).show();
 
-
-                    Map<String, GoodsListNewBean.GoodsMap> mapNew = gson.fromJson(items, new TypeToken<Map<String, GoodsListNewBean.GoodsMap>>() {
-                    }.getType());
-
+                        rl_goods_list_no.setVisibility(View.VISIBLE);
 
 
+                        //显示一个布局
 
-                    newList.clear();
-
-
-                    for (Map.Entry<String, GoodsListNewBean.GoodsMap> m : mapNew.entrySet()) {
+                    }else{
 
 
-                        GoodsListNewBean.GoodsMap goodsInfo = m.getValue();
+                        JsonObject items = root2.getAsJsonObject("items");
 
-                        newList.add(goodsInfo);
+
+                        Map<String, GoodsListNewBean.GoodsMap> mapNew = gson.fromJson(items, new TypeToken<Map<String, GoodsListNewBean.GoodsMap>>() {
+                        }.getType());
+
+
+
+
+                        newList.clear();
+
+
+                        for (Map.Entry<String, GoodsListNewBean.GoodsMap> m : mapNew.entrySet()) {
+
+
+                            GoodsListNewBean.GoodsMap goodsInfo = m.getValue();
+
+                            newList.add(goodsInfo);
+
+                        }
+
+                        goodsList.addAll(newList);
+                        goodsCommonAdapter.notifyDataSetChanged();
+
+
 
                     }
 
-                    goodsList.addAll(newList);
-                    goodsCommonAdapter.notifyDataSetChanged();
+
+
 
 
                 }else{

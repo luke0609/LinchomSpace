@@ -16,22 +16,20 @@
             android:layout_height="40dp">
 
             <CheckBox
+
+                android:textColor="#808080"
+
+
+                android:textSize="16sp"
+
+                android:text="联巢空间"
                 android:id="@+id/cb_goods_cart_choice"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
 
-            <TextView
-                android:layout_toRightOf="@id/cb_goods_cart_choice"
-                android:textSize="16sp"
-                android:layout_centerVertical="true"
-                android:textColor="#808080"
-                android:text="联巢空间"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                />
 
             <CheckBox
                 android:id="@+id/cb_goods_cart_modify"

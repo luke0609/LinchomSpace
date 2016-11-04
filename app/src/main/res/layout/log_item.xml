@@ -4,39 +4,31 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/rl_til"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
             <TextView
                 android:id="@+id/tv_bt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/src"
                 android:text="标题"
                 android:textSize="16sp"
-                android:layout_centerHorizontal="true"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rl_info"
-            android:layout_below="@id/rl_til"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
+                android:padding="5dp"/>
+
             <ImageView
                 android:id="@+id/src"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/jd_logo"
+                android:src="@mipmap/avatar"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_cont"
+                android:layout_below="@id/tv_bt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="内容"
+                android:text="标题"
                 android:layout_toRightOf="@id/src"
                 android:layout_marginLeft="10dp"/>
             <TextView
@@ -44,14 +36,12 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:textColor="#808080"
+                android:layout_below="@id/src"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:text="时间"
-                android:layout_marginRight="10dp"
                 android:textSize="12sp"
                 />
 
-        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>

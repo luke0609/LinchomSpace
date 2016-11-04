@@ -104,7 +104,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     boolean day = false;
     private EditText et_write_comment;
     private RelativeLayout rl_article_titlebar;
-    private RelativeLayout rl_article_bottombar;
+    private LinearLayout rl_article_bottombar;
     private ScrollView sv_article;
     private boolean isRunning = false;
     private boolean isLoading = false;
@@ -178,7 +178,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         keyHeight = screenHeight/3;
 
         sv_article = ((ScrollView) findViewById(R.id.sv_article));
-        rl_article_bottombar = ((RelativeLayout) findViewById(R.id.rl_article_bottombar));
+        rl_article_bottombar = ((LinearLayout) findViewById(R.id.rl_article_bottombar));
         rl_article_titlebar = ((RelativeLayout) findViewById(R.id.rl_article_titlebar));
         article_title = ((TextView) findViewById(R.id.article_title));
         ll_more = ((LinearLayout) findViewById(R.id.ll_more));
@@ -584,7 +584,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
 
-    private void cancelCollect() {
+    private void cancelCollect(){
         RequestParams params = new RequestParams(Constant.ArticleCancelCollect);
         //params.addBodyParameter("key", "linchom");
         //params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -694,7 +694,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 
     }
 
-    private void showCommentPopupWindow( View view) {
+    private void showCommentPopupWindow(View view) {
         rlBackgroundGray.setVisibility(View.VISIBLE);
         final View contentView = LayoutInflater.from(ArticleActivity.this).inflate(
                 R.layout.article_comment_popupwindow, null);

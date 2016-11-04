@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +47,8 @@ import linchom.com.linchomspace.shopping.goodsadapter.MyGoodsIndicatorAdapter;
 import linchom.com.linchomspace.shopping.pojo.GoodsAdvDataBean;
 import linchom.com.linchomspace.shopping.pojo.GoodsAdvNewBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class ShoppingFragment extends Fragment implements View.OnClickListener{
@@ -292,6 +298,9 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
     }
 
     private void toPopUpWindow(View view){
+
+        onFocusChange(true);
+
         View contentView = LayoutInflater.from(getActivity()).inflate(
                 R.layout.goods_search_history_pop, null);
 
@@ -311,6 +320,41 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         lv_goods_search_history = ((ListView) contentView.findViewById(R.id.lv_goods_search_history));
 
         et_goods_search_history = ((EditText) contentView.findViewById(R.id.et_goods_search_history));
+
+
+        et_goods_search_history.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                //et_goods_cate_search.setText(et_goods_search_history.getText().toString());
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                et_goods_cate_search.setText(et_goods_search_history.getText().toString());
+
+
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                et_goods_cate_search.setText(et_goods_search_history.getText().toString());
+
+
+
+
+
+            }
+        });
+
+
+
+
 
         btn_goods_search_history = ((Button) contentView.findViewById(R.id.btn_goods_search_history));
 
@@ -401,7 +445,6 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         popupWindow.setTouchable(true);
 
-        popupWindow.setFocusable(true);
 
         popupWindow.setOutsideTouchable(true);
 
@@ -415,6 +458,28 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
 
     }
+
+    private void onFocusChange(boolean hasFocus) {
+        final boolean isFocus = hasFocus;
+        (new Handler()).postDelayed(new Runnable() {
+            public void run() {
+                InputMethodManager imm = (InputMethodManager)
+                        et_goods_search_history.getContext().getSystemService(INPUT_METHOD_SERVICE);
+                if (isFocus) {
+                    //显示输入法
+                    et_goods_search_history.requestFocus();//获取焦点
+                    imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                } else {
+                    //隐藏输入法
+                    imm.hideSoftInputFromWindow(et_goods_search_history.getWindowToken(), 0);
+                    //edit_vg_lyt.setVisibility(View.GONE);
+                }
+            }
+        }, 100);
+    }
+
+
+
 
     private void toInsertSqlite(String content){
 
@@ -691,7 +756,53 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
             case R.id.btn_goods_btnSearch:
                 //toGoodsSearch();
-                Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
+
+
+                if(et_goods_cate_search.getText().toString().equals("请输入感兴趣的产品")){
+
+                    Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
+
+
+
+                }else{
+
+
+
+
+
+                    if(et_goods_cate_search.getText().toString()!=""
+                            &&et_goods_cate_search.getText().toString()!=null
+                            &&et_goods_cate_search.getText().toString().length()!=0
+                            ) {
+
+                        toInsertSqlite(et_goods_cate_search.getText().toString().trim());
+
+
+                        Intent intent = new Intent(getActivity(), GoodsListActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("keyword", et_goods_cate_search.getText().toString().trim() + "");
+
+                        bundle.putString("cateId", "");
+
+                        intent.putExtra("bundle", bundle);
+
+                        // popupWindow.dismiss();
+
+                        toSqlite();
+
+                        goodsCommonAdapter.notifyDataSetChanged();
+
+                        startActivity(intent);
+
+                    }
+
+
+
+
+                }
+
+
 
                 break;
 
