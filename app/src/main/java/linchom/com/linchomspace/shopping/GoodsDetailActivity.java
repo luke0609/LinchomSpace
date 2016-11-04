@@ -79,7 +79,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
 
 
 
-                GoodsXUtilsImage.display(imageView,s);
+                GoodsXUtilsImage.displayone(imageView,s);
 
             }
         };
