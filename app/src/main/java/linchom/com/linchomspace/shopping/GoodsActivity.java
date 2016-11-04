@@ -166,6 +166,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout rl_goods_link;
 
     private String userName;
+    private RelativeLayout rl_goods_link_tb;
+    private RelativeLayout rl_goods_link_jd;
 
 
     @Override
@@ -288,6 +290,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
         rl_goods_link = ((RelativeLayout) findViewById(R.id.rl_goods_link));
+
+        rl_goods_link_tb = ((RelativeLayout) findViewById(R.id.rl_goods_link_tb));
+
+        rl_goods_link_jd = ((RelativeLayout) findViewById(R.id.rl_goods_link_jd));
 
 
     }
@@ -554,24 +560,16 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
                     if(tbLink==null||("0.00").equals(goodsBean.data.tb_price)){
-                        btn_goods_tbBuy.setVisibility(View.INVISIBLE);
 
-                        iv_goods_tblogo.setVisibility(View.INVISIBLE);
-                        tv_goods_tb.setVisibility(View.INVISIBLE);
-                        tv_goods_tbfunhao.setVisibility(View.INVISIBLE);
-                        tv_goods_tbPrice.setVisibility(View.INVISIBLE);
+                        rl_goods_link_tb.setVisibility(View.GONE);
+
 
 
                     }
 
                     if(jdLink==null||("0.00").equals(goodsBean.data.jd_price)){
 
-                        btn_goods_jdBuy.setVisibility(View.INVISIBLE);
-
-                        iv_goods_jdlogo .setVisibility(View.INVISIBLE);
-                        tv_goods_jd.setVisibility(View.INVISIBLE);
-                        tv_goods_jdfunhao.setVisibility(View.INVISIBLE);
-                        tv_goods_jdPrice.setVisibility(View.INVISIBLE);
+                       rl_goods_link_jd.setVisibility(View.GONE);
 
                     }
 
