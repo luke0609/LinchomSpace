@@ -100,12 +100,23 @@
         >
 
         <TextView
+            android:id="@+id/tv_goods_water_no_cate"
             android:textColor="#000000"
             android:layout_centerInParent="true"
             android:textSize="18sp"
-            android:text="该商品暂无分类"
+            android:text="该分类暂无商品"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/nocategory"
+            android:layout_above="@id/tv_goods_water_no_cate"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
 
 
