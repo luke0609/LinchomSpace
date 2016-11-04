@@ -392,152 +392,171 @@
                 android:layout_below="@id/rl_goods_mid"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:background="#ffffff"
                 >
 
 
-                    <RelativeLayout
-                        android:id="@+id/rl_goods_logo"
-                        android:layout_width="140dp"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/iv_goods_tblogo"
-                            android:layout_margin="5dp"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/goods_detail_tianmao"
-                            />
-
-                        <ImageView
-                            android:id="@+id/iv_goods_jdlogo"
-
-                            android:layout_below="@id/iv_goods_tblogo"
-                            android:layout_margin="5dp"
+                   <RelativeLayout
 
 
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/jd_logo"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_goods_tb"
-                            android:textColor="#000000"
-                            android:gravity="center"
-                            android:textSize="16sp"
-                            android:text="天猫"
-                            android:layout_margin="5dp"
-                            android:layout_toRightOf="@id/iv_goods_tblogo"
-                            android:layout_width="80dp"
-                            android:layout_height="40dp" />
-
-                        <TextView
-                            android:id="@+id/tv_goods_jd"
-
-                            android:layout_below="@id/tv_goods_tb"
-                            android:textColor="#000000"
-                            android:gravity="center"
-                            android:textSize="16sp"
-                            android:text="京东"
-                            android:layout_margin="5dp"
-                            android:layout_toRightOf="@id/iv_goods_tblogo"
-                            android:layout_width="80dp"
-                            android:layout_height="40dp" />
+                       android:id="@+id/rl_goods_link_tb"
+                       android:layout_width="match_parent"
+                       android:layout_height="48dp">
 
 
+                       <ImageView
+                           android:layout_marginLeft="5dp"
+                           android:layout_centerVertical="true"
+                           android:id="@+id/iv_goods_tblogo"
+                           android:layout_width="40dp"
+                           android:layout_height="40dp"
+                           android:src="@drawable/goods_detail_tianmao"
+                           />
 
-                    </RelativeLayout>
+
+                       <TextView
+
+                           android:layout_centerInParent="true"
+                           android:layout_marginLeft="5dp"
+                           android:gravity="center"
+                           android:id="@+id/tv_goods_tb"
+                           android:textColor="#000000"
+                           android:textSize="16sp"
+                           android:text="天猫"
+                           android:layout_toRightOf="@id/iv_goods_tblogo"
+                           android:layout_width="wrap_content"
+                           android:layout_height="40dp" />
+
+                       <TextView
+                           android:layout_centerInParent="true"
+                           android:layout_toRightOf="@id/tv_goods_tb"
+                           android:id="@+id/tv_goods_tbfunhao"
+                           android:textColor="#80ff0000"
+                           android:textSize="20sp"
+                           android:gravity="center"
+                           android:text="¥"
+                           android:layout_width="30dp"
+                           android:layout_height="40dp"
+                           />
+
+
+                       <TextView
+                           android:layout_centerVertical="true"
+                           android:id="@+id/tv_goods_tbPrice"
+                           android:gravity="center"
+                           android:textColor="#80ff0000"
+                           android:textSize="18sp"
+
+                           android:text=""
+                           android:layout_toRightOf="@id/tv_goods_tbfunhao"
+                           android:layout_width="wrap_content"
+                           android:layout_height="40dp" />
+
+                       <Button
+                           android:layout_marginRight="5dp"
+                           android:layout_alignParentRight="true"
+                           android:layout_centerVertical="true"
+                           android:id="@+id/btn_goods_tbBuy"
+                           android:layout_width="70dp"
+                           android:layout_height="40dp"
+                           android:text="购买"
+                           android:textSize="16sp"
+                           android:textColor="#000000"
+                           android:background="@drawable/goods_catebutton_shape"
+                           />
+
+
+
+
+
+
+
+                   </RelativeLayout>
+
 
                 <RelativeLayout
-                    android:id="@+id/rl_goods_price"
-                    android:layout_toRightOf="@id/rl_goods_logo"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent">
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/rl_goods_link_jd"
 
-                    <TextView
-                        android:id="@+id/tv_goods_tbfunhao"
-                        android:textColor="#80ff0000"
-                        android:textSize="20sp"
-                        android:gravity="center"
-                        android:text="¥"
-                        android:layout_margin="5dp"
-                        android:layout_width="30dp"
+                    android:layout_below="@+id/rl_goods_link_tb"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp">
+
+                    <ImageView
+
+                        android:layout_marginLeft="5dp"
+                        android:layout_centerVertical="true"
+
+                        android:id="@+id/iv_goods_jdlogo"
+
+
+
+                        android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:src="@drawable/jd_logo"
+
                         />
 
+
                     <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/iv_goods_jdlogo"
+                        android:id="@+id/tv_goods_jd"
+                        android:layout_marginLeft="5dp"
+
+
+                        android:textColor="#000000"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="京东"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+
+                        />
+
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/tv_goods_jd"
 
                         android:id="@+id/tv_goods_jdfunhao"
 
-                        android:layout_below="@id/tv_goods_tbfunhao"
                         android:textColor="#80ff0000"
                         android:textSize="20sp"
                         android:gravity="center"
                         android:text="¥"
-                        android:layout_margin="5dp"
                         android:layout_width="30dp"
                         android:layout_height="40dp"
+
                         />
 
-                    <TextView
-                        android:id="@+id/tv_goods_tbPrice"
-                        android:gravity="center_vertical"
-                        android:textColor="#80ff0000"
-                        android:textSize="18sp"
-
-                        android:text=""
-                        android:layout_margin="5dp"
-                        android:layout_toRightOf="@id/tv_goods_tbfunhao"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp" />
 
                     <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/tv_goods_jdfunhao"
+
                         android:id="@+id/tv_goods_jdPrice"
 
-                        android:layout_below="@id/tv_goods_tbPrice"
                         android:gravity="center_vertical"
                         android:textColor="#80ff0000"
                         android:textSize="18sp"
 
                         android:text=""
-                        android:layout_margin="5dp"
-                        android:layout_toRightOf="@id/tv_goods_tbfunhao"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         />
 
 
-
-
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_marginRight="5dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent">
-
                     <Button
-                        android:id="@+id/btn_goods_tbBuy"
-                        android:layout_margin="5dp"
-                        android:layout_width="70dp"
-                        android:layout_height="40dp"
-                        android:text="购买"
-                        android:textSize="16sp"
-                        android:textColor="#000000"
-                        android:background="@drawable/goods_catebutton_shape"
-                        />
+                        android:layout_marginRight="5dp"
+                        android:layout_alignParentRight="true"
 
-                    <Button
+                        android:layout_centerVertical="true"
+
+
 
                         android:id="@+id/btn_goods_jdBuy"
-                        android:layout_below="@id/btn_goods_tbBuy"
-                        android:layout_margin="5dp"
                         android:layout_width="70dp"
                         android:layout_height="40dp"
                         android:text="购买"
@@ -550,8 +569,10 @@
 
 
 
-                </RelativeLayout>
 
+
+
+                </RelativeLayout>
 
 
 
