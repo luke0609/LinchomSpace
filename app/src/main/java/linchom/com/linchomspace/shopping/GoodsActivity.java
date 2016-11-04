@@ -768,6 +768,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_goods_joinCart:
 
+                btn_goods_joinCart.setText("加入中");
+
+
 
                 if(userId!=""){
 
@@ -1025,6 +1028,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void toJoinCart() {
 
+
         if(stockNum<1){
 
             Toast.makeText(getApplicationContext(),"库存不足,不能加入",Toast.LENGTH_SHORT).show();
@@ -1041,6 +1045,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getCartData() {
+
+
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -1083,6 +1089,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
                 }else{
+
+                    btn_goods_joinCart.setText("已添加购物车");
+                    btn_goods_joinCart.setEnabled(false);
+
+
                     Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
 
                     addCart(iv_goods_cart_rmb);
@@ -1098,6 +1109,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onError(Throwable ex, boolean isOnCallback) {
 
                 Toast.makeText(getApplicationContext(),"加入失败",Toast.LENGTH_SHORT).show();
+
+                btn_goods_joinCart.setText("加入购物车");
+
 
 
 
