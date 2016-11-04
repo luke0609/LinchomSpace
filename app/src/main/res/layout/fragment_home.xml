@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true">
     <LinearLayout
-        android:background="#212121"
+        android:background="@color/main_style"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/linear"
@@ -25,16 +25,16 @@
             android:id="@+id/tv_search"
             android:layout_width="match_parent"
             android:layout_marginRight="10dp"
-            android:layout_height="35dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_toRightOf="@id/logo"
             android:background="@drawable/home_shape"
-            android:scaleType="centerInside"
 
+            android:gravity="center"
             android:hint="搜你想搜的"
             android:textColor="#000"
-            android:textSize="12sp"
-            android:textColorHint="#797777"
+            android:textSize="14sp"
+            android:textColorHint="#808080"
             />
     </LinearLayout>
     <RelativeLayout
