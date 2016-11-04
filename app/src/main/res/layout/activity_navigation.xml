@@ -65,6 +65,16 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="行业资讯"/>
+                <Button
+                    android:id="@+id/pd_canpinzixun"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:text="产品资讯"
+                    android:textColor="#000" />
+
 
                 <Button
                     android:id="@+id/pd_canpinpince"
@@ -75,6 +85,12 @@
                     android:background="#fff"
                     android:text="产品评测"/>
 
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
                 <Button
                     android:id="@+id/pd_video"
                     android:layout_width="0dp"
@@ -82,12 +98,6 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="视频"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
 
                 <Button
                     android:id="@+id/pd_pinpaizixun"
@@ -117,6 +127,13 @@
                     android:background="#fff"
                     android:text="行业技术"/>
 
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
                 <Button
                     android:id="@+id/pd_wulianwang"
                     android:layout_width="0dp"
@@ -124,13 +141,6 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="物联网"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
                 <Button
                     android:id="@+id/pd_zhihuichengshi"
                     android:layout_width="0dp"
@@ -159,6 +169,13 @@
                     android:background="#fff"
                     android:text="无人机"/>
 
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
                 <Button
                     android:id="@+id/pd_zhinengyanglao"
                     android:layout_width="0dp"
@@ -166,13 +183,6 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:text="智能养老"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
                 <Button
                     android:id="@+id/pd_zhinengjiankang"
                     android:layout_width="0dp"
@@ -201,6 +211,13 @@
                     android:background="#fff"
                     android:text="机器人"/>
 
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
                 <Button
                     android:id="@+id/pd_vrar"
                     android:layout_width="0dp"
@@ -209,13 +226,6 @@
                     android:background="#fff"
                     android:text="VR/AR"
                     android:textSize="12dp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
                 <Button
                     android:id="@+id/pd_zhanhuixinxi"
                     android:layout_width="0dp"
@@ -244,6 +254,13 @@
                     android:background="#fff"
                     android:text="智巢方案"/>
 
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginBottom="5dp">
                 <Button
                     android:id="@+id/pd_zhichaoanli"
                     android:layout_width="0dp"
@@ -252,21 +269,6 @@
                     android:background="#fff"
                     android:text="智巢案例"/>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginBottom="5dp">
-
-                <Button
-                    android:id="@+id/pd_canpinzixun"
-                    android:layout_width="0dp"
-                    android:layout_height="34dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:text="产品资讯"
-                    android:textColor="#000" />
 
                 <Button
 

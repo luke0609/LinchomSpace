@@ -433,13 +433,7 @@ public class HomeFragment extends Fragment {
 
                     break;
                 case "20":
-                    //vp_news.setCurrentItem(20);
-                vp_news.setCurrentItem(20,false);//让下方ViewPager跟随上面的HorizontalScrollView切换
-                mCurrentCheckedRadioLeft = rb.getLeft();//更新当前白色横条距离左边的距离
-                //System.out.println("dis1:"+mCurrentCheckedRadioLeft);
-                //System.out.println("dis2:"+( (int)mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.rdo2)));
-                hs_navi.smoothScrollTo((int) mCurrentCheckedRadioLeft - (int) getResources().getDimension(R.dimen.activity_horizontal_margin), 0);
-                mImageView.setLayoutParams(new LinearLayout.LayoutParams(rb.getRight() - rb.getLeft(), 4));
+                   vp_news.setCurrentItem(20);
                 break;
             }
         }
