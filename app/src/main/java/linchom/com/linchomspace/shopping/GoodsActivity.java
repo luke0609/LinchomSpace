@@ -788,16 +788,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 }
 
 
-
-
                 break;
 
             case R.id.rl_goods_proComment:
 
 
-
                 if(commFlag==false){
-
 
 
                     lv_goods_common_list.setVisibility(View.VISIBLE);
@@ -805,7 +801,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     iv_goods_common.setImageResource(R.drawable.goods_comm_zhankai);
 
                     commFlag=true;
-
 
                 }else{
 
@@ -907,13 +902,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
         }
-
-
-
-
-       // String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
-
-        //Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
 
 
 
