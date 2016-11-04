@@ -49,7 +49,7 @@ import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener{
-//修改时间10/19
+//修改时间11/4
     private static final String TAG = "GoodsActivity";
     private GoodsScrollView sv_goods_scrollview;
     private RelativeLayout rl_goods_head;
