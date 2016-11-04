@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
@@ -50,6 +51,10 @@ import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener{
 //修改时间11/4
+
+
+
+
     private static final String TAG = "GoodsActivity";
     private GoodsScrollView sv_goods_scrollview;
     private RelativeLayout rl_goods_head;
@@ -175,6 +180,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
 
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
 
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);

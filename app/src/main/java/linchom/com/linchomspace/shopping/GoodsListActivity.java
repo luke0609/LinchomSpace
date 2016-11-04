@@ -74,6 +74,8 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
         String userName = shared_prefs.getString("username","");
