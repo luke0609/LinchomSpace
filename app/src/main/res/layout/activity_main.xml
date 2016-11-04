@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="46dp"
         />
     <FrameLayout
         android:id="@+id/f1_content"
@@ -24,71 +24,71 @@
     </FrameLayout>
 
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#30808080"
+        android:layout_above="@+id/rg_tab"
+        />
     <RadioGroup
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="46dp"
         android:layout_alignParentBottom="true"
-        android:background="#212121"
+        android:background="#fff"
         android:orientation="horizontal">
 
         <RadioButton
+            android:layout_gravity="center_vertical"
             android:id="@+id/rb_rb1"
             style="@style/radiobtn"
             android:onClick="onTabClicked"
+            android:paddingTop="10dp"
             android:drawableTop="@drawable/radiotab_home_selector"
-            android:text="首页"
-            android:textSize="12sp"
-            android:paddingTop="6dp"
-            android:paddingBottom="10dp"
-            android:textColor="@drawable/radiotab_textcolor_seletor"
-
+            android:background="@drawable/radiotab_bk_selector"
             />
+
         <RadioButton
+            android:layout_gravity="center_vertical"
             android:id="@+id/rb_rb2"
             style="@style/radiobtn"
             android:onClick="onTabClicked"
             android:drawableTop="@drawable/radiotab_service_selector"
-            android:text="服务"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
-            android:textColor="@drawable/radiotab_textcolor_seletor" />
+            android:paddingTop="10dp"
+            android:background="@drawable/radiotab_bk_selector"
+
+    />
 
         <RadioButton
+            android:layout_gravity="center_vertical"
             android:id="@+id/rb_rb3"
             style="@style/radiobtn"
             android:onClick="onTabClicked"
             android:drawableTop="@drawable/radiotab_find_selector"
-            android:text="发现"
-            android:textSize="12sp"
-            android:paddingTop="8dp"
-            android:paddingBottom="4dp"
-            android:textColor="@drawable/radiotab_textcolor_seletor" />
+            android:paddingTop="10dp"
+            android:background="@drawable/radiotab_bk_selector"
+          />
 
         <RadioButton
+            android:layout_gravity="center_vertical"
             android:id="@+id/rb_rb4"
             style="@style/radiobtn"
             android:onClick="onTabClicked"
             android:drawableTop="@drawable/radiotab_chat_selector"
-            android:text="交流"
-            android:paddingTop="7dp"
-            android:paddingBottom="4dp"
-            android:textSize="12sp"
-
-            android:textColor="@drawable/radiotab_textcolor_seletor" />
+            android:paddingTop="10dp"
+            android:background="@drawable/radiotab_bk_selector"
+           />
 
         <RadioButton
+            android:layout_gravity="center_vertical"
             android:id="@+id/rb_rb5"
             style="@style/radiobtn"
             android:onClick="onTabClicked"
             android:drawableTop="@drawable/radiotab_my_selector"
-            android:text="我的"
-            android:textSize="12sp"
-            android:paddingTop="7dp"
-            android:paddingBottom="4dp"
-            android:textColor="@drawable/radiotab_textcolor_seletor" />
+            android:paddingTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radiotab_bk_selector"
+            />
 
 
     </RadioGroup>

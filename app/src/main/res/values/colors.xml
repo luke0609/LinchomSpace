@@ -22,4 +22,6 @@
     <color name="underbar">#EEC900</color>
     <color name="tab_top_text_1">#aaa</color>
     <color name="tab_top_text_2">#000</color>
+    <color name="main_style">#56BA22</color>
+    <color name="text_style">#313233</color>
 </resources>

@@ -70,6 +70,7 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
     private RelativeLayout rl_goodsList_load_listpubu;
     private RelativeLayout rl_goods_list_water_load_fail;
     private Button btn_goods_list_water_load_fail;
+    private RelativeLayout rl_goods_list_water_no;
 
     @Nullable
     @Override
@@ -147,6 +148,8 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
         rl_goods_list_water_load_fail = ((RelativeLayout) view.findViewById(R.id.rl_goods_list_water_load_fail));
 
         btn_goods_list_water_load_fail = ((Button) view.findViewById(R.id.btn_goods_list_water_load_fail));
+
+        rl_goods_list_water_no = ((RelativeLayout) view.findViewById(R.id.rl_goods_list_water_no));
 
 
     }
@@ -288,30 +291,45 @@ public class GoodsListWaterfallFragment extends Fragment implements PullToRefres
 
                     pageCount = Integer.parseInt(total_pages.getAsString());
 
+                    if(pageCount==0){
+                        Toast.makeText(getActivity(),"商品暂无分类",Toast.LENGTH_SHORT).show();
 
-                    JsonObject items = root2.getAsJsonObject("items");
-
-
-                    Map<String, GoodsListNewBean.GoodsMap> mapNew = gson.fromJson(items, new TypeToken<Map<String, GoodsListNewBean.GoodsMap>>() {
-                    }.getType());
+                        rl_goods_list_water_no.setVisibility(View.VISIBLE);
 
 
+                    }else{
 
 
-                    newList.clear();
+                        JsonObject items = root2.getAsJsonObject("items");
 
 
-                    for (Map.Entry<String, GoodsListNewBean.GoodsMap> m : mapNew.entrySet()) {
+                        Map<String, GoodsListNewBean.GoodsMap> mapNew = gson.fromJson(items, new TypeToken<Map<String, GoodsListNewBean.GoodsMap>>() {
+                        }.getType());
 
 
-                        GoodsListNewBean.GoodsMap goodsInfo = m.getValue();
 
-                        newList.add(goodsInfo);
+
+                        newList.clear();
+
+
+                        for (Map.Entry<String, GoodsListNewBean.GoodsMap> m : mapNew.entrySet()) {
+
+
+                            GoodsListNewBean.GoodsMap goodsInfo = m.getValue();
+
+                            newList.add(goodsInfo);
+
+                        }
+
+                        goodsList.addAll(newList);
+                        puBuAdapter.notifyDataSetChanged();
+
+
 
                     }
 
-                    goodsList.addAll(newList);
-                    puBuAdapter.notifyDataSetChanged();
+
+
 
 
                 }else{
