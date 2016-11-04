@@ -7,6 +7,7 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,10 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
     private int totalPage = 1;
     private ImageView titlebar_back;
+    private RelativeLayout rl_goods_comm_load_progress;
+
+
+    private boolean pullFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,8 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
 
         titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
+        rl_goods_comm_load_progress = ((RelativeLayout) findViewById(R.id.rl_goods_comm_load_progress));
 
 
         eventPullToRefresh();
@@ -122,10 +129,14 @@ public class GoodsCommentActivity extends AppCompatActivity {
                 PullToRefreshBase.Mode mode = ptr_goods_common_ptr.getCurrentMode();
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    pullFlag =true;
+
 
                     page =1;
 
                     getData();
+
+
 
 
 
@@ -205,6 +216,15 @@ public class GoodsCommentActivity extends AppCompatActivity {
 
        // http://app.linchom.com/appapi.php?act=goods_comment&goods_id=120
 
+        if(page==1&&pullFlag==false){
+
+            rl_goods_comm_load_progress.setVisibility(View.VISIBLE);
+
+
+
+        }
+
+
 
         RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -217,11 +237,17 @@ public class GoodsCommentActivity extends AppCompatActivity {
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
+                rl_goods_comm_load_progress.setVisibility(View.GONE);
+
                 Gson gson = new Gson();
                 GoodsCommonBean goodsCommonBean = gson.fromJson(result,GoodsCommonBean.class);
 
                 if(page==1){
+
+
                     commonList.clear();
+
 
 
                 }
