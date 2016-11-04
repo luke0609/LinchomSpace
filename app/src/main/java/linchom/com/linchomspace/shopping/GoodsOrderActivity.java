@@ -536,6 +536,12 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("user_id",userId);
 
+        Toast.makeText(getApplicationContext(),"userId"+userId,Toast.LENGTH_SHORT).show();
+
+        Log.i(TAG,"user_id ce shi"+userId);
+
+        Log.i(TAG,"jsonData ce shi"+jsonData);
+
 
 
         requestParams.addBodyParameter("cart_goods",jsonData);
@@ -603,10 +609,17 @@ public class GoodsOrderActivity extends AppCompatActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
+                Log.i(TAG,"ex ce shi"+ex);
+
+                Toast.makeText(getApplicationContext(),ex+"",Toast.LENGTH_SHORT).show();
+
+
 
 
                 Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
+
+                rl_goods_order_pro.setVisibility(View.GONE);
+
 
 
 
