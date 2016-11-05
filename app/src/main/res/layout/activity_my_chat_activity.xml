@@ -8,15 +8,15 @@
     <RelativeLayout
         android:id="@+id/rl_ping"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#d4cece">
+        android:layout_height="45dp"
+        android:background="#f5f5f5">
         <ImageView
             android:id="@+id/iv_chat_back"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/back"
+            android:src="@drawable/article_back"
             />
         <TextView
             android:layout_width="wrap_content"

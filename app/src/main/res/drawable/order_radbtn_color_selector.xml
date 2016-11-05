@@ -3,7 +3,7 @@
 
 
 
-    <item android:color="#ff3300" android:state_checked="true"/>
-    <item android:color="#808080" android:state_checked="false"/>
+    <item android:color="#ff3401" android:state_checked="true"/>
+    <item android:color="#161616" android:state_checked="false"/>
 
 </selector>
