@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.shizhefei.view.indicator.BannerComponent;
-import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.ColorBar;
@@ -31,7 +30,6 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +41,7 @@ import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
-
+import linchom.com.linchomspace.search.SearchActivity;
 
 
 public class ChatFragment extends Fragment {
@@ -56,6 +54,7 @@ public class ChatFragment extends Fragment {
     private int pageCount=1;
     private int startPage=1;
     private CircularProgress CircularProgress;
+    private TextView tv_search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +78,17 @@ public class ChatFragment extends Fragment {
     }
 
     private void initView() {
+        tv_search = ((TextView) view1.findViewById(R.id.tv_search));
+        tv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("search_type", "chat");
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        });
         to_publish = ((ImageView) view1.findViewById(R.id.chat_search));
         to_publish.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_search);
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
-         search_type = bundle.getString("search_type");
+        search_type = bundle.getString("search_type");
         Log.i("aaa",search_type);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));
@@ -216,6 +216,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             if(search_type.equals("article")){
                 Log.i("aaa",search_type);
+                Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putString("keyword",record);
+                intent.putExtra("bundle",bundle);
+                startActivity(intent);
+                finish();
+            }else if(search_type.equals("chat")){
                 Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
                 Bundle bundle =new Bundle();
                 bundle.putString("keyword",record);

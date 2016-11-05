@@ -23,7 +23,6 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,7 +38,6 @@ import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 
 import static linchom.com.linchomspace.R.id.tv_chat_time;
-import static linchom.com.linchomspace.R.id.tv_more;
 
 public class ChatDetilActivity extends AppCompatActivity {
     @InjectView(R.id.iv_back)
@@ -59,9 +57,6 @@ public class ChatDetilActivity extends AppCompatActivity {
     CommonAdapter<TopicDetialBean.DataBean.TopicCommentsBean> commentsAdapter;
     public final ArrayList<TopicDetialBean.DataBean.TopicCommentsBean> commentsList = new ArrayList<TopicDetialBean.DataBean.TopicCommentsBean>();
     String parent_comment_username;
-
-
-
     private TextView title;
      private  TextView tvChatUsername;
      private TextView tvChatTime;
