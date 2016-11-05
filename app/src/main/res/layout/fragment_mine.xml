@@ -11,20 +11,21 @@
             android:id="@+id/rv_head0"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/bk_1">
+            android:background="@drawable/city">
             <ImageView
                 android:id="@+id/iv_head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/live_head_passerby" />
+                android:layout_centerInParent="true"
+                android:src="@drawable/kid" />
             <TextView
                 android:id="@+id/tv_user_name"
                 android:layout_below="@id/iv_head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="麦兜"
-                android:textColor="#b54b4b4b"
+                android:textColor="#f1ecec"
                 android:textSize="18sp"
                 android:layout_marginTop="15dp"
                 android:gravity="center" />
@@ -41,6 +42,7 @@
             android:layout_below="@id/v_view"
             android:layout_width="match_parent"
             android:orientation="horizontal"
+            android:background="#fff"
             android:layout_height="60dp">
 
             <Button
@@ -48,16 +50,17 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="收 藏"
-                android:textColor="#808080"
-                android:textSize="15sp"
+                android:textColor="#212121"
+                android:textSize="13sp"
+                android:padding="5dp"
                 android:background="#fff"
-                android:padding="3dp"
-                android:drawableTop="@drawable/love"
+                android:drawableTop="@drawable/yellow_collect"
                 android:layout_height="60dp" />
-            <View
-                android:layout_width="0.1dp"
-                android:layout_height="60dp"
-                android:background="#ccc" />
+
+            <!--<View-->
+                <!--android:layout_width="0.1dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:background="#ffffff" />-->
             <!--<Button-->
                 <!--android:layout_width="0dp"-->
                 <!--android:layout_weight="1"-->
@@ -77,11 +80,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="设 置"
-                android:textColor="#808080"
-                android:textSize="15sp"
+                android:textColor="#212121"
+                android:textSize="13sp"
                 android:background="#fff"
-                android:padding="3dp"
-                android:drawableTop="@drawable/shezhi"
+                android:padding="5dp"
+                android:drawableTop="@drawable/set"
                 android:layout_height="60dp" />
         </LinearLayout>
         <View
@@ -89,13 +92,13 @@
             android:layout_below="@id/ll_button"
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#ccc"
+            android:background="#f9f5f5"
             android:layout_marginTop="9dp"/>
         <RelativeLayout
             android:layout_below="@id/v_zhong"
             android:id="@+id/person_center_content"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/huodong"
@@ -103,16 +106,17 @@
                 android:layout_height="25dp"
                 android:src="@drawable/huodong"
                 android:layout_marginLeft="12dp"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
             <TextView
                 android:layout_toRightOf="@id/huodong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="活 动"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_active"
                 android:layout_width="20dp"
@@ -127,12 +131,14 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="#ccc"
-            android:layout_below="@id/person_center_content"/>
+            android:layout_marginLeft="18dp"
+            android:layout_below="@id/person_center_content"
+            />
         <RelativeLayout
             android:id="@+id/person_center_content1"
             android:layout_below="@id/v_activity"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/iv_shopping"
@@ -140,16 +146,17 @@
                 android:layout_height="25dp"
                 android:src="@drawable/shopping"
                 android:layout_marginLeft="12dp"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="商场购物"
                 android:layout_toRightOf="@id/iv_shopping"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_store"
                 android:layout_width="20dp"
@@ -164,12 +171,13 @@
             android:layout_below="@id/person_center_content1"
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
+            android:layout_marginLeft="18dp"
             android:background="#ccc"/>
         <RelativeLayout
             android:layout_below="@id/v_goods"
             android:id="@+id/person_center_content2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/iv_dingdan"
@@ -177,17 +185,18 @@
                 android:layout_height="25dp"
                 android:src="@drawable/ddan"
                 android:layout_marginLeft="12dp"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/tv_dd3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="订 单"
                 android:layout_toRightOf="@+id/iv_dingdan"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_indent"
                 android:layout_width="20dp"
@@ -201,6 +210,7 @@
             android:id="@+id/v_dan"
             android:layout_below="@id/person_center_content2"
             android:layout_width="match_parent"
+            android:layout_marginLeft="18dp"
             android:layout_height="0.1dp"
             android:background="#ccc"/>
         <RelativeLayout
@@ -214,17 +224,18 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/chat"
+                android:visibility="gone"
                 android:layout_marginLeft="12dp"
                 android:layout_centerVertical="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="我的交流"
                 android:layout_toRightOf="@id/iv_jiaoliu"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_chat"
                 android:layout_width="20dp"
@@ -238,19 +249,22 @@
             android:id="@+id/v_jiaoliu"
             android:layout_below="@id/person_center_content3"
             android:layout_width="match_parent"
+            android:layout_marginLeft="18dp"
             android:layout_height="0.1dp"
-            android:background="#ccc"/>
+            android:background="#ccc"
+            />
         />
         <RelativeLayout
             android:id="@+id/person_center_content4"
             android:layout_below="@id/v_jiaoliu"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/iv_baoliao"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:visibility="gone"
                 android:src="@drawable/discolse"
                 android:layout_marginLeft="12dp"
                 android:layout_centerVertical="true"
@@ -258,12 +272,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="我要爆料"
                 android:layout_toRightOf="@id/iv_baoliao"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_disclose"
                 android:layout_width="20dp"
@@ -278,13 +292,14 @@
             android:layout_below="@id/person_center_content4"
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#ccc"/>
+            android:background="#ccc"
+            android:layout_marginLeft="18dp"/>
         />
         <RelativeLayout
             android:id="@+id/person_center_content5"
             android:layout_below="@id/v_bao"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:background="#ffffff"
             >
             <ImageView
@@ -294,16 +309,17 @@
                 android:src="@drawable/log"
                 android:layout_marginLeft="12dp"
                 android:layout_centerVertical="true"
+                android:visibility="gone"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="我的日志"
                 android:layout_toRightOf="@id/iv_mylog"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_log"
                 android:layout_width="20dp"
@@ -318,13 +334,14 @@
             android:layout_below="@id/person_center_content5"
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#ccc"/>
+            android:background="#ccc"
+            android:layout_marginLeft="18dp"/>
         />
         <RelativeLayout
             android:id="@+id/person_center_content6"
             android:layout_below="@id/v_log"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:background="#ffffff"
             >
             <ImageView
@@ -332,18 +349,19 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/notify"
+                android:visibility="gone"
                 android:layout_marginLeft="12dp"
                 android:layout_centerVertical="true"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_centerVertical="true"
                 android:text="消息通知"
                 android:layout_toRightOf="@id/iv_notify"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_alerts"
                 android:layout_width="20dp"
@@ -358,13 +376,15 @@
             android:layout_below="@id/person_center_content6"
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="#ccc"/>
+            android:background="#ccc"
+            android:layout_marginLeft="18dp"/>
+
         />
         <RelativeLayout
             android:id="@+id/person_center_content7"
             android:layout_below="@id/v_nofy"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:background="#ffffff"
             >
             <ImageView
@@ -373,17 +393,18 @@
                 android:layout_height="25dp"
                 android:src="@drawable/user"
                 android:layout_marginLeft="12dp"
+                android:visibility="gone"
                 android:layout_centerVertical="true"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@id/iv_fahkui"
                 android:layout_centerVertical="true"
                 android:text="反 馈"
-                android:textColor="#808080"
-                android:textSize="18sp"/>
+                android:textColor="#212121"
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/iv_feedBack"
                 android:layout_width="20dp"

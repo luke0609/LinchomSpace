@@ -2,6 +2,7 @@ package linchom.com.linchomspace.shopping;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.goodsfragment.AllOrderFragment;
 import linchom.com.linchomspace.shopping.goodsfragment.AlreadyPayFragment;
@@ -55,6 +57,9 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_all_order);
+
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
         userName = shared_prefs.getString("username","");

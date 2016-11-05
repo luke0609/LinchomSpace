@@ -260,9 +260,9 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
         btn_goods_btnSearch = ((Button) view.findViewById(R.id.btn_goods_btnSearch));
 
-       // et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
+       et_goods_cate_search = ((EditText) view.findViewById(R.id.et_goods_cate_search));
 
-        et_goods_cate_search = ((TextView) view.findViewById(R.id.et_goods_cate_search));
+       // et_goods_cate_search = ((TextView) view.findViewById(R.id.et_goods_cate_search));
 
         linear = ((LinearLayout) view.findViewById(R.id.linear));
 
@@ -280,7 +280,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
         setButtonClick();
         advLoopPlay();
 
-       et_goods_cate_search.setOnClickListener(new View.OnClickListener() {
+      /* et_goods_cate_search.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
 
@@ -290,7 +290,7 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
 
            }
-       });
+       });*/
 
 
 
@@ -755,10 +755,10 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.btn_goods_btnSearch:
-                //toGoodsSearch();
+                toGoodsSearch();
 
 
-                if(et_goods_cate_search.getText().toString().equals("请输入感兴趣的产品")){
+               /* if(et_goods_cate_search.getText().toString().equals("请输入感兴趣的产品")){
 
                     Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
 
@@ -795,12 +795,12 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
                         startActivity(intent);
 
-                    }
+                    }*/
 
 
 
 
-                }
+                //}
 
 
 
@@ -817,16 +817,29 @@ public class ShoppingFragment extends Fragment implements View.OnClickListener{
 
     private void toGoodsSearch() {
 
-        Intent intent =new Intent(getActivity(), GoodsListActivity.class);
+        if(et_goods_cate_search.getText().toString().trim().length()==0){
 
-        Bundle bundle =new Bundle();
-        bundle.putString("keyword",et_goods_search_history.getText().toString().trim()+"");
+            Toast.makeText(getActivity(),"请输入",Toast.LENGTH_SHORT).show();
 
-        bundle.putString("cateId","");
 
-        intent.putExtra("bundle",bundle);
 
-        startActivity(intent);
+        }else{
+
+            Intent intent =new Intent(getActivity(), GoodsListActivity.class);
+
+            Bundle bundle =new Bundle();
+            bundle.putString("keyword",et_goods_cate_search.getText().toString().trim()+"");
+
+            bundle.putString("cateId","");
+
+            intent.putExtra("bundle",bundle);
+
+            startActivity(intent);
+
+
+        }
+
+
 
 
 

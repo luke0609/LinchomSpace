@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
@@ -49,7 +50,11 @@ import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 import linchom.com.linchomspace.shopping.widget.GoodsScrollView;
 
 public class GoodsActivity extends AppCompatActivity implements View.OnClickListener{
-//修改时间10/19
+//修改时间11/4
+
+
+
+
     private static final String TAG = "GoodsActivity";
     private GoodsScrollView sv_goods_scrollview;
     private RelativeLayout rl_goods_head;
@@ -166,6 +171,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout rl_goods_link;
 
     private String userName;
+    private RelativeLayout rl_goods_link_tb;
+    private RelativeLayout rl_goods_link_jd;
 
 
     @Override
@@ -173,6 +180,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
 
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
 
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
@@ -288,6 +296,10 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
         rl_goods_link = ((RelativeLayout) findViewById(R.id.rl_goods_link));
+
+        rl_goods_link_tb = ((RelativeLayout) findViewById(R.id.rl_goods_link_tb));
+
+        rl_goods_link_jd = ((RelativeLayout) findViewById(R.id.rl_goods_link_jd));
 
 
     }
@@ -554,24 +566,16 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
                     if(tbLink==null||("0.00").equals(goodsBean.data.tb_price)){
-                        btn_goods_tbBuy.setVisibility(View.INVISIBLE);
 
-                        iv_goods_tblogo.setVisibility(View.INVISIBLE);
-                        tv_goods_tb.setVisibility(View.INVISIBLE);
-                        tv_goods_tbfunhao.setVisibility(View.INVISIBLE);
-                        tv_goods_tbPrice.setVisibility(View.INVISIBLE);
+                        rl_goods_link_tb.setVisibility(View.GONE);
+
 
 
                     }
 
                     if(jdLink==null||("0.00").equals(goodsBean.data.jd_price)){
 
-                        btn_goods_jdBuy.setVisibility(View.INVISIBLE);
-
-                        iv_goods_jdlogo .setVisibility(View.INVISIBLE);
-                        tv_goods_jd.setVisibility(View.INVISIBLE);
-                        tv_goods_jdfunhao.setVisibility(View.INVISIBLE);
-                        tv_goods_jdPrice.setVisibility(View.INVISIBLE);
+                       rl_goods_link_jd.setVisibility(View.GONE);
 
                     }
 
@@ -764,6 +768,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_goods_joinCart:
 
+                btn_goods_joinCart.setText("加入中");
+
+
 
                 if(userId!=""){
 
@@ -790,16 +797,12 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 }
 
 
-
-
                 break;
 
             case R.id.rl_goods_proComment:
 
 
-
                 if(commFlag==false){
-
 
 
                     lv_goods_common_list.setVisibility(View.VISIBLE);
@@ -807,7 +810,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     iv_goods_common.setImageResource(R.drawable.goods_comm_zhankai);
 
                     commFlag=true;
-
 
                 }else{
 
@@ -909,13 +911,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
         }
-
-
-
-
-       // String goodsIdStr1 =  sharedPreferences.getString("goodsId","");
-
-        //Toast.makeText(getApplicationContext(),goodsIdStr1,Toast.LENGTH_SHORT).show();
 
 
 
@@ -1033,6 +1028,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     private void toJoinCart() {
 
+
         if(stockNum<1){
 
             Toast.makeText(getApplicationContext(),"库存不足,不能加入",Toast.LENGTH_SHORT).show();
@@ -1049,6 +1045,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getCartData() {
+
+
 
         RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -1091,6 +1089,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
                 }else{
+
+                    btn_goods_joinCart.setText("已添加购物车");
+                    btn_goods_joinCart.setEnabled(false);
+
+
                     Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
 
                     addCart(iv_goods_cart_rmb);
@@ -1106,6 +1109,9 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onError(Throwable ex, boolean isOnCallback) {
 
                 Toast.makeText(getApplicationContext(),"加入失败",Toast.LENGTH_SHORT).show();
+
+                btn_goods_joinCart.setText("加入购物车");
+
 
 
 
@@ -1370,14 +1376,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     intent.putExtra("bundle",bundle);
 
                     startActivity(intent);
-
-
-
-
-
-
-
-
 
 
         }

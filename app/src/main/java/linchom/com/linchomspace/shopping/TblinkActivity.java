@@ -1,6 +1,7 @@
 package linchom.com.linchomspace.shopping;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 
 public class TblinkActivity extends AppCompatActivity {
 
@@ -22,6 +24,8 @@ public class TblinkActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tblink);
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+
 
         Intent intent =getIntent();
 

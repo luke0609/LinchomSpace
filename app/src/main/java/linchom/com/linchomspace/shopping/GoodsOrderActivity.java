@@ -3,6 +3,7 @@ package linchom.com.linchomspace.shopping;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,6 +30,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
@@ -83,6 +85,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_order);
+        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+
 
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
@@ -532,6 +536,12 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("user_id",userId);
 
+        Toast.makeText(getApplicationContext(),"userId"+userId,Toast.LENGTH_SHORT).show();
+
+        Log.i(TAG,"user_id ce shi"+userId);
+
+        Log.i(TAG,"jsonData ce shi"+jsonData);
+
 
 
         requestParams.addBodyParameter("cart_goods",jsonData);
@@ -599,10 +609,17 @@ public class GoodsOrderActivity extends AppCompatActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Log.i(TAG,"ex"+ex);
+                Log.i(TAG,"ex ce shi"+ex);
+
+                Toast.makeText(getApplicationContext(),ex+"",Toast.LENGTH_SHORT).show();
+
+
 
 
                 Toast.makeText(getApplicationContext(),"添加失败",Toast.LENGTH_SHORT).show();
+
+                rl_goods_order_pro.setVisibility(View.GONE);
+
 
 
 
