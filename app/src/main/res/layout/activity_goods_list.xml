@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/rl_goodsList_search"
-        android:background="#212121"
+        android:background="@color/main_style"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -51,7 +51,7 @@
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:background="@drawable/goodssearch_shape"
-            android:textColor="#212121"
+            android:textColor="@color/text_style"
             android:text="搜 索"
             android:layout_width="0dp"
             android:layout_weight="2"
@@ -98,7 +98,7 @@
             >
 
             <Button
-                android:textColor="#212121"
+                android:textColor="#808080"
                 android:id="@+id/btn_goodsList_hot"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -131,7 +131,7 @@
             >
 
             <Button
-                android:textColor="#212121"
+                android:textColor="#808080"
 
                 android:id="@+id/btn_goodsList_default"
                 android:layout_width="match_parent"
@@ -166,7 +166,7 @@
             >
 
             <Button
-                android:textColor="#212121"
+                android:textColor="#808080"
 
                 android:id="@+id/btn_goodsList_new"
                 android:layout_width="match_parent"

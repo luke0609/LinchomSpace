@@ -83,7 +83,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         String userId = shared_prefs.getString("userId","");
 
 
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
 
 
         Intent intent  =getIntent();
