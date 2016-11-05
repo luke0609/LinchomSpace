@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +36,7 @@ import java.util.List;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.homepage.Utils.ToastUtil;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.contant.GoodsContant;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
@@ -939,7 +942,21 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(String result) {
 
-                Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
+
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_style,
+                        (ViewGroup) findViewById(R.id.ll_toast));
+                ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                image.setImageResource(R.drawable.collect_success1);
+                TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                text.setText("取消收藏");
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                ToastUtil.showMyToast(toast, 1000);
+
+               // Toast.makeText(getApplicationContext(),"取消收藏",Toast.LENGTH_SHORT).show();
                 iv_goods_Collection.setImageResource(R.drawable.article_collect3);
                 collectFlag=false;
 
@@ -949,7 +966,21 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Toast.makeText(getApplicationContext(),"取消失败",Toast.LENGTH_SHORT).show();
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_style,
+                        (ViewGroup) findViewById(R.id.ll_toast));
+                ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                image.setImageResource(R.drawable.collect_success1);
+                TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                text.setText("取消失败");
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                ToastUtil.showMyToast(toast, 1000);
+
+
+               // Toast.makeText(getApplicationContext(),"取消失败",Toast.LENGTH_SHORT).show();
 
 
             }
@@ -996,8 +1027,22 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 collectFlag=true;
 
 
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_style,
+                        (ViewGroup) findViewById(R.id.ll_toast));
+                ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                image.setImageResource(R.drawable.collect_success1);
+                TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                text.setText("收藏成功");
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                ToastUtil.showMyToast(toast, 1000);
 
-                Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
+
+
+               // Toast.makeText(getApplicationContext(),"收藏成功",Toast.LENGTH_SHORT).show();
 
 
             }
@@ -1005,7 +1050,23 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
-                Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
+
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_style,
+                        (ViewGroup) findViewById(R.id.ll_toast));
+                ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                image.setImageResource(R.drawable.collect_success1);
+                TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                text.setText("收藏失败");
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setView(layout);
+                ToastUtil.showMyToast(toast, 1000);
+
+
+
+                //Toast.makeText(getApplicationContext(),"收藏失败",Toast.LENGTH_SHORT).show();
 
 
             }
