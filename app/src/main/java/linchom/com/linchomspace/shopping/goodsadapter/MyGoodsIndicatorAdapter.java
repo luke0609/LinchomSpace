@@ -99,8 +99,8 @@ public class MyGoodsIndicatorAdapter extends IndicatorViewPager.IndicatorViewPag
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setCrop(true)// 如果ImageView的大小不是定义为wrap_content, 不要crop.
                 .setImageScaleType(ImageView.ScaleType.FIT_XY)
-                .setLoadingDrawableId(R.drawable.goods_background)//加载中默认显示图片
-                .setFailureDrawableId(R.drawable.g1)//加载失败后默认显示图片
+                .setLoadingDrawableId(R.drawable.adv_default)//加载中默认显示图片
+                .setFailureDrawableId(R.drawable.adv_default)//加载失败后默认显示图片
                 .build();
 
         x.image().bind(imageView, advList.get(position%advList.size()).img_url,imageOptions);
