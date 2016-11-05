@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="慢行关西，画在关东--元气霓虹的西东之旅"
         android:layout_alignParentLeft="true"
-        android:textColor="#020202"
+        android:textColor="@color/text_style"
         android:textSize="17sp"
         android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/iv_photo"

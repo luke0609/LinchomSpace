@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="#212121">
+        android:background="@color/main_style">
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="30dp"
@@ -91,6 +92,23 @@
         android:scrollbars="vertical"
         android:background="@drawable/ll_shape"
         />
+    <info.hoang8f.widget.FButton
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn_publish"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        fbutton:buttonColor="@color/fbutton_color_green_sea"
+        fbutton:shadowColor="@color/main_style"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="2dp"
+        fbutton:cornerRadius="5dp"
+        android:textSize="18sp"
+        android:text="发      布"
+        android:textColor="#fff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        />
+
     <Button
         android:id="@+id/btn_publish"
         android:layout_width="match_parent"

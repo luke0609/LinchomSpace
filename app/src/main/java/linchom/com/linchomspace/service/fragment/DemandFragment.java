@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -46,6 +47,10 @@ public class DemandFragment extends Fragment{
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
 
     int page = 1;
+
+
+
+    int totalPage = 1;
 
 
 
@@ -235,7 +240,21 @@ public class DemandFragment extends Fragment{
 
                 ServiceListBean serviceListBean =   gson.fromJson(result, ServiceListBean.class);
 
-                serviceLsit.addAll(serviceListBean.data.items);
+
+                totalPage = Integer.parseInt(serviceListBean.data.total_pages);
+
+                if(page<=totalPage){
+
+                    serviceLsit.addAll(serviceListBean.data.items);
+
+
+
+                }else{
+
+                    Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                }
+
 
                 goodsCommonAdapter.notifyDataSetChanged();
 

@@ -42,7 +42,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_publish_activiy);
         initView();
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
     }
     private void initView() {
 

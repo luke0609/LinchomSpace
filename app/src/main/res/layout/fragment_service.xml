@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="#212121">
+        android:background="@color/main_style">
 
         <ImageView
             android:id="@+id/address_select"
@@ -43,7 +43,7 @@
                 android:id="@+id/request"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                style="@style/radiobtn"
+                style="@style/radiobtn2"
                 android:layout_height="match_parent"
                 android:background="@drawable/service_change_selector"
                 android:textColor="@drawable/serviec_textcolor_selector"

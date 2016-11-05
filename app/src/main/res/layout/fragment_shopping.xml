@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:background="#212121"
+        android:background="@color/main_style"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/linear"
@@ -24,7 +24,7 @@
             android:src="@drawable/search"
             android:layout_marginRight="5dp"
             android:paddingLeft="5dp"/>
-        <TextView
+        <EditText
             android:gravity="center_vertical"
             android:id="@+id/et_goods_cate_search"
             android:layout_width="0dp"
@@ -36,8 +36,8 @@
             android:background="@drawable/find_search_shape"
             android:scaleType="centerInside"
 
-            android:text="请输入感兴趣的产品"
-            android:textColor="#797777"
+            android:hint="请输入感兴趣的产品"
+            android:textColorHint="#797777"
             android:textSize="14sp"
 
             />

@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="pressNavigation">#84b7d2</color>
-    <color name="unpressNavigation">#000</color>
+    <color name="unpressNavigation">#313233</color>
     <color name="pressSearch">#dad8d8</color>
     <color name="unpressSearch">#fff</color>
     <color name="bgBackSideColor">#f4f0ff</color>
@@ -22,6 +22,7 @@
     <color name="underbar">#EEC900</color>
     <color name="tab_top_text_1">#aaa</color>
     <color name="tab_top_text_2">#000</color>
-    <color name="main_style">#56BA22</color>
+    <color name="main_style">#4EAFAB</color>
     <color name="text_style">#313233</color>
+    <color name="style_2">#56BA22</color>
 </resources>

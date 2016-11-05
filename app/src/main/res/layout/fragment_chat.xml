@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:id="@+id/chat_lt"
-        android:background="#212121"
+        android:background="@color/main_style"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="50dp">
@@ -97,7 +97,7 @@
         <com.shizhefei.view.indicator.ScrollIndicatorView
             android:id="@+id/moretab_indicator"
             android:layout_width="match_parent"
-            android:background="#212121"
+            android:background="@color/main_style"
             android:layout_height="27dp"
             />
 
