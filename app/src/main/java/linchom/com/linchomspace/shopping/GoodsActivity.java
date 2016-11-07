@@ -771,11 +771,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_goods_joinCart:
 
-                btn_goods_joinCart.setText("加入中");
+
 
 
 
                 if(userId!=""){
+
+                    btn_goods_joinCart.setText("加入中");
 
                     toJoinCart();
 
