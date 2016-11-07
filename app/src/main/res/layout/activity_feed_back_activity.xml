@@ -3,17 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".mine.FeedBack_activity">
     <RelativeLayout
         android:id="@+id/rl_fk"
+        android:background="#fff"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:id="@+id/iv_fkback"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/back"
+            android:src="@drawable/article_back"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             />
@@ -22,18 +24,21 @@
             android:layout_height="wrap_content"
             android:text="意见反馈"
             android:textSize="18sp"
+            android:textColor="@color/text_style"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
-        <Button
+        <TextView
             android:id="@+id/b_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#90e7e7e7"
+            android:background="#fff"
             android:text="提 交"
+            android:layout_centerVertical="true"
             android:textSize="18sp"
-            android:textColor="#878787"
+            android:textColor="@color/text_style"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
             />
     </RelativeLayout>
     <View
@@ -50,26 +55,29 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:background="#f7f7f7"
             android:id="@+id/et_dis"
             android:layout_below="@id/v_dis"
             android:layout_width="match_parent"
-            android:layout_toLeftOf="@+id/iv_post"
             android:layout_height="wrap_content"
             android:hint="如需传图，请点右边"
-            android:lines="9"
-            android:gravity="top"
+            android:textSize="14dp"
+            android:gravity="top|left"
+            android:height="90dp"
+            android:padding="8dp"
+            android:textColorHint="#e1e0e0"
             android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:background="@null"
-            />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@+id/iv_post" />
         <ImageView
             android:id="@+id/iv_post"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/photocs"
+            android:src="@drawable/feed_back_photo1"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -83,19 +91,24 @@
     <EditText
         android:id="@+id/et_yx"
         android:layout_below="@id/rl_yjfk"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:layout_marginLeft="10dp"
-        android:textColor="#e4e3e3"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/edt_background_shape"
-        android:hint="QQ 手机号或者邮箱等联系方式"
-        />
+        android:textColorHint="#e1e0e0"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="#f7f7f7"
+        android:textSize="15sp"
+        android:hint="QQ 手机号或者邮箱"
+       />
     <TextView
         android:id="@+id/tv_submit"
         android:layout_below="@id/et_yx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:text="您的联系方式更有利于我们的沟通，会保密的哦！"
+        android:textColor="#aba7a7"
         />
 </RelativeLayout>

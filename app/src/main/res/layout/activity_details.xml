@@ -91,7 +91,7 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/rl_h"
                 android:background="#fff"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="0.5dp"
 
                 >
                 <TextView
@@ -130,7 +130,7 @@
                 android:layout_height="35dp"
                 android:layout_below="@+id/rl_h1"
                 android:background="#fff"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="0.5dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_below="@+id/rl_add"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="0.5dp"
                 >
                 <TextView
                     android:id="@+id/tv_h2"
@@ -283,7 +283,7 @@
                     android:layout_height="wrap_content"
                     android:text="手机号"
                     android:textColor="#212121"
-                    android:textSize="14sp"
+                    android:textSize="17sp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
 
@@ -301,7 +301,7 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/rl_h4"
                 android:background="#fff"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="0.5dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -350,7 +350,7 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/rl_h5"
                 android:background="#fff"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="0.5dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -396,7 +396,7 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/rl_h6"
                 android:background="#fff"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="0.5dp"
                 >
                 <TextView
                     android:id="@+id/msn"
@@ -433,7 +433,7 @@
                 android:layout_width="match_parent"
                 android:background="#fff"
                 android:layout_height="35dp"
-                android:layout_marginBottom="1dp">
+                android:layout_marginBottom="0.5dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -468,7 +468,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="#fff"
-                android:layout_marginBottom="1dp">
+                android:layout_marginBottom="0.5dp">
                 <TextView
                     android:id="@+id/tv_h8"
                     android:layout_width="wrap_content"
@@ -500,18 +500,7 @@
                 android:background="#d9d5d5"
                 android:layout_below="@id/rl_switch"
                 />
-            <Button
-                android:layout_below="@id/rl_switch"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="退出登录"
-                android:textColor="#ef3636"
-                android:textSize="15sp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
-                android:background="#fff"
-                android:layout_centerHorizontal="true"
-               />
+
 
         </RelativeLayout>
 

@@ -8,12 +8,12 @@
     <RelativeLayout
         android:id="@+id/rl_dis"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="45dp">
         <ImageView
             android:id="@+id/iv_disback"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/back"
+            android:src="@drawable/article_back"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             />
@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我要爆料"
-            android:textSize="20sp"
+            android:textColor="@color/text_style"
+            android:textSize="19sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
@@ -32,8 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发 送"
+            android:textColor="@color/text_style"
             android:layout_marginRight="10dp"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
@@ -65,21 +67,21 @@
             android:layout_toLeftOf="@+id/tv_mine_baoliao"
             android:text="标 题"
             android:textSize="18sp"
-            android:textColor="#808080"
+            android:textColor="#f7f7f7"
             android:padding="10dp"
             android:background="#efeeee"
             android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/tv_mine_baoliao"
-            android:layout_alignParentRight="true"
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="我的爆料"
-            android:layout_centerVertical="true"
-            />
+            android:layout_alignBaseline="@+id/tv_biaoti"
+            android:layout_alignBottom="@+id/tv_biaoti"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
     <View
         android:layout_above="@+id/et_dis"

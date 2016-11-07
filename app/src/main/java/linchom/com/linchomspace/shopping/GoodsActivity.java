@@ -67,7 +67,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     GoodsPagerAdapter goodsPagerAdapter;
 
-    private  String goodsId;//
+    private  String goodsId;
 
     private List<String> goodsPicList =new ArrayList<String>();
 
@@ -188,7 +188,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
          userName = shared_prefs.getString("username","");
-
          userId = shared_prefs.getString("userId","");
 
 

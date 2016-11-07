@@ -34,10 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2016-10-14"
-            android:gravity="center_vertical"
-            android:layout_below="@+id/tv_article_comment_username"
-            android:layout_toRightOf="@+id/iv_user_portrait"
-            android:layout_alignBottom="@+id/iv_user_portrait"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
 
             />
 
@@ -59,6 +57,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="江苏苏州"
+    android:visibility="gone"
     android:layout_alignParentRight="true"
     android:layout_marginRight="15dp"/>
     </RelativeLayout>

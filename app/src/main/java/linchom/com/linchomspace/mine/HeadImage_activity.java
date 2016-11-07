@@ -2,16 +2,12 @@ package linchom.com.linchomspace.mine;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -100,7 +96,8 @@ public class HeadImage_activity extends AppCompatActivity {
                 System.out.println("dataBean"+dataBean);
                 bundle.putSerializable("user",dataBean);
                 intent.putExtras(bundle);
-                startActivityForResult(intent,2);     //标识
+                startActivityForResult(intent,2);
+                finish();//标识
             }
         });
 

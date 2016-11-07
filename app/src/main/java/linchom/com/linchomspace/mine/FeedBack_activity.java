@@ -1,18 +1,14 @@
 package linchom.com.linchomspace.mine;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -20,10 +16,9 @@ import org.xutils.x;
 
 import linchom.com.linchomspace.R;
 
-public class FeedBack_activity extends AppCompatActivity {
-
+public class FeedBack_activity extends AppCompatActivity{
     private ImageView iv_fkback;
-    private Button b_ok;
+    private TextView b_ok;
     private EditText et_dis;
     private ImageView iv_post;
 
@@ -35,7 +30,7 @@ public class FeedBack_activity extends AppCompatActivity {
         et_dis = ((EditText) findViewById(R.id.et_dis));
 
         iv_post = ((ImageView) findViewById(R.id.iv_post));
-        b_ok = ((Button) findViewById(R.id.b_ok));
+        b_ok = ((TextView) findViewById(R.id.b_ok));
 
         iv_post.setOnClickListener(new View.OnClickListener() {
             @Override
