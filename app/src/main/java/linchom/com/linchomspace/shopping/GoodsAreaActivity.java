@@ -1,10 +1,12 @@
 package linchom.com.linchomspace.shopping;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -316,60 +318,93 @@ public class GoodsAreaActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        tv_goods_area_delete.setEnabled(false);
 
-                        //http://app.linchom.com/appapi.php?act=drop_consignee&address_id=28&user_id=12
+                        AlertDialog.Builder builder = new AlertDialog.Builder(GoodsAreaActivity.this);
 
-                        rl_goods_area_pro.setVisibility(View.VISIBLE);
+                        builder.setTitle("删除");
 
+                        builder.setMessage("是否删除");
 
-
-                        RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
-
-                        requestParams.addBodyParameter("act","drop_consignee");
-
-                        requestParams.addBodyParameter("user_id",userId+"");
-
-                        String addressId = areaList.get((int)tv_goods_area_delete.getTag()).address_id;
-
-                        requestParams.addBodyParameter("address_id",addressId+"");
-
-                        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onSuccess(String result) {
-                                rl_goods_area_pro.setVisibility(View.GONE);
-
-
-
-                                Toast.makeText(getApplicationContext(),"删除成功",Toast.LENGTH_SHORT).show();
-
-                                getData();
-
-
-                            }
-
-                            @Override
-                            public void onError(Throwable ex, boolean isOnCallback) {
-                                rl_goods_area_pro.setVisibility(View.GONE);
-
-
-                                Toast.makeText(getApplicationContext(),"删除失败",Toast.LENGTH_SHORT).show();
-
-                                getData();
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(CancelledException cex) {
-
-                            }
-
-                            @Override
-                            public void onFinished() {
+                            public void onClick(DialogInterface dialog, int which) {
 
                             }
                         });
+
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                rl_goods_area_pro.setVisibility(View.VISIBLE);
+
+
+
+                                RequestParams requestParams =new RequestParams(GoodsHttpUtils.SHOPURL);
+
+                                requestParams.addBodyParameter("act","drop_consignee");
+
+                                requestParams.addBodyParameter("user_id",userId+"");
+
+                                String addressId = areaList.get((int)tv_goods_area_delete.getTag()).address_id;
+
+                                requestParams.addBodyParameter("address_id",addressId+"");
+
+                                x.http().post(requestParams, new Callback.CommonCallback<String>() {
+                                    @Override
+                                    public void onSuccess(String result) {
+                                        rl_goods_area_pro.setVisibility(View.GONE);
+
+
+
+                                        Toast.makeText(getApplicationContext(),"删除成功",Toast.LENGTH_SHORT).show();
+
+                                        getData();
+
+
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable ex, boolean isOnCallback) {
+                                        rl_goods_area_pro.setVisibility(View.GONE);
+
+
+                                        Toast.makeText(getApplicationContext(),"删除失败",Toast.LENGTH_SHORT).show();
+
+                                        getData();
+
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(CancelledException cex) {
+
+                                    }
+
+                                    @Override
+                                    public void onFinished() {
+
+                                    }
+                                });
+
+
+
+
+
+                            }
+                        });
+
+                        builder.show();
+
+
+
+
+                      //  tv_goods_area_delete.setEnabled(false);
+
+                        //http://app.linchom.com/appapi.php?act=drop_consignee&address_id=28&user_id=12
+
+
 
                     }
                 });
