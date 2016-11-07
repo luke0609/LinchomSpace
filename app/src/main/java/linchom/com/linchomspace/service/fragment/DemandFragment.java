@@ -73,6 +73,13 @@ public class DemandFragment extends Fragment{
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+    }
+
     private void initView() {
 
 
@@ -210,6 +217,8 @@ public class DemandFragment extends Fragment{
     private void getData(){
 
         //http://app.linchom.com/appapi.php?act=demand_services&service_type=2&usr_id=12
+
+        unfoldedIndexes.clear();
 
         RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
 

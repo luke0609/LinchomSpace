@@ -134,6 +134,8 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         super.onActivityResult(requestCode, resultCode, data);
 
        // Toast.makeText(ArticleActivity.this,"requestCode:"+requestCode+" resultCode:"+resultCode,Toast.LENGTH_SHORT).show();
+
+
         if (requestCode==100){
             getCommentNumber();
         }
@@ -146,11 +148,15 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
         userName = shared_prefs.getString("username","");
         userId = shared_prefs.getString("userId","");
+
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         article_id = bundle.getString("article_id");
+        initView();
         initData();
         bindEvents();
+
+
     }
 
 
@@ -355,10 +361,11 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
                 String info = bean.getData().getTitle();
                 int add_time = Integer.parseInt(bean.getData().getAdd_time());
                 String date = sdf.format(new Date(add_time * 1000L));
+                String source=bean.getData().getSource();
                 System.out.println(info);
                 article_title.setText(info);
                 artTvTime.setText(date);
-
+                artTvSource.setText(source);
             }
 
             @Override
@@ -869,6 +876,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         mHeaderAnimator.setDuration(300).start();
         mBottomAnimator.setDuration(300).start();
     }
+
 //    @Override
 //    public boolean dispatchKeyEvent(KeyEvent event) {
 //        return false;
@@ -878,6 +886,9 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 //    public boolean dispatchTouchEvent(MotionEvent ev) {
 //        return false;
 //    }
+
+
+
     @Override
     protected void onResume() {
         super.onResume();

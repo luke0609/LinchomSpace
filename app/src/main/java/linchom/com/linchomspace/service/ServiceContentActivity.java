@@ -90,6 +90,10 @@ public class ServiceContentActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
         vp_service_content.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

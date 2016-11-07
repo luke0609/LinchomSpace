@@ -23,7 +23,7 @@ public class xUtilsImageUtils {
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
                 .setFailureDrawableId(R.mipmap.loadfailure)
-                .setLoadingDrawableId(R.mipmap.home_load)
+                .setLoadingDrawableId(R.mipmap.default1)
                 .build();
         org.xutils.x.image().bind(imageView, iconUrl,imageOptions);
     }
@@ -42,7 +42,7 @@ public class xUtilsImageUtils {
                 .setIgnoreGif(false)
                 .setCrop(true)//是否对图片进行裁剪
                 .setFailureDrawableId(R.mipmap.loadfailure)
-                .setLoadingDrawableId(R.mipmap.load)
+                .setLoadingDrawableId(R.mipmap.default1)
                 .build();
         org.xutils.x.image().bind(imageView, iconUrl, imageOptions);
     }
@@ -59,7 +59,7 @@ public class xUtilsImageUtils {
                 .setCircular(isCircluar)
                 .setCrop(true)
                 .setLoadingDrawableId(R.mipmap.loadfailure)
-                .setFailureDrawableId(R.mipmap.load)
+                .setFailureDrawableId(R.mipmap.default1)
                 .build();
         org.xutils.x.image().bind(imageView, iconUrl, imageOptions);
     }

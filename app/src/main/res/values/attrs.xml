@@ -29,9 +29,9 @@
 
 
     <declare-styleable name="WheelView">
-        <!--set number of item displayed, default is 3-->
+        <!--set number of item displayed, default1 is 3-->
         <attr name="npv_ShowCount" format="reference|integer" />
-        <!--set if show divider, default is true-->
+        <!--set if show divider, default1 is true-->
         <attr name="npv_ShowDivider" format="reference|boolean" />
         <attr name="npv_DividerColor" format="reference|color" />
         <attr name="npv_DividerMarginLeft" format="reference|dimension" />
