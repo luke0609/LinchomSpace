@@ -67,7 +67,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     GoodsPagerAdapter goodsPagerAdapter;
 
-    private  String goodsId;//
+    private  String goodsId;
 
     private List<String> goodsPicList =new ArrayList<String>();
 
@@ -188,7 +188,6 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
          userName = shared_prefs.getString("username","");
-
          userId = shared_prefs.getString("userId","");
 
 
@@ -771,11 +770,13 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_goods_joinCart:
 
-                btn_goods_joinCart.setText("加入中");
+
 
 
 
                 if(userId!=""){
+
+                    btn_goods_joinCart.setText("加入中");
 
                     toJoinCart();
 

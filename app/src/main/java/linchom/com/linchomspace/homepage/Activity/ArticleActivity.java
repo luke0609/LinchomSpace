@@ -56,6 +56,7 @@ import linchom.com.linchomspace.homepage.Entity.ArticleInfoBean;
 import linchom.com.linchomspace.homepage.Utils.ToastUtil;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.homepage.View.SlideSelectView;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.shopping.GoodsActivity;
 
 public class ArticleActivity extends AppCompatActivity implements View.OnLayoutChangeListener {
@@ -122,6 +123,8 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     private int screenHeight = 0;
     //软件盘弹起后所占高度阀值
     private int keyHeight = 0;
+    private String userName;
+    private String userId;
 
     //requestCode 请求码，即调用startActivityForResult()传递过去的值
     // resultCode 结果码，结果码用于标识返回数据来自哪个新Activity
@@ -131,8 +134,6 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         super.onActivityResult(requestCode, resultCode, data);
 
        // Toast.makeText(ArticleActivity.this,"requestCode:"+requestCode+" resultCode:"+resultCode,Toast.LENGTH_SHORT).show();
-
-
         if (requestCode==100){
             getCommentNumber();
         }
@@ -142,17 +143,14 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
         ButterKnife.inject(this);
-
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+        userId = shared_prefs.getString("userId","");
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         article_id = bundle.getString("article_id");
-
-
-        initView();
         initData();
         bindEvents();
-
-
     }
 
 
@@ -751,16 +749,16 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 
     private void publishComment(String comment) {
         RequestParams params = new RequestParams(Constant.ArticleAddComment);
-        params.addQueryStringParameter("user_name", "Monologue、");
+        params.addQueryStringParameter("user_name", userName);
         params.addQueryStringParameter("article_id", article_id);
-        params.addQueryStringParameter("user_id", "135");
-        params.addQueryStringParameter("email", "2070118814@qq.com");
+        params.addQueryStringParameter("user_id", userId);
+        //params.addQueryStringParameter("email", "2070118814@qq.com");
         params.addQueryStringParameter("content", comment);
         params.addQueryStringParameter("type", "2");
         x.http().get(params, new Callback.CommonCallback<String>() {
 
             @Override
-            public void onSuccess(String result) {
+            public void onSuccess(String result){
                 System.out.println(result);
                 Gson gson = new Gson();
                 //Log.i("comment",comment);
@@ -871,7 +869,6 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         mHeaderAnimator.setDuration(300).start();
         mBottomAnimator.setDuration(300).start();
     }
-
 //    @Override
 //    public boolean dispatchKeyEvent(KeyEvent event) {
 //        return false;
@@ -881,9 +878,6 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 //    public boolean dispatchTouchEvent(MotionEvent ev) {
 //        return false;
 //    }
-
-
-
     @Override
     protected void onResume() {
         super.onResume();

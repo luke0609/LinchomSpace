@@ -216,7 +216,7 @@
         android:id="@+id/rl_background_gray"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="#1f0a0909"
+        android:foreground="#1f060606"
         android:visibility="gone">
 
     </RelativeLayout>

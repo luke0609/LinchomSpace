@@ -7,23 +7,23 @@
     <RelativeLayout
         android:id="@+id/rl_notify"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#d4d3d2"
+        android:layout_height="45dp"
+        android:background="#ffffff"
         >
         <ImageView
             android:id="@+id/iv_alertback"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/back"
+            android:src="@drawable/article_back"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="消 息"
-            android:textSize="20sp"
-            android:textColor="#808080"
+            android:textSize="18sp"
+            android:textColor="#212121"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
@@ -41,9 +41,9 @@
         android:id="@+id/rl_notify1"
         android:layout_below="@id/v_notify"
         android:layout_width="match_parent"
-        android:background="#e4e1e1"
-        android:layout_height="60dp"
-        android:layout_marginTop="5dp"
+        android:background="#fffefe"
+        android:layout_height="50dp"
+        android:layout_marginTop="0.1dp"
         >
         <ImageView
             android:id="@+id/iv_notify"
