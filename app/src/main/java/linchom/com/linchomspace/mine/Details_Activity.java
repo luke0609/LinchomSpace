@@ -1,23 +1,20 @@
 package linchom.com.linchomspace.mine;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
+
 import org.xutils.common.Callback;
-import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-
-import linchom.com.linchomspace.MainActivity;
+import butterknife.ButterKnife;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 
@@ -35,6 +32,7 @@ public class Details_Activity extends AppCompatActivity {
     UserInfoBean.DataBean userInfoBean;
     public static final String TAG = " Details_Activity";
 
+
     private ImageView iv_back;
     private ImageView iv_user_photo;
     private TextView tv_ed;
@@ -50,10 +48,11 @@ public class Details_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
         System.out.println("onCreate");
 
 
-        tv_user_name = ((TextView)findViewById(R.id.tv_user_name));
+        tv_user_name = ((TextView) findViewById(R.id.tv_user_name));
         tv_sex = ((TextView) findViewById(R.id.tv_add));
         tv_birthday = ((TextView) findViewById(R.id.tv_birthday));
         tv_email = ((TextView) findViewById(R.id.tv_email));
@@ -67,9 +66,9 @@ public class Details_Activity extends AppCompatActivity {
         tv_ed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),HeadImage_activity.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("user",userInfoBean);
+                Intent intent = new Intent(getApplicationContext(), HeadImage_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", userInfoBean);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -118,12 +117,11 @@ public class Details_Activity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("userInfoBean111"+userInfoBean);
-        if(requestCode==2&&resultCode==2)
-        {
-           Bundle bundle=data.getExtras();
-            userInfoBean= (UserInfoBean.DataBean) bundle.getSerializable("user");
-            System.out.println("userInfoBean"+userInfoBean);
+        System.out.println("userInfoBean111" + userInfoBean);
+        if (requestCode == 2 && resultCode == 2) {
+            Bundle bundle = data.getExtras();
+            userInfoBean = (UserInfoBean.DataBean) bundle.getSerializable("user");
+            System.out.println("userInfoBean" + userInfoBean);
             tv_user_name.setText(userInfoBean.getUser_name());
         }
     }
@@ -156,14 +154,14 @@ public class Details_Activity extends AppCompatActivity {
 //                System.out.println("======"+bean);
 //                System.out.println(bean.getResult());
                 userInfoBean = bean.getData();
-                System.out.println("======"+userInfoBean);
+                System.out.println("======" + userInfoBean);
                 tv_mobile_phone.setText(userInfoBean.getMobile_phone());
                 tv_user_name.setText(userInfoBean.getUser_name());
                 tv_birthday.setText(userInfoBean.getBirthday());
                 tv_email.setText(userInfoBean.getEmail());
                 tv_office_phone.setText(userInfoBean.getOffice_phone());
                 tv_home_phone.setText(userInfoBean.getHome_phone());
-                tv_sex.setText((userInfoBean.getSex().equals("1"))?"男":"女");
+                tv_sex.setText((userInfoBean.getSex().equals("1")) ? "男" : "女");
 
             }
 
@@ -186,6 +184,7 @@ public class Details_Activity extends AppCompatActivity {
         });
 
     }
+
 
 
 }

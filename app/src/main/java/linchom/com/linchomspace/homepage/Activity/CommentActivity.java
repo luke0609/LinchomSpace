@@ -2,6 +2,7 @@ package linchom.com.linchomspace.homepage.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
@@ -47,6 +48,7 @@ import linchom.com.linchomspace.homepage.Entity.ArticleAddCommentBean;
 import linchom.com.linchomspace.homepage.Entity.ArticleCommentBean;
 import linchom.com.linchomspace.homepage.Entity.CommentPositionBean;
 import linchom.com.linchomspace.homepage.Utils.ToastUtil;
+import linchom.com.linchomspace.login.contantData.Contant;
 
 import static linchom.com.linchomspace.R.id.tv_comment2;
 
@@ -72,7 +74,8 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
     @InjectView(R.id.ptr_arrlist_comment)
     PullToRefreshListView ptrArrlistComment;
     CommonAdapter<ArticleCommentBean.DataBean.ItemsBean> commentAdapter;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
     ArticleCommentBean.DataBean.ItemsBean articleComment;
     @InjectView(R.id.rl_wait_comment)
     RelativeLayout rlWaitComment;
@@ -94,11 +97,15 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
     //软件盘弹起后所占高度阀值
     private int keyHeight = 0;
     PopupWindow popupWindow;
+    private String userName;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
-
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+        userId = shared_prefs.getString("userId","");
         receiveArticleId();
         ButterKnife.inject(this);
         initView();
@@ -155,7 +162,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
                 TextView tv_article_content = viewHolder.getViewById(R.id.tv_article_content);
                // TextView tv_position = viewHolder.getViewById(R.id.tv_position);
                 // tv_article_comment_username.setText(itemsBean.getUser_name());
-                tv_article_comment_username.setText("Monologue丶");
+                tv_article_comment_username.setText(userName);
                 //tv_position.setText("江苏苏州");
                 int commentTime = Integer.parseInt(itemsBean.getAdd_time());
                 String date = sdf.format(new Date(commentTime * 1000L));
@@ -266,10 +273,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
     private void publishComment(String comment) {
         // http://app.linchom.com/appapi.php?act=add_article_comment&user_name=%E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
         RequestParams params = new RequestParams(Constant.ArticleAddComment);
-        params.addBodyParameter("user_name","Monologue、");
-        params.addBodyParameter("article_id", article_id);
-        params.addBodyParameter("user_id", "135");
-        params.addBodyParameter("email","2070118814@qq.com");
+        params.addQueryStringParameter("user_name", userName);
+        Toast.makeText(getApplicationContext(),userName+"====="+userId,Toast.LENGTH_SHORT).show();
+        params.addQueryStringParameter("article_id", article_id);
+        params.addQueryStringParameter("user_id", userId);
+       // params.addBodyParameter("email","2070118814@qq.com");
         params.addBodyParameter("content",comment);
         params.addBodyParameter("type","2");
         System.out.println(params);
