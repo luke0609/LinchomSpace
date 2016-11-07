@@ -51,7 +51,7 @@ public class Set_activity extends AppCompatActivity {
     public void onClick() {
         Intent intent =new Intent(Set_activity.this, LoginActivity.class);
         startActivity(intent);
-        finish();
+
 
     }
 }

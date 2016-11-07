@@ -67,7 +67,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
     GoodsPagerAdapter goodsPagerAdapter;
 
-    private  String goodsId;//
+    private  String goodsId;
 
     private List<String> goodsPicList =new ArrayList<String>();
 

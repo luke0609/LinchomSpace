@@ -80,6 +80,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }, 200);
 
     }
+    @Override
+    public void onBackPressed() {
+        // Disable going back to the MainActivity
+        moveTaskToBack(true);
+    }
 
     @Override
     public void onClick(View v) {
@@ -151,7 +156,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         requestParams.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
         requestParams.addBodyParameter("username",sUserName );
         requestParams.addBodyParameter("password", sPassword);
-
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
