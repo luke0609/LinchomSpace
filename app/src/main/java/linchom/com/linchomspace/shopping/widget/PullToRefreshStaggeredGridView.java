@@ -30,7 +30,7 @@ public class PullToRefreshStaggeredGridView extends
 		super(context);
 
 		/**
-		 * Added so that by default, Pull-to-Refresh refreshes the page
+		 * Added so that by default1, Pull-to-Refresh refreshes the page
 		 */
 		setOnRefreshListener(defaultOnRefreshListener);
 	}
@@ -39,7 +39,7 @@ public class PullToRefreshStaggeredGridView extends
 		super(context, attrs);
 
 		/**
-		 * Added so that by default, Pull-to-Refresh refreshes the page
+		 * Added so that by default1, Pull-to-Refresh refreshes the page
 		 */
 		setOnRefreshListener(defaultOnRefreshListener);
 	}
@@ -48,7 +48,7 @@ public class PullToRefreshStaggeredGridView extends
 		super(context, mode);
 
 		/**
-		 * Added so that by default, Pull-to-Refresh refreshes the page
+		 * Added so that by default1, Pull-to-Refresh refreshes the page
 		 */
 		setOnRefreshListener(defaultOnRefreshListener);
 	}
@@ -58,7 +58,7 @@ public class PullToRefreshStaggeredGridView extends
 		super(context, mode, style);
 
 		/**
-		 * Added so that by default, Pull-to-Refresh refreshes the page
+		 * Added so that by default1, Pull-to-Refresh refreshes the page
 		 */
 		setOnRefreshListener(defaultOnRefreshListener);
 	}

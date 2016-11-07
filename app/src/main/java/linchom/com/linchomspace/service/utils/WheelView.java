@@ -21,19 +21,19 @@ import linchom.com.linchomspace.R;
 
 public class WheelView extends View {
 
-    // default text color of not selected item
+    // default1 text color of not selected item
     private static final int DEFAULT_TEXT_COLOR_NORMAL = 0XFF333333;
 
-    // default text color of selected item
+    // default1 text color of selected item
     private static final int DEFAULT_TEXT_COLOR_SELECTED = 0XFFF56313;
 
-    // default text size of normal item
+    // default1 text size of normal item
     private static final int DEFAULT_TEXT_SIZE_NORMAL_SP = 14;
 
-    // default text size of selected item
+    // default1 text size of selected item
     private static final int DEFAULT_TEXT_SIZE_SELECTED_SP = 16;
 
-    // default text size of hint text, the middle item's right text
+    // default1 text size of hint text, the middle item's right text
     private static final int DEFAULT_TEXT_SIZE_HINT_SP = 14;
 
     // distance between selected text and hint text
@@ -42,23 +42,23 @@ public class WheelView extends View {
     // distance between hint text and right of this view, used in wrap_content mode
     private static final int DEFAULT_MARGIN_END_OF_HINT_DP = 8;
 
-    // default divider's color
+    // default1 divider's color
     private static final int DEFAULT_DIVIDER_COLOR = 0XFFF56313;
 
-    // default divider's height
+    // default1 divider's height
     private static final int DEFAULT_DIVIDER_HEIGHT = 2;
 
-    // default divider's margin to the left & right of this view
+    // default1 divider's margin to the left & right of this view
     private static final int DEFAULT_DIVIDER_MARGIN_HORIZONTAL = 0;
 
-    // default shown items' count, now we display 3 items, the 2nd one is selected
+    // default1 shown items' count, now we display 3 items, the 2nd one is selected
     private static final int DEFAULT_SHOW_COUNT = 3;
 
-    // default items' horizontal padding, left padding and right padding are both 5dp,
+    // default1 items' horizontal padding, left padding and right padding are both 5dp,
     // only used in wrap_content mode
     private static final int DEFAULT_ITEM_PADDING_DP_H = 5;
 
-    // default items' vertical padding, top padding and bottom padding are both 2dp,
+    // default1 items' vertical padding, top padding and bottom padding are both 2dp,
     // only used in wrap_content mode
     private static final int DEFAULT_ITEM_PADDING_DP_V = 2;
 
@@ -71,7 +71,7 @@ public class WheelView extends View {
     // interval time to scroll the distance of one item's height
     private static final int HANDLER_INTERVAL_REFRESH = 30;//millisecond
 
-    // in millisecond unit, default duration of scrolling an item' distance
+    // in millisecond unit, default1 duration of scrolling an item' distance
     private static final int DEFAULT_INTERVAL_REVISE_DURATION = 300;
 
     // max and min durations when scrolling from one value to another
@@ -488,7 +488,7 @@ public class WheelView extends View {
      *
      * @param fromValue need to set the fromValue, can larger than mMaxValue or less than mMinValue
      * @param toValue the value you want picker to scroll to
-     * @param needRespond need Respond to the ValueChange callback When Scrolling, default is false
+     * @param needRespond need Respond to the ValueChange callback When Scrolling, default1 is false
      */
     public void smoothScrollToValue(int fromValue, int toValue, boolean needRespond){
         int deltaIndex;
@@ -512,7 +512,7 @@ public class WheelView extends View {
 
     /**
      * simplify the "setDisplayedValue() + setMinValue() + setMaxValue()" process,
-     * default minValue is 0, and make sure you donot change the minValue.
+     * default1 minValue is 0, and make sure you donot change the minValue.
      * @param display new values to be displayed
      */
     public void refreshByNewDisplayedValues(String[] display) {
@@ -540,7 +540,7 @@ public class WheelView extends View {
     /**
      *
      * @param deltaIndex the delta index it will scroll by
-     * @param needRespond need Respond to the ValueChange callback When Scrolling, default is false
+     * @param needRespond need Respond to the ValueChange callback When Scrolling, default1 is false
      */
     private void scrollByIndexSmoothly(int deltaIndex, boolean needRespond){
         if(!(mWrapSelectorWheel && mWrapSelectorWheelCheck)){
@@ -746,7 +746,7 @@ public class WheelView extends View {
 
     /**
      * set the friction of scroller, it will effect the scroller's acceleration when fling
-     * @param friction default is ViewConfiguration.get(getContext()).getScrollFriction()
+     * @param friction default1 is ViewConfiguration.get(getContext()).getScrollFriction()
      */
     public void setFriction(float friction){
         if(friction <= 0)
