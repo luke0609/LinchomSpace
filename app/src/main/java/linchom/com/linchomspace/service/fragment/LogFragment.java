@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.google.gson.Gson;
@@ -50,6 +51,10 @@ public class LogFragment extends Fragment {
 
     private String userId ="135";
 
+    private int page =1;
+
+    private int pageCount=1;
+
 
 
 
@@ -76,6 +81,8 @@ public class LogFragment extends Fragment {
 
 
     private void initView() {
+
+        page = 1;
 
         pull_grid_view_log = ((PullToRefreshStaggeredGridView) view.findViewById(R.id.pull_grid_view_log));
 
@@ -111,12 +118,18 @@ public class LogFragment extends Fragment {
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
 
+                    page = 1;
+
+                    getData();
+
 
 
 
                 }else if(mode == PullToRefreshBase.Mode.PULL_FROM_END){
 
+                    page++;
 
+                    getData();
 
 
 
@@ -187,17 +200,38 @@ public class LogFragment extends Fragment {
 
         requestParams.addBodyParameter("user_id",userId);
 
+        requestParams.addBodyParameter("page",page+"");
+
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
+                if(page==1){
+                    logList.clear();
+
+
+                }
 
                 Gson gson = new Gson();
 
 
                 LogBean logBean =gson.fromJson(result,LogBean.class);
 
-                logList.addAll(logBean.data.items);
+                pageCount = Integer.parseInt(logBean.data.total_pages);
+
+                if(page<=pageCount){
+
+                    logList.addAll(logBean.data.items);
+
+                }else{
+
+                    Toast.makeText(getActivity(),"已经是最后一页了",Toast.LENGTH_SHORT).show();
+
+                }
+
+                pull_grid_view_log.onRefreshComplete();
+
 
 
                 goodsCommonAdapter.notifyDataSetChanged();

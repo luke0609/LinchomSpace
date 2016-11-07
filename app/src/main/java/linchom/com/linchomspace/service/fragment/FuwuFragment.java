@@ -71,6 +71,7 @@ public class FuwuFragment extends Fragment {
     }
 
     private void initView() {
+        page = 1;
 
 
         ptr_service_content_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_service_content_ptr));
