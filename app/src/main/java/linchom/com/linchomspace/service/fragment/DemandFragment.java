@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,9 @@ public class DemandFragment extends Fragment{
 
 
     int totalPage = 1;
+    private RelativeLayout rl_service_pro_mine;
 
+    private boolean pullFlag= false;
 
 
 
@@ -86,6 +89,9 @@ public class DemandFragment extends Fragment{
 
         ptr_service_content_ptr = ((PullToRefreshListView) view.findViewById(R.id.ptr_service_content_ptr));
 
+        rl_service_pro_mine = ((RelativeLayout) view.findViewById(R.id.rl_service_pro_mine));
+
+
     }
 
     private void initData() {
@@ -117,6 +123,8 @@ public class DemandFragment extends Fragment{
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
                     page = 1;
+
+                    pullFlag=true;
 
                     getData();
 
@@ -217,6 +225,14 @@ public class DemandFragment extends Fragment{
 
     private void getData(){
 
+        if(page==1&&pullFlag==false){
+            rl_service_pro_mine.setVisibility(View.VISIBLE);
+
+
+
+        }
+
+
         //http://app.linchom.com/appapi.php?act=demand_services&service_type=2&usr_id=12
 
         unfoldedIndexes.clear();
@@ -269,6 +285,9 @@ public class DemandFragment extends Fragment{
                 goodsCommonAdapter.notifyDataSetChanged();
 
                 ptr_service_content_ptr.onRefreshComplete();
+
+
+                rl_service_pro_mine.setVisibility(View.GONE);
 
 
 

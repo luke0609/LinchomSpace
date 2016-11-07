@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,10 @@ public class LogFragment extends Fragment {
     private int page =1;
 
     private int pageCount=1;
+    private RelativeLayout rl_service_pro_log;
 
+
+    private boolean pullFlag = false;
 
 
 
@@ -85,6 +89,8 @@ public class LogFragment extends Fragment {
         page = 1;
 
         pull_grid_view_log = ((PullToRefreshStaggeredGridView) view.findViewById(R.id.pull_grid_view_log));
+
+        rl_service_pro_log = ((RelativeLayout) view.findViewById(R.id.rl_service_pro_log));
 
 
     }
@@ -117,6 +123,8 @@ public class LogFragment extends Fragment {
 
 
                 if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+
+                    pullFlag =true;
 
                     page = 1;
 
@@ -189,6 +197,16 @@ public class LogFragment extends Fragment {
     }
 
     private void getData() {
+        if(page==1&&pullFlag==false){
+
+
+            rl_service_pro_log.setVisibility(View.VISIBLE);
+
+        }
+
+
+
+
 
         final RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
 
@@ -235,6 +253,9 @@ public class LogFragment extends Fragment {
 
 
                 goodsCommonAdapter.notifyDataSetChanged();
+
+                rl_service_pro_log.setVisibility(View.GONE);
+
 
 
             }
