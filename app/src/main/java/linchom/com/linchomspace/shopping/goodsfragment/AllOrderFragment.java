@@ -98,6 +98,7 @@ public class AllOrderFragment extends Fragment {
 
 
     private void initView() {
+        page = 1;
 
         ptr_goods_orderform = ((PullToRefreshListView) view.findViewById(R.id.ptr_goods_orderform));
 
