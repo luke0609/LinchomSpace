@@ -8,38 +8,10 @@ import java.util.List;
  */
 public class UserInfoBean implements Serializable{
 
-    /**
-     * result : ok
-     * data : {"rank_name":"注册用户","discount":"100%","email":"1844583732@QQ.COM","user_name":"","rank_points":"0","pay_points":"0积分","user_money":"￥0.00元","sex":"0","birthday":"1956-01-01","question":"","bonus":[],"qq":"1844583732","msn":"","office_phone":"","home_phone":"","mobile_phone":"18848980272","passwd_question":null,"passwd_answer":null}
-     * msg :
-     * url :
-     */
-
-    private String result;
-    /**
-     * rank_name : 注册用户
-     * discount : 100%
-     * email : 1844583732@QQ.COM
-     * user_name :
-     * rank_points : 0
-     * pay_points : 0积分
-     * user_money : ￥0.00元
-     * sex : 0
-     * birthday : 1956-01-01
-     * question :
-     * bonus : []
-     * qq : 1844583732
-     * msn :
-     * office_phone :
-     * home_phone :
-     * mobile_phone : 18848980272
-     * passwd_question : null
-     * passwd_answer : null
-     */
-
-    private DataBean data;
-    private String msg;
-    private String url;
+    public String result;
+    public DataBean data;
+    public String msg;
+    public String url;
 
     public String getResult() {
         return result;
@@ -73,6 +45,16 @@ public class UserInfoBean implements Serializable{
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "UserInfoBean{" +
+                "result='" + result + '\'' +
+                ", data=" + data +
+                ", msg='" + msg + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
     public static class DataBean implements Serializable {
         private String rank_name;
         private String discount;
@@ -86,6 +68,8 @@ public class UserInfoBean implements Serializable{
         private String birthday;
         private String question;
         private String qq;
+        private String name;
+        private String photo;
         private String msn;
         private String office_phone;
         private String home_phone;
@@ -94,32 +78,6 @@ public class UserInfoBean implements Serializable{
         private Object passwd_answer;
         private List<?> bonus;
 
-        public DataBean(String user_name, String email, String sex, String birthday, String office_phone, String home_phone, String mobile_phone) {
-            this.user_name = user_name;
-            this.email = email;
-            this.sex = sex;
-            this.birthday = birthday;
-            this.office_phone = office_phone;
-            this.home_phone = home_phone;
-            this.mobile_phone = mobile_phone;
-        }
-
-        public DataBean(String user_name, String email, String sex, String birthday, String office_phone, String home_phone) {
-            this.user_name = user_name;
-            this.email = email;
-            this.sex = sex;
-            this.birthday = birthday;
-            this.office_phone = office_phone;
-            this.home_phone = home_phone;
-        }
-
-        public String getUser_photo() {
-            return user_photo;
-        }
-
-        public void setUser_photo(String user_photo) {
-            this.user_photo = user_photo;
-        }
         public String getRank_name() {
             return rank_name;
         }
@@ -142,6 +100,14 @@ public class UserInfoBean implements Serializable{
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public String getUser_photo() {
+            return user_photo;
+        }
+
+        public void setUser_photo(String user_photo) {
+            this.user_photo = user_photo;
         }
 
         public String getUser_name() {
@@ -206,6 +172,22 @@ public class UserInfoBean implements Serializable{
 
         public void setQq(String qq) {
             this.qq = qq;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getPhoto() {
+            return photo;
+        }
+
+        public void setPhoto(String photo) {
+            this.photo = photo;
         }
 
         public String getMsn() {
@@ -279,6 +261,8 @@ public class UserInfoBean implements Serializable{
                     ", birthday='" + birthday + '\'' +
                     ", question='" + question + '\'' +
                     ", qq='" + qq + '\'' +
+                    ", name='" + name + '\'' +
+                    ", photo='" + photo + '\'' +
                     ", msn='" + msn + '\'' +
                     ", office_phone='" + office_phone + '\'' +
                     ", home_phone='" + home_phone + '\'' +
@@ -288,15 +272,40 @@ public class UserInfoBean implements Serializable{
                     ", bonus=" + bonus +
                     '}';
         }
+
+        public DataBean(){}
+        public DataBean(String user_name, String email, String sex, String birthday, String office_phone, String home_phone, String mobile_phone) {
+            this.user_name = user_name;
+            this.email = email;
+            this.sex = sex;
+            this.birthday = birthday;
+            this.office_phone = office_phone;
+            this.home_phone = home_phone;
+            this.mobile_phone = mobile_phone;
+        }
+
+        public DataBean(String user_name, String email, String sex, String birthday, String office_phone, String home_phone) {
+            this.user_name = user_name;
+            this.email = email;
+            this.sex = sex;
+            this.birthday = birthday;
+            this.office_phone = office_phone;
+            this.home_phone = home_phone;
+        }
+
+        public DataBean(String photo, String name, String birthday, String qq, String sex, String user_name, String user_photo, String mobile_phone, String home_phone, String office_phone) {
+            this.photo = photo;
+            this.name = name;
+            this.birthday = birthday;
+            this.qq = qq;
+            this.sex = sex;
+            this.user_name = user_name;
+            this.user_photo = user_photo;
+            this.mobile_phone = mobile_phone;
+            this.home_phone = home_phone;
+            this.office_phone = office_phone;
+        }
     }
 
-    @Override
-    public String toString() {
-        return "UserInfoBean{" +
-                "result='" + result + '\'' +
-                ", data=" + data +
-                ", msg='" + msg + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
+
 }
