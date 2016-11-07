@@ -70,7 +70,7 @@ public class ChatDetilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_detil);
         ButterKnife.inject(this);
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
         getView();
         getData();
     }

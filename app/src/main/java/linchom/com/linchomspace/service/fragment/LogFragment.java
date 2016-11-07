@@ -17,6 +17,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,7 +139,26 @@ public class LogFragment extends Fragment {
             public void convert(GoodsViewHolder viewHolder, LogBean.Items items, int position) {
 
                 TextView tv_service_log=viewHolder.getViewById(R.id.tv_service_log);
-                tv_service_log.setText(items.content);
+
+                TextView tv_service_content= viewHolder.getViewById(R.id.tv_service_content);
+
+                TextView tv_service_addtime = viewHolder.getViewById(R.id.tv_service_addtime);
+
+                tv_service_log.setText("【"+items.title+"】");
+                tv_service_content.setText(items.content);
+
+
+                Long time = Long.parseLong(items.add_time)*1000;
+
+                SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+
+
+                String str = sdf.format(time);
+
+
+                tv_service_addtime.setText(str);
+
+
 
 
             }

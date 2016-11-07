@@ -83,8 +83,8 @@
         <item name="android:textSize">12dp</item>
     </style>
     <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#262B4D</item>//标题栏背景色
-        <item name="colorPrimaryDark">#262B4D</item>
+        <item name="colorPrimary">@color/main_style</item>//标题栏背景色
+        <item name="colorPrimaryDark">@color/main_style</item>
     </style>
     <!--对话框弹出window背景变暗-->
     <style name="dialog" parent="Base.Animation.AppCompat.Dialog">

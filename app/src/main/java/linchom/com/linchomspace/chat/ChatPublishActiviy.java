@@ -1,6 +1,7 @@
 package linchom.com.linchomspace.chat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,17 +13,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import info.hoang8f.widget.FButton;
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.pojo.ResultBean;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.photoutil.UploadBean;
+import me.iwf.photopicker.widget.MultiPickResultView;
 
 import static android.R.attr.id;
 
@@ -32,11 +42,14 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
     private EditText et_title;
     private EditText add_content;
     Map<String,String> map = new HashMap<String,String>();
-
-    private Button btn_publish;
+    ArrayList<String> list_photo;
+    private TextView btn_publish;
     String value;
+    String photo="";
     private ImageView iv_back;
-
+    private MultiPickResultView recycler_view;
+    private String photoAddress="";
+    private int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +74,9 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         map.put("提问回答","13");
         map.put("其他","14");
 
-        btn_publish = ((Button) findViewById(R.id.btn_publish));
+        recycler_view = ((MultiPickResultView) findViewById(R.id.recycler_view));
+        recycler_view.init(this,MultiPickResultView.ACTION_SELECT,null);
+        btn_publish = ((TextView) findViewById(R.id.btn_publish));
         btn_publish.setOnClickListener(this);
         iv_back = ((ImageView) findViewById(R.id.iv_back));
         iv_back.setOnClickListener(this);
@@ -92,10 +107,59 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
 
     }
+    private void photoUpload(int i){
+        System.out.println(list_photo.get(i));
+
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
+
+        params.addBodyParameter("act", "uploadimage");
+
+        params.addBodyParameter("goods_img",new File(list_photo.get(i)));
+        System.out.println(params);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+
+
+            @Override
+            public void onSuccess(String result) {
+                System.out.println(result);
+                Gson gson = new Gson();
+                UploadBean bean = gson.fromJson(result, UploadBean.class);
+                photo=bean.getData();
+
+                photoAddress=photoAddress+photo+",";
+                count++;
+                System.out.println(photoAddress);
+                System.out.println(count);
+                if (count==list_photo.size()){
+                    System.out.println("xxxxxxx");
+                    doPublish();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+
 
     private void doPublish() {
-        String title = et_title.getText().toString();
-        String content = add_content.getText().toString();
+        String title = et_title.getText().toString().trim();
+
+        String content = add_content.getText().toString().trim();
+
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_topic");
         params.addQueryStringParameter("user_id", 129 + "");
@@ -104,6 +168,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         params.addQueryStringParameter("topic_name",title);
         params.addQueryStringParameter("communication_title",content);
         params.addQueryStringParameter("user_name","梁京生");
+        params.addQueryStringParameter("photo",photoAddress);
+
         System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
@@ -137,9 +203,20 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
 
             case R.id.btn_publish:
-                doPublish();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(add_content.getWindowToken(), 0) ;
+                System.out.println(list_photo.size());
+                if(list_photo.size()==0){
+                    doPublish();
+                }else {
+                    for(int i=0; i<list_photo.size();i++){
+                        photoUpload(i);
+
+
+                    }
+
+                }
+
+
+
                 break;
             case R.id.iv_back:
                 finish();
@@ -147,5 +224,16 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
         }
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        recycler_view.onActivityResult(requestCode, resultCode, data);
+        list_photo=recycler_view.getPhotos();
+        //  recycler_view.showPics(list_photo);
 
+        for (int i=0;i<list_photo.size();i++){
+            System.out.println(list_photo.get(i));
+        }
+
+    }
 }

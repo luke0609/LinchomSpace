@@ -205,6 +205,8 @@ public class FuwuFragment extends Fragment {
 
     private void getData(){
 
+        unfoldedIndexes.clear();
+
         //http://app.linchom.com/appapi.php?act=demand_services&service_type=2&usr_id=12
 
         RequestParams requestParams = new RequestParams(GoodsHttpUtils.SHOPURL);
@@ -226,7 +228,6 @@ public class FuwuFragment extends Fragment {
                 if(page ==1){
                     serviceLsit.clear();
 
-
                 }
 
 
@@ -240,7 +241,6 @@ public class FuwuFragment extends Fragment {
                 if(page<=totalPage){
 
                     serviceLsit.addAll(serviceListBean.data.items);
-
 
 
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="#30808080">
+    android:background="#F2F2F2">
 
 
 
@@ -172,9 +172,7 @@
 
 
                 <RelativeLayout
-                    android:background="#ffffff"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:background="@drawable/shopping_kuai_shape"
                     android:id="@+id/rl_goodsHome_zhichao"
                     android:layout_width="match_parent"
                     android:layout_height="180dp">
@@ -374,10 +372,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:background="#ffffff"
+                    android:background="@drawable/shopping_kuai_shape"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:id="@+id/rl_goodsHome_jiaju"
                     android:layout_below="@id/rl_goodsHome_zhichao"
                     android:layout_width="match_parent"
@@ -642,11 +638,9 @@
 
 
                 <RelativeLayout
-                    android:background="#ffffff"
+                    android:background="@drawable/shopping_kuai_shape"
 
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:id="@+id/rl_goodsHome_zhaoguan"
 
                     android:layout_below="@id/rl_goodsHome_jiaju"
@@ -805,11 +799,10 @@
 
 
                 <RelativeLayout
-                    android:background="#ffffff"
+                    android:background="@drawable/shopping_kuai_shape"
 
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+
                     android:id="@+id/rl_goodsHome_jiankang"
 
                     android:layout_below="@id/rl_goodsHome_zhaoguan"
@@ -970,11 +963,9 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:background="#ffffff"
+                    android:background="@drawable/shopping_kuai_shape"
 
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:id="@+id/rl_goodsHome_zhinengchuandai"
 
                     android:layout_below="@id/rl_goodsHome_jiankang"
@@ -1143,11 +1134,9 @@
 
 
                 <RelativeLayout
-                    android:background="#ffffff"
+                    android:background="@drawable/shopping_kuai_shape"
 
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
                     android:id="@+id/rl_goodsHome_zhinengjia"
 
                     android:layout_below="@id/rl_goodsHome_zhinengchuandai"
@@ -1379,7 +1368,7 @@
 
             <RelativeLayout
                 android:layout_below="@id/rl_goodsHome_content"
-                android:background="#30808080"
+                android:background="#F2F2F2"
 
                 android:layout_width="match_parent"
                 android:layout_height="8dp">

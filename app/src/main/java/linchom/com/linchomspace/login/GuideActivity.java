@@ -16,6 +16,7 @@ import java.util.List;
 
 import linchom.com.linchomspace.MainActivity;
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.widget.DepthPageTransformer;
 
 public class GuideActivity extends AppCompatActivity {
     ViewPager vp;
@@ -38,6 +39,7 @@ public class GuideActivity extends AppCompatActivity {
         imgs.add(2,R.drawable.start_i3);
         imgs.add(3,R.drawable.start_i4);
         vp = ((ViewPager) findViewById(R.id.vp_guide));
+        vp.setPageTransformer(true, new DepthPageTransformer());
 
         MyPageAdapter pageAdapter=new MyPageAdapter(imgs);
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
