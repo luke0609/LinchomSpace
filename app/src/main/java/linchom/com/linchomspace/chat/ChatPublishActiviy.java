@@ -45,9 +45,11 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
     ArrayList<String> list_photo;
     private TextView btn_publish;
     String value;
-    String photo=null;
+    String photo="";
     private ImageView iv_back;
     private MultiPickResultView recycler_view;
+    private String photoAddress="";
+    private int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,14 +107,14 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
 
     }
-    private void photoUpload(){
-        System.out.println(list_photo.get(0));
+    private void photoUpload(int i){
+        System.out.println(list_photo.get(i));
 
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
 
         params.addBodyParameter("act", "uploadimage");
 
-        params.addBodyParameter("goods_img",new File(list_photo.get(0)));
+        params.addBodyParameter("goods_img",new File(list_photo.get(i)));
         System.out.println(params);
         x.http().post(params, new Callback.CommonCallback<String>() {
 
@@ -123,7 +125,15 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
                 Gson gson = new Gson();
                 UploadBean bean = gson.fromJson(result, UploadBean.class);
                 photo=bean.getData();
-                doPublish();
+
+                photoAddress=photoAddress+photo+",";
+                count++;
+                System.out.println(photoAddress);
+                System.out.println(count);
+                if (count==list_photo.size()){
+                    System.out.println("xxxxxxx");
+                    doPublish();
+                }
             }
 
             @Override
@@ -158,13 +168,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         params.addQueryStringParameter("topic_name",title);
         params.addQueryStringParameter("communication_title",content);
         params.addQueryStringParameter("user_name","梁京生");
-        params.addQueryStringParameter("photo",photo);
+        params.addQueryStringParameter("photo",photoAddress);
 
-//        for(int i=0; i<list_photo.size();i++){
-//                    params.addBodyParameter("images[" + i + "]",new File(list_photo.get(i)));
-//
-//                    Log.i("upload","打印准备上传的图片资料流:"+list_photo.get(i));
-//                }
         System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
@@ -198,11 +203,19 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
 
             case R.id.btn_publish:
+                System.out.println(list_photo.size());
                 if(list_photo.size()==0){
                     doPublish();
+                }else {
+                    for(int i=0; i<list_photo.size();i++){
+                        photoUpload(i);
+
+
+                    }
+
                 }
-                else
-                photoUpload();
+
+
 
                 break;
             case R.id.iv_back:
