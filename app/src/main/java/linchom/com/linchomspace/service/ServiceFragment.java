@@ -3,11 +3,13 @@ package linchom.com.linchomspace.service;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -49,6 +51,7 @@ import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 public class ServiceFragment extends Fragment implements View.OnClickListener {
     Map<String,String> region = new HashMap<String,String>();
     Map<String,String> map_category = new HashMap<String,String>();
+    private boolean flag = false;
 
     View view_main;
     private ViewPager vp_service;
@@ -86,6 +89,15 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
     private CommonAdapter<ServiceBean.DataBean.ItemsBean> serviceCommonAdapter;
 
     String ipAddress=null;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -356,6 +368,13 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         });
         requireListView=plv_1.getRefreshableView();
 
+
+        requireListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return flag;
+            }
+        });
         //new adapter
 
 
@@ -372,6 +391,18 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(View v) {
                         fc.toggle(false);
+
+
+                        flag=true;
+
+                        Handler x = new Handler();
+                        x.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                flag=false;
+                            }
+                        }, 1000);
+
                         if (unfoldedIndexes.contains(position))
                             registerFold(position);
                         else
@@ -453,7 +484,12 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             }
         });
         serviceListView=plv_2.getRefreshableView();
-
+        serviceListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return flag;
+            }
+        });
         //new adapter
 
 
@@ -470,6 +506,16 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(View v) {
                         fc.toggle(false);
+
+                        flag=true;
+
+                        Handler x = new Handler();
+                        x.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                flag=false;
+                            }
+                        }, 1000);
                         if (unfoldedIndexes.contains(position))
                             registerFold(position);
                         else
@@ -663,4 +709,6 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
 
     }
     public void mine_service(){}
+
+
 }

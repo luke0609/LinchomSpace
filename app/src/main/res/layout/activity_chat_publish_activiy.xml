@@ -24,6 +24,17 @@
             android:textSize="20sp"
             android:textColor="#fff"
             android:layout_centerInParent="true"/>
+        <TextView
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:id="@+id/btn_publish"
+            android:text="发布"/>
 
     </RelativeLayout>
     <LinearLayout
@@ -92,34 +103,12 @@
         android:scrollbars="vertical"
         android:background="@drawable/ll_shape"
         />
-    <info.hoang8f.widget.FButton
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/btn_publish"
+    <me.iwf.photopicker.widget.MultiPickResultView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        fbutton:buttonColor="@color/fbutton_color_green_sea"
-        fbutton:shadowColor="@color/main_style"
-        fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="2dp"
-        fbutton:cornerRadius="5dp"
-        android:textSize="18sp"
-        android:text="发      布"
-        android:textColor="#fff"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        />
-
-    <Button
-        android:id="@+id/btn_publish"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text="发      布"
-        android:background="#212121"
-        android:textColor="#fff"
-        android:textSize="18sp"
-
+        android:layout_height="wrap_content"
         android:layout_below="@+id/add_content"
-        />
+        android:id="@+id/recycler_view"/>
+
+
+
 </RelativeLayout>

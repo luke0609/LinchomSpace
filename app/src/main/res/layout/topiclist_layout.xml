@@ -4,7 +4,14 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#f0f0f0"
+        android:id="@+id/top_line"
+        />
         <RelativeLayout
+            android:layout_below="@+id/top_line"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:id="@+id/rl_msg"
@@ -83,7 +90,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@+id/rl_msg"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <TextView
@@ -100,6 +107,22 @@
         android:text="交流标题内容"
         android:layout_marginBottom="13dp"
         />
+    <linchom.com.linchomspace.photoutil.NineGridTestLayout
+        android:layout_below="@+id/tv_title"
+        android:id="@+id/photo_show"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    </linchom.com.linchomspace.photoutil.NineGridTestLayout>
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#f0f0f0"
+        android:id="@+id/end_line"
+        />
 </RelativeLayout>
 

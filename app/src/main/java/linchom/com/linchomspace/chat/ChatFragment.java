@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.shizhefei.view.indicator.BannerComponent;
-import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.ColorBar;
@@ -43,7 +42,8 @@ import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.DisplayUtil;
 import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
-
+import linchom.com.linchomspace.login.widget.DepthPageTransformer;
+import linchom.com.linchomspace.photoutil.NineGridTestLayout;
 
 
 public class ChatFragment extends Fragment {
@@ -101,10 +101,10 @@ public class ChatFragment extends Fragment {
         //viewpager
         ViewPager viewPager2 = (ViewPager) view1.findViewById(R.id.moretab_viewPager);
         ScrollIndicatorView scrollIndicatorView = (ScrollIndicatorView) view1.findViewById(R.id.moretab_indicator);
-
+        viewPager2.setPageTransformer(true, new DepthPageTransformer());
         float unSelectSize = 14;
         float selectSize = unSelectSize * 1.1f;
-        scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.WHITE,Color.GRAY).setSize(selectSize, unSelectSize));
+        scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.WHITE,Color.WHITE).setSize(selectSize, unSelectSize));
 
         scrollIndicatorView.setScrollBar(new ColorBar(getActivity(),Color.parseColor("#EEC900") , 4));
 
@@ -246,6 +246,8 @@ public class ChatFragment extends Fragment {
             final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(R.id.lv));
             final List<TopicList.DataBean.ItemsBean> topicList=new ArrayList<>();
             final CommonAdapter<TopicList.DataBean.ItemsBean> adapter=new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
+
+
                 @Override
                 public void convert(ViewHolder viewHolder, TopicList.DataBean.ItemsBean itemsBean, int position) {
                     TextView tv_name = viewHolder.getViewById(R.id.tv_chat_username);
@@ -253,6 +255,9 @@ public class ChatFragment extends Fragment {
                     TextView tv_chat_time = viewHolder.getViewById(R.id.tv_chat_time);
                     TextView tv_chat_title=viewHolder.getViewById(R.id.tv_title);
                     TextView remark_num=viewHolder.getViewById(R.id.remark_num);
+                    NineGridTestLayout photo_show =viewHolder.getViewById(R.id.photo_show);
+
+
                     tv_name.setText(itemsBean.getUser_name());
                     tv_chat_name.setText(itemsBean.getTopic_name().trim());
                     tv_chat_title.setText(itemsBean.getCommunication_title());
