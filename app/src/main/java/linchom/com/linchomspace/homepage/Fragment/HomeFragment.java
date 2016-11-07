@@ -3721,16 +3721,16 @@ public class HomeFragment extends Fragment {
             ArticleListBean.Article_list arr = list.get(position);
 
             viewHolder.tv_title.setText(arr.title.replace(" ", ""));
+            viewHolder.tv_source.setText(arr.source);
 
             viewHolder.tv_name.setText(linchom.com.linchomspace.homepage.Utils.DateUtils.getGapTimeFromNow(DateUtils.stringToDate(arr.date)));
-            if (arr.article_pic == "") {
+            if (arr.photo == ""){
                 viewHolder.iv_photo.setImageResource(R.drawable.aiqinhai);
             } else {
                 viewHolder.iv_photo.setVisibility(View.VISIBLE);
-                xUtilsImageUtils.display(viewHolder.iv_photo, "http://linchom.com//" + arr.article_pic);
+              //  xUtilsImageUtils.display(viewHolder.iv_photo, "http://linchom.com//" + arr.article_pic);
+                xUtilsImageUtils.display(viewHolder.iv_photo, arr.photo);
             }
-
-
             return convertView;
         }
     }

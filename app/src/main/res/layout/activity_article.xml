@@ -56,7 +56,6 @@
                     android:id="@+id/art_tv_source"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="腾讯网"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="30dp"
                     android:textColor="#7e7d7d"

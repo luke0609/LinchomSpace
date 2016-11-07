@@ -96,6 +96,15 @@ public class ArticleInfoBean {
         private String article_url;
         private String article_source;
         private String status;
+        private String source;
+
+        public String getSource() {
+            return source;
+        }
+
+        public void setSource(String source) {
+            this.source = source;
+        }
 
         public String getGoods_id() {
             return goods_id;
