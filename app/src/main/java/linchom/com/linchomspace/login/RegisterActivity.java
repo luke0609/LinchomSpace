@@ -1,12 +1,15 @@
 package linchom.com.linchomspace.login;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     String psd1="";
     String psd2="";
     String code="";
+    private ImageView mImgBackgroud;
     private boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +61,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         app_phoneNum = ((ClearWriteEditText) findViewById(R.id.app_phoneNum));
         app_password1 = ((ClearWriteEditText) findViewById(R.id.app_password1));
         app_password2 = ((ClearWriteEditText) findViewById(R.id.app_password2));
+        mImgBackgroud = (ImageView) findViewById(R.id.de_img_backgroud);
         app_code=((ClearWriteEditText) findViewById(R.id.app_code));
         btn_post = ((Button) findViewById(R.id.btn_post));
         app_regist_bt=((Button) findViewById(R.id.app_regist_bt));
         btn_post.setOnClickListener(this);
         app_regist_bt.setOnClickListener(this);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Animation animation = AnimationUtils.loadAnimation(RegisterActivity.this, R.anim.translate_anim);
+                mImgBackgroud.startAnimation(animation);
+            }
+        }, 200);
     }
 
 

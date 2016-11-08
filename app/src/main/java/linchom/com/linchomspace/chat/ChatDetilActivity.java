@@ -204,28 +204,28 @@ public class ChatDetilActivity extends AppCompatActivity {
                                 System.out.println("jinru1");
                                 kid_content_item1.setVisibility(View.VISIBLE);
                                 struct_line2.setVisibility(View.VISIBLE);
-                                kid_username1.setText(comments.getCommentsss().get(0).getId()+":");
+                                kid_username1.setText(comments.getCommentsss().get(0).getParent_comment_username()+":");
                                 kid_content1.setText(comments.getCommentsss().get(0).getContent());
                             }else if(kid_comment_listsize==2){
                                 System.out.println("jinru2");
                                 kid_content_item1.setVisibility(View.VISIBLE);
 
                                 struct_line2.setVisibility(View.VISIBLE);
-                                kid_username1.setText(comments.getCommentsss().get(0).getId()+":");
+                                kid_username1.setText(comments.getCommentsss().get(0).getParent_comment_username()+":");
                                 kid_content1.setText(comments.getCommentsss().get(0).getContent());
                                 kid_content_item2.setVisibility(View.VISIBLE);
 
-                                kid_username2.setText(comments.getCommentsss().get(1).getId()+":");
+                                kid_username2.setText(comments.getCommentsss().get(1).getParent_comment_username()+":");
                                 kid_content2.setText(comments.getCommentsss().get(1).getContent());
                             }else if (kid_comment_listsize>2){
                                 System.out.println("jinru3");
                                 kid_content_item1.setVisibility(View.VISIBLE);
                                 kid_content_item2.setVisibility(View.VISIBLE);
                                 struct_line2.setVisibility(View.VISIBLE);
-                                kid_username1.setText(comments.getCommentsss().get(0).getId()+":");
+                                kid_username1.setText(comments.getCommentsss().get(0).getParent_comment_username()+":");
                                 kid_content1.setText(comments.getCommentsss().get(0).getContent());
 
-                                kid_username2.setText(comments.getCommentsss().get(1).getId()+":");
+                                kid_username2.setText(comments.getCommentsss().get(1).getParent_comment_username()+":");
                                 kid_content2.setText(comments.getCommentsss().get(1).getContent());
                                 tv_more.setVisibility(View.VISIBLE);
                                 tv_more.setOnClickListener(new View.OnClickListener() {
