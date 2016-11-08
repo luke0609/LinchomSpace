@@ -66,20 +66,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-
         initRecordsView();
-
         searchRecordsLl = (LinearLayout) findViewById(R.id.search_content_show_ll);
         searchContentEt = (EditText) findViewById(R.id.et_search);
 
         //添加搜索view
         searchRecordsLl.addView(recordsHistoryView);
-
         clearEditText=(TextView) findViewById(R.id.tv_search);
         search_back = ((ImageView) findViewById(R.id.search_back));
 
     }
-
     //初始化搜索历史记录View
     private void initRecordsView() {
         recordsHistoryView = LayoutInflater.from(this).inflate(R.layout.search_records_list_layout, null);
@@ -114,7 +110,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         clearEditText.setOnClickListener(this);
         search_back.setOnClickListener(this);
         searchContentEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -225,7 +220,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
                 finish();
             }else if(search_type.equals("chat")){
-                Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
                 Intent intent1 =new Intent(SearchActivity.this, SearchChatActivity.class);
                 Bundle bundle1 =new Bundle();
                 bundle1.putString("keyword",record);

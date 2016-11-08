@@ -1,14 +1,12 @@
 package linchom.com.linchomspace.mine;
 
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.mine.fragment.FragAdapter;
 import linchom.com.linchomspace.mine.fragment.goods_fragment;
 import linchom.com.linchomspace.mine.fragment.news_fragment;
 

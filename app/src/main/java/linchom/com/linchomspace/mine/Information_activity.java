@@ -1,10 +1,8 @@
 package linchom.com.linchomspace.mine;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -13,13 +11,11 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.AlertsInfoBean;
-import linchom.com.linchomspace.mine.pojo.MychatInfoBean;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
