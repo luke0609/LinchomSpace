@@ -24,19 +24,26 @@ import java.util.regex.Pattern;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Utils.ToastUtil;
 import linchom.com.linchomspace.login.contantData.CodeBean;
+import linchom.com.linchomspace.login.contantData.ErrBean;
 import linchom.com.linchomspace.login.contantData.LoginResultBean;
+import linchom.com.linchomspace.login.contantData.RegisterResultBean;
 import linchom.com.linchomspace.login.widget.ClearWriteEditText;
 
+import static android.R.attr.password;
 import static linchom.com.linchomspace.R.id.app_password1;
 import static linchom.com.linchomspace.R.id.app_password2;
 import static linchom.com.linchomspace.R.id.app_regist_bt;
+import static linchom.com.linchomspace.R.id.user_name;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ClearWriteEditText app_phoneNum;
-    private ClearWriteEditText app_password1,app_password2;
+    private ClearWriteEditText app_password1,app_password2,app_code;
     private Button btn_post,app_regist_bt;
     String phoneNum="";
+    String psd1="";
+    String psd2="";
+    String code="";
     private boolean flag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         app_phoneNum = ((ClearWriteEditText) findViewById(R.id.app_phoneNum));
         app_password1 = ((ClearWriteEditText) findViewById(R.id.app_password1));
         app_password2 = ((ClearWriteEditText) findViewById(R.id.app_password2));
+        app_code=((ClearWriteEditText) findViewById(R.id.app_code));
         btn_post = ((Button) findViewById(R.id.btn_post));
         app_regist_bt=((Button) findViewById(R.id.app_regist_bt));
         btn_post.setOnClickListener(this);
@@ -82,11 +90,104 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     getkey();
                     break;
                 case R.id.app_regist_bt:
-
+                    doRegisterActivity();
 
                     break;
             }
         }
+
+    private void doRegisterActivity() {
+
+        phoneNum = app_phoneNum.getText().toString().trim();
+        code=app_code.getText().toString().trim();
+        psd1=app_password1.getText().toString().trim();
+        psd2=app_password2.getText().toString().trim();
+        if (isEmpty(phoneNum)) {
+            showToast("手机号不能为空");
+            app_phoneNum.setShakeAnimation();
+            return;
+        }
+        if (!isPhoneNumberValid(phoneNum)){
+            showToast("请输入正确的手机号");
+            app_phoneNum.setShakeAnimation();
+            return;
+        }
+        if(isEmpty(code)){
+            showToast("验证码不能为空");
+            app_code.setShakeAnimation();
+            return;
+        }
+        if(isEmpty(psd1)){
+            showToast("密码不能为空");
+            app_password1.setShakeAnimation();
+            return;
+        }
+        if(psd1.length()<6) {
+            showToast("密码不能小于6位");
+            app_password1.setShakeAnimation();
+            return;
+        }
+        if(isEmpty(psd2)){
+            showToast("请确认密码");
+            app_password2.setShakeAnimation();
+            return;
+        }
+        if(!psd1.equals(psd2)){
+            showToast("请确认两次输入的密码相同");
+            app_password2.setShakeAnimation();
+            return;
+        }
+        app_regist_bt.setClickable(false);
+       // user_name=18500551431&password=123456&code=801312
+        RequestParams requestParams = new RequestParams("http://app.linchom.com/appapi.php");
+        requestParams.addBodyParameter("act","resgiter");
+        requestParams.addBodyParameter("user_name",phoneNum);
+        requestParams.addBodyParameter("password",psd1);
+        requestParams.addBodyParameter("code",code);
+        System.out.println(requestParams);
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+
+            @Override
+            public void onSuccess(String result) {
+                System.out.println(result);
+                Gson gson = new Gson();
+                RegisterResultBean bean = gson.fromJson(result, RegisterResultBean.class);
+               if (bean.isData()){
+                   showToast("注册成功");
+                   finish();
+               }
+                ErrBean errBean=gson.fromJson(result, ErrBean.class);
+                if(errBean.getCode()==12){
+                    showToast("用户已注册");
+                    btn_post.setClickable(true);
+                    app_regist_bt.setClickable(true);
+
+                }else if(errBean.getCode()==14){
+                    showToast("验证码有误");
+                    btn_post.setClickable(true);
+                    app_regist_bt.setClickable(true);
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                showToast("请检查网络");
+                btn_post.setClickable(true);
+                app_regist_bt.setClickable(true);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
 
     private void getkey() {
       phoneNum = app_phoneNum.getText().toString().trim();
@@ -115,11 +216,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Gson gson = new Gson();
                 CodeBean bean = gson.fromJson(result, CodeBean.class);
                 flag=bean.isData();
-                btn_post.setText("发送成功");
+                if(flag){
+                    showToast("发送成功");
+                    btn_post.setText("已发送");
+                    btn_post.setClickable(false);
+                }
+
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                showToast("短信发送失败");
+                btn_post.setClickable(true);
 
             }
 

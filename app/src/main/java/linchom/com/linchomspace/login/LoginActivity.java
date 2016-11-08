@@ -168,14 +168,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     editor.putString("username", sUserName);
                     editor.commit();
                     //提示
-                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    showToast("登录成功");
                     //跳转
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     LoginActivity.this.finish();
                 } else {                                             //登录失败
-                    Toast.makeText(LoginActivity.this, "登录失败，账号或密码错误", Toast.LENGTH_SHORT).show();
-
+                  //  Toast.makeText(LoginActivity.this, "登录失败，账号或密码错误", Toast.LENGTH_SHORT).show();
+                        showToast("登录失败，账号或密码错误");
                 }
 
 
@@ -183,9 +184,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
-                Toast.makeText(LoginActivity.this, "登录失败，请检查网络", Toast.LENGTH_SHORT).show();
-
+//
+//                Toast.makeText(LoginActivity.this, "登录失败，请检查网络", Toast.LENGTH_SHORT).show();
+                showToast("登录失败，请检查网络");
             }
 
             @Override
