@@ -124,20 +124,19 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".login.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".login.GuideActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".login.RegisterActivity"
@@ -196,6 +195,10 @@
         <activity
             android:name=".homepage.Activity.SearchArticleActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".chat.SearchChatActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".service.ServicePublishActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -223,19 +226,16 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".photoutil.ImagePagerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
-            android:name=".photoutil.ImagePagerActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
+            android:theme="@style/customTheme"
             android:name="me.iwf.photopicker.PhotoPagerActivity"
-            android:theme="@style/customTheme" />
+            />
         <activity
+            android:theme="@style/customTheme"
             android:name="me.iwf.photopicker.PhotoPickerActivity"
-            android:theme="@style/customTheme" />
-        <activity android:name=".service.LogActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        </activity>
+            />
     </application>
 
 </manifest>

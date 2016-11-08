@@ -67,7 +67,7 @@
             android:layout_toLeftOf="@+id/tv_mine_baoliao"
             android:text="标 题"
             android:textSize="18sp"
-            android:textColor="#f7f7f7"
+            android:textColor="#808080"
             android:padding="10dp"
             android:background="#efeeee"
             android:layout_centerVertical="true" />

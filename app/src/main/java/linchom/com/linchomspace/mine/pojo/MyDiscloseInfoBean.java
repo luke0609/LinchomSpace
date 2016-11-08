@@ -45,6 +45,7 @@ public class MyDiscloseInfoBean {
         public String content;
         public String add_time;
         public String cat_id;
+        public String photo;
         public String author;
 
             @Override

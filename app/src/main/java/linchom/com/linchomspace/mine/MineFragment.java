@@ -1,8 +1,6 @@
 package linchom.com.linchomspace.mine;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,7 +19,6 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 import linchom.com.linchomspace.shopping.GoodsAllOrderActivity;
 import linchom.com.linchomspace.shopping.GoodsCartActivity;
@@ -43,18 +40,10 @@ public class MineFragment extends Fragment {
     private TextView tv_office_phone;
     private TextView tv_home_phone;
     private TextView tv_mobile_phone;
-    private String userName;
-    private String userId;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view =inflater.inflate(R.layout.fragment_mine,null);
-
-
-        SharedPreferences shared_prefs = getActivity().getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
-        userName = shared_prefs.getString("username", "");
-        userId = shared_prefs.getString("userId", "");
 
         ((ImageView)view.findViewById(R.id.iv_head)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,21 +149,11 @@ public class MineFragment extends Fragment {
                 System.out.println("onsucess" + result);
                 Gson gson = new Gson();
                 UserInfoBean bean = gson.fromJson(result, UserInfoBean.class);
-//                System.out.println("======"+bean);
-//                System.out.println(bean.getResult());
-                  userInfoBean = bean.getData();
-                  System.out.println("===777777==="+userInfoBean);
-//                tv_mobile_phone.setText(userInfoBean.getMobile_phone());
-                //tv_user_name.setText("-------");
-                tv_user_name.setText(userName);
-               //  tv_user_name.setText(userInfoBean.getUser_name());
-//                System.out.println("99999999");
-//                tv_birthday.setText(userInfoBean.getBirthday());
-//                tv_email.setText(userInfoBean.getEmail());
-//                tv_office_phone.setText(userInfoBean.getOffice_phone());
-//                tv_home_phone.setText(userInfoBean.getHome_phone());
-//                tv_sex.setText((userInfoBean.getSex().equals("1"))?"男":"女");
-
+                userInfoBean = bean.getData();
+                System.out.println("===777777==="+userInfoBean);
+//
+                 tv_user_name.setText(userInfoBean.getUser_name());
+//
             }
 
             @Override

@@ -258,6 +258,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         requestParams.addBodyParameter("service_type",service_type+"");
         requestParams.addBodyParameter("category_id",category_id);
         requestParams.addBodyParameter("region_id",region_id);
+
+        requestParams.addBodyParameter("page",page+"");
         System.out.println(requestParams);
         x.http().post(requestParams, new Callback.CommonCallback<String>(){
 

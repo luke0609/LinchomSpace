@@ -35,6 +35,7 @@ public class Details_Activity extends AppCompatActivity {
     private ImageView iv_back;
     private ImageView iv_user_photo;
     private TextView tv_ed;
+    private TextView tv_name;
     private TextView tv_user_name;
     private TextView tv_sex;
     private TextView tv_birthday;
@@ -58,8 +59,8 @@ public class Details_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         System.out.println("onCreate");
 
-
         tv_user_name = ((TextView) findViewById(R.id.tv_user_name));
+        tv_name = ((TextView) findViewById(R.id.tv_name));
         tv_sex = ((TextView) findViewById(R.id.tv_add));
         tv_birthday = ((TextView) findViewById(R.id.tv_birthday));
         tv_email = ((TextView) findViewById(R.id.tv_email));
@@ -67,7 +68,6 @@ public class Details_Activity extends AppCompatActivity {
         tv_office_phone = ((TextView) findViewById(R.id.tv_office_phone));
         tv_mobile_phone = ((TextView) findViewById(R.id.tv_mobile_phone));
         tv_home_phone = ((TextView) findViewById(R.id.tv_home_phone));
-
         tv_ed = ((TextView) findViewById(R.id.tv_ed));
 
         tv_ed.setOnClickListener(new View.OnClickListener() {
@@ -152,10 +152,10 @@ public class Details_Activity extends AppCompatActivity {
 //                System.out.println("======"+bean);
 //                System.out.println(bean.getResult());
                 userInfoBean = bean.getData();
-//                System.out.println("======" + userInfoBean);
-                x.image().bind(iv_user_photo,userInfoBean.getUser_photo());
+                System.out.println("======" + userInfoBean.getPhoto());
+                x.image().bind(iv_user_photo,userInfoBean.getPhoto());
                 tv_mobile_phone.setText(userInfoBean.getMobile_phone());
-                tv_user_name.setText(userInfoBean.getUser_name());
+                tv_name.setText(userInfoBean.getName());
                 tv_birthday.setText(userInfoBean.getBirthday());
                 tv_email.setText(userInfoBean.getEmail());
                 tv_office_phone.setText(userInfoBean.getOffice_phone());
