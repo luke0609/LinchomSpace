@@ -21,6 +21,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -89,8 +90,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     private TextView tv_goods_goodsStock;
     private TextView tv_goods_tbPrice;
     private TextView tv_goods_jdPrice;
-    private RelativeLayout rl_goods_numsub;
-    private RelativeLayout rl_goods_numadd;
+    private ImageButton rl_goods_numsub;
+    private ImageButton rl_goods_numadd;
     private EditText et_goods_buyNum;
     private Button btn_goods_tbBuy;
     private Button btn_goods_jdBuy;
@@ -228,8 +229,8 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        rl_goods_numsub = ((RelativeLayout) findViewById(R.id.rl_goods_numsub));
-        rl_goods_numadd = ((RelativeLayout) findViewById(R.id.rl_goods_numadd));
+        rl_goods_numsub = ((ImageButton) findViewById(R.id.imbtn_goods_sub));
+        rl_goods_numadd = ((ImageButton) findViewById(R.id.imbtn_goods_add));
 
         et_goods_buyNum = ((EditText) findViewById(R.id.et_goods_buyNum));
 
@@ -718,11 +719,11 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             case R.id.iv_goods_turnright:
                 goodsTurnRight();
                 break;
-            case R.id.rl_goods_numsub:
+            case R.id.imbtn_goods_sub:
                 subNum();
 
                 break;
-            case R.id.rl_goods_numadd:
+            case R.id.imbtn_goods_add:
                 addNum();
                 break;
             case R.id.btn_goods_tbBuy:

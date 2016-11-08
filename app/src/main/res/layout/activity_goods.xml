@@ -182,7 +182,7 @@
 
                 <TextView
                     android:id="@+id/tv_goods_proName"
-                    android:textColor="#000000"
+                    android:textColor="@color/text_style"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:textSize="16sp"
@@ -293,85 +293,102 @@
                     <TextView
                         android:textColor="@color/text_style"
                         android:layout_centerVertical="true"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:text="购买数量"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_width="140dp"
-                        android:layout_height="40dp">
+                        android:layout_width="110dp"
+                        android:layout_height="50dp">
 
 
                         <RelativeLayout
+                            android:gravity="center"
                             android:id="@+id/rl_goods_numsub"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="#30808080"
-                            android:layout_margin="1dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+
+                            android:layout_weight="1"
+
 
                             >
 
-                            <ImageView
+                            <ImageButton
+                                android:id="@+id/imbtn_goods_sub"
+                                android:background="@drawable/goods_changenum_selector"
 
+
+                                android:layout_width="33dp"
+                                android:layout_height="33dp"
+                                android:scaleType="fitXY"
                                 android:src="@drawable/goods_detail_sub_one"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_centerInParent="true"
+
+
+
                                 />
 
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:layout_gravity="center"
+                            android:layout_centerInParent="true"
                             android:id="@+id/rl_goods_num"
-                            android:layout_margin="1dp"
-                            android:layout_toRightOf="@id/rl_goods_numsub"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="#30808080"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
+
                             >
 
                             <EditText
+
+                                android:layout_centerInParent="true"
                                 android:id="@+id/et_goods_buyNum"
                                 android:gravity="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"
+                                android:layout_width="33dp"
+                                android:layout_height="33dp"
+                                android:background="#30808080"
                                 android:text="1"
                                 android:inputType="number"
                                 android:textColor="@color/text_style"
+                                android:enabled="false"
                                 />
 
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_margin="1dp"
+                            android:gravity="center"
 
                             android:id="@+id/rl_goods_numadd"
-                            android:layout_toRightOf="@id/rl_goods_num"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="#30808080"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             >
 
-                            <ImageView
-                                android:src="@drawable/goods_detail_add_one"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_centerInParent="true"
 
-                                />
+
+                           <ImageButton
+
+                               android:id="@+id/imbtn_goods_add"
+
+                               android:background="@drawable/goods_changenum_selector"
+
+                               android:layout_width="33dp"
+                               android:layout_height="33dp"
+                               android:scaleType="fitXY"
+                               android:src="@drawable/goods_detail_add_one"
+                               />
 
                         </RelativeLayout>
 
 
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
 
                 </RelativeLayout>
@@ -583,14 +600,14 @@
                 android:layout_below="@id/rl_goods_link"
                 android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="46dp"
                 android:background="#ffffff">
                 <TextView
                     android:layout_marginLeft="20dp"
 
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:text="产品详情"
                     android:gravity="center_vertical"
                     android:textColor="@color/text_style"
@@ -617,13 +634,13 @@
                 android:layout_below="@id/rl_goods_proDetail"
                 android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="46dp"
                 android:background="#ffffff">
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:text="产品评价"
                     android:gravity="center_vertical"
                     android:textColor="@color/text_style"
