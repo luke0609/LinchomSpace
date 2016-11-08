@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.http.body.StringBody;
 import org.xutils.x;
 
 import java.io.File;
@@ -73,7 +74,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         map.put("品牌交流","12");
         map.put("提问回答","13");
         map.put("其他","14");
-
+        list_photo=new ArrayList<String>();
         recycler_view = ((MultiPickResultView) findViewById(R.id.recycler_view));
         recycler_view.init(this,MultiPickResultView.ACTION_SELECT,null);
 
@@ -204,8 +205,8 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
 
             case R.id.btn_publish:
-                System.out.println(list_photo.size());
-                if(list_photo.size()==0){
+
+                if(list_photo.isEmpty()){
                     doPublish();
                 }else {
                     for(int i=0; i<list_photo.size();i++){

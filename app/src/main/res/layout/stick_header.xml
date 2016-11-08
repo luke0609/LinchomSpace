@@ -79,5 +79,15 @@
             android:textColor="#313233"
             android:textSize="15sp"
             android:text="请问厨房等家具怎么摆放比较合适，家里的阳台是向阳的，那么背光的呢？？"/>
+        <linchom.com.linchomspace.photoutil.NineGridTestLayout
+            android:layout_below="@+id/tv_chat_content"
+            android:id="@+id/photo_show"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+        </linchom.com.linchomspace.photoutil.NineGridTestLayout>
     </LinearLayout>

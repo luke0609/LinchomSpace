@@ -264,7 +264,23 @@ public class ChatFragment extends Fragment {
                     int timeB = Integer.parseInt(itemsBean.getAdd_time());
                     tv_chat_time.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
                     remark_num.setText(itemsBean.getRepliesnumber());
+                    List<String> urllist=new ArrayList<>();
+                    if(itemsBean.getPhoto()!=null&&(!"".equals(itemsBean.getPhoto()))){
 
+                        String[] urls=itemsBean.getPhoto().split(",");
+                        for (int i = 0; i <urls.length ; i++) {
+                            System.out.println("!!!"+urls[i]);
+                            if ("0".equals(urls[i])){
+                               continue;
+                            }
+
+                            urllist.add(urls[i]);
+                        }
+                        photo_show.setUrlList(urllist);
+                    }else {
+                        urllist.clear();
+                        photo_show.setUrlList(urllist);
+                    }
 
 
                 }
@@ -345,6 +361,7 @@ public class ChatFragment extends Fragment {
         params.addQueryStringParameter("topic_category_id",type+"");
         params.addQueryStringParameter("verification","e0d017ef76c8510244ebe0191f5dde15");
         params.addQueryStringParameter("page",page+"");
+        System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
 
             @Override

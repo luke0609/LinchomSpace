@@ -105,14 +105,15 @@
         android:textSize="15sp"
         android:layout_below="@+id/tv_chat_name"
         android:text="交流标题内容"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="10dp"
         />
     <linchom.com.linchomspace.photoutil.NineGridTestLayout
         android:layout_below="@+id/tv_title"
         android:id="@+id/photo_show"
-        android:layout_marginTop="10dp"
+
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

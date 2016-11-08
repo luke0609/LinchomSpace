@@ -219,7 +219,8 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".photoutil.ImagePagerActivity"></activity>
+        <activity android:name=".photoutil.ImagePagerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:theme="@style/customTheme"
             android:name="me.iwf.photopicker.PhotoPagerActivity"
