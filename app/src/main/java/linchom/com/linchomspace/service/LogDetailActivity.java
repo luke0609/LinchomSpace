@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class LogDetailActivity extends AppCompatActivity {
     private TextView tv_service_log_detail_addtime;
     private TextView tv_service_log_detail_content;
     private NineGridTestLayout ngtl_service_log_photo;
+    private ImageView titlebar_back;
 
 
     @Override
@@ -44,22 +48,14 @@ public class LogDetailActivity extends AppCompatActivity {
 
         addtime=  bundle.getString("addtime");
 
+
         content =   bundle.getString("content");
 
         photo =  bundle.getString("photo");
 
         Log.i(TAG,"photo"+photo.length());
-        if(photo==""){
 
-            photos=null;
-
-
-        }else{
-
-            photos = photo.split(",");
-
-        }
-
+        photos = photo.split(",");
 
 
 
@@ -83,6 +79,9 @@ public class LogDetailActivity extends AppCompatActivity {
         ngtl_service_log_photo = ((NineGridTestLayout) findViewById(R.id.ngtl_service_log_photo));
 
 
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
+
     }
 
     private void initData() {
@@ -94,16 +93,24 @@ public class LogDetailActivity extends AppCompatActivity {
 
         tv_service_log_detail_title.setText(title);
 
+        Long time = Long.parseLong(addtime)*1000;
 
-        tv_service_log_detail_addtime.setText(addtime);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        String str = sdf.format(time);
+
+
+
+        tv_service_log_detail_addtime.setText(str);
 
         tv_service_log_detail_content.setText(content);
 
         List<String> urlList =new ArrayList<String>();
 
-        if(photos!=null){
 
 
+        if(photo.length()!=0){
 
             for(int i =0;i<photos.length;i++){
 
@@ -114,7 +121,9 @@ public class LogDetailActivity extends AppCompatActivity {
 
 
 
+
         }
+
 
 
 
@@ -126,6 +135,17 @@ public class LogDetailActivity extends AppCompatActivity {
 
 
         }
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+
+            }
+        });
+
 
 
     }
