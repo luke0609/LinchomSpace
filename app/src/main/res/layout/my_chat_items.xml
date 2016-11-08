@@ -73,5 +73,20 @@
         android:text="交流标题内容"
         android:layout_marginBottom="13dp"
         />
+    <linchom.com.linchomspace.photoutil.NineGridTestLayout
 
+        android:layout_below="@id/tv_service_log_content"
+        android:id="@+id/ngtl_service_log_photo"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+
+
+
+    </linchom.com.linchomspace.photoutil.NineGridTestLayout>
 </RelativeLayout>

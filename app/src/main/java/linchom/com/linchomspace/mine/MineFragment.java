@@ -124,13 +124,13 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        ((RelativeLayout) view.findViewById(R.id.person_center_content5)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), log_activity.class);
-                startActivity(intent);
-            }
-        });
+//        ((RelativeLayout) view.findViewById(R.id.person_center_content5)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), log_activity.class);
+//                startActivity(intent);
+//            }
+//        });
         initData();
         return view;
     }

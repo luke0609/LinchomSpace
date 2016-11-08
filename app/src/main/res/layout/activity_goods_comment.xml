@@ -34,14 +34,16 @@
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
 
+
+
         android:layout_below="@id/bar_goods_common_head"
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_goods_common_ptr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="#000000"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.1dp"
+        android:divider="#808080"
+        android:dividerHeight="1dp"
         android:fadingEdge="none"
         android:fastScrollEnabled="false"
         android:footerDividersEnabled="false"
