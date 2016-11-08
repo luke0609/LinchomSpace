@@ -44,14 +44,29 @@
                 android:layout_height="40dp">
 
                 <TextView
-                    android:id="@+id/tv_service_log_detail_title"
+                    android:id="@+id/tv_service_log_detail_title1"
                     android:textColor="@color/text_style"
                     android:layout_marginLeft="10dp"
                     android:layout_centerVertical="true"
                     android:textSize="15sp"
-                    android:text=""
+                    android:text="标题:"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    />
+
+
+
+
+                <TextView
+                    android:id="@+id/tv_service_log_detail_title"
+                    android:textColor="@color/text_style"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:text="测试"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_service_log_detail_title1"
+                    android:layout_marginLeft="10dp"
                     />
 
 
@@ -67,10 +82,24 @@
                 android:layout_height="40dp"
                 >
 
+
+                <TextView
+                    android:id="@+id/tv_service_log_detail_addtime1"
+
+                    android:textColor="@color/text_style"
+
+                    android:text="添加时间:"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/tv_service_log_detail_addtime"
 
                     android:textColor="@color/text_style"
+                    android:layout_toRightOf="@id/tv_service_log_detail_addtime1"
 
                     android:text=""
                     android:layout_marginLeft="10dp"
@@ -89,7 +118,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
+
                 <TextView
+                    android:id="@+id/tv_service_log_detail_content1"
+
+                    android:textColor="@color/text_style"
+
+                    android:text="内容:"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+                <TextView
+                    android:layout_below="@id/tv_service_log_detail_content1"
 
                     android:id="@+id/tv_service_log_detail_content"
 
