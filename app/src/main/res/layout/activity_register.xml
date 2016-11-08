@@ -12,10 +12,10 @@
             android:id="@+id/de_img_backgroud"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="-50dp"
-            android:layout_marginRight="-300dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="-100dp"
             android:scaleType="center"
-            android:src="@drawable/bk_login_b" />
+            android:src="@mipmap/bk_lg"/>
 
     </FrameLayout>
 
@@ -29,12 +29,13 @@
         android:layout_alignParentStart="true">
 
         <ImageView
+            android:visibility="invisible"
             android:id="@+id/de_login_logo"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="91dip"
-            android:src="@drawable/lincom_c" />
+            android:src="@drawable/linchom_f"/>
 
 
         <LinearLayout
@@ -81,6 +82,7 @@
                 </RelativeLayout>
 
                 <Button
+                    android:id="@+id/btn_post"
                     android:layout_toRightOf="@+id/app_phoneNum"
                     android:layout_weight="3"
                     android:layout_width="0dp"

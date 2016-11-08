@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,6 +32,7 @@ import java.util.regex.Pattern;
 import linchom.com.linchomspace.MainActivity;
 import linchom.com.linchomspace.R;
 
+import linchom.com.linchomspace.homepage.Utils.ToastUtil;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.login.contantData.LoginResultBean;
 import linchom.com.linchomspace.login.widget.ClearWriteEditText;
@@ -46,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // 大 logo 图片  背景图片
     private ImageView mImgBackgroud;
 
-    private String sUserName, sPassword, oldUserName, oldPassWord;
+    private String sUserName, sPassword;
     private TextView mForgot;
 
 
@@ -93,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 checkLogin();
                 break;
             case R.id.de_login_forgot:
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RetrieveActivity.class);
                 startActivity(intent);
                 break;
             case R.id.de_login_register:
@@ -104,29 +108,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-//    @OnClick({R.id.btn_login, R.id.fastregister, R.id.findpsd, R.id.iv_qq, R.id.iv_weibo})
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//
-//            case R.id.btn_login:
-//                checkLogin();
-//                btnLogin.setClickable(false);
-//                break;
-//            case R.id.fastregister:
-//                Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
-//                startActivity(intentRegister);
-//                break;
-//            case R.id.findpsd:
-//                Intent intentRetrieve = new Intent(LoginActivity.this, RetrieveActivity.class);
-//                startActivity(intentRetrieve);
-//                break;
-//            case R.id.iv_qq:
-//                break;
-//            case R.id.iv_weibo:
-//                break;
-//        }
-//    }
-//
 
 
     private void checkLogin() {
@@ -135,13 +116,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sPassword = mPassWord.getText().toString().trim();
 
         if (isEmpty(sUserName)) {
-
+            showToast("请输入手机号");
             mUserName.setShakeAnimation();
             return;
         }
-        if (isEmpty(sPassword)) {
+        System.out.println(isPhoneNumberValid(sUserName));
 
-            mUserName.setShakeAnimation();
+//        if (!isPhoneNumberValid(sUserName)){
+//            showToast("请输入正确的手机号");
+//            mUserName.setShakeAnimation();
+//            return;
+//        }
+
+        if (isEmpty(sPassword)) {
+            showToast("请输入密码");
+            mPassWord.setShakeAnimation();
             return;
         }
 
@@ -149,6 +138,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //
 //                    return;
 //                }
+
         //正在登录
         //访问网络
         RequestParams requestParams = new RequestParams("http://app.linchom.com/appuser.php?type=login");
@@ -159,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                System.out.println("22222"+result);
                 Gson gson = new Gson();
                 String userId = null;
                 boolean isLogin = false;
@@ -235,7 +226,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
          Pattern pattern = Pattern.compile(phone);
-        Matcher matcher = pattern.matcher(inputStr);
+         Matcher matcher = pattern.matcher(inputStr);
 
 
          if(matcher.matches()) {
@@ -243,4 +234,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
          return isValid;
          }
+    private void showToast(String msg){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_style,
+                (ViewGroup) findViewById(R.id.ll_toast));
+        ImageView image = (ImageView) layout
+                .findViewById(R.id.iv_toast_collect);
+        image.setImageResource(R.drawable.collect_success1);
+        TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+        text.setText(msg);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        ToastUtil.showMyToast(toast, 1000);
+    }
     }

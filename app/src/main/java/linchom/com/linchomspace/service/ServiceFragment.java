@@ -597,6 +597,8 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
             case R.id.guoshui_tv:
                 v.startAnimation(alpha_button);
                 rl_plus.performClick();
+                Intent intent2 =new Intent(getActivity(),LogActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.publish_tv:
                 v.startAnimation(alpha_button);
@@ -704,11 +706,7 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
 
 
 
-    public void publish_service(){
 
-
-    }
-    public void mine_service(){}
 
 
 }

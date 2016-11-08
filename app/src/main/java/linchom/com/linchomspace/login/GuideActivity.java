@@ -69,7 +69,7 @@ public class GuideActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(GuideActivity.this, MainActivity.class);
+                Intent intent=new Intent(GuideActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
