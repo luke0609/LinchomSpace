@@ -109,7 +109,7 @@
             <linchom.com.linchomspace.photoutil.NineGridTestLayout
 
                 android:layout_below="@id/tv_service_log_content"
-                android:id="@+id/tv_service_log_photo"
+                android:id="@+id/ngtl_service_log_photo"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
