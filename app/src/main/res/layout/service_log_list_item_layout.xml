@@ -13,7 +13,7 @@
 
         <TextView
             android:textColor="#000"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:gravity="center_vertical"
             android:textSize="16sp"
             android:text="智能家居"
@@ -29,8 +29,9 @@
 
             android:lines="5"
 
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
 
             android:textColor="@color/text_style"
 
@@ -43,7 +44,7 @@
             android:layout_below="@id/tv_service_log"
             />
 
-        <ImageView
+        <com.etsy.android.grid.util.DynamicHeightImageView
             android:id="@+id/iv_service_log_img"
             android:layout_below="@id/tv_service_content"
             android:layout_width="80dp"

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.SearchChatActivity;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.homepage.Activity.SearchArticleActivity;
 
@@ -50,6 +51,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         search_type = bundle.getString("search_type");
+        Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
         Log.i("aaa",search_type);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));
@@ -64,20 +66,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-
         initRecordsView();
-
         searchRecordsLl = (LinearLayout) findViewById(R.id.search_content_show_ll);
         searchContentEt = (EditText) findViewById(R.id.et_search);
 
         //添加搜索view
         searchRecordsLl.addView(recordsHistoryView);
-
         clearEditText=(TextView) findViewById(R.id.tv_search);
         search_back = ((ImageView) findViewById(R.id.search_back));
 
     }
-
     //初始化搜索历史记录View
     private void initRecordsView() {
         recordsHistoryView = LayoutInflater.from(this).inflate(R.layout.search_records_list_layout, null);
@@ -112,7 +110,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         clearEditText.setOnClickListener(this);
         search_back.setOnClickListener(this);
         searchContentEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -223,11 +220,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
                 finish();
             }else if(search_type.equals("chat")){
-                Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("keyword",record);
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+                //Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
+                Intent intent1 =new Intent(SearchActivity.this, SearchChatActivity.class);
+                Bundle bundle1 =new Bundle();
+                bundle1.putString("keyword",record);
+                intent1.putExtra("bundle",bundle1);
+                startActivity(intent1);
                 finish();
             }
 
