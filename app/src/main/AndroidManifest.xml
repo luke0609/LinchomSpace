@@ -236,6 +236,9 @@
             android:theme="@style/customTheme"
             android:name="me.iwf.photopicker.PhotoPickerActivity"
             />
+
+        <activity android:name=".service.LogDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>
