@@ -746,15 +746,19 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         publish_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
                 popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 comment = et_write_comment.getText().toString();
-                publishComment(comment);
-                Log.i("comment1", comment);
-                //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
-                rlBackgroundGray.setVisibility(View.GONE);
-                popupWindow.dismiss();
-                sendArticleId();
+                if(comment==""){
+                    Toast.makeText(getApplicationContext(),"评论内容不能为空",Toast.LENGTH_SHORT).show();
+                }else {
+                    publishComment(comment);
+                    //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                    imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
+                    rlBackgroundGray.setVisibility(View.GONE);
+                    popupWindow.dismiss();
+                    sendArticleId();
+                }
             }
         });
 
@@ -762,56 +766,56 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
     private void publishComment(String comment) {
-        RequestParams params = new RequestParams(Constant.ArticleAddComment);
-        params.addQueryStringParameter("user_name", userName);
-        params.addQueryStringParameter("article_id", article_id);
-        params.addQueryStringParameter("user_id", userId);
-        //params.addQueryStringParameter("email", "2070118814@qq.com");
-        params.addQueryStringParameter("content", comment);
-        params.addQueryStringParameter("type", "2");
-        x.http().get(params, new Callback.CommonCallback<String>() {
 
-            @Override
-            public void onSuccess(String result) {
-                System.out.println(result);
-                Gson gson = new Gson();
-                //Log.i("comment",comment);
-                ArticleAddCommentBean bean = gson.fromJson(result, ArticleAddCommentBean.class);
-                Log.i("评论结果", bean.getResult() + "");
-                if (bean.getResult().equals("0")) {
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_style,
-                            (ViewGroup) findViewById(R.id.ll_toast));
-                    ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
-                    image.setImageResource(R.drawable.publishsuccess);
-                    TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
-                    text.setText("评论成功");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_SHORT);
-                    toast.setView(layout);
-                    ToastUtil.showMyToast(toast, 1000);
+            RequestParams params = new RequestParams(Constant.ArticleAddComment);
+            params.addQueryStringParameter("user_name", userName);
+            params.addQueryStringParameter("article_id", article_id);
+            params.addQueryStringParameter("user_id", userId);
+          //params.addQueryStringParameter("email", "2070118814@qq.com");
+            params.addQueryStringParameter("content", comment);
+            params.addQueryStringParameter("type", "2");
+            x.http().get(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println(result);
+                    Gson gson = new Gson();
+                    //Log.i("comment",comment);
+                    ArticleAddCommentBean bean = gson.fromJson(result, ArticleAddCommentBean.class);
+                    Log.i("评论结果", bean.getResult() + "");
+                    if (bean.getResult().equals("0")) {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_style,
+                                (ViewGroup) findViewById(R.id.ll_toast));
+                        ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                        image.setImageResource(R.drawable.publishsuccess);
+                        TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                        text.setText("评论成功");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        ToastUtil.showMyToast(toast, 1000);
+
+                    }
+
 
                 }
 
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                @Override
+                public void onCancelled(CancelledException cex) {
 
-            }
+                }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                @Override
+                public void onFinished() {
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                }
+            });
 
 
     }

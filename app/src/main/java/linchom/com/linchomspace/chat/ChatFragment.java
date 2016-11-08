@@ -34,6 +34,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.pojo.TopicList;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
@@ -43,17 +46,20 @@ import linchom.com.linchomspace.chat.util.ViewHolder;
 import linchom.com.linchomspace.homepage.progressbar.CircularProgress;
 import linchom.com.linchomspace.login.widget.DepthPageTransformer;
 import linchom.com.linchomspace.photoutil.NineGridTestLayout;
+import linchom.com.linchomspace.search.SearchActivity;
 
 
 public class ChatFragment extends Fragment {
+    @InjectView(R.id.tv_search)
+    TextView tvSearch;
     private int[] images;
     View view1;
     private BannerComponent bannerComponent;
     private IndicatorViewPager indicatorViewPager;
     private String chatId;
     private ImageView to_publish;
-    private int pageCount=1;
-    private int startPage=1;
+    private int pageCount = 1;
+    private int startPage = 1;
     private CircularProgress CircularProgress;
 
     @Override
@@ -62,19 +68,20 @@ public class ChatFragment extends Fragment {
         view1 = inflater.inflate(R.layout.fragment_chat, container, false);
 //        initData();
         initView();
+        ButterKnife.inject(this, view1);
         return view1;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-      //  bannerComponent.startAutoPlay();
+        //  bannerComponent.startAutoPlay();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-       // bannerComponent.stopAutoPlay();
+        // bannerComponent.stopAutoPlay();
     }
 
     private void initView() {
@@ -82,7 +89,7 @@ public class ChatFragment extends Fragment {
         to_publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), ChatPublishActiviy.class);
+                Intent intent = new Intent(getActivity(), ChatPublishActiviy.class);
                 startActivity(intent);
             }
         });
@@ -103,9 +110,9 @@ public class ChatFragment extends Fragment {
         viewPager2.setPageTransformer(true, new DepthPageTransformer());
         float unSelectSize = 14;
         float selectSize = unSelectSize * 1.1f;
-        scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.WHITE,Color.WHITE).setSize(selectSize, unSelectSize));
+        scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.WHITE, Color.WHITE).setSize(selectSize, unSelectSize));
 
-        scrollIndicatorView.setScrollBar(new ColorBar(getActivity(),Color.parseColor("#EEC900") , 4));
+        scrollIndicatorView.setScrollBar(new ColorBar(getActivity(), Color.parseColor("#EEC900"), 4));
 
 
         indicatorViewPager = new IndicatorViewPager(scrollIndicatorView, viewPager2);
@@ -113,63 +120,78 @@ public class ChatFragment extends Fragment {
         indicatorViewPager.setAdapter(new MyAdapter());
         indicatorViewPager.setPageOffscreenLimit(0);
 
-      //  indicatorViewPager.setCurrentItem(5,true);
+        //  indicatorViewPager.setCurrentItem(5,true);
 
 
         Bundle bundle = getArguments();
-        if(bundle!=null){
+        if (bundle != null) {
             chatId = bundle.getString("chatId");
-            switch (chatId){
+            switch (chatId) {
                 case "0":
-                    indicatorViewPager.setCurrentItem(0,true);
+                    indicatorViewPager.setCurrentItem(0, true);
                     break;
                 case "1":
-                    indicatorViewPager.setCurrentItem(1,true);
+                    indicatorViewPager.setCurrentItem(1, true);
                     break;
                 case "2":
-                    indicatorViewPager.setCurrentItem(2,true);
+                    indicatorViewPager.setCurrentItem(2, true);
                     break;
                 case "3":
-                    indicatorViewPager.setCurrentItem(3,true);
+                    indicatorViewPager.setCurrentItem(3, true);
                     break;
                 case "4":
-                    indicatorViewPager.setCurrentItem(4,true);
+                    indicatorViewPager.setCurrentItem(4, true);
                     break;
                 case "5":
-                    indicatorViewPager.setCurrentItem(5,true);
+                    indicatorViewPager.setCurrentItem(5, true);
                     break;
                 case "6":
-                    indicatorViewPager.setCurrentItem(6,true);
+                    indicatorViewPager.setCurrentItem(6, true);
                     break;
                 case "7":
-                    indicatorViewPager.setCurrentItem(7,true);
+                    indicatorViewPager.setCurrentItem(7, true);
                     break;
                 case "8":
-                    indicatorViewPager.setCurrentItem(8,true);
+                    indicatorViewPager.setCurrentItem(8, true);
                     break;
                 case "9":
-                    indicatorViewPager.setCurrentItem(9,true);
+                    indicatorViewPager.setCurrentItem(9, true);
                     break;
                 case "10":
-                    indicatorViewPager.setCurrentItem(10,true);
+                    indicatorViewPager.setCurrentItem(10, true);
                     break;
                 case "11":
-                    indicatorViewPager.setCurrentItem(11,true);
+                    indicatorViewPager.setCurrentItem(11, true);
                     break;
                 case "12":
-                    indicatorViewPager.setCurrentItem(12,true);
+                    indicatorViewPager.setCurrentItem(12, true);
                     break;
                 case "13":
-                    indicatorViewPager.setCurrentItem(13,true);
+                    indicatorViewPager.setCurrentItem(13, true);
                     break;
                 case "14":
-                    indicatorViewPager.setCurrentItem(14,true);
+                    indicatorViewPager.setCurrentItem(14, true);
                     break;
 
             }
         }
 
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
+    @OnClick(R.id.tv_search)
+    public void onClick() {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("search_type", "chat");
+        intent.putExtra("bundle", bundle);
+        startActivity(intent);
     }
 //
 //    private void initData() {
@@ -240,11 +262,11 @@ public class ChatFragment extends Fragment {
         public View getViewForPage(final int position, View convertView, ViewGroup container) {
             Log.i("convertView", "getView at position:" + position + " convertView:" + (convertView == null ? "null" : convertView.hashCode()));
             convertView = View.inflate(getActivity(), R.layout.viewpage_layout, null);
-            startPage=1;
-            pageCount=1;
+            startPage = 1;
+            pageCount = 1;
             final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(R.id.lv));
-            final List<TopicList.DataBean.ItemsBean> topicList=new ArrayList<>();
-            final CommonAdapter<TopicList.DataBean.ItemsBean> adapter=new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
+            final List<TopicList.DataBean.ItemsBean> topicList = new ArrayList<>();
+            final CommonAdapter<TopicList.DataBean.ItemsBean> adapter = new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
 
 
                 @Override
@@ -252,9 +274,9 @@ public class ChatFragment extends Fragment {
                     TextView tv_name = viewHolder.getViewById(R.id.tv_chat_username);
                     TextView tv_chat_name = viewHolder.getViewById(R.id.tv_chat_name);
                     TextView tv_chat_time = viewHolder.getViewById(R.id.tv_chat_time);
-                    TextView tv_chat_title=viewHolder.getViewById(R.id.tv_title);
-                    TextView remark_num=viewHolder.getViewById(R.id.remark_num);
-                    NineGridTestLayout photo_show =viewHolder.getViewById(R.id.photo_show);
+                    TextView tv_chat_title = viewHolder.getViewById(R.id.tv_title);
+                    TextView remark_num = viewHolder.getViewById(R.id.remark_num);
+                    NineGridTestLayout photo_show = viewHolder.getViewById(R.id.photo_show);
 
 
                     tv_name.setText(itemsBean.getUser_name());
@@ -263,20 +285,20 @@ public class ChatFragment extends Fragment {
                     int timeB = Integer.parseInt(itemsBean.getAdd_time());
                     tv_chat_time.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
                     remark_num.setText(itemsBean.getRepliesnumber());
-                    List<String> urllist=new ArrayList<>();
-                    if(itemsBean.getPhoto()!=null&&(!"".equals(itemsBean.getPhoto()))){
+                    List<String> urllist = new ArrayList<>();
+                    if (itemsBean.getPhoto() != null && (!"".equals(itemsBean.getPhoto()))) {
 
-                        String[] urls=itemsBean.getPhoto().split(",");
-                        for (int i = 0; i <urls.length ; i++) {
-                            System.out.println("!!!"+urls[i]);
-                            if ("0".equals(urls[i])){
-                               continue;
+                        String[] urls = itemsBean.getPhoto().split(",");
+                        for (int i = 0; i < urls.length; i++) {
+                            System.out.println("!!!" + urls[i]);
+                            if ("0".equals(urls[i])) {
+                                continue;
                             }
 
                             urllist.add(urls[i]);
                         }
                         photo_show.setUrlList(urllist);
-                    }else {
+                    } else {
                         urllist.clear();
                         photo_show.setUrlList(urllist);
                     }
@@ -294,15 +316,14 @@ public class ChatFragment extends Fragment {
 
                     PullToRefreshBase.Mode mode = listView.getCurrentMode();
 
-                    if(mode == PullToRefreshBase.Mode.PULL_FROM_START){
+                    if (mode == PullToRefreshBase.Mode.PULL_FROM_START) {
 
-                        getTopicList(position,topicList,adapter,listView,1);
+                        getTopicList(position, topicList, adapter, listView, 1);
 
 
+                    } else if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
 
-                    }else if(mode==PullToRefreshBase.Mode.PULL_FROM_END){
-
-                        getTopicList(position,topicList,adapter,listView,++startPage);
+                        getTopicList(position, topicList, adapter, listView, ++startPage);
 
                     }
 
@@ -310,23 +331,22 @@ public class ChatFragment extends Fragment {
                 }
             });
 
-            ListView newsList=listView.getRefreshableView();
+            ListView newsList = listView.getRefreshableView();
             newsList.setAdapter(adapter);
 
             newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   // Toast.makeText(getActivity(), position, Toast.LENGTH_SHORT).show();
-                    TopicList.DataBean.ItemsBean topicDetial = topicList.get(position-1);
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                    // Toast.makeText(getActivity(), position, Toast.LENGTH_SHORT).show();
+                    TopicList.DataBean.ItemsBean topicDetial = topicList.get(position - 1);
 
                     Intent intent = new Intent(getActivity(), ChatDetilActivity.class);
-                    intent.putExtra("topic_id",topicDetial.getTopic_id());
+                    intent.putExtra("topic_id", topicDetial.getTopic_id());
                     startActivity(intent);
-
                 }
             });
-            getTopicList(position,topicList,adapter,listView,startPage);
-            Log.i(position+"", "getViewForPage: ");
+            getTopicList(position, topicList, adapter, listView, startPage);
+            Log.i(position + "", "getViewForPage: ");
 
             return convertView;
         }
@@ -353,39 +373,34 @@ public class ChatFragment extends Fragment {
     }
 
     private void getTopicList(int position, final List<TopicList.DataBean.ItemsBean> topicList, final CommonAdapter<TopicList.DataBean.ItemsBean> adapter, final PullToRefreshListView listView, final int page) {
-
-        int type=(position+1) ;
+        int type = (position + 1);
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
-        params.addQueryStringParameter("act","topic");
-        params.addQueryStringParameter("topic_category_id",type+"");
-        params.addQueryStringParameter("verification","e0d017ef76c8510244ebe0191f5dde15");
-        params.addQueryStringParameter("page",page+"");
+        params.addQueryStringParameter("act", "topic");
+        params.addQueryStringParameter("topic_category_id", type + "");
+        params.addQueryStringParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        params.addQueryStringParameter("page", page + "");
         System.out.println(params);
         x.http().get(params, new Callback.CommonCallback<String>() {
-
             @Override
             public void onSuccess(String result) {
                 CircularProgress.setVisibility(View.GONE);
                 Gson gson = new Gson();
                 System.out.println(result);
                 TopicList bean = gson.fromJson(result, TopicList.class);
-                pageCount= bean.getData().getTotal_pages();
-                if (page==1){
-                topicList.clear();
+                pageCount = bean.getData().getTotal_pages();
+                if (page == 1) {
+                    topicList.clear();
                 }
-
-               if(page<=pageCount){
-                topicList.addAll(bean.getData().getItems());
-               }
+                if (page <= pageCount) {
+                    topicList.addAll(bean.getData().getItems());
+                }
 
                 listView.onRefreshComplete();
                 System.out.println(topicList);
                 adapter.notifyDataSetChanged();
 
 
-
             }
-
 
 
             @Override
@@ -397,6 +412,7 @@ public class ChatFragment extends Fragment {
             public void onCancelled(CancelledException cex) {
 
             }
+
             @Override
             public void onFinished() {
 

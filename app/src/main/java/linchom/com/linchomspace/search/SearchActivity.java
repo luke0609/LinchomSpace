@@ -23,6 +23,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.SearchChatActivity;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.homepage.Activity.SearchArticleActivity;
 
@@ -50,6 +51,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         search_type = bundle.getString("search_type");
+        Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
         Log.i("aaa",search_type);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));
@@ -223,11 +225,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
                 finish();
             }else if(search_type.equals("chat")){
-                Intent intent =new Intent(SearchActivity.this, SearchArticleActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("keyword",record);
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
+                Intent intent1 =new Intent(SearchActivity.this, SearchChatActivity.class);
+                Bundle bundle1 =new Bundle();
+                bundle1.putString("keyword",record);
+                intent1.putExtra("bundle",bundle1);
+                startActivity(intent1);
                 finish();
             }
 
