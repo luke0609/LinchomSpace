@@ -9,12 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
+import com.etsy.android.grid.util.DynamicHeightImageView;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
@@ -171,7 +171,7 @@ public class LogFragment extends Fragment {
                 TextView tv_service_addtime = viewHolder.getViewById(R.id.tv_service_addtime);
 
 
-                ImageView iv_service_log_img = viewHolder.getViewById(R.id.iv_service_log_img);
+                DynamicHeightImageView iv_service_log_img = viewHolder.getViewById(R.id.iv_service_log_img);
 
                 tv_service_log.setText("【"+items.title+"】");
                 tv_service_content.setText(items.content);
