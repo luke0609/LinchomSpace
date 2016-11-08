@@ -347,7 +347,6 @@ public class ChatFragment extends Fragment {
             });
             getTopicList(position, topicList, adapter, listView, startPage);
             Log.i(position + "", "getViewForPage: ");
-
             return convertView;
         }
 

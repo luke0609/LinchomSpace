@@ -105,10 +105,10 @@ public class SearchChatActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent,View view,int position, long id) {
+                TopicList.DataBean.ItemsBean topicDetial = topicList.get(position - 1);
+
                 Intent intent = new Intent(SearchChatActivity.this, ChatDetilActivity.class);
-                Bundle bundle = new Bundle();
-               // bundle.putString("article_id", topicList.get(position - 1).article_id);
-                intent.putExtra("bundle", bundle);
+                intent.putExtra("topic_id", topicDetial.getTopic_id());
                 startActivity(intent);
             }
         });

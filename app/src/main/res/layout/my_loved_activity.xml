@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="145dp">
 
         <ImageView
             android:id="@+id/goods_img"

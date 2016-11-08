@@ -749,7 +749,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
                 popupWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
                 popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 comment = et_write_comment.getText().toString();
-                if(comment==""){
+                if(comment.equals("")){
                     Toast.makeText(getApplicationContext(),"评论内容不能为空",Toast.LENGTH_SHORT).show();
                 }else {
                     publishComment(comment);
