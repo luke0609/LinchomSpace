@@ -25,11 +25,16 @@ import com.google.gson.Gson;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.KindsInfoBean;
+import linchom.com.linchomspace.photoutil.UploadBean;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
+import me.iwf.photopicker.widget.MultiPickResultView;
+
 public class Disclose_activity extends AppCompatActivity {
 
     private ImageView iv_disback;
@@ -45,6 +50,11 @@ public class Disclose_activity extends AppCompatActivity {
     private EditText ed_disclose;
     private TextView tv_user;
     private RelativeLayout rl_fj;
+    private MultiPickResultView pic_view;
+    ArrayList<String> list_photo;
+    private String photoAddress="";
+    private int count=0;
+    String photo="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +71,8 @@ public class Disclose_activity extends AppCompatActivity {
         tv_mine_baoliao = ((TextView) findViewById(R.id.tv_mine_baoliao));
 
         tv_biaoti = ((TextView) findViewById(R.id.tv_biaoti));
+        pic_view = ((MultiPickResultView) findViewById(R.id.pic_view));
+        pic_view.init(this,MultiPickResultView.ACTION_SELECT,null);
 
         iv_disback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,51 +81,19 @@ public class Disclose_activity extends AppCompatActivity {
             }
         });
 
-        rl_fj = (RelativeLayout) findViewById(R.id.rl_fj);
-        rl_fj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog();
-            }
-        });
-
         b_submit = ((TextView) findViewById(R.id.b_submit));
         b_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String biaoti=tv_biaoti.getText().toString();
-                String content=ed_disclose.getText().toString();
-//                String author=tv_user.getText().toString();
-                RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_add_article&user_id=135&cat_id=16&title=%E5%BC%A0%E6%99%93%E6%96%87%E7%9A%84%E6%96%87%E7%AB%A0&content=111");
-                requestParams.addBodyParameter("user_id","131");
-                requestParams.addBodyParameter("title",biaoti);
-                requestParams.addBodyParameter("content",content);
-//                requestParams.addBodyParameter("author",author);
-                x.http().post(requestParams, new Callback.CommonCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-//                        System.out.println("onsucess" + result);
+                if(list_photo.size()==0){
+                    post();
+                }else {
+                    for (int i = 0; i < list_photo.size(); i++) {
+                        photoUpload(i);
 
                     }
-
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
-
                     }
 
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-
-                    }
-
-                    @Override
-                    public void onFinished() {
-
-                    }
-                });
-//  Toast.makeText(getApplicationContext(), "提交成功", Toast.LENGTH_SHORT).show();
-                finish();
             }
         });
 
@@ -217,6 +197,98 @@ public class Disclose_activity extends AppCompatActivity {
 
         builder.show();
     }
+
+    public void post(){
+        String biaoti=tv_biaoti.getText().toString();
+        String content=ed_disclose.getText().toString();
+//                String author=tv_user.getText().toString();
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_add_article&user_id=135&cat_id=16&title=%E5%BC%A0%E6%99%93%E6%96%87%E7%9A%84%E6%96%87%E7%AB%A0&content=111");
+        //requestParams.addBodyParameter("user_id","135");
+        requestParams.addBodyParameter("title",biaoti);
+        requestParams.addBodyParameter("content",content);
+//                requestParams.addBodyParameter("author",author);
+        x.http().post(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+//                        System.out.println("onsucess" + result);
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+//  Toast.makeText(getApplicationContext(), "提交成功", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+    private void photoUpload(int i){
+        System.out.println(list_photo.get(i));
+
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php?act=user_add_article&user_id=135&cat_id=16&title=%E5%BC%A0%E6%99%93%E6%96%87%E7%9A%84%E6%96%87%E7%AB%A0&content=111");
+
+        params.addBodyParameter("act", "uploadimage");
+
+        params.addBodyParameter("goods_img",new File(list_photo.get(i)));
+        System.out.println(params);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+
+
+            @Override
+            public void onSuccess(String result) {
+                System.out.println(result);
+                Gson gson = new Gson();
+                UploadBean bean = gson.fromJson(result, UploadBean.class);
+                photo=bean.getData();
+
+                photoAddress=photoAddress+photo+",";
+                count++;
+                System.out.println(photoAddress);
+                System.out.println(count);
+                if (count==list_photo.size()){
+                    System.out.println("xxxxxxx");
+                    post();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        pic_view.onActivityResult(requestCode, resultCode, data);
+        list_photo = pic_view.getPhotos();
+        //  recycler_view.showPics(list_photo);
+
+        for (int i = 0; i < list_photo.size(); i++) {
+            System.out.println(list_photo.get(i));
+        }
+    }
+
 }
 
 

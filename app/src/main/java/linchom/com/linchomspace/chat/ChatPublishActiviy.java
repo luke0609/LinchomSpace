@@ -76,6 +76,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
         recycler_view = ((MultiPickResultView) findViewById(R.id.recycler_view));
         recycler_view.init(this,MultiPickResultView.ACTION_SELECT,null);
+
         btn_publish = ((TextView) findViewById(R.id.btn_publish));
         btn_publish.setOnClickListener(this);
         iv_back = ((ImageView) findViewById(R.id.iv_back));
