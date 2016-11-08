@@ -2,6 +2,7 @@ package linchom.com.linchomspace.chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,9 +38,12 @@ import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.chat.util.ViewHolder;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.photoutil.NineGridTestLayout;
 
 import static linchom.com.linchomspace.R.id.tv_chat_time;
+import static linchom.com.linchomspace.R.id.tv_name;
+import static linchom.com.linchomspace.R.id.user_logo;
 
 public class ChatDetilActivity extends AppCompatActivity {
     @InjectView(R.id.iv_back)
@@ -66,15 +70,22 @@ public class ChatDetilActivity extends AppCompatActivity {
 
      private  ImageView userLogo;
     private TextView action_num;
-
+    private ImageView user_logo;
+    private String userId="";
+    private String username="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_chat_detil);
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userId = shared_prefs.getString("userId","");
+        username = shared_prefs.getString("username","");
         ButterKnife.inject(this);
         StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
         getView();
         getData();
+
     }
 
     @Override
@@ -122,6 +133,7 @@ public class ChatDetilActivity extends AppCompatActivity {
         tvChatContent= ((TextView) header.findViewById(R.id.tv_chat_content));
         action_num = ((TextView) numberBar.findViewById(R.id.remark_num));
         photo_show=(NineGridTestLayout)header.findViewById(R.id.photo_show);
+        user_logo = ((ImageView) header.findViewById(R.id.user_logo));
     }
 
 
@@ -167,6 +179,20 @@ public class ChatDetilActivity extends AppCompatActivity {
                 title.setText(bean.getData().getTopic_name());
                 tvChatUsername.setText(bean.getData().getUser_name());
 
+                switch (bean.getData().getUser_id()){
+                    case "129":
+                        user_logo.setImageResource(R.drawable.kid);
+                        break;
+                    case "135":
+                        user_logo.setImageResource(R.mipmap.avatar);
+                        break;
+                    case "140":
+                        user_logo.setImageResource(R.mipmap.avatar);
+                        break;
+                    case "142":
+                        user_logo.setImageResource(R.drawable.head1);
+                        break;
+                }
                 int timeB = Integer.parseInt(bean.getData().getAdd_time());
 
                 tvChatTime.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
@@ -185,7 +211,7 @@ public class ChatDetilActivity extends AppCompatActivity {
                             TextView tv_time = viewHolder.getViewById(tv_chat_time);
                             Button rmk_tip = viewHolder.getViewById(R.id.rmk_tip);
                             ImageView kid_remark = viewHolder.getViewById(R.id.kid_remark);
-
+                            ImageView userlog=viewHolder.getViewById(R.id.user_logo);
                             RelativeLayout kid_content_item1=viewHolder.getViewById(R.id.kid_content_item1);
                             RelativeLayout kid_content_item2=viewHolder.getViewById(R.id.kid_content_item2);
                             TextView kid_username1=viewHolder.getViewById(R.id.kid_username1);
@@ -263,7 +289,21 @@ public class ChatDetilActivity extends AppCompatActivity {
                             tv_name.setText(comments.getUser_name());
 
                             tv_content.setText(comments.getContent());
+                            switch (comments.getUser_id()){
+                                case "129":
+                                    userlog.setImageResource(R.drawable.kid);
+                                    break;
+                                case "135":
+                                    userlog.setImageResource(R.mipmap.avatar);
+                                    break;
+                                case "140":
+                                    userlog.setImageResource(R.mipmap.avatar);
+                                    break;
+                                case "142":
+                                    userlog.setImageResource(R.drawable.head1);
 
+                                    break;
+                            }
 
 
                             if (commentsList.size() != 0) {
@@ -305,7 +345,7 @@ public class ChatDetilActivity extends AppCompatActivity {
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_topic_comments");
         params.addQueryStringParameter("topic_id", topicId);
-        params.addQueryStringParameter("user_id", 129 + "");
+        params.addQueryStringParameter("user_id",userId);
         params.addQueryStringParameter("content", content);
 
         x.http().get(params, new Callback.CommonCallback<String>() {

@@ -1,5 +1,7 @@
 package linchom.com.linchomspace.service;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,7 @@ import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.service.adapter.RegionAdapter;
 import linchom.com.linchomspace.service.pojo.IpBean;
 import linchom.com.linchomspace.service.pojo.RregionBean;
@@ -66,12 +69,17 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
     private TextView tv_next;
     private RelativeLayout rl_2_1;
     private RelativeLayout rl_2_2;
-
+    private String userId="";
+    private String username="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_publish);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userId = shared_prefs.getString("userId","");
+        username = shared_prefs.getString("username","");
+
         initMap();
         initView();
         getIp();
@@ -421,7 +429,7 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_demand_services");
         params.addQueryStringParameter("category_id",category_id);
-        params.addQueryStringParameter("user_id", 135 + "");
+        params.addQueryStringParameter("user_id", userId);
         params.addQueryStringParameter("service_type",service_type);
         params.addQueryStringParameter("content",content);
         params.addQueryStringParameter("release",release);
@@ -437,7 +445,8 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
+                Toast.makeText(ServicePublishActivity.this, "发布完成", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             @Override
@@ -476,16 +485,16 @@ public class ServicePublishActivity extends AppCompatActivity implements View.On
 
                 }else{
 
-                    Toast.makeText(getApplicationContext(),category_id
-                            +service_type
-                            +add_content.getText().toString()
-                            +et_title.getText().toString()
-                            +et_phonenum.getText().toString()
-                    +et_address_ex.getText().toString()
-                    +release
-                    +province_id
-                    +city_id
-                    +"区"+district_id,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),category_id
+//                            +service_type
+//                            +add_content.getText().toString()
+//                            +et_title.getText().toString()
+//                            +et_phonenum.getText().toString()
+//                    +et_address_ex.getText().toString()
+//                    +release
+//                    +province_id
+//                    +city_id
+//                    +"区"+district_id,Toast.LENGTH_SHORT).show();
 
                     if(district_id.equals("1")){
 

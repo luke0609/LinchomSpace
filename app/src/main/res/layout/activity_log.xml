@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发布话题"
+            android:text="写日志"
             android:textSize="20sp"
             android:textColor="#fff"
             android:layout_centerInParent="true"/>

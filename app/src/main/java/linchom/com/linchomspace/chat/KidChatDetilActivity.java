@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.chat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,7 @@ import linchom.com.linchomspace.chat.pojo.TopicKIdBean;
 import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.chat.util.ViewHolder;
+import linchom.com.linchomspace.login.contantData.Contant;
 
 import static linchom.com.linchomspace.R.id.lv;
 import static linchom.com.linchomspace.R.id.tv_chat_time;
@@ -43,7 +46,8 @@ public class KidChatDetilActivity extends AppCompatActivity {
     private  TextView tvChatUsername;
     private TextView tvChatTime;
     private TextView tvChatContent;
-
+    private String userId="";
+    private String username="";
     private  ImageView userLogo;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -62,12 +66,16 @@ public class KidChatDetilActivity extends AppCompatActivity {
     @InjectView(R.id.lv_kid_list)
     ListView lvKidList;
     private Button rmkTip;
+    private ImageView user_logo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid_chat_detil);
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userId = shared_prefs.getString("userId","");
+        username = shared_prefs.getString("username","");
         ButterKnife.inject(this);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
         initView();
@@ -88,6 +96,22 @@ public class KidChatDetilActivity extends AppCompatActivity {
         tvChatTime= ((TextView) header.findViewById(tv_chat_time));
         tvChatContent= ((TextView) header.findViewById(R.id.tv_chat_content));
         rmkTip = ((Button) header.findViewById(R.id.rmk_tip));
+        user_logo = ((ImageView) header.findViewById(R.id.user_logo));
+        switch (comments.getUser_id()){
+            case "129":
+                user_logo.setImageResource(R.drawable.kid);
+                break;
+            case "135":
+                user_logo.setImageResource(R.mipmap.avatar);
+                break;
+            case "140":
+                user_logo.setImageResource(R.mipmap.avatar);
+                break;
+            case "142":
+                user_logo.setImageResource(R.drawable.head1);
+
+                break;
+        }
 
         tvChatUsername.setText(comments.getUser_name());
         parent_comment_username = comments.getUser_name();
@@ -166,7 +190,7 @@ public class KidChatDetilActivity extends AppCompatActivity {
         String content = etRemark.getText().toString();
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_topic_comments_username");
-        params.addQueryStringParameter("user_id", 135 + "");
+        params.addQueryStringParameter("user_id", userId);
         params.addQueryStringParameter("content", content);
         params.addQueryStringParameter("parent_comment_username", parent_comment_username);
         params.addQueryStringParameter("id", id);

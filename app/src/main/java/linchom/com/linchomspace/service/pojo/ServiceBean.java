@@ -10,7 +10,7 @@ public class ServiceBean {
 
     /**
      * result : 0
-     * data : {"total_pages":1,"total":"2","items":[{"id":"4","category_id":"1","service_type":"1","content":"1","release":"1","mobile":"13241754050","country":"1","province":"2","city":"52","district":"503","add_time":"2016-10-25 02:56:34","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"","status":"0","is_show":"1","title":"标题4","topic_category_name":"智能家居","province_name":"北京","city_name":"北京","district_name":"朝阳区"},{"id":"3","category_id":"1","service_type":"1","content":"1","release":"1","mobile":"13241754050","country":"1","province":"2","city":"52","district":"503","add_time":"2016-10-25 02:52:55","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"1","status":"0","is_show":"1","title":"标题3","topic_category_name":"智能家居","province_name":"北京","city_name":"北京","district_name":"朝阳区"}],"pagesize":10}
+     * data : {"total_pages":1,"total":"2","items":[{"id":"21","category_id":"2","service_type":"0","content":"","release":"1","mobile":"12574683256","country":"1","province":"2","city":"52","district":"503","add_time":"2016-11-03 13:37:31","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"","status":"0","is_show":"1","title":"你好，我有一个需求","topic_category_name":"智能健康","province_name":"北京","city_name":"北京","district_name":"朝阳区","addressinfo":"1","name":""},{"id":"11","category_id":"2","service_type":"0","content":"11111111","release":"1","mobile":"13554683790","country":"1","province":"2","city":"52","district":"503","add_time":"2016-10-31 12:49:20","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"","status":"0","is_show":"1","title":"I love you ","topic_category_name":"智能健康","province_name":"北京","city_name":"北京","district_name":"朝阳区","addressinfo":"1","name":""}],"pagesize":10}
      * msg :
      * url :
      */
@@ -19,7 +19,7 @@ public class ServiceBean {
     /**
      * total_pages : 1
      * total : 2
-     * items : [{"id":"4","category_id":"1","service_type":"1","content":"1","release":"1","mobile":"13241754050","country":"1","province":"2","city":"52","district":"503","add_time":"2016-10-25 02:56:34","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"","status":"0","is_show":"1","title":"标题4","topic_category_name":"智能家居","province_name":"北京","city_name":"北京","district_name":"朝阳区"},{"id":"3","category_id":"1","service_type":"1","content":"1","release":"1","mobile":"13241754050","country":"1","province":"2","city":"52","district":"503","add_time":"2016-10-25 02:52:55","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"1","status":"0","is_show":"1","title":"标题3","topic_category_name":"智能家居","province_name":"北京","city_name":"北京","district_name":"朝阳区"}]
+     * items : [{"id":"21","category_id":"2","service_type":"0","content":"","release":"1","mobile":"12574683256","country":"1","province":"2","city":"52","district":"503","add_time":"2016-11-03 13:37:31","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"","status":"0","is_show":"1","title":"你好，我有一个需求","topic_category_name":"智能健康","province_name":"北京","city_name":"北京","district_name":"朝阳区","addressinfo":"1","name":""},{"id":"11","category_id":"2","service_type":"0","content":"11111111","release":"1","mobile":"13554683790","country":"1","province":"2","city":"52","district":"503","add_time":"2016-10-31 12:49:20","address":"北京北京朝阳区","user_id":"1","ip":"100.000.0","photo":"","status":"0","is_show":"1","title":"I love you ","topic_category_name":"智能健康","province_name":"北京","city_name":"北京","district_name":"朝阳区","addressinfo":"1","name":""}]
      * pagesize : 10
      */
 
@@ -64,28 +64,30 @@ public class ServiceBean {
         private String total;
         private int pagesize;
         /**
-         * id : 4
-         * category_id : 1
-         * service_type : 1
-         * content : 1
+         * id : 21
+         * category_id : 2
+         * service_type : 0
+         * content :
          * release : 1
-         * mobile : 13241754050
+         * mobile : 12574683256
          * country : 1
          * province : 2
          * city : 52
          * district : 503
-         * add_time : 2016-10-25 02:56:34
+         * add_time : 2016-11-03 13:37:31
          * address : 北京北京朝阳区
          * user_id : 1
          * ip : 100.000.0
          * photo :
          * status : 0
          * is_show : 1
-         * title : 标题4
-         * topic_category_name : 智能家居
+         * title : 你好，我有一个需求
+         * topic_category_name : 智能健康
          * province_name : 北京
          * city_name : 北京
          * district_name : 朝阳区
+         * addressinfo : 1
+         * name :
          */
 
         private List<ItemsBean> items;
@@ -145,6 +147,8 @@ public class ServiceBean {
             private String province_name;
             private String city_name;
             private String district_name;
+            private String addressinfo;
+            private String name;
 
             public String getId() {
                 return id;
@@ -320,6 +324,22 @@ public class ServiceBean {
 
             public void setDistrict_name(String district_name) {
                 this.district_name = district_name;
+            }
+
+            public String getAddressinfo() {
+                return addressinfo;
+            }
+
+            public void setAddressinfo(String addressinfo) {
+                this.addressinfo = addressinfo;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
             }
         }
     }
