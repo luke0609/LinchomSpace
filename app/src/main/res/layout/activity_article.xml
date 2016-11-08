@@ -8,8 +8,10 @@
     android:background="#fff"
     >
     <RelativeLayout
+        android:id="@+id/rl_big"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
 
 <ScrollView
@@ -40,7 +42,7 @@
                     android:id="@+id/article_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="@color/text_style"
                     android:textSize="22dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -215,8 +217,19 @@
         android:id="@+id/rl_background_gray"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="#1f060606"
+        android:foreground="#4f0e0e0e"
         android:visibility="gone">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/night_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:foreground="#bf000000">
+
+
 
     </RelativeLayout>
 
@@ -259,6 +272,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="广告"
+            android:visibility="gone"
             android:textSize="15sp"
             android:textColor="#fff"
             android:layout_marginLeft="17dp"

@@ -130,9 +130,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
                 //异步任务拿数据
                 PullToRefreshBase.Mode mode = ptrArrlistComment.getCurrentMode();
                 // View viewRefresh = null;
-
                 if (mode == PullToRefreshBase.Mode.PULL_FROM_END) {
-
                     page++;
                     getComment();
 
@@ -161,8 +159,8 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
                 TextView tv_article_comment_time = viewHolder.getViewById(R.id.tv_article_comment_time);
                 TextView tv_article_content = viewHolder.getViewById(R.id.tv_article_content);
                // TextView tv_position = viewHolder.getViewById(R.id.tv_position);
-                // tv_article_comment_username.setText(itemsBean.getUser_name());
-                tv_article_comment_username.setText(userName);
+                 tv_article_comment_username.setText(itemsBean.getUser_name());
+                //tv_article_comment_username.setText(userName);
                 //tv_position.setText("江苏苏州");
                 int commentTime = Integer.parseInt(itemsBean.getAdd_time());
                 String date = sdf.format(new Date(commentTime * 1000L));
@@ -218,12 +216,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
         //隐藏软键盘
 
         popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
+                ViewGroup.LayoutParams.MATCH_PARENT, 520, true);
 
         popupWindow.setTouchable(true);
 
         popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return false;
@@ -232,7 +229,6 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-
                 rlBackgroundGray.setVisibility(View.GONE);
             }
         });
@@ -246,21 +242,14 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
         publish_comment.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-
                 comment=et_write_comment.getText().toString();
-                if(comment!=null){
-               // Toast.makeText(getApplicationContext(),comment,Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(),comment,Toast.LENGTH_SHORT).show();
                 publishComment(comment);
-                Log.i("comment1",comment);
-                 popupWindow.dismiss();
+                popupWindow.dismiss();
                 //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
                 rlBackgroundGray.setVisibility(View.GONE);
                 getComment();
-                } else{
-                    Toast.makeText(CommentActivity.this,"不能为空",Toast.LENGTH_SHORT).show();
-                }
             }
         });
 
@@ -271,61 +260,62 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
     private void publishComment(String comment) {
-        // http://app.linchom.com/appapi.php?act=add_article_comment&user_name=%E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
-        RequestParams params = new RequestParams(Constant.ArticleAddComment);
-        params.addQueryStringParameter("user_name", userName);
-        Toast.makeText(getApplicationContext(),userName+"====="+userId,Toast.LENGTH_SHORT).show();
-        params.addQueryStringParameter("article_id", article_id);
-        params.addQueryStringParameter("user_id", userId);
-       // params.addBodyParameter("email","2070118814@qq.com");
-        params.addBodyParameter("content",comment);
-        params.addBodyParameter("type","2");
-        System.out.println(params);
-        x.http().get(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                System.out.println(result);
-                Gson gson = new Gson();
-                //Log.i("comment",comment);
-                ArticleAddCommentBean bean = gson.fromJson(result, ArticleAddCommentBean.class);
-                Log.i("评论结果",bean.getResult()+"");
-                if(bean.getResult().equals("0")) {
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_style,
-                            (ViewGroup) findViewById(R.id.ll_toast));
-                    ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
-                    image.setImageResource(R.drawable.publishsuccess);
-                    TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
-                    text.setText("评论成功");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_SHORT);
-                    toast.setView(layout);
-                    ToastUtil.showMyToast(toast, 1000);
+
+            // http://app.linchom.com/appapi.php?act=add_article_comment&user_name=%E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
+            RequestParams params = new RequestParams(Constant.ArticleAddComment);
+            params.addQueryStringParameter("user_name", userName);
+            Toast.makeText(getApplicationContext(), userName + "=====" + userId, Toast.LENGTH_SHORT).show();
+            params.addQueryStringParameter("article_id", article_id);
+            params.addQueryStringParameter("user_id", userId);
+            // params.addBodyParameter("email","2070118814@qq.com");
+            params.addBodyParameter("content", comment);
+            params.addBodyParameter("type", "2");
+            System.out.println(params);
+            x.http().get(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println(result);
+                    Gson gson = new Gson();
+                    //Log.i("comment",comment);
+                    ArticleAddCommentBean bean = gson.fromJson(result, ArticleAddCommentBean.class);
+                    Log.i("评论结果", bean.getResult() + "");
+                    if (bean.getResult().equals("0")) {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_style,
+                                (ViewGroup) findViewById(R.id.ll_toast));
+                        ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                        image.setImageResource(R.drawable.publishsuccess);
+                        TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                        text.setText("评论成功");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        ToastUtil.showMyToast(toast, 1000);
+
+                    }
+
 
                 }
 
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                @Override
+                public void onCancelled(CancelledException cex) {
 
-            }
+                }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                @Override
+                public void onFinished() {
 
-            }
+                }
+            });
 
-            @Override
-            public void onFinished() {
+        }
 
-            }
-        });
-
-
-    }
     //强制隐藏软键盘
     public static void hideSystemKeyBoard(Context mcontext,View v) {
         InputMethodManager imm = (InputMethodManager) ((CommentActivity) mcontext)
@@ -410,6 +400,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
 
 
     }
+
     private void getCommentPosition(){
 
         RequestParams params = new RequestParams(Constant.CommentPosition);

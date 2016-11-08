@@ -88,6 +88,8 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     TextView artTvTime;
     @InjectView(R.id.iv_bottomadv)
     ImageView ivBottomadv;
+    @InjectView(R.id.night_rl)
+    RelativeLayout nightRl;
 
     private SlideSelectView slideSelectView;
     private String[] textStrings;
@@ -133,21 +135,22 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-       // Toast.makeText(ArticleActivity.this,"requestCode:"+requestCode+" resultCode:"+resultCode,Toast.LENGTH_SHORT).show();
+        // Toast.makeText(ArticleActivity.this,"requestCode:"+requestCode+" resultCode:"+resultCode,Toast.LENGTH_SHORT).show();
 
 
-        if (requestCode==100){
+        if (requestCode == 100) {
             getCommentNumber();
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
         ButterKnife.inject(this);
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
-        userName = shared_prefs.getString("username","");
-        userId = shared_prefs.getString("userId","");
+        userName = shared_prefs.getString("username", "");
+        userId = shared_prefs.getString("userId", "");
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
@@ -160,26 +163,24 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
 
-
-
     private void sendArticleId() {
         Intent intent1 = new Intent(ArticleActivity.this, CommentActivity.class);
         Bundle bundle1 = new Bundle();
         bundle1.putString("article_id", article_id);
         intent1.putExtra("bundle1", bundle1);
-        startActivityForResult(intent1,100);
+        startActivityForResult(intent1, 100);
 
 
     }
 
 
-    private void initView(){
+    private void initView() {
         activityRootView = findViewById(R.id.fl_main);
 
         //获取屏幕高度
         screenHeight = this.getWindowManager().getDefaultDisplay().getHeight();
         //阀值设置为屏幕高度的1/3
-        keyHeight = screenHeight/3;
+        keyHeight = screenHeight / 3;
 
         sv_article = ((ScrollView) findViewById(R.id.sv_article));
         rl_article_bottombar = ((LinearLayout) findViewById(R.id.rl_article_bottombar));
@@ -240,26 +241,26 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
     private void getBottomAdv() {
-        Log.i("fangfa","1");
+        Log.i("fangfa", "1");
         RequestParams params = new RequestParams(Constant.ArticleAdv);
         params.addBodyParameter("position_id", "4");
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.i("success",result);
+                Log.i("success", result);
                 Gson gson = new Gson();
-               final ArticleAdvBean bean = gson.fromJson(result, ArticleAdvBean.class);
-                final String imgurl=bean.getData().get(0).getImg_url();
-                Log.i("imgurl",imgurl);
-                xUtilsImageUtils.display(ivBottomadv,imgurl);
+                final ArticleAdvBean bean = gson.fromJson(result, ArticleAdvBean.class);
+                final String imgurl = bean.getData().get(0).getImg_url();
+                Log.i("imgurl", imgurl);
+                xUtilsImageUtils.display(ivBottomadv, imgurl);
                 ivBottomadv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(ArticleActivity.this, GoodsActivity.class);
-                        Bundle bundle=new Bundle();
-                        intent.putExtra("bundle",bundle);
-                        bundle.putString("goodsId",bean.getData().get(0).getGoods_id());
-                        Log.i("goodsId",bean.getData().get(0).getGoods_id());
+                        Intent intent = new Intent(ArticleActivity.this, GoodsActivity.class);
+                        Bundle bundle = new Bundle();
+                        intent.putExtra("bundle", bundle);
+                        bundle.putString("goodsId", bean.getData().get(0).getGoods_id());
+                        Log.i("goodsId", bean.getData().get(0).getGoods_id());
                         startActivity(intent);
                     }
                 });
@@ -311,7 +312,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-             //   Toast.makeText(ArticleActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(ArticleActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
 
             }
 
@@ -338,21 +339,20 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
                 System.out.println(result);
                 Gson gson = new Gson();
-               final  ArticleInfoBean bean = gson.fromJson(result, ArticleInfoBean.class);
+                final ArticleInfoBean bean = gson.fromJson(result, ArticleInfoBean.class);
                 // ArticleListBean.Article_list article=bean.data.getArticle_list().get(0).title;
                 // String info=bean.data.getArticle_list().get(0).title;
                 if (bean.getData().getGoods_id() != "0") {
                     articleBuy.setVisibility(View.VISIBLE);
-                    articleBuy.setOnClickListener(new View.OnClickListener(){
+                    articleBuy.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent=new Intent(ArticleActivity.this, GoodsActivity.class);
-                            Bundle bundle=new Bundle();
-                            intent.putExtra("bundle",bundle);
-                            bundle.putString("goodsId",bean.getData().getGoods_id());
+                            Intent intent = new Intent(ArticleActivity.this, GoodsActivity.class);
+                            Bundle bundle = new Bundle();
+                            intent.putExtra("bundle", bundle);
+                            bundle.putString("goodsId", bean.getData().getGoods_id());
                             startActivity(intent);
                         }
                     });
@@ -361,7 +361,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
                 String info = bean.getData().getTitle();
                 int add_time = Integer.parseInt(bean.getData().getAdd_time());
                 String date = sdf.format(new Date(add_time * 1000L));
-                String source=bean.getData().getSource();
+                String source = bean.getData().getSource();
                 System.out.println(info);
                 article_title.setText(info);
                 artTvTime.setText(date);
@@ -442,23 +442,30 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 
 
         });
-        iv_night = ((ImageView)contentView.findViewById(R.id.iv_night));
+        iv_night = ((ImageView) contentView.findViewById(R.id.iv_night));
         iv_night.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // switchNightModel();
-                if (!pressNight){
+                if (!pressNight) {
                     iv_night.setBackgroundResource(R.drawable.article_more_circle);
                     iv_night.setImageResource(R.drawable.article_day);
+                    nightRl.setVisibility(View.VISIBLE);
+                    popupWindow.dismiss();
+//                    artTvSource.setTextColor(Color.WHITE);
+//                    article_title.setTextColor(Color.WHITE);
+//                    artTvTime.setTextColor(Color.WHITE);
                     pressNight = true;
                 } else {
                     iv_night.setBackgroundResource(R.drawable.article_more_circle);
                     iv_night.setImageResource(R.drawable.article_night);
                     pressNight = false;
-
+                    nightRl.setVisibility(View.GONE);
+                    artTvSource.setTextColor(0xff7e7d7d);
+                    article_title.setTextColor(0xff313233);
+                    artTvTime.setTextColor(0xff7e7d7d);
+                    popupWindow.dismiss();
                 }
-
-
             }
         });
         iv_font = ((ImageView) contentView.findViewById(R.id.iv_font));
@@ -477,7 +484,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
             @Override
             public void onClick(View v) {
                 rlBackgroundGray.setVisibility(View.GONE);
-               popupWindow.dismiss();
+                popupWindow.dismiss();
 
             }
         });
@@ -569,7 +576,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
         oks.setTitle("联巢空间");
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-        oks.setTitleUrl("http://app.linchom.com/apparticle.php?id="+article_id);
+        oks.setTitleUrl("http://app.linchom.com/apparticle.php?id=" + article_id);
         // text是分享文本，所有平台都需要这个字段
         oks.setText("联巢空间分享");
         //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
@@ -589,7 +596,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
 
-    private void cancelCollect(){
+    private void cancelCollect() {
         RequestParams params = new RequestParams(Constant.ArticleCancelCollect);
         //params.addBodyParameter("key", "linchom");
         //params.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
@@ -714,7 +721,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
 
 
-        popupWindow = new PopupWindow(contentView,ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
+        popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
 
         popupWindow.setTouchable(true);
 
@@ -736,18 +743,22 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 
         Button publish_comment = ((Button) contentView.findViewById(R.id.publish_comment));
 
-        publish_comment.setOnClickListener(new View.OnClickListener(){
+        publish_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
                 popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 comment = et_write_comment.getText().toString();
-                publishComment(comment);
-                Log.i("comment1", comment);
-                //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
-                rlBackgroundGray.setVisibility(View.GONE);
-                popupWindow.dismiss();
-                sendArticleId();
+                if(comment==""){
+                    Toast.makeText(getApplicationContext(),"评论内容不能为空",Toast.LENGTH_SHORT).show();
+                }else {
+                    publishComment(comment);
+                    //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                    imm.hideSoftInputFromWindow(et_write_comment.getWindowToken(), 0);
+                    rlBackgroundGray.setVisibility(View.GONE);
+                    popupWindow.dismiss();
+                    sendArticleId();
+                }
             }
         });
 
@@ -755,56 +766,56 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     }
 
     private void publishComment(String comment) {
-        RequestParams params = new RequestParams(Constant.ArticleAddComment);
-        params.addQueryStringParameter("user_name", userName);
-        params.addQueryStringParameter("article_id", article_id);
-        params.addQueryStringParameter("user_id", userId);
-        //params.addQueryStringParameter("email", "2070118814@qq.com");
-        params.addQueryStringParameter("content", comment);
-        params.addQueryStringParameter("type", "2");
-        x.http().get(params, new Callback.CommonCallback<String>() {
 
-            @Override
-            public void onSuccess(String result){
-                System.out.println(result);
-                Gson gson = new Gson();
-                //Log.i("comment",comment);
-                ArticleAddCommentBean bean = gson.fromJson(result, ArticleAddCommentBean.class);
-                Log.i("评论结果", bean.getResult() + "");
-                if (bean.getResult().equals("0")) {
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_style,
-                            (ViewGroup) findViewById(R.id.ll_toast));
-                    ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
-                    image.setImageResource(R.drawable.publishsuccess);
-                    TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
-                    text.setText("评论成功");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_SHORT);
-                    toast.setView(layout);
-                    ToastUtil.showMyToast(toast, 1000);
+            RequestParams params = new RequestParams(Constant.ArticleAddComment);
+            params.addQueryStringParameter("user_name", userName);
+            params.addQueryStringParameter("article_id", article_id);
+            params.addQueryStringParameter("user_id", userId);
+          //params.addQueryStringParameter("email", "2070118814@qq.com");
+            params.addQueryStringParameter("content", comment);
+            params.addQueryStringParameter("type", "2");
+            x.http().get(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println(result);
+                    Gson gson = new Gson();
+                    //Log.i("comment",comment);
+                    ArticleAddCommentBean bean = gson.fromJson(result, ArticleAddCommentBean.class);
+                    Log.i("评论结果", bean.getResult() + "");
+                    if (bean.getResult().equals("0")) {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_style,
+                                (ViewGroup) findViewById(R.id.ll_toast));
+                        ImageView image = (ImageView) layout.findViewById(R.id.iv_toast_collect);
+                        image.setImageResource(R.drawable.publishsuccess);
+                        TextView text = (TextView) layout.findViewById(R.id.tv_toast_collect);
+                        text.setText("评论成功");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        ToastUtil.showMyToast(toast, 1000);
+
+                    }
+
 
                 }
 
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
 
-            }
+                }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                @Override
+                public void onCancelled(CancelledException cex) {
 
-            }
+                }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                @Override
+                public void onFinished() {
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                }
+            });
 
 
     }
@@ -888,7 +899,6 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
 //    }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -898,15 +908,15 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
     @Override
     public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
         //现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起
-        if(oldBottom != 0 && bottom != 0 &&(oldBottom - bottom > keyHeight)){
+        if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > keyHeight)) {
 
-           // Toast.makeText(ArticleActivity.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(ArticleActivity.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
 
-        }else if(oldBottom != 0 && bottom != 0 &&(bottom - oldBottom > keyHeight)){
+        } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
 
-           // Toast.makeText(ArticleActivity.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(ArticleActivity.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
 
-            if(popupWindow!=null && popupWindow.isShowing()) {
+            if (popupWindow != null && popupWindow.isShowing()) {
 
                 popupWindow.dismiss();
             }

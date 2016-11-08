@@ -109,9 +109,9 @@ public class SearchArticleActivity extends AppCompatActivity {
         ptr_arrlist_searchArticle.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = android.text.format.DateUtils.formatDateTime(SearchArticleActivity.this, System.currentTimeMillis(),
-                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+//                String label = android.text.format.DateUtils.formatDateTime(SearchArticleActivity.this, System.currentTimeMillis(),
+//                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+               // refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 //异步任务拿数据
                 PullToRefreshBase.Mode mode = ptr_arrlist_searchArticle.getCurrentMode();
                 // View viewRefresh = null;
@@ -146,10 +146,10 @@ public class SearchArticleActivity extends AppCompatActivity {
         ptr_arrlist_searchArticle.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                String label = android.text.format.DateUtils.formatDateTime(SearchArticleActivity.this, System.currentTimeMillis(),
-                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
-
-                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+//                String label = android.text.format.DateUtils.formatDateTime(SearchArticleActivity.this, System.currentTimeMillis(),
+//                        android.text.format.DateUtils.FORMAT_SHOW_TIME | android.text.format.DateUtils.FORMAT_SHOW_DATE | android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+//
+//                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 //异步任务拿数据
                 PullToRefreshBase.Mode mode = ptr_arrlist_searchArticle.getCurrentMode();
 
@@ -171,7 +171,7 @@ public class SearchArticleActivity extends AppCompatActivity {
         ptr_arrlist_searchArticle.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
             @Override
             public void onLastItemVisible() {
-                Toast.makeText(SearchArticleActivity.this, "已经到底了", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(SearchArticleActivity.this, "已经到底了", Toast.LENGTH_SHORT).show();
             }
         });
 

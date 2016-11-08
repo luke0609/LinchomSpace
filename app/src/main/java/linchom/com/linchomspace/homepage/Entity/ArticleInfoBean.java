@@ -97,7 +97,6 @@ public class ArticleInfoBean {
         private String article_source;
         private String status;
         private String source;
-
         public String getSource() {
             return source;
         }
