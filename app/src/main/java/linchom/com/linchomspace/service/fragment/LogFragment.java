@@ -189,12 +189,7 @@ public class LogFragment extends Fragment {
 
 
 
-                if(items.photo.length()==0){
 
-                    iv_service_log_img.setVisibility(View.INVISIBLE);
-
-
-                }
 
                 String[] photos = (items.photo).split(",");
                 if(photos.length!=0){
