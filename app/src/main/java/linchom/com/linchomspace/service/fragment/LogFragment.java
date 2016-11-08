@@ -1,12 +1,14 @@
 package linchom.com.linchomspace.service.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.service.LogDetailActivity;
 import linchom.com.linchomspace.service.pojo.LogBean;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
@@ -184,13 +187,22 @@ public class LogFragment extends Fragment {
 
                 tv_service_addtime.setText(str);
 
+
+
                 if(items.photo.length()==0){
 
                     iv_service_log_img.setVisibility(View.INVISIBLE);
 
+
                 }
 
-                GoodsXUtilsImage.display(iv_service_log_img,items.photo);
+                String[] photos = (items.photo).split(",");
+                if(photos.length!=0){
+
+                    GoodsXUtilsImage.display(iv_service_log_img,photos[0]);
+
+                }
+
 
 
 
@@ -203,6 +215,40 @@ public class LogFragment extends Fragment {
         staggeredGridView.setAdapter(goodsCommonAdapter);
 
         getData();
+
+
+        staggeredGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+                //0开始
+
+                Intent intent = new Intent(getActivity(), LogDetailActivity.class);
+
+                Bundle bundle = new Bundle();
+
+                bundle.putString("title",logList.get(position).title);
+
+                bundle.putString("addtime",logList.get(position).add_time);
+
+                bundle.putString("content",logList.get(position).content);
+
+
+                bundle.putString("photo",logList.get(position).photo);
+
+
+
+                intent.putExtra("bundle",bundle);
+
+
+
+                startActivity(intent);
+
+
+            }
+        });
 
 
 

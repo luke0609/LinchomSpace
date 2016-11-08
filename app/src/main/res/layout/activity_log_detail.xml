@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_log_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="linchom.com.linchomspace.service.LogDetailActivity">
+
+    <linchom.com.linchomspace.common.TitleBar
+        android:id="@+id/bar_service_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:titleText = "日志详情"
+
+        app:titleRightVis = "false"
+
+      >
+
+
+
+
+    </linchom.com.linchomspace.common.TitleBar>
+
+
+    <ScrollView
+        android:layout_below="@id/bar_service_log"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/tv_service_log_cate"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:id="@+id/tv_service_log_detail_title"
+                    android:textColor="@color/text_style"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:text=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_service_log_title"
+                android:layout_below="@id/tv_service_log_cate"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_service_log_detail_addtime"
+
+                    android:textColor="@color/text_style"
+
+                    android:text=""
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_service_log_content"
+                android:layout_below="@id/tv_service_log_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:id="@+id/tv_service_log_detail_content"
+
+                    android:textColor="@color/text_style"
+
+                    android:textSize="15sp"
+
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RelativeLayout>
+
+            <linchom.com.linchomspace.photoutil.NineGridTestLayout
+
+                android:layout_below="@id/tv_service_log_content"
+                android:id="@+id/tv_service_log_photo"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+
+
+
+
+            </linchom.com.linchomspace.photoutil.NineGridTestLayout>
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>
