@@ -105,7 +105,7 @@ public class Disclose_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 View popupView = getLayoutInflater().inflate(R.layout.pop_item, null);
-                popupWindow=new PopupWindow(popupView,200,ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow=new PopupWindow(popupView,400,ViewGroup.LayoutParams.MATCH_PARENT);
                 ListView lv= (ListView) popupView.findViewById(R.id.lv_fenlei);
 //                System.out.println("content========="+content);
                 ArrayAdapter arrayAdapter=new ArrayAdapter(getApplicationContext(),R.layout.pop_items,content);
@@ -235,7 +235,7 @@ public class Disclose_activity extends AppCompatActivity {
     private void photoUpload(int i){
         System.out.println(list_photo.get(i));
 
-        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php?act=user_add_article&user_id=135&cat_id=16&title=%E5%BC%A0%E6%99%93%E6%96%87%E7%9A%84%E6%96%87%E7%AB%A0&content=111");
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
 
         params.addBodyParameter("act", "uploadimage");
 
@@ -256,7 +256,7 @@ public class Disclose_activity extends AppCompatActivity {
                 System.out.println(photoAddress);
                 System.out.println(count);
                 if (count==list_photo.size()){
-                    System.out.println("xxxxxxx");
+//                    System.out.println("xxxxxxx");
                     post();
                 }
             }

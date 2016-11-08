@@ -149,20 +149,11 @@ public class MineFragment extends Fragment {
                 System.out.println("onsucess" + result);
                 Gson gson = new Gson();
                 UserInfoBean bean = gson.fromJson(result, UserInfoBean.class);
-//                System.out.println("======"+bean);
-//                System.out.println(bean.getResult());
                 userInfoBean = bean.getData();
                 System.out.println("===777777==="+userInfoBean);
-//                tv_mobile_phone.setText(userInfoBean.getMobile_phone());
-                //tv_user_name.setText("-------");
+//
                  tv_user_name.setText(userInfoBean.getUser_name());
-//                System.out.println("99999999");
-//                tv_birthday.setText(userInfoBean.getBirthday());
-//                tv_email.setText(userInfoBean.getEmail());
-//                tv_office_phone.setText(userInfoBean.getOffice_phone());
-//                tv_home_phone.setText(userInfoBean.getHome_phone());
-//                tv_sex.setText((userInfoBean.getSex().equals("1"))?"男":"女");
-
+//
             }
 
             @Override

@@ -105,7 +105,7 @@
                     android:layout_centerVertical="true"
                     />
                 <TextView
-                    android:id="@+id/tv_user_name"
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Monologue丶95"
@@ -434,71 +434,71 @@
                 android:background="#fff"
                 android:layout_height="35dp"
                 android:layout_marginBottom="0.5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:text="签名:"
-                    android:textColor="#212121"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我不想生活在这里了"
-                    android:textSize="14sp"
-                    android:background="@null"
-                    android:textColor="#b9b5b5"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_centerVertical="true"
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="17sp"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="签名:"-->
+                    <!--android:textColor="#212121"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="我不想生活在这里了"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:background="@null"-->
+                    <!--android:textColor="#b9b5b5"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_centerVertical="true"-->
 
-                    />
+                    <!--/>-->
+            <!--</RelativeLayout>-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:background="#808080"-->
+                <!--android:layout_below="@id/rl_zh"-->
+                <!--/>-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_switch"-->
+                <!--android:layout_below="@id/rl_zh"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:background="#fff"-->
+                <!--android:layout_marginBottom="0.5dp">-->
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_h8"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="简介："-->
+                    <!--android:textColor="#212121"-->
+                    <!--android:textSize="17sp"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_centerVertical="true" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="我不想生活在这里了"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:background="@null"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:textColor="#b9b5b5"-->
+
+                    <!--android:layout_alignTop="@+id/tv_h8"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_marginEnd="20dp"-->
+                    <!--android:id="@+id/textView4" />-->
+
             </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="#808080"
-                android:layout_below="@id/rl_zh"
-                />
-            <RelativeLayout
-                android:id="@+id/rl_switch"
-                android:layout_below="@id/rl_zh"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#fff"
-                android:layout_marginBottom="0.5dp">
-                <TextView
-                    android:id="@+id/tv_h8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="简介："
-                    android:textColor="#212121"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我不想生活在这里了"
-                    android:textSize="14sp"
-                    android:background="@null"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#b9b5b5"
-
-                    android:layout_alignTop="@+id/tv_h8"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="20dp"
-                    android:id="@+id/textView4" />
-
-            </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="#d9d5d5"
-                android:layout_below="@id/rl_switch"
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0.1dp"-->
+                <!--android:background="#d9d5d5"-->
+                <!--android:layout_below="@id/rl_switch"-->
                 />
 
 

@@ -103,9 +103,9 @@ public class FeedBack_activity extends AppCompatActivity{
 
 
     private void photoUpload(int i){
-        System.out.println(list_photo.get(i));
+//        System.out.println(list_photo.get(i));
 
-        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php?act=user_add_customer&user_id=135&content=321321");
+        RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
 
         params.addBodyParameter("act", "uploadimage");
 
@@ -120,13 +120,12 @@ public class FeedBack_activity extends AppCompatActivity{
                 Gson gson = new Gson();
                 UploadBean bean = gson.fromJson(result, UploadBean.class);
                 photo=bean.getData();
-
                 photoAddress=photoAddress+photo+",";
                 count++;
                 System.out.println(photoAddress);
                 System.out.println(count);
                 if (count==list_photo.size()){
-                    System.out.println("xxxxxxx");
+                  System.out.println("xxxxxxx");
                     post();
                 }
             }
