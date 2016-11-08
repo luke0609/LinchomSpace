@@ -44,6 +44,8 @@ public class LogBean {
               public String   user_id;
               public String   is_show;
               public String   title;
+
+              public String     photo;
               public String   category_name;
 
 

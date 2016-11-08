@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import linchom.com.linchomspace.service.pojo.LogBean;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
+import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.PullToRefreshStaggeredGridView;
 
 /**
@@ -165,6 +167,9 @@ public class LogFragment extends Fragment {
 
                 TextView tv_service_addtime = viewHolder.getViewById(R.id.tv_service_addtime);
 
+
+                ImageView iv_service_log_img = viewHolder.getViewById(R.id.iv_service_log_img);
+
                 tv_service_log.setText("【"+items.title+"】");
                 tv_service_content.setText(items.content);
 
@@ -178,6 +183,14 @@ public class LogFragment extends Fragment {
 
 
                 tv_service_addtime.setText(str);
+
+                if(items.photo.length()==0){
+
+                    iv_service_log_img.setVisibility(View.INVISIBLE);
+
+                }
+
+                GoodsXUtilsImage.display(iv_service_log_img,items.photo);
 
 
 

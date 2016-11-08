@@ -6,10 +6,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/service_log_item_shape"
-        android:layout_centerInParent="true"
-        >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:textColor="#000"
@@ -22,8 +22,10 @@
             android:layout_height="40dp"
             />
 
+
+
         <TextView
-            android:text="胡椒粉价格开始加工费上课了估计是理科狗发给谁看了几个开连锁店价格放开老师的价格放开连锁店是两个会计师考虑该发生的是根据老师开发关键是可怜的感觉是打开管理开始放假"
+            android:text=""
 
             android:lines="5"
 
@@ -36,11 +38,22 @@
 
             android:textSize="14sp"
 
-            android:layout_below="@id/tv_service_log"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_service_log"
+            />
+
+        <ImageView
+            android:id="@+id/iv_service_log_img"
+            android:layout_below="@id/tv_service_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+
+            />
 
         <TextView
+            android:layout_below="@+id/iv_service_log_img"
             android:textColor="@color/text_style"
 
 
@@ -49,7 +62,6 @@
 
             android:gravity="right"
 
-            android:layout_alignParentBottom="true"
 
 
             android:textSize="14sp"
@@ -62,14 +74,7 @@
 
 
 
-
-
-
-
     </RelativeLayout>
-
-
-
 
 
 </RelativeLayout>
