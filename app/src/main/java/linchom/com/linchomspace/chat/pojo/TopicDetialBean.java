@@ -80,7 +80,7 @@ public class TopicDetialBean implements Serializable {
         private String add_time;
         private String user_name;
         private String user_id;
-        private Object photo;
+        private String photo;
         private Object mobile;
         private Object email;
         private Object company;
@@ -164,11 +164,11 @@ public class TopicDetialBean implements Serializable {
             this.user_id = user_id;
         }
 
-        public Object getPhoto() {
+        public String getPhoto() {
             return photo;
         }
 
-        public void setPhoto(Object photo) {
+        public void setPhoto(String photo) {
             this.photo = photo;
         }
 

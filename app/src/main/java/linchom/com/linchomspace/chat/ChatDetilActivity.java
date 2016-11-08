@@ -25,6 +25,7 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -36,6 +37,7 @@ import linchom.com.linchomspace.chat.util.CommonAdapter;
 import linchom.com.linchomspace.chat.util.DateUtils;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.chat.util.ViewHolder;
+import linchom.com.linchomspace.photoutil.NineGridTestLayout;
 
 import static linchom.com.linchomspace.R.id.tv_chat_time;
 
@@ -52,7 +54,7 @@ public class ChatDetilActivity extends AppCompatActivity {
     EditText etRemark;
     @InjectView(R.id.lv)
     ListView lv;
-
+    NineGridTestLayout photo_show;
     String topicId;
     CommonAdapter<TopicDetialBean.DataBean.TopicCommentsBean> commentsAdapter;
     public final ArrayList<TopicDetialBean.DataBean.TopicCommentsBean> commentsList = new ArrayList<TopicDetialBean.DataBean.TopicCommentsBean>();
@@ -119,6 +121,7 @@ public class ChatDetilActivity extends AppCompatActivity {
         tvChatTime= ((TextView) header.findViewById(tv_chat_time));
         tvChatContent= ((TextView) header.findViewById(R.id.tv_chat_content));
         action_num = ((TextView) numberBar.findViewById(R.id.remark_num));
+        photo_show=(NineGridTestLayout)header.findViewById(R.id.photo_show);
     }
 
 
@@ -143,6 +146,23 @@ public class ChatDetilActivity extends AppCompatActivity {
                 commentsList.addAll(bean.getData().getTopic_comments());
                 //清空原来的数据
 
+                List<String> urllist=new ArrayList<>();
+                if(bean.getData().getPhoto()!=null&&(!"".equals(bean.getData().getPhoto()))){
+
+                    String[] urls=bean.getData().getPhoto().split(",");
+                    for (int i = 0; i <urls.length ; i++) {
+                        System.out.println("!!!"+urls[i]);
+                        if ("0".equals(urls[i])){
+                            continue;
+                        }
+
+                        urllist.add(urls[i]);
+                    }
+                    photo_show.setUrlList(urllist);
+                }else {
+                    urllist.clear();
+                    photo_show.setUrlList(urllist);
+                }
 
                 title.setText(bean.getData().getTopic_name());
                 tvChatUsername.setText(bean.getData().getUser_name());
@@ -243,6 +263,8 @@ public class ChatDetilActivity extends AppCompatActivity {
                             tv_name.setText(comments.getUser_name());
 
                             tv_content.setText(comments.getContent());
+
+
 
                             if (commentsList.size() != 0) {
                                 remarkNum.setText(commentsList.size() + "");
