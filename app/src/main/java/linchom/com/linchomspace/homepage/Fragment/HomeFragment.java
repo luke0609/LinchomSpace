@@ -430,7 +430,6 @@ public class HomeFragment extends Fragment {
                     break;
                 case "19":
                     vp_news.setCurrentItem(19);
-
                     break;
                 case "20":
                    vp_news.setCurrentItem(20);

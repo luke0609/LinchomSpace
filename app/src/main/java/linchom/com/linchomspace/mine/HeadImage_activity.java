@@ -48,7 +48,6 @@ public class HeadImage_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_head_image_activity);
-
         iv_photo = ((ImageView) findViewById(R.id.iv_photo));
         tv_user_name = ((EditText)findViewById(R.id.tv_user_name));
         tv_sex = ((TextView) findViewById(R.id.tv_add));
@@ -59,7 +58,7 @@ public class HeadImage_activity extends AppCompatActivity {
         tv_mobile_phone = ((EditText) findViewById(R.id.tv_mobile_phone));
         showDialog();
         rl_birthday = ((RelativeLayout) findViewById(R.id.rl_birthday));
-        rl_birthday.setOnClickListener(new View.OnClickListener() {
+        rl_birthday.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 //                System.out.println("rl_birthday");
@@ -78,7 +77,8 @@ public class HeadImage_activity extends AppCompatActivity {
 //        System.out.println("onCreate");
 
         iv_back1 = ((ImageView) findViewById(R.id.iv_back1));
-        iv_back1.setOnClickListener(new View.OnClickListener() {
+        iv_back1.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v) {
                 finish();
@@ -96,7 +96,7 @@ public class HeadImage_activity extends AppCompatActivity {
                 System.out.println("dataBean"+dataBean);
                 bundle.putSerializable("user",dataBean);
                 intent.putExtras(bundle);
-                startActivityForResult(intent,2);
+                setResult(2,intent);
                 finish();//标识
             }
         });

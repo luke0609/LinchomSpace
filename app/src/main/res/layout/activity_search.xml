@@ -10,7 +10,7 @@
         android:id="@+id/rl_bar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#212121">
+        android:background="@color/main_style">
         <ImageView
             android:id="@+id/search_back"
             android:layout_width="20dp"

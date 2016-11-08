@@ -14,7 +14,6 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import butterknife.ButterKnife;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 
@@ -43,12 +42,20 @@ public class Details_Activity extends AppCompatActivity {
     private TextView tv_office_phone;
     private TextView tv_home_phone;
     private TextView tv_mobile_phone;
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("userInfoBean111" + userInfoBean);
+        if (requestCode == 2 && resultCode == 2) {
+            Bundle bundle = data.getExtras();
+            userInfoBean = (UserInfoBean.DataBean) bundle.getSerializable("user");
+            System.out.println("userInfoBean" + userInfoBean);
+            tv_user_name.setText(userInfoBean.getUser_name());
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
         System.out.println("onCreate");
 
 
@@ -70,7 +77,7 @@ public class Details_Activity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", userInfoBean);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivityForResult(intent,2);
             }
         });
 
@@ -115,16 +122,7 @@ public class Details_Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("userInfoBean111" + userInfoBean);
-        if (requestCode == 2 && resultCode == 2) {
-            Bundle bundle = data.getExtras();
-            userInfoBean = (UserInfoBean.DataBean) bundle.getSerializable("user");
-            System.out.println("userInfoBean" + userInfoBean);
-            tv_user_name.setText(userInfoBean.getUser_name());
-        }
-    }
+
 
 //    public void getData(){
 //        String name=tv_user_name.getText().toString();

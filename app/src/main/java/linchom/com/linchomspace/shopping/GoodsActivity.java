@@ -16,7 +16,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -1751,6 +1753,15 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
             public void onAnimationEnd(Animator animation) {
 
                 rl_activity_goods.removeView(goods);
+
+
+
+                TranslateAnimation translateAnimation = (TranslateAnimation) AnimationUtils.loadAnimation(getApplicationContext(),R.anim.shake);
+
+                iv_gooods_cart.startAnimation(translateAnimation);//开始平移动画
+
+
+
             }
 
             @Override
