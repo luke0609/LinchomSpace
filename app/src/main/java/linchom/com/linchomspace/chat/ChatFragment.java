@@ -380,7 +380,6 @@ public class ChatFragment extends Fragment {
             public void onCancelled(CancelledException cex) {
 
             }
-
             @Override
             public void onFinished() {
 

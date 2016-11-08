@@ -1,15 +1,12 @@
 package linchom.com.linchomspace.chat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -27,14 +24,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import info.hoang8f.widget.FButton;
 import linchom.com.linchomspace.R;
-import linchom.com.linchomspace.chat.pojo.ResultBean;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.photoutil.UploadBean;
 import me.iwf.photopicker.widget.MultiPickResultView;
-
-import static android.R.attr.id;
 
 public class ChatPublishActiviy extends AppCompatActivity implements View.OnClickListener{
     private Spinner sp_topic;
