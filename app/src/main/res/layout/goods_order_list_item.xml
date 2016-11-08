@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tv_goods_order_goodsName"
-            android:textColor="#808080"
+            android:textColor="@color/text_style"
             android:layout_marginTop="5dp"
             android:textSize="14sp"
             android:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据"
@@ -68,8 +68,10 @@
 
             />
 
+
+
         <TextView
-            android:textColor="#90000000"
+            android:textColor="@color/text_style"
 
             android:id="@+id/tv_goods_order_goodsNum"
             android:gravity="center_vertical"
@@ -84,7 +86,7 @@
 
             />
         <TextView
-            android:textColor="#90000000"
+            android:textColor="@color/text_style"
 
             android:textSize="14sp"
 
