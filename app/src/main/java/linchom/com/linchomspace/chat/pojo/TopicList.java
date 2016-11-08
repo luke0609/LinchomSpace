@@ -12,16 +12,16 @@ public class TopicList implements Serializable{
 
     /**
      * result : 0
-     * data : {"total_pages":3,"total":"26","items":[{"topic_id":"76","topic_category":"智能家居","topic_category_id":"1","topic_name":"was","communication_title":"WWF","add_time":"1477468662","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":1},{"topic_id":"75","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"123","add_time":"1477465524","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":2},{"topic_id":"74","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"123","add_time":"1477465469","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":3},{"topic_id":"73","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"123","add_time":"1477465240","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":4},{"topic_id":"71","topic_category":"智能家居","topic_category_id":"1","topic_name":"测试2","communication_title":"你好","add_time":"1477464123","user_name":"劳保","user_id":"135","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"1","key":5},{"topic_id":"69","topic_category":"智能家居","topic_category_id":"1","topic_name":"测试","communication_title":"你好","add_time":"1477463644","user_name":"劳保","user_id":"135","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":6},{"topic_id":"68","topic_category":"智能家居","topic_category_id":"1","topic_name":"off FCC","communication_title":"Sass's","add_time":"1477463327","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":7},{"topic_id":"67","topic_category":"智能家居","topic_category_id":"1","topic_name":"were we","communication_title":"CSX's FCC's\n","add_time":"1477452792","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":8},{"topic_id":"66","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"eeee","add_time":"1477446500","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":9},{"topic_id":"64","topic_category":"智能家居","topic_category_id":"1","topic_name":"智能家居相关产品有推荐的吗","communication_title":"我们家要装修","add_time":"1477446194","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":10}],"pagesize":10}
+     * data : {"total_pages":4,"total":"37","items":[{"topic_id":"176","topic_category":"智能家居","topic_category_id":"1","topic_name":"123567","communication_title":"1234","add_time":"1478518203","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/8339141.jpg,http://app.linchom.com/images/201611/3984710.jpg,","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":1},{"topic_id":"175","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片","communication_title":"图片批量上传","add_time":"1478517103","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/4093750.jpg,http://app.linchom.com/images/201611/4924865.jpg,http://app.linchom.com/images/201611/3274444.jpg,","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":2},{"topic_id":"174","topic_category":"智能家居","topic_category_id":"1","topic_name":"呵呵呵","communication_title":"呵呵呵","add_time":"1478509910","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/6030914.jpg","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":3},{"topic_id":"173","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片3","communication_title":"图片","add_time":"1478506888","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/4105560.jpg","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":4},{"topic_id":"172","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片2","communication_title":"test","add_time":"1478502561","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/2225524.jpg","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":5},{"topic_id":"171","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片测试","communication_title":"test","add_time":"1478502415","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":6},{"topic_id":"170","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片测试","communication_title":"test","add_time":"1478502412","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":7},{"topic_id":"169","topic_category":"智能家居","topic_category_id":"1","topic_name":"","communication_title":"","add_time":"1478500170","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":8},{"topic_id":"140","topic_category":"智能家居","topic_category_id":"1","topic_name":"test","communication_title":"tests","add_time":"1478333465","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"2","key":9},{"topic_id":"139","topic_category":"12312","topic_category_id":"1","topic_name":"你们好","communication_title":"你们好","add_time":"1478331598","user_name":"Jordan","user_id":"135","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"1","key":10}],"pagesize":10}
      * msg :
      * url :
      */
 
     private String result;
     /**
-     * total_pages : 3
-     * total : 26
-     * items : [{"topic_id":"76","topic_category":"智能家居","topic_category_id":"1","topic_name":"was","communication_title":"WWF","add_time":"1477468662","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":1},{"topic_id":"75","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"123","add_time":"1477465524","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":2},{"topic_id":"74","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"123","add_time":"1477465469","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":3},{"topic_id":"73","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"123","add_time":"1477465240","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":4},{"topic_id":"71","topic_category":"智能家居","topic_category_id":"1","topic_name":"测试2","communication_title":"你好","add_time":"1477464123","user_name":"劳保","user_id":"135","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"1","key":5},{"topic_id":"69","topic_category":"智能家居","topic_category_id":"1","topic_name":"测试","communication_title":"你好","add_time":"1477463644","user_name":"劳保","user_id":"135","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":6},{"topic_id":"68","topic_category":"智能家居","topic_category_id":"1","topic_name":"off FCC","communication_title":"Sass's","add_time":"1477463327","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":7},{"topic_id":"67","topic_category":"智能家居","topic_category_id":"1","topic_name":"were we","communication_title":"CSX's FCC's\n","add_time":"1477452792","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":8},{"topic_id":"66","topic_category":"智能家居","topic_category_id":"1","topic_name":"123","communication_title":"eeee","add_time":"1477446500","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":9},{"topic_id":"64","topic_category":"智能家居","topic_category_id":"1","topic_name":"智能家居相关产品有推荐的吗","communication_title":"我们家要装修","add_time":"1477446194","user_name":"ljs123","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":10}]
+     * total_pages : 4
+     * total : 37
+     * items : [{"topic_id":"176","topic_category":"智能家居","topic_category_id":"1","topic_name":"123567","communication_title":"1234","add_time":"1478518203","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/8339141.jpg,http://app.linchom.com/images/201611/3984710.jpg,","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":1},{"topic_id":"175","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片","communication_title":"图片批量上传","add_time":"1478517103","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/4093750.jpg,http://app.linchom.com/images/201611/4924865.jpg,http://app.linchom.com/images/201611/3274444.jpg,","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":2},{"topic_id":"174","topic_category":"智能家居","topic_category_id":"1","topic_name":"呵呵呵","communication_title":"呵呵呵","add_time":"1478509910","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/6030914.jpg","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":3},{"topic_id":"173","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片3","communication_title":"图片","add_time":"1478506888","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/4105560.jpg","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":4},{"topic_id":"172","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片2","communication_title":"test","add_time":"1478502561","user_name":"梁京生","user_id":"129","photo":"http://app.linchom.com/images/201611/2225524.jpg","mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":5},{"topic_id":"171","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片测试","communication_title":"test","add_time":"1478502415","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":6},{"topic_id":"170","topic_category":"智能家居","topic_category_id":"1","topic_name":"图片测试","communication_title":"test","add_time":"1478502412","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":7},{"topic_id":"169","topic_category":"智能家居","topic_category_id":"1","topic_name":"","communication_title":"","add_time":"1478500170","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"0","key":8},{"topic_id":"140","topic_category":"智能家居","topic_category_id":"1","topic_name":"test","communication_title":"tests","add_time":"1478333465","user_name":"梁京生","user_id":"129","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"2","key":9},{"topic_id":"139","topic_category":"12312","topic_category_id":"1","topic_name":"你们好","communication_title":"你们好","add_time":"1478331598","user_name":"Jordan","user_id":"135","photo":null,"mobile":null,"email":null,"company":null,"family_address":null,"repliesnumber":"1","key":10}]
      * pagesize : 10
      */
 
@@ -66,15 +66,15 @@ public class TopicList implements Serializable{
         private String total;
         private int pagesize;
         /**
-         * topic_id : 76
+         * topic_id : 176
          * topic_category : 智能家居
          * topic_category_id : 1
-         * topic_name : was
-         * communication_title : WWF
-         * add_time : 1477468662
-         * user_name : ljs123
+         * topic_name : 123567
+         * communication_title : 1234
+         * add_time : 1478518203
+         * user_name : 梁京生
          * user_id : 129
-         * photo : null
+         * photo : http://app.linchom.com/images/201611/8339141.jpg,http://app.linchom.com/images/201611/3984710.jpg,
          * mobile : null
          * email : null
          * company : null
@@ -117,7 +117,7 @@ public class TopicList implements Serializable{
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean implements Serializable{
             private String topic_id;
             private String topic_category;
             private String topic_category_id;
@@ -126,7 +126,7 @@ public class TopicList implements Serializable{
             private String add_time;
             private String user_name;
             private String user_id;
-            private Object photo;
+            private String photo;
             private Object mobile;
             private Object email;
             private Object company;
@@ -198,11 +198,11 @@ public class TopicList implements Serializable{
                 this.user_id = user_id;
             }
 
-            public Object getPhoto() {
+            public String getPhoto() {
                 return photo;
             }
 
-            public void setPhoto(Object photo) {
+            public void setPhoto(String photo) {
                 this.photo = photo;
             }
 

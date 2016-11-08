@@ -1,5 +1,6 @@
 package linchom.com.linchomspace.photoutil;
 
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.photoview.ImageDetailFragment;
 
 public class ImagePagerActivity extends FragmentActivity {
@@ -29,6 +31,8 @@ public class ImagePagerActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_pager);
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
+
         pagerPosition = getIntent().getIntExtra(EXTRA_IMAGE_INDEX, 0);
         List<String> urls = getIntent().getStringArrayListExtra(EXTRA_IMAGE_URLS);
 

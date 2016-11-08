@@ -89,6 +89,7 @@ public class NineGridTestLayout extends NineGridLayout {
             Intent intent = new Intent(mContext, ImagePagerActivity.class);
             intent.putCharSequenceArrayListExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, (ArrayList) urlList);
             intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, i);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }
 
