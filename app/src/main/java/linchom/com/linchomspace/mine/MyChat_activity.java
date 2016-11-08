@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -32,12 +33,14 @@ import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.ChatDetilActivity;
 import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
 import linchom.com.linchomspace.mine.pojo.MychatInfoBean;
+import linchom.com.linchomspace.photoutil.NineGridTestLayout;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.goodsadapter.PuBuAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class MyChat_activity extends AppCompatActivity {
 
+    private static final String TAG = "MyChat_activity";
     private ImageView iv_chat_back;
     List<MychatInfoBean.Mdata.Imtems> chatlist=new ArrayList<MychatInfoBean.Mdata.Imtems>();
     private GoodsCommonAdapter<MychatInfoBean.Mdata.Imtems> chatCommonAdapter;
@@ -46,7 +49,9 @@ public class MyChat_activity extends AppCompatActivity {
     private int pageCount=1;
     private ProgressBar firstBar;
     private static int mDelId = 0;
-
+    private NineGridTestLayout ngtl_service_log_photo;
+    private String photo;
+    private String[] photos;
 
 //    private ListView lv_myChatList;
 
@@ -62,6 +67,7 @@ public class MyChat_activity extends AppCompatActivity {
         initView();
         initData();
         eventPullToRefresh();
+
         lv_myChatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -107,10 +113,22 @@ public class MyChat_activity extends AppCompatActivity {
 
             }
         });
+        List<String> urlList =new ArrayList<String>();
+        if(photo.length()!=0){
+            for(int i =0;i<photos.length;i++){
+                Log.i(TAG,"photos.length"+photos.length);
+                urlList.add(photos[i]);
+            }
+        }
+        if(photo.length()!=0){
+            ngtl_service_log_photo.setUrlList(urlList);
+        }
 
         chatCommonAdapter=new GoodsCommonAdapter<MychatInfoBean.Mdata.Imtems>(getApplicationContext(), chatlist, R.layout.my_chat_items) {
             @Override
             public void convert(GoodsViewHolder viewHolder, MychatInfoBean.Mdata.Imtems imtems, int position) {
+                ngtl_service_log_photo=viewHolder.getViewById(R.id.ngtl_service_log_photo);
+//                ngtl_service_log_photo.setUrlList(urlList);
                 TextView topic_name = (viewHolder.getViewById(R.id.topic_name));
                 System.out.println("=========" + imtems.topic_name);
                 topic_name.setText(imtems.topic_name);
@@ -136,7 +154,7 @@ public class MyChat_activity extends AppCompatActivity {
     private void initView() {
 
         iv_chat_back = ((ImageView) findViewById(R.id.iv_chat_back));
-
+        ngtl_service_log_photo = ((NineGridTestLayout) findViewById(R.id.ngtl_service_log_photo));
     }
 
     private void initEvent() {

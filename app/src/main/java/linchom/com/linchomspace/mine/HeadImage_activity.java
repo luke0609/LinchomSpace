@@ -250,7 +250,6 @@ public class HeadImage_activity extends AppCompatActivity {
     public void uploadImage(){
 
         RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php");
-        requestParams.setMultipart(true);
         requestParams.addBodyParameter("act", "uploadimage");
         requestParams.addBodyParameter("photo",new File(file+""));
 
