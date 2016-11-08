@@ -18,9 +18,9 @@
 
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
 
-        android:background="#ccc"
+        android:background="#20cccccc"
         android:orientation="horizontal"
 
         >
@@ -30,14 +30,27 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <TextView
+                android:id="@+id/tv_goods_kefu"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:textSize="12sp"
+                android:text="客服"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
             <ImageView
-                android:layout_centerInParent="true"
+                android:layout_above="@id/tv_goods_kefu"
+                android:layout_centerHorizontal="true"
 
                 android:id="@+id/iv_goods_service"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/article_comment"
                 />
+
 
 
         </RelativeLayout>
@@ -47,17 +60,26 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <TextView
+                android:id="@+id/tv_goods_coll"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:textSize="12sp"
+                android:text="收藏"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <ImageView
-
-
-                android:layout_centerInParent="true"
+                android:layout_above="@id/tv_goods_coll"
 
 
                 android:id="@+id/iv_goods_Collection"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:src="@drawable/article_collect3"
-                />
+                android:layout_centerHorizontal="true" />
+
+
 
 
         </RelativeLayout>
@@ -132,17 +154,18 @@
 
                 android:id="@+id/rl_goods_top"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="300dp"
                 android:background="#ffffff"
                 >
+
+
 
                 <android.support.v4.view.ViewPager
 
                     android:id="@+id/rl_goods_goodsShow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
+                    android:layout_height="match_parent"
+                    >
 
 
                 </android.support.v4.view.ViewPager>
@@ -168,15 +191,13 @@
                     />
 
 
-
-
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_goods_mid"
                 android:layout_below="@id/rl_goods_top"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:background="#fff"
                 >
 
@@ -185,7 +206,7 @@
                     android:textColor="@color/text_style"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -253,11 +274,11 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_below="@id/tv_goods_proName"
+                    android:layout_alignBottom="@id/tv_goods_shopPrice"
 
                     android:layout_alignParentRight="true"
                     android:layout_width="120dp"
-                    android:layout_height="50dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/tv_goods_kuncun"
@@ -273,7 +294,7 @@
                         android:layout_toRightOf="@id/tv_goods_kuncun"
                         android:textColor="@color/text_style"
                         android:textSize="16sp"
-                        android:text=""
+                        android:text="100"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />
@@ -284,11 +305,11 @@
 
                 <RelativeLayout
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@id/tv_goods_shopPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:textColor="@color/text_style"
@@ -401,12 +422,102 @@
             </RelativeLayout>
 
 
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/rl_goods_mid_one"
+
+                android:layout_below="@id/rl_goods_mid"
+
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="#ffffff"
+                >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_goods_gouone"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/goods_gouxuan"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        android:id="@+id/tv_goods_gouone"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/iv_goods_gouone"
+                        android:text="包邮"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <ImageView
+                        android:layout_toRightOf="@id/tv_goods_gouone"
+                        android:id="@+id/iv_goods_goutwo"
+                        android:layout_marginLeft="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/goods_gouxuan"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_goods_goutwo"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/iv_goods_goutwo"
+                        android:text="绝对正品"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                    <ImageView
+                        android:layout_toRightOf="@id/tv_goods_goutwo"
+                        android:id="@+id/iv_goods_gouthree"
+                        android:layout_marginLeft="30dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/goods_gouxuan"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_goods_gouthree"
+                        android:textColor="#808080"
+                        android:textSize="14sp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/iv_goods_gouthree"
+                        android:text="支持退货"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
 
 
             <RelativeLayout
                 android:id="@+id/rl_goods_link"
 
-                android:layout_below="@id/rl_goods_mid"
+                android:layout_below="@id/rl_goods_mid_one"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -426,8 +537,8 @@
                            android:layout_marginLeft="5dp"
                            android:layout_centerVertical="true"
                            android:id="@+id/iv_goods_tblogo"
-                           android:layout_width="40dp"
-                           android:layout_height="40dp"
+                           android:layout_width="35dp"
+                           android:layout_height="35dp"
                            android:src="@drawable/goods_detail_tianmao"
                            />
 
@@ -509,8 +620,8 @@
 
 
 
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/jd_logo"
 
                         />
@@ -636,16 +747,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:background="#ffffff">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:text="产品评价"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/text_style"
-
-                    />
 
 
                 <ImageView
@@ -658,6 +759,20 @@
                     android:layout_height="30dp"
 
                     />
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:text="产品评价"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_style"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/textView4" />
 
 
             </RelativeLayout>
