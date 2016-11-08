@@ -185,6 +185,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods);
+        ///
 
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
 
