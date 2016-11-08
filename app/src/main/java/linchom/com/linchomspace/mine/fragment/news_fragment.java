@@ -34,11 +34,14 @@ import java.util.Locale;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Activity.ArticleActivity;
+import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
 import linchom.com.linchomspace.mine.pojo.AlertsInfoBean;
 import linchom.com.linchomspace.mine.pojo.ArticleInFoBean;
 import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
+
+import static linchom.com.linchomspace.R.id.iv_photo;
 
 /**
  * Created by lenovo on 2016/10/20.
@@ -52,6 +55,7 @@ public class news_fragment extends Fragment {
     private int pageCount=1;
     private ProgressBar firstBar;
     private static int mDelId = 0;
+    private ImageView iv_photo;
 
     @Nullable
     @Override
@@ -160,6 +164,9 @@ public class news_fragment extends Fragment {
             public void convert(GoodsViewHolder viewHolder, ArticleInFoBean.DataBean.AItems aItems, int position) {
                 //ImageView iv_image= viewHolder.getViewById(R.id.iv_image);
                 TextView title = viewHolder.getViewById(R.id.tv_title1);
+                ImageView iv_photo=viewHolder.getViewById(R.id.iv_photo);
+              xUtilsImageUtils.display(iv_photo, "http://linchom.com//" + aItems.article_pic);
+//               x.image().bind(iv_photo,"http://linchom.com//" +aItems.article_pic);
 //                    System.out.println("77777777" + aItems.title);
                 title.setText(aItems.title);
 //                TextView tv_come = viewHolder.getViewById(R.id.tv_come);

@@ -74,6 +74,7 @@ public class Mydisclose extends AppCompatActivity {
                 MyDiscloseInfoBean bean=gson.fromJson(result,MyDiscloseInfoBean.class);
                 MyDiscloseInfoBean.Databean mdata=bean.data;
                 myDisclosList.addAll(mdata.items);
+//                System.out.println("789900"+myDisclosList);
                 initEnvent();
             }
 
@@ -99,6 +100,8 @@ public class Mydisclose extends AppCompatActivity {
         MydiscloseCommonAdapter=new GoodsCommonAdapter<MyDiscloseInfoBean.Databean.DItems>(getApplicationContext(),myDisclosList,R.layout.mydisclose_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, MyDiscloseInfoBean.Databean.DItems dItems, int position) {
+               ImageView iv_photo= viewHolder.getViewById(R.id.iv_photo);
+                x.image().bind(iv_photo,dItems.photo);
                 TextView tv_biaoti=viewHolder.getViewById(R.id.tv_biaoti);
                 tv_biaoti.setText(dItems.title);
                 TextView discontent=viewHolder.getViewById(R.id.discontent);
