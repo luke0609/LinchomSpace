@@ -148,13 +148,14 @@ public class Details_Activity extends AppCompatActivity {
 
             @Override
             public void onSuccess(String result) {
-                System.out.println("onsucess" + result);
+//                System.out.println("onsucess" + result);
                 Gson gson = new Gson();
                 UserInfoBean bean = gson.fromJson(result, UserInfoBean.class);
 //                System.out.println("======"+bean);
 //                System.out.println(bean.getResult());
                 userInfoBean = bean.getData();
-                System.out.println("======" + userInfoBean);
+//                System.out.println("======" + userInfoBean);
+                x.image().bind(iv_user_photo,userInfoBean.getUser_photo());
                 tv_mobile_phone.setText(userInfoBean.getMobile_phone());
                 tv_user_name.setText(userInfoBean.getUser_name());
                 tv_birthday.setText(userInfoBean.getBirthday());
