@@ -148,8 +148,7 @@ public class GoodsCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                btn_goods_cart_total.setEnabled(false);
-                btn_goods_cart_total.setText("结算中");
+
 
 
                 //orderList.add(new GoodsOrderBean(goodsNum, goodsImg,goodsName,goodsPrice));
@@ -207,6 +206,10 @@ public class GoodsCartActivity extends AppCompatActivity {
                 //初始收货地址
 
                 if(orderCartList.size()!=0){
+
+
+                    btn_goods_cart_total.setEnabled(false);
+                    btn_goods_cart_total.setText("结算中");
                     initDefaultAddress();
 
 
