@@ -171,7 +171,6 @@
                     />
 
                 <ImageView
-                    android:src="@drawable/goods_order_bottom_jianbian"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
