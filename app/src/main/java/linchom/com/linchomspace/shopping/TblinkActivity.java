@@ -9,7 +9,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
@@ -33,7 +32,7 @@ public class TblinkActivity extends AppCompatActivity {
 
 
         tbLink = bundle.getString("tblink");
-        Toast.makeText(getApplicationContext(),tbLink,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),tbLink,Toast.LENGTH_SHORT).show();
 
         initView();
 
