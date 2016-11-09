@@ -9,7 +9,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
@@ -35,7 +34,7 @@ public class JdlinkActivity extends AppCompatActivity {
 
         jdLink = bundle.getString("jdlink");
 
-        Toast.makeText(getApplicationContext(),jdLink,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),jdLink,Toast.LENGTH_SHORT).show();
 
         initView();
 
