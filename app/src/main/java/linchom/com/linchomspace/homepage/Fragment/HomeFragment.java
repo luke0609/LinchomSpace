@@ -369,7 +369,6 @@ public class HomeFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle!=null){
         PdId = bundle.getString("PdId");
-
             switch (PdId){
                 case "0":
                     vp_news.setCurrentItem(0);

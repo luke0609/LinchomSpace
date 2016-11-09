@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
-import org.xutils.http.body.StringBody;
 import org.xutils.x;
 
 import java.io.File;
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import linchom.com.linchomspace.MainActivity;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.photoutil.UploadBean;
@@ -173,6 +173,52 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
             public void onSuccess(String result) {
                 System.out.println(result);
                 Toast.makeText(ChatPublishActiviy.this, "发布成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),cardNumber,Toast.LENGTH_SHORT).show();
+                if(cardNumber.equals("智能家居")){
+                   topubchat("0");
+                }
+                if(cardNumber.equals("智能健康")){
+                    topubchat("1");
+                }
+                if(cardNumber.equals("智能管照")){
+                    topubchat("2");
+                }
+                if(cardNumber.equals("产品推荐")){
+                    topubchat("3");
+                }
+                if(cardNumber.equals("智能社区")){
+                    topubchat("4");
+                }
+                if(cardNumber.equals("工程技术")){
+                    topubchat("5");
+                }
+                if(cardNumber.equals("硬件开发")){
+                    topubchat("6");
+                }
+                if(cardNumber.equals("机器人")){
+                    topubchat("7");
+                }
+                if(cardNumber.equals("VR/AR")){
+                    topubchat("8");
+                }
+                if(cardNumber.equals("协议标准")){
+                    topubchat("9");
+                }
+                if(cardNumber.equals("需求对接")){
+                    topubchat("10");
+                }
+                if(cardNumber.equals("品牌交流")){
+                    topubchat("11");
+                }
+                if(cardNumber.equals("提问回答")){
+                    topubchat("12");
+                }
+                if(cardNumber.equals("其他")){
+                    topubchat("13");
+                }
+
+
+
                 finish();
             }
 
@@ -191,6 +237,14 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
             }
         });
+    }
+
+    private void topubchat(String pchatId) {
+        Intent intent = new Intent(ChatPublishActiviy.this, MainActivity.class);
+        intent.putExtra("idpchat", 1);
+        intent.putExtra("pchatId",pchatId);
+        startActivity(intent);
+        finish();
     }
 
     @Override

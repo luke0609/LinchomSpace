@@ -721,7 +721,7 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
 
 
-        popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, 420, true);
+        popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, 520, true);
 
         popupWindow.setTouchable(true);
 

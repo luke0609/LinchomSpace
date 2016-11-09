@@ -51,7 +51,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         search_type = bundle.getString("search_type");
-        Toast.makeText(getApplicationContext(),search_type,Toast.LENGTH_SHORT).show();
         Log.i("aaa",search_type);
         StatusBarCompat.compat(this, Color.parseColor("#212121"));
         rl_msg = ((RelativeLayout) findViewById(R.id.rl_msg));
