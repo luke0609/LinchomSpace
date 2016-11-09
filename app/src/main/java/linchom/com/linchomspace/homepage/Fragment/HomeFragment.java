@@ -1074,7 +1074,6 @@ public class HomeFragment extends Fragment {
                     pullFlag = true;
                     page = 1;
                     gettuijian();
-
                 }
             }
         });

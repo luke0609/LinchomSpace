@@ -312,15 +312,14 @@ public class SearchArticleActivity extends AppCompatActivity {
             }
             //ListActivityBean.Dongtai dongtai = dongtaiList.get(position);
             ArticleListBean.Article_list arr = arrList.get(position);
-
             viewHolder.tv_title.setText(arr.title);
-
             viewHolder.tv_name.setText(DateUtils.getGapTimeFromNow(DateUtils.stringToDate(arr.date)));
-            if (arr.article_pic == "") {
+            if (arr.photo == "") {
                 viewHolder.iv_photo.setImageResource(R.drawable.aiqinhai);
             } else {
                 viewHolder.iv_photo.setVisibility(View.VISIBLE);
-                xUtilsImageUtils.display(viewHolder.iv_photo, "http://linchom.com//" + arr.article_pic);
+                //  xUtilsImageUtils.display(viewHolder.iv_photo, "http://linchom.com//" + arr.article_pic);
+                xUtilsImageUtils.display(viewHolder.iv_photo, arr.photo);
             }
 
 
