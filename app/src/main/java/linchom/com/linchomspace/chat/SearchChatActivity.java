@@ -86,7 +86,6 @@ public class SearchChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_chat);
         ButterKnife.inject(this);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         keyword = bundle.getString("keyword");

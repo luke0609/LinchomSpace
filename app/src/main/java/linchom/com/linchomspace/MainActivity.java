@@ -65,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
         tabs[0].setChecked(true);
         int id=getIntent().getIntExtra("id",0);
         int idchat=getIntent().getIntExtra("idchat",0);
+        int idpchat=getIntent().getIntExtra("idpchat",0);
         String pdId=getIntent().getStringExtra("pdId");
         String chatId=getIntent().getStringExtra("chatId");
+        String pchatId=getIntent().getStringExtra("pchatId");
         //Toast.makeText(MainActivity.this,pdId+id,Toast.LENGTH_SHORT).show();
         if(id==1){
             Bundle bundle=new Bundle();
@@ -83,7 +85,14 @@ public class MainActivity extends AppCompatActivity {
             addshow(3);
             tabs[3].setChecked(true);
             //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
-
+        }
+        if(idpchat==1){
+            Bundle bundle=new Bundle();
+            bundle.putString("chatId",pchatId);
+            fragments[3].setArguments(bundle);
+            addshow(3);
+            tabs[3].setChecked(true);
+            //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
         }
 
     }

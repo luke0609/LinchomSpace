@@ -57,6 +57,7 @@ public class ChatFragment extends Fragment {
     private BannerComponent bannerComponent;
     private IndicatorViewPager indicatorViewPager;
     private String chatId;
+    private String pchatId;
     private ImageView to_publish;
     private int pageCount = 1;
     private int startPage = 1;
@@ -126,6 +127,7 @@ public class ChatFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             chatId = bundle.getString("chatId");
+            
             switch (chatId) {
                 case "0":
                     indicatorViewPager.setCurrentItem(0, true);
@@ -174,6 +176,7 @@ public class ChatFragment extends Fragment {
                     break;
 
             }
+
         }
 
 
