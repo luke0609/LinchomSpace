@@ -127,10 +127,6 @@ public class goods_fragment extends Fragment {
                 goods_name.setText(items.goods_name);
                 TextView shop_price=viewHolder.getViewById(R.id.shop_price);
                 shop_price.setText(items.shop_price);
-//                TextView add_time=viewHolder.getViewById(R.id.add_time);
-//                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-//                Date date=new Date((Long.parseLong(items.add_time)));
-//                add_time.setText(simpleDateFormat.format(date));
             }
         };
 
@@ -145,7 +141,6 @@ public class goods_fragment extends Fragment {
         RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php?act=collect_goods");
         requestParams.addBodyParameter("verification","e0d017ef76c8510244ebe0191f5dde15" );
         requestParams.addBodyParameter("page",page+"");
-
         requestParams.addBodyParameter("user_id",userId);
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
@@ -155,7 +150,6 @@ public class goods_fragment extends Fragment {
                     LovedInfoBean bean=gson.fromJson(result,LovedInfoBean.class);
                     LovedInfoBean.DataBean mbean=bean.data;
                     pageCount = Integer.parseInt(mbean.total_pages.toString());
-//                System.out.println("00000000000000000"+mbean);
                     loveList.addAll(mbean.items);
                     loveCommonAdapter.notifyDataSetChanged();
                     //initEvent();

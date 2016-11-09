@@ -117,13 +117,6 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-//        ((RelativeLayout) view.findViewById(R.id.person_center_content6)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), Alerts_activity.class);
-//                startActivity(intent);
-//            }
-//        });
         ((RelativeLayout) view.findViewById(R.id.person_center_content7)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,23 +124,17 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
-//        ((RelativeLayout) view.findViewById(R.id.person_center_content5)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), log_activity.class);
-//                startActivity(intent);
-//            }
-//        });
         initData();
         return view;
     }
 
     public void initData() {
 
-        RequestParams requestParams = new RequestParams("http://app.linchom.com/appapi.php?act=userinfo&user_id=135");
-//        requestParams.addBodyParameter("key", "linchom");
-//       requestParams.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
-//        requestParams.addBodyParameter("user_id", "135");
+        RequestParams requestParams = new RequestParams("http://app.linchom.com/appapi.php?");
+        requestParams.addBodyParameter("key", "linchom");
+        requestParams.addBodyParameter("act", "userinfo");
+       requestParams.addBodyParameter("verification", "e0d017ef76c8510244ebe0191f5dde15");
+        requestParams.addBodyParameter("user_id", "135");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
 

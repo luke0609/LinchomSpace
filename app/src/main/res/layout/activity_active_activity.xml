@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="linchom.com.linchomspace.mine.Active_activity">
+    tools:context=".mine.Active_activity">
 
     <RelativeLayout
         android:id="@+id/rl_huodong"

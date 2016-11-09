@@ -62,7 +62,7 @@
             android:layout_below="@id/v_dis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="如需传图，请点右边"
+            android:hint="如需传图，请点下边图片"
             android:textSize="14dp"
             android:gravity="top|left"
             android:height="90dp"

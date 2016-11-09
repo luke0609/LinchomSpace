@@ -52,13 +52,9 @@ public class MyChat_activity extends AppCompatActivity {
     private int pageCount=1;
     private ProgressBar firstBar;
     private static int mDelId = 0;
-    private NineGridTestLayout ngtl_service_log_photo;
-    private String photo;
-    private String[] photos;
     private String userId="";
     private String username="";
 
-//    private ListView lv_myChatList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +68,6 @@ public class MyChat_activity extends AppCompatActivity {
         username = shared_prefs.getString("username","");
 //        System.out.println("onCreate");
         initView();
-        initData();
         eventPullToRefresh();
 
         lv_myChatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,22 +115,10 @@ public class MyChat_activity extends AppCompatActivity {
 
             }
         });
-//        List<String> urlList =new ArrayList<String>();
-//        if(photo.length()!=0){
-//            for(int i =0;i<photos.length;i++){
-//                Log.i(TAG,"photos.length"+photos.length);
-//                urlList.add(photos[i]);
-//            }
-//        }
-//        if(photo.length()!=0){
-//            ngtl_service_log_photo.setUrlList(urlList);
-//        }
 
         chatCommonAdapter=new GoodsCommonAdapter<MychatInfoBean.Mdata.Imtems>(getApplicationContext(), chatlist, R.layout.my_chat_items) {
             @Override
             public void convert(GoodsViewHolder viewHolder, MychatInfoBean.Mdata.Imtems imtems, int position) {
-                ngtl_service_log_photo=viewHolder.getViewById(R.id.ngtl_service_log_photo);
-//                ngtl_service_log_photo.setUrlList(urlList);
                 TextView topic_name = (viewHolder.getViewById(R.id.topic_name));
                 System.out.println("=========" + imtems.topic_name);
                 topic_name.setText(imtems.topic_name);
@@ -152,7 +135,7 @@ public class MyChat_activity extends AppCompatActivity {
 
         lv_myChatList.setAdapter(chatCommonAdapter);
 
-        initData();
+       initData();
 
 
     }
@@ -161,7 +144,6 @@ public class MyChat_activity extends AppCompatActivity {
     private void initView() {
 
         iv_chat_back = ((ImageView) findViewById(R.id.iv_chat_back));
-        ngtl_service_log_photo = ((NineGridTestLayout) findViewById(R.id.ngtl_service_log_photo));
     }
 
     private void initEvent() {
@@ -204,7 +186,6 @@ public class MyChat_activity extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
 
-//                System.out.println("========="+page+"0000000000"+pageCount);
                 if (page <= pageCount) {
                     Gson gson = new Gson();
                     MychatInfoBean mychatInfoBean = gson.fromJson(result, MychatInfoBean.class);

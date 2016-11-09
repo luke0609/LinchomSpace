@@ -70,6 +70,8 @@ public class ArticleInFoBean {
                         ", article_url='" + article_url + '\'' +
                         ", article_source='" + article_source + '\'' +
                         ", status='" + status + '\'' +
+                        ", photo='" + photo + '\'' +
+                        ", content_url='" + content_url + '\'' +
                         '}';
             }
 
@@ -88,6 +90,8 @@ public class ArticleInFoBean {
             public String article_url;
             public String article_source;
             public String status;
+            public String photo;
+            public String content_url;
 
         }
 }

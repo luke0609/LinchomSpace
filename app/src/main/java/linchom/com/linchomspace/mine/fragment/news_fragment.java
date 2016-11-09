@@ -180,8 +180,7 @@ public class news_fragment extends Fragment {
                 //ImageView iv_image= viewHolder.getViewById(R.id.iv_image);
                 TextView title = viewHolder.getViewById(R.id.tv_title1);
                 ImageView iv_photo=viewHolder.getViewById(R.id.iv_photo);
-              xUtilsImageUtils.display(iv_photo,"http://linchom.com//" + aItems.article_pic);
-//               x.image().bind(iv_photo,"http://linchom.com//" +aItems.article_pic);
+                 x.image().bind(iv_photo,aItems.photo);
 //                    System.out.println("77777777" + aItems.title);
                 title.setText(aItems.title);
 //                TextView tv_come = viewHolder.getViewById(R.id.tv_come);
