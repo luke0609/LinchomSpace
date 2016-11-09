@@ -1,8 +1,10 @@
 package linchom.com.linchomspace.mine.fragment;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,34 +20,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
-import linchom.com.linchomspace.homepage.Activity.CommentActivity;
-import linchom.com.linchomspace.mine.HeadImage_activity;
+import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
 import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
-import linchom.com.linchomspace.shopping.pojo.GoodsListBean;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
-import linchom.com.linchomspace.R;
 
 /**
  * Created by lenovo on 2016/10/20.
@@ -59,10 +49,20 @@ public class goods_fragment extends Fragment {
     private static int mDelId = 0;
     List<LovedInfoBean.DataBean.Items> loveList=new ArrayList<LovedInfoBean.DataBean.Items>();
     private GoodsCommonAdapter<LovedInfoBean.DataBean.Items> loveCommonAdapter;
+
+    private String userName;
+
+    private String userId;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mine_goodsfragment, null);
+
+
+        SharedPreferences shared_prefs = getActivity().getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
         //拿到控件
         lv_goods = ((PullToRefreshListView) view.findViewById(R.id.lv_goods));
         firstBar = ((ProgressBar) view.findViewById(R.id.firstBar));
@@ -142,9 +142,11 @@ public class goods_fragment extends Fragment {
         if (page==1) {
             firstBar.setVisibility(View.VISIBLE);
         }
-        RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php?act=collect_goods&user_id=12");
+        RequestParams requestParams =new RequestParams("http://app.linchom.com/appapi.php?act=collect_goods");
         requestParams.addBodyParameter("verification","e0d017ef76c8510244ebe0191f5dde15" );
         requestParams.addBodyParameter("page",page+"");
+
+        requestParams.addBodyParameter("user_id",userId);
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -193,7 +195,7 @@ public class goods_fragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=drop_collect_article");
-                requestParams.addBodyParameter("user_id","12");
+                requestParams.addBodyParameter("user_id",userId+"");
                 requestParams.addBodyParameter("type","2");
                 requestParams.addBodyParameter("id",loveList.get(mDelId).goods_id);
                 x.http().post(requestParams, new Callback.CommonCallback<String>() {
