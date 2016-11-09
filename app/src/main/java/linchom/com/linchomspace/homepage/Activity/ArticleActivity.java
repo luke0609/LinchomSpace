@@ -603,8 +603,8 @@ public class ArticleActivity extends AppCompatActivity implements View.OnLayoutC
         params.addBodyParameter("verification", "10a7997fb90c30c6c79e9f29f89535b5");
         params.addBodyParameter("id", article_id);//由前一个界面带过来的
         params.addBodyParameter("type", "1");//1.收藏2.评论
-        params.addBodyParameter("user_id", "135");
-        //  params.addBodyParameter("user_name","%E5%BC%A0%E6%99%93%E6%96%87");
+        params.addBodyParameter("user_id", userId);
+          params.addBodyParameter("user_name",userName);
         //  params.addBodyParameter("email", "2070118814@qq.com");
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override

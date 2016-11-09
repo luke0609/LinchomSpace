@@ -342,6 +342,10 @@ public class ChatDetilActivity extends AppCompatActivity {
 
     private void doRemark() {
         String content = etRemark.getText().toString();
+        if("".equals(content)){
+            Toast.makeText(this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_topic_comments");
         params.addQueryStringParameter("topic_id", topicId);

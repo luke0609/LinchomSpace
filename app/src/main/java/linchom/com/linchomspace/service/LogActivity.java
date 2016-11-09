@@ -138,7 +138,14 @@ public class LogActivity extends AppCompatActivity {
         String title = etTitle.getText().toString().trim();
 
         String content = addContent.getText().toString().trim();
-
+        if("".equals(title)){
+            Toast.makeText(this, "标题不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if("".equals(content)){
+            Toast.makeText(this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_demand_services_log");
         params.addQueryStringParameter("user_id", 135+ "");
