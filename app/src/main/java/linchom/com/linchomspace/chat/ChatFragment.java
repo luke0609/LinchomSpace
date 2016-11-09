@@ -280,9 +280,29 @@ public class ChatFragment extends Fragment {
                     TextView tv_chat_title = viewHolder.getViewById(R.id.tv_title);
                     TextView remark_num = viewHolder.getViewById(R.id.remark_num);
                     NineGridTestLayout photo_show = viewHolder.getViewById(R.id.photo_show);
-
-
+                    ImageView user_logo=viewHolder.getViewById(R.id.user_logo);
                     tv_name.setText(itemsBean.getUser_name());
+                    switch (itemsBean.getUser_id()){
+                        case "129":
+                            user_logo.setImageResource(R.drawable.kid);
+                            break;
+                        case "135":
+                            user_logo.setImageResource(R.mipmap.avatar);
+
+                            break;
+                        case "140":
+                            user_logo.setImageResource(R.mipmap.avatar);
+                            break;
+                        case "142":
+                            user_logo.setImageResource(R.drawable.head1);
+
+                            break;
+                    }
+
+
+
+
+
                     tv_chat_name.setText(itemsBean.getTopic_name().trim());
                     tv_chat_title.setText(itemsBean.getCommunication_title());
                     int timeB = Integer.parseInt(itemsBean.getAdd_time());

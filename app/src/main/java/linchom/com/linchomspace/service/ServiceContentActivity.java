@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shizhefei.view.indicator.FixedIndicatorView;
@@ -33,6 +34,7 @@ public class ServiceContentActivity extends AppCompatActivity {
 
     private FixedIndicatorView indicator_service_head;
     private ViewPager vp_service_content;
+    private ImageView titlebar_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,10 @@ public class ServiceContentActivity extends AppCompatActivity {
 
 
         vp_service_content = ((ViewPager) findViewById(R.id.vp_service_content));
+
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
+
     }
 
     private void initData() {
@@ -109,6 +115,16 @@ public class ServiceContentActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
 
             }
         });

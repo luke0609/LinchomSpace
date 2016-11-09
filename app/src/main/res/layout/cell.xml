@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:id="@+id/linearLayout">
 
         <!-- content header line -->
         <RelativeLayout
@@ -289,12 +290,14 @@
 
     <!-- TITLE (FOLDED) LAYOUT (MUST BE AT LEAST 2x times SMALLER than content layout above) -->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bgContent"
         android:baselineAligned="false"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true">
 
         <!-- LEFT TITLE PART -->
         <RelativeLayout
@@ -327,6 +330,7 @@
                 android:layout_alignParentStart="true"
                 android:textColor="@android:color/white"
                 android:text="Today"
+                android:visibility="invisible"
                 android:textSize="14sp" />
 
             <TextView

@@ -79,7 +79,7 @@
             <RelativeLayout
                 android:id="@+id/rl_order_address"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:background="#ffffff"
 
 
@@ -134,13 +134,13 @@
                     />
 
                 <TextView
+                    android:layout_below="@id/tv_order_shoujianren"
                     android:id="@+id/tv_order_shouhuo"
                     android:text="收货地址:"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
 
                     android:textColor="@color/text_style"
 
-                    android:layout_alignTop="@id/iv_order_address"
                     android:layout_toRightOf="@id/iv_order_address"
                     android:layout_marginRight="10dp"
 
@@ -152,10 +152,13 @@
                     />
 
                 <TextView
+
+                    android:textSize="16sp"
+
                     android:id="@+id/tv_order_detailAddress"
                     android:layout_marginLeft="5dp"
 
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="50dp"
                     android:layout_toRightOf="@id/iv_order_address"
                     android:layout_below="@id/tv_order_shouhuo"
@@ -168,12 +171,23 @@
                     />
 
                 <ImageView
+                    android:src="@drawable/logo_home"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/tv_order_detailAddress"
+                    android:layout_alignParentBottom="true"
+                    android:scaleType="centerCrop"
+
+                    />
+
+                <ImageView
                     android:id="@+id/iv_goods_order_area"
                     android:src="@drawable/goods_order_enter"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
 
                     />
 

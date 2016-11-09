@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.chat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,7 @@ import java.util.Map;
 import linchom.com.linchomspace.MainActivity;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.photoutil.UploadBean;
 import me.iwf.photopicker.widget.MultiPickResultView;
 
@@ -44,12 +47,17 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
     private MultiPickResultView recycler_view;
     private String photoAddress="";
     private int count=0;
+    private String userId="";
+    private String username="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_publish_activiy);
         initView();
         StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userId = shared_prefs.getString("userId","");
+        username = shared_prefs.getString("username","");
     }
     private void initView() {
 
@@ -157,12 +165,12 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
         RequestParams params = new RequestParams("http://app.linchom.com/appapi.php");
         params.addQueryStringParameter("act", "add_topic");
-        params.addQueryStringParameter("user_id", 129 + "");
+        params.addQueryStringParameter("user_id",userId);
         params.addQueryStringParameter("topic_category",cardNumber);
         params.addQueryStringParameter("topic_category_id",value);
         params.addQueryStringParameter("topic_name",title);
         params.addQueryStringParameter("communication_title",content);
-        params.addQueryStringParameter("user_name","梁京生");
+        params.addQueryStringParameter("user_name",username);
         params.addQueryStringParameter("photo",photoAddress);
 
         System.out.println(params);

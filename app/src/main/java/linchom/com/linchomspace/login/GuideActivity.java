@@ -30,14 +30,14 @@ public class GuideActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guide);
 
 
-        final int[] points={R.id.iv_iv1,R.id.iv_iv2,R.id.iv_iv3,R.id.iv_iv4};
+
         btn_next= ((Button) findViewById(R.id.btn_next));
 
         List<Integer> imgs=new ArrayList<Integer>();
-        imgs.add(0,R.drawable.start_i1);
-        imgs.add(1,R.drawable.start_i2);
-        imgs.add(2,R.drawable.start_i3);
-        imgs.add(3,R.drawable.start_i4);
+        imgs.add(0,R.drawable.guide1);
+        imgs.add(1,R.drawable.guide2);
+        imgs.add(2,R.drawable.guide3);
+        imgs.add(3,R.drawable.guide4);
         vp = ((ViewPager) findViewById(R.id.vp_guide));
         vp.setPageTransformer(true, new DepthPageTransformer());
 
@@ -50,10 +50,9 @@ public class GuideActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                ((ImageView) findViewById(points[position])).setImageResource(R.drawable.point_black);
-                ((ImageView) findViewById(points[proviousPosition_vp])).setImageResource(R.drawable.point_gray);
+
                 proviousPosition_vp=position;
-                if (position==points.length-1){
+                if (position==3){
                     btn_next.setVisibility(View.VISIBLE);
                 }else{
                     btn_next.setVisibility(View.GONE);
@@ -71,6 +70,7 @@ public class GuideActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(GuideActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

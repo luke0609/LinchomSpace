@@ -45,7 +45,8 @@ import linchom.com.linchomspace.service.utils.IpUtil;
 import linchom.com.linchomspace.service.utils.ResUtil;
 import linchom.com.linchomspace.service.utils.WheelDialogFragment;
 
-
+import static linchom.com.linchomspace.R.id.content_category;
+import static linchom.com.linchomspace.R.id.title_category;
 
 
 public class ServiceFragment extends Fragment implements View.OnClickListener {
@@ -432,13 +433,19 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 TextView content_address= viewHolder.getViewById(R.id.content_address);
 
                 TextView content_service_type=viewHolder.getViewById(R.id.content_service_type);
+
+                TextView title_category=viewHolder.getViewById(R.id.title_category);
+                TextView content_category=viewHolder.getViewById(R.id.content_category);
+                content_category.setText(itemsBean.getTopic_category_name());
+                title_category.setText("【"+itemsBean.getTopic_category_name()+"】");
+                content_name.setText(itemsBean.getName());
+
                 service_city.setText(itemsBean.getCity_name());
                 title_title.setText(itemsBean.getTitle());
                 title_status.setText(("0".equals(itemsBean.getStatus()))? "进行中" :"已完成");
                 title_release.setText(("0".equals(itemsBean.getRelease()))? "公司" :"个人");
                 title_date.setText(itemsBean.getAdd_time());
 
-                content_name.setText(itemsBean.getUser_id());
                 content_content.setText(itemsBean.getContent());
                 content_mobile.setText(itemsBean.getMobile());
                 content_add_time.setText(itemsBean.getAdd_time());
@@ -545,13 +552,20 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
                 TextView content_address= viewHolder.getViewById(R.id.content_address);
 
                 TextView content_service_type=viewHolder.getViewById(R.id.content_service_type);
+
+                TextView title_category=viewHolder.getViewById(R.id.title_category);
+                TextView content_category=viewHolder.getViewById(R.id.content_category);
+                content_category.setText(itemsBean.getTopic_category_name());
+                title_category.setText("【"+itemsBean.getTopic_category_name()+"】");
+                content_name.setText(itemsBean.getName());
+
                 service_city.setText(itemsBean.getCity_name());
                 title_title.setText(itemsBean.getTitle());
                 title_status.setText(("0".equals(itemsBean.getStatus()))? "进行中" :"已完成");
                 title_release.setText(("0".equals(itemsBean.getRelease()))? "公司" :"个人");
                 title_date.setText(itemsBean.getAdd_time());
 
-                content_name.setText(itemsBean.getUser_id());
+
                 content_content.setText(itemsBean.getContent());
                 content_mobile.setText(itemsBean.getMobile());
                 content_add_time.setText(itemsBean.getAdd_time());
