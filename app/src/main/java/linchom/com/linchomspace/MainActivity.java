@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
     RadioButton[] tabs;
     int oldIndex;//用户看到的item
     int newIndex;//用户即将看到的item
-
+    public static MainActivity instance=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         StatusBarCompat.compat(this,Color.parseColor("#4EAFAB"));
-
+        instance = this;
 
 
         //初始化fragment

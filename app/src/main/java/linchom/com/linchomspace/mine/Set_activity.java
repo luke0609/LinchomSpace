@@ -14,6 +14,8 @@ import butterknife.OnClick;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.login.LoginActivity;
 
+import static linchom.com.linchomspace.MainActivity.instance;
+
 public class Set_activity extends AppCompatActivity {
 
 
@@ -51,6 +53,8 @@ public class Set_activity extends AppCompatActivity {
     public void onClick() {
         Intent intent =new Intent(Set_activity.this, LoginActivity.class);
         startActivity(intent);
+        instance.finish();
+        finish();
 
 
     }

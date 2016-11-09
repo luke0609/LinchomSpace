@@ -1,7 +1,9 @@
 package linchom.com.linchomspace.mine;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ import java.util.Locale;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.ChatDetilActivity;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
 import linchom.com.linchomspace.mine.pojo.MychatInfoBean;
 import linchom.com.linchomspace.photoutil.NineGridTestLayout;
@@ -52,6 +55,8 @@ public class MyChat_activity extends AppCompatActivity {
     private NineGridTestLayout ngtl_service_log_photo;
     private String photo;
     private String[] photos;
+    private String userId="";
+    private String username="";
 
 //    private ListView lv_myChatList;
 
@@ -62,7 +67,9 @@ public class MyChat_activity extends AppCompatActivity {
         lv_myChatList = ((PullToRefreshListView) findViewById(R.id.lv_myChatList));
         firstBar = ((ProgressBar) findViewById(R.id.firstBar));
 //        lv_myChatList = ((ListView) findViewById(R.id.lv_myChatList));
-
+        SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userId = shared_prefs.getString("userId","");
+        username = shared_prefs.getString("username","");
 //        System.out.println("onCreate");
         initView();
         initData();
@@ -186,8 +193,10 @@ public class MyChat_activity extends AppCompatActivity {
         if (page==1) {
             firstBar.setVisibility(View.VISIBLE);
         }
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=topic&user_id=135");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php");
         requestParams.addBodyParameter("verification","e0d017ef76c8510244ebe0191f5dde15" );
+        requestParams.addBodyParameter("act","topic");
+        requestParams.addBodyParameter("user_id",userId);
         requestParams.addBodyParameter("page",page+"");
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
