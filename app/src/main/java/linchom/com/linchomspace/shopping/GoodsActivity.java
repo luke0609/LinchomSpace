@@ -1149,7 +1149,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                 //做判断是立即购买 还是加入购物车
                 if(flagAdd==true){
                     //访问购物车列表
-
+                    flagAdd=false;
 
                     ergodicCart();
 
@@ -1160,7 +1160,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
                     btn_goods_joinCart.setEnabled(false);
 
 
-                    Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(),"加入成功",Toast.LENGTH_SHORT).show();
 
                     addCart(iv_goods_cart_rmb);
 
