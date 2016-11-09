@@ -264,7 +264,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnLayoutC
             // http://app.linchom.com/appapi.php?act=add_article_comment&user_name=%E5%BC%A0%E6%99%93%E6%96%87&user_id=135&article_id=120&email=2070118814@qq.com&content=%E8%AF%84%E8%AE%BA
             RequestParams params = new RequestParams(Constant.ArticleAddComment);
             params.addQueryStringParameter("user_name", userName);
-            Toast.makeText(getApplicationContext(), userName + "=====" + userId, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), userName + "=====" + userId, Toast.LENGTH_SHORT).show();
             params.addQueryStringParameter("article_id", article_id);
             params.addQueryStringParameter("user_id", userId);
             // params.addBodyParameter("email","2070118814@qq.com");
