@@ -1,9 +1,7 @@
 package linchom.com.linchomspace.mine;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -28,12 +26,12 @@ public class FeedBack_activity extends AppCompatActivity{
     private ImageView iv_fkback;
     private TextView b_ok;
     private EditText et_dis;
-//    private ImageView iv_post;
     ArrayList<String> list_photo;
     private MultiPickResultView post_view;
     private String photoAddress="";
     private int count=0;
     String photo="";
+    private String userId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,35 +45,6 @@ public class FeedBack_activity extends AppCompatActivity{
 
         post_view = ((MultiPickResultView) findViewById(R.id.post_view));
         post_view.init(this,MultiPickResultView.ACTION_SELECT,null);
-
-//        iv_post.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDialog();
-//            }
-//        });
-//    }
-//    public void showDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-////        builder.setMessage("");
-//        builder.setTitle("提示");
-//        builder.setPositiveButton("拍照", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-////                Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_LONG).show();
-//
-////            }
-//        });
-//
-//        builder.setNegativeButton("从相册选择照片", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        builder.show();
-
 
         b_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +94,7 @@ public class FeedBack_activity extends AppCompatActivity{
                 System.out.println(photoAddress);
                 System.out.println(count);
                 if (count==list_photo.size()){
-                  System.out.println("xxxxxxx");
+//                  System.out.println("xxxxxxx");
                     post();
                 }
             }
@@ -149,8 +118,11 @@ public class FeedBack_activity extends AppCompatActivity{
     public void post(){
         final String msg=et_dis.getText().toString();
 
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_add_customer&user_id=135&content=321321");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?");
         requestParams.addQueryStringParameter("msg",msg);
+        requestParams.addQueryStringParameter("user_id",userId);
+        requestParams.addQueryStringParameter("content","321321");
+        requestParams.addQueryStringParameter("act","user_add_customer");
         requestParams.addQueryStringParameter("photo",photoAddress);
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
 
