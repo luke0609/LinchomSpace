@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="0dp"
-            android:layout_marginRight="-100dp"
+            android:layout_marginRight="-50dp"
             android:scaleType="center"
             android:src="@mipmap/bk_lg"/>
 
