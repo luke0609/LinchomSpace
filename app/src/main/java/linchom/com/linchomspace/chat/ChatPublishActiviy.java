@@ -261,16 +261,41 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
             case R.id.btn_publish:
 
-                if(list_photo.isEmpty()){
-                    doPublish();
-                }else {
-                    for(int i=0; i<list_photo.size();i++){
-                        photoUpload(i);
+                if(et_title.getText().toString().length()==0||add_content.getText().toString().length()==0){
+                    Toast.makeText(getApplicationContext(),"请完善信息",Toast.LENGTH_SHORT).show();
 
+                }else{
+
+
+
+
+
+
+
+                    if(list_photo.isEmpty()){
+                        doPublish();
+                    }else {
+                        for(int i=0; i<list_photo.size();i++){
+                            photoUpload(i);
+
+
+                        }
 
                     }
 
+
+
+
                 }
+
+
+
+
+
+
+
+
+
 
 
 
