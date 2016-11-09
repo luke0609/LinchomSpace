@@ -1,12 +1,15 @@
 package linchom.com.linchomspace.mine.fragment;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +26,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
-import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.text.SimpleDateFormat;
@@ -35,18 +37,17 @@ import java.util.Locale;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.homepage.Activity.ArticleActivity;
 import linchom.com.linchomspace.homepage.Utils.xUtilsImageUtils;
-import linchom.com.linchomspace.mine.pojo.AlertsInfoBean;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.mine.pojo.ArticleInFoBean;
-import linchom.com.linchomspace.shopping.GoodsActivity;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
-
-import static linchom.com.linchomspace.R.id.iv_photo;
 
 /**
  * Created by lenovo on 2016/10/20.
  */
 public class news_fragment extends Fragment {
+
+    private static final String TAG = "news_fragment";
 
     List<ArticleInFoBean.DataBean.AItems> aItemsList=new ArrayList<ArticleInFoBean.DataBean.AItems>();
     private GoodsCommonAdapter<ArticleInFoBean.DataBean.AItems> aItemsGoodsCommonAdapter;
@@ -57,10 +58,20 @@ public class news_fragment extends Fragment {
     private static int mDelId = 0;
     private ImageView iv_photo;
 
+    private String userName;
+
+    private String userId;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.mine_newfragment,container,false);
+
+
+        SharedPreferences shared_prefs = getActivity().getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userName = shared_prefs.getString("username","");
+
+        userId = shared_prefs.getString("userId","");
 
         lv_news = ((PullToRefreshListView) view.findViewById(R.id.lv_news));
         firstBar = ((ProgressBar) view.findViewById(R.id.firstBar));
@@ -114,9 +125,13 @@ public class news_fragment extends Fragment {
         if (page==1) {
             firstBar.setVisibility(View.VISIBLE);
         }
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=collect_article&user_id=135");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=collect_article");
         requestParams.addBodyParameter("verification","e0d017ef76c8510244ebe0191f5dde15" );
         requestParams.addBodyParameter("page",page+"");
+
+        requestParams.addBodyParameter("user_id",userId+"");
+
+        Log.i(TAG,"requestParams"+requestParams);
 
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
@@ -191,7 +206,7 @@ public class news_fragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=drop_collect_article");
-                requestParams.addBodyParameter("user_id","135");
+                requestParams.addBodyParameter("user_id",userId+"");
                 requestParams.addBodyParameter("type","1");
                 requestParams.addBodyParameter("id",aItemsList.get(mDelId).article_id);
                 x.http().post(requestParams, new Callback.CommonCallback<String>() {
