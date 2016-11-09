@@ -1,6 +1,8 @@
 package linchom.com.linchomspace.mine;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,6 +21,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import linchom.com.linchomspace.R;
+import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 import linchom.com.linchomspace.shopping.GoodsAllOrderActivity;
 import linchom.com.linchomspace.shopping.GoodsCartActivity;
@@ -40,11 +43,15 @@ public class MineFragment extends Fragment {
     private TextView tv_office_phone;
     private TextView tv_home_phone;
     private TextView tv_mobile_phone;
+    private String userId="";
+    private String username="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view =inflater.inflate(R.layout.fragment_mine,null);
-
+        SharedPreferences shared_prefs = getActivity().getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
+        userId = shared_prefs.getString("userId","");
+        username = shared_prefs.getString("username","");
         ((ImageView)view.findViewById(R.id.iv_head)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +159,7 @@ public class MineFragment extends Fragment {
                 userInfoBean = bean.getData();
                 System.out.println("===777777==="+userInfoBean);
 //
-                 tv_user_name.setText(userInfoBean.getUser_name());
+                 tv_user_name.setText(username);
 //
             }
 
