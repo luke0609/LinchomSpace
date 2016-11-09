@@ -253,7 +253,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
         }else if(orderList==null&&orderCartList!=null){
 
 
-            Toast.makeText(getApplicationContext(),"购物车中内容",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(),"购物车中内容",Toast.LENGTH_SHORT).show();
 
 
 
