@@ -113,16 +113,16 @@ public class MyChat_activity extends AppCompatActivity {
 
             }
         });
-        List<String> urlList =new ArrayList<String>();
-        if(photo.length()!=0){
-            for(int i =0;i<photos.length;i++){
-                Log.i(TAG,"photos.length"+photos.length);
-                urlList.add(photos[i]);
-            }
-        }
-        if(photo.length()!=0){
-            ngtl_service_log_photo.setUrlList(urlList);
-        }
+//        List<String> urlList =new ArrayList<String>();
+//        if(photo.length()!=0){
+//            for(int i =0;i<photos.length;i++){
+//                Log.i(TAG,"photos.length"+photos.length);
+//                urlList.add(photos[i]);
+//            }
+//        }
+//        if(photo.length()!=0){
+//            ngtl_service_log_photo.setUrlList(urlList);
+//        }
 
         chatCommonAdapter=new GoodsCommonAdapter<MychatInfoBean.Mdata.Imtems>(getApplicationContext(), chatlist, R.layout.my_chat_items) {
             @Override
