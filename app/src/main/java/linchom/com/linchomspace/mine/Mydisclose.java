@@ -98,7 +98,7 @@ public class Mydisclose extends AppCompatActivity {
 
                 myDisclosList.addAll(mdata.items);
 
-                System.out.println("789900"+myDisclosList.get(myDisclosList.size()-1).getPhoto());
+//                System.out.println("789900"+myDisclosList.get(myDisclosList.size()-1).getPhoto());
                 initEnvent();
             }
 
@@ -124,8 +124,8 @@ public class Mydisclose extends AppCompatActivity {
         MydiscloseCommonAdapter=new GoodsCommonAdapter<MyDiscloseInfoBean.Databean.DItems>(getApplicationContext(),myDisclosList,R.layout.mydisclose_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, MyDiscloseInfoBean.Databean.DItems dItems, int position) {
-//               ImageView iv_photo= viewHolder.getViewById(R.id.iv_photo);
-//                x.image().bind(iv_photo,dItems.photo);
+                 NineGridTestLayout photo_show = viewHolder.getViewById(R.id.photo_show);
+                 photo_show.setIsShowAll(true);
                 TextView tv_biaoti=viewHolder.getViewById(R.id.tv_biaoti);
                 tv_biaoti.setText(dItems.title);
                 TextView discontent=viewHolder.getViewById(R.id.discontent);

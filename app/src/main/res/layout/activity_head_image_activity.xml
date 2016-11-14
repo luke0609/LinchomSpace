@@ -119,7 +119,7 @@
                         android:layout_centerVertical="true"
                         />
                     <EditText
-                        android:id="@+id/tv_user_name"
+                        android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="胡萝卜"

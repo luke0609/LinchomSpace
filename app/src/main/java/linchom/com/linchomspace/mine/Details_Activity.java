@@ -42,7 +42,7 @@ public class Details_Activity extends AppCompatActivity {
             Bundle bundle = data.getExtras();
             userInfoBean = (UserInfoBean.DataBean) bundle.getSerializable("user");
             System.out.println("userInfoBean" + userInfoBean);
-            tv_user_name.setText(userInfoBean.getUser_name());
+            tv_name.setText(userInfoBean.getName());
         }
     }
     @Override
@@ -70,6 +70,7 @@ public class Details_Activity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HeadImage_activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", userInfoBean);
+                System.out.println(userInfoBean);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,2);
             }
