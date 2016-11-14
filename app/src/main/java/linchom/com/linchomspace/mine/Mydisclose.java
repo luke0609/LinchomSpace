@@ -26,6 +26,7 @@ import java.util.Locale;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.mine.pojo.MyDiscloseInfoBean;
 import linchom.com.linchomspace.mine.pojo.MychatInfoBean;
+import linchom.com.linchomspace.photoutil.NineGridTestLayout;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
@@ -35,6 +36,7 @@ public class Mydisclose extends AppCompatActivity {
     private ListView lv_myDisclose;
     private ImageView iv_back;
     private static int mDelId;
+    NineGridTestLayout photo_show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,22 +67,44 @@ public class Mydisclose extends AppCompatActivity {
 
 
     private void initData() {
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=user_article&user_id=135");
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?");
+        requestParams.addBodyParameter("act","user_article");
+        requestParams.addBodyParameter("user_id","135");
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+//                System.out.println("onSuccess"+result);
 
+//                List<String> urllist=new ArrayList<>();
+//                if(myDisclosList.get(myDisclosList.size()-1).getPhoto()!=null&&(!"".equals(myDisclosList.get(myDisclosList.size()-1).getPhoto()))){
+//
+//                    String[] urls=myDisclosList.get(myDisclosList.size()-1).getPhoto().split(",");
+//                    for (int i = 0; i <urls.length ; i++) {
+//                        System.out.println("!!!"+urls[i]);
+//                        if ("0".equals(urls[i])){
+//                            continue;
+//                        }
+//
+//                        urllist.add(urls[i]);
+//                    }
+//                    photo_show.setUrlList(urllist);
+//                }else {
+//                    urllist.clear();
+//                    photo_show.setUrlList(urllist);
+//                }
                 Gson gson=new Gson();
                 MyDiscloseInfoBean bean=gson.fromJson(result,MyDiscloseInfoBean.class);
                 MyDiscloseInfoBean.Databean mdata=bean.data;
+
                 myDisclosList.addAll(mdata.items);
-//                System.out.println("789900"+myDisclosList);
+
+//                System.out.println("789900"+myDisclosList.get(myDisclosList.size()-1).getPhoto());
                 initEnvent();
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-//                System.out.println("00000000"+ex+"");
+
             }
 
             @Override
@@ -100,8 +124,8 @@ public class Mydisclose extends AppCompatActivity {
         MydiscloseCommonAdapter=new GoodsCommonAdapter<MyDiscloseInfoBean.Databean.DItems>(getApplicationContext(),myDisclosList,R.layout.mydisclose_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, MyDiscloseInfoBean.Databean.DItems dItems, int position) {
-               ImageView iv_photo= viewHolder.getViewById(R.id.iv_photo);
-                x.image().bind(iv_photo,dItems.photo);
+//                 NineGridTestLayout photo_show = viewHolder.getViewById(R.id.photo_show);
+//                 photo_show.setIsShowAll(true);
                 TextView tv_biaoti=viewHolder.getViewById(R.id.tv_biaoti);
                 tv_biaoti.setText(dItems.title);
                 TextView discontent=viewHolder.getViewById(R.id.discontent);

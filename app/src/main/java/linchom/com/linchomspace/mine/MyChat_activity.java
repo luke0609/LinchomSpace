@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.mobeta.android.dslv.DragSortListView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -34,11 +32,8 @@ import java.util.Locale;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.ChatDetilActivity;
 import linchom.com.linchomspace.login.contantData.Contant;
-import linchom.com.linchomspace.mine.pojo.LovedInfoBean;
 import linchom.com.linchomspace.mine.pojo.MychatInfoBean;
-import linchom.com.linchomspace.photoutil.NineGridTestLayout;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
-import linchom.com.linchomspace.shopping.goodsadapter.PuBuAdapter;
 import linchom.com.linchomspace.shopping.utils.GoodsViewHolder;
 
 public class MyChat_activity extends AppCompatActivity {
@@ -54,7 +49,6 @@ public class MyChat_activity extends AppCompatActivity {
     private static int mDelId = 0;
     private String userId="";
     private String username="";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +141,6 @@ public class MyChat_activity extends AppCompatActivity {
     }
 
     private void initEvent() {
-//        System.out.println("---------");
         chatCommonAdapter=new GoodsCommonAdapter<MychatInfoBean.Mdata.Imtems>(getApplicationContext(),chatlist,R.layout.my_chat_items) {
 
             @Override

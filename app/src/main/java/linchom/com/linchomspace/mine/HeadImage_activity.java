@@ -4,13 +4,10 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,9 +23,11 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,7 +40,7 @@ public class HeadImage_activity extends AppCompatActivity {
 
     public static final String TAG =" Details_Activity" ;
     private ImageView iv_back1;
-    private EditText tv_user_name;
+    private EditText tv_name;
     private TextView tv_sex;
     private TextView tv_birthday;
     private EditText tv_email;
@@ -77,7 +76,7 @@ public class HeadImage_activity extends AppCompatActivity {
         }
 
          iv_user_photo=((ImageView) findViewById(R.id.iv_user_photo));
-        tv_user_name = ((EditText)findViewById(R.id.tv_user_name));
+        tv_name = ((EditText)findViewById(R.id.tv_name));
         tv_sex = ((TextView) findViewById(R.id.tv_add));
         tv_birthday = ((TextView) findViewById(R.id.tv_birthday1));
         tv_email = ((EditText) findViewById(R.id.tv_email));
@@ -121,7 +120,7 @@ public class HeadImage_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-//                System.out.println("onCreatefinish");
+
             }
         });
 
@@ -131,8 +130,9 @@ public class HeadImage_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),Details_Activity.class);
                 Bundle bundle=new Bundle();
-                uploadImage();
-                System.out.println("dataBean"+dataBean);
+                upData();
+//                uploadImage();
+//                System.out.println("dataBean"+dataBean);
                 bundle.putSerializable("user",dataBean);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,2);
@@ -178,7 +178,7 @@ public class HeadImage_activity extends AppCompatActivity {
         Intent intent=getIntent();
         dataBean= (UserInfoBean.DataBean) intent.getSerializableExtra("user");
         System.out.println("dataBean"+dataBean);
-        tv_user_name.setText(dataBean.getUser_name());
+        tv_name.setText(dataBean.getName());
         tv_sex.setText(dataBean.getSex().equals("1")?"男":"女");
         tv_birthday.setText(dataBean.getBirthday());
         tv_email.setText(dataBean.getEmail());
@@ -215,21 +215,6 @@ public class HeadImage_activity extends AppCompatActivity {
                 }
                 break;
 
-//            case 2:
-//
-//                if (data != null) {
-//
-//                    Bitmap bitmap = data.getParcelableExtra("data");
-//
-//                    iv_image.setImageBitmap(bitmap);
-//
-//                } else {
-//                    System.out.println("000000"+ data);
-////                    Log.e(TAG, "CHOOSE_SMALL_PICTURE: data = " + data);
-//
-//                }
-//
-//                break;
         }
     }
 
@@ -239,11 +224,29 @@ public class HeadImage_activity extends AppCompatActivity {
         return sdf.format(date) + ".png";
     }
 
+    String s=null;
     //显示图片，上传服务器
     public void showImage(Bitmap bitmap) {
         iv_user_photo.setImageBitmap(bitmap);//iv显示图片
         saveImage(bitmap);//保存文件
         System.out.println("file"+file);
+        System.out.println("begin");
+       /* FileInputStream inputStream= null;
+        try {
+            FileInputStream is = new FileInputStream(file+"");
+            byte[] b = new byte[9024];
+            int len;
+            while((len=is.read(b))!=-1){
+                s=new String(b,0,len);
+                System.out.println(s);
+            }
+            is.close();
+            System.out.println("end");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         //uploadImage();//上传服务器
     }
 
@@ -252,6 +255,7 @@ public class HeadImage_activity extends AppCompatActivity {
         RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php");
         requestParams.addBodyParameter("act", "uploadimage");
         requestParams.addBodyParameter("photo",new File(file+""));
+        requestParams.addBodyParameter("image",s);
 
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
@@ -262,7 +266,7 @@ public class HeadImage_activity extends AppCompatActivity {
                 photo=bean.getData();
                 photoAddress=photoAddress+photo+"";
                 System.out.println(photo);
-                upData(photo);
+//                upData(photo);
 
 
             }
@@ -312,9 +316,9 @@ public class HeadImage_activity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, fos);
     }
 
-    public void upData(String url){
+    public void upData(){
 
-        String name=tv_user_name.getText().toString();
+        String name=tv_name.getText().toString();
         String sex=tv_sex.getText().toString();
         String birthday= tv_birthday.getText().toString();
         String[] birthdaies = birthday.split("-");
@@ -324,42 +328,31 @@ public class HeadImage_activity extends AppCompatActivity {
         String mobilePhone=tv_mobile_phone.getText().toString();
         dataBean=new UserInfoBean.DataBean(name,email,sex,birthday,officePhone,homePhone,mobilePhone);
 //        Gson gson=new Gson();
-////      String userJson=gson.toJson(mUser);
-        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=edituserinfo&user_id=135");
-        //requestParams.addBodyParameter("user_name","张晓文");
-        //requestParams.addQueryStringParameter("mUser",userJson);
-        //requestParams.addQueryStringParameter("email",email);
-        requestParams.addQueryStringParameter("user_name",name);
+//        String userJson=gson.toJson(dataBean);
+        RequestParams requestParams=new RequestParams("http://app.linchom.com/appapi.php?act=edituserinfo");
+            requestParams.addBodyParameter("user_id","135");
+//            requestParams.addQueryStringParameter("user",userJson);
+        requestParams.addQueryStringParameter("email",email);
+        requestParams.addQueryStringParameter("name",name);
         requestParams.addQueryStringParameter("sex",sex.equals("男")?"1":"0");
         requestParams.addQueryStringParameter("birthdayYear",birthdaies[0]);
         requestParams.addQueryStringParameter("birthdayMonth",birthdaies[1]);
         requestParams.addQueryStringParameter("birthdayDay",birthdaies[2]);
+        requestParams.addQueryStringParameter("birthday",birthday);
         requestParams.addQueryStringParameter("photo",photo);
-
+        requestParams.addBodyParameter("office_phone",officePhone);
+        requestParams.addBodyParameter("mobile_phone",mobilePhone);
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
-                System.out.println("6666666666666666"+result);
+//               System.out.println("6666666666666666"+result);
 
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 System.out.println("error=="+ex+"");
-//                Log.e("error",ex.getMessage().toString());
-//                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
-//                if (ex instanceof HttpException) { // 网络错误
-//                    HttpException httpEx = (HttpException) ex;
-//                    int responseCode = httpEx.getCode();
-//                    String responseMsg = httpEx.getMessage();
-//                    String errorResult = httpEx.getResult();
-//                    Log.e("网络错误",ex.getMessage().toString());
-//                    // ...
-//                } else { // 其他错误
-//
-//                    Log.e("其他错误",ex.getMessage().toString());
-//                    // ...
-//                }
+
             }
 
             @Override
@@ -391,14 +384,7 @@ public class HeadImage_activity extends AppCompatActivity {
             }
         });
         builder.show();
-//        new AlertDialog.Builder(this).setTitle("单选框").setIcon(
-//                android.R.drawable.ic_dialog_info).setSingleChoiceItems(
-//                new String[] { "Item1", "Item2" }, 0,
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-////                        dialog.dismiss();
-//                    }
-//                }).setNegativeButton("取消", null).show();
+
 
     }
 

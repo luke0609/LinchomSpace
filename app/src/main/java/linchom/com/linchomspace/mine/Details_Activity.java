@@ -19,15 +19,6 @@ import linchom.com.linchomspace.mine.pojo.UserInfoBean;
 
 public class Details_Activity extends AppCompatActivity {
 
-    //相机拍摄照片和视频的标准目录
-//    private File file;
-//    private Uri imageUri;
-//
-//    String items[]={"相册选择","拍照"};
-//    public static final int SELECT_PIC=11;
-//    public static final int TAKE_PHOTO=12;
-//    public static final int CROP=13;
-
     UserInfoBean.DataBean userInfoBean;
     public static final String TAG = " Details_Activity";
 
@@ -42,6 +33,8 @@ public class Details_Activity extends AppCompatActivity {
     private TextView tv_office_phone;
     private TextView tv_home_phone;
     private TextView tv_mobile_phone;
+    private  TextView tv_name;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         System.out.println("userInfoBean111" + userInfoBean);
@@ -49,7 +42,7 @@ public class Details_Activity extends AppCompatActivity {
             Bundle bundle = data.getExtras();
             userInfoBean = (UserInfoBean.DataBean) bundle.getSerializable("user");
             System.out.println("userInfoBean" + userInfoBean);
-            tv_user_name.setText(userInfoBean.getUser_name());
+            tv_name.setText(userInfoBean.getName());
         }
     }
     @Override
@@ -63,6 +56,7 @@ public class Details_Activity extends AppCompatActivity {
         tv_sex = ((TextView) findViewById(R.id.tv_add));
         tv_birthday = ((TextView) findViewById(R.id.tv_birthday));
         tv_email = ((TextView) findViewById(R.id.tv_email));
+        tv_name = (TextView) findViewById(R.id.tv_name);
         iv_user_photo = ((ImageView) findViewById(R.id.iv_user_photo));
         tv_office_phone = ((TextView) findViewById(R.id.tv_office_phone));
         tv_mobile_phone = ((TextView) findViewById(R.id.tv_mobile_phone));
@@ -76,47 +70,13 @@ public class Details_Activity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HeadImage_activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", userInfoBean);
+                System.out.println(userInfoBean);
                 intent.putExtras(bundle);
                 startActivityForResult(intent,2);
             }
         });
 
-//        iv_user_photo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new AlertDialog.Builder(getApplicationContext()).setTitle("选择").setItems(items,new DialogInterface.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // TODO Auto-generated method stub
-//
-//                        switch(which){
-//                            case 0:
-//
-//                                //相册选择
-//                                Intent intent = new Intent(Intent.ACTION_PICK, null);
-//                                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                                        "image/*");
-//                                startActivityForResult(intent, SELECT_PIC);
-//
-//                                break;
-//
-//
-//                            case 1:
-//
-//                                //拍照:
-//                                Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//
-//                                intent2.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-//                                startActivityForResult(intent2,TAKE_PHOTO);
-//
-//                                break;
-//                        }
-//                    }
-//                }).show();
-//
-//            }
-//        });
+
 
         initData();
 
@@ -124,16 +84,16 @@ public class Details_Activity extends AppCompatActivity {
 
 
 
-//    public void getData(){
-//        String name=tv_user_name.getText().toString();
-//        String sex=tv_sex.getText().toString();
-//        String birthday=tv_birthday.getText().toString();
-//        String email=tv_email.getText().toString();
-//        String office_phone=tv_office_phone.getText().toString();
-//        String home_office=tv_home_phone.getText().toString();
-//        String mobile_phone=tv_mobile_phone.getText().toString();
-//        userInfoBean=new UserInfoBean.DataBean(name,email,sex,birthday,office_phone,home_office,mobile_phone);
-//    }
+    public void getData(){
+        String name=tv_name.getText().toString();
+        String sex=tv_sex.getText().toString();
+        String birthday=tv_birthday.getText().toString();
+        String email=tv_email.getText().toString();
+        String office_phone=tv_office_phone.getText().toString();
+        String home_office=tv_home_phone.getText().toString();
+        String mobile_phone=tv_mobile_phone.getText().toString();
+        userInfoBean=new UserInfoBean.DataBean(name,email,sex,birthday,office_phone,home_office,mobile_phone);
+    }
 
     public void initData() {
 
@@ -155,7 +115,7 @@ public class Details_Activity extends AppCompatActivity {
 //                System.out.println("======" + userInfoBean);
                 x.image().bind(iv_user_photo,userInfoBean.getUser_photo());
                 tv_mobile_phone.setText(userInfoBean.getMobile_phone());
-                tv_user_name.setText(userInfoBean.getUser_name());
+                tv_name.setText(userInfoBean.getName());
                 tv_birthday.setText(userInfoBean.getBirthday());
                 tv_email.setText(userInfoBean.getEmail());
                 tv_office_phone.setText(userInfoBean.getOffice_phone());
