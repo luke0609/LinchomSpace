@@ -73,25 +73,25 @@ public class Mydisclose extends AppCompatActivity {
         x.http().post(requestParams, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                System.out.println("onSuccess"+result);
+//                System.out.println("onSuccess"+result);
 
-                List<String> urllist=new ArrayList<>();
-                if(myDisclosList.get(myDisclosList.size()-1).getPhoto()!=null&&(!"".equals(myDisclosList.get(myDisclosList.size()-1).getPhoto()))){
-
-                    String[] urls=myDisclosList.get(myDisclosList.size()-1).getPhoto().split(",");
-                    for (int i = 0; i <urls.length ; i++) {
-                        System.out.println("!!!"+urls[i]);
-                        if ("0".equals(urls[i])){
-                            continue;
-                        }
-
-                        urllist.add(urls[i]);
-                    }
-                    photo_show.setUrlList(urllist);
-                }else {
-                    urllist.clear();
-                    photo_show.setUrlList(urllist);
-                }
+//                List<String> urllist=new ArrayList<>();
+//                if(myDisclosList.get(myDisclosList.size()-1).getPhoto()!=null&&(!"".equals(myDisclosList.get(myDisclosList.size()-1).getPhoto()))){
+//
+//                    String[] urls=myDisclosList.get(myDisclosList.size()-1).getPhoto().split(",");
+//                    for (int i = 0; i <urls.length ; i++) {
+//                        System.out.println("!!!"+urls[i]);
+//                        if ("0".equals(urls[i])){
+//                            continue;
+//                        }
+//
+//                        urllist.add(urls[i]);
+//                    }
+//                    photo_show.setUrlList(urllist);
+//                }else {
+//                    urllist.clear();
+//                    photo_show.setUrlList(urllist);
+//                }
                 Gson gson=new Gson();
                 MyDiscloseInfoBean bean=gson.fromJson(result,MyDiscloseInfoBean.class);
                 MyDiscloseInfoBean.Databean mdata=bean.data;
@@ -124,8 +124,8 @@ public class Mydisclose extends AppCompatActivity {
         MydiscloseCommonAdapter=new GoodsCommonAdapter<MyDiscloseInfoBean.Databean.DItems>(getApplicationContext(),myDisclosList,R.layout.mydisclose_item) {
             @Override
             public void convert(GoodsViewHolder viewHolder, MyDiscloseInfoBean.Databean.DItems dItems, int position) {
-                 NineGridTestLayout photo_show = viewHolder.getViewById(R.id.photo_show);
-                 photo_show.setIsShowAll(true);
+//                 NineGridTestLayout photo_show = viewHolder.getViewById(R.id.photo_show);
+//                 photo_show.setIsShowAll(true);
                 TextView tv_biaoti=viewHolder.getViewById(R.id.tv_biaoti);
                 tv_biaoti.setText(dItems.title);
                 TextView discontent=viewHolder.getViewById(R.id.discontent);
