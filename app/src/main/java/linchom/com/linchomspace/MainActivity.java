@@ -1,7 +1,9 @@
 package linchom.com.linchomspace;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     int oldIndex;//用户看到的item
     int newIndex;//用户即将看到的item
     public static MainActivity instance=null;
+    boolean intentFlag=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,37 +67,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.f1_content, fragments[0]).commit();
         //初始时，按钮1选中
         tabs[0].setChecked(true);
-        int id=getIntent().getIntExtra("id",0);
-        int idchat=getIntent().getIntExtra("idchat",0);
-        int idpchat=getIntent().getIntExtra("idpchat",0);
-        String pdId=getIntent().getStringExtra("pdId");
-        String chatId=getIntent().getStringExtra("chatId");
-        String pchatId=getIntent().getStringExtra("pchatId");
-        //Toast.makeText(MainActivity.this,pdId+id,Toast.LENGTH_SHORT).show();
-        if(id==1){
-            Bundle bundle=new Bundle();
-            bundle.putString("PdId",pdId);
-            fragments[0].setArguments(bundle);
-            //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
-           addshow(0);
-            tabs[0].setChecked(true);
-        }
-        if(idchat==1){
-            Bundle bundle=new Bundle();
-            bundle.putString("chatId",chatId);
-            fragments[3].setArguments(bundle);
-            addshow(3);
-            tabs[3].setChecked(true);
-            //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
-        }
-        if(idpchat==1){
-            Bundle bundle=new Bundle();
-            bundle.putString("chatId",pchatId);
-            fragments[3].setArguments(bundle);
-            addshow(3);
-            tabs[3].setChecked(true);
-            //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
-        }
+
+
 
     }
 
@@ -107,6 +82,70 @@ public class MainActivity extends AppCompatActivity {
 //      }
 //    }
 
+    protected void onNewIntent(Intent intent) {
+        //每次重新到前台就主动更新intent并保存，之后就能获取到最新的intent
+        setIntent(intent);
+        super.onNewIntent(intent);
+        System.out.println("onNewIntent");
+        intentFlag=true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (intentFlag) {
+            intentFlag=false;
+            int id = 0;
+            int idchat = 0;
+            int idpchat = 0;
+            id = getIntent().getIntExtra("id", 0);
+            idchat = getIntent().getIntExtra("idchat", 0);
+            idpchat = getIntent().getIntExtra("idpchat", 0);
+            System.out.println(idchat + "22222");
+
+            String pdId = getIntent().getStringExtra("pdId");
+            final String chatId = getIntent().getStringExtra("chatId");
+            String pchatId = getIntent().getStringExtra("pchatId");
+            //Toast.makeText(MainActivity.this,pdId+id,Toast.LENGTH_SHORT).show();
+            if (id == 1) {
+
+
+                //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[0]).commit();
+                addshow(0);
+                tabs[0].setChecked(true);
+                homeFragment.pageChange(pdId);
+                id = 0;
+            }
+            if (idchat == 1) {
+
+                addshow(3);
+                tabs[3].setChecked(true);
+                Handler x = new Handler();
+                x.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatFragment.pageChange(chatId);
+                    }
+                }, 200);
+                idchat = 0;
+                //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
+            }
+            if (idpchat == 1) {
+
+
+
+                //   fragments[3].setArguments(bundle);
+                addshow(3);
+                tabs[3].setChecked(true);
+
+                chatFragment.pageChange(pchatId);
+                idpchat = 0;
+
+                //this.getSupportFragmentManager().beginTransaction().replace(R.id.f1_content, fragments[3]).commit();
+            }
+
+        }
+    }
     //按钮的点击事件:选中不同的按钮，不同的fragment显示
     public void onTabClicked(View view) {
 

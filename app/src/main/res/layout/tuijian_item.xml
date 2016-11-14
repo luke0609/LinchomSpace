@@ -19,6 +19,8 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
         android:text="慢行关西，画在关东--元气霓虹的西东之旅"
         android:layout_alignParentLeft="true"
         android:textColor="@color/text_style"

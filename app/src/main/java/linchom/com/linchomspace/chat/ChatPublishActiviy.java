@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,9 +30,12 @@ import java.util.Map;
 import linchom.com.linchomspace.MainActivity;
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
+import linchom.com.linchomspace.homepage.Activity.NavigationActivity;
 import linchom.com.linchomspace.login.contantData.Contant;
 import linchom.com.linchomspace.photoutil.UploadBean;
 import me.iwf.photopicker.widget.MultiPickResultView;
+
+import static android.R.attr.y;
 
 public class ChatPublishActiviy extends AppCompatActivity implements View.OnClickListener{
     private Spinner sp_topic;
@@ -208,6 +212,7 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
                 }
                 if(cardNumber.equals("VR/AR")){
                     topubchat("8");
+                    Toast.makeText(ChatPublishActiviy.this, "=="+cardNumber, Toast.LENGTH_SHORT).show();
                 }
                 if(cardNumber.equals("协议标准")){
                     topubchat("9");
@@ -224,10 +229,9 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
                 if(cardNumber.equals("其他")){
                     topubchat("13");
                 }
-
-
-
                 finish();
+
+
             }
 
             @Override
@@ -251,8 +255,13 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
         Intent intent = new Intent(ChatPublishActiviy.this, MainActivity.class);
         intent.putExtra("idpchat", 1);
         intent.putExtra("pchatId",pchatId);
+        //Toast.makeText(ChatPublishActiviy.this, pchatId, Toast.LENGTH_SHORT).show();
         startActivity(intent);
-        finish();
+//        intent.putExtra("idchat", 1);
+//        intent.putExtra("chatId",pchatId);
+//        startActivity(intent);
+
+
     }
 
     @Override
@@ -265,11 +274,6 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
                     Toast.makeText(getApplicationContext(),"请完善信息",Toast.LENGTH_SHORT).show();
 
                 }else{
-
-
-
-
-
 
 
                     if(list_photo.isEmpty()){
@@ -287,16 +291,6 @@ public class ChatPublishActiviy extends AppCompatActivity implements View.OnClic
 
 
                 }
-
-
-
-
-
-
-
-
-
-
 
 
                 break;

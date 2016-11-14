@@ -62,7 +62,7 @@ public class ChatFragment extends Fragment {
     private int pageCount = 1;
     private int startPage = 1;
     private CircularProgress CircularProgress;
-
+    CommonAdapter<TopicList.DataBean.ItemsBean> adapter = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +84,14 @@ public class ChatFragment extends Fragment {
         super.onStop();
         // bannerComponent.stopAutoPlay();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("onResume+1");
+    }
+
+
 
     private void initView() {
         to_publish = ((ImageView) view1.findViewById(R.id.chat_search));
@@ -124,60 +132,128 @@ public class ChatFragment extends Fragment {
         //  indicatorViewPager.setCurrentItem(5,true);
 
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            chatId = bundle.getString("chatId");
-            
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            chatId = bundle.getString("chatId");
+//
+//            switch (chatId) {
+//                case "0":
+//                    indicatorViewPager.setCurrentItem(0, true);
+//                    break;
+//                case "1":
+//                    indicatorViewPager.setCurrentItem(1, true);
+//                    break;
+//                case "2":
+//                    indicatorViewPager.setCurrentItem(2, true);
+//                    break;
+//                case "3":
+//                    indicatorViewPager.setCurrentItem(3, true);
+//                    break;
+//                case "4":
+//                    indicatorViewPager.setCurrentItem(4, true);
+//                    break;
+//                case "5":
+//                    indicatorViewPager.setCurrentItem(5, true);
+//                    break;
+//                case "6":
+//                    indicatorViewPager.setCurrentItem(6, true);
+//                    break;
+//                case "7":
+//                    indicatorViewPager.setCurrentItem(7, true);
+//                    break;
+//                case "8":
+//                    indicatorViewPager.setCurrentItem(8, true);
+//                    break;
+//                case "9":
+//                    indicatorViewPager.setCurrentItem(9, true);
+//                    break;
+//                case "10":
+//                    indicatorViewPager.setCurrentItem(10, true);
+//                    break;
+//                case "11":
+//                    indicatorViewPager.setCurrentItem(11, true);
+//                    break;
+//                case "12":
+//                    indicatorViewPager.setCurrentItem(12, true);
+//                    break;
+//                case "13":
+//                    indicatorViewPager.setCurrentItem(13, true);
+//                    break;
+//                case "14":
+//                    indicatorViewPager.setCurrentItem(14, true);
+//                    break;
+//
+//            }
+//
+//        }
+
+
+    }
+    public void pageChange(String chatId){
             switch (chatId) {
                 case "0":
                     indicatorViewPager.setCurrentItem(0, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "1":
                     indicatorViewPager.setCurrentItem(1, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "2":
                     indicatorViewPager.setCurrentItem(2, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "3":
                     indicatorViewPager.setCurrentItem(3, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "4":
                     indicatorViewPager.setCurrentItem(4, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "5":
                     indicatorViewPager.setCurrentItem(5, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "6":
                     indicatorViewPager.setCurrentItem(6, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "7":
                     indicatorViewPager.setCurrentItem(7, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "8":
                     indicatorViewPager.setCurrentItem(8, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "9":
                     indicatorViewPager.setCurrentItem(9, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "10":
                     indicatorViewPager.setCurrentItem(10, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "11":
                     indicatorViewPager.setCurrentItem(11, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "12":
                     indicatorViewPager.setCurrentItem(12, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "13":
                     indicatorViewPager.setCurrentItem(13, true);
+                    adapter.notifyDataSetChanged();
                     break;
                 case "14":
                     indicatorViewPager.setCurrentItem(14, true);
+                    adapter.notifyDataSetChanged();
                     break;
 
             }
 
-        }
 
 
     }
@@ -269,7 +345,7 @@ public class ChatFragment extends Fragment {
             pageCount = 1;
             final PullToRefreshListView listView = ((PullToRefreshListView) convertView.findViewById(R.id.lv));
             final List<TopicList.DataBean.ItemsBean> topicList = new ArrayList<>();
-            final CommonAdapter<TopicList.DataBean.ItemsBean> adapter = new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
+                adapter = new CommonAdapter<TopicList.DataBean.ItemsBean>(getActivity().getApplicationContext(), topicList, R.layout.topiclist_layout) {
 
 
                 @Override
