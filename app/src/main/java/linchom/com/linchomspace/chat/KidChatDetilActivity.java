@@ -77,7 +77,7 @@ public class KidChatDetilActivity extends AppCompatActivity {
         userId = shared_prefs.getString("userId","");
         username = shared_prefs.getString("username","");
         ButterKnife.inject(this);
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
         initView();
         getData();
     }
