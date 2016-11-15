@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.1'
@@ -21,7 +20,7 @@ android {
                 dirs 'libs'
             }
         }
-        lintOptions{
+        lintOptions {
             checkReleaseBuilds false
             abortOnError false
         }
@@ -47,10 +46,16 @@ android {
         compile 'com.github.devlight.shadowlayout:library:1.0.2'
         compile 'com.twotoasters.jazzylistview:library:1.2.1'
         compile(name: 'library-debug', ext: 'aar')
-        compile'com.ramotion.foldingcell:folding-cell:1.0.1'
-        compile'com.github.glassLake:PhotoPicker:1.0.2'
+        compile 'com.ramotion.foldingcell:folding-cell:1.0.1'
+        compile 'com.github.glassLake:PhotoPicker:1.0.2'
         compile 'com.romainpiel.shimmer:library:1.4.0@aar'
         compile 'info.hoang8f:fbutton:1.0.5'
 
+        compile files('libs/alipaySdk-20161009.jar')
+
     }
+}
+
+dependencies {
+    compile files('libs/alipaySdk-20161009.jar')
 }

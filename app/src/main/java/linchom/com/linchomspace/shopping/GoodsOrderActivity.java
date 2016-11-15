@@ -1,11 +1,17 @@
 package linchom.com.linchomspace.shopping;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -28,10 +35,13 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import linchom.com.linchomspace.R;
 import linchom.com.linchomspace.chat.util.StatusBarCompat;
 import linchom.com.linchomspace.login.contantData.Contant;
+import linchom.com.linchomspace.shopping.alipay.OrderInfoUtil2_0;
+import linchom.com.linchomspace.shopping.alipay.PayResult;
 import linchom.com.linchomspace.shopping.contant.GoodsHttpUtils;
 import linchom.com.linchomspace.shopping.goodsadapter.GoodsCommonAdapter;
 import linchom.com.linchomspace.shopping.pojo.AreaListBean;
@@ -43,6 +53,69 @@ import linchom.com.linchomspace.shopping.utils.GoodsXUtilsImage;
 import linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview;
 
 public class GoodsOrderActivity extends AppCompatActivity {
+
+
+    /** 支付宝支付业务：入参app_id */
+    public static final String APPID = "2016011801101432";
+
+    /** 支付宝账户登录授权业务：入参pid值 */
+    //public static final String PID = "2088911117593113";
+    /** 支付宝账户登录授权业务：入参target_id值 */
+    //public static final String TARGET_ID = "xiaozh2012@foxmail.com";
+
+    /** 商户私钥，pkcs8格式 */
+    public static final String RSA_PRIVATE =
+            "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAMjJMt7bID3QHnP7\n" +
+                    "224YQZBLZwYp3IPuHpmV3dm6KuOWmRtTCieM69ZfIU01WTH20mFzeXG1jLh2pCLD\n" +
+                    "gMFcqk7JpgcRRxB7rlb/Cjbfkvf7etAEo9CkXJkNUIH1wWp479L7kW86sEArTB5c\n" +
+                    "+qVZty4LG+znPL/aEvGCe6Hp9jMNAgMBAAECgYBZ0yDt8Cv5W0z0aF0fYLycGA+M\n" +
+                    "A1hCsVmBLjmkuROM44e1YK3vSa0MJ1zXlKFFp/0wWZ+gDi9ZKsJ9RucoGhOaBmWW\n" +
+                    "b1b9fBJ6QgCZK5AJwtvJFdHVxAuJgwPqajzGT5ooA9dsnEfoFK+Yv3NuHkkXLfBF\n" +
+                    "Xnp6Tz6dbOelY8W9pQJBAPMONmmgTQLpMgmS8fM/SDY1L2pLUcGHYVBe99vm8tk+\n" +
+                    "ibIv0Fj26b4Jsb1Rmwv//rOxLjejVSDQ26JXk3nZpGcCQQDTerAoH6LDS0r4xsJ4\n" +
+                    "+QP2A/DDC0lIwOUCuOTqmL19g2ESRdL+f6UpovKb1ZeifzqqgJsf42I0QFMWfD4M\n" +
+                    "ICRrAkByGPDoIs0kGa5YmjekVcejUtJAVr05WUEQhpRaEY9c9iOTlyh6KubNRCXA\n" +
+                    "1scvGexKFFm62pzCu+juy6e6YrXvAkB5pX8i9V+ouuy7QYmoEIVoxEd/ykQzZ1HU\n" +
+                    "SQrUr1uAkUwLOMLvxfj5hFPNtAVvYYQbg7K3mxJoQAALVRhT3UFVAkBCMyCh8B7S\n" +
+                    "NaIYHWHaMwQqDhpWKHE6yvNR/VlWSPFpVZRQhRiGpxBAdJtPtranfd/GQfZUEwL7\n" +
+                    "Vt3VA7SadSHD";
+
+    private static final int SDK_PAY_FLAG = 1;
+    //private static final int SDK_AUTH_FLAG = 2;
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        Toast.makeText(GoodsOrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        Toast.makeText(GoodsOrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+
+                default:
+                    break;
+            }
+        }
+    };
+
+
+
+
 
     private static final String TAG = "GoodsOrderActivity";
     private String goodsNum;
@@ -583,6 +656,42 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     OrderSuccessBean orderSuccessBean =  gson.fromJson(result, OrderSuccessBean.class);
 
                     Toast.makeText(getApplicationContext(),"提交成功,订单号:"+orderSuccessBean.data.order_id,Toast.LENGTH_SHORT).show();
+
+
+                    if (TextUtils.isEmpty(APPID) || TextUtils.isEmpty(RSA_PRIVATE)) {
+                        new AlertDialog.Builder(getApplicationContext()).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialoginterface, int i) {
+                                        //
+                                        finish();
+                                    }
+                                }).show();
+                        return;
+                    }
+
+
+                    Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID);
+                    String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+                    String sign = OrderInfoUtil2_0.getSign(params, RSA_PRIVATE);
+                    final String orderInfo = orderParam + "&" + sign;
+
+                    Runnable payRunnable = new Runnable() {
+
+                        @Override
+                        public void run() {
+                            PayTask alipay = new PayTask(GoodsOrderActivity.this);
+                            Map<String, String> result = alipay.payV2(orderInfo, true);
+                            Log.i("msp", result.toString());
+
+                            Message msg = new Message();
+                            msg.what = SDK_PAY_FLAG;
+                            msg.obj = result;
+                            mHandler.sendMessage(msg);
+                        }
+                    };
+
+                    Thread payThread = new Thread(payRunnable);
+                    payThread.start();
 
                     //调用支付宝？
 
