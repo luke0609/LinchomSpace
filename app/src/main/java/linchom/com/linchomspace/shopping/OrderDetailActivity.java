@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private ListView lv_orderInfo_orderList;
 
     private GoodsCommonAdapter<GoodsOrderFormBean.OrderInfo> goodsCommonAdapter;
+    private ImageView titlebar_back;
 
 
     @Override
@@ -95,6 +97,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         tv_orderInfo_address = ((TextView) findViewById(R.id.tv_orderInfo_address));
 
         lv_orderInfo_orderList = ((ListView) findViewById(R.id.lv_orderInfo_orderList));
+
+        titlebar_back = ((ImageView) findViewById(R.id.titlebar_back));
 
     }
 
@@ -150,6 +154,13 @@ public class OrderDetailActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        titlebar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
 
 
