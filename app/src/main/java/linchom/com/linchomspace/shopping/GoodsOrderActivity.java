@@ -175,7 +175,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_order);
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
 
 
 

@@ -58,7 +58,7 @@ public class GoodsAllOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_all_order);
 
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
 
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);
