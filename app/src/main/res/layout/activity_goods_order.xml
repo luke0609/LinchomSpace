@@ -171,7 +171,7 @@
                     />
 
                 <ImageView
-                    android:src="@drawable/logo_home"
+                    android:src="@drawable/goods_order_pay_jianbian"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
@@ -206,20 +206,45 @@
             </linchom.com.linchomspace.shopping.widget.GoodsNoScrollListview>
 
 
-            <TextView
-                android:background="#ffffff"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="10dp"
-                android:gravity="center_vertical"
-                android:id="@+id/tv_order_pay"
-                android:textSize="18sp"
-                android:text="支付方式:支付宝"
-                android:layout_below="@id/lv_order_products"
 
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:textColor="@color/text_style"
-                />
+
+           <RelativeLayout
+               android:background="#ffffff"
+               android:id="@+id/rl_order_alipay"
+               android:layout_below="@id/lv_order_products"
+
+               android:layout_width="match_parent"
+               android:layout_height="48dp">
+
+               <ImageView
+                   android:layout_marginLeft="10dp"
+                   android:layout_centerVertical="true"
+                   android:id="@+id/iv_order_alipay"
+                   android:src="@drawable/alipay"
+                   android:layout_width="35dp"
+                   android:layout_height="35dp" />
+
+               <TextView
+                   android:layout_marginLeft="10dp"
+                   android:layout_toRightOf="@id/iv_order_alipay"
+                   android:background="#ffffff"
+                   android:gravity="center_vertical"
+                   android:id="@+id/tv_order_pay"
+                   android:textSize="17sp"
+                   android:text="支付宝"
+
+                   android:layout_width="match_parent"
+                   android:layout_height="48dp"
+                   android:textColor="@color/text_style"
+                   />
+
+
+
+
+           </RelativeLayout>
+
+
+
 
           <EditText
               android:layout_marginTop="5dp"
@@ -227,11 +252,12 @@
 
               android:paddingLeft="10dp"
               android:hint="订单附言"
-              android:layout_below="@id/tv_order_pay"
+              android:layout_below="@id/rl_order_alipay"
               android:layout_width="match_parent"
               android:layout_height="48dp"
               android:textColor="@color/text_style"
               android:textColorHint="@color/text_style"
+              android:textSize="17sp"
 
               />
 
