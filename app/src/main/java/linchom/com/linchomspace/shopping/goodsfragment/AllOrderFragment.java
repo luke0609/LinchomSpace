@@ -308,7 +308,7 @@ public class AllOrderFragment extends Fragment {
                     //取消订单    付款
                     btn_orderform_left.setVisibility(View.VISIBLE);
 
-                    btn_orderform_right.setVisibility(View.VISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
                     btn_orderform_left.setText("取消订单");
 
@@ -327,7 +327,6 @@ public class AllOrderFragment extends Fragment {
                         }
                     });
 
-                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
                     btn_orderform_right.setOnClickListener(new View.OnClickListener() {
                         @Override
