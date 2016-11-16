@@ -100,6 +100,21 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Toast.makeText(GoodsOrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(GoodsOrderActivity.this,GoodsOrderCompleteActivity.class);
+
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("orderId",orderId);
+
+                        intent.putExtra("bundle",bundle);
+
+                        startActivity(intent);
+
+                        finish();
+
+
+
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(GoodsOrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
@@ -122,6 +137,8 @@ public class GoodsOrderActivity extends AppCompatActivity {
     private String goodsImg;
     private String goodsName;
     private String goodsPrice;
+
+    private String orderId;
 
     private String userId;
 
@@ -609,7 +626,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
         requestParams.addBodyParameter("user_id",userId);
 
-        Toast.makeText(getApplicationContext(),"userId"+userId,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"userId"+userId,Toast.LENGTH_SHORT).show();
 
         Log.i(TAG,"user_id ce shi"+userId);
 
@@ -656,7 +673,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     OrderSuccessBean orderSuccessBean =  gson.fromJson(result, OrderSuccessBean.class);
 
                     Toast.makeText(getApplicationContext(),"提交成功,订单号:"+orderSuccessBean.data.order_id,Toast.LENGTH_SHORT).show();
-
+                    orderId = orderSuccessBean.data.order_id;
 
                     if (TextUtils.isEmpty(APPID) || TextUtils.isEmpty(RSA_PRIVATE)) {
                         new AlertDialog.Builder(getApplicationContext()).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
@@ -701,7 +718,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                     btn_goods_order_submitorder.setEnabled(true);
 
-                    btn_goods_order_submitorder.setText("提交失败");
+                    btn_goods_order_submitorder.setText("重新提交");
 
 
                     Toast.makeText(getApplicationContext(),"提交失败,地址信息不完整",Toast.LENGTH_SHORT).show();
