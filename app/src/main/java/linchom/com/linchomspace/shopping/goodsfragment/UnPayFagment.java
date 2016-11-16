@@ -325,7 +325,7 @@ public class UnPayFagment extends Fragment {
 
                     btn_orderform_right.setText("付款");
 
-                    btn_orderform_right.setVisibility(View.VISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {
                         @Override
