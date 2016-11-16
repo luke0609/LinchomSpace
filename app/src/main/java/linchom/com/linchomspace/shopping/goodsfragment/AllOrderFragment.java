@@ -343,7 +343,7 @@ public class AllOrderFragment extends Fragment {
                             }
 
 
-                            Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPrice+"",orderFormList.get((int)btn_orderform_right.getTag()).order_id);
+                            Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPrice+"",orderFormList.get((int)btn_orderform_left.getTag()).order_id);
                             String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
                             String sign = OrderInfoUtil2_0.getSign(params, RSA_PRIVATE);
                             final String orderInfo = orderParam + "&" + sign;
