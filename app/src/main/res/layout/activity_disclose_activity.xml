@@ -8,12 +8,13 @@
     <RelativeLayout
         android:id="@+id/rl_dis"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="45dp"
+        android:background="@color/main_style">
         <ImageView
             android:id="@+id/iv_disback"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/article_back"
+            android:src="@drawable/back_white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             />
@@ -22,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我要爆料"
-            android:textColor="@color/text_style"
+            android:textColor="#FFF"
             android:textSize="19sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -33,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发 送"
-            android:textColor="@color/text_style"
+            android:textColor="#FFF"
             android:layout_marginRight="10dp"
             android:textSize="17sp"
             android:layout_centerVertical="true"
