@@ -32,6 +32,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import linchom.com.linchomspace.R;
@@ -152,6 +153,8 @@ public class AllOrderFragment extends Fragment {
     private RelativeLayout rl_goods_orderform_load_pro;
 
     private boolean pullFlag=false;
+    private List<Double> totalPriceList = new ArrayList<Double>();
+
 
 
     @Nullable
@@ -282,6 +285,8 @@ public class AllOrderFragment extends Fragment {
 
                 }
 
+                totalPriceList.add(totalPrice);
+
 
 
 
@@ -345,7 +350,7 @@ public class AllOrderFragment extends Fragment {
                             }
 
 
-                            Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPrice+"",orderFormList.get((int)btn_orderform_left.getTag()).order_id);
+                            Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPriceList.get((int)btn_orderform_right.getTag())+"",orderFormList.get((int)btn_orderform_right.getTag()).order_id);
                             String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
                             String sign = OrderInfoUtil2_0.getSign(params, RSA_PRIVATE);
                             final String orderInfo = orderParam + "&" + sign;
@@ -700,6 +705,8 @@ public class AllOrderFragment extends Fragment {
                     if (page == 1) {
 
                         orderFormList.clear();
+
+                        totalPriceList.clear();
                     }
 
                     orderFormList.addAll(goodsOrderFormBean.data.items);
