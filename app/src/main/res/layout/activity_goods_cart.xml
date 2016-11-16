@@ -23,13 +23,13 @@
         android:id="@+id/ll_cartList_bottom"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="45dp">
 
         <TextView
             android:id="@+id/tv_goods_cart_totalprice"
             android:textColor="#90ff0000"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="18sp"
 
             android:text="合计:0.0元"
             android:background="#ffffff"
