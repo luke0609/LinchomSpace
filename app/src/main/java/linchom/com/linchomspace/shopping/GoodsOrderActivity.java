@@ -670,7 +670,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
                     }
 
 
-                    Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID);
+                    Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPrice+"",orderSuccessBean.data.order_id);
                     String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
                     String sign = OrderInfoUtil2_0.getSign(params, RSA_PRIVATE);
                     final String orderInfo = orderParam + "&" + sign;
