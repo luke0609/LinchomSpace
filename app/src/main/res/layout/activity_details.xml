@@ -8,22 +8,22 @@
         android:id="@+id/rl_gai"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#fff"
+        android:background="@color/main_style"
         >
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/article_back"
-            />
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_back"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:src="@drawable/article_back"-->
+            <!--/>-->
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="账号管理"
-            android:textColor="#212121"
+            android:textColor="#FFF"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textSize="18sp"
@@ -37,7 +37,7 @@
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textColor="#212121"
+            android:textColor="#FFF"
             android:textSize="18sp"
             />
     </RelativeLayout>

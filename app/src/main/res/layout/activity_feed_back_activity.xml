@@ -7,7 +7,7 @@
     tools:context=".mine.FeedBack_activity">
     <RelativeLayout
         android:id="@+id/rl_fk"
-        android:background="#fff"
+        android:background="@color/main_style"
         android:layout_width="match_parent"
         android:layout_height="45dp">
 
@@ -15,7 +15,7 @@
             android:id="@+id/iv_fkback"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/article_back"
+            android:src="@drawable/back_white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             />
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="意见反馈"
             android:textSize="18sp"
-            android:textColor="@color/text_style"
+            android:textColor="#FFF"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
@@ -32,11 +32,10 @@
             android:id="@+id/b_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fff"
             android:text="提 交"
             android:layout_centerVertical="true"
             android:textSize="18sp"
-            android:textColor="@color/text_style"
+            android:textColor="#FFF"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             />
