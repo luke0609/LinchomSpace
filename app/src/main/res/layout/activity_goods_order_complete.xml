@@ -42,8 +42,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/tv_order_complete"
                 android:src="@drawable/order_complete"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 />
 
         </RelativeLayout>
@@ -58,7 +58,7 @@
                 android:gravity="center"
 
                 android:textColor="@color/text_style"
-                android:textSize="20sp"
+                android:textSize="18sp"
 
                 android:text=""
                 android:layout_width="match_parent"
