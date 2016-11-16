@@ -187,7 +187,7 @@ public class GoodsActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_goods);
         ///
 
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
 
 
         SharedPreferences shared_prefs = getSharedPreferences(Contant.userinfo_shared_prefs, Context.MODE_PRIVATE);

@@ -59,7 +59,7 @@ public class GoodsCommentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_comment);
-        StatusBarCompat.compat(this, Color.parseColor("#212121"));
+        StatusBarCompat.compat(this, Color.parseColor("#4EAFAB"));
 
 
         Intent intent =getIntent();
