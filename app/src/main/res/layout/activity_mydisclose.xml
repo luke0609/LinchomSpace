@@ -10,12 +10,12 @@
         android:id="@+id/rl_bl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#f5f5f5">
+        android:background="@color/main_style">
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/article_back"
+            android:src="@drawable/back_white"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"/>
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="爆料记录"
-            android:textColor="#212121"
+            android:textColor="#FFF"
             android:layout_centerHorizontal="true"
             android:padding="10dp"/>
     </RelativeLayout>
