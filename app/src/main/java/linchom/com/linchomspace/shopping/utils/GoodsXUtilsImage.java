@@ -18,8 +18,8 @@ public class GoodsXUtilsImage {
         ImageOptions imageOptions = new ImageOptions.Builder()
                 .setIgnoreGif(false)//是否忽略gif图。false表示不忽略。不写这句，默认是true
                 .setImageScaleType(ImageView.ScaleType.FIT_CENTER)
-                .setFailureDrawableId(R.drawable.defult_pic)
-                .setLoadingDrawableId(R.drawable.defult_pic)
+                .setFailureDrawableId(R.mipmap.default1)
+                .setLoadingDrawableId(R.mipmap.default1)
                 .build();
         x.image().bind(imageView, iconUrl,imageOptions);
     }
