@@ -279,6 +279,8 @@ public class UnPayFagment extends Fragment {
 
                 btn_orderform_left.setTag(position);
 
+                btn_orderform_right.setVisibility(View.INVISIBLE);
+
 
 
                 totalNum=0;
