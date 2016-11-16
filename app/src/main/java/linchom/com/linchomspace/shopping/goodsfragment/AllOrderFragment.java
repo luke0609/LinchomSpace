@@ -322,6 +322,8 @@ public class AllOrderFragment extends Fragment {
                         }
                     });
 
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
+
                     btn_orderform_right.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
