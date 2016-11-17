@@ -23,10 +23,10 @@ public class SplashActivity extends AppCompatActivity {
         boolean isLogin = shared_prefs.getBoolean("isLogin", false);
         if (isLogin) {
             Handler x = new Handler();
-            x.postDelayed(new jumphandler(), 4000);
+            x.postDelayed(new jumphandler(), 2000);
         }else {
             Handler x = new Handler();
-            x.postDelayed(new splashhandler(), 4000);
+            x.postDelayed(new splashhandler(), 2000);
         }
     }
 

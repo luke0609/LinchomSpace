@@ -384,6 +384,7 @@ public class ChatFragment extends Fragment {
                     int timeB = Integer.parseInt(itemsBean.getAdd_time());
                     tv_chat_time.setText(DateUtils.getGapTimeFromNow(new Date(timeB * 1000L)));
                     remark_num.setText(itemsBean.getRepliesnumber());
+
                     List<String> urllist = new ArrayList<>();
                     if (itemsBean.getPhoto() != null && (!"".equals(itemsBean.getPhoto()))) {
 
