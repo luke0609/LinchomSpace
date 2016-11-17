@@ -76,7 +76,7 @@ public class HeadImage_activity extends AppCompatActivity {
         }
 
          iv_user_photo=((ImageView) findViewById(R.id.iv_user_photo));
-        tv_name = ((EditText)findViewById(R.id.tv_name));
+        tv_name= ((EditText)findViewById(R.id.tv_name));
         tv_sex = ((TextView) findViewById(R.id.tv_add));
         tv_birthday = ((TextView) findViewById(R.id.tv_birthday1));
         tv_email = ((EditText) findViewById(R.id.tv_email));
@@ -135,7 +135,8 @@ public class HeadImage_activity extends AppCompatActivity {
 //                System.out.println("dataBean"+dataBean);
                 bundle.putSerializable("user",dataBean);
                 intent.putExtras(bundle);
-                startActivityForResult(intent,2);
+                //startActivityForResult(intent,2);
+                setResult(2,intent);
                 finish();//标识
             }
         });
