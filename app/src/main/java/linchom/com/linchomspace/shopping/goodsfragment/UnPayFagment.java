@@ -160,6 +160,8 @@ public class UnPayFagment extends Fragment {
 
     private boolean pullFlag=false;
 
+    private List<Double> totalPriceList = new ArrayList<Double>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -277,6 +279,8 @@ public class UnPayFagment extends Fragment {
 
                 btn_orderform_left.setTag(position);
 
+                btn_orderform_right.setVisibility(View.INVISIBLE);
+
 
 
                 totalNum=0;
@@ -290,6 +294,8 @@ public class UnPayFagment extends Fragment {
                     totalPrice+=(Double.parseDouble(orderForm.order_goods.get(i).total));
 
                 }
+
+                totalPriceList.add(totalPrice);
 
 
 
@@ -319,7 +325,7 @@ public class UnPayFagment extends Fragment {
 
                     btn_orderform_right.setText("付款");
 
-                    btn_orderform_right.setVisibility(View.VISIBLE);
+                    btn_orderform_right.setVisibility(View.INVISIBLE);
 
                     btn_orderform_left.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -366,7 +372,7 @@ public class UnPayFagment extends Fragment {
                             }
 
 
-                            Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPrice+"",orderFormList.get((int)btn_orderform_right.getTag()).order_id);
+                            Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID,totalPriceList.get((int)btn_orderform_right.getTag())+"",orderFormList.get((int)btn_orderform_right.getTag()).order_id);
                             String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
                             String sign = OrderInfoUtil2_0.getSign(params, RSA_PRIVATE);
                             final String orderInfo = orderParam + "&" + sign;
@@ -654,6 +660,8 @@ public class UnPayFagment extends Fragment {
                     if (page == 1) {
 
                         orderFormList.clear();
+
+                        totalPriceList.clear();
                     }
 
                     orderFormList.addAll(goodsOrderFormBean.data.items);

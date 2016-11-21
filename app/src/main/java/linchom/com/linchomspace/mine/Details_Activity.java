@@ -69,6 +69,7 @@ public class Details_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HeadImage_activity.class);
                 Bundle bundle = new Bundle();
+                getData();
                 bundle.putSerializable("user", userInfoBean);
                 System.out.println(userInfoBean);
                 intent.putExtras(bundle);

@@ -10,7 +10,7 @@
         android:id="@+id/rl_she"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#f5f5f5"
+        android:background="@color/main_style"
         >
         <ImageView
             android:id="@+id/iv_back"
@@ -18,14 +18,14 @@
             android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/article_back"
+            android:src="@drawable/back_white"
             />
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="设 置"
-            android:textColor="#212121"
+            android:textColor="#FFF"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textSize="17sp"

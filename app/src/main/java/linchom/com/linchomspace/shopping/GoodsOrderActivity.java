@@ -672,7 +672,7 @@ public class GoodsOrderActivity extends AppCompatActivity {
 
                     OrderSuccessBean orderSuccessBean =  gson.fromJson(result, OrderSuccessBean.class);
 
-                    Toast.makeText(getApplicationContext(),"提交成功,订单号:"+orderSuccessBean.data.order_id,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"提交成功,订单号:"+orderSuccessBean.data.order_id,Toast.LENGTH_SHORT).show();
                     orderId = orderSuccessBean.data.order_id;
 
                     if (TextUtils.isEmpty(APPID) || TextUtils.isEmpty(RSA_PRIVATE)) {

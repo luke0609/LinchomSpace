@@ -1,17 +1,14 @@
 package linchom.com.linchomspace.mine;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -239,7 +236,7 @@ public class Disclose_activity extends AppCompatActivity {
                 System.out.println(photoAddress);
                 System.out.println(count);
                 if (count==list_photo.size()){
-//                    System.out.println("xxxxxxx");
+
                     post();
                 }
             }

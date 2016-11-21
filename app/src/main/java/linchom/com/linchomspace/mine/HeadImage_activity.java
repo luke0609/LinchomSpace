@@ -178,13 +178,15 @@ public class HeadImage_activity extends AppCompatActivity {
         Intent intent=getIntent();
         dataBean= (UserInfoBean.DataBean) intent.getSerializableExtra("user");
         System.out.println("dataBean"+dataBean);
-        tv_name.setText(dataBean.getName());
-        tv_sex.setText(dataBean.getSex().equals("1")?"男":"女");
-        tv_birthday.setText(dataBean.getBirthday());
-        tv_email.setText(dataBean.getEmail());
-        tv_home_phone.setText(dataBean.getHome_phone());
-        tv_office_phone.setText(dataBean.getOffice_phone());
-        tv_mobile_phone.setText(dataBean.getMobile_phone());
+        if (dataBean!=null) {
+            tv_name.setText(dataBean.getName());
+            tv_sex.setText(dataBean.getSex().equals("1") ? "男" : "女");
+            tv_birthday.setText(dataBean.getBirthday());
+            tv_email.setText(dataBean.getEmail());
+            tv_home_phone.setText(dataBean.getHome_phone());
+            tv_office_phone.setText(dataBean.getOffice_phone());
+            tv_mobile_phone.setText(dataBean.getMobile_phone());
+        }
     }
 
     private void initEvent() {
