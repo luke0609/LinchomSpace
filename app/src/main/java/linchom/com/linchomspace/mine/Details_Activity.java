@@ -22,7 +22,6 @@ public class Details_Activity extends AppCompatActivity {
     UserInfoBean.DataBean userInfoBean;
     public static final String TAG = " Details_Activity";
 
-
     private ImageView iv_back;
     private ImageView iv_user_photo;
     private TextView tv_ed;
@@ -39,10 +38,14 @@ public class Details_Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         System.out.println("userInfoBean111" + userInfoBean);
         if (requestCode == 2 && resultCode == 2) {
+            System.out.println("fytftyfty=");
             Bundle bundle = data.getExtras();
             userInfoBean = (UserInfoBean.DataBean) bundle.getSerializable("user");
-            System.out.println("userInfoBean" + userInfoBean);
+//            System.out.println("userInfoBean" + userInfoBean);
+//            tv_name.setText(userInfoBean.getName());
             tv_name.setText(userInfoBean.getName());
+            tv_office_phone.setText(userInfoBean.getOffice_phone());
+            initData();
         }
     }
     @Override
@@ -107,15 +110,16 @@ public class Details_Activity extends AppCompatActivity {
 
             @Override
             public void onSuccess(String result) {
-//                System.out.println("onsucess" + result);
+               // System.out.println("onsucess" + result);
                 Gson gson = new Gson();
                 UserInfoBean bean = gson.fromJson(result, UserInfoBean.class);
 //                System.out.println("======"+bean);
 //                System.out.println(bean.getResult());
                 userInfoBean = bean.getData();
-//                System.out.println("======" + userInfoBean);
+                //System.out.println("======" + userInfoBean);
                 x.image().bind(iv_user_photo,userInfoBean.getUser_photo());
                 tv_mobile_phone.setText(userInfoBean.getMobile_phone());
+                System.out.println("name==="+userInfoBean.getName());
                 tv_name.setText(userInfoBean.getName());
                 tv_birthday.setText(userInfoBean.getBirthday());
                 tv_email.setText(userInfoBean.getEmail());
