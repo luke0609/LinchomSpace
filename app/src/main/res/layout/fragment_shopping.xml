@@ -199,9 +199,9 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="智巢"
+                            android:text="智巢控件"
 
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="40dp"
                             android:layout_alignBottom="@id/iv_goods_first"
 
@@ -400,9 +400,9 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="智能家居"
+                            android:text="智能居家"
 
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="40dp"
                             android:layout_alignBottom="@id/iv_goods_second"
 
@@ -671,7 +671,7 @@
                             android:layout_height="wrap_content"
                             android:text="智能照管"
 
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="40dp"
                             android:layout_alignBottom="@id/iv_goods_third"
 
@@ -833,7 +833,7 @@
                             android:layout_height="wrap_content"
                             android:text="智能健康"
 
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="40dp"
                             android:layout_alignBottom="@id/iv_goods_fourth"
 
@@ -996,7 +996,7 @@
                             android:layout_height="wrap_content"
                             android:text="智能穿戴"
 
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="40dp"
                             android:layout_alignBottom="@id/iv_goods_fifth"
 
@@ -1169,7 +1169,7 @@
                             android:layout_height="wrap_content"
                             android:text="智能+"
 
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:layout_marginLeft="40dp"
                             android:layout_alignBottom="@id/iv_goods_sixth"
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LinchomSpace</string>
+    <string name="app_name">联巢空间</string>
     <string-array name="spin">
         <item>行业资讯</item>
         <item>产品资讯</item>
