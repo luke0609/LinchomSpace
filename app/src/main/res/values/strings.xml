@@ -45,16 +45,18 @@
             
     </string-array>
     <array name="main_service_menu">
-        <item>智能居家</item>
-        <item>门窗安装</item>
-        <item>水暖</item>
+        <item>智能家居</item>
+        <item>电脑网络</item>
         <item>电工照明</item>
-        <item>空调电器</item>
-        <item>开孔</item>
+        <item>厨卫设施</item>
+        <item>空调家电</item>
+        <item>家具维修</item>
+        <item>水暖</item>
+        <item>门窗</item>
         <item>地板</item>
         <item>墙壁</item>
         <item>吊顶</item>
-        <item>维修</item>
+        <item>开孔</item>
         <item>保洁</item>
         <item>搬运</item>
         <item>其他</item>

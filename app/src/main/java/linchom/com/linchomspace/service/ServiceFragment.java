@@ -110,19 +110,21 @@ public class ServiceFragment extends Fragment implements View.OnClickListener {
         return view_main;
     }
     private  void initMap(){
-        region.put("智能居家","1");
-        region.put("门窗安装","2");
-        region.put("水暖","3");
-        region.put("电工照明","4");
-        region.put("空调电器","5");
-        region.put("开孔","6");
-        region.put("地板","7");
-        region.put("墙壁","8");
-        region.put("吊顶R","9");
-        region.put("维修","10");
-        region.put("保洁","11");
-        region.put("搬运","12");
-        region.put("其他","13");
+        region.put("智能家居","1");
+        region.put("电脑网络","2");
+        region.put("电工照明","3");
+        region.put("厨卫设施","4");
+        region.put("空调家电","5");
+        region.put("家具维修","6");
+        region.put("水暖","7");
+        region.put("门窗","8");
+        region.put("地板","9");
+        region.put("墙壁","10");
+        region.put("吊顶","11");
+        region.put("开孔","12");
+        region.put("保洁","13");
+        region.put("搬运","14");
+        region.put("其他","15");
 
 
         map_category.put("北京","52");

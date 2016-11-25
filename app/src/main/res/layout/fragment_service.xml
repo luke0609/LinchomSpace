@@ -34,7 +34,7 @@
             android:layout_height="wrap_content" />
         <RadioGroup
             android:layout_centerInParent="true"
-            android:layout_width="100dp"
+            android:layout_width="130dp"
             android:layout_height="30dp"
             android:id="@+id/rg_choice"
             android:background="@drawable/service_shape"
@@ -43,7 +43,7 @@
                 android:id="@+id/request"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                style="@style/radiobtn2"
+                style="@style/radiobtn"
                 android:layout_height="match_parent"
                 android:background="@drawable/service_change_selector"
                 android:textColor="@drawable/serviec_textcolor_selector"
@@ -53,11 +53,20 @@
                 android:id="@+id/serviec"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                style="@style/radiobtn"
+                style="@style/radiobtn2"
                 android:textColor="@drawable/serviec_textcolor_selector"
                 android:layout_height="match_parent"
                 android:background="@drawable/service_change_selector"
                 android:text="服务"/>
+            <RadioButton
+                android:id="@+id/data"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                style="@style/radiobtn2"
+                android:textColor="@drawable/serviec_textcolor_selector"
+                android:layout_height="match_parent"
+                android:background="@drawable/service_change_selector"
+                android:text="日志"/>
         </RadioGroup>
     <TextView
         android:id="@+id/service_category"
@@ -145,7 +154,7 @@
         android:paddingRight="15dp"
         android:paddingTop="5dp"
         android:text="我 的"
-        android:background="#212121"
+        android:background="#4EAFAB"
         android:textColor="#fff"
         android:textSize="16sp"
         android:visibility="gone" />
@@ -163,7 +172,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/jiange02"
         android:layout_alignRight="@+id/jiange02"
-        android:background="#212121"
+        android:background="#4EAFAB"
         android:clickable="true"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
@@ -185,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/jiange03"
             android:layout_alignRight="@+id/jiange03"
-            android:background="#212121"
+            android:background="#4EAFAB"
             android:clickable="true"
             android:paddingBottom="5dp"
             android:paddingLeft="15dp"
